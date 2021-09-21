@@ -1,0 +1,2 @@
+server admin login : freeuser
+pass: User1234
