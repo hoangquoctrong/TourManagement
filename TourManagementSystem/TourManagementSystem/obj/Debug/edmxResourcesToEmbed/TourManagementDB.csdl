@@ -1,4 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Tour_Management_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="Tour_Management_DatabaseEntities" annotation:LazyLoadingEnabled="true" />
+  <EntityContainer Name="Tour_Management_DatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TOUR" EntityType="Tour_Management_DatabaseModel.TOUR" />
+    <EntitySet Name="TOUR_PRICE" EntityType="Tour_Management_DatabaseModel.TOUR_PRICE" />
+    <AssociationSet Name="FK__TOUR_PRIC__TOUR___6477ECF3" Association="Tour_Management_DatabaseModel.FK__TOUR_PRIC__TOUR___6477ECF3">
+      <End Role="TOUR" EntitySet="TOUR" />
+      <End Role="TOUR_PRICE" EntitySet="TOUR_PRICE" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TOUR">
+    <Key>
+      <PropertyRef Name="TOUR_ID" />
+    </Key>
+    <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
+    <Property Name="TOUR_NAME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TOUR_CHARACTERISTICT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TOUR_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TOUR_PRICE" Relationship="Tour_Management_DatabaseModel.FK__TOUR_PRIC__TOUR___6477ECF3" FromRole="TOUR" ToRole="TOUR_PRICE" />
+  </EntityType>
+  <EntityType Name="TOUR_PRICE">
+    <Key>
+      <PropertyRef Name="TOUR_PRICE_ID" />
+    </Key>
+    <Property Name="TOUR_PRICE_ID" Type="Int32" Nullable="false" />
+    <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
+    <Property Name="TOUR_COST" Type="Double" Nullable="false" />
+    <Property Name="TOUR_TIME" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="TOUR" Relationship="Tour_Management_DatabaseModel.FK__TOUR_PRIC__TOUR___6477ECF3" FromRole="TOUR_PRICE" ToRole="TOUR" />
+  </EntityType>
+  <Association Name="FK__TOUR_PRIC__TOUR___6477ECF3">
+    <End Type="Tour_Management_DatabaseModel.TOUR" Role="TOUR" Multiplicity="1" />
+    <End Type="Tour_Management_DatabaseModel.TOUR_PRICE" Role="TOUR_PRICE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TOUR">
+        <PropertyRef Name="TOUR_ID" />
+      </Principal>
+      <Dependent Role="TOUR_PRICE">
+        <PropertyRef Name="TOUR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

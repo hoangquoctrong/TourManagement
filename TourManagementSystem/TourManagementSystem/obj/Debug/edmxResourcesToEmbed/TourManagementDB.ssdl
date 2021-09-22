@@ -1,4 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Tour_Management_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="Tour_Management_DatabaseModelStoreContainer" />
+<Schema Namespace="Tour_Management_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TOUR">
+    <Key>
+      <PropertyRef Name="TOUR_ID" />
+    </Key>
+    <Property Name="TOUR_ID" Type="int" Nullable="false" />
+    <Property Name="TOUR_NAME" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="TOUR_CHARACTERISTICT" Type="text" />
+    <Property Name="TOUR_TYPE" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="TOUR_PRICE">
+    <Key>
+      <PropertyRef Name="TOUR_PRICE_ID" />
+    </Key>
+    <Property Name="TOUR_PRICE_ID" Type="int" Nullable="false" />
+    <Property Name="TOUR_ID" Type="int" Nullable="false" />
+    <Property Name="TOUR_COST" Type="float" Nullable="false" />
+    <Property Name="TOUR_TIME" Type="date" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__TOUR_PRIC__TOUR___6477ECF3">
+    <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
+    <End Role="TOUR_PRICE" Type="Self.TOUR_PRICE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TOUR">
+        <PropertyRef Name="TOUR_ID" />
+      </Principal>
+      <Dependent Role="TOUR_PRICE">
+        <PropertyRef Name="TOUR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Tour_Management_DatabaseModelStoreContainer">
+    <EntitySet Name="TOUR" EntityType="Self.TOUR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TOUR_PRICE" EntityType="Self.TOUR_PRICE" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__TOUR_PRIC__TOUR___6477ECF3" Association="Self.FK__TOUR_PRIC__TOUR___6477ECF3">
+      <End Role="TOUR" EntitySet="TOUR" />
+      <End Role="TOUR_PRICE" EntitySet="TOUR_PRICE" />
+    </AssociationSet>
+  </EntityContainer>
 </Schema>

@@ -1,4 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Tour_Management_DatabaseModelStoreContainer" CdmEntityContainer="Tour_Management_DatabaseEntities" />
+  <EntityContainerMapping StorageEntityContainer="Tour_Management_DatabaseModelStoreContainer" CdmEntityContainer="Tour_Management_DatabaseEntities">
+    <EntitySetMapping Name="TOUR">
+      <EntityTypeMapping TypeName="Tour_Management_DatabaseModel.TOUR">
+        <MappingFragment StoreEntitySet="TOUR">
+          <ScalarProperty Name="TOUR_TYPE" ColumnName="TOUR_TYPE" />
+          <ScalarProperty Name="TOUR_CHARACTERISTICT" ColumnName="TOUR_CHARACTERISTICT" />
+          <ScalarProperty Name="TOUR_NAME" ColumnName="TOUR_NAME" />
+          <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_PRICE">
+      <EntityTypeMapping TypeName="Tour_Management_DatabaseModel.TOUR_PRICE">
+        <MappingFragment StoreEntitySet="TOUR_PRICE">
+          <ScalarProperty Name="TOUR_TIME" ColumnName="TOUR_TIME" />
+          <ScalarProperty Name="TOUR_COST" ColumnName="TOUR_COST" />
+          <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
+          <ScalarProperty Name="TOUR_PRICE_ID" ColumnName="TOUR_PRICE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
 </Mapping>

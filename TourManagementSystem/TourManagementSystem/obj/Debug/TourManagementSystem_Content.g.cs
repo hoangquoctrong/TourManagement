@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tourmanagementdb.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tourmanagementdb.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/tourmanagementdb.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/tourmanagementdb.tt")]
 
 
