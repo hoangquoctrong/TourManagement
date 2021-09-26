@@ -74,7 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\SideBarModel.cs" />
+    <Compile Include="Global\Model\SideBarModel.cs" />
     <Compile Include="Global\PLACE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
