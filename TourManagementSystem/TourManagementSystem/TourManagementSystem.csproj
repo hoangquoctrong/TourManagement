@@ -75,70 +75,82 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\SideBarModel.cs" />
-    <Compile Include="PLACE.cs">
+    <Compile Include="Global\PLACE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TOUR.cs">
+    <Compile Include="Global\TOUR.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TourDB.Context.cs">
+    <Compile Include="Global\TourDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TourDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="TourDB.cs">
+    <Compile Include="Global\TourDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TourDB.Designer.cs">
+    <Compile Include="Global\TourDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TourDB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="TOUR_HOTEL.cs">
+    <Compile Include="Global\TOUR_ACCOUNT.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TOUR_HOTEL_DETAIL.cs">
+    <Compile Include="Global\TOUR_HOTEL.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TOUR_LOCATION.cs">
+    <Compile Include="Global\TOUR_HOTEL_DETAIL.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TOUR_LOCATION_DETAILED.cs">
+    <Compile Include="Global\TOUR_LOCATION.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TOUR_MISSION.cs">
+    <Compile Include="Global\TOUR_LOCATION_DETAILED.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TOUR_PRICE.cs">
+    <Compile Include="Global\TOUR_MISSION.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TOUR_STAFF.cs">
+    <Compile Include="Global\TOUR_PRICE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TOUR_TRANSPORT.cs">
+    <Compile Include="Global\TOUR_RECORD.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TOUR_TRANSPORT_DETAIL.cs">
+    <Compile Include="Global\TOUR_STAFF.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TRAVELLER.cs">
+    <Compile Include="Global\TOUR_STAFF_DELETE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TRAVELLER_DETAIL.cs">
+    <Compile Include="Global\TOUR_TRANSPORT.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TRAVEL_COST.cs">
+    <Compile Include="Global\TOUR_TRANSPORT_DETAIL.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TRAVEL_GROUP.cs">
+    <Compile Include="Global\TRAVELLER.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\TourUC.xaml.cs">
+    <Compile Include="Global\TRAVELLER_ACCOUNT.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global\TRAVELLER_DETAIL.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global\TRAVEL_COST.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global\TRAVEL_GROUP.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global\View\TourUC.xaml.cs">
       <DependentUpon>TourUC.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\MainWindow.xaml">
+    <Page Include="Global\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -146,13 +158,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\InterfaceViewModel.cs" />
-    <Compile Include="View\MainWindow.xaml.cs">
+    <Compile Include="Global\ViewModel\BaseViewModel.cs" />
+    <Compile Include="Global\ViewModel\InterfaceViewModel.cs" />
+    <Compile Include="Global\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\TourUC.xaml">
+    <Page Include="Global\View\TourUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,11 +192,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <EntityDeploy Include="TourDB.edmx">
+    <EntityDeploy Include="Global\TourDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TourDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="TourDB.edmx.diagram">
+    <None Include="Global\TourDB.edmx.diagram">
       <DependentUpon>TourDB.edmx</DependentUpon>
     </None>
   </ItemGroup>
@@ -194,15 +206,22 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Image\User.png" />
-    <Content Include="TourDB.Context.tt">
+    <Folder Include="Customers\ViewModel\" />
+    <Folder Include="Customers\View\" />
+    <Folder Include="Employees\ViewModel\" />
+    <Folder Include="Employees\View\" />
+    <Folder Include="Managers\ViewModel\" />
+    <Folder Include="Managers\View\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\User.png" />
+    <Content Include="Global\TourDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TourDB.edmx</DependentUpon>
       <LastGenOutput>TourDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="TourDB.tt">
+    <Content Include="Global\TourDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TourDB.edmx</DependentUpon>
       <LastGenOutput>TourDB.cs</LastGenOutput>
