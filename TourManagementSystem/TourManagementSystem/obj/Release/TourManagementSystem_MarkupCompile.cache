@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Release\
 TourManagementSystem
 none
 false
-DEBUG;TRACE
+TRACE
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\App.xaml
 2-254386439
 2-688663000
