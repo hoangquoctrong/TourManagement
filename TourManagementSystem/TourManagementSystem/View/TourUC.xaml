@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="TourManagementSystem.View.TourUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TourManagementSystem.View"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="450" d:DesignWidth="774">
+    <UserControl.Resources>
+        <Style x:Key="WrapText" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    <ContentControl x:Name="contentControlMain" Height="600">
+        <Grid Margin="0,20,0,0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Margin="60,10,0,10" Orientation="Horizontal">
+
+                <materialDesign:PackIcon
+                    Width="30"
+                    Height="30"
+                    VerticalAlignment="Center"
+                    Foreground="DimGray"
+                    Kind="Search" />
+                <TextBox
+                    Width="370"
+                    Margin="5,0,0,0"
+                    materialDesign:HintAssist.Hint="Search "
+                    FontSize="18"
+                    Text="{Binding SEARCH_TEXT, UpdateSourceTrigger=PropertyChanged}" />
+
+                <ComboBox
+                    Name="cbSearch"
+                    Margin="30,0,80,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    DisplayMemberPath="NAME"
+                    FontSize="18"
+                    Foreground="DimGray"
+                    ItemsSource="{Binding ListType, Mode=TwoWay}"
+                    SelectedValue="{Binding SELECTEDTYPE}">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="IsSelected" Value="{Binding ISSELECTED}" />
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+            </StackPanel>
+
+            <DataGrid
+                x:Name="dgTimekeeping"
+                Grid.Row="1"
+                Width="750"
+                Height="400"
+                Margin="0,20.4,0,0"
+                VerticalAlignment="Top"
+                AllowDrop="True"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="True"
+                IsReadOnly="True"
+                ItemsSource="{Binding TourList}"
+                SelectedItem="{Binding SELECTEDITEM}">
+                <DataGrid.InputBindings>
+                    <MouseBinding
+                        Command="{Binding showDetailCommand}"
+                        CommandParameter="{Binding ElementName=contentControlMain}"
+                        Gesture="LeftDoubleClick" />
+                </DataGrid.InputBindings>
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="auto"
+                        Binding="{Binding MONTH, StringFormat='{}{0: MM/yyyy}'}"
+                        ElementStyle="{StaticResource WrapText}"
+                        Foreground="DarkSlateGray"
+                        Header="ID" />
+                    <DataGridTextColumn
+                        Width="auto"
+                        Binding="{Binding DAY_START, StringFormat='{}{0: dd/MM/yyyy}'}"
+                        ElementStyle="{StaticResource WrapText}"
+                        Foreground="DarkSlateGray"
+                        Header="Name" />
+                    <DataGridTextColumn
+                        Width="auto"
+                        Binding="{Binding DAY_END, StringFormat='{}{0: dd/MM/yyyy}'}"
+                        ElementStyle="{StaticResource WrapText}"
+                        Foreground="DarkSlateGray"
+                        Header="Type" />
+                    <DataGridTextColumn
+                        Width="auto"
+                        Binding="{Binding TOTAL_WORK_DAY}"
+                        ElementStyle="{StaticResource WrapText}"
+                        Foreground="DarkSlateGray"
+                        Header="Status" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Grid.Row="2" Background="#0f6f68" HorizontalAlignment="Right" Content="Add Tour" Margin="30" Width="150" Height="40">
+                
+            </Button>
+
+        </Grid>
+    </ContentControl>
+</UserControl>

@@ -1,0 +1,234 @@
+﻿<Window x:Class="TourManagementSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TourManagementSystem"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodel="clr-namespace:TourManagementSystem.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:InterfaceViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="600" 
+        Width="1024"
+        AllowsTransparency="True"
+    Background="Transparent"
+        ResizeMode="NoResize"
+        WindowStyle="None">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="280"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="2"
+            Grid.ColumnSpan="5"
+            Margin="0,0,0,0"
+            CornerRadius="0 0 0 30">
+
+                <Border.Background>
+                    <SolidColorBrush Color="#0f6f68" />
+                </Border.Background>
+            </Border>
+            <Border Grid.Row="1"
+            Grid.ColumnSpan="5"
+            Margin="0,0,0,0">
+
+                <Border.Background>
+                    <SolidColorBrush Color="#0f6f68" />
+                </Border.Background>
+            </Border>
+            <Border Grid.Row="0"
+            Grid.ColumnSpan="5"
+            Margin="0,0,0,0"
+            CornerRadius="30 0 0 0">
+
+                <Border.Background>
+                    <SolidColorBrush Color="#0f6f68" />
+                </Border.Background>
+            </Border>
+            <Border CornerRadius="30" Height="150" Width="150" VerticalAlignment="Top" Margin="0 10 0 0" >
+                <Border.Background>
+                    <ImageBrush Stretch="Fill" ImageSource="pack://application:,,,/Image/User.png"/>
+                </Border.Background>
+            </Border>
+            <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Hoàng Quốc Trọng" Foreground="White" HorizontalAlignment="Center" Margin="0 0 0 10" FontSize="20"/>
+            <StackPanel Grid.Row="1">
+                <Grid >
+                
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+
+                    <Button
+                        Grid.Row="0"
+                        Width="200"
+                        Height="50"
+                        Margin="0,5,0,0"
+                        HorizontalContentAlignment="Left"
+                        Background="{Binding BACKGROUNDTOUR}"
+                        BorderThickness="0"
+                        Command="{Binding TourCommand}"
+                        materialDesign:ButtonAssist.CornerRadius="20"
+                        materialDesign:RippleAssist.IsDisabled="True">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Foreground="{Binding FOREGROUNDTOUR}" Kind="{Binding TOURTAB.ICONKIND}" />
+                            <TextBlock
+                            Margin="8,-4,0,0"
+                            FontFamily="Tw Cen MT"
+                            FontSize="22"
+                            FontWeight="SemiBold"
+                            Foreground="{Binding FOREGROUNDTOUR}"
+                            Text="{Binding TOURTAB.TEXTBLOCKNAME}" />
+                        </StackPanel>
+
+                    </Button>
+
+                    <Button
+                    Grid.Row="1"
+                    Width="200"
+                    Height="50"
+                    Margin="0,5,0,0"
+                    HorizontalContentAlignment="Left"
+                    Background="{Binding BACKGROUNDGROUP}"
+                    BorderThickness="0"
+                    Command="{Binding GroupCommand}"
+                    materialDesign:ButtonAssist.CornerRadius="20"
+                    materialDesign:RippleAssist.IsDisabled="True">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Foreground="{Binding FOREGROUNDGROUP}" Kind="{Binding GROUPTAB.ICONKIND}" />
+                            <TextBlock
+                            Margin="8,-4,0,0"
+                            HorizontalAlignment="Left"
+                            FontFamily="Tw Cen MT"
+                            FontSize="22"
+                            FontWeight="SemiBold"
+                            Foreground="{Binding FOREGROUNDGROUP}"
+                            Text="{Binding GROUPTAB.TEXTBLOCKNAME}" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button
+                        Grid.Row="2"
+                        Width="200"
+                        Height="50"
+                        Margin="0,5,0,0"
+                        HorizontalContentAlignment="Left"
+                        Background="{Binding BACKGROUNDPLACE}"
+                        materialDesign:RippleAssist.IsDisabled="True"
+                        BorderThickness="0"
+                        Command="{Binding PlaceCommand}"
+                        materialDesign:ButtonAssist.CornerRadius="20">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Foreground="{Binding FOREGROUNDPLACE}" Kind="{Binding PLACETAB.ICONKIND}" />
+                            <TextBlock
+                                Margin="8,-4,0,0"
+                                FontFamily="Tw Cen MT"
+                                FontSize="22"
+                                FontWeight="SemiBold"
+                                Foreground="{Binding FOREGROUNDPLACE}"
+                                Text="{Binding PLACETAB.TEXTBLOCKNAME}" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button
+                        Grid.Row="3"
+                        Width="200"
+                        Height="50"
+                        Margin="0,5,0,0"
+                        HorizontalContentAlignment="Left"
+                        Background="{Binding BACKGROUNDEMPLOYEE}"
+                        BorderThickness="0"
+                        Command="{Binding EmployeeCommand}"
+                        CommandParameter="{Binding ElementName=btnTimekeeping}"
+                        materialDesign:RippleAssist.IsDisabled="True"
+                        materialDesign:ButtonAssist.CornerRadius="20">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Foreground="{Binding FOREGROUNDEMPLOYEE}" Kind="{Binding EMPLOYEETAB.ICONKIND}" />
+                            <TextBlock
+                            Margin="8,-4,0,0"
+                            FontFamily="Tw Cen MT"
+                            FontSize="22"
+                            FontWeight="SemiBold"
+                            Foreground="{Binding FOREGROUNDEMPLOYEE}"
+                            Text="{Binding EMPLOYEETAB.TEXTBLOCKNAME}" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button
+                        Grid.Row="4"
+                        Width="200"
+                        Height="50"
+                        Margin="0,5,0,0"
+                        HorizontalContentAlignment="Left"
+                        Background="{Binding BACKGROUNDSTATISTIC}"
+                        BorderThickness="0"
+                        Command="{Binding StatisticCommand}"
+                        CommandParameter="{Binding ElementName=btnSalary}"
+                        materialDesign:RippleAssist.IsDisabled="True"
+                        materialDesign:ButtonAssist.CornerRadius="20"
+                        >
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Foreground="{Binding FOREGROUNDSTATISTIC}" Kind="{Binding STATISTICTAB.ICONKIND}" />
+                            <TextBlock
+                            Margin="8,-4,0,0"
+                            FontFamily="Tw Cen MT"
+                            FontSize="22"
+                            FontWeight="SemiBold"
+                            Foreground="{Binding FOREGROUNDSTATISTIC}"
+                            Text="{Binding STATISTICTAB.TEXTBLOCKNAME}" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </StackPanel>
+            <Grid Grid.Row="2">
+                <Button
+                    Background="Transparent"
+                    BorderThickness="0"
+                    HorizontalAlignment="Left"
+                    Margin="20 0 0 0"
+                    materialDesign:RippleAssist.IsDisabled="True">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Foreground="White" Kind="ArrowBack" />
+                        <TextBlock
+                            Margin="8,-4,0,0"
+                            FontFamily="Tw Cen MT"
+                            FontSize="22"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            Text="Log out" />
+                    </StackPanel>
+                </Button>
+                
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Border
+            Grid.ColumnSpan="2"
+            CornerRadius="0 30 30 0">
+
+                <Border.Background>
+                    <SolidColorBrush Color="WhiteSmoke" />
+                </Border.Background>
+            </Border>
+            <ContentControl
+                Margin="0,15,15,15"
+                Content="{Binding CONTENTCONTROL}"
+                DockPanel.Dock="Left" />
+        </Grid>
+
+        
+    </Grid>
+
+</Window>
