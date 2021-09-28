@@ -49,6 +49,9 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=4.2.1.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.4.2.1\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -56,6 +59,9 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -74,7 +80,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Global\Model\SideBarModel.cs" />
+    <Compile Include="Managers\ManagerView.xaml.cs">
+      <DependentUpon>ManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Managers\Model\SideBarModel.cs" />
     <Compile Include="Global\PLACE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
@@ -147,7 +156,7 @@
     <Compile Include="Global\TRAVEL_GROUP.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Global\View\TourUC.xaml.cs">
+    <Compile Include="Managers\View\TourUC.xaml.cs">
       <DependentUpon>TourUC.xaml</DependentUpon>
     </Compile>
     <Page Include="Global\MainWindow.xaml">
@@ -159,12 +168,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Global\ViewModel\BaseViewModel.cs" />
-    <Compile Include="Global\ViewModel\InterfaceViewModel.cs" />
+    <Compile Include="Managers\ViewModel\InterfaceViewModel.cs" />
     <Compile Include="Global\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Global\View\TourUC.xaml">
+    <Page Include="Managers\ManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Managers\View\TourUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,10 +224,11 @@
     <Folder Include="Customers\View\" />
     <Folder Include="Employees\ViewModel\" />
     <Folder Include="Employees\View\" />
-    <Folder Include="Managers\ViewModel\" />
-    <Folder Include="Managers\View\" />
+    <Folder Include="Global\Model\" />
+    <Folder Include="Global\View\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\logo.jpg" />
     <Resource Include="Resources\Images\User.png" />
     <Content Include="Global\TourDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

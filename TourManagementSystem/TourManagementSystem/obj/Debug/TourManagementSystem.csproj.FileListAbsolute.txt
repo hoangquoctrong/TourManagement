@@ -56,3 +56,38 @@ D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm h�
 D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\View\TourUC.g.cs
 D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\MainWindow.baml
 D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\View\TourUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\TourManagementSystem.exe.config
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\TourManagementSystem.exe
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\TourManagementSystem.pdb
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\EntityFramework.dll
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\MaterialDesignColors.dll
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\EntityFramework.xml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\EntityFramework.SqlServer.xml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\MaterialDesignColors.pdb
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.AssemblyReference.cache
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\MainWindow.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\App.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem_Content.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem_MarkupCompile.cache
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem_MarkupCompile.lref
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\App.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\MainWindow.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.g.resources
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.Properties.Resources.resources
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.GenerateResource.cache
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.CoreCompileInputs.cache
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.CopyComplete
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.exe
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.pdb
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\ManagerView.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TourUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\ManagerView.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TourUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\Microsoft.Expression.Interactions.dll
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\System.Windows.Interactivity.dll
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\Microsoft.Expression.Interactions.xml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\System.Windows.Interactivity.xml
