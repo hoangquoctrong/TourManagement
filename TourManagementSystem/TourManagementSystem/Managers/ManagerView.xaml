@@ -322,19 +322,19 @@
                     </Label>
 
                     <materialDesign:PopupBox
-                        Width="30"
-                        Height="30"
+                        Width="40"
+                        Height="40"
                         Margin="10,10,40,10"
                         Background="Transparent"
                         BorderBrush="Transparent"
                         PlacementMode="BottomAndAlignCentres"
                         StaysOpen="False"
-                        Style="{StaticResource MaterialDesignToolForegroundPopupBox}">
+                        Style="{StaticResource MaterialDesignToolPopupBox}">
                         <materialDesign:PopupBox.ToggleContent>
                             <materialDesign:PackIcon Kind="ChevronDown" />
                         </materialDesign:PopupBox.ToggleContent>
                         <StackPanel Width="120">
-                            <Button>
+                            <Button Margin="5,0">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Foreground="Black" Kind="Settings" />
                                     <TextBlock
@@ -346,7 +346,7 @@
                                         Text="Setting" />
                                 </StackPanel>
                             </Button>
-                            <Button>
+                            <Button Margin="5,0">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Foreground="Black" Kind="AccountOutline" />
                                     <TextBlock
@@ -358,7 +358,7 @@
                                         Text="Account" />
                                 </StackPanel>
                             </Button>
-                            <Button>
+                            <Button Margin="5,0">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Foreground="Black" Kind="Help" />
                                     <TextBlock
@@ -371,7 +371,7 @@
                                 </StackPanel>
                             </Button>
                             <Separator />
-                            <Button Click="Button_Click">
+                            <Button Margin="5,0" Click="Button_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Foreground="Black" Kind="ExitToApp" />
                                     <TextBlock
