@@ -99,8 +99,8 @@
                     Height="40"
                     Margin="200,0,0,0"
                     HorizontalAlignment="Right"
-                    Background="#1fd4f4"
-                    Content="Add Tour" />
+                    Background="#0f6f68"
+                    Content="Create New Tour" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="1"
@@ -140,25 +140,30 @@
                         Foreground="DarkSlateGray"
                         Header="ID" />
                     <DataGridTextColumn
-                        Width="0.2*"
+                        Width="0.15*"
                         Binding="{Binding TourName}"
                         Foreground="DarkSlateGray"
-                        Header="Info" />
+                        Header="Name" />
                     <DataGridTextColumn
                         Width="0.1*"
                         Binding="{Binding TripLength}"
                         Foreground="DarkSlateGray"
-                        Header="Trip Length" />
+                        Header="Type" />
                     <DataGridTextColumn
                         Width="0.2*"
                         Binding="{Binding Host}"
                         Foreground="DarkSlateGray"
-                        Header="Host" />
+                        Header="Characteristic" />
                     <DataGridTextColumn
-                        Width="0.2*"
+                        Width="0.1*"
                         Binding="{Binding Price}"
                         Foreground="DarkSlateGray"
                         Header="Price" />
+                    <DataGridTextColumn
+                        Width="0.1*"
+                        Binding="{Binding Price}"
+                        Foreground="DarkSlateGray"
+                        Header="Status" />
                 </DataGrid.Columns>
 
             </DataGrid>
