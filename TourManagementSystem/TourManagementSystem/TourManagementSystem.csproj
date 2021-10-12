@@ -156,6 +156,7 @@
     <Compile Include="Global\TRAVEL_GROUP.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Managers\Model\TourModel.cs" />
     <Compile Include="Managers\View\TourUC.xaml.cs">
       <DependentUpon>TourUC.xaml</DependentUpon>
     </Compile>

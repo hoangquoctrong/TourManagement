@@ -24,8 +24,10 @@ namespace TourManagementSystem.ViewModel
         public SideBarModel PLACETAB { get => _PLACETAB; set { _PLACETAB = value; OnPropertyChanged(); } }
         private SideBarModel _EMPLOYEETAB;
         public SideBarModel EMPLOYEETAB { get => _EMPLOYEETAB; set { _EMPLOYEETAB = value; OnPropertyChanged(); } }
-        private SideBarModel _STATISTICTAB;
-        public SideBarModel STATISTICTAB { get => _STATISTICTAB; set { _STATISTICTAB = value; OnPropertyChanged(); } }
+        private SideBarModel _TRANSPORTTAB;
+        public SideBarModel TRANSPORTTAB { get => _TRANSPORTTAB; set { _TRANSPORTTAB = value; OnPropertyChanged(); } }
+        private SideBarModel _HOTELTAB;
+        public SideBarModel HOTELTAB { get => _HOTELTAB; set { _HOTELTAB = value; OnPropertyChanged(); } }
         private SolidColorBrush _FOREGROUNDTOUR;
         public SolidColorBrush FOREGROUNDTOUR { get => _FOREGROUNDTOUR; set { _FOREGROUNDTOUR = value;OnPropertyChanged(); } }
         private SolidColorBrush _FOREGROUNDGROUP;
@@ -34,8 +36,10 @@ namespace TourManagementSystem.ViewModel
         public SolidColorBrush FOREGROUNDPLACE { get => _FOREGROUNDPLACE; set { _FOREGROUNDPLACE = value; OnPropertyChanged(); } }
         private SolidColorBrush _FOREGROUNDEMPLOYEE;
         public SolidColorBrush FOREGROUNDEMPLOYEE { get => _FOREGROUNDEMPLOYEE; set { _FOREGROUNDEMPLOYEE = value; OnPropertyChanged(); } }
-        private SolidColorBrush _FOREGROUNDSTATISTIC;
-        public SolidColorBrush FOREGROUNDSTATISTIC { get => _FOREGROUNDSTATISTIC; set { _FOREGROUNDSTATISTIC = value; OnPropertyChanged(); } }
+        private SolidColorBrush _FOREGROUNDTRANSPORT;
+        public SolidColorBrush FOREGROUNDTRANSPORT { get => _FOREGROUNDTRANSPORT; set { _FOREGROUNDTRANSPORT = value; OnPropertyChanged(); } }
+        private SolidColorBrush _FOREGROUNDHOTEL;
+        public SolidColorBrush FOREGROUNDHOTEL { get => _FOREGROUNDHOTEL; set { _FOREGROUNDHOTEL = value; OnPropertyChanged(); } }
         private SolidColorBrush _BACKGROUNDTOUR;
         public SolidColorBrush BACKGROUNDTOUR { get => _BACKGROUNDTOUR; set { _BACKGROUNDTOUR = value; OnPropertyChanged(); } }
         private SolidColorBrush _BACKGROUNDGROUP;
@@ -44,8 +48,10 @@ namespace TourManagementSystem.ViewModel
         public SolidColorBrush BACKGROUNDPLACE { get => _BACKGROUNDPLACE; set { _BACKGROUNDPLACE = value; OnPropertyChanged(); } }
         private SolidColorBrush _BACKGROUNDEMPLOYEE;
         public SolidColorBrush BACKGROUNDEMPLOYEE { get => _BACKGROUNDEMPLOYEE; set { _BACKGROUNDEMPLOYEE = value; OnPropertyChanged(); } }
-        private SolidColorBrush _BACKGROUNDSTATISTIC;
-        public SolidColorBrush BACKGROUNDSTATISTIC { get => _BACKGROUNDSTATISTIC; set { _BACKGROUNDSTATISTIC = value; OnPropertyChanged(); } }
+        private SolidColorBrush _BACKGROUNDTRANSPORT;
+        public SolidColorBrush BACKGROUNDTRANSPORT { get => _BACKGROUNDTRANSPORT; set { _BACKGROUNDTRANSPORT = value; OnPropertyChanged(); } }
+        private SolidColorBrush _BACKGROUNDHOTEL;
+        public SolidColorBrush BACKGROUNDHOTEL { get => _BACKGROUNDHOTEL; set { _BACKGROUNDHOTEL = value; OnPropertyChanged(); } }
         private ContentControl _CONTENTCONTROL;
         public ContentControl CONTENTCONTROL { get => _CONTENTCONTROL; set { _CONTENTCONTROL = value; OnPropertyChanged(); } }
         #endregion
@@ -55,7 +61,8 @@ namespace TourManagementSystem.ViewModel
         public ICommand GroupCommand { get; set; }
         public ICommand PlaceCommand { get; set; }
         public ICommand EmployeeCommand { get; set; }
-        public ICommand StatisticCommand { get; set; }
+        public ICommand TransportCommand { get; set; }
+        public ICommand HotelCommand { get; set; }
         private void LoadCommand()
         {
             LoadNameSideBar();
@@ -63,7 +70,8 @@ namespace TourManagementSystem.ViewModel
             GroupCommand = new RelayCommand<object>(p => { return true; }, p => GroupClick());
             PlaceCommand = new RelayCommand<object>(p => { return true; }, p => PlaceClick());
             EmployeeCommand = new RelayCommand<object>(p => { return true; }, p => EmployeeClick());
-            StatisticCommand = new RelayCommand<object>(p => { return true; }, p => StatisticClick());
+            TransportCommand = new RelayCommand<object>(p => { return true; }, p => TransportClick());
+            HotelCommand = new RelayCommand<object>(p => { return true; }, p => HotelClick());
         }
 
 
@@ -73,7 +81,8 @@ namespace TourManagementSystem.ViewModel
             GROUPTAB = new SideBarModel("UserGroup", "Group");
             PLACETAB = new SideBarModel("Place", "Place");
             EMPLOYEETAB = new SideBarModel("User", "Employee");
-            STATISTICTAB = new SideBarModel("ChartFinance", "Statistic");
+            TRANSPORTTAB = new SideBarModel("Transportation", "Transport");
+            HOTELTAB = new SideBarModel("Hotel", "Hotel");
 
             BACKGROUNDTOUR = new SolidColorBrush(Color.FromArgb(45, 255,255,255));
             FOREGROUNDTOUR = new SolidColorBrush(Colors.White);
@@ -87,8 +96,11 @@ namespace TourManagementSystem.ViewModel
             FOREGROUNDEMPLOYEE = new SolidColorBrush(Colors.WhiteSmoke);
             BACKGROUNDEMPLOYEE = new SolidColorBrush(Colors.Transparent);
 
-            FOREGROUNDSTATISTIC = new SolidColorBrush(Colors.WhiteSmoke);
-            BACKGROUNDSTATISTIC = new SolidColorBrush(Colors.Transparent);
+            FOREGROUNDTRANSPORT = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDTRANSPORT = new SolidColorBrush(Colors.Transparent);
+
+            FOREGROUNDHOTEL = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDHOTEL = new SolidColorBrush(Colors.Transparent);
 
             CONTENTCONTROL = new TourUC();
         }
@@ -106,8 +118,11 @@ namespace TourManagementSystem.ViewModel
             FOREGROUNDEMPLOYEE = new SolidColorBrush(Colors.WhiteSmoke);
             BACKGROUNDEMPLOYEE = new SolidColorBrush(Colors.Transparent);
 
-            FOREGROUNDSTATISTIC = new SolidColorBrush(Colors.WhiteSmoke);
-            BACKGROUNDSTATISTIC = new SolidColorBrush(Colors.Transparent);
+            FOREGROUNDTRANSPORT = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDTRANSPORT = new SolidColorBrush(Colors.Transparent);
+
+            FOREGROUNDHOTEL = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDHOTEL = new SolidColorBrush(Colors.Transparent);
         }
         private void GroupClick()
         {
@@ -123,8 +138,11 @@ namespace TourManagementSystem.ViewModel
             FOREGROUNDEMPLOYEE = new SolidColorBrush(Colors.WhiteSmoke);
             BACKGROUNDEMPLOYEE = new SolidColorBrush(Colors.Transparent);
 
-            FOREGROUNDSTATISTIC = new SolidColorBrush(Colors.WhiteSmoke);
-            BACKGROUNDSTATISTIC = new SolidColorBrush(Colors.Transparent);
+            FOREGROUNDTRANSPORT = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDTRANSPORT = new SolidColorBrush(Colors.Transparent);
+
+            FOREGROUNDHOTEL = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDHOTEL = new SolidColorBrush(Colors.Transparent);
         }
         private void PlaceClick()
         {
@@ -140,8 +158,11 @@ namespace TourManagementSystem.ViewModel
             FOREGROUNDEMPLOYEE = new SolidColorBrush(Colors.WhiteSmoke);
             BACKGROUNDEMPLOYEE = new SolidColorBrush(Colors.Transparent);
 
-            FOREGROUNDSTATISTIC = new SolidColorBrush(Colors.WhiteSmoke);
-            BACKGROUNDSTATISTIC = new SolidColorBrush(Colors.Transparent);
+            FOREGROUNDTRANSPORT = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDTRANSPORT = new SolidColorBrush(Colors.Transparent);
+
+            FOREGROUNDHOTEL = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDHOTEL = new SolidColorBrush(Colors.Transparent);
         }
         private void EmployeeClick()
         {
@@ -157,10 +178,13 @@ namespace TourManagementSystem.ViewModel
             FOREGROUNDEMPLOYEE = new SolidColorBrush(Colors.White);
             BACKGROUNDEMPLOYEE = new SolidColorBrush(Color.FromArgb(45, 255, 255, 255));
 
-            FOREGROUNDSTATISTIC = new SolidColorBrush(Colors.WhiteSmoke);
-            BACKGROUNDSTATISTIC = new SolidColorBrush(Colors.Transparent);
+            FOREGROUNDTRANSPORT = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDTRANSPORT = new SolidColorBrush(Colors.Transparent);
+
+            FOREGROUNDHOTEL = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDHOTEL = new SolidColorBrush(Colors.Transparent);
         }
-        private void StatisticClick()
+        private void TransportClick()
         {
             FOREGROUNDTOUR = new SolidColorBrush(Colors.WhiteSmoke);
             BACKGROUNDTOUR = new SolidColorBrush(Colors.Transparent);
@@ -174,8 +198,31 @@ namespace TourManagementSystem.ViewModel
             FOREGROUNDEMPLOYEE = new SolidColorBrush(Colors.WhiteSmoke);
             BACKGROUNDEMPLOYEE = new SolidColorBrush(Colors.Transparent);
 
-            FOREGROUNDSTATISTIC = new SolidColorBrush(Colors.White);
-            BACKGROUNDSTATISTIC = new SolidColorBrush(Color.FromArgb(45, 255, 255, 255));
+            FOREGROUNDTRANSPORT = new SolidColorBrush(Colors.White);
+            BACKGROUNDTRANSPORT = new SolidColorBrush(Color.FromArgb(45, 255, 255, 255));
+
+            FOREGROUNDHOTEL = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDHOTEL = new SolidColorBrush(Colors.Transparent);
+        }
+        private void HotelClick()
+        {
+            FOREGROUNDTOUR = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDTOUR = new SolidColorBrush(Colors.Transparent);
+
+            FOREGROUNDGROUP = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDGROUP = new SolidColorBrush(Colors.Transparent);
+
+            FOREGROUNDPLACE = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDPLACE = new SolidColorBrush(Colors.Transparent);
+
+            FOREGROUNDEMPLOYEE = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDEMPLOYEE = new SolidColorBrush(Colors.Transparent);
+
+            FOREGROUNDTRANSPORT = new SolidColorBrush(Colors.WhiteSmoke);
+            BACKGROUNDTRANSPORT = new SolidColorBrush(Colors.Transparent);
+
+            FOREGROUNDHOTEL = new SolidColorBrush(Colors.White);
+            BACKGROUNDHOTEL = new SolidColorBrush(Color.FromArgb(45, 255, 255, 255));
         }
         #endregion
 

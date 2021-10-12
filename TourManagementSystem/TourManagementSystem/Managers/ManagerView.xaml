@@ -26,23 +26,13 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="200" />
-                <RowDefinition Height="280" />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Border
-                Grid.Row="2"
+                Grid.Row="1"
                 Grid.ColumnSpan="5"
                 Margin="0,0,0,0"
                 CornerRadius="0 0 0 30">
-
-                <Border.Background>
-                    <SolidColorBrush Color="#0f6f68" />
-                </Border.Background>
-            </Border>
-            <Border
-                Grid.Row="1"
-                Grid.ColumnSpan="5"
-                Margin="0,0,0,0">
 
                 <Border.Background>
                     <SolidColorBrush Color="#0f6f68" />
@@ -196,19 +186,42 @@
                         HorizontalContentAlignment="Left"
                         materialDesign:ButtonAssist.CornerRadius="20"
                         materialDesign:RippleAssist.IsDisabled="True"
-                        Background="{Binding BACKGROUNDSTATISTIC}"
+                        Background="{Binding BACKGROUNDTRANSPORT}"
                         BorderThickness="0"
-                        Command="{Binding StatisticCommand}"
+                        Command="{Binding TransportCommand}"
                         CommandParameter="{Binding ElementName=btnSalary}">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Foreground="{Binding FOREGROUNDSTATISTIC}" Kind="{Binding STATISTICTAB.ICONKIND}" />
+                            <materialDesign:PackIcon Foreground="{Binding FOREGROUNDTRANSPORT}" Kind="{Binding TRANSPORTTAB.ICONKIND}" />
                             <TextBlock
                                 Margin="8,-4,0,0"
                                 FontFamily="Tw Cen MT"
                                 FontSize="22"
                                 FontWeight="Light"
-                                Foreground="{Binding FOREGROUNDSTATISTIC}"
-                                Text="{Binding STATISTICTAB.TEXTBLOCKNAME}" />
+                                Foreground="{Binding FOREGROUNDTRANSPORT}"
+                                Text="{Binding TRANSPORTTAB.TEXTBLOCKNAME}" />
+                        </StackPanel>
+                    </Button>
+                    <Button
+                        Grid.Row="5"
+                        Width="180"
+                        Height="50"
+                        Margin="0,5,0,0"
+                        HorizontalContentAlignment="Left"
+                        materialDesign:ButtonAssist.CornerRadius="20"
+                        materialDesign:RippleAssist.IsDisabled="True"
+                        Background="{Binding BACKGROUNDHOTEL}"
+                        BorderThickness="0"
+                        Command="{Binding HotelCommand}"
+                        CommandParameter="{Binding ElementName=btnSalary}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Foreground="{Binding FOREGROUNDHOTEL}" Kind="{Binding HOTELTAB.ICONKIND}" />
+                            <TextBlock
+                                Margin="8,-4,0,0"
+                                FontFamily="Tw Cen MT"
+                                FontSize="22"
+                                FontWeight="Light"
+                                Foreground="{Binding FOREGROUNDHOTEL}"
+                                Text="{Binding HOTELTAB.TEXTBLOCKNAME}" />
                         </StackPanel>
                     </Button>
                 </Grid>
@@ -248,13 +261,18 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Border Grid.ColumnSpan="2" CornerRadius="0 30 0 0">
+                <Border
+                    Grid.ColumnSpan="2"
+                    Width="1200"
+                    Margin="0,0,0,-0.4"
+                    HorizontalAlignment="Left"
+                    CornerRadius="0 30 0 0">
                     <Border.Background>
                         <SolidColorBrush Color="#FFFFFF" />
                     </Border.Background>
                 </Border>
 
-                <Border
+                <!--<Border
                     Width="400"
                     Height="50"
                     Margin="5,2,0,2"
@@ -288,7 +306,7 @@
                         </TextBox>
                     </StackPanel>
 
-                </Border>
+                </Border>-->
 
                 <StackPanel
                     Grid.Column="1"
