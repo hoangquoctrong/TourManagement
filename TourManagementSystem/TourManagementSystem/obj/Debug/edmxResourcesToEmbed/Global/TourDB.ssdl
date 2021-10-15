@@ -15,6 +15,7 @@
     <Property Name="TOUR_NAME" Type="varchar" MaxLength="255" />
     <Property Name="TOUR_CHARACTERISTIS" Type="text" />
     <Property Name="TOUR_TYPE" Type="varchar" MaxLength="255" />
+    <Property Name="TOUR_IMAGE" Type="image" />
   </EntityType>
   <EntityType Name="TOUR_ACCOUNT">
     <Key>
@@ -93,12 +94,17 @@
     </Key>
     <Property Name="TOUR_STAFF_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TOUR_STAFF_NAME" Type="varchar" MaxLength="255" />
-    <Property Name="TOUR_STAFF_BIRTH" Type="date" />
-    <Property Name="TOUR_STAFF_SEX" Type="varchar" MaxLength="255" />
-    <Property Name="TOUR_STAFF_CITIZEN_IDENTITY" Type="int" />
+    <Property Name="TOUR_STAFF_CITIZEN_IDENTITY" Type="varchar" MaxLength="255" />
     <Property Name="TOUR_STAFF_ADDRESS" Type="text" />
     <Property Name="TOUR_STAFF_START_DATE" Type="date" />
-    <Property Name="TOUR_STAFF_PHONE_NUMBER" Type="int" />
+    <Property Name="TOUR_STAFF_PHONE_NUMBER" Type="varchar" MaxLength="255" />
+    <Property Name="TOUR_STAFF_BIRTH_PLACE" Type="varchar" MaxLength="255" />
+    <Property Name="TOUR_STAFF_ACADEMIC_LEVEL" Type="varchar" MaxLength="255" />
+    <Property Name="TOUR_STAFF_BIRTH_DATE" Type="date" />
+    <Property Name="TOUR_STAFF_GENDER" Type="varchar" MaxLength="255" />
+    <Property Name="TOUR_STAFF_EMAIL" Type="varchar" MaxLength="255" />
+    <Property Name="TOUR_STAFF_NOTE" Type="text" />
+    <Property Name="TOUR_STAFF_IMAGE" Type="image" />
   </EntityType>
   <EntityType Name="TOUR_STAFF_DELETE">
     <Key>
@@ -108,6 +114,7 @@
     <Property Name="TOUR_STAFF_DELETE_ISDELETED" Type="bit" />
     <Property Name="TOUR_STAFF_DELETE_DATE" Type="datetime" />
     <Property Name="TOUR_STAFF_ID" Type="int" Nullable="false" />
+    <Property Name="TOUR_STAFF_DELETE_CONTENT" Type="text" />
   </EntityType>
   <EntityType Name="TOUR_TRANSPORT">
     <Key>
@@ -159,6 +166,7 @@
     <Property Name="TRAVELLER_ADDRESS" Type="text" />
     <Property Name="TRAVELLER_PHONE_NUMBER" Type="int" />
     <Property Name="TRAVELLER_TYPE" Type="varchar" MaxLength="255" />
+    <Property Name="TRAVELLER_IMAGE" Type="image" />
   </EntityType>
   <EntityType Name="TRAVELLER_ACCOUNT">
     <Key>

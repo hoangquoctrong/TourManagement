@@ -1,0 +1,189 @@
+﻿<UserControl
+    x:Class="TourManagementSystem.Managers.View.StaffUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="clr-namespace:TourManagementSystem.Managers.ViewModel"
+    d:DataContext="{d:DesignInstance Type=viewmodel:StaffViewModel}"
+    d:DesignHeight="670"
+    d:DesignWidth="1190"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="WrapText" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="BorderThickness" Value="0,0,1,1" />
+            <Setter Property="BorderBrush" Value="#D6D6D6" />
+            <Setter Property="Background" Value="#FFFFFF" />
+        </Style>
+        <!--<style basedon="{staticresource materialdesigndatagridcell}" targettype="{x:type datagridcell}">
+            <setter property="borderthickness" value="2,0,0,0" />
+            <setter property="borderbrush" value="#d6d6d6" />
+        </style>-->
+    </UserControl.Resources>
+    <ContentControl x:Name="contentControlMain" Height="660">
+        <Grid Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Border
+                    Grid.Column="0"
+                    Width="400"
+                    Height="50"
+                    Margin="40,5,20,5"
+                    Background="#FAFAFA"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    CornerRadius="10">
+
+                    <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                            Width="25"
+                            Height="30"
+                            Margin="0,0,0,0"
+                            VerticalAlignment="Center"
+                            Foreground="DimGray"
+                            Kind="Search" />
+                        <TextBox
+                            Width="300"
+                            Height="40"
+                            Margin="10,2,0,0"
+                            materialDesign:HintAssist.Hint="Search"
+                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                            BorderBrush="Transparent"
+                            FontSize="18"
+                            Style="{StaticResource MaterialDesignTextBoxBase}">
+                            <TextBox.Text>
+                                <Binding Path="Search_Text" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules />
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+                </Border>
+
+                <ComboBox
+                    Name="cbSearch"
+                    Grid.Column="1"
+                    Margin="5,5,0,5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    DisplayMemberPath="CB_Name"
+                    FontSize="18"
+                    Foreground="DimGray"
+                    ItemsSource="{Binding CB_StaffList, Mode=TwoWay}"
+                    SelectedValue="{Binding CB_StaffSelected}">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+
+                <Button
+                    Grid.Column="2"
+                    Width="150"
+                    Height="40"
+                    Margin="40,5,40,5"
+                    HorizontalAlignment="Right"
+                    Background="#0f6f68"
+                    Command="{Binding AddStaffCommand}"
+                    CommandParameter="{Binding ElementName=contentControlMain}"
+                    Content="Add New Staff" />
+
+                <Button
+                    Grid.Column="3"
+                    Width="150"
+                    Height="40"
+                    Margin="40,5,40,5"
+                    HorizontalAlignment="Right"
+                    Background="#EB7B47"
+                    Content="Statistic" />
+
+            </Grid>
+
+            <DataGrid
+                x:Name="dgStaffList"
+                Grid.Row="1"
+                Width="1150"
+                Height="590"
+                VerticalAlignment="Top"
+                materialDesign:DataGridAssist.CellPadding="12 8 0 8"
+                materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
+                AllowDrop="True"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                CanUserReorderColumns="False"
+                CanUserSortColumns="True"
+                GridLinesVisibility="Vertical"
+                IsReadOnly="True"
+                ItemsSource="{Binding StaffList, Mode=TwoWay}"
+                SelectedItem="{Binding Staff_Selected}"
+                SelectionMode="Single">
+                <DataGrid.InputBindings>
+                    <MouseBinding
+                        Command="{Binding ShowStaffDetailCommand}"
+                        CommandParameter="{Binding ElementName=contentControlMain}"
+                        Gesture="LeftDoubleClick" />
+                </DataGrid.InputBindings>
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="0.05*"
+                        Binding="{Binding STAFF_ID}"
+                        Foreground="DarkSlateGray"
+                        Header="ID" />
+                    <DataGridTextColumn
+                        Width="0.175*"
+                        Binding="{Binding STAFF_NAME}"
+                        Foreground="DarkSlateGray"
+                        Header="Name" />
+                    <DataGridTextColumn
+                        Width="0.1*"
+                        Binding="{Binding STAFF_STRING_BIRTH_DATE}"
+                        Foreground="DarkSlateGray"
+                        Header="Birthdate" />
+                    <DataGridTextColumn
+                        Width="0.075*"
+                        Binding="{Binding STAFF_GENDER}"
+                        Foreground="DarkSlateGray"
+                        Header="Gender" />
+                    <DataGridTextColumn
+                        Width="0.15*"
+                        Binding="{Binding STAFF_CITIZEN_CARD}"
+                        Foreground="DarkSlateGray"
+                        Header="Citizen Identity" />
+                    <DataGridTextColumn
+                        Width="0.2*"
+                        Binding="{Binding STAFF_ADDRESS}"
+                        Foreground="DarkSlateGray"
+                        Header="Address" />
+                    <DataGridTextColumn
+                        Width="0.15*"
+                        Binding="{Binding STAFF_PHONE_NUMBER}"
+                        Foreground="DarkSlateGray"
+                        Header="Phone Number" />
+                    <DataGridTextColumn
+                        Width="0.1*"
+                        Binding="{Binding STAFF_STRING_START_DATE}"
+                        Foreground="DarkSlateGray"
+                        Header="Start Date" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </ContentControl>
+</UserControl>

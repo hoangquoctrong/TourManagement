@@ -29,6 +29,7 @@ namespace TourManagementSystem.Global
         public string TRAVELLER_ADDRESS { get; set; }
         public Nullable<int> TRAVELLER_PHONE_NUMBER { get; set; }
         public string TRAVELLER_TYPE { get; set; }
+        public byte[] TRAVELLER_IMAGE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TRAVELLER_DETAIL> TRAVELLER_DETAIL { get; set; }

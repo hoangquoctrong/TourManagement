@@ -250,7 +250,7 @@
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.15*" />
+                <RowDefinition Height="0.1*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -315,7 +315,7 @@
                     <Ellipse
                         Width="50"
                         Height="50"
-                        Margin="20,10,10,10"
+                        Margin="20,5,10,10"
                         HorizontalAlignment="Left">
                         <Ellipse.Fill>
                             <ImageBrush>
@@ -416,7 +416,7 @@
                     </Border.Background>
                 </Border>
                 <ContentControl
-                    Margin="0,15,15,15"
+                    Margin="0,0,0,0"
                     Content="{Binding CONTENTCONTROL}"
                     DockPanel.Dock="Left" />
             </Grid>

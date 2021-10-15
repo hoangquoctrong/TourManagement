@@ -17,25 +17,30 @@ namespace TourManagementSystem.Global
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TOUR_STAFF()
         {
-            this.TOUR_MISSION = new HashSet<TOUR_MISSION>();
             this.TOUR_ACCOUNT = new HashSet<TOUR_ACCOUNT>();
+            this.TOUR_MISSION = new HashSet<TOUR_MISSION>();
             this.TOUR_RECORD = new HashSet<TOUR_RECORD>();
             this.TOUR_STAFF_DELETE = new HashSet<TOUR_STAFF_DELETE>();
         }
     
         public int TOUR_STAFF_ID { get; set; }
         public string TOUR_STAFF_NAME { get; set; }
-        public Nullable<System.DateTime> TOUR_STAFF_BIRTH { get; set; }
-        public string TOUR_STAFF_SEX { get; set; }
-        public Nullable<int> TOUR_STAFF_CITIZEN_IDENTITY { get; set; }
+        public string TOUR_STAFF_CITIZEN_IDENTITY { get; set; }
         public string TOUR_STAFF_ADDRESS { get; set; }
         public Nullable<System.DateTime> TOUR_STAFF_START_DATE { get; set; }
-        public Nullable<int> TOUR_STAFF_PHONE_NUMBER { get; set; }
+        public string TOUR_STAFF_PHONE_NUMBER { get; set; }
+        public string TOUR_STAFF_BIRTH_PLACE { get; set; }
+        public string TOUR_STAFF_ACADEMIC_LEVEL { get; set; }
+        public Nullable<System.DateTime> TOUR_STAFF_BIRTH_DATE { get; set; }
+        public string TOUR_STAFF_GENDER { get; set; }
+        public string TOUR_STAFF_EMAIL { get; set; }
+        public string TOUR_STAFF_NOTE { get; set; }
+        public byte[] TOUR_STAFF_IMAGE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TOUR_MISSION> TOUR_MISSION { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_ACCOUNT> TOUR_ACCOUNT { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TOUR_MISSION> TOUR_MISSION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_RECORD> TOUR_RECORD { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

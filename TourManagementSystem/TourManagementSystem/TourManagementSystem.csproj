@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Images\logo_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -80,10 +83,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Managers\ManagerView.xaml.cs">
-      <DependentUpon>ManagerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Managers\Model\SideBarModel.cs" />
+    <Compile Include="Global\Model\ComboBoxModel.cs" />
+    <Compile Include="Global\Model\GlobalFunction.cs" />
     <Compile Include="Global\PLACE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
@@ -156,7 +157,22 @@
     <Compile Include="Global\TRAVEL_GROUP.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Managers\ManagerView.xaml.cs">
+      <DependentUpon>ManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Managers\Model\SideBarModel.cs" />
+    <Compile Include="Managers\Model\StaffModel.cs" />
     <Compile Include="Managers\Model\TourModel.cs" />
+    <Compile Include="Managers\ViewModel\StaffViewModel.cs" />
+    <Compile Include="Managers\View\AddStaffUC.xaml.cs">
+      <DependentUpon>AddStaffUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Managers\View\DisplayStaffUC.xaml.cs">
+      <DependentUpon>DisplayStaffUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Managers\View\StaffUC.xaml.cs">
+      <DependentUpon>StaffUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Managers\View\TourUC.xaml.cs">
       <DependentUpon>TourUC.xaml</DependentUpon>
     </Compile>
@@ -175,6 +191,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Managers\ManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Managers\View\AddStaffUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Managers\View\DisplayStaffUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Managers\View\StaffUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,17 +229,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <EntityDeploy Include="Global\TourDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TourDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Global\TourDB.edmx.diagram">
       <DependentUpon>TourDB.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -225,12 +253,14 @@
     <Folder Include="Customers\View\" />
     <Folder Include="Employees\ViewModel\" />
     <Folder Include="Employees\View\" />
-    <Folder Include="Global\Model\" />
     <Folder Include="Global\View\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\logo_icon.ico" />
     <Resource Include="Resources\Images\logo.jpg" />
     <Resource Include="Resources\Images\User.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Global\TourDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TourDB.edmx</DependentUpon>

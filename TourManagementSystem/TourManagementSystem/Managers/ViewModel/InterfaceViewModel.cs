@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using TourManagementSystem.Managers.View;
 using TourManagementSystem.Model;
 using TourManagementSystem.View;
 
@@ -17,7 +18,7 @@ namespace TourManagementSystem.ViewModel
 
         #region Data Binding cho Side bar
         private SideBarModel _TOURTAB;
-        public SideBarModel TOURTAB { get => _TOURTAB;set { _TOURTAB = value;OnPropertyChanged(); } }
+        public SideBarModel TOURTAB { get => _TOURTAB; set { _TOURTAB = value; OnPropertyChanged(); } }
         private SideBarModel _GROUPTAB;
         public SideBarModel GROUPTAB { get => _GROUPTAB; set { _GROUPTAB = value; OnPropertyChanged(); } }
         private SideBarModel _PLACETAB;
@@ -29,7 +30,7 @@ namespace TourManagementSystem.ViewModel
         private SideBarModel _HOTELTAB;
         public SideBarModel HOTELTAB { get => _HOTELTAB; set { _HOTELTAB = value; OnPropertyChanged(); } }
         private SolidColorBrush _FOREGROUNDTOUR;
-        public SolidColorBrush FOREGROUNDTOUR { get => _FOREGROUNDTOUR; set { _FOREGROUNDTOUR = value;OnPropertyChanged(); } }
+        public SolidColorBrush FOREGROUNDTOUR { get => _FOREGROUNDTOUR; set { _FOREGROUNDTOUR = value; OnPropertyChanged(); } }
         private SolidColorBrush _FOREGROUNDGROUP;
         public SolidColorBrush FOREGROUNDGROUP { get => _FOREGROUNDGROUP; set { _FOREGROUNDGROUP = value; OnPropertyChanged(); } }
         private SolidColorBrush _FOREGROUNDPLACE;
@@ -84,7 +85,7 @@ namespace TourManagementSystem.ViewModel
             TRANSPORTTAB = new SideBarModel("Transportation", "Transport");
             HOTELTAB = new SideBarModel("Hotel", "Hotel");
 
-            BACKGROUNDTOUR = new SolidColorBrush(Color.FromArgb(45, 255,255,255));
+            BACKGROUNDTOUR = new SolidColorBrush(Color.FromArgb(45, 255, 255, 255));
             FOREGROUNDTOUR = new SolidColorBrush(Colors.White);
 
             FOREGROUNDGROUP = new SolidColorBrush(Colors.WhiteSmoke);
@@ -123,6 +124,7 @@ namespace TourManagementSystem.ViewModel
 
             FOREGROUNDHOTEL = new SolidColorBrush(Colors.WhiteSmoke);
             BACKGROUNDHOTEL = new SolidColorBrush(Colors.Transparent);
+            CONTENTCONTROL = new TourUC();
         }
         private void GroupClick()
         {
@@ -183,6 +185,7 @@ namespace TourManagementSystem.ViewModel
 
             FOREGROUNDHOTEL = new SolidColorBrush(Colors.WhiteSmoke);
             BACKGROUNDHOTEL = new SolidColorBrush(Colors.Transparent);
+            CONTENTCONTROL = new StaffUC();
         }
         private void TransportClick()
         {

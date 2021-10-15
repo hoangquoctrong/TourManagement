@@ -18,6 +18,7 @@ namespace TourManagementSystem.Global
         public Nullable<bool> TOUR_STAFF_DELETE_ISDELETED { get; set; }
         public Nullable<System.DateTime> TOUR_STAFF_DELETE_DATE { get; set; }
         public int TOUR_STAFF_ID { get; set; }
+        public string TOUR_STAFF_DELETE_CONTENT { get; set; }
     
         public virtual TOUR_STAFF TOUR_STAFF { get; set; }
     }

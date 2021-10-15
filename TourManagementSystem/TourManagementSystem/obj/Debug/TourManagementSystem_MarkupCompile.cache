@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\
 TourManagementSystem
 none
 false
 DEBUG;TRACE
-D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagementSystem\App.xaml
-31183782475
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\App.xaml
+6-1330999153
 2-299886435
-33-748651588
-241893336250
-Global\MainWindow.xaml;Managers\ManagerView.xaml;Managers\View\TourUC.xaml;
+40-1971786946
+24470260290
+Global\MainWindow.xaml;Managers\ManagerView.xaml;Managers\View\AddStaffUC.xaml;Managers\View\DisplayStaffUC.xaml;Managers\View\StaffUC.xaml;Managers\View\TourUC.xaml;
 
 False
 
