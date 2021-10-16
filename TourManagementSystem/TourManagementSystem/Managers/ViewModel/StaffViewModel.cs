@@ -24,6 +24,14 @@ namespace TourManagementSystem.Managers.ViewModel
         #region Data
 
         #region Data Binding of StaffUC
+
+        /*
+         * User is manager of system
+         */
+        private int _User_ID;
+        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+
+
         /*
          * StaffList binding ItemSource on DataGridView of StaffUC
          */
@@ -31,7 +39,7 @@ namespace TourManagementSystem.Managers.ViewModel
         public ObservableCollection<StaffModel> StaffList { get => _StaffList; set { _StaffList = value; OnPropertyChanged(); } }
 
         /*
-         * Refresh_StaffList binding ItemSource on DataGridView of StaffUC
+         * Refresh_StaffList is refresh StaffList
          */
         private ObservableCollection<StaffModel> _Refresh_StaffList;
         public ObservableCollection<StaffModel> Refresh_StaffList { get => _Refresh_StaffList; set { _Refresh_StaffList = value; OnPropertyChanged(); } }
@@ -54,7 +62,10 @@ namespace TourManagementSystem.Managers.ViewModel
                 if (Staff_Selected != null)
                 {
                     Staff_Name = Staff_Selected.STAFF_NAME;
+                    Staff_Role = Staff_Selected.STAFF_ROLE;
                     Staff_ID_Card = Staff_Selected.STAFF_CITIZEN_CARD;
+                    Staff_ID_Card_Date = Staff_Selected.STAFF_CITIZEN_CARD_DATE;
+                    Staff_ID_Card_Place = Staff_Selected.STAFF_CITIZEN_CARD_PLACE;
                     Staff_Birthday = Staff_Selected.STAFF_BIRTH_DATE;
                     Staff_String_Birthday = Staff_Selected.STAFF_STRING_BIRTH_DATE;
                     Staff_Birth_Place = Staff_Selected.STAFF_BIRTH_PLACE;
@@ -66,19 +77,9 @@ namespace TourManagementSystem.Managers.ViewModel
                     Staff_Note = Staff_Selected.STAFF_NOTE;
                     Staff_Phone_Number = Staff_Selected.STAFF_PHONE_NUMBER;
                     Staff_Image_Byte_Source = Staff_Selected.STAFF_IMAGE_BYTE_SOURCE;
-                    if (Staff_Image_Byte_Source == null)
-                    {
-                        /*Staff_Image_Source = new BitmapImage(new Uri("pack://application:,,,/Images/User.png"));*/
-                        Staff_Image_Source = null;
-                        Button_Image_Thickness = 0;
-                        Button_Image_Brush = Brushes.Transparent;
-                    }
-                    else
-                    {
-                        Staff_Image_Source = GlobalFunction.ToImage(Staff_Image_Byte_Source);
-                        Button_Image_Thickness = 0;
-                        Button_Image_Brush = Brushes.Transparent;
-                    }
+                    Staff_Image_Source = Staff_Image_Byte_Source == null
+                        ? new BitmapImage(new Uri("pack://application:,,,/Resources/Images/User.png", UriKind.Absolute))
+                        : GlobalFunction.ToImage(Staff_Image_Byte_Source);
 
                     Tour_Mangement_DatabaseEntities db = new Tour_Mangement_DatabaseEntities();
                     TOUR_ACCOUNT tour_account = db.TOUR_ACCOUNT.FirstOrDefault(x => x.TOUR_STAFF_ID == Staff_Selected.STAFF_ID);
@@ -122,6 +123,11 @@ namespace TourManagementSystem.Managers.ViewModel
                                                                                                         x.STAFF_NAME.ToLower().Contains(Search_Text) ||
                                                                                                         x.STAFF_NAME.ToUpper().Contains(Search_Text)));
                                 break;
+                            case "Role":
+                                StaffList = new ObservableCollection<StaffModel>(StaffList.Where(x => x.STAFF_ROLE.Contains(Search_Text) ||
+                                                                                                        x.STAFF_ROLE.ToLower().Contains(Search_Text) ||
+                                                                                                        x.STAFF_ROLE.ToUpper().Contains(Search_Text)));
+                                break;
                             case "Gender":
                                 StaffList = new ObservableCollection<StaffModel>(StaffList.Where(x => x.STAFF_GENDER.Contains(Search_Text) ||
                                                                                                        x.STAFF_GENDER.ToLower().Contains(Search_Text) ||
@@ -162,6 +168,29 @@ namespace TourManagementSystem.Managers.ViewModel
         private ComboBoxModel _CB_StaffSelected;
         public ComboBoxModel CB_StaffSelected { get => _CB_StaffSelected; set { _CB_StaffSelected = value; OnPropertyChanged(); } }
 
+        /*
+         * Checkbox_DisplayAllStaff binding Checked of Checkbox of StaffUC
+         */
+        private bool _Checkbox_DisplayAllStaff;
+        public bool Checkbox_DisplayAllStaff
+        {
+            get => _Checkbox_DisplayAllStaff;
+            set
+            {
+                _Checkbox_DisplayAllStaff = value;
+                OnPropertyChanged();
+
+                if (Checkbox_DisplayAllStaff)
+                {
+                    LoadDataGridStaffUC();
+                }
+                else
+                {
+                    LoadDataGridExceptDeleteStaffUC();
+                }
+            }
+        }
+
         #endregion Data Binding of StaffUC
 
         #region Data Binding of AddStaffUC, DisplayStaffUC
@@ -169,8 +198,20 @@ namespace TourManagementSystem.Managers.ViewModel
         private string _Staff_Name;
         public string Staff_Name { get => _Staff_Name; set { _Staff_Name = value; OnPropertyChanged(); } }
 
+        private string _Staff_Role;
+        public string Staff_Role { get => _Staff_Role; set { _Staff_Role = value; OnPropertyChanged(); } }
+
         private string _Staff_ID_Card;
         public string Staff_ID_Card { get => _Staff_ID_Card; set { _Staff_ID_Card = value; OnPropertyChanged(); } }
+
+        private string _Staff_ID_Card_Place;
+        public string Staff_ID_Card_Place { get => _Staff_ID_Card_Place; set { _Staff_ID_Card_Place = value; OnPropertyChanged(); } }
+
+        private DateTime _Staff_ID_Card_Date = DateTime.Now;
+        public DateTime Staff_ID_Card_Date { get => _Staff_ID_Card_Date; set { _Staff_ID_Card_Date = value; OnPropertyChanged(); } }
+
+        private string _Staff_String_ID_Card_Date;
+        public string Staff_String_ID_Card_Date { get => _Staff_String_ID_Card_Date; set { _Staff_String_ID_Card_Date = value; OnPropertyChanged(); } }
 
         private DateTime _Staff_Birthday = DateTime.Now;
         public DateTime Staff_Birthday { get => _Staff_Birthday; set { _Staff_Birthday = value; OnPropertyChanged(); } }
@@ -216,12 +257,6 @@ namespace TourManagementSystem.Managers.ViewModel
 
         private BitmapImage _Staff_Image_Source;
         public BitmapImage Staff_Image_Source { get => _Staff_Image_Source; set { _Staff_Image_Source = value; OnPropertyChanged(); } }
-
-        private Brush _Button_Image_Brush;
-        public Brush Button_Image_Brush { get => _Button_Image_Brush; set { _Button_Image_Brush = value; OnPropertyChanged(); } }
-
-        private int _Button_Image_Thickness;
-        public int Button_Image_Thickness { get => _Button_Image_Thickness; set { _Button_Image_Thickness = value; OnPropertyChanged(); } }
 
         #endregion Data Binding of AddStaffUC, DisplayStaffUC
 
@@ -288,18 +323,20 @@ namespace TourManagementSystem.Managers.ViewModel
         /*
          * Constructor for StaffUC, AddStaffUC
          */
-        public StaffViewModel()
+        public StaffViewModel(int user_id)
         {
+            User_ID = user_id;
             LoadStaffUC();
         }
 
         /*
          * Constructor for StaffDisplayUC
          */
-        public StaffViewModel(StaffModel staffSelected)
+        public StaffViewModel(StaffModel staffSelected, int user_id)
         {
+            User_ID = user_id;
             Staff_Selected = staffSelected;
-            LoadStaffUC();
+            LoadCommand();
         }
 
         #region All Load Function
@@ -309,15 +346,16 @@ namespace TourManagementSystem.Managers.ViewModel
         private void LoadStaffUC()
         {
             LoadStaffComboBox();
-            LoadDataStaffUC();
+            Checkbox_DisplayAllStaff = false;
             LoadCommand();
+            Staff_Image_Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Images/User.png", UriKind.Absolute));
         }
 
         /* 
          * Load data from database to DataGridView
          * Reload data when back from detailed to global 
          */
-        private void LoadDataStaffUC()
+        private void LoadDataGridStaffUC()
         {
             /*
              * Step 1: Check ComboBox is null or not
@@ -348,10 +386,13 @@ namespace TourManagementSystem.Managers.ViewModel
                 {
                     STAFF_ID = item.TOUR_STAFF_ID,
                     STAFF_NAME = item.TOUR_STAFF_NAME,
+                    STAFF_ROLE = item.TOUR_STAFF_ROLE,
                     STAFF_BIRTH_DATE = (DateTime)item.TOUR_STAFF_BIRTH_DATE,
                     STAFF_BIRTH_PLACE = item.TOUR_STAFF_BIRTH_PLACE,
                     STAFF_GENDER = item.TOUR_STAFF_GENDER,
                     STAFF_CITIZEN_CARD = item.TOUR_STAFF_CITIZEN_IDENTITY,
+                    STAFF_CITIZEN_CARD_DATE = (DateTime)item.TOUR_STAFF_CITIZEN_IDENTITY_DATE,
+                    STAFF_CITIZEN_CARD_PLACE = item.TOUR_STAFF_CITIZEN_IDENTITY_PLACE,
                     STAFF_ADDRESS = item.TOUR_STAFF_ADDRESS,
                     STAFF_START_DATE = (DateTime)item.TOUR_STAFF_START_DATE,
                     STAFF_PHONE_NUMBER = item.TOUR_STAFF_PHONE_NUMBER,
@@ -362,6 +403,64 @@ namespace TourManagementSystem.Managers.ViewModel
                 };
                 staffModel.STAFF_STRING_BIRTH_DATE = staffModel.STAFF_BIRTH_DATE.ToString("dd/MM/yyyy");
                 staffModel.STAFF_STRING_START_DATE = staffModel.STAFF_START_DATE.ToString("dd/MM/yyyy");
+                staffModel.STAFF_STRING_CITIZEN_CARD_DATE = staffModel.STAFF_CITIZEN_CARD_DATE.ToString("dd/MM/yyyy");
+
+                StaffList.Add(staffModel);
+                Refresh_StaffList.Add(staffModel);
+            }
+        }
+
+        private void LoadDataGridExceptDeleteStaffUC()
+        {
+            /*
+             * Step 1: Check ComboBox is null or not
+             * Step 2: Create db connect to Tour_Mangement_DatabaseEntities, make list to insert to StaffList, exclude all delete staff
+             * Step 3: Initialize StaffList, Refresh_StaffList
+             * Step 4: Insert staffList to StaffList and Refresh_StaffList
+             */
+
+            //Step 1
+            if (CB_StaffSelected == null)
+            {
+                return;
+            }
+
+            //Step 2
+            Tour_Mangement_DatabaseEntities db = new Tour_Mangement_DatabaseEntities();
+            IQueryable<TOUR_STAFF> staffList = from staff in db.TOUR_STAFF
+                                               join staff_delete in db.TOUR_STAFF_DELETE on staff.TOUR_STAFF_ID equals staff_delete.TOUR_STAFF_ID
+                                               where staff_delete.TOUR_STAFF_DELETE_ISDELETED == false
+                                               select staff;
+
+            //Step 3
+            StaffList = new ObservableCollection<StaffModel>();
+            Refresh_StaffList = new ObservableCollection<StaffModel>();
+
+            //Step 4
+            foreach (TOUR_STAFF item in staffList)
+            {
+                StaffModel staffModel = new StaffModel
+                {
+                    STAFF_ID = item.TOUR_STAFF_ID,
+                    STAFF_NAME = item.TOUR_STAFF_NAME,
+                    STAFF_ROLE = item.TOUR_STAFF_ROLE,
+                    STAFF_BIRTH_DATE = (DateTime)item.TOUR_STAFF_BIRTH_DATE,
+                    STAFF_BIRTH_PLACE = item.TOUR_STAFF_BIRTH_PLACE,
+                    STAFF_GENDER = item.TOUR_STAFF_GENDER,
+                    STAFF_CITIZEN_CARD = item.TOUR_STAFF_CITIZEN_IDENTITY,
+                    STAFF_CITIZEN_CARD_DATE = (DateTime)item.TOUR_STAFF_CITIZEN_IDENTITY_DATE,
+                    STAFF_CITIZEN_CARD_PLACE = item.TOUR_STAFF_CITIZEN_IDENTITY_PLACE,
+                    STAFF_ADDRESS = item.TOUR_STAFF_ADDRESS,
+                    STAFF_START_DATE = (DateTime)item.TOUR_STAFF_START_DATE,
+                    STAFF_PHONE_NUMBER = item.TOUR_STAFF_PHONE_NUMBER,
+                    STAFF_ACADEMIC_LEVEL = item.TOUR_STAFF_ACADEMIC_LEVEL,
+                    STAFF_EMAIL = item.TOUR_STAFF_EMAIL,
+                    STAFF_NOTE = item.TOUR_STAFF_NOTE,
+                    STAFF_IMAGE_BYTE_SOURCE = item.TOUR_STAFF_IMAGE
+                };
+                staffModel.STAFF_STRING_BIRTH_DATE = staffModel.STAFF_BIRTH_DATE.ToString("dd/MM/yyyy");
+                staffModel.STAFF_STRING_START_DATE = staffModel.STAFF_START_DATE.ToString("dd/MM/yyyy");
+                staffModel.STAFF_STRING_CITIZEN_CARD_DATE = staffModel.STAFF_CITIZEN_CARD_DATE.ToString("dd/MM/yyyy");
 
                 StaffList.Add(staffModel);
                 Refresh_StaffList.Add(staffModel);
@@ -375,9 +474,9 @@ namespace TourManagementSystem.Managers.ViewModel
         {
             #region Command of StaffUC
 
-            AddStaffCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new AddStaffUC());
+            AddStaffCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new AddStaffUC(User_ID));
 
-            ShowStaffDetailCommand = new RelayCommand<ContentControl>(_ => Staff_Selected != null, p => p.Content = new DisplayStaffUC(Staff_Selected));
+            ShowStaffDetailCommand = new RelayCommand<ContentControl>(_ => Staff_Selected != null, p => p.Content = new DisplayStaffUC(Staff_Selected, User_ID));
 
             #endregion Command of StaffUC
 
@@ -388,10 +487,10 @@ namespace TourManagementSystem.Managers.ViewModel
             ConfirmCommand = new RelayCommand<ContentControl>(_ => IsExcuteComfirmCommand(), p =>
             {
                 ExcuteConfirmCommand();
-                p.Content = new StaffUC();
+                p.Content = new StaffUC(User_ID);
             });
 
-            CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new StaffUC());
+            CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new StaffUC(User_ID));
 
             #endregion Command of AddStaffUC
 
@@ -402,19 +501,19 @@ namespace TourManagementSystem.Managers.ViewModel
             SaveChangeCommand = new RelayCommand<ContentControl>(_ => IsExcuteSaveChangeCommand(), p =>
             {
                 ExcuteSaveChangeCommand();
-                p.Content = new StaffUC();
+                p.Content = new StaffUC(User_ID);
             });
 
             ChangePasswordCommand = new RelayCommand<ContentControl>(_ => IsExcuteChangePasswordCommand(), p =>
             {
                 ExcuteChangePasswordCommand();
-                p.Content = new StaffUC();
+                p.Content = new StaffUC(User_ID);
             });
 
             RemoveCommand = new RelayCommand<ContentControl>(_ => IsExcuteRemoveCommand(), p =>
             {
                 ExcuteRemoveCommand();
-                p.Content = new StaffUC();
+                p.Content = new StaffUC(User_ID);
             });
 
             #endregion Command of DisplayStaffUC
@@ -428,6 +527,7 @@ namespace TourManagementSystem.Managers.ViewModel
             CB_StaffList = new ObservableCollection<ComboBoxModel>
             {
                 new ComboBoxModel("Name", true),
+                new ComboBoxModel("Role", false),
                 new ComboBoxModel("Gender", false),
                 new ComboBoxModel("Citizen Identity", false),
                 new ComboBoxModel("Address", false),
@@ -435,6 +535,7 @@ namespace TourManagementSystem.Managers.ViewModel
             };
             CB_StaffSelected = CB_StaffList.FirstOrDefault(x => x.IsSelected);
         }
+
         #endregion All Load Function
 
         #region AddStaffUC View Model
@@ -459,8 +560,6 @@ namespace TourManagementSystem.Managers.ViewModel
                 BitmapImage bitmap_Image = new BitmapImage(new Uri(string_File_Name));
                 Staff_Image_Byte_Source = File.ReadAllBytes(string_File_Name);
                 Staff_Image_Source = bitmap_Image;
-                Button_Image_Thickness = 0;
-                Button_Image_Brush = Brushes.Transparent;
             }
         }
 
@@ -472,6 +571,9 @@ namespace TourManagementSystem.Managers.ViewModel
         private bool IsExcuteComfirmCommand()
         {
             if (string.IsNullOrEmpty(Staff_Name) ||
+                string.IsNullOrEmpty(Staff_Role) ||
+                string.IsNullOrEmpty(Staff_ID_Card) ||
+                string.IsNullOrEmpty(Staff_ID_Card_Place) ||
                 string.IsNullOrEmpty(Staff_ID_Card) ||
                 string.IsNullOrEmpty(Staff_Birth_Place) ||
                 string.IsNullOrEmpty(Staff_Address) ||
@@ -510,7 +612,10 @@ namespace TourManagementSystem.Managers.ViewModel
             TOUR_STAFF tour_staff = new TOUR_STAFF()
             {
                 TOUR_STAFF_NAME = Staff_Name,
+                TOUR_STAFF_ROLE = Staff_Role,
                 TOUR_STAFF_CITIZEN_IDENTITY = Staff_ID_Card,
+                TOUR_STAFF_CITIZEN_IDENTITY_DATE = Staff_ID_Card_Date,
+                TOUR_STAFF_CITIZEN_IDENTITY_PLACE = Staff_ID_Card_Place,
                 TOUR_STAFF_BIRTH_DATE = Staff_Birthday,
                 TOUR_STAFF_BIRTH_PLACE = Staff_Birth_Place,
                 TOUR_STAFF_GENDER = Staff_Gender,
@@ -544,7 +649,7 @@ namespace TourManagementSystem.Managers.ViewModel
             //Step 5
             TOUR_RECORD tour_record = new TOUR_RECORD()
             {
-                TOUR_STAFF_ID = 2,
+                TOUR_STAFF_ID = User_ID,
                 TOUR_RECORD_DATE = DateTime.Now,
                 TOUR_RECORD_CONTENT = "Add new staff with Name: " + Staff_Name
             };
@@ -563,50 +668,67 @@ namespace TourManagementSystem.Managers.ViewModel
 
         /*
          * Function IsExcute and Excute of SaveChangeCommand
-         * IsExcute = true when any textbox in AddStaffUC except Note is filled
+         * IsExcute = true when any textbox in DisplayStaffUC
          * Excute is save all textbox to database
          */
         private bool IsExcuteSaveChangeCommand()
         {
             Staff_String_Birthday = Staff_Birthday.ToString("dd/MM/yyyy");
+            Staff_String_ID_Card_Date = Staff_ID_Card_Date.ToString("dd/MM/yyyy");
+            if (Staff_Name != Staff_Selected.STAFF_NAME)
+            {
+                return true;
+            }
+            if (Staff_Role != Staff_Selected.STAFF_ROLE)
+            {
+                return true;
+            }
+            if (Staff_ID_Card != Staff_Selected.STAFF_CITIZEN_CARD)
+            {
+                return true;
+            }
+            if (Staff_String_ID_Card_Date != Staff_Selected.STAFF_STRING_CITIZEN_CARD_DATE)
+            {
+                return true;
+            }
+            if (Staff_ID_Card_Place != Staff_Selected.STAFF_CITIZEN_CARD_PLACE)
+            {
+                return true;
+            }
             if (Staff_String_Birthday != Staff_Selected.STAFF_STRING_BIRTH_DATE)
             {
                 return true;
             }
-            if (Staff_Name == Staff_Selected.STAFF_NAME)
+            if (Staff_Birth_Place != Staff_Selected.STAFF_BIRTH_PLACE)
             {
                 return true;
             }
-            if (Staff_ID_Card == Staff_Selected.STAFF_CITIZEN_CARD)
+            if (Staff_Gender != Staff_Selected.STAFF_GENDER)
             {
                 return true;
             }
-            if (Staff_Birth_Place == Staff_Selected.STAFF_BIRTH_PLACE)
+            if (Staff_Address != Staff_Selected.STAFF_ADDRESS)
             {
                 return true;
             }
-            if (Staff_Gender == Staff_Selected.STAFF_GENDER)
+            if (Staff_Academic_Level != Staff_Selected.STAFF_ACADEMIC_LEVEL)
             {
                 return true;
             }
-            if (Staff_Address == Staff_Selected.STAFF_ADDRESS)
+            if (Staff_Email != Staff_Selected.STAFF_EMAIL)
             {
                 return true;
             }
-            if (Staff_Academic_Level == Staff_Selected.STAFF_ACADEMIC_LEVEL)
-            {
-                return true;
-            }
-            if (Staff_Email == Staff_Selected.STAFF_EMAIL)
-            {
-                return true;
-            }
-            if (Staff_Phone_Number == Staff_Selected.STAFF_PHONE_NUMBER)
+            if (Staff_Phone_Number != Staff_Selected.STAFF_PHONE_NUMBER)
             {
                 return true;
             }
             //Note: If Update Image will update note
-            if (Staff_Note == Staff_Selected.STAFF_NOTE)
+            if (Staff_Note != Staff_Selected.STAFF_NOTE)
+            {
+                return true;
+            }
+            if (Staff_Image_Byte_Source != Staff_Selected.STAFF_IMAGE_BYTE_SOURCE)
             {
                 return true;
             }
@@ -622,7 +744,10 @@ namespace TourManagementSystem.Managers.ViewModel
 
                 TOUR_STAFF tour_staff = db.TOUR_STAFF.Where(x => x.TOUR_STAFF_ID == Staff_Selected.STAFF_ID).SingleOrDefault();
                 tour_staff.TOUR_STAFF_NAME = Staff_Name;
+                tour_staff.TOUR_STAFF_ROLE = Staff_Role;
                 tour_staff.TOUR_STAFF_CITIZEN_IDENTITY = Staff_ID_Card;
+                tour_staff.TOUR_STAFF_CITIZEN_IDENTITY_DATE = Staff_ID_Card_Date;
+                tour_staff.TOUR_STAFF_CITIZEN_IDENTITY_PLACE = Staff_ID_Card_Place;
                 tour_staff.TOUR_STAFF_BIRTH_DATE = Staff_Birthday;
                 tour_staff.TOUR_STAFF_BIRTH_PLACE = Staff_Birth_Place;
                 tour_staff.TOUR_STAFF_ADDRESS = Staff_Address;
@@ -636,14 +761,30 @@ namespace TourManagementSystem.Managers.ViewModel
                 string changeToSave = "";
                 int countChangeToSave = 0;
                 Staff_String_Birthday = Staff_Birthday.ToString("dd/MM/yyyy");
+                Staff_String_ID_Card_Date = Staff_ID_Card_Date.ToString("dd/MM/yyyy");
                 if (Staff_Name != Staff_Selected.STAFF_NAME)
                 {
                     changeToSave += string.Format("Name Change ({0} -> {1})   ", Staff_Selected.STAFF_NAME, Staff_Name);
                     countChangeToSave++;
                 }
+                if (Staff_Role != Staff_Selected.STAFF_ROLE)
+                {
+                    changeToSave += string.Format("Role Change ({0} -> {1})   ", Staff_Selected.STAFF_ROLE, Staff_Role);
+                    countChangeToSave++;
+                }
                 if (Staff_ID_Card != Staff_Selected.STAFF_CITIZEN_CARD)
                 {
                     changeToSave += string.Format("ID-Card Change ({0} -> {1})   ", Staff_Selected.STAFF_CITIZEN_CARD, Staff_ID_Card);
+                    countChangeToSave++;
+                }
+                if (Staff_String_ID_Card_Date != Staff_Selected.STAFF_STRING_CITIZEN_CARD_DATE)
+                {
+                    changeToSave += string.Format("ID-Card Date Change ({0} -> {1})   ", Staff_Selected.STAFF_STRING_CITIZEN_CARD_DATE, Staff_String_ID_Card_Date);
+                    countChangeToSave++;
+                }
+                if (Staff_ID_Card_Place != Staff_Selected.STAFF_CITIZEN_CARD_PLACE)
+                {
+                    changeToSave += string.Format("ID-Card Place Change ({0} -> {1})   ", Staff_Selected.STAFF_CITIZEN_CARD_PLACE, Staff_ID_Card_Place);
                     countChangeToSave++;
                 }
                 if (Staff_String_Birthday != Staff_Selected.STAFF_STRING_BIRTH_DATE)
@@ -686,12 +827,17 @@ namespace TourManagementSystem.Managers.ViewModel
                     changeToSave += string.Format("Note Change ({0} -> {1})   ", Staff_Selected.STAFF_NOTE, Staff_Note);
                     countChangeToSave++;
                 }
+                if (Staff_Image_Byte_Source != Staff_Selected.STAFF_IMAGE_BYTE_SOURCE)
+                {
+                    changeToSave += string.Format("Image Change");
+                    countChangeToSave++;
+                }
 
                 if (countChangeToSave != 0)
                 {
                     TOUR_RECORD tour_record = new TOUR_RECORD
                     {
-                        TOUR_STAFF_ID = Staff_Selected.STAFF_ID,
+                        TOUR_STAFF_ID = User_ID,
                         TOUR_RECORD_DATE = DateTime.Now,
                         TOUR_RECORD_CONTENT = changeToSave
                     };
@@ -761,7 +907,7 @@ namespace TourManagementSystem.Managers.ViewModel
 
             TOUR_RECORD tour_record = new TOUR_RECORD()
             {
-                TOUR_STAFF_ID = Staff_Selected.STAFF_ID,
+                TOUR_STAFF_ID = User_ID,
                 TOUR_RECORD_DATE = DateTime.Now,
                 TOUR_RECORD_CONTENT = string.Format("Remove Staff {0} with {1} because {2}", Staff_Name, Staff_Selected.STAFF_ID, Staff_Note_Remove)
             };

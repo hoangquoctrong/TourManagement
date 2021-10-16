@@ -17,8 +17,20 @@ namespace TourManagementSystem.Managers.Model
         private string _STAFF_NAME;
         public string STAFF_NAME { get => _STAFF_NAME; set { _STAFF_NAME = value; OnPropertyChanged(); } }
 
+        private string _STAFF_ROLE;
+        public string STAFF_ROLE { get => _STAFF_ROLE; set { _STAFF_ROLE = value; OnPropertyChanged(); } }
+
         private string _STAFF_CITIZEN_CARD;
         public string STAFF_CITIZEN_CARD { get => _STAFF_CITIZEN_CARD; set { _STAFF_CITIZEN_CARD = value; OnPropertyChanged(); } }
+
+        private DateTime _STAFF_CITIZEN_CARD_DATE = DateTime.Now;
+        public DateTime STAFF_CITIZEN_CARD_DATE { get => _STAFF_CITIZEN_CARD_DATE; set { _STAFF_CITIZEN_CARD_DATE = value; OnPropertyChanged(); } }
+
+        private string _STAFF_STRING_CITIZEN_CARD_DATE;
+        public string STAFF_STRING_CITIZEN_CARD_DATE { get => _STAFF_STRING_CITIZEN_CARD_DATE; set { _STAFF_STRING_CITIZEN_CARD_DATE = value; OnPropertyChanged(); } }
+
+        private string _STAFF_CITIZEN_CARD_PLACE;
+        public string STAFF_CITIZEN_CARD_PLACE { get => _STAFF_CITIZEN_CARD_PLACE; set { _STAFF_CITIZEN_CARD_PLACE = value; OnPropertyChanged(); } }
 
         private DateTime _STAFF_BIRTH_DATE = DateTime.Now;
         public DateTime STAFF_BIRTH_DATE { get => _STAFF_BIRTH_DATE; set { _STAFF_BIRTH_DATE = value; OnPropertyChanged(); } }

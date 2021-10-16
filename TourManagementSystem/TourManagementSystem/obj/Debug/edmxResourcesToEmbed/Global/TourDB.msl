@@ -12,6 +12,7 @@
     <EntitySetMapping Name="TOURs">
       <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR">
         <MappingFragment StoreEntitySet="TOUR">
+          <ScalarProperty Name="TOUR_IS_EXIST" ColumnName="TOUR_IS_EXIST" />
           <ScalarProperty Name="TOUR_IMAGE" ColumnName="TOUR_IMAGE" />
           <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
           <ScalarProperty Name="TOUR_NAME" ColumnName="TOUR_NAME" />
@@ -102,6 +103,9 @@
     <EntitySetMapping Name="TOUR_STAFF">
       <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_STAFF">
         <MappingFragment StoreEntitySet="TOUR_STAFF">
+          <ScalarProperty Name="TOUR_STAFF_CITIZEN_IDENTITY_DATE" ColumnName="TOUR_STAFF_CITIZEN_IDENTITY_DATE" />
+          <ScalarProperty Name="TOUR_STAFF_CITIZEN_IDENTITY_PLACE" ColumnName="TOUR_STAFF_CITIZEN_IDENTITY_PLACE" />
+          <ScalarProperty Name="TOUR_STAFF_ROLE" ColumnName="TOUR_STAFF_ROLE" />
           <ScalarProperty Name="TOUR_STAFF_IMAGE" ColumnName="TOUR_STAFF_IMAGE" />
           <ScalarProperty Name="TOUR_STAFF_NOTE" ColumnName="TOUR_STAFF_NOTE" />
           <ScalarProperty Name="TOUR_STAFF_ID" ColumnName="TOUR_STAFF_ID" />
@@ -132,6 +136,12 @@
     <EntitySetMapping Name="TOUR_TRANSPORT">
       <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT">
         <MappingFragment StoreEntitySet="TOUR_TRANSPORT">
+          <ScalarProperty Name="TOUR_TRANSPORT_DESCRIPTION" ColumnName="TOUR_TRANSPORT_DESCRIPTION" />
+          <ScalarProperty Name="TOUR_TRANSPORT_START_DATE" ColumnName="TOUR_TRANSPORT_START_DATE" />
+          <ScalarProperty Name="TOUR_TRANSPORT_IMAGE" ColumnName="TOUR_TRANSPORT_IMAGE" />
+          <ScalarProperty Name="TOUR_TRANSPORT_TYPE" ColumnName="TOUR_TRANSPORT_TYPE" />
+          <ScalarProperty Name="TOUR_TRANSPORT_COMPANY" ColumnName="TOUR_TRANSPORT_COMPANY" />
+          <ScalarProperty Name="TOUR_TRANSPORT_LICENSE_PLATE" ColumnName="TOUR_TRANSPORT_LICENSE_PLATE" />
           <ScalarProperty Name="TOUR_TRANSPORT_ID" ColumnName="TOUR_TRANSPORT_ID" />
           <ScalarProperty Name="TOUR_TRANSPORT_NAME" ColumnName="TOUR_TRANSPORT_NAME" />
         </MappingFragment>
@@ -203,6 +213,40 @@
           <ScalarProperty Name="TRAVELLER_DETAIL_TIME" ColumnName="TRAVELLER_DETAIL_TIME" />
           <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
           <ScalarProperty Name="TRAVELLER_ID" ColumnName="TRAVELLER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_HOTEL_DELETE">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DELETE">
+        <MappingFragment StoreEntitySet="TOUR_HOTEL_DELETE">
+          <ScalarProperty Name="TOUR_HOTEL_DELETE_CONTENT" ColumnName="TOUR_HOTEL_DELETE_CONTENT" />
+          <ScalarProperty Name="TOUR_HOTEL_ID" ColumnName="TOUR_HOTEL_ID" />
+          <ScalarProperty Name="TOUR_HOTEL_DELETE_DATE" ColumnName="TOUR_HOTEL_DELETE_DATE" />
+          <ScalarProperty Name="TOUR_HOTEL_DELETE_ISDELETED" ColumnName="TOUR_HOTEL_DELETE_ISDELETED" />
+          <ScalarProperty Name="TOUR_HOTEL_DELETE_ID" ColumnName="TOUR_HOTEL_DELETE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_TRANSPORT_DELETE">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DELETE">
+        <MappingFragment StoreEntitySet="TOUR_TRANSPORT_DELETE">
+          <ScalarProperty Name="TOUR_TRANSPORT_DELETE_CONTENT" ColumnName="TOUR_TRANSPORT_DELETE_CONTENT" />
+          <ScalarProperty Name="TOUR_TRANSPORT_ID" ColumnName="TOUR_TRANSPORT_ID" />
+          <ScalarProperty Name="TOUR_TRANSPORT_DELETE_DATE" ColumnName="TOUR_TRANSPORT_DELETE_DATE" />
+          <ScalarProperty Name="TOUR_TRANSPORT_DELETE_ISDELETED" ColumnName="TOUR_TRANSPORT_DELETE_ISDELETED" />
+          <ScalarProperty Name="TOUR_TRANSPORT_DELETE_ID" ColumnName="TOUR_TRANSPORT_DELETE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="database_firewall_rules">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.database_firewall_rules">
+        <MappingFragment StoreEntitySet="database_firewall_rules">
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+          <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

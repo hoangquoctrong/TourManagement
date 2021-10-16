@@ -16,14 +16,14 @@
             <Setter Property="TextBlock.TextAlignment" Value="Center" />
         </Style>
         <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
-            <Setter Property="BorderThickness" Value="0,0,1,1" />
+            <Setter Property="BorderThickness" Value="0.5" />
             <Setter Property="BorderBrush" Value="#D6D6D6" />
             <Setter Property="Background" Value="#FFFFFF" />
         </Style>
-        <!--<style basedon="{staticresource materialdesigndatagridcell}" targettype="{x:type datagridcell}">
-            <setter property="borderthickness" value="2,0,0,0" />
-            <setter property="borderbrush" value="#d6d6d6" />
-        </style>-->
+        <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="{x:Type DataGridCell}">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="#d6d6d6" />
+        </Style>
     </UserControl.Resources>
     <ContentControl x:Name="contentControlMain" Height="660">
         <Grid Margin="0,0,0,0">
@@ -35,7 +35,7 @@
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="270" />
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
@@ -76,23 +76,36 @@
                     </StackPanel>
                 </Border>
 
-                <ComboBox
-                    Name="cbSearch"
-                    Grid.Column="1"
-                    Margin="5,5,0,5"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    DisplayMemberPath="CB_Name"
-                    FontSize="18"
-                    Foreground="DimGray"
-                    ItemsSource="{Binding CB_StaffList, Mode=TwoWay}"
-                    SelectedValue="{Binding CB_StaffSelected}">
-                    <ComboBox.ItemContainerStyle>
-                        <Style TargetType="ComboBoxItem">
-                            <Setter Property="IsSelected" Value="{Binding IsSelected}" />
-                        </Style>
-                    </ComboBox.ItemContainerStyle>
-                </ComboBox>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <ComboBox
+                        Name="cbSearch"
+                        Width="140"
+                        Margin="10"
+                        DisplayMemberPath="CB_Name"
+                        FontSize="18"
+                        Foreground="DimGray"
+                        ItemsSource="{Binding CB_StaffList, Mode=TwoWay}"
+                        SelectedValue="{Binding CB_StaffSelected}">
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="ComboBoxItem">
+                                <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+                    </ComboBox>
+                    <CheckBox
+                        Margin="10,12,0,15"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        materialDesign:CheckBoxAssist.CheckBoxSize="24"
+                        Background="#FFEB5215"
+                        BorderBrush="Black"
+                        FontSize="20"
+                        Foreground="Black"
+                        IsChecked="{Binding Checkbox_DisplayAllStaff}"
+                        Style="{StaticResource MaterialDesignCheckBox}">
+                        All Staff
+                    </CheckBox>
+                </StackPanel>
 
                 <Button
                     Grid.Column="2"
@@ -154,9 +167,9 @@
                         Header="Name" />
                     <DataGridTextColumn
                         Width="0.1*"
-                        Binding="{Binding STAFF_STRING_BIRTH_DATE}"
+                        Binding="{Binding STAFF_ROLE}"
                         Foreground="DarkSlateGray"
-                        Header="Birthdate" />
+                        Header="Role" />
                     <DataGridTextColumn
                         Width="0.075*"
                         Binding="{Binding STAFF_GENDER}"

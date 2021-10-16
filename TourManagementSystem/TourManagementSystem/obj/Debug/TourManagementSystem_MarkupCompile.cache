@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\App.xaml
-6-1330999153
+9411511710
 2-299886435
-40-1971786946
+481706152030
 24470260290
-Global\MainWindow.xaml;Managers\ManagerView.xaml;Managers\View\AddStaffUC.xaml;Managers\View\DisplayStaffUC.xaml;Managers\View\StaffUC.xaml;Managers\View\TourUC.xaml;
+Global\MainWindow.xaml;Managers\ManagerView.xaml;Managers\View\AddStaffUC.xaml;Managers\View\AddTransportUC.xaml;Managers\View\DisplayStaffUC.xaml;Managers\View\DisplayTransportUC.xaml;Managers\View\StaffUC.xaml;Managers\View\TourUC.xaml;Managers\View\TransportUC.xaml;
 
 False
 

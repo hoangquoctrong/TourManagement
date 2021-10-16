@@ -17,8 +17,8 @@
         <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_RECORD" Width="1.5" PointX="8.25" PointY="18" IsExpanded="true" />
         <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_STAFF" Width="2.375" PointX="5.5" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_STAFF_DELETE" Width="1.5" PointX="8.25" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT" Width="1.5" PointX="6" PointY="16.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DETAIL" Width="1.5" PointX="8.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT" Width="2.375" PointX="5.125" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DETAIL" Width="2.25" PointX="8.25" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TRAVEL_COST" Width="1.5" PointX="3.75" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TRAVEL_GROUP" Width="1.5" PointX="6" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TRAVELLER" Width="1.5" PointX="9" PointY="1.5" IsExpanded="true" />
@@ -42,6 +42,11 @@
         <AssociationConnector Association="Tour_Mangement_DatabaseModel.FK__TRAVELLER__TRAVE__07C12930" ManuallyRouted="false" />
         <AssociationConnector Association="Tour_Mangement_DatabaseModel.FK__TRAVELLER__TRAVE__08B54D69" ManuallyRouted="false" />
         <AssociationConnector Association="Tour_Mangement_DatabaseModel.FK__TRAVELLER__TRAVE__10566F31" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DELETE" Width="1.5" PointX="8.25" PointY="28" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DELETE" Width="1.5" PointX="8.25" PointY="24.5" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.database_firewall_rules" Width="1.5" PointX="10.375" PointY="5.75" />
+        <AssociationConnector Association="Tour_Mangement_DatabaseModel.FK__TOUR_HOTE__TOUR___2BFE89A6" />
+        <AssociationConnector Association="Tour_Mangement_DatabaseModel.FK__TOUR_TRAN__TOUR___29221CFB" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

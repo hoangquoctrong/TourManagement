@@ -18,12 +18,21 @@ namespace TourManagementSystem.Global
         public TOUR_TRANSPORT()
         {
             this.TOUR_TRANSPORT_DETAIL = new HashSet<TOUR_TRANSPORT_DETAIL>();
+            this.TOUR_TRANSPORT_DELETE = new HashSet<TOUR_TRANSPORT_DELETE>();
         }
     
         public int TOUR_TRANSPORT_ID { get; set; }
         public string TOUR_TRANSPORT_NAME { get; set; }
+        public string TOUR_TRANSPORT_LICENSE_PLATE { get; set; }
+        public string TOUR_TRANSPORT_COMPANY { get; set; }
+        public string TOUR_TRANSPORT_TYPE { get; set; }
+        public byte[] TOUR_TRANSPORT_IMAGE { get; set; }
+        public Nullable<System.DateTime> TOUR_TRANSPORT_START_DATE { get; set; }
+        public string TOUR_TRANSPORT_DESCRIPTION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_TRANSPORT_DETAIL> TOUR_TRANSPORT_DETAIL { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TOUR_TRANSPORT_DELETE> TOUR_TRANSPORT_DELETE { get; set; }
     }
 }

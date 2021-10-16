@@ -36,6 +36,9 @@ namespace TourManagementSystem.Global
         public string TOUR_STAFF_EMAIL { get; set; }
         public string TOUR_STAFF_NOTE { get; set; }
         public byte[] TOUR_STAFF_IMAGE { get; set; }
+        public string TOUR_STAFF_ROLE { get; set; }
+        public string TOUR_STAFF_CITIZEN_IDENTITY_PLACE { get; set; }
+        public Nullable<System.DateTime> TOUR_STAFF_CITIZEN_IDENTITY_DATE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_ACCOUNT> TOUR_ACCOUNT { get; set; }

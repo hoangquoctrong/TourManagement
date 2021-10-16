@@ -21,10 +21,10 @@ namespace TourManagementSystem.Managers.View
     /// </summary>
     public partial class AddStaffUC : UserControl
     {
-        public AddStaffUC()
+        public AddStaffUC(int user_id)
         {
             InitializeComponent();
-            DataContext = new StaffViewModel();
+            DataContext = new StaffViewModel(user_id);
         }
     }
 }

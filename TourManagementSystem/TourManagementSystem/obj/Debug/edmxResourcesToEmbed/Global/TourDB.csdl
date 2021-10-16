@@ -20,6 +20,7 @@
     <NavigationProperty Name="TOUR_PRICE" Relationship="Self.FK__TOUR_PRIC__TOUR___6383C8BA" FromRole="TOUR" ToRole="TOUR_PRICE" />
     <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVEL_GR__TOUR___71D1E811" FromRole="TOUR" ToRole="TRAVEL_GROUP" />
     <Property Name="TOUR_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="TOUR_IS_EXIST" Type="Byte" />
   </EntityType>
   <EntityType Name="TOUR_ACCOUNT">
     <Key>
@@ -40,6 +41,7 @@
     <Property Name="TOUR_HOTEL_ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="TOUR_HOTEL_PHONE_NUMBER" Type="Int32" />
     <NavigationProperty Name="TOUR_HOTEL_DETAIL" Relationship="Self.FK__TOUR_HOTE__TOUR___02FC7413" FromRole="TOUR_HOTEL" ToRole="TOUR_HOTEL_DETAIL" />
+    <NavigationProperty Name="TOUR_HOTEL_DELETE" Relationship="Tour_Mangement_DatabaseModel.FK__TOUR_HOTE__TOUR___2BFE89A6" FromRole="TOUR_HOTEL" ToRole="TOUR_HOTEL_DELETE" />
   </EntityType>
   <EntityType Name="TOUR_HOTEL_DETAIL">
     <Key>
@@ -125,6 +127,9 @@
     <NavigationProperty Name="TOUR_STAFF_DELETE" Relationship="Self.FK__TOUR_STAF__TOUR___160F4887" FromRole="TOUR_STAFF" ToRole="TOUR_STAFF_DELETE" />
     <Property Name="TOUR_STAFF_NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="TOUR_STAFF_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="TOUR_STAFF_ROLE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TOUR_STAFF_CITIZEN_IDENTITY_PLACE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TOUR_STAFF_CITIZEN_IDENTITY_DATE" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="TOUR_STAFF_DELETE">
     <Key>
@@ -144,6 +149,13 @@
     <Property Name="TOUR_TRANSPORT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TOUR_TRANSPORT_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="TOUR_TRANSPORT_DETAIL" Relationship="Self.FK__TOUR_TRAN__TOUR___7D439ABD" FromRole="TOUR_TRANSPORT" ToRole="TOUR_TRANSPORT_DETAIL" />
+    <Property Name="TOUR_TRANSPORT_LICENSE_PLATE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TOUR_TRANSPORT_COMPANY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TOUR_TRANSPORT_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TOUR_TRANSPORT_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="TOUR_TRANSPORT_START_DATE" Type="DateTime" Precision="3" />
+    <Property Name="TOUR_TRANSPORT_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TOUR_TRANSPORT_DELETE" Relationship="Tour_Mangement_DatabaseModel.FK__TOUR_TRAN__TOUR___29221CFB" FromRole="TOUR_TRANSPORT" ToRole="TOUR_TRANSPORT_DELETE" />
   </EntityType>
   <EntityType Name="TOUR_TRANSPORT_DETAIL">
     <Key>
@@ -530,5 +542,78 @@
       <End Role="TRAVELLER" EntitySet="TRAVELLERs" />
       <End Role="TRAVELLER_ACCOUNT" EntitySet="TRAVELLER_ACCOUNT" />
     </AssociationSet>
+    <EntitySet Name="TOUR_HOTEL_DELETE" EntityType="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DELETE" />
+    <EntitySet Name="TOUR_TRANSPORT_DELETE" EntityType="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DELETE" />
+    <EntitySet Name="database_firewall_rules" EntityType="Tour_Mangement_DatabaseModel.database_firewall_rules" />
+    <AssociationSet Name="FK__TOUR_HOTE__TOUR___2BFE89A6" Association="Tour_Mangement_DatabaseModel.FK__TOUR_HOTE__TOUR___2BFE89A6">
+      <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
+      <End Role="TOUR_HOTEL_DELETE" EntitySet="TOUR_HOTEL_DELETE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TOUR_TRAN__TOUR___29221CFB" Association="Tour_Mangement_DatabaseModel.FK__TOUR_TRAN__TOUR___29221CFB">
+      <End Role="TOUR_TRANSPORT" EntitySet="TOUR_TRANSPORT" />
+      <End Role="TOUR_TRANSPORT_DELETE" EntitySet="TOUR_TRANSPORT_DELETE" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="TOUR_HOTEL_DELETE">
+    <Key>
+      <PropertyRef Name="TOUR_HOTEL_DELETE_ID" />
+    </Key>
+    <Property Name="TOUR_HOTEL_DELETE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TOUR_HOTEL_DELETE_ISDELETED" Type="Boolean" />
+    <Property Name="TOUR_HOTEL_DELETE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="TOUR_HOTEL_ID" Type="Int32" Nullable="false" />
+    <Property Name="TOUR_HOTEL_DELETE_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TOUR_HOTEL" Relationship="Tour_Mangement_DatabaseModel.FK__TOUR_HOTE__TOUR___2BFE89A6" FromRole="TOUR_HOTEL_DELETE" ToRole="TOUR_HOTEL" />
+  </EntityType>
+  <EntityType Name="TOUR_TRANSPORT_DELETE">
+    <Key>
+      <PropertyRef Name="TOUR_TRANSPORT_DELETE_ID" />
+    </Key>
+    <Property Name="TOUR_TRANSPORT_DELETE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TOUR_TRANSPORT_DELETE_ISDELETED" Type="Boolean" />
+    <Property Name="TOUR_TRANSPORT_DELETE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="TOUR_TRANSPORT_ID" Type="Int32" Nullable="false" />
+    <Property Name="TOUR_TRANSPORT_DELETE_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TOUR_TRANSPORT" Relationship="Tour_Mangement_DatabaseModel.FK__TOUR_TRAN__TOUR___29221CFB" FromRole="TOUR_TRANSPORT_DELETE" ToRole="TOUR_TRANSPORT" />
+  </EntityType>
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="start_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="end_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="FK__TOUR_HOTE__TOUR___2BFE89A6">
+    <End Type="Tour_Mangement_DatabaseModel.TOUR_HOTEL" Role="TOUR_HOTEL" Multiplicity="1" />
+    <End Type="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DELETE" Role="TOUR_HOTEL_DELETE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TOUR_HOTEL">
+        <PropertyRef Name="TOUR_HOTEL_ID" />
+      </Principal>
+      <Dependent Role="TOUR_HOTEL_DELETE">
+        <PropertyRef Name="TOUR_HOTEL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TOUR_TRAN__TOUR___29221CFB">
+    <End Type="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT" Role="TOUR_TRANSPORT" Multiplicity="1" />
+    <End Type="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DELETE" Role="TOUR_TRANSPORT_DELETE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TOUR_TRANSPORT">
+        <PropertyRef Name="TOUR_TRANSPORT_ID" />
+      </Principal>
+      <Dependent Role="TOUR_TRANSPORT_DELETE">
+        <PropertyRef Name="TOUR_TRANSPORT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

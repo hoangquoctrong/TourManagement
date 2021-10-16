@@ -68,7 +68,7 @@
                 <Border.Background>
                     <ImageBrush Stretch="Fill">
                         <ImageBrush.ImageSource>
-                            <BitmapImage UriSource="../../Resources/Images/User.png" />
+                            <BitmapImage UriSource="pack://application:,,,/Resources/Images/logo.jpg" />
                         </ImageBrush.ImageSource>
                     </ImageBrush>
                 </Border.Background>
