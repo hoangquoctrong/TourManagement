@@ -12,7 +12,7 @@
     Background="White"
     mc:Ignorable="d">
     <ContentControl x:Name="contentControlDisplay" Height="auto">
-        <Grid Margin="10,0,10,10">
+        <Grid Margin="15,0,15,10">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -58,7 +58,7 @@
                     TabStripPlacement="Top">
 
                     <TabItem
-                        Width="390"
+                        Width="290"
                         Background="Transparent"
                         Style="{StaticResource MaterialDesignNavigationRailTabItem}">
 
@@ -539,7 +539,93 @@
                     </TabItem>
 
                     <TabItem
-                        Width="390"
+                        Width="290"
+                        Background="Transparent"
+                        Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+
+                        <TabItem.Header>
+                            <StackPanel
+                                Width="240"
+                                Height="50"
+                                HorizontalAlignment="Center"
+                                Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Width="30"
+                                    Height="30"
+                                    Margin="20,0"
+                                    VerticalAlignment="Center"
+                                    Kind="Grid" />
+                                <TextBlock
+                                    Margin="20,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="24"
+                                    Foreground="Black"
+                                    Text="History" />
+                            </StackPanel>
+                        </TabItem.Header>
+
+                        <DataGrid
+                            Width="1100"
+                            Height="480"
+                            Margin="20"
+                            VerticalAlignment="Top"
+                            materialDesign:DataGridAssist.CellPadding="12 8 0 8"
+                            materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
+                            AllowDrop="True"
+                            AutoGenerateColumns="False"
+                            CanUserAddRows="False"
+                            CanUserDeleteRows="False"
+                            CanUserReorderColumns="False"
+                            CanUserSortColumns="True"
+                            GridLinesVisibility="Vertical"
+                            IsReadOnly="True"
+                            ItemsSource="{Binding Tour_MissionList, Mode=TwoWay}"
+                            SelectedItem="{Binding Tour_Mission_Selected}"
+                            SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="0.05*"
+                                    Binding="{Binding TOUR_MISSIO_ID}"
+                                    Foreground="DarkSlateGray"
+                                    Header="ID" />
+                                <DataGridTextColumn
+                                    Width="0.15*"
+                                    Binding="{Binding TOUR_MISSION_RESPONSIBILITY}"
+                                    Foreground="DarkSlateGray"
+                                    Header="Responsibility" />
+                                <DataGridTextColumn
+                                    Width="0.24*"
+                                    Binding="{Binding TOUR_MISSION_DESCRIPTION}"
+                                    Foreground="DarkSlateGray"
+                                    Header="Description" />
+                                <DataGridTextColumn
+                                    Width="0.16*"
+                                    Binding="{Binding TOUR_NAME}"
+                                    Foreground="DarkSlateGray"
+                                    Header="Tour Name" />
+                                <DataGridTextColumn
+                                    Width="0.16*"
+                                    Binding="{Binding TRAVEL_GROUP_NAME}"
+                                    Foreground="DarkSlateGray"
+                                    Header="Travel Group Name" />
+                                <DataGridTextColumn
+                                    Width="0.12*"
+                                    Binding="{Binding TOUR_START_DATE}"
+                                    Foreground="DarkSlateGray"
+                                    Header="Start Date" />
+                                <DataGridTextColumn
+                                    Width="0.12*"
+                                    Binding="{Binding TOUR_END_DATE}"
+                                    Foreground="DarkSlateGray"
+                                    Header="End Date" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </TabItem>
+
+                    <TabItem
+                        Width="290"
                         Background="Transparent"
                         Style="{StaticResource MaterialDesignNavigationRailTabItem}">
 
@@ -674,7 +760,7 @@
                     </TabItem>
 
                     <TabItem
-                        Width="390"
+                        Width="290"
                         Background="Transparent"
                         Style="{StaticResource MaterialDesignNavigationRailTabItem}">
 

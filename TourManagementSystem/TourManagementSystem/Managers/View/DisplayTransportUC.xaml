@@ -11,6 +11,21 @@
     d:DesignWidth="1190"
     Background="White"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="WrapText" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="BorderThickness" Value="0.5" />
+            <Setter Property="BorderBrush" Value="#D6D6D6" />
+            <Setter Property="Background" Value="#FFFFFF" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="{x:Type DataGridCell}">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="#d6d6d6" />
+        </Style>
+    </UserControl.Resources>
     <ContentControl x:Name="contentControlDisplay" Height="auto">
         <Grid Margin="10,0,10,10">
 
@@ -361,6 +376,59 @@
                                     Text="History" />
                             </StackPanel>
                         </TabItem.Header>
+
+                        <DataGrid
+                            Width="1100"
+                            Height="480"
+                            Margin="20"
+                            VerticalAlignment="Top"
+                            materialDesign:DataGridAssist.CellPadding="12 8 0 8"
+                            materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
+                            AllowDrop="True"
+                            AutoGenerateColumns="False"
+                            CanUserAddRows="False"
+                            CanUserDeleteRows="False"
+                            CanUserReorderColumns="False"
+                            CanUserSortColumns="True"
+                            GridLinesVisibility="Vertical"
+                            IsReadOnly="True"
+                            ItemsSource="{Binding Tour_TransportList, Mode=TwoWay}"
+                            SelectedItem="{Binding Tour_Transport_Selected}"
+                            SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="0.05*"
+                                    Binding="{Binding TOUR_TRANSPORT_ID}"
+                                    Foreground="DarkSlateGray"
+                                    Header="ID" />
+                                <DataGridTextColumn
+                                    Width="0.2*"
+                                    Binding="{Binding TOUR_NAME}"
+                                    Foreground="DarkSlateGray"
+                                    Header="Tour Name" />
+                                <DataGridTextColumn
+                                    Width="0.2*"
+                                    Binding="{Binding TRAVEL_GROUP_NAME}"
+                                    Foreground="DarkSlateGray"
+                                    Header="Travel Group Name" />
+                                <DataGridTextColumn
+                                    Width="0.15*"
+                                    Binding="{Binding TOUR_START_DATE}"
+                                    Foreground="DarkSlateGray"
+                                    Header="Start Date" />
+                                <DataGridTextColumn
+                                    Width="0.15*"
+                                    Binding="{Binding TOUR_END_DATE}"
+                                    Foreground="DarkSlateGray"
+                                    Header="End Date" />
+                                <DataGridTextColumn
+                                    Width="0.2*"
+                                    Binding="{Binding TOUR_TRANSPORT_NOTE}"
+                                    Foreground="DarkSlateGray"
+                                    Header="Note" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
                     </TabItem>
 
                     <TabItem

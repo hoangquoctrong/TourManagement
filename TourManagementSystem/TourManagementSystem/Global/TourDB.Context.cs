@@ -29,6 +29,7 @@ namespace TourManagementSystem.Global
         public virtual DbSet<TOUR> TOURs { get; set; }
         public virtual DbSet<TOUR_ACCOUNT> TOUR_ACCOUNT { get; set; }
         public virtual DbSet<TOUR_HOTEL> TOUR_HOTEL { get; set; }
+        public virtual DbSet<TOUR_HOTEL_DELETE> TOUR_HOTEL_DELETE { get; set; }
         public virtual DbSet<TOUR_HOTEL_DETAIL> TOUR_HOTEL_DETAIL { get; set; }
         public virtual DbSet<TOUR_LOCATION> TOUR_LOCATION { get; set; }
         public virtual DbSet<TOUR_LOCATION_DETAILED> TOUR_LOCATION_DETAILED { get; set; }
@@ -37,15 +38,14 @@ namespace TourManagementSystem.Global
         public virtual DbSet<TOUR_RECORD> TOUR_RECORD { get; set; }
         public virtual DbSet<TOUR_STAFF> TOUR_STAFF { get; set; }
         public virtual DbSet<TOUR_STAFF_DELETE> TOUR_STAFF_DELETE { get; set; }
+        public virtual DbSet<TOUR_TIME> TOUR_TIME { get; set; }
         public virtual DbSet<TOUR_TRANSPORT> TOUR_TRANSPORT { get; set; }
+        public virtual DbSet<TOUR_TRANSPORT_DELETE> TOUR_TRANSPORT_DELETE { get; set; }
         public virtual DbSet<TOUR_TRANSPORT_DETAIL> TOUR_TRANSPORT_DETAIL { get; set; }
         public virtual DbSet<TRAVEL_COST> TRAVEL_COST { get; set; }
         public virtual DbSet<TRAVEL_GROUP> TRAVEL_GROUP { get; set; }
         public virtual DbSet<TRAVELLER> TRAVELLERs { get; set; }
         public virtual DbSet<TRAVELLER_ACCOUNT> TRAVELLER_ACCOUNT { get; set; }
         public virtual DbSet<TRAVELLER_DETAIL> TRAVELLER_DETAIL { get; set; }
-        public virtual DbSet<TOUR_HOTEL_DELETE> TOUR_HOTEL_DELETE { get; set; }
-        public virtual DbSet<TOUR_TRANSPORT_DELETE> TOUR_TRANSPORT_DELETE { get; set; }
-        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
     }
 }

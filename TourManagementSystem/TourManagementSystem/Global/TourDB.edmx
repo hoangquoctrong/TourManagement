@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="PLACE">
           <Key>
             <PropertyRef Name="PLACE_ID" />
@@ -21,7 +21,7 @@
           <Property Name="TOUR_CHARACTERISTIS" Type="text" />
           <Property Name="TOUR_TYPE" Type="varchar" MaxLength="255" />
           <Property Name="TOUR_IMAGE" Type="image" />
-          <Property Name="TOUR_IS_EXIST" Type="tinyint" />
+          <Property Name="TOUR_IS_EXIST" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="TOUR_ACCOUNT">
           <Key>
@@ -39,7 +39,13 @@
           <Property Name="TOUR_HOTEL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TOUR_HOTEL_NAME" Type="varchar" MaxLength="255" />
           <Property Name="TOUR_HOTEL_ADDRESS" Type="text" />
-          <Property Name="TOUR_HOTEL_PHONE_NUMBER" Type="int" />
+          <Property Name="TOUR_HOTEL_PHONE_NUMBER" Type="varchar" MaxLength="255" />
+          <Property Name="TOUR_HOTEL_IS_RESTAURANT" Type="varchar" MaxLength="255" />
+          <Property Name="TOUR_HOTEL_PRICE" Type="float" />
+          <Property Name="TOUR_HOTEL_TYPE" Type="varchar" MaxLength="255" />
+          <Property Name="TOUR_HOTEL_DESCRIPTION" Type="text" />
+          <Property Name="TOUR_HOTEL_IMAGE" Type="image" />
+          <Property Name="TOUR_HOTEL_EMAIL" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="TOUR_HOTEL_DELETE">
           <Key>
@@ -56,9 +62,9 @@
             <PropertyRef Name="TOUR_HOTEL_DETAIL_ID" />
           </Key>
           <Property Name="TOUR_HOTEL_DETAIL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TOUR_HOTEL_DETAIL_TIME" Type="datetime" />
           <Property Name="TRAVEL_GROUP_ID" Type="int" Nullable="false" />
           <Property Name="TOUR_HOTEL_ID" Type="int" Nullable="false" />
+          <Property Name="TOUR_HOTEL_DETAIL_NOTE" Type="text" />
         </EntityType>
         <EntityType Name="TOUR_LOCATION">
           <Key>
@@ -81,10 +87,10 @@
             <PropertyRef Name="TOUR_MISSION_ID" />
           </Key>
           <Property Name="TOUR_MISSION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TOUR_MISSION_TIME" Type="datetime" />
           <Property Name="TOUR_MISSION_RESPONSIBILITY" Type="varchar" MaxLength="255" />
           <Property Name="TRAVEL_GROUP_ID" Type="int" Nullable="false" />
           <Property Name="TOUR_STAFF_ID" Type="int" Nullable="false" />
+          <Property Name="TOUR_MISSION_DESCRIPTION" Type="text" />
         </EntityType>
         <EntityType Name="TOUR_PRICE">
           <Key>
@@ -92,7 +98,6 @@
           </Key>
           <Property Name="TOUR_PRICE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TOUR_COST" Type="float" />
-          <Property Name="TOUR_TIME" Type="datetime" />
           <Property Name="TOUR_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TOUR_RECORD">
@@ -135,6 +140,15 @@
           <Property Name="TOUR_STAFF_ID" Type="int" Nullable="false" />
           <Property Name="TOUR_STAFF_DELETE_CONTENT" Type="text" />
         </EntityType>
+        <EntityType Name="TOUR_TIME">
+          <Key>
+            <PropertyRef Name="TOUR_TIME_ID" />
+          </Key>
+          <Property Name="TOUR_TIME_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TOUR_TIME_DEPARTMENT_DATE" Type="datetime" />
+          <Property Name="TOUR_TIME_END_DATE" Type="datetime" />
+          <Property Name="TOUR_ID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="TOUR_TRANSPORT">
           <Key>
             <PropertyRef Name="TOUR_TRANSPORT_ID" />
@@ -163,9 +177,9 @@
             <PropertyRef Name="TOUR_TRANSPORT_DETAIL_ID" />
           </Key>
           <Property Name="TOUR_TRANSPORT_DETAIL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TOUR_TRANSPORT_DETAIL_TIME" Type="datetime" />
           <Property Name="TRAVEL_GROUP_ID" Type="int" Nullable="false" />
           <Property Name="TOUR_TRANSPORT_ID" Type="int" Nullable="false" />
+          <Property Name="TOUR_TRANSPORT_DETAIL_NOTE" Type="text" />
         </EntityType>
         <EntityType Name="TRAVEL_COST">
           <Key>
@@ -183,11 +197,10 @@
           </Key>
           <Property Name="TRAVEL_GROUP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TRAVEL_GROUP_NAME" Type="varchar" MaxLength="255" />
-          <Property Name="TRAVEL_GROUP_DEPARTMENT_DATE" Type="datetime" />
-          <Property Name="TRAVEL_GROUP_END_DATE" Type="datetime" />
           <Property Name="TRAVEL_GROUP_CONTENT_DETAIL" Type="text" />
           <Property Name="TRAVEL_COST_ID" Type="int" Nullable="false" />
           <Property Name="TOUR_ID" Type="int" Nullable="false" />
+          <Property Name="TOUR_TIME_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TRAVELLER">
           <Key>
@@ -217,27 +230,8 @@
             <PropertyRef Name="TRAVELLER_DETAIL_ID" />
           </Key>
           <Property Name="TRAVELLER_DETAIL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TRAVELLER_DETAIL_TIME" Type="datetime" />
           <Property Name="TRAVEL_GROUP_ID" Type="int" Nullable="false" />
           <Property Name="TRAVELLER_ID" Type="int" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="database_firewall_rules">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="name" />
-            <PropertyRef Name="start_ip_address" />
-            <PropertyRef Name="end_ip_address" />
-            <PropertyRef Name="create_date" />
-            <PropertyRef Name="modify_date" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="create_date" Type="datetime" Nullable="false" />
-          <Property Name="modify_date" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK__TOUR_ACCO__TOUR___0C85DE4D">
           <End Role="TOUR_STAFF" Type="Self.TOUR_STAFF" Multiplicity="1" />
@@ -251,18 +245,6 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_HOTE__TOUR___02FC7413">
-          <End Role="TOUR_HOTEL" Type="Self.TOUR_HOTEL" Multiplicity="1" />
-          <End Role="TOUR_HOTEL_DETAIL" Type="Self.TOUR_HOTEL_DETAIL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TOUR_HOTEL">
-              <PropertyRef Name="TOUR_HOTEL_ID" />
-            </Principal>
-            <Dependent Role="TOUR_HOTEL_DETAIL">
-              <PropertyRef Name="TOUR_HOTEL_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__TOUR_HOTE__TOUR___2BFE89A6">
           <End Role="TOUR_HOTEL" Type="Self.TOUR_HOTEL" Multiplicity="1" />
           <End Role="TOUR_HOTEL_DELETE" Type="Self.TOUR_HOTEL_DELETE" Multiplicity="*" />
@@ -271,6 +253,18 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
               <PropertyRef Name="TOUR_HOTEL_ID" />
             </Principal>
             <Dependent Role="TOUR_HOTEL_DELETE">
+              <PropertyRef Name="TOUR_HOTEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_HOTE__TOUR___367C1819">
+          <End Role="TOUR_HOTEL" Type="Self.TOUR_HOTEL" Multiplicity="1" />
+          <End Role="TOUR_HOTEL_DETAIL" Type="Self.TOUR_HOTEL_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_HOTEL">
+              <PropertyRef Name="TOUR_HOTEL_ID" />
+            </Principal>
+            <Dependent Role="TOUR_HOTEL_DETAIL">
               <PropertyRef Name="TOUR_HOTEL_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -323,7 +317,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_MISS__TOUR___778AC167">
+        <Association Name="FK__TOUR_MISS__TOUR___339FAB6E">
           <End Role="TOUR_STAFF" Type="Self.TOUR_STAFF" Multiplicity="1" />
           <End Role="TOUR_MISSION" Type="Self.TOUR_MISSION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -335,7 +329,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_MISS__TRAVE__76969D2E">
+        <Association Name="FK__TOUR_MISS__TRAVE__3493CFA7">
           <End Role="TRAVEL_GROUP" Type="Self.TRAVEL_GROUP" Multiplicity="1" />
           <End Role="TOUR_MISSION" Type="Self.TOUR_MISSION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -383,6 +377,18 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__TOUR_TIME__TOUR___2EDAF651">
+          <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
+          <End Role="TOUR_TIME" Type="Self.TOUR_TIME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR">
+              <PropertyRef Name="TOUR_ID" />
+            </Principal>
+            <Dependent Role="TOUR_TIME">
+              <PropertyRef Name="TOUR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__TOUR_TRAN__TOUR___29221CFB">
           <End Role="TOUR_TRANSPORT" Type="Self.TOUR_TRANSPORT" Multiplicity="1" />
           <End Role="TOUR_TRANSPORT_DELETE" Type="Self.TOUR_TRANSPORT_DELETE" Multiplicity="*" />
@@ -395,7 +401,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_TRAN__TOUR___7D439ABD">
+        <Association Name="FK__TOUR_TRAN__TOUR___3587F3E0">
           <End Role="TOUR_TRANSPORT" Type="Self.TOUR_TRANSPORT" Multiplicity="1" />
           <End Role="TOUR_TRANSPORT_DETAIL" Type="Self.TOUR_TRANSPORT_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -416,6 +422,18 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             </Principal>
             <Dependent Role="TOUR_TRANSPORT_DETAIL">
               <PropertyRef Name="TRAVEL_GROUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRAVEL_GR__TOUR___32AB8735">
+          <End Role="TOUR_TIME" Type="Self.TOUR_TIME" Multiplicity="1" />
+          <End Role="TRAVEL_GROUP" Type="Self.TRAVEL_GROUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_TIME">
+              <PropertyRef Name="TOUR_TIME_ID" />
+            </Principal>
+            <Dependent Role="TRAVEL_GROUP">
+              <PropertyRef Name="TOUR_TIME_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -493,6 +511,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
           <EntitySet Name="TOUR_RECORD" EntityType="Self.TOUR_RECORD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_STAFF" EntityType="Self.TOUR_STAFF" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_STAFF_DELETE" EntityType="Self.TOUR_STAFF_DELETE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOUR_TIME" EntityType="Self.TOUR_TIME" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_TRANSPORT" EntityType="Self.TOUR_TRANSPORT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_TRANSPORT_DELETE" EntityType="Self.TOUR_TRANSPORT_DELETE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_TRANSPORT_DETAIL" EntityType="Self.TOUR_TRANSPORT_DETAIL" Schema="dbo" store:Type="Tables" />
@@ -501,27 +520,17 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
           <EntitySet Name="TRAVELLER" EntityType="Self.TRAVELLER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRAVELLER_ACCOUNT" EntityType="Self.TRAVELLER_ACCOUNT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRAVELLER_DETAIL" EntityType="Self.TRAVELLER_DETAIL" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
-            <DefiningQuery>SELECT 
-    [database_firewall_rules].[id] AS [id], 
-    [database_firewall_rules].[name] AS [name], 
-    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
-    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
-    [database_firewall_rules].[create_date] AS [create_date], 
-    [database_firewall_rules].[modify_date] AS [modify_date]
-    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__TOUR_ACCO__TOUR___0C85DE4D" Association="Self.FK__TOUR_ACCO__TOUR___0C85DE4D">
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
             <End Role="TOUR_ACCOUNT" EntitySet="TOUR_ACCOUNT" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_HOTE__TOUR___02FC7413" Association="Self.FK__TOUR_HOTE__TOUR___02FC7413">
-            <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
-            <End Role="TOUR_HOTEL_DETAIL" EntitySet="TOUR_HOTEL_DETAIL" />
-          </AssociationSet>
           <AssociationSet Name="FK__TOUR_HOTE__TOUR___2BFE89A6" Association="Self.FK__TOUR_HOTE__TOUR___2BFE89A6">
             <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
             <End Role="TOUR_HOTEL_DELETE" EntitySet="TOUR_HOTEL_DELETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_HOTE__TOUR___367C1819" Association="Self.FK__TOUR_HOTE__TOUR___367C1819">
+            <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
+            <End Role="TOUR_HOTEL_DETAIL" EntitySet="TOUR_HOTEL_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK__TOUR_HOTE__TRAVE__02084FDA" Association="Self.FK__TOUR_HOTE__TRAVE__02084FDA">
             <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
@@ -539,11 +548,11 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             <End Role="TOUR" EntitySet="TOUR" />
             <End Role="TOUR_LOCATION_DETAILED" EntitySet="TOUR_LOCATION_DETAILED" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_MISS__TOUR___778AC167" Association="Self.FK__TOUR_MISS__TOUR___778AC167">
+          <AssociationSet Name="FK__TOUR_MISS__TOUR___339FAB6E" Association="Self.FK__TOUR_MISS__TOUR___339FAB6E">
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
             <End Role="TOUR_MISSION" EntitySet="TOUR_MISSION" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_MISS__TRAVE__76969D2E" Association="Self.FK__TOUR_MISS__TRAVE__76969D2E">
+          <AssociationSet Name="FK__TOUR_MISS__TRAVE__3493CFA7" Association="Self.FK__TOUR_MISS__TRAVE__3493CFA7">
             <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
             <End Role="TOUR_MISSION" EntitySet="TOUR_MISSION" />
           </AssociationSet>
@@ -559,17 +568,25 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
             <End Role="TOUR_STAFF_DELETE" EntitySet="TOUR_STAFF_DELETE" />
           </AssociationSet>
+          <AssociationSet Name="FK__TOUR_TIME__TOUR___2EDAF651" Association="Self.FK__TOUR_TIME__TOUR___2EDAF651">
+            <End Role="TOUR" EntitySet="TOUR" />
+            <End Role="TOUR_TIME" EntitySet="TOUR_TIME" />
+          </AssociationSet>
           <AssociationSet Name="FK__TOUR_TRAN__TOUR___29221CFB" Association="Self.FK__TOUR_TRAN__TOUR___29221CFB">
             <End Role="TOUR_TRANSPORT" EntitySet="TOUR_TRANSPORT" />
             <End Role="TOUR_TRANSPORT_DELETE" EntitySet="TOUR_TRANSPORT_DELETE" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_TRAN__TOUR___7D439ABD" Association="Self.FK__TOUR_TRAN__TOUR___7D439ABD">
+          <AssociationSet Name="FK__TOUR_TRAN__TOUR___3587F3E0" Association="Self.FK__TOUR_TRAN__TOUR___3587F3E0">
             <End Role="TOUR_TRANSPORT" EntitySet="TOUR_TRANSPORT" />
             <End Role="TOUR_TRANSPORT_DETAIL" EntitySet="TOUR_TRANSPORT_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK__TOUR_TRAN__TRAVE__7C4F7684" Association="Self.FK__TOUR_TRAN__TRAVE__7C4F7684">
             <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
             <End Role="TOUR_TRANSPORT_DETAIL" EntitySet="TOUR_TRANSPORT_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRAVEL_GR__TOUR___32AB8735" Association="Self.FK__TRAVEL_GR__TOUR___32AB8735">
+            <End Role="TOUR_TIME" EntitySet="TOUR_TIME" />
+            <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
           </AssociationSet>
           <AssociationSet Name="FK__TRAVEL_GR__TOUR___71D1E811" Association="Self.FK__TRAVEL_GR__TOUR___71D1E811">
             <End Role="TOUR" EntitySet="TOUR" />
@@ -592,7 +609,8 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             <End Role="TRAVELLER_ACCOUNT" EntitySet="TRAVELLER_ACCOUNT" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Tour_Mangement_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -612,11 +630,12 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
           <Property Name="TOUR_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_CHARACTERISTIS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TOUR_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="TOUR_IS_EXIST" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TOUR_LOCATION_DETAILED" Relationship="Self.FK__TOUR_LOCA__TOUR___6C190EBB" FromRole="TOUR" ToRole="TOUR_LOCATION_DETAILED" />
           <NavigationProperty Name="TOUR_PRICE" Relationship="Self.FK__TOUR_PRIC__TOUR___6383C8BA" FromRole="TOUR" ToRole="TOUR_PRICE" />
+          <NavigationProperty Name="TOUR_TIME" Relationship="Self.FK__TOUR_TIME__TOUR___2EDAF651" FromRole="TOUR" ToRole="TOUR_TIME" />
           <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVEL_GR__TOUR___71D1E811" FromRole="TOUR" ToRole="TRAVEL_GROUP" />
-          <Property Name="TOUR_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="TOUR_IS_EXIST" Type="Byte" />
         </EntityType>
         <EntityType Name="TOUR_ACCOUNT">
           <Key>
@@ -635,19 +654,36 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
           <Property Name="TOUR_HOTEL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TOUR_HOTEL_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_HOTEL_ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TOUR_HOTEL_PHONE_NUMBER" Type="Int32" />
-          <NavigationProperty Name="TOUR_HOTEL_DETAIL" Relationship="Self.FK__TOUR_HOTE__TOUR___02FC7413" FromRole="TOUR_HOTEL" ToRole="TOUR_HOTEL_DETAIL" />
-          <NavigationProperty Name="TOUR_HOTEL_DELETE" Relationship="Tour_Mangement_DatabaseModel.FK__TOUR_HOTE__TOUR___2BFE89A6" FromRole="TOUR_HOTEL" ToRole="TOUR_HOTEL_DELETE" />
+          <Property Name="TOUR_HOTEL_PHONE_NUMBER" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TOUR_HOTEL_IS_RESTAURANT" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TOUR_HOTEL_PRICE" Type="Double" />
+          <Property Name="TOUR_HOTEL_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TOUR_HOTEL_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TOUR_HOTEL_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="TOUR_HOTEL_EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TOUR_HOTEL_DELETE" Relationship="Self.FK__TOUR_HOTE__TOUR___2BFE89A6" FromRole="TOUR_HOTEL" ToRole="TOUR_HOTEL_DELETE" />
+          <NavigationProperty Name="TOUR_HOTEL_DETAIL" Relationship="Self.FK__TOUR_HOTE__TOUR___367C1819" FromRole="TOUR_HOTEL" ToRole="TOUR_HOTEL_DETAIL" />
+        </EntityType>
+        <EntityType Name="TOUR_HOTEL_DELETE">
+          <Key>
+            <PropertyRef Name="TOUR_HOTEL_DELETE_ID" />
+          </Key>
+          <Property Name="TOUR_HOTEL_DELETE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TOUR_HOTEL_DELETE_ISDELETED" Type="Boolean" />
+          <Property Name="TOUR_HOTEL_DELETE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="TOUR_HOTEL_ID" Type="Int32" Nullable="false" />
+          <Property Name="TOUR_HOTEL_DELETE_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TOUR_HOTEL" Relationship="Self.FK__TOUR_HOTE__TOUR___2BFE89A6" FromRole="TOUR_HOTEL_DELETE" ToRole="TOUR_HOTEL" />
         </EntityType>
         <EntityType Name="TOUR_HOTEL_DETAIL">
           <Key>
             <PropertyRef Name="TOUR_HOTEL_DETAIL_ID" />
           </Key>
           <Property Name="TOUR_HOTEL_DETAIL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TOUR_HOTEL_DETAIL_TIME" Type="DateTime" Precision="3" />
           <Property Name="TRAVEL_GROUP_ID" Type="Int32" Nullable="false" />
           <Property Name="TOUR_HOTEL_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TOUR_HOTEL" Relationship="Self.FK__TOUR_HOTE__TOUR___02FC7413" FromRole="TOUR_HOTEL_DETAIL" ToRole="TOUR_HOTEL" />
+          <Property Name="TOUR_HOTEL_DETAIL_NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TOUR_HOTEL" Relationship="Self.FK__TOUR_HOTE__TOUR___367C1819" FromRole="TOUR_HOTEL_DETAIL" ToRole="TOUR_HOTEL" />
           <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TOUR_HOTE__TRAVE__02084FDA" FromRole="TOUR_HOTEL_DETAIL" ToRole="TRAVEL_GROUP" />
         </EntityType>
         <EntityType Name="TOUR_LOCATION">
@@ -675,12 +711,12 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             <PropertyRef Name="TOUR_MISSION_ID" />
           </Key>
           <Property Name="TOUR_MISSION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TOUR_MISSION_TIME" Type="DateTime" Precision="3" />
           <Property Name="TOUR_MISSION_RESPONSIBILITY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TRAVEL_GROUP_ID" Type="Int32" Nullable="false" />
           <Property Name="TOUR_STAFF_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TOUR_STAFF" Relationship="Self.FK__TOUR_MISS__TOUR___778AC167" FromRole="TOUR_MISSION" ToRole="TOUR_STAFF" />
-          <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TOUR_MISS__TRAVE__76969D2E" FromRole="TOUR_MISSION" ToRole="TRAVEL_GROUP" />
+          <Property Name="TOUR_MISSION_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TOUR_STAFF" Relationship="Self.FK__TOUR_MISS__TOUR___339FAB6E" FromRole="TOUR_MISSION" ToRole="TOUR_STAFF" />
+          <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TOUR_MISS__TRAVE__3493CFA7" FromRole="TOUR_MISSION" ToRole="TRAVEL_GROUP" />
         </EntityType>
         <EntityType Name="TOUR_PRICE">
           <Key>
@@ -688,7 +724,6 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
           </Key>
           <Property Name="TOUR_PRICE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TOUR_COST" Type="Double" />
-          <Property Name="TOUR_TIME" Type="DateTime" Precision="3" />
           <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TOUR" Relationship="Self.FK__TOUR_PRIC__TOUR___6383C8BA" FromRole="TOUR_PRICE" ToRole="TOUR" />
         </EntityType>
@@ -717,15 +752,15 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
           <Property Name="TOUR_STAFF_BIRTH_DATE" Type="DateTime" Precision="0" />
           <Property Name="TOUR_STAFF_GENDER" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_STAFF_EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TOUR_ACCOUNT" Relationship="Self.FK__TOUR_ACCO__TOUR___0C85DE4D" FromRole="TOUR_STAFF" ToRole="TOUR_ACCOUNT" />
-          <NavigationProperty Name="TOUR_MISSION" Relationship="Self.FK__TOUR_MISS__TOUR___778AC167" FromRole="TOUR_STAFF" ToRole="TOUR_MISSION" />
-          <NavigationProperty Name="TOUR_RECORD" Relationship="Self.FK__TOUR_RECO__TOUR___1332DBDC" FromRole="TOUR_STAFF" ToRole="TOUR_RECORD" />
-          <NavigationProperty Name="TOUR_STAFF_DELETE" Relationship="Self.FK__TOUR_STAF__TOUR___160F4887" FromRole="TOUR_STAFF" ToRole="TOUR_STAFF_DELETE" />
           <Property Name="TOUR_STAFF_NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_STAFF_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="TOUR_STAFF_ROLE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_STAFF_CITIZEN_IDENTITY_PLACE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_STAFF_CITIZEN_IDENTITY_DATE" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TOUR_ACCOUNT" Relationship="Self.FK__TOUR_ACCO__TOUR___0C85DE4D" FromRole="TOUR_STAFF" ToRole="TOUR_ACCOUNT" />
+          <NavigationProperty Name="TOUR_MISSION" Relationship="Self.FK__TOUR_MISS__TOUR___339FAB6E" FromRole="TOUR_STAFF" ToRole="TOUR_MISSION" />
+          <NavigationProperty Name="TOUR_RECORD" Relationship="Self.FK__TOUR_RECO__TOUR___1332DBDC" FromRole="TOUR_STAFF" ToRole="TOUR_RECORD" />
+          <NavigationProperty Name="TOUR_STAFF_DELETE" Relationship="Self.FK__TOUR_STAF__TOUR___160F4887" FromRole="TOUR_STAFF" ToRole="TOUR_STAFF_DELETE" />
         </EntityType>
         <EntityType Name="TOUR_STAFF_DELETE">
           <Key>
@@ -735,8 +770,19 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
           <Property Name="TOUR_STAFF_DELETE_ISDELETED" Type="Boolean" />
           <Property Name="TOUR_STAFF_DELETE_DATE" Type="DateTime" Precision="3" />
           <Property Name="TOUR_STAFF_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TOUR_STAFF" Relationship="Self.FK__TOUR_STAF__TOUR___160F4887" FromRole="TOUR_STAFF_DELETE" ToRole="TOUR_STAFF" />
           <Property Name="TOUR_STAFF_DELETE_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TOUR_STAFF" Relationship="Self.FK__TOUR_STAF__TOUR___160F4887" FromRole="TOUR_STAFF_DELETE" ToRole="TOUR_STAFF" />
+        </EntityType>
+        <EntityType Name="TOUR_TIME">
+          <Key>
+            <PropertyRef Name="TOUR_TIME_ID" />
+          </Key>
+          <Property Name="TOUR_TIME_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TOUR_TIME_DEPARTMENT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="TOUR_TIME_END_DATE" Type="DateTime" Precision="3" />
+          <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TOUR" Relationship="Self.FK__TOUR_TIME__TOUR___2EDAF651" FromRole="TOUR_TIME" ToRole="TOUR" />
+          <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVEL_GR__TOUR___32AB8735" FromRole="TOUR_TIME" ToRole="TRAVEL_GROUP" />
         </EntityType>
         <EntityType Name="TOUR_TRANSPORT">
           <Key>
@@ -744,24 +790,35 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
           </Key>
           <Property Name="TOUR_TRANSPORT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TOUR_TRANSPORT_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TOUR_TRANSPORT_DETAIL" Relationship="Self.FK__TOUR_TRAN__TOUR___7D439ABD" FromRole="TOUR_TRANSPORT" ToRole="TOUR_TRANSPORT_DETAIL" />
           <Property Name="TOUR_TRANSPORT_LICENSE_PLATE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_TRANSPORT_COMPANY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_TRANSPORT_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_TRANSPORT_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="TOUR_TRANSPORT_START_DATE" Type="DateTime" Precision="3" />
           <Property Name="TOUR_TRANSPORT_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TOUR_TRANSPORT_DELETE" Relationship="Tour_Mangement_DatabaseModel.FK__TOUR_TRAN__TOUR___29221CFB" FromRole="TOUR_TRANSPORT" ToRole="TOUR_TRANSPORT_DELETE" />
+          <NavigationProperty Name="TOUR_TRANSPORT_DELETE" Relationship="Self.FK__TOUR_TRAN__TOUR___29221CFB" FromRole="TOUR_TRANSPORT" ToRole="TOUR_TRANSPORT_DELETE" />
+          <NavigationProperty Name="TOUR_TRANSPORT_DETAIL" Relationship="Self.FK__TOUR_TRAN__TOUR___3587F3E0" FromRole="TOUR_TRANSPORT" ToRole="TOUR_TRANSPORT_DETAIL" />
+        </EntityType>
+        <EntityType Name="TOUR_TRANSPORT_DELETE">
+          <Key>
+            <PropertyRef Name="TOUR_TRANSPORT_DELETE_ID" />
+          </Key>
+          <Property Name="TOUR_TRANSPORT_DELETE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TOUR_TRANSPORT_DELETE_ISDELETED" Type="Boolean" />
+          <Property Name="TOUR_TRANSPORT_DELETE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="TOUR_TRANSPORT_ID" Type="Int32" Nullable="false" />
+          <Property Name="TOUR_TRANSPORT_DELETE_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TOUR_TRANSPORT" Relationship="Self.FK__TOUR_TRAN__TOUR___29221CFB" FromRole="TOUR_TRANSPORT_DELETE" ToRole="TOUR_TRANSPORT" />
         </EntityType>
         <EntityType Name="TOUR_TRANSPORT_DETAIL">
           <Key>
             <PropertyRef Name="TOUR_TRANSPORT_DETAIL_ID" />
           </Key>
           <Property Name="TOUR_TRANSPORT_DETAIL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TOUR_TRANSPORT_DETAIL_TIME" Type="DateTime" Precision="3" />
           <Property Name="TRAVEL_GROUP_ID" Type="Int32" Nullable="false" />
           <Property Name="TOUR_TRANSPORT_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TOUR_TRANSPORT" Relationship="Self.FK__TOUR_TRAN__TOUR___7D439ABD" FromRole="TOUR_TRANSPORT_DETAIL" ToRole="TOUR_TRANSPORT" />
+          <Property Name="TOUR_TRANSPORT_DETAIL_NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TOUR_TRANSPORT" Relationship="Self.FK__TOUR_TRAN__TOUR___3587F3E0" FromRole="TOUR_TRANSPORT_DETAIL" ToRole="TOUR_TRANSPORT" />
           <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TOUR_TRAN__TRAVE__7C4F7684" FromRole="TOUR_TRANSPORT_DETAIL" ToRole="TRAVEL_GROUP" />
         </EntityType>
         <EntityType Name="TRAVEL_COST">
@@ -781,14 +838,14 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
           </Key>
           <Property Name="TRAVEL_GROUP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TRAVEL_GROUP_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="TRAVEL_GROUP_DEPARTMENT_DATE" Type="DateTime" Precision="3" />
-          <Property Name="TRAVEL_GROUP_END_DATE" Type="DateTime" Precision="3" />
           <Property Name="TRAVEL_GROUP_CONTENT_DETAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TRAVEL_COST_ID" Type="Int32" Nullable="false" />
           <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
+          <Property Name="TOUR_TIME_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TOUR" Relationship="Self.FK__TRAVEL_GR__TOUR___71D1E811" FromRole="TRAVEL_GROUP" ToRole="TOUR" />
           <NavigationProperty Name="TOUR_HOTEL_DETAIL" Relationship="Self.FK__TOUR_HOTE__TRAVE__02084FDA" FromRole="TRAVEL_GROUP" ToRole="TOUR_HOTEL_DETAIL" />
-          <NavigationProperty Name="TOUR_MISSION" Relationship="Self.FK__TOUR_MISS__TRAVE__76969D2E" FromRole="TRAVEL_GROUP" ToRole="TOUR_MISSION" />
+          <NavigationProperty Name="TOUR_MISSION" Relationship="Self.FK__TOUR_MISS__TRAVE__3493CFA7" FromRole="TRAVEL_GROUP" ToRole="TOUR_MISSION" />
+          <NavigationProperty Name="TOUR_TIME" Relationship="Self.FK__TRAVEL_GR__TOUR___32AB8735" FromRole="TRAVEL_GROUP" ToRole="TOUR_TIME" />
           <NavigationProperty Name="TOUR_TRANSPORT_DETAIL" Relationship="Self.FK__TOUR_TRAN__TRAVE__7C4F7684" FromRole="TRAVEL_GROUP" ToRole="TOUR_TRANSPORT_DETAIL" />
           <NavigationProperty Name="TRAVEL_COST" Relationship="Self.FK__TRAVEL_GR__TRAVE__70DDC3D8" FromRole="TRAVEL_GROUP" ToRole="TRAVEL_COST" />
           <NavigationProperty Name="TRAVELLER_DETAIL" Relationship="Self.FK__TRAVELLER__TRAVE__07C12930" FromRole="TRAVEL_GROUP" ToRole="TRAVELLER_DETAIL" />
@@ -805,9 +862,9 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
           <Property Name="TRAVELLER_ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TRAVELLER_PHONE_NUMBER" Type="Int32" />
           <Property Name="TRAVELLER_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TRAVELLER_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="TRAVELLER_DETAIL" Relationship="Self.FK__TRAVELLER__TRAVE__08B54D69" FromRole="TRAVELLER" ToRole="TRAVELLER_DETAIL" />
           <NavigationProperty Name="TRAVELLER_ACCOUNT" Relationship="Self.FK__TRAVELLER__TRAVE__10566F31" FromRole="TRAVELLER" ToRole="TRAVELLER_ACCOUNT" />
-          <Property Name="TRAVELLER_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TRAVELLER_ACCOUNT">
           <Key>
@@ -824,7 +881,6 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             <PropertyRef Name="TRAVELLER_DETAIL_ID" />
           </Key>
           <Property Name="TRAVELLER_DETAIL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TRAVELLER_DETAIL_TIME" Type="DateTime" Precision="3" />
           <Property Name="TRAVEL_GROUP_ID" Type="Int32" Nullable="false" />
           <Property Name="TRAVELLER_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVELLER__TRAVE__07C12930" FromRole="TRAVELLER_DETAIL" ToRole="TRAVEL_GROUP" />
@@ -866,6 +922,18 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__TOUR_TIME__TOUR___2EDAF651">
+          <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
+          <End Role="TOUR_TIME" Type="Self.TOUR_TIME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR">
+              <PropertyRef Name="TOUR_ID" />
+            </Principal>
+            <Dependent Role="TOUR_TIME">
+              <PropertyRef Name="TOUR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__TRAVEL_GR__TOUR___71D1E811">
           <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
           <End Role="TRAVEL_GROUP" Type="Self.TRAVEL_GROUP" Multiplicity="*" />
@@ -890,7 +958,19 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_HOTE__TOUR___02FC7413">
+        <Association Name="FK__TOUR_HOTE__TOUR___2BFE89A6">
+          <End Role="TOUR_HOTEL" Type="Self.TOUR_HOTEL" Multiplicity="1" />
+          <End Role="TOUR_HOTEL_DELETE" Type="Self.TOUR_HOTEL_DELETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_HOTEL">
+              <PropertyRef Name="TOUR_HOTEL_ID" />
+            </Principal>
+            <Dependent Role="TOUR_HOTEL_DELETE">
+              <PropertyRef Name="TOUR_HOTEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_HOTE__TOUR___367C1819">
           <End Role="TOUR_HOTEL" Type="Self.TOUR_HOTEL" Multiplicity="1" />
           <End Role="TOUR_HOTEL_DETAIL" Type="Self.TOUR_HOTEL_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -926,7 +1006,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_MISS__TOUR___778AC167">
+        <Association Name="FK__TOUR_MISS__TOUR___339FAB6E">
           <End Role="TOUR_STAFF" Type="Self.TOUR_STAFF" Multiplicity="1" />
           <End Role="TOUR_MISSION" Type="Self.TOUR_MISSION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -938,7 +1018,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_MISS__TRAVE__76969D2E">
+        <Association Name="FK__TOUR_MISS__TRAVE__3493CFA7">
           <End Role="TRAVEL_GROUP" Type="Self.TRAVEL_GROUP" Multiplicity="1" />
           <End Role="TOUR_MISSION" Type="Self.TOUR_MISSION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -974,7 +1054,31 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_TRAN__TOUR___7D439ABD">
+        <Association Name="FK__TRAVEL_GR__TOUR___32AB8735">
+          <End Role="TOUR_TIME" Type="Self.TOUR_TIME" Multiplicity="1" />
+          <End Role="TRAVEL_GROUP" Type="Self.TRAVEL_GROUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_TIME">
+              <PropertyRef Name="TOUR_TIME_ID" />
+            </Principal>
+            <Dependent Role="TRAVEL_GROUP">
+              <PropertyRef Name="TOUR_TIME_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_TRAN__TOUR___29221CFB">
+          <End Role="TOUR_TRANSPORT" Type="Self.TOUR_TRANSPORT" Multiplicity="1" />
+          <End Role="TOUR_TRANSPORT_DELETE" Type="Self.TOUR_TRANSPORT_DELETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_TRANSPORT">
+              <PropertyRef Name="TOUR_TRANSPORT_ID" />
+            </Principal>
+            <Dependent Role="TOUR_TRANSPORT_DELETE">
+              <PropertyRef Name="TOUR_TRANSPORT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_TRAN__TOUR___3587F3E0">
           <End Role="TOUR_TRANSPORT" Type="Self.TOUR_TRANSPORT" Multiplicity="1" />
           <End Role="TOUR_TRANSPORT_DETAIL" Type="Self.TOUR_TRANSPORT_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1051,6 +1155,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
           <EntitySet Name="TOURs" EntityType="Self.TOUR" />
           <EntitySet Name="TOUR_ACCOUNT" EntityType="Self.TOUR_ACCOUNT" />
           <EntitySet Name="TOUR_HOTEL" EntityType="Self.TOUR_HOTEL" />
+          <EntitySet Name="TOUR_HOTEL_DELETE" EntityType="Self.TOUR_HOTEL_DELETE" />
           <EntitySet Name="TOUR_HOTEL_DETAIL" EntityType="Self.TOUR_HOTEL_DETAIL" />
           <EntitySet Name="TOUR_LOCATION" EntityType="Self.TOUR_LOCATION" />
           <EntitySet Name="TOUR_LOCATION_DETAILED" EntityType="Self.TOUR_LOCATION_DETAILED" />
@@ -1059,7 +1164,9 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
           <EntitySet Name="TOUR_RECORD" EntityType="Self.TOUR_RECORD" />
           <EntitySet Name="TOUR_STAFF" EntityType="Self.TOUR_STAFF" />
           <EntitySet Name="TOUR_STAFF_DELETE" EntityType="Self.TOUR_STAFF_DELETE" />
+          <EntitySet Name="TOUR_TIME" EntityType="Self.TOUR_TIME" />
           <EntitySet Name="TOUR_TRANSPORT" EntityType="Self.TOUR_TRANSPORT" />
+          <EntitySet Name="TOUR_TRANSPORT_DELETE" EntityType="Self.TOUR_TRANSPORT_DELETE" />
           <EntitySet Name="TOUR_TRANSPORT_DETAIL" EntityType="Self.TOUR_TRANSPORT_DETAIL" />
           <EntitySet Name="TRAVEL_COST" EntityType="Self.TRAVEL_COST" />
           <EntitySet Name="TRAVEL_GROUP" EntityType="Self.TRAVEL_GROUP" />
@@ -1078,6 +1185,10 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             <End Role="TOUR" EntitySet="TOURs" />
             <End Role="TOUR_PRICE" EntitySet="TOUR_PRICE" />
           </AssociationSet>
+          <AssociationSet Name="FK__TOUR_TIME__TOUR___2EDAF651" Association="Self.FK__TOUR_TIME__TOUR___2EDAF651">
+            <End Role="TOUR" EntitySet="TOURs" />
+            <End Role="TOUR_TIME" EntitySet="TOUR_TIME" />
+          </AssociationSet>
           <AssociationSet Name="FK__TRAVEL_GR__TOUR___71D1E811" Association="Self.FK__TRAVEL_GR__TOUR___71D1E811">
             <End Role="TOUR" EntitySet="TOURs" />
             <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
@@ -1086,7 +1197,11 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
             <End Role="TOUR_ACCOUNT" EntitySet="TOUR_ACCOUNT" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_HOTE__TOUR___02FC7413" Association="Self.FK__TOUR_HOTE__TOUR___02FC7413">
+          <AssociationSet Name="FK__TOUR_HOTE__TOUR___2BFE89A6" Association="Self.FK__TOUR_HOTE__TOUR___2BFE89A6">
+            <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
+            <End Role="TOUR_HOTEL_DELETE" EntitySet="TOUR_HOTEL_DELETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_HOTE__TOUR___367C1819" Association="Self.FK__TOUR_HOTE__TOUR___367C1819">
             <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
             <End Role="TOUR_HOTEL_DETAIL" EntitySet="TOUR_HOTEL_DETAIL" />
           </AssociationSet>
@@ -1098,11 +1213,11 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             <End Role="TOUR_LOCATION" EntitySet="TOUR_LOCATION" />
             <End Role="TOUR_LOCATION_DETAILED" EntitySet="TOUR_LOCATION_DETAILED" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_MISS__TOUR___778AC167" Association="Self.FK__TOUR_MISS__TOUR___778AC167">
+          <AssociationSet Name="FK__TOUR_MISS__TOUR___339FAB6E" Association="Self.FK__TOUR_MISS__TOUR___339FAB6E">
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
             <End Role="TOUR_MISSION" EntitySet="TOUR_MISSION" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_MISS__TRAVE__76969D2E" Association="Self.FK__TOUR_MISS__TRAVE__76969D2E">
+          <AssociationSet Name="FK__TOUR_MISS__TRAVE__3493CFA7" Association="Self.FK__TOUR_MISS__TRAVE__3493CFA7">
             <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
             <End Role="TOUR_MISSION" EntitySet="TOUR_MISSION" />
           </AssociationSet>
@@ -1114,7 +1229,15 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
             <End Role="TOUR_STAFF_DELETE" EntitySet="TOUR_STAFF_DELETE" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_TRAN__TOUR___7D439ABD" Association="Self.FK__TOUR_TRAN__TOUR___7D439ABD">
+          <AssociationSet Name="FK__TRAVEL_GR__TOUR___32AB8735" Association="Self.FK__TRAVEL_GR__TOUR___32AB8735">
+            <End Role="TOUR_TIME" EntitySet="TOUR_TIME" />
+            <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_TRAN__TOUR___29221CFB" Association="Self.FK__TOUR_TRAN__TOUR___29221CFB">
+            <End Role="TOUR_TRANSPORT" EntitySet="TOUR_TRANSPORT" />
+            <End Role="TOUR_TRANSPORT_DELETE" EntitySet="TOUR_TRANSPORT_DELETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_TRAN__TOUR___3587F3E0" Association="Self.FK__TOUR_TRAN__TOUR___3587F3E0">
             <End Role="TOUR_TRANSPORT" EntitySet="TOUR_TRANSPORT" />
             <End Role="TOUR_TRANSPORT_DETAIL" EntitySet="TOUR_TRANSPORT_DETAIL" />
           </AssociationSet>
@@ -1138,80 +1261,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             <End Role="TRAVELLER" EntitySet="TRAVELLERs" />
             <End Role="TRAVELLER_ACCOUNT" EntitySet="TRAVELLER_ACCOUNT" />
           </AssociationSet>
-          <EntitySet Name="TOUR_HOTEL_DELETE" EntityType="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DELETE" />
-          <EntitySet Name="TOUR_TRANSPORT_DELETE" EntityType="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DELETE" />
-          <EntitySet Name="database_firewall_rules" EntityType="Tour_Mangement_DatabaseModel.database_firewall_rules" />
-          <AssociationSet Name="FK__TOUR_HOTE__TOUR___2BFE89A6" Association="Tour_Mangement_DatabaseModel.FK__TOUR_HOTE__TOUR___2BFE89A6">
-            <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
-            <End Role="TOUR_HOTEL_DELETE" EntitySet="TOUR_HOTEL_DELETE" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TOUR_TRAN__TOUR___29221CFB" Association="Tour_Mangement_DatabaseModel.FK__TOUR_TRAN__TOUR___29221CFB">
-            <End Role="TOUR_TRANSPORT" EntitySet="TOUR_TRANSPORT" />
-            <End Role="TOUR_TRANSPORT_DELETE" EntitySet="TOUR_TRANSPORT_DELETE" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="TOUR_HOTEL_DELETE">
-          <Key>
-            <PropertyRef Name="TOUR_HOTEL_DELETE_ID" />
-          </Key>
-          <Property Name="TOUR_HOTEL_DELETE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TOUR_HOTEL_DELETE_ISDELETED" Type="Boolean" />
-          <Property Name="TOUR_HOTEL_DELETE_DATE" Type="DateTime" Precision="3" />
-          <Property Name="TOUR_HOTEL_ID" Type="Int32" Nullable="false" />
-          <Property Name="TOUR_HOTEL_DELETE_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TOUR_HOTEL" Relationship="Tour_Mangement_DatabaseModel.FK__TOUR_HOTE__TOUR___2BFE89A6" FromRole="TOUR_HOTEL_DELETE" ToRole="TOUR_HOTEL" />
-        </EntityType>
-        <EntityType Name="TOUR_TRANSPORT_DELETE">
-          <Key>
-            <PropertyRef Name="TOUR_TRANSPORT_DELETE_ID" />
-          </Key>
-          <Property Name="TOUR_TRANSPORT_DELETE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TOUR_TRANSPORT_DELETE_ISDELETED" Type="Boolean" />
-          <Property Name="TOUR_TRANSPORT_DELETE_DATE" Type="DateTime" Precision="3" />
-          <Property Name="TOUR_TRANSPORT_ID" Type="Int32" Nullable="false" />
-          <Property Name="TOUR_TRANSPORT_DELETE_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TOUR_TRANSPORT" Relationship="Tour_Mangement_DatabaseModel.FK__TOUR_TRAN__TOUR___29221CFB" FromRole="TOUR_TRANSPORT_DELETE" ToRole="TOUR_TRANSPORT" />
-        </EntityType>
-        <EntityType Name="database_firewall_rules">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="name" />
-            <PropertyRef Name="start_ip_address" />
-            <PropertyRef Name="end_ip_address" />
-            <PropertyRef Name="create_date" />
-            <PropertyRef Name="modify_date" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="start_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="end_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <Association Name="FK__TOUR_HOTE__TOUR___2BFE89A6">
-          <End Type="Tour_Mangement_DatabaseModel.TOUR_HOTEL" Role="TOUR_HOTEL" Multiplicity="1" />
-          <End Type="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DELETE" Role="TOUR_HOTEL_DELETE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TOUR_HOTEL">
-              <PropertyRef Name="TOUR_HOTEL_ID" />
-            </Principal>
-            <Dependent Role="TOUR_HOTEL_DELETE">
-              <PropertyRef Name="TOUR_HOTEL_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TOUR_TRAN__TOUR___29221CFB">
-          <End Type="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT" Role="TOUR_TRANSPORT" Multiplicity="1" />
-          <End Type="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DELETE" Role="TOUR_TRANSPORT_DELETE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TOUR_TRANSPORT">
-              <PropertyRef Name="TOUR_TRANSPORT_ID" />
-            </Principal>
-            <Dependent Role="TOUR_TRANSPORT_DELETE">
-              <PropertyRef Name="TOUR_TRANSPORT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1229,12 +1279,12 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
           <EntitySetMapping Name="TOURs">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR">
               <MappingFragment StoreEntitySet="TOUR">
-                <ScalarProperty Name="TOUR_IS_EXIST" ColumnName="TOUR_IS_EXIST" />
-                <ScalarProperty Name="TOUR_IMAGE" ColumnName="TOUR_IMAGE" />
                 <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
                 <ScalarProperty Name="TOUR_NAME" ColumnName="TOUR_NAME" />
                 <ScalarProperty Name="TOUR_CHARACTERISTIS" ColumnName="TOUR_CHARACTERISTIS" />
                 <ScalarProperty Name="TOUR_TYPE" ColumnName="TOUR_TYPE" />
+                <ScalarProperty Name="TOUR_IMAGE" ColumnName="TOUR_IMAGE" />
+                <ScalarProperty Name="TOUR_IS_EXIST" ColumnName="TOUR_IS_EXIST" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1255,6 +1305,23 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
                 <ScalarProperty Name="TOUR_HOTEL_NAME" ColumnName="TOUR_HOTEL_NAME" />
                 <ScalarProperty Name="TOUR_HOTEL_ADDRESS" ColumnName="TOUR_HOTEL_ADDRESS" />
                 <ScalarProperty Name="TOUR_HOTEL_PHONE_NUMBER" ColumnName="TOUR_HOTEL_PHONE_NUMBER" />
+                <ScalarProperty Name="TOUR_HOTEL_IS_RESTAURANT" ColumnName="TOUR_HOTEL_IS_RESTAURANT" />
+                <ScalarProperty Name="TOUR_HOTEL_PRICE" ColumnName="TOUR_HOTEL_PRICE" />
+                <ScalarProperty Name="TOUR_HOTEL_TYPE" ColumnName="TOUR_HOTEL_TYPE" />
+                <ScalarProperty Name="TOUR_HOTEL_DESCRIPTION" ColumnName="TOUR_HOTEL_DESCRIPTION" />
+                <ScalarProperty Name="TOUR_HOTEL_IMAGE" ColumnName="TOUR_HOTEL_IMAGE" />
+                <ScalarProperty Name="TOUR_HOTEL_EMAIL" ColumnName="TOUR_HOTEL_EMAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOUR_HOTEL_DELETE">
+            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DELETE">
+              <MappingFragment StoreEntitySet="TOUR_HOTEL_DELETE">
+                <ScalarProperty Name="TOUR_HOTEL_DELETE_ID" ColumnName="TOUR_HOTEL_DELETE_ID" />
+                <ScalarProperty Name="TOUR_HOTEL_DELETE_ISDELETED" ColumnName="TOUR_HOTEL_DELETE_ISDELETED" />
+                <ScalarProperty Name="TOUR_HOTEL_DELETE_DATE" ColumnName="TOUR_HOTEL_DELETE_DATE" />
+                <ScalarProperty Name="TOUR_HOTEL_ID" ColumnName="TOUR_HOTEL_ID" />
+                <ScalarProperty Name="TOUR_HOTEL_DELETE_CONTENT" ColumnName="TOUR_HOTEL_DELETE_CONTENT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1262,9 +1329,9 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DETAIL">
               <MappingFragment StoreEntitySet="TOUR_HOTEL_DETAIL">
                 <ScalarProperty Name="TOUR_HOTEL_DETAIL_ID" ColumnName="TOUR_HOTEL_DETAIL_ID" />
-                <ScalarProperty Name="TOUR_HOTEL_DETAIL_TIME" ColumnName="TOUR_HOTEL_DETAIL_TIME" />
                 <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
                 <ScalarProperty Name="TOUR_HOTEL_ID" ColumnName="TOUR_HOTEL_ID" />
+                <ScalarProperty Name="TOUR_HOTEL_DETAIL_NOTE" ColumnName="TOUR_HOTEL_DETAIL_NOTE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1290,10 +1357,10 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_MISSION">
               <MappingFragment StoreEntitySet="TOUR_MISSION">
                 <ScalarProperty Name="TOUR_MISSION_ID" ColumnName="TOUR_MISSION_ID" />
-                <ScalarProperty Name="TOUR_MISSION_TIME" ColumnName="TOUR_MISSION_TIME" />
                 <ScalarProperty Name="TOUR_MISSION_RESPONSIBILITY" ColumnName="TOUR_MISSION_RESPONSIBILITY" />
                 <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
                 <ScalarProperty Name="TOUR_STAFF_ID" ColumnName="TOUR_STAFF_ID" />
+                <ScalarProperty Name="TOUR_MISSION_DESCRIPTION" ColumnName="TOUR_MISSION_DESCRIPTION" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1302,7 +1369,6 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
               <MappingFragment StoreEntitySet="TOUR_PRICE">
                 <ScalarProperty Name="TOUR_PRICE_ID" ColumnName="TOUR_PRICE_ID" />
                 <ScalarProperty Name="TOUR_COST" ColumnName="TOUR_COST" />
-                <ScalarProperty Name="TOUR_TIME" ColumnName="TOUR_TIME" />
                 <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1320,11 +1386,6 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
           <EntitySetMapping Name="TOUR_STAFF">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_STAFF">
               <MappingFragment StoreEntitySet="TOUR_STAFF">
-                <ScalarProperty Name="TOUR_STAFF_CITIZEN_IDENTITY_DATE" ColumnName="TOUR_STAFF_CITIZEN_IDENTITY_DATE" />
-                <ScalarProperty Name="TOUR_STAFF_CITIZEN_IDENTITY_PLACE" ColumnName="TOUR_STAFF_CITIZEN_IDENTITY_PLACE" />
-                <ScalarProperty Name="TOUR_STAFF_ROLE" ColumnName="TOUR_STAFF_ROLE" />
-                <ScalarProperty Name="TOUR_STAFF_IMAGE" ColumnName="TOUR_STAFF_IMAGE" />
-                <ScalarProperty Name="TOUR_STAFF_NOTE" ColumnName="TOUR_STAFF_NOTE" />
                 <ScalarProperty Name="TOUR_STAFF_ID" ColumnName="TOUR_STAFF_ID" />
                 <ScalarProperty Name="TOUR_STAFF_NAME" ColumnName="TOUR_STAFF_NAME" />
                 <ScalarProperty Name="TOUR_STAFF_CITIZEN_IDENTITY" ColumnName="TOUR_STAFF_CITIZEN_IDENTITY" />
@@ -1336,31 +1397,57 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
                 <ScalarProperty Name="TOUR_STAFF_BIRTH_DATE" ColumnName="TOUR_STAFF_BIRTH_DATE" />
                 <ScalarProperty Name="TOUR_STAFF_GENDER" ColumnName="TOUR_STAFF_GENDER" />
                 <ScalarProperty Name="TOUR_STAFF_EMAIL" ColumnName="TOUR_STAFF_EMAIL" />
+                <ScalarProperty Name="TOUR_STAFF_NOTE" ColumnName="TOUR_STAFF_NOTE" />
+                <ScalarProperty Name="TOUR_STAFF_IMAGE" ColumnName="TOUR_STAFF_IMAGE" />
+                <ScalarProperty Name="TOUR_STAFF_ROLE" ColumnName="TOUR_STAFF_ROLE" />
+                <ScalarProperty Name="TOUR_STAFF_CITIZEN_IDENTITY_PLACE" ColumnName="TOUR_STAFF_CITIZEN_IDENTITY_PLACE" />
+                <ScalarProperty Name="TOUR_STAFF_CITIZEN_IDENTITY_DATE" ColumnName="TOUR_STAFF_CITIZEN_IDENTITY_DATE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TOUR_STAFF_DELETE">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_STAFF_DELETE">
               <MappingFragment StoreEntitySet="TOUR_STAFF_DELETE">
-                <ScalarProperty Name="TOUR_STAFF_DELETE_CONTENT" ColumnName="TOUR_STAFF_DELETE_CONTENT" />
                 <ScalarProperty Name="TOUR_STAFF_DELETE_ID" ColumnName="TOUR_STAFF_DELETE_ID" />
                 <ScalarProperty Name="TOUR_STAFF_DELETE_ISDELETED" ColumnName="TOUR_STAFF_DELETE_ISDELETED" />
                 <ScalarProperty Name="TOUR_STAFF_DELETE_DATE" ColumnName="TOUR_STAFF_DELETE_DATE" />
                 <ScalarProperty Name="TOUR_STAFF_ID" ColumnName="TOUR_STAFF_ID" />
+                <ScalarProperty Name="TOUR_STAFF_DELETE_CONTENT" ColumnName="TOUR_STAFF_DELETE_CONTENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOUR_TIME">
+            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TIME">
+              <MappingFragment StoreEntitySet="TOUR_TIME">
+                <ScalarProperty Name="TOUR_TIME_ID" ColumnName="TOUR_TIME_ID" />
+                <ScalarProperty Name="TOUR_TIME_DEPARTMENT_DATE" ColumnName="TOUR_TIME_DEPARTMENT_DATE" />
+                <ScalarProperty Name="TOUR_TIME_END_DATE" ColumnName="TOUR_TIME_END_DATE" />
+                <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TOUR_TRANSPORT">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT">
               <MappingFragment StoreEntitySet="TOUR_TRANSPORT">
-                <ScalarProperty Name="TOUR_TRANSPORT_DESCRIPTION" ColumnName="TOUR_TRANSPORT_DESCRIPTION" />
-                <ScalarProperty Name="TOUR_TRANSPORT_START_DATE" ColumnName="TOUR_TRANSPORT_START_DATE" />
-                <ScalarProperty Name="TOUR_TRANSPORT_IMAGE" ColumnName="TOUR_TRANSPORT_IMAGE" />
-                <ScalarProperty Name="TOUR_TRANSPORT_TYPE" ColumnName="TOUR_TRANSPORT_TYPE" />
-                <ScalarProperty Name="TOUR_TRANSPORT_COMPANY" ColumnName="TOUR_TRANSPORT_COMPANY" />
-                <ScalarProperty Name="TOUR_TRANSPORT_LICENSE_PLATE" ColumnName="TOUR_TRANSPORT_LICENSE_PLATE" />
                 <ScalarProperty Name="TOUR_TRANSPORT_ID" ColumnName="TOUR_TRANSPORT_ID" />
                 <ScalarProperty Name="TOUR_TRANSPORT_NAME" ColumnName="TOUR_TRANSPORT_NAME" />
+                <ScalarProperty Name="TOUR_TRANSPORT_LICENSE_PLATE" ColumnName="TOUR_TRANSPORT_LICENSE_PLATE" />
+                <ScalarProperty Name="TOUR_TRANSPORT_COMPANY" ColumnName="TOUR_TRANSPORT_COMPANY" />
+                <ScalarProperty Name="TOUR_TRANSPORT_TYPE" ColumnName="TOUR_TRANSPORT_TYPE" />
+                <ScalarProperty Name="TOUR_TRANSPORT_IMAGE" ColumnName="TOUR_TRANSPORT_IMAGE" />
+                <ScalarProperty Name="TOUR_TRANSPORT_START_DATE" ColumnName="TOUR_TRANSPORT_START_DATE" />
+                <ScalarProperty Name="TOUR_TRANSPORT_DESCRIPTION" ColumnName="TOUR_TRANSPORT_DESCRIPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOUR_TRANSPORT_DELETE">
+            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DELETE">
+              <MappingFragment StoreEntitySet="TOUR_TRANSPORT_DELETE">
+                <ScalarProperty Name="TOUR_TRANSPORT_DELETE_ID" ColumnName="TOUR_TRANSPORT_DELETE_ID" />
+                <ScalarProperty Name="TOUR_TRANSPORT_DELETE_ISDELETED" ColumnName="TOUR_TRANSPORT_DELETE_ISDELETED" />
+                <ScalarProperty Name="TOUR_TRANSPORT_DELETE_DATE" ColumnName="TOUR_TRANSPORT_DELETE_DATE" />
+                <ScalarProperty Name="TOUR_TRANSPORT_ID" ColumnName="TOUR_TRANSPORT_ID" />
+                <ScalarProperty Name="TOUR_TRANSPORT_DELETE_CONTENT" ColumnName="TOUR_TRANSPORT_DELETE_CONTENT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1368,9 +1455,9 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DETAIL">
               <MappingFragment StoreEntitySet="TOUR_TRANSPORT_DETAIL">
                 <ScalarProperty Name="TOUR_TRANSPORT_DETAIL_ID" ColumnName="TOUR_TRANSPORT_DETAIL_ID" />
-                <ScalarProperty Name="TOUR_TRANSPORT_DETAIL_TIME" ColumnName="TOUR_TRANSPORT_DETAIL_TIME" />
                 <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
                 <ScalarProperty Name="TOUR_TRANSPORT_ID" ColumnName="TOUR_TRANSPORT_ID" />
+                <ScalarProperty Name="TOUR_TRANSPORT_DETAIL_NOTE" ColumnName="TOUR_TRANSPORT_DETAIL_NOTE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1390,18 +1477,16 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
               <MappingFragment StoreEntitySet="TRAVEL_GROUP">
                 <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
                 <ScalarProperty Name="TRAVEL_GROUP_NAME" ColumnName="TRAVEL_GROUP_NAME" />
-                <ScalarProperty Name="TRAVEL_GROUP_DEPARTMENT_DATE" ColumnName="TRAVEL_GROUP_DEPARTMENT_DATE" />
-                <ScalarProperty Name="TRAVEL_GROUP_END_DATE" ColumnName="TRAVEL_GROUP_END_DATE" />
                 <ScalarProperty Name="TRAVEL_GROUP_CONTENT_DETAIL" ColumnName="TRAVEL_GROUP_CONTENT_DETAIL" />
                 <ScalarProperty Name="TRAVEL_COST_ID" ColumnName="TRAVEL_COST_ID" />
                 <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
+                <ScalarProperty Name="TOUR_TIME_ID" ColumnName="TOUR_TIME_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TRAVELLERs">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TRAVELLER">
               <MappingFragment StoreEntitySet="TRAVELLER">
-                <ScalarProperty Name="TRAVELLER_IMAGE" ColumnName="TRAVELLER_IMAGE" />
                 <ScalarProperty Name="TRAVELLER_ID" ColumnName="TRAVELLER_ID" />
                 <ScalarProperty Name="TRAVELLER_NAME" ColumnName="TRAVELLER_NAME" />
                 <ScalarProperty Name="TRAVELLER_CITIZEN_IDENTITY" ColumnName="TRAVELLER_CITIZEN_IDENTITY" />
@@ -1410,6 +1495,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
                 <ScalarProperty Name="TRAVELLER_ADDRESS" ColumnName="TRAVELLER_ADDRESS" />
                 <ScalarProperty Name="TRAVELLER_PHONE_NUMBER" ColumnName="TRAVELLER_PHONE_NUMBER" />
                 <ScalarProperty Name="TRAVELLER_TYPE" ColumnName="TRAVELLER_TYPE" />
+                <ScalarProperty Name="TRAVELLER_IMAGE" ColumnName="TRAVELLER_IMAGE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1427,43 +1513,8 @@ warning 6002: The table/view 'Tour_Mangement_Database.sys.database_firewall_rule
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TRAVELLER_DETAIL">
               <MappingFragment StoreEntitySet="TRAVELLER_DETAIL">
                 <ScalarProperty Name="TRAVELLER_DETAIL_ID" ColumnName="TRAVELLER_DETAIL_ID" />
-                <ScalarProperty Name="TRAVELLER_DETAIL_TIME" ColumnName="TRAVELLER_DETAIL_TIME" />
                 <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
                 <ScalarProperty Name="TRAVELLER_ID" ColumnName="TRAVELLER_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TOUR_HOTEL_DELETE">
-            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DELETE">
-              <MappingFragment StoreEntitySet="TOUR_HOTEL_DELETE">
-                <ScalarProperty Name="TOUR_HOTEL_DELETE_CONTENT" ColumnName="TOUR_HOTEL_DELETE_CONTENT" />
-                <ScalarProperty Name="TOUR_HOTEL_ID" ColumnName="TOUR_HOTEL_ID" />
-                <ScalarProperty Name="TOUR_HOTEL_DELETE_DATE" ColumnName="TOUR_HOTEL_DELETE_DATE" />
-                <ScalarProperty Name="TOUR_HOTEL_DELETE_ISDELETED" ColumnName="TOUR_HOTEL_DELETE_ISDELETED" />
-                <ScalarProperty Name="TOUR_HOTEL_DELETE_ID" ColumnName="TOUR_HOTEL_DELETE_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TOUR_TRANSPORT_DELETE">
-            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DELETE">
-              <MappingFragment StoreEntitySet="TOUR_TRANSPORT_DELETE">
-                <ScalarProperty Name="TOUR_TRANSPORT_DELETE_CONTENT" ColumnName="TOUR_TRANSPORT_DELETE_CONTENT" />
-                <ScalarProperty Name="TOUR_TRANSPORT_ID" ColumnName="TOUR_TRANSPORT_ID" />
-                <ScalarProperty Name="TOUR_TRANSPORT_DELETE_DATE" ColumnName="TOUR_TRANSPORT_DELETE_DATE" />
-                <ScalarProperty Name="TOUR_TRANSPORT_DELETE_ISDELETED" ColumnName="TOUR_TRANSPORT_DELETE_ISDELETED" />
-                <ScalarProperty Name="TOUR_TRANSPORT_DELETE_ID" ColumnName="TOUR_TRANSPORT_DELETE_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="database_firewall_rules">
-            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.database_firewall_rules">
-              <MappingFragment StoreEntitySet="database_firewall_rules">
-                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
-                <ScalarProperty Name="create_date" ColumnName="create_date" />
-                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
-                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

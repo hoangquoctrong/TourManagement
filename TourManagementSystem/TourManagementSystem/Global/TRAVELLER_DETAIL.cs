@@ -15,7 +15,6 @@ namespace TourManagementSystem.Global
     public partial class TRAVELLER_DETAIL
     {
         public int TRAVELLER_DETAIL_ID { get; set; }
-        public Nullable<System.DateTime> TRAVELLER_DETAIL_TIME { get; set; }
         public int TRAVEL_GROUP_ID { get; set; }
         public int TRAVELLER_ID { get; set; }
     

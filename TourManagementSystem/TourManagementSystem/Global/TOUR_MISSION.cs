@@ -15,10 +15,10 @@ namespace TourManagementSystem.Global
     public partial class TOUR_MISSION
     {
         public int TOUR_MISSION_ID { get; set; }
-        public Nullable<System.DateTime> TOUR_MISSION_TIME { get; set; }
         public string TOUR_MISSION_RESPONSIBILITY { get; set; }
         public int TRAVEL_GROUP_ID { get; set; }
         public int TOUR_STAFF_ID { get; set; }
+        public string TOUR_MISSION_DESCRIPTION { get; set; }
     
         public virtual TOUR_STAFF TOUR_STAFF { get; set; }
         public virtual TRAVEL_GROUP TRAVEL_GROUP { get; set; }

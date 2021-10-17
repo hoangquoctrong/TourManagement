@@ -15,9 +15,9 @@ namespace TourManagementSystem.Global
     public partial class TOUR_HOTEL_DETAIL
     {
         public int TOUR_HOTEL_DETAIL_ID { get; set; }
-        public Nullable<System.DateTime> TOUR_HOTEL_DETAIL_TIME { get; set; }
         public int TRAVEL_GROUP_ID { get; set; }
         public int TOUR_HOTEL_ID { get; set; }
+        public string TOUR_HOTEL_DETAIL_NOTE { get; set; }
     
         public virtual TOUR_HOTEL TOUR_HOTEL { get; set; }
         public virtual TRAVEL_GROUP TRAVEL_GROUP { get; set; }

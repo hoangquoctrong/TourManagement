@@ -29,7 +29,7 @@
                     VerticalAlignment="Center"
                     FontSize="24"
                     Foreground="White"
-                    Text="DISPLAY TRANSPORT" />
+                    Text="ADD NEW TRANSPORT" />
             </Grid>
 
             <Grid Grid.Row="1" Margin="150,0">
@@ -111,8 +111,8 @@
 
                     <Button
                         Grid.Column="1"
-                        Width="220"
-                        Height="220"
+                        Width="200"
+                        Height="200"
                         Margin="20,10,20,0"
                         Background="Transparent"
                         BorderThickness="0"

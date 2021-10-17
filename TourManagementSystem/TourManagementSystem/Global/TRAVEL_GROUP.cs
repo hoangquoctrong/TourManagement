@@ -25,17 +25,17 @@ namespace TourManagementSystem.Global
     
         public int TRAVEL_GROUP_ID { get; set; }
         public string TRAVEL_GROUP_NAME { get; set; }
-        public Nullable<System.DateTime> TRAVEL_GROUP_DEPARTMENT_DATE { get; set; }
-        public Nullable<System.DateTime> TRAVEL_GROUP_END_DATE { get; set; }
         public string TRAVEL_GROUP_CONTENT_DETAIL { get; set; }
         public int TRAVEL_COST_ID { get; set; }
         public int TOUR_ID { get; set; }
+        public int TOUR_TIME_ID { get; set; }
     
         public virtual TOUR TOUR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_HOTEL_DETAIL> TOUR_HOTEL_DETAIL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_MISSION> TOUR_MISSION { get; set; }
+        public virtual TOUR_TIME TOUR_TIME { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_TRANSPORT_DETAIL> TOUR_TRANSPORT_DETAIL { get; set; }
         public virtual TRAVEL_COST TRAVEL_COST { get; set; }

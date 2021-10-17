@@ -9,7 +9,6 @@
     d:DataContext="{d:DesignInstance Type=viewmodel:TransportViewModel}"
     d:DesignHeight="670"
     d:DesignWidth="1190"
-    Background="White"
     mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="WrapText" TargetType="{x:Type TextBlock}">
@@ -36,8 +35,7 @@
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="320" />
-                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
 
@@ -94,7 +92,7 @@
                         </ComboBox.ItemContainerStyle>
                     </ComboBox>
                     <CheckBox
-                        Margin="10,12,0,15"
+                        Margin="30,12,0,15"
                         HorizontalContentAlignment="Stretch"
                         VerticalContentAlignment="Stretch"
                         materialDesign:CheckBoxAssist.CheckBoxSize="24"
@@ -118,15 +116,6 @@
                     Command="{Binding AddTransportCommand}"
                     CommandParameter="{Binding ElementName=contentControlMain}"
                     Content="Add New Transport" />
-
-                <Button
-                    Grid.Column="3"
-                    Width="160"
-                    Height="40"
-                    Margin="20,5,20,5"
-                    HorizontalAlignment="Right"
-                    Background="#EB7B47"
-                    Content="Statistic" />
 
             </Grid>
 

@@ -354,14 +354,14 @@
                         <StackPanel Width="120">
                             <Button Margin="5,0">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Foreground="Black" Kind="Settings" />
+                                    <materialDesign:PackIcon Foreground="Black" Kind="Record" />
                                     <TextBlock
                                         Margin="8,0,0,0"
                                         FontFamily="Tw Cen MT"
                                         FontSize="16"
                                         FontWeight="Normal"
                                         Foreground="Black"
-                                        Text="Setting" />
+                                        Text="Record" />
                                 </StackPanel>
                             </Button>
                             <Button Margin="5,0">

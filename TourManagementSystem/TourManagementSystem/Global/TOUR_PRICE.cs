@@ -16,7 +16,6 @@ namespace TourManagementSystem.Global
     {
         public int TOUR_PRICE_ID { get; set; }
         public Nullable<double> TOUR_COST { get; set; }
-        public Nullable<System.DateTime> TOUR_TIME { get; set; }
         public int TOUR_ID { get; set; }
     
         public virtual TOUR TOUR { get; set; }

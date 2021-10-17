@@ -19,6 +19,7 @@ namespace TourManagementSystem.Global
         {
             this.TOUR_LOCATION_DETAILED = new HashSet<TOUR_LOCATION_DETAILED>();
             this.TOUR_PRICE = new HashSet<TOUR_PRICE>();
+            this.TOUR_TIME = new HashSet<TOUR_TIME>();
             this.TRAVEL_GROUP = new HashSet<TRAVEL_GROUP>();
         }
     
@@ -27,12 +28,14 @@ namespace TourManagementSystem.Global
         public string TOUR_CHARACTERISTIS { get; set; }
         public string TOUR_TYPE { get; set; }
         public byte[] TOUR_IMAGE { get; set; }
-        public Nullable<byte> TOUR_IS_EXIST { get; set; }
+        public string TOUR_IS_EXIST { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_LOCATION_DETAILED> TOUR_LOCATION_DETAILED { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_PRICE> TOUR_PRICE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TOUR_TIME> TOUR_TIME { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TRAVEL_GROUP> TRAVEL_GROUP { get; set; }
     }

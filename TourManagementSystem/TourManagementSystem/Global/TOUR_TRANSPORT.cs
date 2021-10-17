@@ -17,8 +17,8 @@ namespace TourManagementSystem.Global
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TOUR_TRANSPORT()
         {
-            this.TOUR_TRANSPORT_DETAIL = new HashSet<TOUR_TRANSPORT_DETAIL>();
             this.TOUR_TRANSPORT_DELETE = new HashSet<TOUR_TRANSPORT_DELETE>();
+            this.TOUR_TRANSPORT_DETAIL = new HashSet<TOUR_TRANSPORT_DETAIL>();
         }
     
         public int TOUR_TRANSPORT_ID { get; set; }
@@ -31,8 +31,8 @@ namespace TourManagementSystem.Global
         public string TOUR_TRANSPORT_DESCRIPTION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TOUR_TRANSPORT_DETAIL> TOUR_TRANSPORT_DETAIL { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_TRANSPORT_DELETE> TOUR_TRANSPORT_DELETE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TOUR_TRANSPORT_DETAIL> TOUR_TRANSPORT_DETAIL { get; set; }
     }
 }

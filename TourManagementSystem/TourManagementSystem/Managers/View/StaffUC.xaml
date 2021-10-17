@@ -130,7 +130,6 @@
             </Grid>
 
             <DataGrid
-                x:Name="dgStaffList"
                 Grid.Row="1"
                 Width="1150"
                 Height="590"

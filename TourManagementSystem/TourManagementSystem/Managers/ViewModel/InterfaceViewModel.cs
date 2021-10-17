@@ -67,12 +67,12 @@ namespace TourManagementSystem.ViewModel
         private void LoadCommand()
         {
             LoadNameSideBar();
-            TourCommand = new RelayCommand<object>(p => { return true; }, p => TourClick());
-            GroupCommand = new RelayCommand<object>(p => { return true; }, p => GroupClick());
-            PlaceCommand = new RelayCommand<object>(p => { return true; }, p => PlaceClick());
-            EmployeeCommand = new RelayCommand<object>(p => { return true; }, p => EmployeeClick());
-            TransportCommand = new RelayCommand<object>(p => { return true; }, p => TransportClick());
-            HotelCommand = new RelayCommand<object>(p => { return true; }, p => HotelClick());
+            TourCommand = new RelayCommand<object>(_ => true, _ => TourClick());
+            GroupCommand = new RelayCommand<object>(_ => true, _ => GroupClick());
+            PlaceCommand = new RelayCommand<object>(_ => true, _ => PlaceClick());
+            EmployeeCommand = new RelayCommand<object>(_ => true, _ => EmployeeClick());
+            TransportCommand = new RelayCommand<object>(_ => true, _ => TransportClick());
+            HotelCommand = new RelayCommand<object>(_ => true, _ => HotelClick());
         }
 
 
@@ -81,7 +81,7 @@ namespace TourManagementSystem.ViewModel
             TOURTAB = new SideBarModel("Travel", "Tour");
             GROUPTAB = new SideBarModel("UserGroup", "Group");
             PLACETAB = new SideBarModel("Place", "Place");
-            EMPLOYEETAB = new SideBarModel("User", "Employee");
+            EMPLOYEETAB = new SideBarModel("User", "Staff");
             TRANSPORTTAB = new SideBarModel("Transportation", "Transport");
             HOTELTAB = new SideBarModel("Hotel", "Hotel");
 
@@ -227,6 +227,7 @@ namespace TourManagementSystem.ViewModel
 
             FOREGROUNDHOTEL = new SolidColorBrush(Colors.White);
             BACKGROUNDHOTEL = new SolidColorBrush(Color.FromArgb(45, 255, 255, 255));
+            CONTENTCONTROL = new HotelUC(2);
         }
         #endregion
 
