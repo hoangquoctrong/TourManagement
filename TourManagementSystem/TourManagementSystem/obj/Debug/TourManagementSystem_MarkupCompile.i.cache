@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\
 TourManagementSystem
 none
 false
 DEBUG;TRACE
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\App.xaml
-12-857924685
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\App.xaml
+16-185962078
 2-299886435
-54-899836906
-24470260290
-Global\MainWindow.xaml;Managers\ManagerView.xaml;Managers\View\AddHotelUC.xaml;Managers\View\AddStaffUC.xaml;Managers\View\AddTransportUC.xaml;Managers\View\DisplayHotelUC.xaml;Managers\View\DisplayStaffUC.xaml;Managers\View\DisplayTransportUC.xaml;Managers\View\HotelUC.xaml;Managers\View\StaffUC.xaml;Managers\View\TourUC.xaml;Managers\View\TransportUC.xaml;
+591939356156
+24302471790
+Global\MainWindow.xaml;Managers\ManagerView.xaml;Managers\View\AddHotelUC.xaml;Managers\View\AddLocationUC.xaml;Managers\View\AddPlaceUC.xaml;Managers\View\AddStaffUC.xaml;Managers\View\AddTransportUC.xaml;Managers\View\DisplayHotelUC.xaml;Managers\View\DisplayPlaceUC.xaml;Managers\View\DisplayStaffUC.xaml;Managers\View\DisplayTransportUC.xaml;Managers\View\HotelUC.xaml;Managers\View\PlaceUC.xaml;Managers\View\StaffUC.xaml;Managers\View\TourUC.xaml;Managers\View\TransportUC.xaml;
 
-False
+True
 

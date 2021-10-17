@@ -6,6 +6,7 @@
     </Key>
     <Property Name="PLACE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PLACE_NAME" Type="varchar" MaxLength="255" />
+    <Property Name="PLACE_NATION" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="TOUR">
     <Key>
@@ -68,6 +69,8 @@
     <Property Name="TOUR_LOCATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TOUR_LOCATION_NAME" Type="varchar" MaxLength="255" />
     <Property Name="PLACE_ID" Type="int" Nullable="false" />
+    <Property Name="TOUR_LOCATION_ADDRESS" Type="text" />
+    <Property Name="TOUR_LOCATION_DESCRIPTION" Type="text" />
   </EntityType>
   <EntityType Name="TOUR_LOCATION_DETAILED">
     <Key>

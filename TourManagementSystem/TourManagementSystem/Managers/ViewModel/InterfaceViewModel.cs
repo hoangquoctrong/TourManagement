@@ -165,6 +165,7 @@ namespace TourManagementSystem.ViewModel
 
             FOREGROUNDHOTEL = new SolidColorBrush(Colors.WhiteSmoke);
             BACKGROUNDHOTEL = new SolidColorBrush(Colors.Transparent);
+            CONTENTCONTROL = new PlaceUC(2);
         }
         private void EmployeeClick()
         {
@@ -230,7 +231,6 @@ namespace TourManagementSystem.ViewModel
             CONTENTCONTROL = new HotelUC(2);
         }
         #endregion
-
 
     }
 }

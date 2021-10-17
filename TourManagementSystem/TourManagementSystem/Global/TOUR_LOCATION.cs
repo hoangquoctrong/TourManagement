@@ -23,6 +23,8 @@ namespace TourManagementSystem.Global
         public int TOUR_LOCATION_ID { get; set; }
         public string TOUR_LOCATION_NAME { get; set; }
         public int PLACE_ID { get; set; }
+        public string TOUR_LOCATION_ADDRESS { get; set; }
+        public string TOUR_LOCATION_DESCRIPTION { get; set; }
     
         public virtual PLACE PLACE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

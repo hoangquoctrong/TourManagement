@@ -1,6 +1,33 @@
 # This is a system of Tour Management
-### Mission Not Yet
+## Mission Not Yet
+### Manager
 + History for Transport UC
 + History for Hotel UC
 + History for Staff UC
 + Function for Place UC
++ Function + UI for Tour UC
++ Function + UI for Tour Group UC
++ Function + UI for Tour Customer UC
++ Function + UI for Record UC
++ Function + UI for Account UC
++ Function + UI for Dashboard UC
++ Function + UI for Login UC
+### Employee
++ Function + UI for Tour UC
++ Function + UI for Account UC
++ Function + UI for Dashboard UC
++ Function + UI for Login UC
+### Customer
++ Function + UI for Tour UC
++ Function + UI for Account UC
++ Function + UI for Dashboard UC
++ Function + UI for Login UC
++ Function + UI for Sign Up UC
+## Mission Finish
+### Manager
++ Insert, Modify, Delete, Search Staff UC
++ Insert, Modify, Delete, Search Transport UC
++ Insert, Modify, Delete, Search Hotel UC
++ UI Place UC
+### Employee
+### Customer

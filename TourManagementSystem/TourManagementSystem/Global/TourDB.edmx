@@ -4,13 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="PLACE">
           <Key>
             <PropertyRef Name="PLACE_ID" />
           </Key>
           <Property Name="PLACE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PLACE_NAME" Type="varchar" MaxLength="255" />
+          <Property Name="PLACE_NATION" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="TOUR">
           <Key>
@@ -73,6 +74,8 @@
           <Property Name="TOUR_LOCATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TOUR_LOCATION_NAME" Type="varchar" MaxLength="255" />
           <Property Name="PLACE_ID" Type="int" Nullable="false" />
+          <Property Name="TOUR_LOCATION_ADDRESS" Type="text" />
+          <Property Name="TOUR_LOCATION_DESCRIPTION" Type="text" />
         </EntityType>
         <EntityType Name="TOUR_LOCATION_DETAILED">
           <Key>
@@ -609,8 +612,7 @@
             <End Role="TRAVELLER_ACCOUNT" EntitySet="TRAVELLER_ACCOUNT" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Tour_Mangement_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -621,6 +623,7 @@
           <Property Name="PLACE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PLACE_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TOUR_LOCATION" Relationship="Self.FK__TOUR_LOCA__PLACE__68487DD7" FromRole="PLACE" ToRole="TOUR_LOCATION" />
+          <Property Name="PLACE_NATION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TOUR">
           <Key>
@@ -695,6 +698,8 @@
           <Property Name="PLACE_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PLACE" Relationship="Self.FK__TOUR_LOCA__PLACE__68487DD7" FromRole="TOUR_LOCATION" ToRole="PLACE" />
           <NavigationProperty Name="TOUR_LOCATION_DETAILED" Relationship="Self.FK__TOUR_LOCA__TOUR___6B24EA82" FromRole="TOUR_LOCATION" ToRole="TOUR_LOCATION_DETAILED" />
+          <Property Name="TOUR_LOCATION_ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TOUR_LOCATION_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TOUR_LOCATION_DETAILED">
           <Key>
@@ -1271,6 +1276,7 @@
           <EntitySetMapping Name="PLACEs">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.PLACE">
               <MappingFragment StoreEntitySet="PLACE">
+                <ScalarProperty Name="PLACE_NATION" ColumnName="PLACE_NATION" />
                 <ScalarProperty Name="PLACE_ID" ColumnName="PLACE_ID" />
                 <ScalarProperty Name="PLACE_NAME" ColumnName="PLACE_NAME" />
               </MappingFragment>
@@ -1338,6 +1344,8 @@
           <EntitySetMapping Name="TOUR_LOCATION">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_LOCATION">
               <MappingFragment StoreEntitySet="TOUR_LOCATION">
+                <ScalarProperty Name="TOUR_LOCATION_DESCRIPTION" ColumnName="TOUR_LOCATION_DESCRIPTION" />
+                <ScalarProperty Name="TOUR_LOCATION_ADDRESS" ColumnName="TOUR_LOCATION_ADDRESS" />
                 <ScalarProperty Name="TOUR_LOCATION_ID" ColumnName="TOUR_LOCATION_ID" />
                 <ScalarProperty Name="TOUR_LOCATION_NAME" ColumnName="TOUR_LOCATION_NAME" />
                 <ScalarProperty Name="PLACE_ID" ColumnName="PLACE_ID" />

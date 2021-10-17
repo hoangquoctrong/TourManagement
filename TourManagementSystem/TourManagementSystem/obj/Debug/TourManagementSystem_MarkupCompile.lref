@@ -1,14 +1,18 @@
 ﻿
-FD:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\App.xaml;;
-FD:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\Global\MainWindow.xaml;;
-FD:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\Managers\ManagerView.xaml;;
-FD:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\StaffUC.xaml;;
-FD:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\AddStaffUC.xaml;;
-FD:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\DisplayStaffUC.xaml;;
-FD:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\TransportUC.xaml;;
-FD:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\AddTransportUC.xaml;;
-FD:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\DisplayTransportUC.xaml;;
-FD:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\AddHotelUC.xaml;;
-FD:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\DisplayHotelUC.xaml;;
-FD:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\HotelUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\App.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Global\MainWindow.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\ManagerView.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\AddHotelUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\AddStaffUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\AddTransportUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\DisplayHotelUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\DisplayStaffUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\DisplayTransportUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\HotelUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\StaffUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\TransportUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\PlaceUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\AddLocationUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\AddPlaceUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\DisplayPlaceUC.xaml;;
 

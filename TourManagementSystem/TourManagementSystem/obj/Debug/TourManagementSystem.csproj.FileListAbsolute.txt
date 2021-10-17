@@ -121,3 +121,29 @@ D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm h�
 D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddHotelUC.baml
 D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayHotelUC.baml
 D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\HotelUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddHotelUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddStaffUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTransportUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayHotelUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayStaffUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayTransportUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\HotelUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\StaffUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TransportUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddHotelUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddStaffUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTransportUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayHotelUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayStaffUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayTransportUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\HotelUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\StaffUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TransportUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\PlaceUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\PlaceUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddLocationUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddPlaceUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayPlaceUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddLocationUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddPlaceUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayPlaceUC.baml

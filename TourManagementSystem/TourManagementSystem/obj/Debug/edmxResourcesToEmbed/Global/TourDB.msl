@@ -4,6 +4,7 @@
     <EntitySetMapping Name="PLACEs">
       <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.PLACE">
         <MappingFragment StoreEntitySet="PLACE">
+          <ScalarProperty Name="PLACE_NATION" ColumnName="PLACE_NATION" />
           <ScalarProperty Name="PLACE_ID" ColumnName="PLACE_ID" />
           <ScalarProperty Name="PLACE_NAME" ColumnName="PLACE_NAME" />
         </MappingFragment>
@@ -71,6 +72,8 @@
     <EntitySetMapping Name="TOUR_LOCATION">
       <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_LOCATION">
         <MappingFragment StoreEntitySet="TOUR_LOCATION">
+          <ScalarProperty Name="TOUR_LOCATION_DESCRIPTION" ColumnName="TOUR_LOCATION_DESCRIPTION" />
+          <ScalarProperty Name="TOUR_LOCATION_ADDRESS" ColumnName="TOUR_LOCATION_ADDRESS" />
           <ScalarProperty Name="TOUR_LOCATION_ID" ColumnName="TOUR_LOCATION_ID" />
           <ScalarProperty Name="TOUR_LOCATION_NAME" ColumnName="TOUR_LOCATION_NAME" />
           <ScalarProperty Name="PLACE_ID" ColumnName="PLACE_ID" />

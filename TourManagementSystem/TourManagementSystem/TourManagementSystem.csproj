@@ -175,10 +175,17 @@
     <Compile Include="Managers\Model\TourModel.cs" />
     <Compile Include="Managers\Model\TransportModel.cs" />
     <Compile Include="Managers\ViewModel\HotelViewModel.cs" />
+    <Compile Include="Managers\ViewModel\PlaceViewModel.cs" />
     <Compile Include="Managers\ViewModel\StaffViewModel.cs" />
     <Compile Include="Managers\ViewModel\TransportViewModel.cs" />
     <Compile Include="Managers\View\AddHotelUC.xaml.cs">
       <DependentUpon>AddHotelUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Managers\View\AddLocationUC.xaml.cs">
+      <DependentUpon>AddLocationUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Managers\View\AddPlaceUC.xaml.cs">
+      <DependentUpon>AddPlaceUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Managers\View\AddStaffUC.xaml.cs">
       <DependentUpon>AddStaffUC.xaml</DependentUpon>
@@ -189,6 +196,9 @@
     <Compile Include="Managers\View\DisplayHotelUC.xaml.cs">
       <DependentUpon>DisplayHotelUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Managers\View\DisplayPlaceUC.xaml.cs">
+      <DependentUpon>DisplayPlaceUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Managers\View\DisplayStaffUC.xaml.cs">
       <DependentUpon>DisplayStaffUC.xaml</DependentUpon>
     </Compile>
@@ -197,6 +207,9 @@
     </Compile>
     <Compile Include="Managers\View\HotelUC.xaml.cs">
       <DependentUpon>HotelUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Managers\View\PlaceUC.xaml.cs">
+      <DependentUpon>PlaceUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Managers\View\StaffUC.xaml.cs">
       <DependentUpon>StaffUC.xaml</DependentUpon>
@@ -226,6 +239,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Managers\View\AddLocationUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Managers\View\AddPlaceUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Managers\View\AddStaffUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -238,6 +259,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Managers\View\DisplayPlaceUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Managers\View\DisplayStaffUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -247,6 +272,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Managers\View\HotelUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Managers\View\PlaceUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
