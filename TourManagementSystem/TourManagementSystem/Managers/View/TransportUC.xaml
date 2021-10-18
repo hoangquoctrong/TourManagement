@@ -13,7 +13,6 @@
     <UserControl.Resources>
         <Style x:Key="WrapText" TargetType="{x:Type TextBlock}">
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="TextBlock.TextAlignment" Value="Center" />
         </Style>
         <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="BorderThickness" Value="0.5" />
@@ -147,31 +146,37 @@
                     <DataGridTextColumn
                         Width="0.05*"
                         Binding="{Binding TRANSPORT_ID}"
+                        ElementStyle="{StaticResource WrapText}"
                         Foreground="DarkSlateGray"
                         Header="ID" />
                     <DataGridTextColumn
                         Width="0.2*"
                         Binding="{Binding TRANSPORT_NAME}"
+                        ElementStyle="{StaticResource WrapText}"
                         Foreground="DarkSlateGray"
                         Header="Name" />
                     <DataGridTextColumn
                         Width="0.2*"
                         Binding="{Binding TRANSPORT_LICENSE_PLATE}"
+                        ElementStyle="{StaticResource WrapText}"
                         Foreground="DarkSlateGray"
                         Header="License Plate" />
                     <DataGridTextColumn
                         Width="0.2*"
                         Binding="{Binding TRANSPORT_COMPANY}"
+                        ElementStyle="{StaticResource WrapText}"
                         Foreground="DarkSlateGray"
                         Header="Company" />
                     <DataGridTextColumn
                         Width="0.2*"
                         Binding="{Binding TRANSPORT_TYPE}"
+                        ElementStyle="{StaticResource WrapText}"
                         Foreground="DarkSlateGray"
                         Header="Status" />
                     <DataGridTextColumn
                         Width="0.15*"
                         Binding="{Binding TRANSPORT_STRING_DATE}"
+                        ElementStyle="{StaticResource WrapText}"
                         Foreground="DarkSlateGray"
                         Header="Start Date" />
                 </DataGrid.Columns>

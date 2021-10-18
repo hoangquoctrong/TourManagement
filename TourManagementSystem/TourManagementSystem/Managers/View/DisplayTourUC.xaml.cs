@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,20 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TourManagementSystem.Managers.Model;
 
-namespace TourManagementSystem.View
+namespace TourManagementSystem.Managers.View
 {
     /// <summary>
-    /// Interaction logic for TourUC.xaml
+    /// Interaction logic for DisplayTourUC.xaml
     /// </summary>
-    public partial class TourUC : UserControl
+    public partial class DisplayTourUC : UserControl
     {
-        public TourUC(int user_id)
+        public DisplayTourUC()
         {
             InitializeComponent();
         }
-
-
     }
 }

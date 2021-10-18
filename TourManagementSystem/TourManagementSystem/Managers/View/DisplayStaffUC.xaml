@@ -11,6 +11,20 @@
     d:DesignWidth="1190"
     Background="White"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="WrapText" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="BorderThickness" Value="0.5" />
+            <Setter Property="BorderBrush" Value="#D6D6D6" />
+            <Setter Property="Background" Value="#FFFFFF" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="{x:Type DataGridCell}">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="#d6d6d6" />
+        </Style>
+    </UserControl.Resources>
     <ContentControl x:Name="contentControlDisplay" Height="auto">
         <Grid Margin="15,0,15,10">
 
@@ -587,36 +601,43 @@
                                 <DataGridTextColumn
                                     Width="0.05*"
                                     Binding="{Binding TOUR_MISSIO_ID}"
+                                    ElementStyle="{StaticResource WrapText}"
                                     Foreground="DarkSlateGray"
                                     Header="ID" />
                                 <DataGridTextColumn
                                     Width="0.15*"
                                     Binding="{Binding TOUR_MISSION_RESPONSIBILITY}"
+                                    ElementStyle="{StaticResource WrapText}"
                                     Foreground="DarkSlateGray"
                                     Header="Responsibility" />
                                 <DataGridTextColumn
                                     Width="0.24*"
                                     Binding="{Binding TOUR_MISSION_DESCRIPTION}"
+                                    ElementStyle="{StaticResource WrapText}"
                                     Foreground="DarkSlateGray"
                                     Header="Description" />
                                 <DataGridTextColumn
                                     Width="0.16*"
                                     Binding="{Binding TOUR_NAME}"
+                                    ElementStyle="{StaticResource WrapText}"
                                     Foreground="DarkSlateGray"
                                     Header="Tour Name" />
                                 <DataGridTextColumn
                                     Width="0.16*"
                                     Binding="{Binding TRAVEL_GROUP_NAME}"
+                                    ElementStyle="{StaticResource WrapText}"
                                     Foreground="DarkSlateGray"
                                     Header="Travel Group Name" />
                                 <DataGridTextColumn
                                     Width="0.12*"
                                     Binding="{Binding TOUR_START_DATE}"
+                                    ElementStyle="{StaticResource WrapText}"
                                     Foreground="DarkSlateGray"
                                     Header="Start Date" />
                                 <DataGridTextColumn
                                     Width="0.12*"
                                     Binding="{Binding TOUR_END_DATE}"
+                                    ElementStyle="{StaticResource WrapText}"
                                     Foreground="DarkSlateGray"
                                     Header="End Date" />
                             </DataGrid.Columns>

@@ -103,7 +103,7 @@ namespace TourManagementSystem.ViewModel
             FOREGROUNDHOTEL = new SolidColorBrush(Colors.WhiteSmoke);
             BACKGROUNDHOTEL = new SolidColorBrush(Colors.Transparent);
 
-            CONTENTCONTROL = new TourUC();
+            CONTENTCONTROL = new TourUC(2);
         }
         private void TourClick()
         {
@@ -124,7 +124,7 @@ namespace TourManagementSystem.ViewModel
 
             FOREGROUNDHOTEL = new SolidColorBrush(Colors.WhiteSmoke);
             BACKGROUNDHOTEL = new SolidColorBrush(Colors.Transparent);
-            CONTENTCONTROL = new TourUC();
+            CONTENTCONTROL = new TourUC(2);
         }
         private void GroupClick()
         {

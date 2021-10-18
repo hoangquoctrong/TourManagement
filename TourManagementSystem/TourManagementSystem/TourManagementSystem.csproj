@@ -179,6 +179,7 @@
     <Compile Include="Managers\ViewModel\HotelViewModel.cs" />
     <Compile Include="Managers\ViewModel\PlaceViewModel.cs" />
     <Compile Include="Managers\ViewModel\StaffViewModel.cs" />
+    <Compile Include="Managers\ViewModel\TourViewModel.cs" />
     <Compile Include="Managers\ViewModel\TransportViewModel.cs" />
     <Compile Include="Managers\View\AddHotelUC.xaml.cs">
       <DependentUpon>AddHotelUC.xaml</DependentUpon>
@@ -191,6 +192,9 @@
     </Compile>
     <Compile Include="Managers\View\AddStaffUC.xaml.cs">
       <DependentUpon>AddStaffUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Managers\View\AddTourUC.xaml.cs">
+      <DependentUpon>AddTourUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Managers\View\AddTransportUC.xaml.cs">
       <DependentUpon>AddTransportUC.xaml</DependentUpon>
@@ -206,6 +210,9 @@
     </Compile>
     <Compile Include="Managers\View\DisplayStaffUC.xaml.cs">
       <DependentUpon>DisplayStaffUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Managers\View\DisplayTourUC.xaml.cs">
+      <DependentUpon>DisplayTourUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Managers\View\DisplayTransportUC.xaml.cs">
       <DependentUpon>DisplayTransportUC.xaml</DependentUpon>
@@ -256,6 +263,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Managers\View\AddTourUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Managers\View\AddTransportUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -273,6 +284,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Managers\View\DisplayStaffUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Managers\View\DisplayTourUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

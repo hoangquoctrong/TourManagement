@@ -14,7 +14,6 @@
     <UserControl.Resources>
         <Style x:Key="WrapText" TargetType="{x:Type TextBlock}">
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="TextBlock.TextAlignment" Value="Center" />
         </Style>
         <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="BorderThickness" Value="0.5" />
@@ -359,21 +358,25 @@
                                     <DataGridTextColumn
                                         Width="0.1*"
                                         Binding="{Binding LOCATION_ID}"
+                                        ElementStyle="{StaticResource WrapText}"
                                         Foreground="DarkSlateGray"
                                         Header="ID" />
                                     <DataGridTextColumn
                                         Width="0.2*"
                                         Binding="{Binding LOCATION_NAME}"
+                                        ElementStyle="{StaticResource WrapText}"
                                         Foreground="DarkSlateGray"
                                         Header="Name" />
                                     <DataGridTextColumn
                                         Width="0.35*"
                                         Binding="{Binding LOCATION_ADDRESS}"
+                                        ElementStyle="{StaticResource WrapText}"
                                         Foreground="DarkSlateGray"
                                         Header="Address" />
                                     <DataGridTextColumn
                                         Width="0.45*"
                                         Binding="{Binding LOCATION_DESCRIPTION}"
+                                        ElementStyle="{StaticResource WrapText}"
                                         Foreground="DarkSlateGray"
                                         Header="Description" />
                                 </DataGrid.Columns>

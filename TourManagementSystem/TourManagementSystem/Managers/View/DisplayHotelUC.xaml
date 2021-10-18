@@ -13,7 +13,6 @@
     <UserControl.Resources>
         <Style x:Key="WrapText" TargetType="{x:Type TextBlock}">
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="TextBlock.TextAlignment" Value="Center" />
         </Style>
         <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="BorderThickness" Value="0.5" />
@@ -455,31 +454,37 @@
                                 <DataGridTextColumn
                                     Width="0.05*"
                                     Binding="{Binding TOUR_HOTEL_ID}"
+                                    ElementStyle="{StaticResource WrapText}"
                                     Foreground="DarkSlateGray"
                                     Header="ID" />
                                 <DataGridTextColumn
                                     Width="0.2*"
                                     Binding="{Binding TOUR_NAME}"
+                                    ElementStyle="{StaticResource WrapText}"
                                     Foreground="DarkSlateGray"
                                     Header="Tour Name" />
                                 <DataGridTextColumn
                                     Width="0.2*"
                                     Binding="{Binding TRAVEL_GROUP_NAME}"
+                                    ElementStyle="{StaticResource WrapText}"
                                     Foreground="DarkSlateGray"
                                     Header="Travel Group Name" />
                                 <DataGridTextColumn
                                     Width="0.15*"
                                     Binding="{Binding TOUR_START_DATE}"
+                                    ElementStyle="{StaticResource WrapText}"
                                     Foreground="DarkSlateGray"
                                     Header="Start Date" />
                                 <DataGridTextColumn
                                     Width="0.15*"
                                     Binding="{Binding TOUR_END_DATE}"
+                                    ElementStyle="{StaticResource WrapText}"
                                     Foreground="DarkSlateGray"
                                     Header="End Date" />
                                 <DataGridTextColumn
                                     Width="0.2*"
                                     Binding="{Binding TOUR_HOTEL_NOTE}"
+                                    ElementStyle="{StaticResource WrapText}"
                                     Foreground="DarkSlateGray"
                                     Header="Note" />
                             </DataGrid.Columns>

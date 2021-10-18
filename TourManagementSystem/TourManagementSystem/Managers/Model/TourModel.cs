@@ -10,7 +10,8 @@ namespace TourManagementSystem.Managers.Model
     public class TourModel
     {
         private int _ID;
-        public int ID {
+        public int ID
+        {
             get { return _ID; }
             set { _ID = value; }
         }
@@ -33,7 +34,5 @@ namespace TourManagementSystem.Managers.Model
         private string _TripLength;
         private string _Host;
         private string _Price;
-
-
     }
 }
