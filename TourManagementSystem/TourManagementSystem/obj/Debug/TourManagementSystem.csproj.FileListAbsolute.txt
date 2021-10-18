@@ -147,3 +147,5 @@ D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Man
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddLocationUC.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddPlaceUC.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayPlaceUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayLocationUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayLocationUC.baml

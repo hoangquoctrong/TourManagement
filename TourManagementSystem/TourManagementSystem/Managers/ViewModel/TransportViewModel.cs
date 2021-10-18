@@ -169,7 +169,7 @@ namespace TourManagementSystem.Managers.ViewModel
 
         #endregion Data Binding Of TransportUC
 
-        #region Data Binding of AddStaffUC, DisplayStaffUC
+        #region Data Binding of AddTransportUC, DisplayTransportUC
 
         private string _Transport_Name;
         public string Transport_Name { get => _Transport_Name; set { _Transport_Name = value; OnPropertyChanged(); } }

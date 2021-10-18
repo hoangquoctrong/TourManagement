@@ -4,7 +4,7 @@
 + History for Transport UC
 + History for Hotel UC
 + History for Staff UC
-+ Function for Place UC
++ History for Location UC
 + Function + UI for Tour UC
 + Function + UI for Tour Group UC
 + Function + UI for Tour Customer UC
@@ -19,6 +19,7 @@
 + Function + UI for Login UC
 ### Customer
 + Function + UI for Tour UC
++ Function + UI for Tour Register UC
 + Function + UI for Account UC
 + Function + UI for Dashboard UC
 + Function + UI for Login UC
@@ -28,6 +29,7 @@
 + Insert, Modify, Delete, Search Staff UC
 + Insert, Modify, Delete, Search Transport UC
 + Insert, Modify, Delete, Search Hotel UC
-+ UI Place UC
++ Insert, Modify, Search Place UC
++ Insert, Modify, Search Location UC
 ### Employee
 ### Customer

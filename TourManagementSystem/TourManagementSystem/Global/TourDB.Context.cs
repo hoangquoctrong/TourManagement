@@ -25,8 +25,8 @@ namespace TourManagementSystem.Global
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<PLACE> PLACEs { get; set; }
-        public virtual DbSet<TOUR> TOURs { get; set; }
+        public virtual DbSet<PLACE> PLACE { get; set; }
+        public virtual DbSet<TOUR> TOUR { get; set; }
         public virtual DbSet<TOUR_ACCOUNT> TOUR_ACCOUNT { get; set; }
         public virtual DbSet<TOUR_HOTEL> TOUR_HOTEL { get; set; }
         public virtual DbSet<TOUR_HOTEL_DELETE> TOUR_HOTEL_DELETE { get; set; }
@@ -44,7 +44,7 @@ namespace TourManagementSystem.Global
         public virtual DbSet<TOUR_TRANSPORT_DETAIL> TOUR_TRANSPORT_DETAIL { get; set; }
         public virtual DbSet<TRAVEL_COST> TRAVEL_COST { get; set; }
         public virtual DbSet<TRAVEL_GROUP> TRAVEL_GROUP { get; set; }
-        public virtual DbSet<TRAVELLER> TRAVELLERs { get; set; }
+        public virtual DbSet<TRAVELLER> TRAVELLER { get; set; }
         public virtual DbSet<TRAVELLER_ACCOUNT> TRAVELLER_ACCOUNT { get; set; }
         public virtual DbSet<TRAVELLER_DETAIL> TRAVELLER_DETAIL { get; set; }
     }

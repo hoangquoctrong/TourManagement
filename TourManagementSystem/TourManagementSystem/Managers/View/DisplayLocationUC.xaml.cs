@@ -12,19 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TourManagementSystem.Managers.Model;
 using TourManagementSystem.Managers.ViewModel;
 
 namespace TourManagementSystem.Managers.View
 {
     /// <summary>
-    /// Interaction logic for AddPlaceUC.xaml
+    /// Interaction logic for DisplayLocationUC.xaml
     /// </summary>
-    public partial class AddPlaceUC : UserControl
+    public partial class DisplayLocationUC : UserControl
     {
-        public AddPlaceUC(int user_id)
+        public DisplayLocationUC(PlaceModel placeModel, LocationModel locationModel, int user_id)
         {
             InitializeComponent();
-            DataContext = new PlaceViewModel(user_id);
+            DataContext = new PlaceViewModel(placeModel, locationModel, user_id);
         }
     }
 }

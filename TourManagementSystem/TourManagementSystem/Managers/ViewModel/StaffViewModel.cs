@@ -373,6 +373,7 @@ namespace TourManagementSystem.Managers.ViewModel
             //Step 2
             Tour_Mangement_DatabaseEntities db = new Tour_Mangement_DatabaseEntities();
             IQueryable<TOUR_STAFF> staffList = from staff in db.TOUR_STAFF
+                                               orderby staff.TOUR_STAFF_ID ascending
                                                select staff;
 
             //Step 3
@@ -430,6 +431,7 @@ namespace TourManagementSystem.Managers.ViewModel
             IQueryable<TOUR_STAFF> staffList = from staff in db.TOUR_STAFF
                                                join staff_delete in db.TOUR_STAFF_DELETE on staff.TOUR_STAFF_ID equals staff_delete.TOUR_STAFF_ID
                                                where staff_delete.TOUR_STAFF_DELETE_ISDELETED == false
+                                               orderby staff.TOUR_STAFF_ID ascending
                                                select staff;
 
             //Step 3

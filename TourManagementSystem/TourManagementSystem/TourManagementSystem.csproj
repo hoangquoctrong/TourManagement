@@ -170,6 +170,8 @@
       <DependentUpon>ManagerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Managers\Model\HotelModel.cs" />
+    <Compile Include="Managers\Model\LocationModel.cs" />
+    <Compile Include="Managers\Model\PlaceModel.cs" />
     <Compile Include="Managers\Model\SideBarModel.cs" />
     <Compile Include="Managers\Model\StaffModel.cs" />
     <Compile Include="Managers\Model\TourModel.cs" />
@@ -195,6 +197,9 @@
     </Compile>
     <Compile Include="Managers\View\DisplayHotelUC.xaml.cs">
       <DependentUpon>DisplayHotelUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Managers\View\DisplayLocationUC.xaml.cs">
+      <DependentUpon>DisplayLocationUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Managers\View\DisplayPlaceUC.xaml.cs">
       <DependentUpon>DisplayPlaceUC.xaml</DependentUpon>
@@ -256,6 +261,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Managers\View\DisplayHotelUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Managers\View\DisplayLocationUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

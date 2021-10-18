@@ -82,21 +82,22 @@
                         Foreground="DimGray"
                         Kind="Earth" />
 
-                    <ComboBox
+                    <TextBox
                         Width="360"
                         Margin="8,0,0,0"
                         materialDesign:HintAssist.HelperText="The place of Location"
                         materialDesign:HintAssist.HelperTextFontSize="18"
                         materialDesign:HintAssist.Hint="Place"
-                        FontSize="24"
-                        ItemsSource="{Binding CB_PlaceNameList, Mode=TwoWay}"
-                        SelectedValue="{Binding CB_PlaceNameSelected}">
-                        <ComboBox.ItemContainerStyle>
-                            <Style TargetType="ComboBoxItem">
-                                <Setter Property="IsSelected" Value="{Binding IsSelected}" />
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-                    </ComboBox>
+                        FontSize="24">
+                        <TextBox.Text>
+                            <Binding
+                                Mode="TwoWay"
+                                Path="Place_Name"
+                                UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules />
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
 
                 </StackPanel>
             </Grid>

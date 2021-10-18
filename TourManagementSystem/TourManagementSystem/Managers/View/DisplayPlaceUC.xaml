@@ -6,7 +6,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodel="clr-namespace:TourManagementSystem.Managers.ViewModel"
-    d:DataContext="{d:DesignInstance Type=viewmodel:TransportViewModel}"
+    d:DataContext="{d:DesignInstance Type=viewmodel:PlaceViewModel}"
     d:DesignHeight="670"
     d:DesignWidth="1190"
     Background="White"
@@ -46,7 +46,7 @@
                     VerticalAlignment="Top"
                     Background="Transparent"
                     BorderThickness="0"
-                    Command="{Binding CancelCommand}"
+                    Command="{Binding CancelPlaceCommand}"
                     CommandParameter="{Binding ElementName=contentControlDisplay}">
                     <materialDesign:PackIcon
                         Width="40"
@@ -183,7 +183,8 @@
                                         materialDesign:HintAssist.HelperTextFontSize="18"
                                         materialDesign:HintAssist.Hint="Nimber Location"
                                         FontSize="24"
-                                        IsEnabled="True">
+                                        Foreground="Black"
+                                        IsEnabled="False">
                                         <TextBox.Text>
                                             <Binding
                                                 Mode="TwoWay"
@@ -212,7 +213,7 @@
                                         Height="50"
                                         Background="Transparent"
                                         BorderThickness="0"
-                                        Command="{Binding SaveChangeCommand}"
+                                        Command="{Binding SaveChangePlaceCommand}"
                                         CommandParameter="{Binding ElementName=contentControlDisplay}"
                                         Content="Save Chage"
                                         FontSize="18"
@@ -267,7 +268,7 @@
                                     Grid.Column="0"
                                     Width="400"
                                     Height="50"
-                                    Margin="130,5,40,5"
+                                    Margin="40,5,40,5"
                                     Background="#FAFAFA"
                                     BorderBrush="Gray"
                                     BorderThickness="1"
@@ -291,7 +292,7 @@
                                             FontSize="18"
                                             Style="{StaticResource MaterialDesignTextBoxBase}">
                                             <TextBox.Text>
-                                                <Binding Path="Search_Text" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding Path="Search_Location_Text" UpdateSourceTrigger="PropertyChanged">
                                                     <Binding.ValidationRules />
                                                 </Binding>
                                             </TextBox.Text>
@@ -320,7 +321,7 @@
                                     Grid.Column="2"
                                     Width="160"
                                     Height="40"
-                                    Margin="20,5,20,5"
+                                    Margin="120,5,20,5"
                                     HorizontalAlignment="Right"
                                     Background="#0f6f68"
                                     Command="{Binding AddLocationCommand}"
@@ -346,8 +347,14 @@
                                 GridLinesVisibility="Vertical"
                                 IsReadOnly="True"
                                 ItemsSource="{Binding LocationList, Mode=TwoWay}"
-                                SelectedItem="{Binding Loacation_Selected}"
+                                SelectedItem="{Binding Location_Selected}"
                                 SelectionMode="Single">
+                                <DataGrid.InputBindings>
+                                    <MouseBinding
+                                        Command="{Binding ShowLocationDetailCommand}"
+                                        CommandParameter="{Binding ElementName=contentControlDisplay}"
+                                        Gesture="LeftDoubleClick" />
+                                </DataGrid.InputBindings>
                                 <DataGrid.Columns>
                                     <DataGridTextColumn
                                         Width="0.1*"
