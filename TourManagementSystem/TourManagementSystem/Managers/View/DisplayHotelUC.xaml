@@ -130,7 +130,7 @@
                                         <TextBox
                                             Width="260"
                                             Margin="8,0,0,0"
-                                            materialDesign:HintAssist.HelperText="Employee full name."
+                                            materialDesign:HintAssist.HelperText="Hotel name."
                                             materialDesign:HintAssist.Hint="Name"
                                             FontSize="18">
                                             <TextBox.Text>

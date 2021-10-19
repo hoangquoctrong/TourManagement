@@ -172,6 +172,7 @@
     <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="TOUR" Relationship="Self.FK__TOUR_TIME__TOUR___2EDAF651" FromRole="TOUR_TIME" ToRole="TOUR" />
     <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVEL_GR__TOUR___32AB8735" FromRole="TOUR_TIME" ToRole="TRAVEL_GROUP" />
+    <Property Name="TOUR_TIME_DAY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="TOUR_TRANSPORT">
     <Key>

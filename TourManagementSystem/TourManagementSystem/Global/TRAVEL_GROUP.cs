@@ -17,9 +17,6 @@ namespace TourManagementSystem.Global
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TRAVEL_GROUP()
         {
-            this.TOUR_HOTEL_DETAIL = new HashSet<TOUR_HOTEL_DETAIL>();
-            this.TOUR_MISSION = new HashSet<TOUR_MISSION>();
-            this.TOUR_TRANSPORT_DETAIL = new HashSet<TOUR_TRANSPORT_DETAIL>();
             this.TRAVELLER_DETAIL = new HashSet<TRAVELLER_DETAIL>();
         }
     
@@ -28,16 +25,8 @@ namespace TourManagementSystem.Global
         public string TRAVEL_GROUP_CONTENT_DETAIL { get; set; }
         public int TRAVEL_COST_ID { get; set; }
         public int TOUR_ID { get; set; }
-        public int TOUR_TIME_ID { get; set; }
     
         public virtual TOUR TOUR { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TOUR_HOTEL_DETAIL> TOUR_HOTEL_DETAIL { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TOUR_MISSION> TOUR_MISSION { get; set; }
-        public virtual TOUR_TIME TOUR_TIME { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TOUR_TRANSPORT_DETAIL> TOUR_TRANSPORT_DETAIL { get; set; }
         public virtual TRAVEL_COST TRAVEL_COST { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TRAVELLER_DETAIL> TRAVELLER_DETAIL { get; set; }

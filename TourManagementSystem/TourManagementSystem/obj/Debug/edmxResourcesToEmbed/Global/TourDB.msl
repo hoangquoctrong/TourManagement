@@ -155,6 +155,7 @@
     <EntitySetMapping Name="TOUR_TIME">
       <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TIME">
         <MappingFragment StoreEntitySet="TOUR_TIME">
+          <ScalarProperty Name="TOUR_TIME_DAY" ColumnName="TOUR_TIME_DAY" />
           <ScalarProperty Name="TOUR_TIME_ID" ColumnName="TOUR_TIME_ID" />
           <ScalarProperty Name="TOUR_TIME_DEPARTMENT_DATE" ColumnName="TOUR_TIME_DEPARTMENT_DATE" />
           <ScalarProperty Name="TOUR_TIME_END_DATE" ColumnName="TOUR_TIME_END_DATE" />

@@ -17,4 +17,8 @@ FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\Vie
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\StaffUC.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\TransportUC.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\TourUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\AddTourUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\DisplayTourUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\AddPriceUC.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\AddTimeUC.xaml;;
 

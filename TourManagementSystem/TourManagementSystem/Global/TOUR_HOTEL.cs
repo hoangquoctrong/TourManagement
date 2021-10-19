@@ -18,7 +18,7 @@ namespace TourManagementSystem.Global
         public TOUR_HOTEL()
         {
             this.TOUR_HOTEL_DELETE = new HashSet<TOUR_HOTEL_DELETE>();
-            this.TOUR_HOTEL_DETAIL = new HashSet<TOUR_HOTEL_DETAIL>();
+            this.TOUR_INFORMATION = new HashSet<TOUR_INFORMATION>();
         }
     
         public int TOUR_HOTEL_ID { get; set; }
@@ -35,6 +35,6 @@ namespace TourManagementSystem.Global
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_HOTEL_DELETE> TOUR_HOTEL_DELETE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TOUR_HOTEL_DETAIL> TOUR_HOTEL_DETAIL { get; set; }
+        public virtual ICollection<TOUR_INFORMATION> TOUR_INFORMATION { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace TourManagementSystem.Global
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TOUR_LOCATION()
         {
-            this.TOUR_LOCATION_DETAILED = new HashSet<TOUR_LOCATION_DETAILED>();
+            this.TOUR_LOCATION_DETAIL = new HashSet<TOUR_LOCATION_DETAIL>();
         }
     
         public int TOUR_LOCATION_ID { get; set; }
@@ -28,6 +28,6 @@ namespace TourManagementSystem.Global
     
         public virtual PLACE PLACE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TOUR_LOCATION_DETAILED> TOUR_LOCATION_DETAILED { get; set; }
+        public virtual ICollection<TOUR_LOCATION_DETAIL> TOUR_LOCATION_DETAIL { get; set; }
     }
 }
