@@ -210,6 +210,12 @@ namespace TourManagementSystem.Managers.ViewModel
         private BitmapImage _Hotel_Image_Source;
         public BitmapImage Hotel_Image_Source { get => _Hotel_Image_Source; set { _Hotel_Image_Source = value; OnPropertyChanged(); } }
 
+        private ObservableCollection<ComboBoxModel> _CB_PlaceList;
+        public ObservableCollection<ComboBoxModel> CB_PlaceList { get => _CB_PlaceList; set { _CB_PlaceList = value; OnPropertyChanged(); } }
+
+        private ComboBoxModel _CB_PlaceSelected;
+        public ComboBoxModel CB_PlaceSelected { get => _CB_PlaceSelected; set { _CB_PlaceSelected = value; OnPropertyChanged(); } }
+
         #endregion Data Binding of AddHotelUC, DisplayHotelUC
         #endregion Data
 
@@ -284,6 +290,7 @@ namespace TourManagementSystem.Managers.ViewModel
             User_ID = user_id;
             Hotel_Selected = hotelSelected;
             LoadCommand();
+            LoadPlaceCombobox();
         }
 
         #region All Load Function
@@ -294,6 +301,7 @@ namespace TourManagementSystem.Managers.ViewModel
         private void LoadHotelUC()
         {
             LoadHotelComboBox();
+            LoadPlaceCombobox();
             Checkbox_DisplayAllHotel = false;
             LoadCommand();
             Hotel_Image_Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Images/Hotel.png", UriKind.Absolute));
@@ -341,8 +349,14 @@ namespace TourManagementSystem.Managers.ViewModel
                     HOTEL_IS_RESTAURANT = item.TOUR_HOTEL_IS_RESTAURANT,
                     HOTEL_PRICE = (float)item.TOUR_HOTEL_PRICE,
                     HOTEL_EMAIL = item.TOUR_HOTEL_EMAIL,
-                    HOTEL_IMAGE_BYTE_SOURCE = item.TOUR_HOTEL_IMAGE
+                    HOTEL_IMAGE_BYTE_SOURCE = item.TOUR_HOTEL_IMAGE,
+                    PLACE_ID = item.PLACE_ID
                 };
+
+                var place_name = from hotel in db.TOUR_HOTEL
+                                 join place in db.PLACE on hotel.PLACE_ID equals place.PLACE_ID
+                                 select place.PLACE_NAME;
+                hotelModel.PLACE_NAME = place_name.ToString();
 
                 HotelList.Add(hotelModel);
                 Refresh_HotelList.Add(hotelModel);
@@ -389,8 +403,14 @@ namespace TourManagementSystem.Managers.ViewModel
                     HOTEL_PRICE = (float)item.TOUR_HOTEL_PRICE,
                     HOTEL_EMAIL = item.TOUR_HOTEL_EMAIL,
                     HOTEL_TYPE = item.TOUR_HOTEL_TYPE,
-                    HOTEL_IMAGE_BYTE_SOURCE = item.TOUR_HOTEL_IMAGE
+                    HOTEL_IMAGE_BYTE_SOURCE = item.TOUR_HOTEL_IMAGE,
+                    PLACE_ID = item.PLACE_ID
                 };
+
+                var place_name = from hotel in db.TOUR_HOTEL
+                                 join place in db.PLACE on hotel.PLACE_ID equals place.PLACE_ID
+                                 select place.PLACE_NAME;
+                hotelModel.PLACE_NAME = place_name.ToString();
 
                 HotelList.Add(hotelModel);
                 Refresh_HotelList.Add(hotelModel);
@@ -461,6 +481,30 @@ namespace TourManagementSystem.Managers.ViewModel
 
         #region AddHotelUC View Model
 
+        private void LoadPlaceCombobox()
+        {
+            Tour_Mangement_DatabaseEntities db = new Tour_Mangement_DatabaseEntities();
+
+            var list = from place in db.PLACE select place;
+
+            CB_PlaceList = new ObservableCollection<ComboBoxModel>();
+
+            foreach (var item in list)
+            {
+                ComboBoxModel cbm = new ComboBoxModel(item.PLACE_NAME, item.PLACE_ID, false);
+
+                CB_PlaceList.Add(cbm);
+            }
+
+            CB_PlaceSelected = CB_PlaceList.FirstOrDefault(x =>
+            {
+                if (Hotel_Selected == null)
+                    return x.IsSelected;
+                else
+                    return x.CB_ID == Hotel_Selected.PLACE_ID;
+            });
+        }
+
         /*
         * Function IsExcute and Excute of AddImageCommand
         * IsExcute = true when image in button is empty
@@ -494,7 +538,9 @@ namespace TourManagementSystem.Managers.ViewModel
             if (string.IsNullOrEmpty(Hotel_Name) ||
                 string.IsNullOrEmpty(Hotel_Phone_Number) ||
                 string.IsNullOrEmpty(Hotel_Address) ||
-                string.IsNullOrEmpty(Hotel_Type))
+                string.IsNullOrEmpty(Hotel_Type) ||
+                string.IsNullOrEmpty(Hotel_Email) ||
+                CB_PlaceSelected == null)
             {
                 return false;
             }
@@ -527,7 +573,8 @@ namespace TourManagementSystem.Managers.ViewModel
                 TOUR_HOTEL_IS_RESTAURANT = Hotel_Is_Restaurant,
                 TOUR_HOTEL_PRICE = Hotel_Price,
                 TOUR_HOTEL_DESCRIPTION = string.IsNullOrEmpty(_Hotel_Description) ? "" : Hotel_Description,
-                TOUR_HOTEL_IMAGE = Hotel_Image_Byte_Source
+                TOUR_HOTEL_IMAGE = Hotel_Image_Byte_Source,
+                PLACE_ID = CB_PlaceSelected.CB_ID
             };
             db.TOUR_HOTEL.Add(tour_hotel);
 
@@ -601,6 +648,10 @@ namespace TourManagementSystem.Managers.ViewModel
             {
                 return true;
             }
+            if (CB_PlaceSelected.CB_ID != Hotel_Selected.PLACE_ID)
+            {
+                return true;
+            }
 
             return false;
         }
@@ -621,6 +672,7 @@ namespace TourManagementSystem.Managers.ViewModel
                 tour_hotel.TOUR_HOTEL_PRICE = Hotel_Price;
                 tour_hotel.TOUR_HOTEL_DESCRIPTION = Hotel_Description;
                 tour_hotel.TOUR_HOTEL_IMAGE = Hotel_Image_Byte_Source;
+                tour_hotel.PLACE_ID = CB_PlaceSelected.CB_ID;
 
                 string changeToSave = "";
                 int countChangeToSave = 0;
@@ -667,6 +719,11 @@ namespace TourManagementSystem.Managers.ViewModel
                 if (Hotel_Image_Byte_Source != Hotel_Selected.HOTEL_IMAGE_BYTE_SOURCE)
                 {
                     changeToSave += string.Format("Image Change");
+                    countChangeToSave++;
+                }
+                if (CB_HotelSelected.CB_ID != Hotel_Selected.PLACE_ID)
+                {
+                    changeToSave += string.Format("Place Change ({0} -> {1})    ", Hotel_Selected.PLACE_NAME, CB_HotelSelected.CB_Name);
                     countChangeToSave++;
                 }
 

@@ -13,6 +13,16 @@
           <Property Name="PLACE_NAME" Type="varchar" MaxLength="255" />
           <Property Name="PLACE_NATION" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="TOUR">
           <Key>
             <PropertyRef Name="TOUR_ID" />
@@ -47,6 +57,7 @@
           <Property Name="TOUR_HOTEL_DESCRIPTION" Type="text" />
           <Property Name="TOUR_HOTEL_IMAGE" Type="image" />
           <Property Name="TOUR_HOTEL_EMAIL" Type="varchar" MaxLength="255" />
+          <Property Name="PLACE_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TOUR_HOTEL_DELETE">
           <Key>
@@ -58,14 +69,20 @@
           <Property Name="TOUR_HOTEL_ID" Type="int" Nullable="false" />
           <Property Name="TOUR_HOTEL_DELETE_CONTENT" Type="text" />
         </EntityType>
+        <EntityType Name="TOUR_HOTEL_DETAIL">
+          <Key>
+            <PropertyRef Name="TOUR_HOTEL_DETAIL_ID" />
+          </Key>
+          <Property Name="TOUR_HOTEL_DETAIL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TOUR_INFORMATION_ID" Type="int" Nullable="false" />
+          <Property Name="TOUR_HOTEL_ID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="TOUR_INFORMATION">
           <Key>
             <PropertyRef Name="TOUR_INFORMATION_ID" />
           </Key>
           <Property Name="TOUR_INFORMATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TOUR_ID" Type="int" Nullable="false" />
-          <Property Name="TOUR_HOTEL_ID" Type="int" Nullable="false" />
-          <Property Name="TOUR_TRANSPORT_ID" Type="int" Nullable="false" />
           <Property Name="TOUR_TIME_ID" Type="int" Nullable="false" />
           <Property Name="TOUR_PRICE_ID" Type="int" Nullable="false" />
         </EntityType>
@@ -79,14 +96,6 @@
           <Property Name="TOUR_LOCATION_ADDRESS" Type="text" />
           <Property Name="TOUR_LOCATION_DESCRIPTION" Type="text" />
         </EntityType>
-        <EntityType Name="TOUR_LOCATION_DETAIL">
-          <Key>
-            <PropertyRef Name="TOUR_LOCATION_DETAIL_ID" />
-          </Key>
-          <Property Name="TOUR_LOCATION_DETAIL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TOUR_LOCATION_ID" Type="int" Nullable="false" />
-          <Property Name="TOUR_INFORMATION_ID" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="TOUR_MISSION">
           <Key>
             <PropertyRef Name="TOUR_MISSION_ID" />
@@ -96,6 +105,14 @@
           <Property Name="TOUR_MISSION_RESPONSIBILITY" Type="varchar" MaxLength="255" />
           <Property Name="TOUR_INFORMATION_ID" Type="int" Nullable="false" />
           <Property Name="TOUR_STAFF_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TOUR_PLACE_DETAILED">
+          <Key>
+            <PropertyRef Name="TOUR_PLACE_DETAILED_ID" />
+          </Key>
+          <Property Name="TOUR_PLACE_DETAILED_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PLACE_ID" Type="int" Nullable="false" />
+          <Property Name="TOUR_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TOUR_PRICE">
           <Key>
@@ -193,6 +210,14 @@
           <Property Name="TOUR_TRANSPORT_ID" Type="int" Nullable="false" />
           <Property Name="TOUR_TRANSPORT_DELETE_CONTENT" Type="text" />
         </EntityType>
+        <EntityType Name="TOUR_TRANSPORT_DETAIL">
+          <Key>
+            <PropertyRef Name="TOUR_TRANSPORT_DETAIL_ID" />
+          </Key>
+          <Property Name="TOUR_TRANSPORT_DETAIL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TOUR_TRANSPORT_ID" Type="int" Nullable="false" />
+          <Property Name="TOUR_INFORMATION_ID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="TRAVEL_COST">
           <Key>
             <PropertyRef Name="TRAVEL_COST_ID" />
@@ -256,6 +281,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__TOUR_HOTE__PLACE__73852659">
+          <End Role="PLACE" Type="Self.PLACE" Multiplicity="1" />
+          <End Role="TOUR_HOTEL" Type="Self.TOUR_HOTEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLACE">
+              <PropertyRef Name="PLACE_ID" />
+            </Principal>
+            <Dependent Role="TOUR_HOTEL">
+              <PropertyRef Name="PLACE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__TOUR_HOTE__TOUR___2BFE89A6">
           <End Role="TOUR_HOTEL" Type="Self.TOUR_HOTEL" Multiplicity="1" />
           <End Role="TOUR_HOTEL_DELETE" Type="Self.TOUR_HOTEL_DELETE" Multiplicity="*" />
@@ -268,7 +305,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_INFO__TOUR___498EEC8D">
+        <Association Name="FK__TOUR_HOTE__TOUR___6DCC4D03">
+          <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="1" />
+          <End Role="TOUR_HOTEL_DETAIL" Type="Self.TOUR_HOTEL_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_INFORMATION">
+              <PropertyRef Name="TOUR_INFORMATION_ID" />
+            </Principal>
+            <Dependent Role="TOUR_HOTEL_DETAIL">
+              <PropertyRef Name="TOUR_INFORMATION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_HOTE__TOUR___6EC0713C">
+          <End Role="TOUR_HOTEL" Type="Self.TOUR_HOTEL" Multiplicity="1" />
+          <End Role="TOUR_HOTEL_DETAIL" Type="Self.TOUR_HOTEL_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_HOTEL">
+              <PropertyRef Name="TOUR_HOTEL_ID" />
+            </Principal>
+            <Dependent Role="TOUR_HOTEL_DETAIL">
+              <PropertyRef Name="TOUR_HOTEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_INFO__TOUR___6FB49575">
           <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
           <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -280,31 +341,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_INFO__TOUR___4A8310C6">
-          <End Role="TOUR_HOTEL" Type="Self.TOUR_HOTEL" Multiplicity="1" />
-          <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TOUR_HOTEL">
-              <PropertyRef Name="TOUR_HOTEL_ID" />
-            </Principal>
-            <Dependent Role="TOUR_INFORMATION">
-              <PropertyRef Name="TOUR_HOTEL_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TOUR_INFO__TOUR___4B7734FF">
-          <End Role="TOUR_TRANSPORT" Type="Self.TOUR_TRANSPORT" Multiplicity="1" />
-          <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TOUR_TRANSPORT">
-              <PropertyRef Name="TOUR_TRANSPORT_ID" />
-            </Principal>
-            <Dependent Role="TOUR_INFORMATION">
-              <PropertyRef Name="TOUR_TRANSPORT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TOUR_INFO__TOUR___4C6B5938">
+        <Association Name="FK__TOUR_INFO__TOUR___70A8B9AE">
           <End Role="TOUR_TIME" Type="Self.TOUR_TIME" Multiplicity="1" />
           <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -316,7 +353,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_INFO__TOUR___4D5F7D71">
+        <Association Name="FK__TOUR_INFO__TOUR___719CDDE7">
           <End Role="TOUR_PRICE" Type="Self.TOUR_PRICE" Multiplicity="1" />
           <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -337,30 +374,6 @@
             </Principal>
             <Dependent Role="TOUR_LOCATION">
               <PropertyRef Name="PLACE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TOUR_LOCA__TOUR___56E8E7AB">
-          <End Role="TOUR_LOCATION" Type="Self.TOUR_LOCATION" Multiplicity="1" />
-          <End Role="TOUR_LOCATION_DETAIL" Type="Self.TOUR_LOCATION_DETAIL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TOUR_LOCATION">
-              <PropertyRef Name="TOUR_LOCATION_ID" />
-            </Principal>
-            <Dependent Role="TOUR_LOCATION_DETAIL">
-              <PropertyRef Name="TOUR_LOCATION_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TOUR_LOCA__TOUR___57DD0BE4">
-          <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="1" />
-          <End Role="TOUR_LOCATION_DETAIL" Type="Self.TOUR_LOCATION_DETAIL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TOUR_INFORMATION">
-              <PropertyRef Name="TOUR_INFORMATION_ID" />
-            </Principal>
-            <Dependent Role="TOUR_LOCATION_DETAIL">
-              <PropertyRef Name="TOUR_INFORMATION_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -388,6 +401,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__TOUR_PLAC__PLACE__662B2B3B">
+          <End Role="PLACE" Type="Self.PLACE" Multiplicity="1" />
+          <End Role="TOUR_PLACE_DETAILED" Type="Self.TOUR_PLACE_DETAILED" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLACE">
+              <PropertyRef Name="PLACE_ID" />
+            </Principal>
+            <Dependent Role="TOUR_PLACE_DETAILED">
+              <PropertyRef Name="PLACE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_PLAC__TOUR___671F4F74">
+          <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
+          <End Role="TOUR_PLACE_DETAILED" Type="Self.TOUR_PLACE_DETAILED" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR">
+              <PropertyRef Name="TOUR_ID" />
+            </Principal>
+            <Dependent Role="TOUR_PLACE_DETAILED">
+              <PropertyRef Name="TOUR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__TOUR_PRIC__TOUR___3C34F16F">
           <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
           <End Role="TOUR_PRICE" Type="Self.TOUR_PRICE" Multiplicity="*" />
@@ -412,7 +449,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_SCHE__TOUR___540C7B00">
+        <Association Name="FK__TOUR_SCHE__TOUR___72910220">
           <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="1" />
           <End Role="TOUR_SCHEDULE" Type="Self.TOUR_SCHEDULE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -456,6 +493,30 @@
               <PropertyRef Name="TOUR_TRANSPORT_ID" />
             </Principal>
             <Dependent Role="TOUR_TRANSPORT_DELETE">
+              <PropertyRef Name="TOUR_TRANSPORT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_TRAN__TOUR___69FBBC1F">
+          <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="1" />
+          <End Role="TOUR_TRANSPORT_DETAIL" Type="Self.TOUR_TRANSPORT_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_INFORMATION">
+              <PropertyRef Name="TOUR_INFORMATION_ID" />
+            </Principal>
+            <Dependent Role="TOUR_TRANSPORT_DETAIL">
+              <PropertyRef Name="TOUR_INFORMATION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_TRAN__TOUR___6AEFE058">
+          <End Role="TOUR_TRANSPORT" Type="Self.TOUR_TRANSPORT" Multiplicity="1" />
+          <End Role="TOUR_TRANSPORT_DETAIL" Type="Self.TOUR_TRANSPORT_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_TRANSPORT">
+              <PropertyRef Name="TOUR_TRANSPORT_ID" />
+            </Principal>
+            <Dependent Role="TOUR_TRANSPORT_DETAIL">
               <PropertyRef Name="TOUR_TRANSPORT_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -522,14 +583,16 @@
         </Association>
         <EntityContainer Name="Tour_Mangement_DatabaseModelStoreContainer">
           <EntitySet Name="PLACE" EntityType="Self.PLACE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR" EntityType="Self.TOUR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_ACCOUNT" EntityType="Self.TOUR_ACCOUNT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_HOTEL" EntityType="Self.TOUR_HOTEL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_HOTEL_DELETE" EntityType="Self.TOUR_HOTEL_DELETE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOUR_HOTEL_DETAIL" EntityType="Self.TOUR_HOTEL_DETAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_INFORMATION" EntityType="Self.TOUR_INFORMATION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_LOCATION" EntityType="Self.TOUR_LOCATION" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TOUR_LOCATION_DETAIL" EntityType="Self.TOUR_LOCATION_DETAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_MISSION" EntityType="Self.TOUR_MISSION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOUR_PLACE_DETAILED" EntityType="Self.TOUR_PLACE_DETAILED" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_PRICE" EntityType="Self.TOUR_PRICE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_RECORD" EntityType="Self.TOUR_RECORD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_SCHEDULE" EntityType="Self.TOUR_SCHEDULE" Schema="dbo" store:Type="Tables" />
@@ -538,6 +601,7 @@
           <EntitySet Name="TOUR_TIME" EntityType="Self.TOUR_TIME" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_TRANSPORT" EntityType="Self.TOUR_TRANSPORT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_TRANSPORT_DELETE" EntityType="Self.TOUR_TRANSPORT_DELETE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOUR_TRANSPORT_DETAIL" EntityType="Self.TOUR_TRANSPORT_DETAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRAVEL_COST" EntityType="Self.TRAVEL_COST" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRAVEL_GROUP" EntityType="Self.TRAVEL_GROUP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRAVELLER" EntityType="Self.TRAVELLER" Schema="dbo" store:Type="Tables" />
@@ -547,41 +611,37 @@
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
             <End Role="TOUR_ACCOUNT" EntitySet="TOUR_ACCOUNT" />
           </AssociationSet>
+          <AssociationSet Name="FK__TOUR_HOTE__PLACE__73852659" Association="Self.FK__TOUR_HOTE__PLACE__73852659">
+            <End Role="PLACE" EntitySet="PLACE" />
+            <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
+          </AssociationSet>
           <AssociationSet Name="FK__TOUR_HOTE__TOUR___2BFE89A6" Association="Self.FK__TOUR_HOTE__TOUR___2BFE89A6">
             <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
             <End Role="TOUR_HOTEL_DELETE" EntitySet="TOUR_HOTEL_DELETE" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_INFO__TOUR___498EEC8D" Association="Self.FK__TOUR_INFO__TOUR___498EEC8D">
+          <AssociationSet Name="FK__TOUR_HOTE__TOUR___6DCC4D03" Association="Self.FK__TOUR_HOTE__TOUR___6DCC4D03">
+            <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
+            <End Role="TOUR_HOTEL_DETAIL" EntitySet="TOUR_HOTEL_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_HOTE__TOUR___6EC0713C" Association="Self.FK__TOUR_HOTE__TOUR___6EC0713C">
+            <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
+            <End Role="TOUR_HOTEL_DETAIL" EntitySet="TOUR_HOTEL_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_INFO__TOUR___6FB49575" Association="Self.FK__TOUR_INFO__TOUR___6FB49575">
             <End Role="TOUR" EntitySet="TOUR" />
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_INFO__TOUR___4A8310C6" Association="Self.FK__TOUR_INFO__TOUR___4A8310C6">
-            <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
-            <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TOUR_INFO__TOUR___4B7734FF" Association="Self.FK__TOUR_INFO__TOUR___4B7734FF">
-            <End Role="TOUR_TRANSPORT" EntitySet="TOUR_TRANSPORT" />
-            <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TOUR_INFO__TOUR___4C6B5938" Association="Self.FK__TOUR_INFO__TOUR___4C6B5938">
+          <AssociationSet Name="FK__TOUR_INFO__TOUR___70A8B9AE" Association="Self.FK__TOUR_INFO__TOUR___70A8B9AE">
             <End Role="TOUR_TIME" EntitySet="TOUR_TIME" />
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_INFO__TOUR___4D5F7D71" Association="Self.FK__TOUR_INFO__TOUR___4D5F7D71">
+          <AssociationSet Name="FK__TOUR_INFO__TOUR___719CDDE7" Association="Self.FK__TOUR_INFO__TOUR___719CDDE7">
             <End Role="TOUR_PRICE" EntitySet="TOUR_PRICE" />
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
           </AssociationSet>
           <AssociationSet Name="FK__TOUR_LOCA__PLACE__68487DD7" Association="Self.FK__TOUR_LOCA__PLACE__68487DD7">
             <End Role="PLACE" EntitySet="PLACE" />
             <End Role="TOUR_LOCATION" EntitySet="TOUR_LOCATION" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TOUR_LOCA__TOUR___56E8E7AB" Association="Self.FK__TOUR_LOCA__TOUR___56E8E7AB">
-            <End Role="TOUR_LOCATION" EntitySet="TOUR_LOCATION" />
-            <End Role="TOUR_LOCATION_DETAIL" EntitySet="TOUR_LOCATION_DETAIL" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TOUR_LOCA__TOUR___57DD0BE4" Association="Self.FK__TOUR_LOCA__TOUR___57DD0BE4">
-            <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
-            <End Role="TOUR_LOCATION_DETAIL" EntitySet="TOUR_LOCATION_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK__TOUR_MISS__TOUR___503BEA1C" Association="Self.FK__TOUR_MISS__TOUR___503BEA1C">
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
@@ -591,6 +651,14 @@
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
             <End Role="TOUR_MISSION" EntitySet="TOUR_MISSION" />
           </AssociationSet>
+          <AssociationSet Name="FK__TOUR_PLAC__PLACE__662B2B3B" Association="Self.FK__TOUR_PLAC__PLACE__662B2B3B">
+            <End Role="PLACE" EntitySet="PLACE" />
+            <End Role="TOUR_PLACE_DETAILED" EntitySet="TOUR_PLACE_DETAILED" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_PLAC__TOUR___671F4F74" Association="Self.FK__TOUR_PLAC__TOUR___671F4F74">
+            <End Role="TOUR" EntitySet="TOUR" />
+            <End Role="TOUR_PLACE_DETAILED" EntitySet="TOUR_PLACE_DETAILED" />
+          </AssociationSet>
           <AssociationSet Name="FK__TOUR_PRIC__TOUR___3C34F16F" Association="Self.FK__TOUR_PRIC__TOUR___3C34F16F">
             <End Role="TOUR" EntitySet="TOUR" />
             <End Role="TOUR_PRICE" EntitySet="TOUR_PRICE" />
@@ -599,7 +667,7 @@
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
             <End Role="TOUR_RECORD" EntitySet="TOUR_RECORD" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_SCHE__TOUR___540C7B00" Association="Self.FK__TOUR_SCHE__TOUR___540C7B00">
+          <AssociationSet Name="FK__TOUR_SCHE__TOUR___72910220" Association="Self.FK__TOUR_SCHE__TOUR___72910220">
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
             <End Role="TOUR_SCHEDULE" EntitySet="TOUR_SCHEDULE" />
           </AssociationSet>
@@ -614,6 +682,14 @@
           <AssociationSet Name="FK__TOUR_TRAN__TOUR___29221CFB" Association="Self.FK__TOUR_TRAN__TOUR___29221CFB">
             <End Role="TOUR_TRANSPORT" EntitySet="TOUR_TRANSPORT" />
             <End Role="TOUR_TRANSPORT_DELETE" EntitySet="TOUR_TRANSPORT_DELETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_TRAN__TOUR___69FBBC1F" Association="Self.FK__TOUR_TRAN__TOUR___69FBBC1F">
+            <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
+            <End Role="TOUR_TRANSPORT_DETAIL" EntitySet="TOUR_TRANSPORT_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_TRAN__TOUR___6AEFE058" Association="Self.FK__TOUR_TRAN__TOUR___6AEFE058">
+            <End Role="TOUR_TRANSPORT" EntitySet="TOUR_TRANSPORT" />
+            <End Role="TOUR_TRANSPORT_DETAIL" EntitySet="TOUR_TRANSPORT_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK__TRAVEL_GR__TOUR___3D2915A8" Association="Self.FK__TRAVEL_GR__TOUR___3D2915A8">
             <End Role="TOUR" EntitySet="TOUR" />
@@ -648,7 +724,19 @@
           <Property Name="PLACE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PLACE_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="PLACE_NATION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TOUR_HOTEL" Relationship="Self.FK__TOUR_HOTE__PLACE__73852659" FromRole="PLACE" ToRole="TOUR_HOTEL" />
           <NavigationProperty Name="TOUR_LOCATION" Relationship="Self.FK__TOUR_LOCA__PLACE__68487DD7" FromRole="PLACE" ToRole="TOUR_LOCATION" />
+          <NavigationProperty Name="TOUR_PLACE_DETAILED" Relationship="Self.FK__TOUR_PLAC__PLACE__662B2B3B" FromRole="PLACE" ToRole="TOUR_PLACE_DETAILED" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TOUR">
           <Key>
@@ -660,7 +748,8 @@
           <Property Name="TOUR_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="TOUR_IS_EXIST" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___498EEC8D" FromRole="TOUR" ToRole="TOUR_INFORMATION" />
+          <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___6FB49575" FromRole="TOUR" ToRole="TOUR_INFORMATION" />
+          <NavigationProperty Name="TOUR_PLACE_DETAILED" Relationship="Self.FK__TOUR_PLAC__TOUR___671F4F74" FromRole="TOUR" ToRole="TOUR_PLACE_DETAILED" />
           <NavigationProperty Name="TOUR_PRICE" Relationship="Self.FK__TOUR_PRIC__TOUR___3C34F16F" FromRole="TOUR" ToRole="TOUR_PRICE" />
           <NavigationProperty Name="TOUR_TIME" Relationship="Self.FK__TOUR_TIME__TOUR___40058253" FromRole="TOUR" ToRole="TOUR_TIME" />
           <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVEL_GR__TOUR___3D2915A8" FromRole="TOUR" ToRole="TRAVEL_GROUP" />
@@ -689,8 +778,10 @@
           <Property Name="TOUR_HOTEL_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_HOTEL_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="TOUR_HOTEL_EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PLACE_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PLACE" Relationship="Self.FK__TOUR_HOTE__PLACE__73852659" FromRole="TOUR_HOTEL" ToRole="PLACE" />
           <NavigationProperty Name="TOUR_HOTEL_DELETE" Relationship="Self.FK__TOUR_HOTE__TOUR___2BFE89A6" FromRole="TOUR_HOTEL" ToRole="TOUR_HOTEL_DELETE" />
-          <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___4A8310C6" FromRole="TOUR_HOTEL" ToRole="TOUR_INFORMATION" />
+          <NavigationProperty Name="TOUR_HOTEL_DETAIL" Relationship="Self.FK__TOUR_HOTE__TOUR___6EC0713C" FromRole="TOUR_HOTEL" ToRole="TOUR_HOTEL_DETAIL" />
         </EntityType>
         <EntityType Name="TOUR_HOTEL_DELETE">
           <Key>
@@ -703,24 +794,31 @@
           <Property Name="TOUR_HOTEL_DELETE_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TOUR_HOTEL" Relationship="Self.FK__TOUR_HOTE__TOUR___2BFE89A6" FromRole="TOUR_HOTEL_DELETE" ToRole="TOUR_HOTEL" />
         </EntityType>
+        <EntityType Name="TOUR_HOTEL_DETAIL">
+          <Key>
+            <PropertyRef Name="TOUR_HOTEL_DETAIL_ID" />
+          </Key>
+          <Property Name="TOUR_HOTEL_DETAIL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TOUR_INFORMATION_ID" Type="Int32" Nullable="false" />
+          <Property Name="TOUR_HOTEL_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TOUR_HOTEL" Relationship="Self.FK__TOUR_HOTE__TOUR___6EC0713C" FromRole="TOUR_HOTEL_DETAIL" ToRole="TOUR_HOTEL" />
+          <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_HOTE__TOUR___6DCC4D03" FromRole="TOUR_HOTEL_DETAIL" ToRole="TOUR_INFORMATION" />
+        </EntityType>
         <EntityType Name="TOUR_INFORMATION">
           <Key>
             <PropertyRef Name="TOUR_INFORMATION_ID" />
           </Key>
           <Property Name="TOUR_INFORMATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
-          <Property Name="TOUR_HOTEL_ID" Type="Int32" Nullable="false" />
-          <Property Name="TOUR_TRANSPORT_ID" Type="Int32" Nullable="false" />
           <Property Name="TOUR_TIME_ID" Type="Int32" Nullable="false" />
           <Property Name="TOUR_PRICE_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TOUR" Relationship="Self.FK__TOUR_INFO__TOUR___498EEC8D" FromRole="TOUR_INFORMATION" ToRole="TOUR" />
-          <NavigationProperty Name="TOUR_HOTEL" Relationship="Self.FK__TOUR_INFO__TOUR___4A8310C6" FromRole="TOUR_INFORMATION" ToRole="TOUR_HOTEL" />
-          <NavigationProperty Name="TOUR_TRANSPORT" Relationship="Self.FK__TOUR_INFO__TOUR___4B7734FF" FromRole="TOUR_INFORMATION" ToRole="TOUR_TRANSPORT" />
-          <NavigationProperty Name="TOUR_TIME" Relationship="Self.FK__TOUR_INFO__TOUR___4C6B5938" FromRole="TOUR_INFORMATION" ToRole="TOUR_TIME" />
-          <NavigationProperty Name="TOUR_PRICE" Relationship="Self.FK__TOUR_INFO__TOUR___4D5F7D71" FromRole="TOUR_INFORMATION" ToRole="TOUR_PRICE" />
-          <NavigationProperty Name="TOUR_LOCATION_DETAIL" Relationship="Self.FK__TOUR_LOCA__TOUR___57DD0BE4" FromRole="TOUR_INFORMATION" ToRole="TOUR_LOCATION_DETAIL" />
+          <NavigationProperty Name="TOUR" Relationship="Self.FK__TOUR_INFO__TOUR___6FB49575" FromRole="TOUR_INFORMATION" ToRole="TOUR" />
+          <NavigationProperty Name="TOUR_HOTEL_DETAIL" Relationship="Self.FK__TOUR_HOTE__TOUR___6DCC4D03" FromRole="TOUR_INFORMATION" ToRole="TOUR_HOTEL_DETAIL" />
+          <NavigationProperty Name="TOUR_TIME" Relationship="Self.FK__TOUR_INFO__TOUR___70A8B9AE" FromRole="TOUR_INFORMATION" ToRole="TOUR_TIME" />
+          <NavigationProperty Name="TOUR_PRICE" Relationship="Self.FK__TOUR_INFO__TOUR___719CDDE7" FromRole="TOUR_INFORMATION" ToRole="TOUR_PRICE" />
           <NavigationProperty Name="TOUR_MISSION" Relationship="Self.FK__TOUR_MISS__TOUR___503BEA1C" FromRole="TOUR_INFORMATION" ToRole="TOUR_MISSION" />
-          <NavigationProperty Name="TOUR_SCHEDULE" Relationship="Self.FK__TOUR_SCHE__TOUR___540C7B00" FromRole="TOUR_INFORMATION" ToRole="TOUR_SCHEDULE" />
+          <NavigationProperty Name="TOUR_SCHEDULE" Relationship="Self.FK__TOUR_SCHE__TOUR___72910220" FromRole="TOUR_INFORMATION" ToRole="TOUR_SCHEDULE" />
+          <NavigationProperty Name="TOUR_TRANSPORT_DETAIL" Relationship="Self.FK__TOUR_TRAN__TOUR___69FBBC1F" FromRole="TOUR_INFORMATION" ToRole="TOUR_TRANSPORT_DETAIL" />
         </EntityType>
         <EntityType Name="TOUR_LOCATION">
           <Key>
@@ -732,17 +830,6 @@
           <Property Name="TOUR_LOCATION_ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_LOCATION_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PLACE" Relationship="Self.FK__TOUR_LOCA__PLACE__68487DD7" FromRole="TOUR_LOCATION" ToRole="PLACE" />
-          <NavigationProperty Name="TOUR_LOCATION_DETAIL" Relationship="Self.FK__TOUR_LOCA__TOUR___56E8E7AB" FromRole="TOUR_LOCATION" ToRole="TOUR_LOCATION_DETAIL" />
-        </EntityType>
-        <EntityType Name="TOUR_LOCATION_DETAIL">
-          <Key>
-            <PropertyRef Name="TOUR_LOCATION_DETAIL_ID" />
-          </Key>
-          <Property Name="TOUR_LOCATION_DETAIL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TOUR_LOCATION_ID" Type="Int32" Nullable="false" />
-          <Property Name="TOUR_INFORMATION_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_LOCA__TOUR___57DD0BE4" FromRole="TOUR_LOCATION_DETAIL" ToRole="TOUR_INFORMATION" />
-          <NavigationProperty Name="TOUR_LOCATION" Relationship="Self.FK__TOUR_LOCA__TOUR___56E8E7AB" FromRole="TOUR_LOCATION_DETAIL" ToRole="TOUR_LOCATION" />
         </EntityType>
         <EntityType Name="TOUR_MISSION">
           <Key>
@@ -755,6 +842,16 @@
           <Property Name="TOUR_STAFF_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_MISS__TOUR___503BEA1C" FromRole="TOUR_MISSION" ToRole="TOUR_INFORMATION" />
           <NavigationProperty Name="TOUR_STAFF" Relationship="Self.FK__TOUR_MISS__TOUR___51300E55" FromRole="TOUR_MISSION" ToRole="TOUR_STAFF" />
+        </EntityType>
+        <EntityType Name="TOUR_PLACE_DETAILED">
+          <Key>
+            <PropertyRef Name="TOUR_PLACE_DETAILED_ID" />
+          </Key>
+          <Property Name="TOUR_PLACE_DETAILED_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PLACE_ID" Type="Int32" Nullable="false" />
+          <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PLACE" Relationship="Self.FK__TOUR_PLAC__PLACE__662B2B3B" FromRole="TOUR_PLACE_DETAILED" ToRole="PLACE" />
+          <NavigationProperty Name="TOUR" Relationship="Self.FK__TOUR_PLAC__TOUR___671F4F74" FromRole="TOUR_PLACE_DETAILED" ToRole="TOUR" />
         </EntityType>
         <EntityType Name="TOUR_PRICE">
           <Key>
@@ -769,7 +866,7 @@
           <Property Name="TOUR_PRICE_DATE" Type="DateTime" Precision="3" />
           <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TOUR" Relationship="Self.FK__TOUR_PRIC__TOUR___3C34F16F" FromRole="TOUR_PRICE" ToRole="TOUR" />
-          <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___4D5F7D71" FromRole="TOUR_PRICE" ToRole="TOUR_INFORMATION" />
+          <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___719CDDE7" FromRole="TOUR_PRICE" ToRole="TOUR_INFORMATION" />
         </EntityType>
         <EntityType Name="TOUR_RECORD">
           <Key>
@@ -789,7 +886,7 @@
           <Property Name="TOUR_SCHEDULE_DAY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_SCHEDULE_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_INFORMATION_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_SCHE__TOUR___540C7B00" FromRole="TOUR_SCHEDULE" ToRole="TOUR_INFORMATION" />
+          <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_SCHE__TOUR___72910220" FromRole="TOUR_SCHEDULE" ToRole="TOUR_INFORMATION" />
         </EntityType>
         <EntityType Name="TOUR_STAFF">
           <Key>
@@ -838,7 +935,7 @@
           <Property Name="TOUR_TIME_NIGHT" Type="Boolean" />
           <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TOUR" Relationship="Self.FK__TOUR_TIME__TOUR___40058253" FromRole="TOUR_TIME" ToRole="TOUR" />
-          <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___4C6B5938" FromRole="TOUR_TIME" ToRole="TOUR_INFORMATION" />
+          <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___70A8B9AE" FromRole="TOUR_TIME" ToRole="TOUR_INFORMATION" />
         </EntityType>
         <EntityType Name="TOUR_TRANSPORT">
           <Key>
@@ -852,8 +949,8 @@
           <Property Name="TOUR_TRANSPORT_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="TOUR_TRANSPORT_START_DATE" Type="DateTime" Precision="3" />
           <Property Name="TOUR_TRANSPORT_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___4B7734FF" FromRole="TOUR_TRANSPORT" ToRole="TOUR_INFORMATION" />
           <NavigationProperty Name="TOUR_TRANSPORT_DELETE" Relationship="Self.FK__TOUR_TRAN__TOUR___29221CFB" FromRole="TOUR_TRANSPORT" ToRole="TOUR_TRANSPORT_DELETE" />
+          <NavigationProperty Name="TOUR_TRANSPORT_DETAIL" Relationship="Self.FK__TOUR_TRAN__TOUR___6AEFE058" FromRole="TOUR_TRANSPORT" ToRole="TOUR_TRANSPORT_DETAIL" />
         </EntityType>
         <EntityType Name="TOUR_TRANSPORT_DELETE">
           <Key>
@@ -865,6 +962,16 @@
           <Property Name="TOUR_TRANSPORT_ID" Type="Int32" Nullable="false" />
           <Property Name="TOUR_TRANSPORT_DELETE_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TOUR_TRANSPORT" Relationship="Self.FK__TOUR_TRAN__TOUR___29221CFB" FromRole="TOUR_TRANSPORT_DELETE" ToRole="TOUR_TRANSPORT" />
+        </EntityType>
+        <EntityType Name="TOUR_TRANSPORT_DETAIL">
+          <Key>
+            <PropertyRef Name="TOUR_TRANSPORT_DETAIL_ID" />
+          </Key>
+          <Property Name="TOUR_TRANSPORT_DETAIL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TOUR_TRANSPORT_ID" Type="Int32" Nullable="false" />
+          <Property Name="TOUR_INFORMATION_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_TRAN__TOUR___69FBBC1F" FromRole="TOUR_TRANSPORT_DETAIL" ToRole="TOUR_INFORMATION" />
+          <NavigationProperty Name="TOUR_TRANSPORT" Relationship="Self.FK__TOUR_TRAN__TOUR___6AEFE058" FromRole="TOUR_TRANSPORT_DETAIL" ToRole="TOUR_TRANSPORT" />
         </EntityType>
         <EntityType Name="TRAVEL_COST">
           <Key>
@@ -926,6 +1033,18 @@
           <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVELLER__TRAVE__07C12930" FromRole="TRAVELLER_DETAIL" ToRole="TRAVEL_GROUP" />
           <NavigationProperty Name="TRAVELLER" Relationship="Self.FK__TRAVELLER__TRAVE__08B54D69" FromRole="TRAVELLER_DETAIL" ToRole="TRAVELLER" />
         </EntityType>
+        <Association Name="FK__TOUR_HOTE__PLACE__73852659">
+          <End Role="PLACE" Type="Self.PLACE" Multiplicity="1" />
+          <End Role="TOUR_HOTEL" Type="Self.TOUR_HOTEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLACE">
+              <PropertyRef Name="PLACE_ID" />
+            </Principal>
+            <Dependent Role="TOUR_HOTEL">
+              <PropertyRef Name="PLACE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__TOUR_LOCA__PLACE__68487DD7">
           <End Role="PLACE" Type="Self.PLACE" Multiplicity="1" />
           <End Role="TOUR_LOCATION" Type="Self.TOUR_LOCATION" Multiplicity="*" />
@@ -938,7 +1057,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_INFO__TOUR___498EEC8D">
+        <Association Name="FK__TOUR_PLAC__PLACE__662B2B3B">
+          <End Role="PLACE" Type="Self.PLACE" Multiplicity="1" />
+          <End Role="TOUR_PLACE_DETAILED" Type="Self.TOUR_PLACE_DETAILED" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLACE">
+              <PropertyRef Name="PLACE_ID" />
+            </Principal>
+            <Dependent Role="TOUR_PLACE_DETAILED">
+              <PropertyRef Name="PLACE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_INFO__TOUR___6FB49575">
           <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
           <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -946,6 +1077,18 @@
               <PropertyRef Name="TOUR_ID" />
             </Principal>
             <Dependent Role="TOUR_INFORMATION">
+              <PropertyRef Name="TOUR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_PLAC__TOUR___671F4F74">
+          <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
+          <End Role="TOUR_PLACE_DETAILED" Type="Self.TOUR_PLACE_DETAILED" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR">
+              <PropertyRef Name="TOUR_ID" />
+            </Principal>
+            <Dependent Role="TOUR_PLACE_DETAILED">
               <PropertyRef Name="TOUR_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1010,31 +1153,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_INFO__TOUR___4A8310C6">
+        <Association Name="FK__TOUR_HOTE__TOUR___6EC0713C">
           <End Role="TOUR_HOTEL" Type="Self.TOUR_HOTEL" Multiplicity="1" />
-          <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="*" />
+          <End Role="TOUR_HOTEL_DETAIL" Type="Self.TOUR_HOTEL_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TOUR_HOTEL">
               <PropertyRef Name="TOUR_HOTEL_ID" />
             </Principal>
-            <Dependent Role="TOUR_INFORMATION">
+            <Dependent Role="TOUR_HOTEL_DETAIL">
               <PropertyRef Name="TOUR_HOTEL_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_INFO__TOUR___4B7734FF">
-          <End Role="TOUR_TRANSPORT" Type="Self.TOUR_TRANSPORT" Multiplicity="1" />
-          <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="*" />
+        <Association Name="FK__TOUR_HOTE__TOUR___6DCC4D03">
+          <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="1" />
+          <End Role="TOUR_HOTEL_DETAIL" Type="Self.TOUR_HOTEL_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TOUR_TRANSPORT">
-              <PropertyRef Name="TOUR_TRANSPORT_ID" />
+            <Principal Role="TOUR_INFORMATION">
+              <PropertyRef Name="TOUR_INFORMATION_ID" />
             </Principal>
-            <Dependent Role="TOUR_INFORMATION">
-              <PropertyRef Name="TOUR_TRANSPORT_ID" />
+            <Dependent Role="TOUR_HOTEL_DETAIL">
+              <PropertyRef Name="TOUR_INFORMATION_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_INFO__TOUR___4C6B5938">
+        <Association Name="FK__TOUR_INFO__TOUR___70A8B9AE">
           <End Role="TOUR_TIME" Type="Self.TOUR_TIME" Multiplicity="1" />
           <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1046,7 +1189,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_INFO__TOUR___4D5F7D71">
+        <Association Name="FK__TOUR_INFO__TOUR___719CDDE7">
           <End Role="TOUR_PRICE" Type="Self.TOUR_PRICE" Multiplicity="1" />
           <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1055,18 +1198,6 @@
             </Principal>
             <Dependent Role="TOUR_INFORMATION">
               <PropertyRef Name="TOUR_PRICE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TOUR_LOCA__TOUR___57DD0BE4">
-          <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="1" />
-          <End Role="TOUR_LOCATION_DETAIL" Type="Self.TOUR_LOCATION_DETAIL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TOUR_INFORMATION">
-              <PropertyRef Name="TOUR_INFORMATION_ID" />
-            </Principal>
-            <Dependent Role="TOUR_LOCATION_DETAIL">
-              <PropertyRef Name="TOUR_INFORMATION_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1082,7 +1213,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_SCHE__TOUR___540C7B00">
+        <Association Name="FK__TOUR_SCHE__TOUR___72910220">
           <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="1" />
           <End Role="TOUR_SCHEDULE" Type="Self.TOUR_SCHEDULE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1094,15 +1225,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_LOCA__TOUR___56E8E7AB">
-          <End Role="TOUR_LOCATION" Type="Self.TOUR_LOCATION" Multiplicity="1" />
-          <End Role="TOUR_LOCATION_DETAIL" Type="Self.TOUR_LOCATION_DETAIL" Multiplicity="*" />
+        <Association Name="FK__TOUR_TRAN__TOUR___69FBBC1F">
+          <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="1" />
+          <End Role="TOUR_TRANSPORT_DETAIL" Type="Self.TOUR_TRANSPORT_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TOUR_LOCATION">
-              <PropertyRef Name="TOUR_LOCATION_ID" />
+            <Principal Role="TOUR_INFORMATION">
+              <PropertyRef Name="TOUR_INFORMATION_ID" />
             </Principal>
-            <Dependent Role="TOUR_LOCATION_DETAIL">
-              <PropertyRef Name="TOUR_LOCATION_ID" />
+            <Dependent Role="TOUR_TRANSPORT_DETAIL">
+              <PropertyRef Name="TOUR_INFORMATION_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1150,6 +1281,18 @@
               <PropertyRef Name="TOUR_TRANSPORT_ID" />
             </Principal>
             <Dependent Role="TOUR_TRANSPORT_DELETE">
+              <PropertyRef Name="TOUR_TRANSPORT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_TRAN__TOUR___6AEFE058">
+          <End Role="TOUR_TRANSPORT" Type="Self.TOUR_TRANSPORT" Multiplicity="1" />
+          <End Role="TOUR_TRANSPORT_DETAIL" Type="Self.TOUR_TRANSPORT_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_TRANSPORT">
+              <PropertyRef Name="TOUR_TRANSPORT_ID" />
+            </Principal>
+            <Dependent Role="TOUR_TRANSPORT_DETAIL">
               <PropertyRef Name="TOUR_TRANSPORT_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1204,14 +1347,16 @@
         </Association>
         <EntityContainer Name="Tour_Mangement_DatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="PLACEs" EntityType="Self.PLACE" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TOURs" EntityType="Self.TOUR" />
           <EntitySet Name="TOUR_ACCOUNT" EntityType="Self.TOUR_ACCOUNT" />
           <EntitySet Name="TOUR_HOTEL" EntityType="Self.TOUR_HOTEL" />
           <EntitySet Name="TOUR_HOTEL_DELETE" EntityType="Self.TOUR_HOTEL_DELETE" />
+          <EntitySet Name="TOUR_HOTEL_DETAIL" EntityType="Self.TOUR_HOTEL_DETAIL" />
           <EntitySet Name="TOUR_INFORMATION" EntityType="Self.TOUR_INFORMATION" />
           <EntitySet Name="TOUR_LOCATION" EntityType="Self.TOUR_LOCATION" />
-          <EntitySet Name="TOUR_LOCATION_DETAIL" EntityType="Self.TOUR_LOCATION_DETAIL" />
           <EntitySet Name="TOUR_MISSION" EntityType="Self.TOUR_MISSION" />
+          <EntitySet Name="TOUR_PLACE_DETAILED" EntityType="Self.TOUR_PLACE_DETAILED" />
           <EntitySet Name="TOUR_PRICE" EntityType="Self.TOUR_PRICE" />
           <EntitySet Name="TOUR_RECORD" EntityType="Self.TOUR_RECORD" />
           <EntitySet Name="TOUR_SCHEDULE" EntityType="Self.TOUR_SCHEDULE" />
@@ -1220,18 +1365,31 @@
           <EntitySet Name="TOUR_TIME" EntityType="Self.TOUR_TIME" />
           <EntitySet Name="TOUR_TRANSPORT" EntityType="Self.TOUR_TRANSPORT" />
           <EntitySet Name="TOUR_TRANSPORT_DELETE" EntityType="Self.TOUR_TRANSPORT_DELETE" />
+          <EntitySet Name="TOUR_TRANSPORT_DETAIL" EntityType="Self.TOUR_TRANSPORT_DETAIL" />
           <EntitySet Name="TRAVEL_COST" EntityType="Self.TRAVEL_COST" />
           <EntitySet Name="TRAVEL_GROUP" EntityType="Self.TRAVEL_GROUP" />
           <EntitySet Name="TRAVELLERs" EntityType="Self.TRAVELLER" />
           <EntitySet Name="TRAVELLER_ACCOUNT" EntityType="Self.TRAVELLER_ACCOUNT" />
           <EntitySet Name="TRAVELLER_DETAIL" EntityType="Self.TRAVELLER_DETAIL" />
+          <AssociationSet Name="FK__TOUR_HOTE__PLACE__73852659" Association="Self.FK__TOUR_HOTE__PLACE__73852659">
+            <End Role="PLACE" EntitySet="PLACEs" />
+            <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
+          </AssociationSet>
           <AssociationSet Name="FK__TOUR_LOCA__PLACE__68487DD7" Association="Self.FK__TOUR_LOCA__PLACE__68487DD7">
             <End Role="PLACE" EntitySet="PLACEs" />
             <End Role="TOUR_LOCATION" EntitySet="TOUR_LOCATION" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_INFO__TOUR___498EEC8D" Association="Self.FK__TOUR_INFO__TOUR___498EEC8D">
+          <AssociationSet Name="FK__TOUR_PLAC__PLACE__662B2B3B" Association="Self.FK__TOUR_PLAC__PLACE__662B2B3B">
+            <End Role="PLACE" EntitySet="PLACEs" />
+            <End Role="TOUR_PLACE_DETAILED" EntitySet="TOUR_PLACE_DETAILED" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_INFO__TOUR___6FB49575" Association="Self.FK__TOUR_INFO__TOUR___6FB49575">
             <End Role="TOUR" EntitySet="TOURs" />
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_PLAC__TOUR___671F4F74" Association="Self.FK__TOUR_PLAC__TOUR___671F4F74">
+            <End Role="TOUR" EntitySet="TOURs" />
+            <End Role="TOUR_PLACE_DETAILED" EntitySet="TOUR_PLACE_DETAILED" />
           </AssociationSet>
           <AssociationSet Name="FK__TOUR_PRIC__TOUR___3C34F16F" Association="Self.FK__TOUR_PRIC__TOUR___3C34F16F">
             <End Role="TOUR" EntitySet="TOURs" />
@@ -1253,37 +1411,33 @@
             <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
             <End Role="TOUR_HOTEL_DELETE" EntitySet="TOUR_HOTEL_DELETE" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_INFO__TOUR___4A8310C6" Association="Self.FK__TOUR_INFO__TOUR___4A8310C6">
+          <AssociationSet Name="FK__TOUR_HOTE__TOUR___6EC0713C" Association="Self.FK__TOUR_HOTE__TOUR___6EC0713C">
             <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
-            <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
+            <End Role="TOUR_HOTEL_DETAIL" EntitySet="TOUR_HOTEL_DETAIL" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_INFO__TOUR___4B7734FF" Association="Self.FK__TOUR_INFO__TOUR___4B7734FF">
-            <End Role="TOUR_TRANSPORT" EntitySet="TOUR_TRANSPORT" />
+          <AssociationSet Name="FK__TOUR_HOTE__TOUR___6DCC4D03" Association="Self.FK__TOUR_HOTE__TOUR___6DCC4D03">
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
+            <End Role="TOUR_HOTEL_DETAIL" EntitySet="TOUR_HOTEL_DETAIL" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_INFO__TOUR___4C6B5938" Association="Self.FK__TOUR_INFO__TOUR___4C6B5938">
+          <AssociationSet Name="FK__TOUR_INFO__TOUR___70A8B9AE" Association="Self.FK__TOUR_INFO__TOUR___70A8B9AE">
             <End Role="TOUR_TIME" EntitySet="TOUR_TIME" />
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_INFO__TOUR___4D5F7D71" Association="Self.FK__TOUR_INFO__TOUR___4D5F7D71">
+          <AssociationSet Name="FK__TOUR_INFO__TOUR___719CDDE7" Association="Self.FK__TOUR_INFO__TOUR___719CDDE7">
             <End Role="TOUR_PRICE" EntitySet="TOUR_PRICE" />
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TOUR_LOCA__TOUR___57DD0BE4" Association="Self.FK__TOUR_LOCA__TOUR___57DD0BE4">
-            <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
-            <End Role="TOUR_LOCATION_DETAIL" EntitySet="TOUR_LOCATION_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK__TOUR_MISS__TOUR___503BEA1C" Association="Self.FK__TOUR_MISS__TOUR___503BEA1C">
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
             <End Role="TOUR_MISSION" EntitySet="TOUR_MISSION" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_SCHE__TOUR___540C7B00" Association="Self.FK__TOUR_SCHE__TOUR___540C7B00">
+          <AssociationSet Name="FK__TOUR_SCHE__TOUR___72910220" Association="Self.FK__TOUR_SCHE__TOUR___72910220">
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
             <End Role="TOUR_SCHEDULE" EntitySet="TOUR_SCHEDULE" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_LOCA__TOUR___56E8E7AB" Association="Self.FK__TOUR_LOCA__TOUR___56E8E7AB">
-            <End Role="TOUR_LOCATION" EntitySet="TOUR_LOCATION" />
-            <End Role="TOUR_LOCATION_DETAIL" EntitySet="TOUR_LOCATION_DETAIL" />
+          <AssociationSet Name="FK__TOUR_TRAN__TOUR___69FBBC1F" Association="Self.FK__TOUR_TRAN__TOUR___69FBBC1F">
+            <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
+            <End Role="TOUR_TRANSPORT_DETAIL" EntitySet="TOUR_TRANSPORT_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK__TOUR_MISS__TOUR___51300E55" Association="Self.FK__TOUR_MISS__TOUR___51300E55">
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
@@ -1300,6 +1454,10 @@
           <AssociationSet Name="FK__TOUR_TRAN__TOUR___29221CFB" Association="Self.FK__TOUR_TRAN__TOUR___29221CFB">
             <End Role="TOUR_TRANSPORT" EntitySet="TOUR_TRANSPORT" />
             <End Role="TOUR_TRANSPORT_DELETE" EntitySet="TOUR_TRANSPORT_DELETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_TRAN__TOUR___6AEFE058" Association="Self.FK__TOUR_TRAN__TOUR___6AEFE058">
+            <End Role="TOUR_TRANSPORT" EntitySet="TOUR_TRANSPORT" />
+            <End Role="TOUR_TRANSPORT_DETAIL" EntitySet="TOUR_TRANSPORT_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK__TRAVEL_GR__TRAVE__70DDC3D8" Association="Self.FK__TRAVEL_GR__TRAVE__70DDC3D8">
             <End Role="TRAVEL_COST" EntitySet="TRAVEL_COST" />
@@ -1330,6 +1488,17 @@
                 <ScalarProperty Name="PLACE_ID" ColumnName="PLACE_ID" />
                 <ScalarProperty Name="PLACE_NAME" ColumnName="PLACE_NAME" />
                 <ScalarProperty Name="PLACE_NATION" ColumnName="PLACE_NATION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1368,6 +1537,7 @@
                 <ScalarProperty Name="TOUR_HOTEL_DESCRIPTION" ColumnName="TOUR_HOTEL_DESCRIPTION" />
                 <ScalarProperty Name="TOUR_HOTEL_IMAGE" ColumnName="TOUR_HOTEL_IMAGE" />
                 <ScalarProperty Name="TOUR_HOTEL_EMAIL" ColumnName="TOUR_HOTEL_EMAIL" />
+                <ScalarProperty Name="PLACE_ID" ColumnName="PLACE_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1382,13 +1552,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TOUR_HOTEL_DETAIL">
+            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DETAIL">
+              <MappingFragment StoreEntitySet="TOUR_HOTEL_DETAIL">
+                <ScalarProperty Name="TOUR_HOTEL_DETAIL_ID" ColumnName="TOUR_HOTEL_DETAIL_ID" />
+                <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
+                <ScalarProperty Name="TOUR_HOTEL_ID" ColumnName="TOUR_HOTEL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TOUR_INFORMATION">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_INFORMATION">
               <MappingFragment StoreEntitySet="TOUR_INFORMATION">
                 <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
                 <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
-                <ScalarProperty Name="TOUR_HOTEL_ID" ColumnName="TOUR_HOTEL_ID" />
-                <ScalarProperty Name="TOUR_TRANSPORT_ID" ColumnName="TOUR_TRANSPORT_ID" />
                 <ScalarProperty Name="TOUR_TIME_ID" ColumnName="TOUR_TIME_ID" />
                 <ScalarProperty Name="TOUR_PRICE_ID" ColumnName="TOUR_PRICE_ID" />
               </MappingFragment>
@@ -1405,15 +1582,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TOUR_LOCATION_DETAIL">
-            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_LOCATION_DETAIL">
-              <MappingFragment StoreEntitySet="TOUR_LOCATION_DETAIL">
-                <ScalarProperty Name="TOUR_LOCATION_DETAIL_ID" ColumnName="TOUR_LOCATION_DETAIL_ID" />
-                <ScalarProperty Name="TOUR_LOCATION_ID" ColumnName="TOUR_LOCATION_ID" />
-                <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TOUR_MISSION">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_MISSION">
               <MappingFragment StoreEntitySet="TOUR_MISSION">
@@ -1422,6 +1590,15 @@
                 <ScalarProperty Name="TOUR_MISSION_RESPONSIBILITY" ColumnName="TOUR_MISSION_RESPONSIBILITY" />
                 <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
                 <ScalarProperty Name="TOUR_STAFF_ID" ColumnName="TOUR_STAFF_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOUR_PLACE_DETAILED">
+            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_PLACE_DETAILED">
+              <MappingFragment StoreEntitySet="TOUR_PLACE_DETAILED">
+                <ScalarProperty Name="TOUR_PLACE_DETAILED_ID" ColumnName="TOUR_PLACE_DETAILED_ID" />
+                <ScalarProperty Name="PLACE_ID" ColumnName="PLACE_ID" />
+                <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1526,6 +1703,15 @@
                 <ScalarProperty Name="TOUR_TRANSPORT_DELETE_DATE" ColumnName="TOUR_TRANSPORT_DELETE_DATE" />
                 <ScalarProperty Name="TOUR_TRANSPORT_ID" ColumnName="TOUR_TRANSPORT_ID" />
                 <ScalarProperty Name="TOUR_TRANSPORT_DELETE_CONTENT" ColumnName="TOUR_TRANSPORT_DELETE_CONTENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOUR_TRANSPORT_DETAIL">
+            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DETAIL">
+              <MappingFragment StoreEntitySet="TOUR_TRANSPORT_DETAIL">
+                <ScalarProperty Name="TOUR_TRANSPORT_DETAIL_ID" ColumnName="TOUR_TRANSPORT_DETAIL_ID" />
+                <ScalarProperty Name="TOUR_TRANSPORT_ID" ColumnName="TOUR_TRANSPORT_ID" />
+                <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

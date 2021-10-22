@@ -145,7 +145,7 @@
 
                                     </StackPanel>
 
-                                    <StackPanel Margin="0,50,0,0" Orientation="Horizontal">
+                                    <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
 
                                         <materialDesign:PackIcon
                                             Width="30"
@@ -170,6 +170,31 @@
                                                     <Binding.ValidationRules />
                                                 </Binding>
                                             </ComboBox.Text>
+                                        </ComboBox>
+
+                                    </StackPanel>
+
+                                    <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
+
+                                        <materialDesign:PackIcon
+                                            Width="30"
+                                            Height="30"
+                                            VerticalAlignment="Center"
+                                            Foreground="DimGray"
+                                            Kind="PlaceOutline" />
+                                        <ComboBox
+                                            Width="260"
+                                            Margin="10,0,0,0"
+                                            DisplayMemberPath="CB_Name"
+                                            FontSize="18"
+                                            Foreground="DimGray"
+                                            ItemsSource="{Binding CB_PlaceList, Mode=TwoWay}"
+                                            SelectedValue="{Binding CB_PlaceSelected}">
+                                            <ComboBox.ItemContainerStyle>
+                                                <Style TargetType="ComboBoxItem">
+                                                    <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                                                </Style>
+                                            </ComboBox.ItemContainerStyle>
                                         </ComboBox>
 
                                     </StackPanel>

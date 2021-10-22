@@ -12,14 +12,13 @@ namespace TourManagementSystem.Global
     using System;
     using System.Collections.Generic;
     
-    public partial class TOUR_LOCATION
+    public partial class TOUR_HOTEL_DETAIL
     {
-        public int TOUR_LOCATION_ID { get; set; }
-        public string TOUR_LOCATION_NAME { get; set; }
-        public int PLACE_ID { get; set; }
-        public string TOUR_LOCATION_ADDRESS { get; set; }
-        public string TOUR_LOCATION_DESCRIPTION { get; set; }
+        public int TOUR_HOTEL_DETAIL_ID { get; set; }
+        public int TOUR_INFORMATION_ID { get; set; }
+        public int TOUR_HOTEL_ID { get; set; }
     
-        public virtual PLACE PLACE { get; set; }
+        public virtual TOUR_HOTEL TOUR_HOTEL { get; set; }
+        public virtual TOUR_INFORMATION TOUR_INFORMATION { get; set; }
     }
 }

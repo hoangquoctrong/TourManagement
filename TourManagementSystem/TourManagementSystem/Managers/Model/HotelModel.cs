@@ -12,6 +12,12 @@ namespace TourManagementSystem.Managers.Model
         private int _HOTEL_ID;
         public int HOTEL_ID { get => _HOTEL_ID; set { _HOTEL_ID = value; OnPropertyChanged(); } }
 
+        private int _PLACE_ID;
+        public int PLACE_ID { get => _PLACE_ID; set { _PLACE_ID = value; OnPropertyChanged(); } }
+
+        private string _PLACE_NAME;
+        public string PLACE_NAME { get => _PLACE_NAME; set { _PLACE_NAME = value; OnPropertyChanged(); } }
+
         private string _HOTEL_NAME;
         public string HOTEL_NAME { get => _HOTEL_NAME; set { _HOTEL_NAME = value; OnPropertyChanged(); } }
 

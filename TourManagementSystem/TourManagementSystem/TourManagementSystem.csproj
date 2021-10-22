@@ -88,6 +88,9 @@
     <Compile Include="Global\PLACE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Global\sysdiagram.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global\TOUR.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
@@ -115,16 +118,19 @@
     <Compile Include="Global\TOUR_HOTEL_DELETE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Global\TOUR_HOTEL_DETAIL.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global\TOUR_INFORMATION.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global\TOUR_LOCATION.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Global\TOUR_LOCATION_DETAIL.cs">
+    <Compile Include="Global\TOUR_MISSION.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Global\TOUR_MISSION.cs">
+    <Compile Include="Global\TOUR_PLACE_DETAILED.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global\TOUR_PRICE.cs">
@@ -149,6 +155,9 @@
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global\TOUR_TRANSPORT_DELETE.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global\TOUR_TRANSPORT_DETAIL.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global\TRAVELLER.cs">
@@ -198,6 +207,9 @@
     </Compile>
     <Compile Include="Managers\View\AddTimeUC.xaml.cs">
       <DependentUpon>AddTimeUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Managers\View\AddTourInformationUC.xaml.cs">
+      <DependentUpon>AddTourInformationUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Managers\View\AddTourUC.xaml.cs">
       <DependentUpon>AddTourUC.xaml</DependentUpon>
@@ -274,6 +286,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Managers\View\AddTimeUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Managers\View\AddTourInformationUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

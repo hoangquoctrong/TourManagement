@@ -144,7 +144,7 @@
 
                         <TextBox
                             Width="720"
-                            Height="500"
+                            Height="320"
                             Margin="35,10,20,0"
                             HorizontalAlignment="Left"
                             materialDesign:HintAssist.HelperText="Detail about the tour ?"

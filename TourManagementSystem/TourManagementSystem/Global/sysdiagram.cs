@@ -12,14 +12,12 @@ namespace TourManagementSystem.Global
     using System;
     using System.Collections.Generic;
     
-    public partial class TOUR_LOCATION
+    public partial class sysdiagram
     {
-        public int TOUR_LOCATION_ID { get; set; }
-        public string TOUR_LOCATION_NAME { get; set; }
-        public int PLACE_ID { get; set; }
-        public string TOUR_LOCATION_ADDRESS { get; set; }
-        public string TOUR_LOCATION_DESCRIPTION { get; set; }
-    
-        public virtual PLACE PLACE { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
