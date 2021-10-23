@@ -264,7 +264,7 @@
                                     FontFamily="helvetica"
                                     FontSize="24"
                                     Foreground="Black"
-                                    Text="Register Tour Time" />
+                                    Text="Register Tour Place" />
                             </StackPanel>
 
                             <Grid Grid.Row="1" Margin="20">

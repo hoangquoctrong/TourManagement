@@ -176,7 +176,7 @@
                         Header="Type" />
                     <DataGridTextColumn
                         Width="0.5*"
-                        Binding="{Binding TOUR_CHARACTERISTIC}"
+                        Binding="{Binding TOUR_CHARACTERISTIS}"
                         ElementStyle="{StaticResource WrapText}"
                         Foreground="DarkSlateGray"
                         Header="Characteristic" />
