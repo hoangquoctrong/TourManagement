@@ -91,9 +91,8 @@
                                     materialDesign:HintAssist.Hint="Status"
                                     FontSize="18"
                                     Foreground="DimGray">
-                                    <ComboBoxItem Content="Free" />
-                                    <ComboBoxItem Content="Active" />
-                                    <ComboBoxItem Content="Rented" />
+                                    <ComboBoxItem Content="Family Tour" />
+                                    <ComboBoxItem Content="Group Tour" />
                                     <ComboBox.Text>
                                         <Binding
                                             Mode="TwoWay"

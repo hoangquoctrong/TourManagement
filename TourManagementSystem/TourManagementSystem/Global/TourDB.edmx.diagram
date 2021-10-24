@@ -4,39 +4,38 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6474be97f4504ff1864d8b5a4fd9a105" Name="Diagram1">
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.PLACE" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_ACCOUNT" Width="1.5" PointX="7.5" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_HOTEL" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DELETE" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DETAIL" Width="1.5" PointX="7.5" PointY="16.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_INFORMATION" Width="1.5" PointX="5.25" PointY="16.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_LOCATION" Width="1.5" PointX="3" PointY="25.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_MISSION" Width="1.5" PointX="7.5" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_PLACE_DETAILED" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_PRICE" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_RECORD" Width="1.5" PointX="7.5" PointY="29.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_SCHEDULE" Width="1.5" PointX="7.5" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_STAFF" Width="1.5" PointX="5.25" PointY="20.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_STAFF_DELETE" Width="1.5" PointX="7.5" PointY="32.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_TIME" Width="1.5" PointX="3" PointY="21" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT" Width="1.5" PointX="5.25" PointY="26.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DELETE" Width="1.5" PointX="7.5" PointY="26.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DETAIL" Width="1.5" PointX="7.5" PointY="19.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TRAVEL_COST" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TRAVEL_GROUP" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TRAVELLER" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TRAVELLER_ACCOUNT" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TRAVELLER_DETAIL" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+      <Diagram DiagramId="42cdc857dc934087916f8176fc361ffc" Name="Diagram1">
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.PLACE" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.sysdiagram" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_ACCOUNT" Width="1.5" PointX="7.5" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_HOTEL" Width="1.5" PointX="5.25" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DELETE" Width="1.5" PointX="7.5" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DETAIL" Width="1.5" PointX="7.5" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_INFORMATION" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_LOCATION" Width="1.5" PointX="3" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_MISSION" Width="1.5" PointX="7.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_PLACE_DETAILED" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_PRICE" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_RECORD" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_SCHEDULE" Width="1.5" PointX="7.5" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_STAFF" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_STAFF_DELETE" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_TIME" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT" Width="1.5" PointX="5.25" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DELETE" Width="1.5" PointX="7.5" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DETAIL" Width="1.5" PointX="7.5" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TRAVEL_COST" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TRAVEL_GROUP" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TRAVELLER" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TRAVELLER_ACCOUNT" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tour_Mangement_DatabaseModel.TRAVELLER_DETAIL" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
         <AssociationConnector Association="Tour_Mangement_DatabaseModel.FK__TOUR_HOTE__PLACE__73852659" ManuallyRouted="false" />
         <AssociationConnector Association="Tour_Mangement_DatabaseModel.FK__TOUR_LOCA__PLACE__68487DD7" ManuallyRouted="false" />
         <AssociationConnector Association="Tour_Mangement_DatabaseModel.FK__TOUR_PLAC__PLACE__662B2B3B" ManuallyRouted="false" />
         <AssociationConnector Association="Tour_Mangement_DatabaseModel.FK__TOUR_INFO__TOUR___6FB49575" ManuallyRouted="false" />
         <AssociationConnector Association="Tour_Mangement_DatabaseModel.FK__TOUR_PLAC__TOUR___671F4F74" ManuallyRouted="false" />
         <AssociationConnector Association="Tour_Mangement_DatabaseModel.FK__TOUR_PRIC__TOUR___3C34F16F" ManuallyRouted="false" />
-        <AssociationConnector Association="Tour_Mangement_DatabaseModel.FK__TOUR_TIME__TOUR___40058253" ManuallyRouted="false" />
         <AssociationConnector Association="Tour_Mangement_DatabaseModel.FK__TRAVEL_GR__TOUR___3D2915A8" ManuallyRouted="false" />
         <AssociationConnector Association="Tour_Mangement_DatabaseModel.FK__TOUR_ACCO__TOUR___0C85DE4D" ManuallyRouted="false" />
         <AssociationConnector Association="Tour_Mangement_DatabaseModel.FK__TOUR_HOTE__TOUR___2BFE89A6" ManuallyRouted="false" />

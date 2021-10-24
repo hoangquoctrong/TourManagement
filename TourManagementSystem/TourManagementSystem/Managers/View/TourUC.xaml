@@ -125,7 +125,7 @@
                     Margin="20,5,20,5"
                     HorizontalAlignment="Right"
                     Background="#EB7B47"
-                    Command="{Binding StatisticsTourCommand}"
+                    Command="{Binding StatisticTourCommand}"
                     CommandParameter="{Binding ElementName=contentControlMain}"
                     Content="Statistics" />
 

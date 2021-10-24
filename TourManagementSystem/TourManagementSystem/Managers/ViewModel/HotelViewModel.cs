@@ -279,7 +279,6 @@ namespace TourManagementSystem.Managers.ViewModel
         {
             User_ID = user_id;
             LoadHotelUC();
-
         }
 
         /*
@@ -572,7 +571,7 @@ namespace TourManagementSystem.Managers.ViewModel
                 TOUR_HOTEL_EMAIL = Hotel_Email,
                 TOUR_HOTEL_IS_RESTAURANT = Hotel_Is_Restaurant,
                 TOUR_HOTEL_PRICE = Hotel_Price,
-                TOUR_HOTEL_DESCRIPTION = string.IsNullOrEmpty(_Hotel_Description) ? "" : Hotel_Description,
+                TOUR_HOTEL_DESCRIPTION = string.IsNullOrEmpty(Hotel_Description) ? "" : Hotel_Description,
                 TOUR_HOTEL_IMAGE = Hotel_Image_Byte_Source,
                 PLACE_ID = CB_PlaceSelected.CB_ID
             };

@@ -180,7 +180,6 @@
     <Property Name="TOUR_TIME_END_DATE" Type="datetime" />
     <Property Name="TOUR_TIME_DAY" Type="bit" />
     <Property Name="TOUR_TIME_NIGHT" Type="bit" />
-    <Property Name="TOUR_ID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TOUR_TRANSPORT">
     <Key>
@@ -468,18 +467,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__TOUR_TIME__TOUR___40058253">
-    <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
-    <End Role="TOUR_TIME" Type="Self.TOUR_TIME" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TOUR">
-        <PropertyRef Name="TOUR_ID" />
-      </Principal>
-      <Dependent Role="TOUR_TIME">
-        <PropertyRef Name="TOUR_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__TOUR_TRAN__TOUR___29221CFB">
     <End Role="TOUR_TRANSPORT" Type="Self.TOUR_TRANSPORT" Multiplicity="1" />
     <End Role="TOUR_TRANSPORT_DELETE" Type="Self.TOUR_TRANSPORT_DELETE" Multiplicity="*" />
@@ -669,10 +656,6 @@
     <AssociationSet Name="FK__TOUR_STAF__TOUR___160F4887" Association="Self.FK__TOUR_STAF__TOUR___160F4887">
       <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
       <End Role="TOUR_STAFF_DELETE" EntitySet="TOUR_STAFF_DELETE" />
-    </AssociationSet>
-    <AssociationSet Name="FK__TOUR_TIME__TOUR___40058253" Association="Self.FK__TOUR_TIME__TOUR___40058253">
-      <End Role="TOUR" EntitySet="TOUR" />
-      <End Role="TOUR_TIME" EntitySet="TOUR_TIME" />
     </AssociationSet>
     <AssociationSet Name="FK__TOUR_TRAN__TOUR___29221CFB" Association="Self.FK__TOUR_TRAN__TOUR___29221CFB">
       <End Role="TOUR_TRANSPORT" EntitySet="TOUR_TRANSPORT" />

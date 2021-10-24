@@ -25,9 +25,7 @@ namespace TourManagementSystem.Global
         public Nullable<System.DateTime> TOUR_TIME_END_DATE { get; set; }
         public Nullable<bool> TOUR_TIME_DAY { get; set; }
         public Nullable<bool> TOUR_TIME_NIGHT { get; set; }
-        public int TOUR_ID { get; set; }
     
-        public virtual TOUR TOUR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_INFORMATION> TOUR_INFORMATION { get; set; }
     }

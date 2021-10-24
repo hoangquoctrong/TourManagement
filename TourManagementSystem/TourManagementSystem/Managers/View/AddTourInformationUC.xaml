@@ -173,7 +173,7 @@
                                                 <TextBox.Text>
                                                     <Binding
                                                         Mode="TwoWay"
-                                                        Path="Tour_Time_Day"
+                                                        Path="Time_Day"
                                                         UpdateSourceTrigger="PropertyChanged">
                                                         <Binding.ValidationRules />
                                                     </Binding>
@@ -188,7 +188,7 @@
                                                 <TextBox.Text>
                                                     <Binding
                                                         Mode="TwoWay"
-                                                        Path="Tour_Time_Night"
+                                                        Path="Time_Night"
                                                         UpdateSourceTrigger="PropertyChanged">
                                                         <Binding.ValidationRules />
                                                     </Binding>
@@ -282,8 +282,8 @@
                                                     </Grid.ColumnDefinitions>
                                                     <CheckBox VerticalAlignment="Center" IsChecked="{Binding IsSelected}" />
                                                     <StackPanel Grid.Column="1" Margin="8,0,0,0">
-                                                        <TextBlock FontWeight="Bold" Text="{Binding Place_Name}" />
-                                                        <TextBlock Text="{Binding Place_Nation}" />
+                                                        <TextBlock FontWeight="Bold" Text="{Binding CB_Name}" />
+                                                        <TextBlock Text="{Binding CB_Sub_Name}" />
                                                     </StackPanel>
                                                 </Grid>
                                             </Border>

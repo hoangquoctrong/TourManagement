@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TourManagementSystem.Managers.Model;
+using TourManagementSystem.Managers.ViewModel;
 
 namespace TourManagementSystem.Managers.View
 {
@@ -20,9 +22,10 @@ namespace TourManagementSystem.Managers.View
     /// </summary>
     public partial class DisplayTourUC : UserControl
     {
-        public DisplayTourUC()
+        public DisplayTourUC(TourModel tourModel, int user_id)
         {
             InitializeComponent();
+            DataContext = new TourViewModel(tourModel, user_id);
         }
     }
 }

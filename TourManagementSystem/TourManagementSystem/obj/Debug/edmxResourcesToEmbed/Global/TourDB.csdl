@@ -34,7 +34,6 @@
     <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___6FB49575" FromRole="TOUR" ToRole="TOUR_INFORMATION" />
     <NavigationProperty Name="TOUR_PLACE_DETAILED" Relationship="Self.FK__TOUR_PLAC__TOUR___671F4F74" FromRole="TOUR" ToRole="TOUR_PLACE_DETAILED" />
     <NavigationProperty Name="TOUR_PRICE" Relationship="Self.FK__TOUR_PRIC__TOUR___3C34F16F" FromRole="TOUR" ToRole="TOUR_PRICE" />
-    <NavigationProperty Name="TOUR_TIME" Relationship="Self.FK__TOUR_TIME__TOUR___40058253" FromRole="TOUR" ToRole="TOUR_TIME" />
     <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVEL_GR__TOUR___3D2915A8" FromRole="TOUR" ToRole="TRAVEL_GROUP" />
   </EntityType>
   <EntityType Name="TOUR_ACCOUNT">
@@ -216,8 +215,6 @@
     <Property Name="TOUR_TIME_END_DATE" Type="DateTime" Precision="3" />
     <Property Name="TOUR_TIME_DAY" Type="Boolean" />
     <Property Name="TOUR_TIME_NIGHT" Type="Boolean" />
-    <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="TOUR" Relationship="Self.FK__TOUR_TIME__TOUR___40058253" FromRole="TOUR_TIME" ToRole="TOUR" />
     <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___70A8B9AE" FromRole="TOUR_TIME" ToRole="TOUR_INFORMATION" />
   </EntityType>
   <EntityType Name="TOUR_TRANSPORT">
@@ -384,18 +381,6 @@
         <PropertyRef Name="TOUR_ID" />
       </Principal>
       <Dependent Role="TOUR_PRICE">
-        <PropertyRef Name="TOUR_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__TOUR_TIME__TOUR___40058253">
-    <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
-    <End Role="TOUR_TIME" Type="Self.TOUR_TIME" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TOUR">
-        <PropertyRef Name="TOUR_ID" />
-      </Principal>
-      <Dependent Role="TOUR_TIME">
         <PropertyRef Name="TOUR_ID" />
       </Dependent>
     </ReferentialConstraint>
@@ -677,10 +662,6 @@
     <AssociationSet Name="FK__TOUR_PRIC__TOUR___3C34F16F" Association="Self.FK__TOUR_PRIC__TOUR___3C34F16F">
       <End Role="TOUR" EntitySet="TOURs" />
       <End Role="TOUR_PRICE" EntitySet="TOUR_PRICE" />
-    </AssociationSet>
-    <AssociationSet Name="FK__TOUR_TIME__TOUR___40058253" Association="Self.FK__TOUR_TIME__TOUR___40058253">
-      <End Role="TOUR" EntitySet="TOURs" />
-      <End Role="TOUR_TIME" EntitySet="TOUR_TIME" />
     </AssociationSet>
     <AssociationSet Name="FK__TRAVEL_GR__TOUR___3D2915A8" Association="Self.FK__TRAVEL_GR__TOUR___3D2915A8">
       <End Role="TOUR" EntitySet="TOURs" />

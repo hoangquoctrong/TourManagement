@@ -44,7 +44,7 @@
                     VerticalAlignment="Top"
                     Background="Transparent"
                     BorderThickness="0"
-                    Command="{Binding CancelCommand}"
+                    Command="{Binding CancelTourCommand}"
                     CommandParameter="{Binding ElementName=contentControlDisplay}">
                     <materialDesign:PackIcon
                         Width="40"
@@ -71,7 +71,7 @@
                     TabStripPlacement="Top">
 
                     <TabItem
-                        Width="290"
+                        Width="390"
                         Background="Transparent"
                         Style="{StaticResource MaterialDesignNavigationRailTabItem}">
 
@@ -157,8 +157,8 @@
                                             materialDesign:HintAssist.Hint="Status"
                                             FontSize="18"
                                             Foreground="DimGray">
-                                            <ComboBoxItem Content="Free" />
-                                            <ComboBoxItem Content="Active" />
+                                            <ComboBoxItem Content="Family Tour" />
+                                            <ComboBoxItem Content="Group Tour" />
                                             <ComboBox.Text>
                                                 <Binding
                                                     Mode="TwoWay"
@@ -278,7 +278,7 @@
                     </TabItem>
 
                     <TabItem
-                        Width="290"
+                        Width="390"
                         Background="Transparent"
                         Style="{StaticResource MaterialDesignNavigationRailTabItem}">
 
@@ -345,7 +345,7 @@
                                             FontSize="18"
                                             Style="{StaticResource MaterialDesignTextBoxBase}">
                                             <TextBox.Text>
-                                                <Binding Path="Search_Tour_Information_Text" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding Path="Search_TourInformation_Text" UpdateSourceTrigger="PropertyChanged">
                                                     <Binding.ValidationRules />
                                                 </Binding>
                                             </TextBox.Text>
@@ -360,8 +360,8 @@
                                         DisplayMemberPath="CB_Name"
                                         FontSize="18"
                                         Foreground="DimGray"
-                                        ItemsSource="{Binding CB_Tour_InformationList, Mode=TwoWay}"
-                                        SelectedValue="{Binding CB_Tour_InformationSelected}">
+                                        ItemsSource="{Binding CB_TourInformationList, Mode=TwoWay}"
+                                        SelectedValue="{Binding CB_TourInformationSelected}">
                                         <ComboBox.ItemContainerStyle>
                                             <Style TargetType="ComboBoxItem">
                                                 <Setter Property="IsSelected" Value="{Binding IsSelected}" />
@@ -372,7 +372,7 @@
 
                                 <Button
                                     Grid.Column="2"
-                                    Width="160"
+                                    Width="220"
                                     Height="40"
                                     Margin="120,5,20,5"
                                     HorizontalAlignment="Right"
@@ -399,8 +399,8 @@
                                 CanUserSortColumns="True"
                                 GridLinesVisibility="Vertical"
                                 IsReadOnly="True"
-                                ItemsSource="{Binding Tour_InformationList, Mode=TwoWay}"
-                                SelectedItem="{Binding Tour_Information_Selected}"
+                                ItemsSource="{Binding TourInformationList, Mode=TwoWay}"
+                                SelectedItem="{Binding TourInformation_Selected}"
                                 SelectionMode="Single">
                                 <DataGrid.InputBindings>
                                     <MouseBinding
@@ -417,25 +417,25 @@
                                         Header="ID" />
                                     <DataGridTextColumn
                                         Width="0.2*"
-                                        Binding="{Binding TOUR_TIME_SCHEDULE}"
+                                        Binding="{Binding INFORMATION_TIME.TIME_STRING}"
                                         ElementStyle="{StaticResource WrapText}"
                                         Foreground="DarkSlateGray"
                                         Header="Schedule" />
                                     <DataGridTextColumn
                                         Width="0.25*"
-                                        Binding="{Binding TOUR_TIME_DEPARTMENT_DATE}"
+                                        Binding="{Binding INFORMATION_TIME.TIME_DEPARTMENT_STRING}"
                                         ElementStyle="{StaticResource WrapText}"
                                         Foreground="DarkSlateGray"
                                         Header="Department Date" />
                                     <DataGridTextColumn
                                         Width="0.25*"
-                                        Binding="{Binding TOUR_TIME_END_DATE}"
+                                        Binding="{Binding INFORMATION_TIME.TIME_END_STRING}"
                                         ElementStyle="{StaticResource WrapText}"
                                         Foreground="DarkSlateGray"
                                         Header="End Date" />
                                     <DataGridTextColumn
                                         Width="0.2*"
-                                        Binding="{Binding TOUR_PRICE_TOTAL_COST}"
+                                        Binding="{Binding INFORMATION_PRICE.PRICE_COST_TOTAL}"
                                         ElementStyle="{StaticResource WrapText}"
                                         Foreground="DarkSlateGray"
                                         Header="Total Cost" />
@@ -447,7 +447,7 @@
                     </TabItem>
 
                     <TabItem
-                        Width="290"
+                        Width="390"
                         Background="Transparent"
                         Style="{StaticResource MaterialDesignNavigationRailTabItem}">
 
@@ -607,168 +607,6 @@
 
                         </Grid>
 
-                    </TabItem>
-
-                    <TabItem
-                        Width="290"
-                        Background="Transparent"
-                        Style="{StaticResource MaterialDesignNavigationRailTabItem}">
-
-                        <TabItem.Header>
-                            <StackPanel
-                                Width="240"
-                                Height="50"
-                                HorizontalAlignment="Center"
-                                Orientation="Horizontal">
-                                <materialDesign:PackIcon
-                                    Width="30"
-                                    Height="30"
-                                    Margin="20,0"
-                                    VerticalAlignment="Center"
-                                    Kind="Calendar" />
-                                <TextBlock
-                                    Margin="20,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="24"
-                                    Foreground="Black"
-                                    Text="Time" />
-                            </StackPanel>
-                        </TabItem.Header>
-
-                        <Grid Margin="0,0,0,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-
-                            <Grid Grid.Row="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition Width="auto" />
-                                </Grid.ColumnDefinitions>
-
-                                <Border
-                                    Grid.Column="0"
-                                    Width="400"
-                                    Height="50"
-                                    Margin="40,5,40,5"
-                                    Background="#FAFAFA"
-                                    BorderBrush="Gray"
-                                    BorderThickness="1"
-                                    CornerRadius="10">
-
-                                    <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
-                                        <materialDesign:PackIcon
-                                            Width="25"
-                                            Height="30"
-                                            Margin="0,0,0,0"
-                                            VerticalAlignment="Center"
-                                            Foreground="DimGray"
-                                            Kind="Search" />
-                                        <TextBox
-                                            Width="300"
-                                            Height="40"
-                                            Margin="10,2,0,0"
-                                            materialDesign:HintAssist.Hint="Search"
-                                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                            BorderBrush="Transparent"
-                                            FontSize="18"
-                                            Style="{StaticResource MaterialDesignTextBoxBase}">
-                                            <TextBox.Text>
-                                                <Binding Path="Search_Time_Text" UpdateSourceTrigger="PropertyChanged">
-                                                    <Binding.ValidationRules />
-                                                </Binding>
-                                            </TextBox.Text>
-                                        </TextBox>
-                                    </StackPanel>
-                                </Border>
-
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <ComboBox
-                                        Width="160"
-                                        Margin="10,10,80,10"
-                                        DisplayMemberPath="CB_Name"
-                                        FontSize="18"
-                                        Foreground="DimGray"
-                                        ItemsSource="{Binding CB_TimeList, Mode=TwoWay}"
-                                        SelectedValue="{Binding CB_TimeSelected}">
-                                        <ComboBox.ItemContainerStyle>
-                                            <Style TargetType="ComboBoxItem">
-                                                <Setter Property="IsSelected" Value="{Binding IsSelected}" />
-                                            </Style>
-                                        </ComboBox.ItemContainerStyle>
-                                    </ComboBox>
-                                </StackPanel>
-
-                                <Button
-                                    Grid.Column="2"
-                                    Width="160"
-                                    Height="40"
-                                    Margin="120,5,20,5"
-                                    HorizontalAlignment="Right"
-                                    Background="#0f6f68"
-                                    Command="{Binding AddTimeCommand}"
-                                    CommandParameter="{Binding ElementName=contentControlDisplay}"
-                                    Content="Add New Time" />
-
-                            </Grid>
-
-                            <DataGrid
-                                Grid.Row="1"
-                                Width="1100"
-                                Height="400"
-                                Margin="20"
-                                VerticalAlignment="Top"
-                                materialDesign:DataGridAssist.CellPadding="12 8 0 8"
-                                materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
-                                AllowDrop="True"
-                                AutoGenerateColumns="False"
-                                CanUserAddRows="False"
-                                CanUserDeleteRows="False"
-                                CanUserReorderColumns="False"
-                                CanUserSortColumns="True"
-                                GridLinesVisibility="Vertical"
-                                IsReadOnly="True"
-                                ItemsSource="{Binding TimeList, Mode=TwoWay}"
-                                SelectedItem="{Binding Time_Selected}"
-                                SelectionMode="Single">
-                                <DataGrid.InputBindings>
-                                    <MouseBinding
-                                        Command="{Binding ShowTimeDetailCommand}"
-                                        CommandParameter="{Binding ElementName=contentControlDisplay}"
-                                        Gesture="LeftDoubleClick" />
-                                </DataGrid.InputBindings>
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn
-                                        Width="0.1*"
-                                        Binding="{Binding TIME_ID}"
-                                        ElementStyle="{StaticResource WrapText}"
-                                        Foreground="DarkSlateGray"
-                                        Header="ID" />
-                                    <DataGridTextColumn
-                                        Width="0.2*"
-                                        Binding="{Binding TIME_DEPARTMENT_DATE}"
-                                        ElementStyle="{StaticResource WrapText}"
-                                        Foreground="DarkSlateGray"
-                                        Header="Department Date" />
-                                    <DataGridTextColumn
-                                        Width="0.2*"
-                                        Binding="{Binding TIME_END_DATE}"
-                                        ElementStyle="{StaticResource WrapText}"
-                                        Foreground="DarkSlateGray"
-                                        Header="End Date" />
-                                    <DataGridTextColumn
-                                        Width="0.2*"
-                                        Binding="{Binding TIME_DAY}"
-                                        ElementStyle="{StaticResource WrapText}"
-                                        Foreground="DarkSlateGray"
-                                        Header="Schedule" />
-                                </DataGrid.Columns>
-                            </DataGrid>
-
-                        </Grid>
                     </TabItem>
                 </TabControl>
             </ScrollViewer>

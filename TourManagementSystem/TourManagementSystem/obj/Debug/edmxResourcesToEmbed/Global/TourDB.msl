@@ -196,7 +196,6 @@
           <ScalarProperty Name="TOUR_TIME_END_DATE" ColumnName="TOUR_TIME_END_DATE" />
           <ScalarProperty Name="TOUR_TIME_DAY" ColumnName="TOUR_TIME_DAY" />
           <ScalarProperty Name="TOUR_TIME_NIGHT" ColumnName="TOUR_TIME_NIGHT" />
-          <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

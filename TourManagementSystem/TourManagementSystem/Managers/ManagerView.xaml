@@ -164,8 +164,7 @@
                         materialDesign:RippleAssist.IsDisabled="True"
                         Background="{Binding BACKGROUNDEMPLOYEE}"
                         BorderThickness="0"
-                        Command="{Binding EmployeeCommand}"
-                        CommandParameter="{Binding ElementName=btnTimekeeping}">
+                        Command="{Binding EmployeeCommand}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Foreground="{Binding FOREGROUNDEMPLOYEE}" Kind="{Binding EMPLOYEETAB.ICONKIND}" />
                             <TextBlock
@@ -188,8 +187,7 @@
                         materialDesign:RippleAssist.IsDisabled="True"
                         Background="{Binding BACKGROUNDTRANSPORT}"
                         BorderThickness="0"
-                        Command="{Binding TransportCommand}"
-                        CommandParameter="{Binding ElementName=btnSalary}">
+                        Command="{Binding TransportCommand}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Foreground="{Binding FOREGROUNDTRANSPORT}" Kind="{Binding TRANSPORTTAB.ICONKIND}" />
                             <TextBlock
@@ -211,8 +209,7 @@
                         materialDesign:RippleAssist.IsDisabled="True"
                         Background="{Binding BACKGROUNDHOTEL}"
                         BorderThickness="0"
-                        Command="{Binding HotelCommand}"
-                        CommandParameter="{Binding ElementName=btnSalary}">
+                        Command="{Binding HotelCommand}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Foreground="{Binding FOREGROUNDHOTEL}" Kind="{Binding HOTELTAB.ICONKIND}" />
                             <TextBlock

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TourManagementSystem.Managers.Model;
+using TourManagementSystem.Managers.ViewModel;
 
 namespace TourManagementSystem.View
 {
@@ -25,6 +26,7 @@ namespace TourManagementSystem.View
         public TourUC(int user_id)
         {
             InitializeComponent();
+            DataContext = new TourViewModel(user_id);
         }
 
 

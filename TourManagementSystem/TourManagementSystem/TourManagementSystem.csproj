@@ -83,6 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Global\Model\CheckBoxModel.cs" />
     <Compile Include="Global\Model\ComboBoxModel.cs" />
     <Compile Include="Global\Model\GlobalFunction.cs" />
     <Compile Include="Global\PLACE.cs">
@@ -183,7 +184,11 @@
     <Compile Include="Managers\Model\PlaceModel.cs" />
     <Compile Include="Managers\Model\SideBarModel.cs" />
     <Compile Include="Managers\Model\StaffModel.cs" />
+    <Compile Include="Managers\Model\TourInformationModel.cs" />
     <Compile Include="Managers\Model\TourModel.cs" />
+    <Compile Include="Managers\Model\TourPriceModel.cs" />
+    <Compile Include="Managers\Model\TourScheduleModel.cs" />
+    <Compile Include="Managers\Model\TourTimeModel.cs" />
     <Compile Include="Managers\Model\TransportModel.cs" />
     <Compile Include="Managers\ViewModel\HotelViewModel.cs" />
     <Compile Include="Managers\ViewModel\PlaceViewModel.cs" />
@@ -401,6 +406,9 @@
   <ItemGroup>
     <Resource Include="Resources\Images\Transport.png" />
     <Resource Include="Resources\Images\Hotel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Tour.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global\TourDB.Context.tt">
