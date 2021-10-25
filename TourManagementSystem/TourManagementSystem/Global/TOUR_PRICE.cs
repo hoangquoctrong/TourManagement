@@ -26,10 +26,7 @@ namespace TourManagementSystem.Global
         public Nullable<double> TOUR_PRICE_COST_TRANSPORT { get; set; }
         public Nullable<double> TOUR_PRICE_COST_SERVICE { get; set; }
         public string TOUR_PRICE_NOTE { get; set; }
-        public Nullable<System.DateTime> TOUR_PRICE_DATE { get; set; }
-        public int TOUR_ID { get; set; }
     
-        public virtual TOUR TOUR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_INFORMATION> TOUR_INFORMATION { get; set; }
     }

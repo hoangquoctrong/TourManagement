@@ -43,6 +43,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_HARD_PRICE">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_HARD_PRICE">
+        <MappingFragment StoreEntitySet="TOUR_HARD_PRICE">
+          <ScalarProperty Name="TOUR_HARD_PRICE_ID" ColumnName="TOUR_HARD_PRICE_ID" />
+          <ScalarProperty Name="TOUR_HARD_PRICE_COST" ColumnName="TOUR_HARD_PRICE_COST" />
+          <ScalarProperty Name="TOUR_HARD_PRICE_CONTENT" ColumnName="TOUR_HARD_PRICE_CONTENT" />
+          <ScalarProperty Name="TOUR_HARD_PRICE_DESCRIPTION" ColumnName="TOUR_HARD_PRICE_DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="TOUR_HOTEL">
       <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_HOTEL">
         <MappingFragment StoreEntitySet="TOUR_HOTEL">
@@ -130,8 +140,6 @@
           <ScalarProperty Name="TOUR_PRICE_COST_TRANSPORT" ColumnName="TOUR_PRICE_COST_TRANSPORT" />
           <ScalarProperty Name="TOUR_PRICE_COST_SERVICE" ColumnName="TOUR_PRICE_COST_SERVICE" />
           <ScalarProperty Name="TOUR_PRICE_NOTE" ColumnName="TOUR_PRICE_NOTE" />
-          <ScalarProperty Name="TOUR_PRICE_DATE" ColumnName="TOUR_PRICE_DATE" />
-          <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

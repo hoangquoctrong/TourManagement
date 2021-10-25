@@ -377,7 +377,7 @@
                                     Margin="120,5,20,5"
                                     HorizontalAlignment="Right"
                                     Background="#0f6f68"
-                                    Command="{Binding AddTour_InformationCommand}"
+                                    Command="{Binding AddTourInformationCommand}"
                                     CommandParameter="{Binding ElementName=contentControlDisplay}"
                                     Content="Add New Tour Information" />
 
@@ -411,7 +411,7 @@
                                 <DataGrid.Columns>
                                     <DataGridTextColumn
                                         Width="0.1*"
-                                        Binding="{Binding TOUR_INFORMATION_ID}"
+                                        Binding="{Binding INFORMATION_ID}"
                                         ElementStyle="{StaticResource WrapText}"
                                         Foreground="DarkSlateGray"
                                         Header="ID" />

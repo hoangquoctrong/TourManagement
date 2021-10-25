@@ -113,6 +113,9 @@
     <Compile Include="Global\TOUR_ACCOUNT.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Global\TOUR_HARD_PRICE.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global\TOUR_HOTEL.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
@@ -392,8 +395,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Customers\ViewModel\" />
-    <Folder Include="Customers\View\" />
     <Folder Include="Employees\ViewModel\" />
     <Folder Include="Employees\View\" />
     <Folder Include="Global\View\" />

@@ -43,6 +43,15 @@
           <Property Name="TOUR_ACCOUNT_PASSWORD" Type="varchar" MaxLength="255" />
           <Property Name="TOUR_STAFF_ID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="TOUR_HARD_PRICE">
+          <Key>
+            <PropertyRef Name="TOUR_HARD_PRICE_ID" />
+          </Key>
+          <Property Name="TOUR_HARD_PRICE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TOUR_HARD_PRICE_COST" Type="float" />
+          <Property Name="TOUR_HARD_PRICE_CONTENT" Type="varchar" MaxLength="255" />
+          <Property Name="TOUR_HARD_PRICE_DESCRIPTION" Type="text" />
+        </EntityType>
         <EntityType Name="TOUR_HOTEL">
           <Key>
             <PropertyRef Name="TOUR_HOTEL_ID" />
@@ -124,8 +133,6 @@
           <Property Name="TOUR_PRICE_COST_TRANSPORT" Type="float" />
           <Property Name="TOUR_PRICE_COST_SERVICE" Type="float" />
           <Property Name="TOUR_PRICE_NOTE" Type="text" />
-          <Property Name="TOUR_PRICE_DATE" Type="datetime" />
-          <Property Name="TOUR_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TOUR_RECORD">
           <Key>
@@ -183,8 +190,8 @@
           <Property Name="TOUR_TIME_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TOUR_TIME_DEPARTMENT_DATE" Type="datetime" />
           <Property Name="TOUR_TIME_END_DATE" Type="datetime" />
-          <Property Name="TOUR_TIME_DAY" Type="bit" />
-          <Property Name="TOUR_TIME_NIGHT" Type="bit" />
+          <Property Name="TOUR_TIME_DAY" Type="int" />
+          <Property Name="TOUR_TIME_NIGHT" Type="int" />
         </EntityType>
         <EntityType Name="TOUR_TRANSPORT">
           <Key>
@@ -424,18 +431,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_PRIC__TOUR___3C34F16F">
-          <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
-          <End Role="TOUR_PRICE" Type="Self.TOUR_PRICE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TOUR">
-              <PropertyRef Name="TOUR_ID" />
-            </Principal>
-            <Dependent Role="TOUR_PRICE">
-              <PropertyRef Name="TOUR_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__TOUR_RECO__TOUR___1332DBDC">
           <End Role="TOUR_STAFF" Type="Self.TOUR_STAFF" Multiplicity="1" />
           <End Role="TOUR_RECORD" Type="Self.TOUR_RECORD" Multiplicity="*" />
@@ -573,6 +568,7 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR" EntityType="Self.TOUR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_ACCOUNT" EntityType="Self.TOUR_ACCOUNT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOUR_HARD_PRICE" EntityType="Self.TOUR_HARD_PRICE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_HOTEL" EntityType="Self.TOUR_HOTEL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_HOTEL_DELETE" EntityType="Self.TOUR_HOTEL_DELETE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_HOTEL_DETAIL" EntityType="Self.TOUR_HOTEL_DETAIL" Schema="dbo" store:Type="Tables" />
@@ -645,10 +641,6 @@
           <AssociationSet Name="FK__TOUR_PLAC__TOUR___671F4F74" Association="Self.FK__TOUR_PLAC__TOUR___671F4F74">
             <End Role="TOUR" EntitySet="TOUR" />
             <End Role="TOUR_PLACE_DETAILED" EntitySet="TOUR_PLACE_DETAILED" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TOUR_PRIC__TOUR___3C34F16F" Association="Self.FK__TOUR_PRIC__TOUR___3C34F16F">
-            <End Role="TOUR" EntitySet="TOUR" />
-            <End Role="TOUR_PRICE" EntitySet="TOUR_PRICE" />
           </AssociationSet>
           <AssociationSet Name="FK__TOUR_RECO__TOUR___1332DBDC" Association="Self.FK__TOUR_RECO__TOUR___1332DBDC">
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
@@ -733,7 +725,6 @@
           <Property Name="TOUR_IS_EXIST" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___6FB49575" FromRole="TOUR" ToRole="TOUR_INFORMATION" />
           <NavigationProperty Name="TOUR_PLACE_DETAILED" Relationship="Self.FK__TOUR_PLAC__TOUR___671F4F74" FromRole="TOUR" ToRole="TOUR_PLACE_DETAILED" />
-          <NavigationProperty Name="TOUR_PRICE" Relationship="Self.FK__TOUR_PRIC__TOUR___3C34F16F" FromRole="TOUR" ToRole="TOUR_PRICE" />
           <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVEL_GR__TOUR___3D2915A8" FromRole="TOUR" ToRole="TRAVEL_GROUP" />
         </EntityType>
         <EntityType Name="TOUR_ACCOUNT">
@@ -745,6 +736,15 @@
           <Property Name="TOUR_ACCOUNT_PASSWORD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_STAFF_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TOUR_STAFF" Relationship="Self.FK__TOUR_ACCO__TOUR___0C85DE4D" FromRole="TOUR_ACCOUNT" ToRole="TOUR_STAFF" />
+        </EntityType>
+        <EntityType Name="TOUR_HARD_PRICE">
+          <Key>
+            <PropertyRef Name="TOUR_HARD_PRICE_ID" />
+          </Key>
+          <Property Name="TOUR_HARD_PRICE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TOUR_HARD_PRICE_COST" Type="Double" />
+          <Property Name="TOUR_HARD_PRICE_CONTENT" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TOUR_HARD_PRICE_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TOUR_HOTEL">
           <Key>
@@ -845,9 +845,6 @@
           <Property Name="TOUR_PRICE_COST_TRANSPORT" Type="Double" />
           <Property Name="TOUR_PRICE_COST_SERVICE" Type="Double" />
           <Property Name="TOUR_PRICE_NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TOUR_PRICE_DATE" Type="DateTime" Precision="3" />
-          <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TOUR" Relationship="Self.FK__TOUR_PRIC__TOUR___3C34F16F" FromRole="TOUR_PRICE" ToRole="TOUR" />
           <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___719CDDE7" FromRole="TOUR_PRICE" ToRole="TOUR_INFORMATION" />
         </EntityType>
         <EntityType Name="TOUR_RECORD">
@@ -913,8 +910,8 @@
           <Property Name="TOUR_TIME_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TOUR_TIME_DEPARTMENT_DATE" Type="DateTime" Precision="3" />
           <Property Name="TOUR_TIME_END_DATE" Type="DateTime" Precision="3" />
-          <Property Name="TOUR_TIME_DAY" Type="Boolean" />
-          <Property Name="TOUR_TIME_NIGHT" Type="Boolean" />
+          <Property Name="TOUR_TIME_DAY" Type="Int32" />
+          <Property Name="TOUR_TIME_NIGHT" Type="Int32" />
           <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___70A8B9AE" FromRole="TOUR_TIME" ToRole="TOUR_INFORMATION" />
         </EntityType>
         <EntityType Name="TOUR_TRANSPORT">
@@ -1069,18 +1066,6 @@
               <PropertyRef Name="TOUR_ID" />
             </Principal>
             <Dependent Role="TOUR_PLACE_DETAILED">
-              <PropertyRef Name="TOUR_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TOUR_PRIC__TOUR___3C34F16F">
-          <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
-          <End Role="TOUR_PRICE" Type="Self.TOUR_PRICE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TOUR">
-              <PropertyRef Name="TOUR_ID" />
-            </Principal>
-            <Dependent Role="TOUR_PRICE">
               <PropertyRef Name="TOUR_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1318,6 +1303,7 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TOURs" EntityType="Self.TOUR" />
           <EntitySet Name="TOUR_ACCOUNT" EntityType="Self.TOUR_ACCOUNT" />
+          <EntitySet Name="TOUR_HARD_PRICE" EntityType="Self.TOUR_HARD_PRICE" />
           <EntitySet Name="TOUR_HOTEL" EntityType="Self.TOUR_HOTEL" />
           <EntitySet Name="TOUR_HOTEL_DELETE" EntityType="Self.TOUR_HOTEL_DELETE" />
           <EntitySet Name="TOUR_HOTEL_DETAIL" EntityType="Self.TOUR_HOTEL_DETAIL" />
@@ -1358,10 +1344,6 @@
           <AssociationSet Name="FK__TOUR_PLAC__TOUR___671F4F74" Association="Self.FK__TOUR_PLAC__TOUR___671F4F74">
             <End Role="TOUR" EntitySet="TOURs" />
             <End Role="TOUR_PLACE_DETAILED" EntitySet="TOUR_PLACE_DETAILED" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TOUR_PRIC__TOUR___3C34F16F" Association="Self.FK__TOUR_PRIC__TOUR___3C34F16F">
-            <End Role="TOUR" EntitySet="TOURs" />
-            <End Role="TOUR_PRICE" EntitySet="TOUR_PRICE" />
           </AssociationSet>
           <AssociationSet Name="FK__TRAVEL_GR__TOUR___3D2915A8" Association="Self.FK__TRAVEL_GR__TOUR___3D2915A8">
             <End Role="TOUR" EntitySet="TOURs" />
@@ -1488,6 +1470,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TOUR_HARD_PRICE">
+            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_HARD_PRICE">
+              <MappingFragment StoreEntitySet="TOUR_HARD_PRICE">
+                <ScalarProperty Name="TOUR_HARD_PRICE_ID" ColumnName="TOUR_HARD_PRICE_ID" />
+                <ScalarProperty Name="TOUR_HARD_PRICE_COST" ColumnName="TOUR_HARD_PRICE_COST" />
+                <ScalarProperty Name="TOUR_HARD_PRICE_CONTENT" ColumnName="TOUR_HARD_PRICE_CONTENT" />
+                <ScalarProperty Name="TOUR_HARD_PRICE_DESCRIPTION" ColumnName="TOUR_HARD_PRICE_DESCRIPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TOUR_HOTEL">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_HOTEL">
               <MappingFragment StoreEntitySet="TOUR_HOTEL">
@@ -1575,8 +1567,6 @@
                 <ScalarProperty Name="TOUR_PRICE_COST_TRANSPORT" ColumnName="TOUR_PRICE_COST_TRANSPORT" />
                 <ScalarProperty Name="TOUR_PRICE_COST_SERVICE" ColumnName="TOUR_PRICE_COST_SERVICE" />
                 <ScalarProperty Name="TOUR_PRICE_NOTE" ColumnName="TOUR_PRICE_NOTE" />
-                <ScalarProperty Name="TOUR_PRICE_DATE" ColumnName="TOUR_PRICE_DATE" />
-                <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -29,6 +29,7 @@ namespace TourManagementSystem.Global
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TOUR> TOUR { get; set; }
         public virtual DbSet<TOUR_ACCOUNT> TOUR_ACCOUNT { get; set; }
+        public virtual DbSet<TOUR_HARD_PRICE> TOUR_HARD_PRICE { get; set; }
         public virtual DbSet<TOUR_HOTEL> TOUR_HOTEL { get; set; }
         public virtual DbSet<TOUR_HOTEL_DELETE> TOUR_HOTEL_DELETE { get; set; }
         public virtual DbSet<TOUR_HOTEL_DETAIL> TOUR_HOTEL_DETAIL { get; set; }

@@ -40,7 +40,12 @@ namespace TourManagementSystem.Managers.ViewModel
             User_ID = user_id;
             Tour_Selected = tourSelected;
             LoadCommand();
+            LoadPlaceList();
+            LoadTourInformationComboBox();
+            LoadTourInformationDatagrid();
         }
+
+
 
         #region Tour
         #region Data
@@ -392,7 +397,21 @@ namespace TourManagementSystem.Managers.ViewModel
                 p.Content = new TourUC(User_ID);
             });
 
+            AddTourInformationCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new AddTourInformationUC(Tour_Selected, User_ID));
+
             #endregion Command of DisplayTourUC
+
+            #region Command of AddTourInformationTourUC
+
+            ConfirmTourInformationCommand = new RelayCommand<ContentControl>(_ => IsExcuteConfirmTourInformationCommad(), p =>
+            {
+                ExcuteConfirmTourInformationCommad();
+                p.Content = new DisplayTourUC(Tour_Selected, User_ID);
+            });
+
+            CancelTourInformationCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new DisplayTourUC(Tour_Selected, User_ID));
+
+            #endregion Command of AddTourInformationTourUC
         }
 
         /*
@@ -669,6 +688,26 @@ namespace TourManagementSystem.Managers.ViewModel
                     if (CB_TourInformationSelected != null)
                     {
                         //Step 4
+                        switch (CB_TourInformationSelected.CB_Name)
+                        {
+                            case "Schedule":
+                                TourInformationList = new ObservableCollection<TourInformationModel>(TourInformationList.Where(x => x.INFORMATION_TIME.TIME_STRING.Contains(Search_TourInformation_Text) ||
+                                                                                                        x.INFORMATION_TIME.TIME_STRING.ToLower().Contains(Search_TourInformation_Text) ||
+                                                                                                        x.INFORMATION_TIME.TIME_STRING.ToUpper().Contains(Search_TourInformation_Text)));
+                                break;
+                            case "Department Date":
+                                TourInformationList = new ObservableCollection<TourInformationModel>(TourInformationList.Where(x => x.INFORMATION_TIME.TIME_DEPARTMENT_STRING.Contains(Search_TourInformation_Text) ||
+                                                                                                        x.INFORMATION_TIME.TIME_DEPARTMENT_STRING.ToLower().Contains(Search_TourInformation_Text) ||
+                                                                                                        x.INFORMATION_TIME.TIME_DEPARTMENT_STRING.ToUpper().Contains(Search_TourInformation_Text)));
+                                break;
+                            case "End Date":
+                                TourInformationList = new ObservableCollection<TourInformationModel>(TourInformationList.Where(x => x.INFORMATION_TIME.TIME_END_STRING.Contains(Search_TourInformation_Text) ||
+                                                                                                        x.INFORMATION_TIME.TIME_END_STRING.ToLower().Contains(Search_TourInformation_Text) ||
+                                                                                                        x.INFORMATION_TIME.TIME_END_STRING.ToUpper().Contains(Search_TourInformation_Text)));
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }
@@ -689,6 +728,7 @@ namespace TourManagementSystem.Managers.ViewModel
         #endregion Data Binding for TourInformationUC
 
         #region Data Binding for AddTourInformationUC
+
         #region Data Binding for TourTime
         private int _Time_Day;
         public int Time_Day { get => _Time_Day; set { _Time_Day = value; OnPropertyChanged(); } }
@@ -708,11 +748,252 @@ namespace TourManagementSystem.Managers.ViewModel
         private string _Time_End_String;
         public string Time_End_String { get => _Time_End_String; set { _Time_End_String = value; OnPropertyChanged(); } }
         #endregion Data Binding for TourTime
+
         #region Data Binding for TourPlace
         private ObservableCollection<CheckBoxModel> _PlaceList;
-        public ObservableCollection<CheckBoxModel> PlaceList { get => _PlaceList; set { _PlaceList = value; OnPropertyChanged(); } }
+        public ObservableCollection<CheckBoxModel> PlaceList
+        {
+            get => _PlaceList;
+            set
+            {
+                _PlaceList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<CheckBoxModel> _Refresh_PlaceList;
+        public ObservableCollection<CheckBoxModel> Refresh_PlaceList { get => _Refresh_PlaceList; set { _Refresh_PlaceList = value; OnPropertyChanged(); } }
+
+        private string _Search_Place_Text;
+        public string Search_Place_Text
+        {
+            get => _Search_Place_Text;
+            set
+            {
+                _Search_Place_Text = value;
+                OnPropertyChanged();
+
+                PlaceList = Refresh_PlaceList;
+
+                if (!string.IsNullOrEmpty(Search_Place_Text))
+                {
+                    PlaceList = new ObservableCollection<CheckBoxModel>(PlaceList.Where(x => x.CB_Name.Contains(Search_Place_Text) ||
+                                                                                                x.CB_Name.ToLower().Contains(Search_Place_Text) ||
+                                                                                                x.CB_Name.ToUpper().Contains(Search_Place_Text)));
+                }
+            }
+        }
         #endregion Data Binding for TourPlace
+
+        #region Command for AddTourInformation
+        public ICommand ConfirmTourInformationCommand { get; set; }
+
+        public ICommand CancelTourInformationCommand { get; set; }
+
+        public ICommand AddTourInformationCommand { get; set; }
+
+        public ICommand PlaceCheckBoxClickCommand { get; set; }
+
+        #endregion Command for AddTourInformation
+
         #endregion Data Binding for AddTourInformationUC
-        #endregion TourInformation Information
+
+        #region Function Tour Information
+        #region AddTourInformationUC
+        private void LoadPlaceList()
+        {
+            Tour_Mangement_DatabaseEntities db = new Tour_Mangement_DatabaseEntities();
+
+            var placeList = from place in db.PLACE select place;
+
+            PlaceList = new ObservableCollection<CheckBoxModel>();
+            Refresh_PlaceList = new ObservableCollection<CheckBoxModel>();
+
+            foreach (var placeItem in placeList)
+            {
+                CheckBoxModel cbPlaceItem = new CheckBoxModel(placeItem.PLACE_NAME, placeItem.PLACE_NATION, placeItem.PLACE_ID, false);
+                PlaceList.Add(cbPlaceItem);
+                Refresh_PlaceList.Add(cbPlaceItem);
+            }
+        }
+
+        private bool IsExcuteConfirmTourInformationCommad()
+        {
+            int count = 0;
+            foreach (var item in PlaceList)
+            {
+                if (item.IsSelected)
+                {
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                return false;
+            }
+
+            if (Time_Department.Equals(Time_End))
+            {
+                return false;
+            }
+
+            if (Time_Day == 0 && Time_Night == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ExcuteConfirmTourInformationCommad()
+        {
+            //Step 1
+            Tour_Mangement_DatabaseEntities db = new Tour_Mangement_DatabaseEntities();
+
+            //Step 2
+            TOUR_TIME time = new TOUR_TIME()
+            {
+                TOUR_TIME_DEPARTMENT_DATE = Time_Department,
+                TOUR_TIME_END_DATE = Time_End,
+                TOUR_TIME_DAY = Time_Day,
+                TOUR_TIME_NIGHT = Time_Night
+            };
+            db.TOUR_TIME.Add(time);
+
+            TOUR_PRICE price = new TOUR_PRICE()
+            {
+                TOUR_PRICE_COST_HOTEL = 0,
+                TOUR_PRICE_COST_SERVICE = 0,
+                TOUR_PRICE_COST_TOTAL = 0,
+                TOUR_PRICE_COST_TRANSPORT = 0,
+                TOUR_PRICE_NOTE = ""
+            };
+            db.TOUR_PRICE.Add(price);
+
+            TOUR_INFORMATION information = new TOUR_INFORMATION()
+            {
+                TOUR_ID = Tour_Selected.TOUR_ID,
+                TOUR_PRICE_ID = price.TOUR_PRICE_ID,
+                TOUR_TIME_ID = time.TOUR_TIME_ID
+            };
+            db.TOUR_INFORMATION.Add(information);
+
+            foreach (var item in PlaceList)
+            {
+                if (item.IsSelected)
+                {
+                    TOUR_PLACE_DETAILED place_detailed = new TOUR_PLACE_DETAILED()
+                    {
+                        TOUR_ID = Tour_Selected.TOUR_ID,
+                        PLACE_ID = item.CB_ID
+                    };
+                    db.TOUR_PLACE_DETAILED.Add(place_detailed);
+                }
+            }
+            //Step 4
+            TOUR_RECORD tour_record = new TOUR_RECORD()
+            {
+                TOUR_STAFF_ID = User_ID,
+                TOUR_RECORD_DATE = DateTime.Now,
+                TOUR_RECORD_CONTENT = "Add new information tour with Name: " + Tour_Name
+            };
+            db.TOUR_RECORD.Add(tour_record);
+
+            //Step 5
+            db.SaveChanges();
+
+            //Step 6
+            MessageBox.Show("Added successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        #endregion AddTourInformationUC
+
+        #region InformationUC
+        private void LoadTourInformationComboBox()
+        {
+            CB_TourInformationList = new ObservableCollection<ComboBoxModel>
+            {
+                new ComboBoxModel("Schedule", true),
+                new ComboBoxModel("Department Date", false),
+                new ComboBoxModel("End Date", false),
+            };
+            CB_TourInformationSelected = CB_TourInformationList.FirstOrDefault(x => x.IsSelected);
+        }
+        private void LoadTourInformationDatagrid()
+        {
+            if (CB_TourInformationSelected == null)
+            {
+                return;
+            }
+
+            //Step 2
+            Tour_Mangement_DatabaseEntities db = new Tour_Mangement_DatabaseEntities();
+            IQueryable<TOUR_INFORMATION> tourInformationList = from information in db.TOUR_INFORMATION
+                                                               where information.TOUR_ID == Tour_Selected.TOUR_ID
+                                                               select information;
+
+            ObservableCollection<PlaceModel> placeList = new ObservableCollection<PlaceModel>();
+            var placelist = from place in db.TOUR_PLACE_DETAILED
+                            where place.TOUR_ID == Tour_Selected.TOUR_ID
+                            select place;
+            foreach (var placeItem in placelist)
+            {
+                PlaceModel placeModel = new PlaceModel()
+                {
+                    PLACE_ID = placeItem.PLACE_ID,
+                    PLACE_NAME = placeItem.PLACE.PLACE_NAME,
+                    PLACE_NATION = placeItem.PLACE.PLACE_NATION
+                };
+                placeList.Add(placeModel);
+            }
+
+            //Step 3
+            TourInformationList = new ObservableCollection<TourInformationModel>();
+            Refresh_TourInformationList = new ObservableCollection<TourInformationModel>();
+
+            //Step 4
+            foreach (TOUR_INFORMATION item in tourInformationList)
+            {
+                TourTimeModel timeModel = new TourTimeModel()
+                {
+                    TIME_ID = item.TOUR_TIME_ID,
+                    TIME_DEPARTMENT_TIME = (DateTime)item.TOUR_TIME.TOUR_TIME_DEPARTMENT_DATE,
+                    TIME_END_TIME = (DateTime)item.TOUR_TIME.TOUR_TIME_END_DATE,
+                    TIME_NIGHT = (int)item.TOUR_TIME.TOUR_TIME_NIGHT,
+                    TIME_DAY = (int)item.TOUR_TIME.TOUR_TIME_DAY,
+                };
+                timeModel.TIME_DEPARTMENT_STRING = timeModel.TIME_DEPARTMENT_TIME.ToString("dd/MM/yyyy");
+                timeModel.TIME_END_STRING = timeModel.TIME_END_TIME.ToString("dd/MM/yyyy");
+                timeModel.TIME_STRING = string.Format("{0} {1} {2} {3}",
+                                                       timeModel.TIME_DAY,
+                                                       timeModel.TIME_DAY > 1 ? "days" : "day",
+                                                       timeModel.TIME_NIGHT,
+                                                       timeModel.TIME_NIGHT > 1 ? "nights" : "night");
+
+                TourPriceModel priceModel = new TourPriceModel()
+                {
+                    PRICE_ID = item.TOUR_PRICE_ID,
+                    PRICE_COST_HOTEL = (double)item.TOUR_PRICE.TOUR_PRICE_COST_HOTEL,
+                    PRICE_COST_SERVICE = (double)item.TOUR_PRICE.TOUR_PRICE_COST_SERVICE,
+                    PRICE_COST_TOTAL = (double)item.TOUR_PRICE.TOUR_PRICE_COST_TOTAL,
+                    PRICE_COST_TRANSPORT = (double)item.TOUR_PRICE.TOUR_PRICE_COST_TRANSPORT,
+                    PRICE_NOTE = item.TOUR_PRICE.TOUR_PRICE_NOTE
+                };
+
+                TourInformationModel tourInformationModel = new TourInformationModel
+                {
+                    TOUR_ID = item.TOUR_ID,
+                    INFORMATION_ID = item.TOUR_INFORMATION_ID,
+                    INFORMATION_PRICE = priceModel,
+                    INFORMATION_TIME = timeModel,
+                    INFORMATION_PLACE_LIST = placeList
+                };
+
+                TourInformationList.Add(tourInformationModel);
+                Refresh_TourInformationList.Add(tourInformationModel);
+            }
+        }
+        #endregion InformationUC
+        #endregion Function Tour Information
+        #endregion Tour Information
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TourManagementSystem.Managers.ViewModel;
 using TourManagementSystem.ViewModel;
 
 namespace TourManagementSystem.Global.Model
@@ -13,7 +14,15 @@ namespace TourManagementSystem.Global.Model
          * IsSelected is bool value to define what object is displayed in checkbox
          */
         private bool _IsSelected;
-        public bool IsSelected { get => _IsSelected; set { _IsSelected = value; OnPropertyChanged(); } }
+        public bool IsSelected
+        {
+            get => _IsSelected;
+            set
+            {
+                _IsSelected = value;
+                OnPropertyChanged();
+            }
+        }
 
         /*
          * checkbox name
