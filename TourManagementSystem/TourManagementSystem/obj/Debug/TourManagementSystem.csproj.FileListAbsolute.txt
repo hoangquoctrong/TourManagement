@@ -159,3 +159,7 @@ D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Man
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTimeUC.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTourInformationUC.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTourInformationUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayTourInformationUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayTourInformationUC.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TravelGroupUC.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TravelGroupUC.baml

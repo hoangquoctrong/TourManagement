@@ -237,6 +237,9 @@
     <Compile Include="Managers\View\DisplayStaffUC.xaml.cs">
       <DependentUpon>DisplayStaffUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Managers\View\DisplayTourInformationUC.xaml.cs">
+      <DependentUpon>DisplayTourInformationUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Managers\View\DisplayTourUC.xaml.cs">
       <DependentUpon>DisplayTourUC.xaml</DependentUpon>
     </Compile>
@@ -325,6 +328,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Managers\View\DisplayTourInformationUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Managers\View\DisplayTourUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -353,10 +360,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Managers\View\TravelGroupUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Managers\View\TransportUC.xaml.cs">
       <DependentUpon>TransportUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Managers\View\TravelGroupUC.xaml.cs">
+      <DependentUpon>TravelGroupUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

@@ -333,7 +333,7 @@
                         <!--<Binding Path="USER_NAME" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules />
                         </Binding>-->
-                        Phương pháp lập trình hướng đối tượng
+                        Cao Nguyen Minh Quan
                     </Label>
 
                     <materialDesign:PopupBox

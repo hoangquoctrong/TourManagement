@@ -343,7 +343,7 @@ namespace TourManagementSystem.Managers.ViewModel
             Refresh_TourList = new ObservableCollection<TourModel>();
 
             //Step 4
-            foreach (TOUR item in tourList)
+            foreach (var item in tourList)
             {
                 TourModel tourModel = new TourModel
                 {

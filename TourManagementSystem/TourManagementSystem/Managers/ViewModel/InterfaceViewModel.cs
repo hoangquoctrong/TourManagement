@@ -145,6 +145,8 @@ namespace TourManagementSystem.ViewModel
 
             FOREGROUNDHOTEL = new SolidColorBrush(Colors.WhiteSmoke);
             BACKGROUNDHOTEL = new SolidColorBrush(Colors.Transparent);
+
+            CONTENTCONTROL = new TravelGroupUC(2);
         }
         private void PlaceClick()
         {
