@@ -62,8 +62,8 @@
             <Border
                 Width="150"
                 Height="150"
-                Margin="0,10,0,0"
-                VerticalAlignment="Top"
+                Margin="25,0,25,40"
+                VerticalAlignment="Bottom"
                 CornerRadius="30">
                 <Border.Background>
                     <ImageBrush Stretch="Fill">

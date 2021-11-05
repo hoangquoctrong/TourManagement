@@ -23,32 +23,6 @@ D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagement
 D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.CopyComplete
 D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.exe
 D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.pdb
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\TourManagementSystem.exe.config
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\TourManagementSystem.exe
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\TourManagementSystem.pdb
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\EntityFramework.dll
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\EntityFramework.SqlServer.dll
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\MaterialDesignColors.dll
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\MaterialDesignThemes.Wpf.dll
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\EntityFramework.xml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\EntityFramework.SqlServer.xml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\MaterialDesignColors.pdb
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\MaterialDesignThemes.Wpf.pdb
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\MaterialDesignThemes.Wpf.xml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\App.g.cs
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem_Content.g.cs
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem_MarkupCompile.cache
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem_MarkupCompile.lref
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\App.baml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.g.resources
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.Properties.Resources.resources
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.GenerateResource.cache
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.CoreCompileInputs.cache
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.CopyComplete
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.exe
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.pdb
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\MainWindow.g.cs
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\MainWindow.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\TourManagementSystem.exe.config
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\TourManagementSystem.exe
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\TourManagementSystem.pdb
@@ -94,33 +68,6 @@ D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagement
 D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\MainWindow.baml
 D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\ManagerView.baml
 D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TourUC.baml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\Microsoft.Expression.Interactions.dll
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\System.Windows.Interactivity.dll
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\Microsoft.Expression.Interactions.xml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\System.Windows.Interactivity.xml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\ManagerView.g.cs
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TourUC.g.cs
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\ManagerView.baml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TourUC.baml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\StaffUC.g.cs
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\StaffUC.baml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.AssemblyReference.cache
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddStaffUC.g.cs
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddStaffUC.baml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayStaffUC.g.cs
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayStaffUC.baml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TransportUC.g.cs
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TransportUC.baml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTransportUC.g.cs
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayTransportUC.g.cs
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTransportUC.baml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayTransportUC.baml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddHotelUC.g.cs
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayHotelUC.g.cs
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\HotelUC.g.cs
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddHotelUC.baml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayHotelUC.baml
-D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\HotelUC.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddHotelUC.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddStaffUC.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTransportUC.g.cs
@@ -163,3 +110,86 @@ D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Man
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayTourInformationUC.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TravelGroupUC.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TravelGroupUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\TourManagementSystem.exe.config
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\TourManagementSystem.exe
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\TourManagementSystem.pdb
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\EntityFramework.dll
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\EntityFramework.SqlServer.dll
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\MaterialDesignColors.dll
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\Microsoft.Expression.Interactions.dll
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\System.Windows.Interactivity.dll
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\EntityFramework.xml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\EntityFramework.SqlServer.xml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\MaterialDesignColors.pdb
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\Microsoft.Expression.Interactions.xml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\System.Windows.Interactivity.xml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\View\LoginWindow.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Style.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\MainWindow.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\View\LoginWindow.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\ManagerView.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddHotelUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddLocationUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddPlaceUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddPriceUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddStaffUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTimeUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTourInformationUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTourUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTransportUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayHotelUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayLocationUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayPlaceUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayStaffUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayTourInformationUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayTourUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayTransportUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\HotelUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\PlaceUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\StaffUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TourUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TransportUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TravelGroupUC.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\ManagerWindow.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\App.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem_Content.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem_MarkupCompile.cache
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem_MarkupCompile.lref
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\App.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\MainWindow.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\ManagerView.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddHotelUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddLocationUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddPlaceUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddPriceUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddStaffUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTimeUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTourInformationUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTourUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\AddTransportUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayHotelUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayLocationUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayPlaceUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayStaffUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayTourInformationUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayTourUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\DisplayTransportUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\HotelUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\PlaceUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\StaffUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TourUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TransportUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Managers\View\TravelGroupUC.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\ManagerWindow.baml
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.g.resources
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.Properties.Resources.resources
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.GenerateResource.cache
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.CoreCompileInputs.cache
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.CopyComplete
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.exe
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.pdb
+D:\Study\Học kì 1 NH 2021 - 2022\Phương pháp phát triển phần mềm hướng đối tượng\Dự án\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.AssemblyReference.cache

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TourManagementSystem.Managers.ViewModel;
 using TourManagementSystem.ViewModel;
 
@@ -41,6 +42,8 @@ namespace TourManagementSystem.Global.Model
          */
         private int _CB_ID;
         public int CB_ID { get => _CB_ID; set { _CB_ID = value; OnPropertyChanged(); } }
+
+        public ICommand CB_Click_Command { get; set; }
 
         public CheckBoxModel(string name, string sub_name, int id, bool is_selected)
         {
