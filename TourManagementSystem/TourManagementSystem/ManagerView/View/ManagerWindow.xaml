@@ -8,7 +8,7 @@
     xmlns:vm="clr-namespace:TourManagementSystem.ManagerView.ViewModel"
     x:Name="ManagerViewWindow"
     Title="MainWindow"
-    Width="1400"
+    Width="1470"
     Height="780"
     AllowsTransparency="True"
     Background="Transparent"
@@ -27,7 +27,7 @@
 
         <!--  Header  -->
         <Border
-            Width="1320"
+            Width="1390"
             Height="80"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -44,7 +44,7 @@
 
         <!--  Footer  -->
         <Border
-            Width="1320"
+            Width="1390"
             Height="80"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
@@ -84,7 +84,7 @@
 
                 <ColumnDefinition Width="12" />
                 <ColumnDefinition Width="208" />
-                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="12" />
                 <ColumnDefinition />
                 <ColumnDefinition Width="12" />
 
@@ -148,7 +148,13 @@
                 Grid.Column="3"
                 Background="Transparent">
 
-                <ContentControl x:Name="Pages" Content="{Binding SelectedViewModel}" />
+                <ContentControl
+                    x:Name="Pages"
+                    Width="1190"
+                    Height="626"
+                    Margin="0,0,0,0.4"
+                    VerticalAlignment="Bottom"
+                    Content="{Binding SelectedViewModel}" />
 
             </Grid>
 

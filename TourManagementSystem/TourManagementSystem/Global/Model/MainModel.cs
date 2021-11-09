@@ -1,13 +1,10 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-
-/// <summary>
-/// Model [ "The Content Creator" ]
-/// The model class holds the data. The model can be referred to as the data file for the front-end of the application.
-/// </summary>
-
-
-namespace TourManagementSystem.ManagerView.Model
+namespace TourManagementSystem.Global.Model
 {
     //Main Menu Item
     public class MenuItems

@@ -1,0 +1,51 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:view="clr-namespace:TourManagementSystem.ManagerView.View"
+    xmlns:viewmodel="clr-namespace:TourManagementSystem.ManagerView.ViewModel">
+
+    <DataTemplate DataType="{x:Type viewmodel:DashboardViewModel}">
+        <view:DashboardView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:TourViewModel}">
+        <view:TourView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:TravelGroupViewModel}">
+        <view:TravelGroupView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:PlaceViewModel}">
+        <view:PlaceView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:StaffViewModel}">
+        <view:StaffView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:TransportViewModel}">
+        <view:TransportView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:HotelViewModel}">
+        <view:HotelView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AccountViewModel}">
+        <view:AccountView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AddStaffViewModel}">
+        <view:AddStaffView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowStaffViewModel}">
+        <view:ShowStaffView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:StatisticStaffViewModel}">
+        <view:StatisticStaffView />
+    </DataTemplate>
+
+</ResourceDictionary>

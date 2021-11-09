@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using TourManagementSystem.Global.Model;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -15,12 +16,18 @@ namespace TourManagementSystem.ManagerView.ViewModel
 {
     class NavigationViewModel : BaseViewModel
     {
+        // CollectionViewSource enables XAML code to set the commonly used CollectionView properties,
+        // passing these settings to the underlying view.
         private CollectionViewSource MenuItemsCollection;
 
+        // ICollectionView enables collections to have the functionalities of current record management,
+        // custom sorting, filtering, and grouping.
         public ICollectionView SourceCollection => MenuItemsCollection.View;
 
         public NavigationViewModel()
         {
+            // ObservableCollection represents a dynamic data collection that provides notifications when items
+            // get added, removed, or when the whole list is refreshed.
             ObservableCollection<MenuItems> menuItems = new ObservableCollection<MenuItems>()
             {
                 new MenuItems {MenuName = "Dashboard", MenuImage = @"Assets/home.png"},
@@ -35,6 +42,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
             MenuItemsCollection = new CollectionViewSource { Source = menuItems };
             MenuItemsCollection.Filter += MenuItem_Filter;
+
+            // Set Startup Page
+            SelectedViewModel = new DashboardViewModel();
         }
 
         //Text Search Filter
@@ -96,7 +106,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                     SelectedViewModel = new PlaceViewModel();
                     break;
                 case "Staff":
-                    SelectedViewModel = new StaffViewModel();
+                    SelectedViewModel = new StaffViewModel(2);
                     break;
                 case "Transports":
                     SelectedViewModel = new TransportViewModel();
