@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TourManagementSystem.Global;
 using TourManagementSystem.Global.Model;
 using TourManagementSystem.ViewModel;
@@ -39,8 +36,7 @@ namespace TourManagementSystem.ManagerView.Model
                                 staff,
                                 USERNAME = staff_account.TOUR_ACCOUNT_NAME,
                                 staff_delete
-                            }
-                            ;
+                            };
 
             foreach (var item in staffList)
             {
@@ -254,6 +250,7 @@ namespace TourManagementSystem.ManagerView.Model
                         TOUR_RECORD_CONTENT = changeToSave
                     };
                     DataProvider.Ins.DB.TOUR_RECORD.Add(tour_record);
+                    DataProvider.Ins.DB.SaveChanges();
                     return true;
                 }
 

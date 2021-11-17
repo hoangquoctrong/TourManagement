@@ -48,4 +48,12 @@
         <view:StatisticStaffView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type viewmodel:AddHotelViewModel}">
+        <view:AddHotelView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowHotelViewModel}">
+        <view:ShowHotelView />
+    </DataTemplate>
+
 </ResourceDictionary>

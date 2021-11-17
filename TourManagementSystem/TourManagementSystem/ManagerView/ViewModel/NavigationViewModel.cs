@@ -112,7 +112,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                     SelectedViewModel = new TransportViewModel();
                     break;
                 case "Hotel":
-                    SelectedViewModel = new HotelViewModel();
+                    SelectedViewModel = new HotelViewModel(2);
                     break;
                 case "Account":
                     SelectedViewModel = new AccountViewModel();

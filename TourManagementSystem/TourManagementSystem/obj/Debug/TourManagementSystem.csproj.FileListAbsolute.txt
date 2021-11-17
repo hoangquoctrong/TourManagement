@@ -224,3 +224,7 @@ D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Man
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\StatisticStaffView.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\View\MessageWindow.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\View\MessageWindow.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\AddHotelView.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\ShowHotelView.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\AddHotelView.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\ShowHotelView.baml

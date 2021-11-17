@@ -31,7 +31,6 @@ namespace TourManagementSystem.Global
         public virtual DbSet<TOUR_ACCOUNT> TOUR_ACCOUNT { get; set; }
         public virtual DbSet<TOUR_HARD_PRICE> TOUR_HARD_PRICE { get; set; }
         public virtual DbSet<TOUR_HOTEL> TOUR_HOTEL { get; set; }
-        public virtual DbSet<TOUR_HOTEL_DELETE> TOUR_HOTEL_DELETE { get; set; }
         public virtual DbSet<TOUR_HOTEL_DETAIL> TOUR_HOTEL_DETAIL { get; set; }
         public virtual DbSet<TOUR_INFORMATION> TOUR_INFORMATION { get; set; }
         public virtual DbSet<TOUR_LOCATION> TOUR_LOCATION { get; set; }
@@ -44,7 +43,6 @@ namespace TourManagementSystem.Global
         public virtual DbSet<TOUR_STAFF_DELETE> TOUR_STAFF_DELETE { get; set; }
         public virtual DbSet<TOUR_TIME> TOUR_TIME { get; set; }
         public virtual DbSet<TOUR_TRANSPORT> TOUR_TRANSPORT { get; set; }
-        public virtual DbSet<TOUR_TRANSPORT_DELETE> TOUR_TRANSPORT_DELETE { get; set; }
         public virtual DbSet<TOUR_TRANSPORT_DETAIL> TOUR_TRANSPORT_DETAIL { get; set; }
         public virtual DbSet<TRAVEL_COST> TRAVEL_COST { get; set; }
         public virtual DbSet<TRAVEL_GROUP> TRAVEL_GROUP { get; set; }

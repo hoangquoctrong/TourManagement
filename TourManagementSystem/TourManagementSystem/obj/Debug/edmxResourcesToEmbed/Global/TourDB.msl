@@ -67,17 +67,7 @@
           <ScalarProperty Name="TOUR_HOTEL_IMAGE" ColumnName="TOUR_HOTEL_IMAGE" />
           <ScalarProperty Name="TOUR_HOTEL_EMAIL" ColumnName="TOUR_HOTEL_EMAIL" />
           <ScalarProperty Name="PLACE_ID" ColumnName="PLACE_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TOUR_HOTEL_DELETE">
-      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DELETE">
-        <MappingFragment StoreEntitySet="TOUR_HOTEL_DELETE">
-          <ScalarProperty Name="TOUR_HOTEL_DELETE_ID" ColumnName="TOUR_HOTEL_DELETE_ID" />
-          <ScalarProperty Name="TOUR_HOTEL_DELETE_ISDELETED" ColumnName="TOUR_HOTEL_DELETE_ISDELETED" />
-          <ScalarProperty Name="TOUR_HOTEL_DELETE_DATE" ColumnName="TOUR_HOTEL_DELETE_DATE" />
-          <ScalarProperty Name="TOUR_HOTEL_ID" ColumnName="TOUR_HOTEL_ID" />
-          <ScalarProperty Name="TOUR_HOTEL_DELETE_CONTENT" ColumnName="TOUR_HOTEL_DELETE_CONTENT" />
+          <ScalarProperty Name="TOUR_HOTEL_DELETE" ColumnName="TOUR_HOTEL_DELETE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -218,17 +208,7 @@
           <ScalarProperty Name="TOUR_TRANSPORT_IMAGE" ColumnName="TOUR_TRANSPORT_IMAGE" />
           <ScalarProperty Name="TOUR_TRANSPORT_START_DATE" ColumnName="TOUR_TRANSPORT_START_DATE" />
           <ScalarProperty Name="TOUR_TRANSPORT_DESCRIPTION" ColumnName="TOUR_TRANSPORT_DESCRIPTION" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TOUR_TRANSPORT_DELETE">
-      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DELETE">
-        <MappingFragment StoreEntitySet="TOUR_TRANSPORT_DELETE">
-          <ScalarProperty Name="TOUR_TRANSPORT_DELETE_ID" ColumnName="TOUR_TRANSPORT_DELETE_ID" />
-          <ScalarProperty Name="TOUR_TRANSPORT_DELETE_ISDELETED" ColumnName="TOUR_TRANSPORT_DELETE_ISDELETED" />
-          <ScalarProperty Name="TOUR_TRANSPORT_DELETE_DATE" ColumnName="TOUR_TRANSPORT_DELETE_DATE" />
-          <ScalarProperty Name="TOUR_TRANSPORT_ID" ColumnName="TOUR_TRANSPORT_ID" />
-          <ScalarProperty Name="TOUR_TRANSPORT_DELETE_CONTENT" ColumnName="TOUR_TRANSPORT_DELETE_CONTENT" />
+          <ScalarProperty Name="TOUR_TRANSPORT_DELETE" ColumnName="TOUR_TRANSPORT_DELETE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

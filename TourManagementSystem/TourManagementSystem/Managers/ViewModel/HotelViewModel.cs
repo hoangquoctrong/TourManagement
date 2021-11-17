@@ -380,8 +380,6 @@ namespace TourManagementSystem.Managers.ViewModel
             //Step 2
             Tour_Mangement_DatabaseEntities db = new Tour_Mangement_DatabaseEntities();
             IQueryable<TOUR_HOTEL> hotelList = from hotel in db.TOUR_HOTEL
-                                               join hotel_delete in db.TOUR_HOTEL_DELETE on hotel.TOUR_HOTEL_ID equals hotel_delete.TOUR_HOTEL_ID
-                                               where hotel_delete.TOUR_HOTEL_DELETE_ISDELETED == false
                                                select hotel;
 
             //Step 3
@@ -577,14 +575,6 @@ namespace TourManagementSystem.Managers.ViewModel
             };
             db.TOUR_HOTEL.Add(tour_hotel);
 
-            //Step 3
-            TOUR_HOTEL_DELETE tour_hotel_delete = new TOUR_HOTEL_DELETE()
-            {
-                TOUR_HOTEL_ID = tour_hotel.TOUR_HOTEL_ID,
-                TOUR_HOTEL_DELETE_ISDELETED = false
-            };
-            db.TOUR_HOTEL_DELETE.Add(tour_hotel_delete);
-
             //Step 4
             TOUR_RECORD tour_record = new TOUR_RECORD()
             {
@@ -774,10 +764,6 @@ namespace TourManagementSystem.Managers.ViewModel
         {
             Tour_Mangement_DatabaseEntities db = new Tour_Mangement_DatabaseEntities();
 
-            TOUR_HOTEL_DELETE tour_hotel_delete = db.TOUR_HOTEL_DELETE.Where(x => x.TOUR_HOTEL_ID == Hotel_Selected.HOTEL_ID).SingleOrDefault();
-            tour_hotel_delete.TOUR_HOTEL_DELETE_ISDELETED = true;
-            tour_hotel_delete.TOUR_HOTEL_DELETE_DATE = DateTime.Now;
-            tour_hotel_delete.TOUR_HOTEL_DELETE_CONTENT = Hotel_Note_Remove;
 
             TOUR_RECORD tour_record = new TOUR_RECORD()
             {

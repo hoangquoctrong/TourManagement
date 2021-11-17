@@ -357,8 +357,6 @@ namespace TourManagementSystem.Managers.ViewModel
             //Step 2
             Tour_Mangement_DatabaseEntities db = new Tour_Mangement_DatabaseEntities();
             IQueryable<TOUR_TRANSPORT> transportList = from trans in db.TOUR_TRANSPORT
-                                                       join trans_delete in db.TOUR_TRANSPORT_DELETE on trans.TOUR_TRANSPORT_ID equals trans_delete.TOUR_TRANSPORT_ID
-                                                       where trans_delete.TOUR_TRANSPORT_DELETE_ISDELETED == false
                                                        select trans;
 
             //Step 3
@@ -518,13 +516,6 @@ namespace TourManagementSystem.Managers.ViewModel
             };
             db.TOUR_TRANSPORT.Add(tour_transport);
 
-            //Step 3
-            TOUR_TRANSPORT_DELETE tour_transport_delete = new TOUR_TRANSPORT_DELETE()
-            {
-                TOUR_TRANSPORT_ID = tour_transport.TOUR_TRANSPORT_ID,
-                TOUR_TRANSPORT_DELETE_ISDELETED = false
-            };
-            db.TOUR_TRANSPORT_DELETE.Add(tour_transport_delete);
 
             //Step 4
             TOUR_RECORD tour_record = new TOUR_RECORD()
@@ -686,11 +677,6 @@ namespace TourManagementSystem.Managers.ViewModel
         private void ExcuteRemoveCommand()
         {
             Tour_Mangement_DatabaseEntities db = new Tour_Mangement_DatabaseEntities();
-
-            TOUR_TRANSPORT_DELETE tour_transport_delete = db.TOUR_TRANSPORT_DELETE.Where(x => x.TOUR_TRANSPORT_ID == Transport_Selected.TRANSPORT_ID).SingleOrDefault();
-            tour_transport_delete.TOUR_TRANSPORT_DELETE_ISDELETED = true;
-            tour_transport_delete.TOUR_TRANSPORT_DELETE_DATE = DateTime.Now;
-            tour_transport_delete.TOUR_TRANSPORT_DELETE_CONTENT = Transport_Note_Remove;
 
             TOUR_RECORD tour_record = new TOUR_RECORD()
             {

@@ -121,9 +121,6 @@
     <Compile Include="Global\TOUR_HOTEL.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Global\TOUR_HOTEL_DELETE.cs">
-      <DependentUpon>TourDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global\TOUR_HOTEL_DETAIL.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
@@ -158,9 +155,6 @@
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global\TOUR_TRANSPORT.cs">
-      <DependentUpon>TourDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Global\TOUR_TRANSPORT_DELETE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global\TOUR_TRANSPORT_DETAIL.cs">
@@ -388,6 +382,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ManagerView\View\AddHotelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ManagerView\View\AddStaffView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -405,6 +403,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ManagerView\View\PlaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\ShowHotelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -444,16 +446,24 @@
     <Compile Include="Managers\View\TravelGroupUC.xaml.cs">
       <DependentUpon>TravelGroupUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManagerView\Model\HotelHandleModel.cs" />
+    <Compile Include="ManagerView\Model\HotelModel.cs" />
+    <Compile Include="ManagerView\Model\PlaceHandleModel.cs" />
+    <Compile Include="ManagerView\Model\PlaceModel.cs" />
     <Compile Include="ManagerView\Model\StaffHandleModel.cs" />
     <Compile Include="ManagerView\Model\StaffModel.cs" />
+    <Compile Include="ManagerView\Model\TourDetailHandleModel.cs" />
+    <Compile Include="ManagerView\Model\TourHotelDetailModel.cs" />
     <Compile Include="ManagerView\Model\TourMissionHandleModel.cs" />
     <Compile Include="ManagerView\Model\TourMissionModel.cs" />
     <Compile Include="ManagerView\ViewModel\AccountViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\AddHotelViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\AddStaffViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\DashboardViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\HotelViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\NavigationViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\PlaceViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\ShowHotelViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\ShowStaffViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\StaffViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\StatisticStaffViewModel.cs" />
@@ -462,6 +472,9 @@
     <Compile Include="ManagerView\ViewModel\TravelGroupViewModel.cs" />
     <Compile Include="ManagerView\View\AccountView.xaml.cs">
       <DependentUpon>AccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\AddHotelView.xaml.cs">
+      <DependentUpon>AddHotelView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManagerView\View\AddStaffView.xaml.cs">
       <DependentUpon>AddStaffView.xaml</DependentUpon>
@@ -477,6 +490,9 @@
     </Compile>
     <Compile Include="ManagerView\View\PlaceView.xaml.cs">
       <DependentUpon>PlaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\ShowHotelView.xaml.cs">
+      <DependentUpon>ShowHotelView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManagerView\View\ShowStaffView.xaml.cs">
       <DependentUpon>ShowStaffView.xaml</DependentUpon>
@@ -513,13 +529,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\Cairo-SemiBold.ttf" />
+    <Resource Include="Fonts\OpenSans-Regular.ttf" />
+    <Resource Include="Fonts\Roboto-Regular.ttf" />
     <EntityDeploy Include="Global\TourDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TourDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Resource Include="Fonts\Cairo-SemiBold.ttf" />
-    <Resource Include="Fonts\OpenSans-Regular.ttf" />
-    <Resource Include="Fonts\Roboto-Regular.ttf" />
     <None Include="Global\TourDB.edmx.diagram">
       <DependentUpon>TourDB.edmx</DependentUpon>
     </None>
@@ -562,6 +578,8 @@
     <Resource Include="Assets\travelgroup.png" />
     <Resource Include="Assets\close_icon.png" />
     <Resource Include="Assets\close_mo_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Global\TourDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TourDB.edmx</DependentUpon>
