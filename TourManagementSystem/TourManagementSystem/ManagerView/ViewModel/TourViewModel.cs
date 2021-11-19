@@ -8,7 +8,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 {
     public class TourViewModel
     {
-        public TourViewModel()
+        public TourViewModel(int user_id)
         {
 
         }

@@ -8,7 +8,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 {
     public class DashboardViewModel
     {
-        public DashboardViewModel()
+        public DashboardViewModel(int user_id)
         {
 
         }

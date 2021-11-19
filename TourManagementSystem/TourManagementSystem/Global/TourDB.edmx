@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="PLACE">
           <Key>
             <PropertyRef Name="PLACE_ID" />
@@ -197,6 +197,8 @@
           <Property Name="TOUR_TRANSPORT_START_DATE" Type="datetime" />
           <Property Name="TOUR_TRANSPORT_DESCRIPTION" Type="text" />
           <Property Name="TOUR_TRANSPORT_DELETE" Type="bit" />
+          <Property Name="TOUR_TRANSPORT_PRICE" Type="float" />
+          <Property Name="TOUR_TRANSPORT_TYPETRANS" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="TOUR_TRANSPORT_DETAIL">
           <Key>
@@ -635,8 +637,7 @@
             <End Role="TRAVELLER_ACCOUNT" EntitySet="TRAVELLER_ACCOUNT" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Tour_Mangement_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -865,6 +866,8 @@
           <Property Name="TOUR_TRANSPORT_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_TRANSPORT_DELETE" Type="Boolean" />
           <NavigationProperty Name="TOUR_TRANSPORT_DETAIL" Relationship="Self.FK__TOUR_TRAN__TOUR___6AEFE058" FromRole="TOUR_TRANSPORT" ToRole="TOUR_TRANSPORT_DETAIL" />
+          <Property Name="TOUR_TRANSPORT_PRICE" Type="Double" />
+          <Property Name="TOUR_TRANSPORT_TYPETRANS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TOUR_TRANSPORT_DETAIL">
           <Key>
@@ -1519,6 +1522,8 @@
           <EntitySetMapping Name="TOUR_TRANSPORT">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT">
               <MappingFragment StoreEntitySet="TOUR_TRANSPORT">
+                <ScalarProperty Name="TOUR_TRANSPORT_TYPETRANS" ColumnName="TOUR_TRANSPORT_TYPETRANS" />
+                <ScalarProperty Name="TOUR_TRANSPORT_PRICE" ColumnName="TOUR_TRANSPORT_PRICE" />
                 <ScalarProperty Name="TOUR_TRANSPORT_ID" ColumnName="TOUR_TRANSPORT_ID" />
                 <ScalarProperty Name="TOUR_TRANSPORT_NAME" ColumnName="TOUR_TRANSPORT_NAME" />
                 <ScalarProperty Name="TOUR_TRANSPORT_LICENSE_PLATE" ColumnName="TOUR_TRANSPORT_LICENSE_PLATE" />

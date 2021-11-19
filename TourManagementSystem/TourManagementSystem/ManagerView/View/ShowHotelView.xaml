@@ -9,6 +9,23 @@
     Width="1190"
     Height="620"
     mc:Ignorable="d">
+    <UserControl.Style>
+        <Style>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="UserControl.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="Opacity"
+                                From="0.0"
+                                To="1.0"
+                                Duration="0:0:0.5" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
     <UserControl.Resources>
         <Style x:Key="WrapText" TargetType="{x:Type TextBlock}">
             <Setter Property="TextWrapping" Value="Wrap" />
@@ -21,10 +38,15 @@
         <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="{x:Type DataGridCell}">
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="BorderBrush" Value="#d6d6d6" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FDF8EA" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
     <ContentControl x:Name="contentControlDisplay" Height="auto">
-        <Grid Margin="10,0,10,10">
+        <Grid>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -440,8 +462,6 @@
                                     Content="Save Change"
                                     Foreground="#1885F2"
                                     Style="{StaticResource ResourceKey=ConfirmButton}" />
-
-
                             </Grid>
                         </Grid>
                     </TabItem>

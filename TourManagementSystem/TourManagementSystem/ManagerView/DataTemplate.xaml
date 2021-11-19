@@ -4,6 +4,10 @@
     xmlns:view="clr-namespace:TourManagementSystem.ManagerView.View"
     xmlns:viewmodel="clr-namespace:TourManagementSystem.ManagerView.ViewModel">
 
+    <DataTemplate DataType="{x:Type viewmodel:NavigationViewModel}">
+        <view:ManagerWindow />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type viewmodel:DashboardViewModel}">
         <view:DashboardView />
     </DataTemplate>
@@ -54,6 +58,30 @@
 
     <DataTemplate DataType="{x:Type viewmodel:ShowHotelViewModel}">
         <view:ShowHotelView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AddTransportViewModel}">
+        <view:AddTransportView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowTransportViewModel}">
+        <view:ShowTransportView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AddPlaceViewModel}">
+        <view:AddPlaceView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowPlaceViewModel}">
+        <view:ShowPlaceView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AddLocationViewModel}">
+        <view:AddLocationView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowLocationViewModel}">
+        <view:ShowLocationView />
     </DataTemplate>
 
 </ResourceDictionary>

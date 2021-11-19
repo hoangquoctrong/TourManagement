@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TourManagementSystem.ManagerView.ViewModel;
 
 namespace TourManagementSystem.ManagerView.View
 {
@@ -22,6 +23,7 @@ namespace TourManagementSystem.ManagerView.View
         public ManagerWindow()
         {
             InitializeComponent();
+
         }
     }
 }

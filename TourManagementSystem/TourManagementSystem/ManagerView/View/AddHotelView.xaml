@@ -9,8 +9,25 @@
     Width="1190"
     Height="620"
     mc:Ignorable="d">
+    <UserControl.Style>
+        <Style>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="UserControl.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="Opacity"
+                                From="0.0"
+                                To="1.0"
+                                Duration="0:0:0.5" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
     <ContentControl x:Name="contentControlAdd" Height="auto">
-        <Grid Margin="10,0,10,10">
+        <Grid>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />

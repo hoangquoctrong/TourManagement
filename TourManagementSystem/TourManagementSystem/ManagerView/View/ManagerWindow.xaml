@@ -55,7 +55,7 @@
                 FontWeight="SemiBold"
                 Foreground="White"
                 Style="{StaticResource FooterStyle}"
-                Text="     M A N A G E R       VIEW      " />
+                Text="     M A N A G E R       V I E W      " />
         </Border>
 
         <!--  Content Background  -->

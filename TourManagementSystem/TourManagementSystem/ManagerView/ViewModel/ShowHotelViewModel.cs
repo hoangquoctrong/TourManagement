@@ -118,7 +118,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private void LoadPlaceCombobox(int place_id)
         {
             CB_PlaceList = new ObservableCollection<ComboBoxModel>();
-            foreach (var item in PlaceHandleModel.GetPlace())
+            foreach (var item in PlaceHandleModel.GetPlaceList())
             {
                 ComboBoxModel cbm = new ComboBoxModel(item.PLACE_NAME, item.PLACE_ID, false);
 

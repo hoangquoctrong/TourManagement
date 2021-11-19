@@ -478,15 +478,10 @@ namespace TourManagementSystem.Managers.ViewModel
          */
         private bool IsExcuteComfirmCommand()
         {
-            if (string.IsNullOrEmpty(Transport_Name) ||
-                string.IsNullOrEmpty(Transport_Company) ||
-                string.IsNullOrEmpty(Transport_License_Plate) ||
-                string.IsNullOrEmpty(Transport_Type))
-            {
-                return false;
-            }
-
-            return true;
+            return !string.IsNullOrEmpty(Transport_Name) &&
+                    !string.IsNullOrEmpty(Transport_Company) &&
+                    !string.IsNullOrEmpty(Transport_License_Plate) &&
+                    !string.IsNullOrEmpty(Transport_Type);
         }
 
         private void ExcuteConfirmCommand()

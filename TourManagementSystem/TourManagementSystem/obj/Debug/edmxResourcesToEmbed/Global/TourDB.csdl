@@ -225,6 +225,8 @@
     <Property Name="TOUR_TRANSPORT_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="TOUR_TRANSPORT_DELETE" Type="Boolean" />
     <NavigationProperty Name="TOUR_TRANSPORT_DETAIL" Relationship="Self.FK__TOUR_TRAN__TOUR___6AEFE058" FromRole="TOUR_TRANSPORT" ToRole="TOUR_TRANSPORT_DETAIL" />
+    <Property Name="TOUR_TRANSPORT_PRICE" Type="Double" />
+    <Property Name="TOUR_TRANSPORT_TYPETRANS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="TOUR_TRANSPORT_DETAIL">
     <Key>

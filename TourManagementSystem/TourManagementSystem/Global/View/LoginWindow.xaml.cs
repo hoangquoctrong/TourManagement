@@ -22,6 +22,7 @@ namespace TourManagementSystem.Global.View
         public LoginWindow()
         {
             InitializeComponent();
+            passwordBox.Password = Properties.Settings.Default.Password;
         }
     }
 }

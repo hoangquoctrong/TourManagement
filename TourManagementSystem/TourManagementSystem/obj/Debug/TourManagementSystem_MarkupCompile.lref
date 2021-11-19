@@ -1,6 +1,14 @@
 ﻿
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\App.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\EmployeeView\DataTemplateEmployee.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\EmployeeView\View\EAccountView.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\EmployeeView\View\EDashboardView.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\EmployeeView\View\EmployeeWindow.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\EmployeeView\View\ETourView.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\EmployeeView\View\ETravelGroupView.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Global\MainWindow.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Global\View\ForgetPasswordWindow.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Global\View\LoginWindow.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Global\View\MessageWindow.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\ManagerView.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\Managers\View\AddHotelUC.xaml;;
@@ -29,15 +37,21 @@ FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\AccountView.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\AddHotelView.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\AddStaffView.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\AddTransportView.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\DashboardView.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\HotelView.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\ManagerWindow.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\PlaceView.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\ShowHotelView.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\ShowStaffView.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\ShowTransportView.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\StaffView.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\StatisticStaffView.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\TourView.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\TransportView.xaml;;
 FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\TravelGroupView.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\AddPlaceView.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\ShowPlaceView.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\AddLocationView.xaml;;
+FD:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\ManagerView\View\ShowLocationView.xaml;;
 

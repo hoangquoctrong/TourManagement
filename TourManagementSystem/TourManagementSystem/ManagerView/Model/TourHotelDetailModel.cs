@@ -12,6 +12,9 @@ namespace TourManagementSystem.ManagerView.Model
         private int _TOUR_HOTEL_DETAIL_ID;
         public int TOUR_HOTEL_DETAIL_ID { get => _TOUR_HOTEL_DETAIL_ID; set { _TOUR_HOTEL_DETAIL_ID = value; OnPropertyChanged(); } }
 
+        private int _HOTEL_ID;
+        public int HOTEL_ID { get => _HOTEL_ID; set { _HOTEL_ID = value; OnPropertyChanged(); } }
+
         private string _TOUR_NAME;
         public string TOUR_NAME { get => _TOUR_NAME; set { _TOUR_NAME = value; OnPropertyChanged(); } }
 

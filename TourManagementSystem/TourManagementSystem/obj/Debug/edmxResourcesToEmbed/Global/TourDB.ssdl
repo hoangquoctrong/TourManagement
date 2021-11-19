@@ -192,6 +192,8 @@
     <Property Name="TOUR_TRANSPORT_START_DATE" Type="datetime" />
     <Property Name="TOUR_TRANSPORT_DESCRIPTION" Type="text" />
     <Property Name="TOUR_TRANSPORT_DELETE" Type="bit" />
+    <Property Name="TOUR_TRANSPORT_PRICE" Type="float" />
+    <Property Name="TOUR_TRANSPORT_TYPETRANS" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="TOUR_TRANSPORT_DETAIL">
     <Key>

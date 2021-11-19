@@ -12,6 +12,9 @@ namespace TourManagementSystem.ManagerView.Model
         private int _TOUR_MISSION_ID;
         public int TOUR_MISSION_ID { get => _TOUR_MISSION_ID; set { _TOUR_MISSION_ID = value; OnPropertyChanged(); } }
 
+        private int _STAFF_ID;
+        public int STAFF_ID { get => _STAFF_ID; set { _STAFF_ID = value; OnPropertyChanged(); } }
+
         private string _TOUR_MISSION_RESPONSIBILITY;
         public string TOUR_MISSION_RESPONSIBILITY { get => _TOUR_MISSION_RESPONSIBILITY; set { _TOUR_MISSION_RESPONSIBILITY = value; OnPropertyChanged(); } }
 

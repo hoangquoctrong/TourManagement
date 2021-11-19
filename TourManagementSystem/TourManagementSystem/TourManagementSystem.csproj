@@ -83,10 +83,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EmployeeView\Model\DatabaseHandleModel.cs" />
+    <Compile Include="EmployeeView\ViewModel\EAccountViewModel.cs" />
+    <Compile Include="EmployeeView\ViewModel\EDashboardViewModel.cs" />
+    <Compile Include="EmployeeView\ViewModel\ENavigationViewModel.cs" />
+    <Compile Include="EmployeeView\ViewModel\ETourViewModel.cs" />
+    <Compile Include="EmployeeView\ViewModel\ETravelGroupViewModel.cs" />
+    <Compile Include="EmployeeView\View\EAccountView.xaml.cs">
+      <DependentUpon>EAccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeView\View\EDashboardView.xaml.cs">
+      <DependentUpon>EDashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeView\View\EmployeeWindow.xaml.cs">
+      <DependentUpon>EmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeView\View\ETourView.xaml.cs">
+      <DependentUpon>ETourView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeView\View\ETravelGroupView.xaml.cs">
+      <DependentUpon>ETravelGroupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Global\Model\CheckBoxModel.cs" />
     <Compile Include="Global\Model\ComboBoxModel.cs" />
     <Compile Include="Global\Model\DataProvider.cs" />
+    <Compile Include="Global\Model\ForgetPasswordHandleModel.cs" />
     <Compile Include="Global\Model\GlobalFunction.cs" />
+    <Compile Include="Global\Model\LoginHandleModel.cs" />
     <Compile Include="Global\Model\MainModel.cs" />
     <Compile Include="Global\PLACE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
@@ -175,6 +198,11 @@
     <Compile Include="Global\TRAVEL_GROUP.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Global\ViewModel\ForgetPasswordViewModel.cs" />
+    <Compile Include="Global\ViewModel\LoginViewModel.cs" />
+    <Compile Include="Global\View\ForgetPasswordWindow.xaml.cs">
+      <DependentUpon>ForgetPasswordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Global\View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -260,6 +288,30 @@
     <Compile Include="Managers\View\TourUC.xaml.cs">
       <DependentUpon>TourUC.xaml</DependentUpon>
     </Compile>
+    <Page Include="EmployeeView\DataTemplateEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeView\View\EAccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeView\View\EDashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeView\View\EmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeView\View\ETourView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeView\View\ETravelGroupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Global\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -274,6 +326,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Global\View\ForgetPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Global\View\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -386,7 +442,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ManagerView\View\AddLocationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\AddPlaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ManagerView\View\AddStaffView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\AddTransportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -410,7 +478,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ManagerView\View\ShowLocationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\ShowPlaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ManagerView\View\ShowStaffView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\ShowTransportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -448,23 +528,32 @@
     </Compile>
     <Compile Include="ManagerView\Model\HotelHandleModel.cs" />
     <Compile Include="ManagerView\Model\HotelModel.cs" />
+    <Compile Include="ManagerView\Model\LocationModel.cs" />
     <Compile Include="ManagerView\Model\PlaceHandleModel.cs" />
     <Compile Include="ManagerView\Model\PlaceModel.cs" />
     <Compile Include="ManagerView\Model\StaffHandleModel.cs" />
     <Compile Include="ManagerView\Model\StaffModel.cs" />
     <Compile Include="ManagerView\Model\TourDetailHandleModel.cs" />
     <Compile Include="ManagerView\Model\TourHotelDetailModel.cs" />
-    <Compile Include="ManagerView\Model\TourMissionHandleModel.cs" />
     <Compile Include="ManagerView\Model\TourMissionModel.cs" />
+    <Compile Include="ManagerView\Model\TourTransportDetailModel.cs" />
+    <Compile Include="ManagerView\Model\TransportHandleModel.cs" />
+    <Compile Include="ManagerView\Model\TransportModel.cs" />
     <Compile Include="ManagerView\ViewModel\AccountViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\AddHotelViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\AddLocationViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\AddPlaceViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\AddStaffViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\AddTransportViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\DashboardViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\HotelViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\NavigationViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\PlaceViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\ShowHotelViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\ShowLocationViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\ShowPlaceViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\ShowStaffViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\ShowTransportViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\StaffViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\StatisticStaffViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\TourViewModel.cs" />
@@ -476,8 +565,17 @@
     <Compile Include="ManagerView\View\AddHotelView.xaml.cs">
       <DependentUpon>AddHotelView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManagerView\View\AddLocationView.xaml.cs">
+      <DependentUpon>AddLocationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\AddPlaceView.xaml.cs">
+      <DependentUpon>AddPlaceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ManagerView\View\AddStaffView.xaml.cs">
       <DependentUpon>AddStaffView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\AddTransportView.xaml.cs">
+      <DependentUpon>AddTransportView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManagerView\View\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
@@ -494,8 +592,17 @@
     <Compile Include="ManagerView\View\ShowHotelView.xaml.cs">
       <DependentUpon>ShowHotelView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManagerView\View\ShowLocationView.xaml.cs">
+      <DependentUpon>ShowLocationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\ShowPlaceView.xaml.cs">
+      <DependentUpon>ShowPlaceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ManagerView\View\ShowStaffView.xaml.cs">
       <DependentUpon>ShowStaffView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\ShowTransportView.xaml.cs">
+      <DependentUpon>ShowTransportView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManagerView\View\StaffView.xaml.cs">
       <DependentUpon>StaffView.xaml</DependentUpon>
@@ -551,10 +658,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Employees\ViewModel\" />
-    <Folder Include="Employees\View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Images\logo_icon.ico" />
     <Resource Include="Resources\Images\logo.jpg" />

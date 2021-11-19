@@ -29,6 +29,8 @@ namespace TourManagementSystem.Global
         public Nullable<System.DateTime> TOUR_TRANSPORT_START_DATE { get; set; }
         public string TOUR_TRANSPORT_DESCRIPTION { get; set; }
         public Nullable<bool> TOUR_TRANSPORT_DELETE { get; set; }
+        public Nullable<double> TOUR_TRANSPORT_PRICE { get; set; }
+        public string TOUR_TRANSPORT_TYPETRANS { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_TRANSPORT_DETAIL> TOUR_TRANSPORT_DETAIL { get; set; }

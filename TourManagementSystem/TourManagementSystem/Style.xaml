@@ -33,7 +33,7 @@
         <Setter Property="Background" Value="#414141" />
         <Setter Property="Foreground" Value="#E8EAEC" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Padding" Value="10,7,0,0" />
+        <Setter Property="Padding" Value="12,7,0,0" />
         <Setter Property="CaretBrush" Value="#FFFFFF" />
         <Setter Property="Template">
             <Setter.Value>
@@ -64,7 +64,7 @@
         <Setter Property="Foreground" Value="#A2AAB3" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Margin" Value="16,0,0,0" />
+        <Setter Property="Margin" Value="18,0,0,0" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Text, ElementName=SearchBox}" Value="">
                 <Setter Property="Visibility" Value="Visible" />
@@ -231,7 +231,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 
     <Style x:Key="GridButtonStyle" TargetType="RadioButton">
 
@@ -579,6 +578,155 @@
 
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="border" Property="Background" Value="#83A36E" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CloseButton" TargetType="Button">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Grid
+                        Width="{TemplateBinding Property=Width}"
+                        Height="{TemplateBinding Property=Height}"
+                        Margin="0,0,0,0">
+
+                        <Border
+                            x:Name="border"
+                            Background="Transparent"
+                            BorderBrush="{TemplateBinding Property=Foreground}"
+                            BorderThickness="2"
+                            CornerRadius="10" />
+
+                        <TextBlock
+                            x:Name="text"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontFamily="Fonts/Roboto-Regular.ttf #Roboto Regular"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="{TemplateBinding Property=Foreground}"
+                            Text="{TemplateBinding Property=Content}" />
+
+                    </Grid>
+
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#6BE420  " />
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#6BE420" />
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="#E5E5E5" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="#505050" />
+                            <Setter TargetName="text" Property="Foreground" Value="#7E7E7E" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LoginButton" TargetType="Button">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Grid
+                        Width="{TemplateBinding Property=Width}"
+                        Height="{TemplateBinding Property=Height}"
+                        Margin="0,0,0,0">
+
+                        <Border
+                            x:Name="border"
+                            Background="Transparent"
+                            BorderBrush="{TemplateBinding Property=Foreground}"
+                            BorderThickness="2"
+                            CornerRadius="10" />
+
+                        <TextBlock
+                            x:Name="text"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontFamily="Fonts/Roboto-Regular.ttf #Roboto Regular"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="{TemplateBinding Property=Foreground}"
+                            Text="{TemplateBinding Property=Content}" />
+
+                    </Grid>
+
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#6BE420  " />
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#6BE420" />
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#505050" />
+                            <Setter TargetName="text" Property="Foreground" Value="#7E7E7E" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ForgetButton" TargetType="Button">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Grid
+                        Width="{TemplateBinding Property=Width}"
+                        Height="{TemplateBinding Property=Height}"
+                        Margin="0,0,0,0">
+
+                        <Border
+                            x:Name="border"
+                            Background="Transparent"
+                            BorderBrush="{TemplateBinding Property=Foreground}"
+                            BorderThickness="0"
+                            CornerRadius="0" />
+
+                        <TextBlock
+                            x:Name="text"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontFamily="Fonts/Roboto-Regular.ttf #Roboto Regular"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="{TemplateBinding Property=Foreground}"
+                            Text="{TemplateBinding Property=Content}" />
+
+                    </Grid>
+
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="text" Property="TextBlock.TextDecorations" Value="Underline" />
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="text" Property="TextBlock.TextDecorations" Value="Underline" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

@@ -24,8 +24,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
         // custom sorting, filtering, and grouping.
         public ICollectionView SourceCollection => MenuItemsCollection.View;
 
+        private int _User_ID;
+        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
+
         public NavigationViewModel()
         {
+            User_ID = Properties.Settings.Default.User_ID;
+            MessageBox.Show(string.Format("{0}, {1}, {2}", Properties.Settings.Default.User_ID, Properties.Settings.Default.Username, Properties.Settings.Default.Password));
+
             // ObservableCollection represents a dynamic data collection that provides notifications when items
             // get added, removed, or when the whole list is refreshed.
             ObservableCollection<MenuItems> menuItems = new ObservableCollection<MenuItems>()
@@ -44,7 +50,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             MenuItemsCollection.Filter += MenuItem_Filter;
 
             // Set Startup Page
-            SelectedViewModel = new DashboardViewModel();
+            SelectedViewModel = new DashboardViewModel(User_ID);
         }
 
         //Text Search Filter
@@ -94,31 +100,31 @@ namespace TourManagementSystem.ManagerView.ViewModel
             switch (parameter)
             {
                 case "Dashboard":
-                    SelectedViewModel = new DashboardViewModel();
+                    SelectedViewModel = new DashboardViewModel(User_ID);
                     break;
                 case "Tour":
-                    SelectedViewModel = new TourViewModel();
+                    SelectedViewModel = new TourViewModel(User_ID);
                     break;
                 case "Travel Group":
-                    SelectedViewModel = new TravelGroupViewModel();
+                    SelectedViewModel = new TravelGroupViewModel(User_ID);
                     break;
                 case "Place":
-                    SelectedViewModel = new PlaceViewModel();
+                    SelectedViewModel = new PlaceViewModel(User_ID);
                     break;
                 case "Staff":
-                    SelectedViewModel = new StaffViewModel(2);
+                    SelectedViewModel = new StaffViewModel(User_ID);
                     break;
                 case "Transports":
-                    SelectedViewModel = new TransportViewModel();
+                    SelectedViewModel = new TransportViewModel(User_ID);
                     break;
                 case "Hotel":
-                    SelectedViewModel = new HotelViewModel(2);
+                    SelectedViewModel = new HotelViewModel(User_ID);
                     break;
                 case "Account":
-                    SelectedViewModel = new AccountViewModel();
+                    SelectedViewModel = new AccountViewModel(User_ID);
                     break;
                 default:
-                    SelectedViewModel = new DashboardViewModel();
+                    SelectedViewModel = new DashboardViewModel(User_ID);
                     break;
             }
         }
