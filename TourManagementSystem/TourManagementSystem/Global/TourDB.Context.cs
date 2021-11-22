@@ -49,5 +49,6 @@ namespace TourManagementSystem.Global
         public virtual DbSet<TRAVELLER> TRAVELLER { get; set; }
         public virtual DbSet<TRAVELLER_ACCOUNT> TRAVELLER_ACCOUNT { get; set; }
         public virtual DbSet<TRAVELLER_DETAIL> TRAVELLER_DETAIL { get; set; }
+        public virtual DbSet<TOUR_IMAGE> TOUR_IMAGE { get; set; }
     }
 }

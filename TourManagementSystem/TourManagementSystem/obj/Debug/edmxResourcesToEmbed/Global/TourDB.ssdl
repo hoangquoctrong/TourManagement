@@ -26,7 +26,6 @@
     <Property Name="TOUR_NAME" Type="varchar" MaxLength="255" />
     <Property Name="TOUR_CHARACTERISTIS" Type="text" />
     <Property Name="TOUR_TYPE" Type="varchar" MaxLength="255" />
-    <Property Name="TOUR_IMAGE" Type="image" />
     <Property Name="TOUR_IS_EXIST" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="TOUR_ACCOUNT">
@@ -71,6 +70,17 @@
     <Property Name="TOUR_HOTEL_DETAIL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TOUR_INFORMATION_ID" Type="int" Nullable="false" />
     <Property Name="TOUR_HOTEL_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TOUR_IMAGE">
+    <Key>
+      <PropertyRef Name="TOUR_IMAGE_ID" />
+      <PropertyRef Name="TOUR_ID" />
+    </Key>
+    <Property Name="TOUR_IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TOUR_IMAGE" Type="image" />
+    <Property Name="TOUR_ID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TOUR_INFORMATION">
     <Key>
@@ -299,6 +309,18 @@
       </Principal>
       <Dependent Role="TOUR_HOTEL_DETAIL">
         <PropertyRef Name="TOUR_HOTEL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TOUR_IMAG__TOUR___7755B73D">
+    <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
+    <End Role="TOUR_IMAGE" Type="Self.TOUR_IMAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TOUR">
+        <PropertyRef Name="TOUR_ID" />
+      </Principal>
+      <Dependent Role="TOUR_IMAGE">
+        <PropertyRef Name="TOUR_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -543,6 +565,13 @@
     <EntitySet Name="TRAVELLER" EntityType="Self.TRAVELLER" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TRAVELLER_ACCOUNT" EntityType="Self.TRAVELLER_ACCOUNT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TRAVELLER_DETAIL" EntityType="Self.TRAVELLER_DETAIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TOUR_IMAGE" EntityType="Self.TOUR_IMAGE" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TOUR_IMAGE].[TOUR_IMAGE_ID] AS [TOUR_IMAGE_ID], 
+    [TOUR_IMAGE].[TOUR_IMAGE] AS [TOUR_IMAGE], 
+    [TOUR_IMAGE].[TOUR_ID] AS [TOUR_ID]
+    FROM [dbo].[TOUR_IMAGE] AS [TOUR_IMAGE]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK__TOUR_ACCO__TOUR___0C85DE4D" Association="Self.FK__TOUR_ACCO__TOUR___0C85DE4D">
       <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
       <End Role="TOUR_ACCOUNT" EntitySet="TOUR_ACCOUNT" />
@@ -558,6 +587,10 @@
     <AssociationSet Name="FK__TOUR_HOTE__TOUR___6EC0713C" Association="Self.FK__TOUR_HOTE__TOUR___6EC0713C">
       <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
       <End Role="TOUR_HOTEL_DETAIL" EntitySet="TOUR_HOTEL_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TOUR_IMAG__TOUR___7755B73D" Association="Self.FK__TOUR_IMAG__TOUR___7755B73D">
+      <End Role="TOUR" EntitySet="TOUR" />
+      <End Role="TOUR_IMAGE" EntitySet="TOUR_IMAGE" />
     </AssociationSet>
     <AssociationSet Name="FK__TOUR_INFO__TOUR___6FB49575" Association="Self.FK__TOUR_INFO__TOUR___6FB49575">
       <End Role="TOUR" EntitySet="TOUR" />

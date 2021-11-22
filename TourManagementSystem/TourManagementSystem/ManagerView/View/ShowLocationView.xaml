@@ -173,7 +173,8 @@
                                         materialDesign:HintAssist.HelperText="The place of Location"
                                         materialDesign:HintAssist.HelperTextFontSize="18"
                                         materialDesign:HintAssist.Hint="Place"
-                                        FontSize="24">
+                                        FontSize="24"
+                                        IsEnabled="False">
                                         <TextBox.Text>
                                             <Binding
                                                 Mode="TwoWay"
@@ -363,8 +364,7 @@
                                 CanUserSortColumns="True"
                                 GridLinesVisibility="Vertical"
                                 IsReadOnly="True"
-                                ItemsSource="{Binding TourLocationItems}"
-                                SelectedItem="{Binding TourLoacationSelected}"
+                                ItemsSource="{Binding TourLocationCollection}"
                                 SelectionMode="Single">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn
@@ -381,7 +381,7 @@
                                         Header="Name" />
                                     <DataGridTextColumn
                                         Width="0.4*"
-                                        Binding="{Binding TOUR_TIME}"
+                                        Binding="{Binding TOUR_STRING_DATE}"
                                         ElementStyle="{StaticResource WrapText}"
                                         Foreground="DarkSlateGray"
                                         Header="Time" />

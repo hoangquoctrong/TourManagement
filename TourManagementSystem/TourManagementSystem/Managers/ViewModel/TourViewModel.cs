@@ -308,8 +308,7 @@ namespace TourManagementSystem.Managers.ViewModel
                     TOUR_NAME = item.TOUR_NAME,
                     TOUR_TYPE = item.TOUR_TYPE,
                     TOUR_CHARACTERISTIS = item.TOUR_CHARACTERISTIS,
-                    TOUR_IS_EXIST = item.TOUR_IS_EXIST,
-                    TOUR_IMAGE_BYTE_SOURCE = item.TOUR_IMAGE
+                    TOUR_IS_EXIST = item.TOUR_IS_EXIST
                 };
 
                 TourList.Add(tourModel);
@@ -351,8 +350,7 @@ namespace TourManagementSystem.Managers.ViewModel
                     TOUR_NAME = item.TOUR_NAME,
                     TOUR_TYPE = item.TOUR_TYPE,
                     TOUR_CHARACTERISTIS = item.TOUR_CHARACTERISTIS,
-                    TOUR_IS_EXIST = item.TOUR_IS_EXIST,
-                    TOUR_IMAGE_BYTE_SOURCE = item.TOUR_IMAGE
+                    TOUR_IS_EXIST = item.TOUR_IS_EXIST
                 };
 
                 TourList.Add(tourModel);
@@ -489,8 +487,7 @@ namespace TourManagementSystem.Managers.ViewModel
                 TOUR_NAME = Tour_Name,
                 TOUR_TYPE = Tour_Type,
                 TOUR_CHARACTERISTIS = string.IsNullOrEmpty(Tour_Characteristic) ? "" : Tour_Characteristic,
-                TOUR_IS_EXIST = "No",
-                TOUR_IMAGE = Tour_Image_Byte_Source
+                TOUR_IS_EXIST = "No"
             };
             db.TOUR.Add(tour);
 
@@ -555,7 +552,6 @@ namespace TourManagementSystem.Managers.ViewModel
                 tour.TOUR_TYPE = Tour_Type;
                 tour.TOUR_IS_EXIST = Tour_Is_Exist;
                 tour.TOUR_CHARACTERISTIS = Tour_Characteristic;
-                tour.TOUR_IMAGE = Tour_Image_Byte_Source;
 
                 string changeToSave = "";
                 int countChangeToSave = 0;

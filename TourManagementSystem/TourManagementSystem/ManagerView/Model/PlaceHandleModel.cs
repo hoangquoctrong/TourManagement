@@ -138,6 +138,12 @@ namespace TourManagementSystem.ManagerView.Model
             }
         }
 
+        public static string GetPlaceName(int place_id)
+        {
+            var place = DataProvider.Ins.DB.PLACE.Where(x => x.PLACE_ID == place_id).FirstOrDefault();
+            return place.PLACE_NAME;
+        }
+
         public static ObservableCollection<LocationModel> GetLocationList(int place_id)
         {
             ObservableCollection<LocationModel> LocationList = new ObservableCollection<LocationModel>();
@@ -258,6 +264,18 @@ namespace TourManagementSystem.ManagerView.Model
                 }
                 throw;
             }
+        }
+
+        public static ObservableCollection<TourLocationModel> GetTourLocationList()
+        {
+            return new ObservableCollection<TourLocationModel>()
+            {
+                new TourLocationModel(1,1,"Ben Tre - Dong Nai", "11/11/2021"),
+                new TourLocationModel(2,1,"Ben Tre - Tien Giang", "16/11/2021"),
+                new TourLocationModel(3,1,"Ben Tre - Vinh Long - Long An", "20/11/2021"),
+                new TourLocationModel(4,1,"Ben Tre - Kien Giang", "28/11/2021"),
+                new TourLocationModel(5,1,"Ben Tre - Ca Mau", "11/12/2021")
+            };
         }
     }
 }

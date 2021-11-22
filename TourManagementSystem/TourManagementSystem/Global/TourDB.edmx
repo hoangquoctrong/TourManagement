@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="PLACE">
           <Key>
             <PropertyRef Name="PLACE_ID" />
@@ -31,7 +31,6 @@
           <Property Name="TOUR_NAME" Type="varchar" MaxLength="255" />
           <Property Name="TOUR_CHARACTERISTIS" Type="text" />
           <Property Name="TOUR_TYPE" Type="varchar" MaxLength="255" />
-          <Property Name="TOUR_IMAGE" Type="image" />
           <Property Name="TOUR_IS_EXIST" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="TOUR_ACCOUNT">
@@ -76,6 +75,17 @@
           <Property Name="TOUR_HOTEL_DETAIL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TOUR_INFORMATION_ID" Type="int" Nullable="false" />
           <Property Name="TOUR_HOTEL_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TOUR_IMAGE">
+          <Key>
+            <PropertyRef Name="TOUR_IMAGE_ID" />
+            <PropertyRef Name="TOUR_ID" />
+          </Key>
+          <Property Name="TOUR_IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TOUR_IMAGE" Type="image" />
+          <Property Name="TOUR_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TOUR_INFORMATION">
           <Key>
@@ -304,6 +314,18 @@
             </Principal>
             <Dependent Role="TOUR_HOTEL_DETAIL">
               <PropertyRef Name="TOUR_HOTEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_IMAG__TOUR___7755B73D">
+          <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
+          <End Role="TOUR_IMAGE" Type="Self.TOUR_IMAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR">
+              <PropertyRef Name="TOUR_ID" />
+            </Principal>
+            <Dependent Role="TOUR_IMAGE">
+              <PropertyRef Name="TOUR_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -548,6 +570,13 @@
           <EntitySet Name="TRAVELLER" EntityType="Self.TRAVELLER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRAVELLER_ACCOUNT" EntityType="Self.TRAVELLER_ACCOUNT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRAVELLER_DETAIL" EntityType="Self.TRAVELLER_DETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOUR_IMAGE" EntityType="Self.TOUR_IMAGE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TOUR_IMAGE].[TOUR_IMAGE_ID] AS [TOUR_IMAGE_ID], 
+    [TOUR_IMAGE].[TOUR_IMAGE] AS [TOUR_IMAGE], 
+    [TOUR_IMAGE].[TOUR_ID] AS [TOUR_ID]
+    FROM [dbo].[TOUR_IMAGE] AS [TOUR_IMAGE]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__TOUR_ACCO__TOUR___0C85DE4D" Association="Self.FK__TOUR_ACCO__TOUR___0C85DE4D">
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
             <End Role="TOUR_ACCOUNT" EntitySet="TOUR_ACCOUNT" />
@@ -563,6 +592,10 @@
           <AssociationSet Name="FK__TOUR_HOTE__TOUR___6EC0713C" Association="Self.FK__TOUR_HOTE__TOUR___6EC0713C">
             <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
             <End Role="TOUR_HOTEL_DETAIL" EntitySet="TOUR_HOTEL_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_IMAG__TOUR___7755B73D" Association="Self.FK__TOUR_IMAG__TOUR___7755B73D">
+            <End Role="TOUR" EntitySet="TOUR" />
+            <End Role="TOUR_IMAGE" EntitySet="TOUR_IMAGE" />
           </AssociationSet>
           <AssociationSet Name="FK__TOUR_INFO__TOUR___6FB49575" Association="Self.FK__TOUR_INFO__TOUR___6FB49575">
             <End Role="TOUR" EntitySet="TOUR" />
@@ -637,7 +670,8 @@
             <End Role="TRAVELLER_ACCOUNT" EntitySet="TRAVELLER_ACCOUNT" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Tour_Mangement_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -670,8 +704,8 @@
           <Property Name="TOUR_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_CHARACTERISTIS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="TOUR_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="TOUR_IS_EXIST" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TOUR_IMAGE" Relationship="Self.FK__TOUR_IMAG__TOUR___7755B73D" FromRole="TOUR" ToRole="TOUR_IMAGE" />
           <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___6FB49575" FromRole="TOUR" ToRole="TOUR_INFORMATION" />
           <NavigationProperty Name="TOUR_PLACE_DETAILED" Relationship="Self.FK__TOUR_PLAC__TOUR___671F4F74" FromRole="TOUR" ToRole="TOUR_PLACE_DETAILED" />
           <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVEL_GR__TOUR___3D2915A8" FromRole="TOUR" ToRole="TRAVEL_GROUP" />
@@ -865,9 +899,9 @@
           <Property Name="TOUR_TRANSPORT_START_DATE" Type="DateTime" Precision="3" />
           <Property Name="TOUR_TRANSPORT_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_TRANSPORT_DELETE" Type="Boolean" />
-          <NavigationProperty Name="TOUR_TRANSPORT_DETAIL" Relationship="Self.FK__TOUR_TRAN__TOUR___6AEFE058" FromRole="TOUR_TRANSPORT" ToRole="TOUR_TRANSPORT_DETAIL" />
           <Property Name="TOUR_TRANSPORT_PRICE" Type="Double" />
           <Property Name="TOUR_TRANSPORT_TYPETRANS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TOUR_TRANSPORT_DETAIL" Relationship="Self.FK__TOUR_TRAN__TOUR___6AEFE058" FromRole="TOUR_TRANSPORT" ToRole="TOUR_TRANSPORT_DETAIL" />
         </EntityType>
         <EntityType Name="TOUR_TRANSPORT_DETAIL">
           <Key>
@@ -939,6 +973,16 @@
           <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVELLER__TRAVE__07C12930" FromRole="TRAVELLER_DETAIL" ToRole="TRAVEL_GROUP" />
           <NavigationProperty Name="TRAVELLER" Relationship="Self.FK__TRAVELLER__TRAVE__08B54D69" FromRole="TRAVELLER_DETAIL" ToRole="TRAVELLER" />
         </EntityType>
+        <EntityType Name="TOUR_IMAGE">
+          <Key>
+            <PropertyRef Name="TOUR_IMAGE_ID" />
+            <PropertyRef Name="TOUR_ID" />
+          </Key>
+          <Property Name="TOUR_IMAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TOUR_IMAGE1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TOUR" Relationship="Self.FK__TOUR_IMAG__TOUR___7755B73D" FromRole="TOUR_IMAGE" ToRole="TOUR" />
+        </EntityType>
         <Association Name="FK__TOUR_HOTE__PLACE__73852659">
           <End Role="PLACE" Type="Self.PLACE" Multiplicity="1" />
           <End Role="TOUR_HOTEL" Type="Self.TOUR_HOTEL" Multiplicity="*" />
@@ -972,6 +1016,18 @@
             </Principal>
             <Dependent Role="TOUR_PLACE_DETAILED">
               <PropertyRef Name="PLACE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_IMAG__TOUR___7755B73D">
+          <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
+          <End Role="TOUR_IMAGE" Type="Self.TOUR_IMAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR">
+              <PropertyRef Name="TOUR_ID" />
+            </Principal>
+            <Dependent Role="TOUR_IMAGE">
+              <PropertyRef Name="TOUR_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1228,6 +1284,7 @@
           <EntitySet Name="TRAVELLERs" EntityType="Self.TRAVELLER" />
           <EntitySet Name="TRAVELLER_ACCOUNT" EntityType="Self.TRAVELLER_ACCOUNT" />
           <EntitySet Name="TRAVELLER_DETAIL" EntityType="Self.TRAVELLER_DETAIL" />
+          <EntitySet Name="TOUR_IMAGE" EntityType="Self.TOUR_IMAGE" />
           <AssociationSet Name="FK__TOUR_HOTE__PLACE__73852659" Association="Self.FK__TOUR_HOTE__PLACE__73852659">
             <End Role="PLACE" EntitySet="PLACEs" />
             <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
@@ -1239,6 +1296,10 @@
           <AssociationSet Name="FK__TOUR_PLAC__PLACE__662B2B3B" Association="Self.FK__TOUR_PLAC__PLACE__662B2B3B">
             <End Role="PLACE" EntitySet="PLACEs" />
             <End Role="TOUR_PLACE_DETAILED" EntitySet="TOUR_PLACE_DETAILED" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_IMAG__TOUR___7755B73D" Association="Self.FK__TOUR_IMAG__TOUR___7755B73D">
+            <End Role="TOUR" EntitySet="TOURs" />
+            <End Role="TOUR_IMAGE" EntitySet="TOUR_IMAGE" />
           </AssociationSet>
           <AssociationSet Name="FK__TOUR_INFO__TOUR___6FB49575" Association="Self.FK__TOUR_INFO__TOUR___6FB49575">
             <End Role="TOUR" EntitySet="TOURs" />
@@ -1350,7 +1411,6 @@
                 <ScalarProperty Name="TOUR_NAME" ColumnName="TOUR_NAME" />
                 <ScalarProperty Name="TOUR_CHARACTERISTIS" ColumnName="TOUR_CHARACTERISTIS" />
                 <ScalarProperty Name="TOUR_TYPE" ColumnName="TOUR_TYPE" />
-                <ScalarProperty Name="TOUR_IMAGE" ColumnName="TOUR_IMAGE" />
                 <ScalarProperty Name="TOUR_IS_EXIST" ColumnName="TOUR_IS_EXIST" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1522,8 +1582,6 @@
           <EntitySetMapping Name="TOUR_TRANSPORT">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT">
               <MappingFragment StoreEntitySet="TOUR_TRANSPORT">
-                <ScalarProperty Name="TOUR_TRANSPORT_TYPETRANS" ColumnName="TOUR_TRANSPORT_TYPETRANS" />
-                <ScalarProperty Name="TOUR_TRANSPORT_PRICE" ColumnName="TOUR_TRANSPORT_PRICE" />
                 <ScalarProperty Name="TOUR_TRANSPORT_ID" ColumnName="TOUR_TRANSPORT_ID" />
                 <ScalarProperty Name="TOUR_TRANSPORT_NAME" ColumnName="TOUR_TRANSPORT_NAME" />
                 <ScalarProperty Name="TOUR_TRANSPORT_LICENSE_PLATE" ColumnName="TOUR_TRANSPORT_LICENSE_PLATE" />
@@ -1533,6 +1591,8 @@
                 <ScalarProperty Name="TOUR_TRANSPORT_START_DATE" ColumnName="TOUR_TRANSPORT_START_DATE" />
                 <ScalarProperty Name="TOUR_TRANSPORT_DESCRIPTION" ColumnName="TOUR_TRANSPORT_DESCRIPTION" />
                 <ScalarProperty Name="TOUR_TRANSPORT_DELETE" ColumnName="TOUR_TRANSPORT_DELETE" />
+                <ScalarProperty Name="TOUR_TRANSPORT_PRICE" ColumnName="TOUR_TRANSPORT_PRICE" />
+                <ScalarProperty Name="TOUR_TRANSPORT_TYPETRANS" ColumnName="TOUR_TRANSPORT_TYPETRANS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1598,6 +1658,15 @@
                 <ScalarProperty Name="TRAVELLER_DETAIL_ID" ColumnName="TRAVELLER_DETAIL_ID" />
                 <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
                 <ScalarProperty Name="TRAVELLER_ID" ColumnName="TRAVELLER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOUR_IMAGE">
+            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_IMAGE">
+              <MappingFragment StoreEntitySet="TOUR_IMAGE">
+                <ScalarProperty Name="TOUR_IMAGE_ID" ColumnName="TOUR_IMAGE_ID" />
+                <ScalarProperty Name="TOUR_IMAGE1" ColumnName="TOUR_IMAGE" />
+                <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

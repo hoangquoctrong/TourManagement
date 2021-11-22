@@ -104,7 +104,8 @@
                         materialDesign:HintAssist.HelperText="The place of Location"
                         materialDesign:HintAssist.HelperTextFontSize="18"
                         materialDesign:HintAssist.Hint="Place"
-                        FontSize="24">
+                        FontSize="24"
+                        IsEnabled="False">
                         <TextBox.Text>
                             <Binding
                                 Mode="TwoWay"

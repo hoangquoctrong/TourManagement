@@ -49,6 +49,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private void SetPlaceInView(PlaceModel place)
         {
+            Place_ID = place.PLACE_ID;
             Place_Name = place.PLACE_NAME;
             Place_Location = place.PLACE_LOCATION;
             Place_Nation = place.PLACE_NATION;
@@ -120,19 +121,19 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<LocationModel> _LocationItems;
-        public ObservableCollection<LocationModel> LocationItems { get => _LocationItems; set { _LocationItems = value; OnPropertyChanged("PlaceItems"); } }
+        public ObservableCollection<LocationModel> LocationItems { get => _LocationItems; set { _LocationItems = value; OnPropertyChanged("LocationItems"); } }
 
         private ObservableCollection<LocationModel> _Refresh_LocationItems;
-        public ObservableCollection<LocationModel> Refresh_LocationItems { get => _Refresh_LocationItems; set { _Refresh_LocationItems = value; OnPropertyChanged("Refresh_PlaceItems"); } }
+        public ObservableCollection<LocationModel> Refresh_LocationItems { get => _Refresh_LocationItems; set { _Refresh_LocationItems = value; OnPropertyChanged("Refresh_LocationItems"); } }
 
         private LocationModel _LocationSelected;
         public LocationModel LocationSelected { get => _LocationSelected; set { _LocationSelected = value; OnPropertyChanged(); } }
 
         private ObservableCollection<ComboBoxModel> _CB_LocationList;
-        public ObservableCollection<ComboBoxModel> CB_LocationList { get => _CB_LocationList; set { _CB_LocationList = value; OnPropertyChanged("CB_HistoryList"); } }
+        public ObservableCollection<ComboBoxModel> CB_LocationList { get => _CB_LocationList; set { _CB_LocationList = value; OnPropertyChanged("CB_LocationList"); } }
 
         private ComboBoxModel _CB_LocationSelected;
-        public ComboBoxModel CB_LocationSelected { get => _CB_LocationSelected; set { _CB_LocationSelected = value; OnPropertyChanged("CB_HistorySelected"); } }
+        public ComboBoxModel CB_LocationSelected { get => _CB_LocationSelected; set { _CB_LocationSelected = value; OnPropertyChanged("CB_LocationSelected"); } }
 
         private void LoadLocationComboBox()
         {
