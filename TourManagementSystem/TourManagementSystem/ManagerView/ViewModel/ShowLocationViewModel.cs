@@ -51,7 +51,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             LocationSelected = location;
             SetLocationInView(location);
             LoadTourLocationComboBox();
-            ObservableCollection<TourLocationModel> tourlocationItems = PlaceHandleModel.GetTourLocationList();
+            ObservableCollection<TourLocationModel> tourlocationItems = PlaceHandleModel.GetTourLocationList(location.LOCATION_ID);
             TourLocationItemsCollection = new CollectionViewSource { Source = tourlocationItems };
             TourLocationItemsCollection.Filter += TourLocationItem_Filter;
         }

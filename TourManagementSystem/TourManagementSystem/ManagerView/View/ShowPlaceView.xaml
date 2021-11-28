@@ -73,7 +73,7 @@
                     VerticalAlignment="Center"
                     FontSize="24"
                     Foreground="White"
-                    Text="DISPLAY PLACE" />
+                    Text="D I S P L A Y    P L A C E " />
             </Grid>
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">

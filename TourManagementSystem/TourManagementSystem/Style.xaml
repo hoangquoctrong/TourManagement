@@ -490,6 +490,58 @@
         </Setter>
     </Style>
 
+    <Style x:Key="SaveButton" TargetType="Button">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Grid
+                        Width="{TemplateBinding Property=Width}"
+                        Height="{TemplateBinding Property=Height}"
+                        Margin="0,0,0,0">
+
+                        <Border
+                            x:Name="border"
+                            Background="Transparent"
+                            BorderBrush="{TemplateBinding Property=Foreground}"
+                            BorderThickness="2"
+                            CornerRadius="6" />
+
+                        <TextBlock
+                            x:Name="text"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontFamily="Fonts/Roboto-Regular.ttf #Roboto Regular"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Foreground="{TemplateBinding Property=Foreground}"
+                            Text="{TemplateBinding Property=Content}" />
+
+                    </Grid>
+
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#C3EDFF " />
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#C3EDFF" />
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="#E5E5E5" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="#505050" />
+                            <Setter TargetName="text" Property="Foreground" Value="#7E7E7E" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="StatisticButton" TargetType="Button">
 
         <Setter Property="Template">

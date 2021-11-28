@@ -1,0 +1,102 @@
+﻿<UserControl
+    x:Class="TourManagementSystem.TempItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TourManagementSystem"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="1200"
+    mc:Ignorable="d">
+    <Grid>
+        <Border
+            Height="auto"
+            Margin="10"
+            Padding="10"
+            BorderBrush="Black"
+            BorderThickness="1">
+            <StackPanel Margin="10">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Margin="64,4,120,4" Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            Foreground="DimGray"
+                            Style="{StaticResource MaterialDesignButtonTextBlock}"
+                            Text="Responsibility : " />
+                        <ComboBox
+                            Width="224"
+                            Margin="10,0,0,0"
+                            materialDesign:HintAssist.Hint="Mission Responsibility"
+                            DisplayMemberPath="CB_Name"
+                            FontSize="18"
+                            Foreground="DimGray"
+                            Text="{Binding Mission_Responsibility}">
+                            <ComboBoxItem Content="Driver" />
+                            <ComboBoxItem Content="Guide" />
+                            <ComboBoxItem Content="Guard" />
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Column="1"
+                        Margin="62,4,120,4"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            Foreground="DimGray"
+                            Style="{StaticResource MaterialDesignButtonTextBlock}"
+                            Text="Price: " />
+                        <TextBox
+                            Width="360"
+                            Margin="10,0,0,0"
+                            materialDesign:HintAssist.Hint="Price VND"
+                            materialDesign:TextFieldAssist.PrefixText="VND"
+                            FontSize="18"
+                            Text="{Binding Mission_Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+
+                </Grid>
+
+                <StackPanel Margin="64,4,120,4" Orientation="Horizontal">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Foreground="DimGray"
+                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                        Text="Amount In Mision : " />
+                    <TextBox
+                        Width="190"
+                        Margin="10,0,0,0"
+                        materialDesign:HintAssist.Hint="0"
+                        FontSize="18"
+                        Text="{Binding Mission_Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+
+                <TextBox
+                    Width="1020"
+                    Height="60"
+                    Margin="20,10,20,0"
+                    HorizontalAlignment="Left"
+                    materialDesign:HintAssist.Hint="Description"
+                    AcceptsReturn="True"
+                    FontSize="17"
+                    Foreground="DimGray"
+                    MinLines="8"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    Text="{Binding Mission_Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    TextWrapping="Wrap" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

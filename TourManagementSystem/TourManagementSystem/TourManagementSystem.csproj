@@ -40,6 +40,9 @@
     <ApplicationIcon>Resources\Images\logo_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Caliburn.Micro.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Core.4.0.173\lib\netstandard2.0\Caliburn.Micro.Core.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -60,6 +63,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -156,6 +164,9 @@
     <Compile Include="Global\TOUR_LOCATION.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Global\TOUR_LOCATION_DETAILED.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global\TOUR_MISSION.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
@@ -175,6 +186,9 @@
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global\TOUR_STAFF_DELETE.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global\TOUR_STAFF_DETAIL.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global\TOUR_TIME.cs">
@@ -290,6 +304,11 @@
     </Compile>
     <Compile Include="Managers\View\TourUC.xaml.cs">
       <DependentUpon>TourUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\Model\MissionHandleModel.cs" />
+    <Compile Include="ManagerView\Model\MissionModel.cs" />
+    <Compile Include="TempItem.xaml.cs">
+      <DependentUpon>TempItem.xaml</DependentUpon>
     </Compile>
     <Page Include="EmployeeView\DataTemplateEmployee.xaml">
       <SubType>Designer</SubType>
@@ -457,6 +476,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ManagerView\View\AddTourInformationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\AddTourView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ManagerView\View\AddTransportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -493,6 +520,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ManagerView\View\ShowTourInformationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\ShowTourView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ManagerView\View\ShowTransportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -502,6 +537,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ManagerView\View\StatisticStaffView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\StatisticTourView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -521,6 +560,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TempItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Managers\View\TransportUC.xaml.cs">
@@ -529,18 +572,32 @@
     <Compile Include="Managers\View\TravelGroupUC.xaml.cs">
       <DependentUpon>TravelGroupUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManagerView\Model\CheckBoxHotelModel.cs" />
+    <Compile Include="ManagerView\Model\CheckBoxTransportModel.cs" />
+    <Compile Include="ManagerView\Model\HotelDetailModel.cs" />
     <Compile Include="ManagerView\Model\HotelHandleModel.cs" />
     <Compile Include="ManagerView\Model\HotelModel.cs" />
+    <Compile Include="ManagerView\Model\LocationDetailModel.cs" />
     <Compile Include="ManagerView\Model\LocationModel.cs" />
+    <Compile Include="ManagerView\Model\PlaceDetailModel.cs" />
     <Compile Include="ManagerView\Model\PlaceHandleModel.cs" />
     <Compile Include="ManagerView\Model\PlaceModel.cs" />
     <Compile Include="ManagerView\Model\StaffHandleModel.cs" />
     <Compile Include="ManagerView\Model\StaffModel.cs" />
     <Compile Include="ManagerView\Model\TourDetailHandleModel.cs" />
+    <Compile Include="ManagerView\Model\TourHandleModel.cs" />
     <Compile Include="ManagerView\Model\TourHotelDetailModel.cs" />
+    <Compile Include="ManagerView\Model\TourImageModel.cs" />
+    <Compile Include="ManagerView\Model\TourInformationHandleModel.cs" />
+    <Compile Include="ManagerView\Model\TourInformationModel.cs" />
     <Compile Include="ManagerView\Model\TourLocationModel.cs" />
     <Compile Include="ManagerView\Model\TourMissionModel.cs" />
+    <Compile Include="ManagerView\Model\TourModel.cs" />
+    <Compile Include="ManagerView\Model\TourPriceModel.cs" />
+    <Compile Include="ManagerView\Model\TourScheduleModel.cs" />
+    <Compile Include="ManagerView\Model\TourTimeModel.cs" />
     <Compile Include="ManagerView\Model\TourTransportDetailModel.cs" />
+    <Compile Include="ManagerView\Model\TransportDetailModel.cs" />
     <Compile Include="ManagerView\Model\TransportHandleModel.cs" />
     <Compile Include="ManagerView\Model\TransportModel.cs" />
     <Compile Include="ManagerView\ViewModel\AccountViewModel.cs" />
@@ -548,6 +605,8 @@
     <Compile Include="ManagerView\ViewModel\AddLocationViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\AddPlaceViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\AddStaffViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\AddTourInformationViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\AddTourViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\AddTransportViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\DashboardViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\HotelViewModel.cs" />
@@ -557,9 +616,12 @@
     <Compile Include="ManagerView\ViewModel\ShowLocationViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\ShowPlaceViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\ShowStaffViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\ShowTourInformationViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\ShowTourViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\ShowTransportViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\StaffViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\StatisticStaffViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\StatisticTourViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\TourViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\TransportViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\TravelGroupViewModel.cs" />
@@ -577,6 +639,12 @@
     </Compile>
     <Compile Include="ManagerView\View\AddStaffView.xaml.cs">
       <DependentUpon>AddStaffView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\AddTourInformationView.xaml.cs">
+      <DependentUpon>AddTourInformationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\AddTourView.xaml.cs">
+      <DependentUpon>AddTourView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManagerView\View\AddTransportView.xaml.cs">
       <DependentUpon>AddTransportView.xaml</DependentUpon>
@@ -605,6 +673,12 @@
     <Compile Include="ManagerView\View\ShowStaffView.xaml.cs">
       <DependentUpon>ShowStaffView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManagerView\View\ShowTourInformationView.xaml.cs">
+      <DependentUpon>ShowTourInformationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\ShowTourView.xaml.cs">
+      <DependentUpon>ShowTourView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ManagerView\View\ShowTransportView.xaml.cs">
       <DependentUpon>ShowTransportView.xaml</DependentUpon>
     </Compile>
@@ -613,6 +687,9 @@
     </Compile>
     <Compile Include="ManagerView\View\StatisticStaffView.xaml.cs">
       <DependentUpon>StatisticStaffView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\StatisticTourView.xaml.cs">
+      <DependentUpon>StatisticTourView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManagerView\View\TourView.xaml.cs">
       <DependentUpon>TourView.xaml</DependentUpon>
@@ -663,18 +740,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Global\TourDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TourDB.edmx</DependentUpon>
-      <LastGenOutput>TourDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Global\TourDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TourDB.edmx</DependentUpon>
-      <LastGenOutput>TourDB.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\logo_icon.ico" />
     <Resource Include="Resources\Images\logo.jpg" />
     <Resource Include="Resources\Images\User.png" />
@@ -697,6 +762,21 @@
     <Resource Include="Assets\travelgroup.png" />
     <Resource Include="Assets\close_icon.png" />
     <Resource Include="Assets\close_mo_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global\TourDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TourDB.edmx</DependentUpon>
+      <LastGenOutput>TourDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Global\TourDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TourDB.edmx</DependentUpon>
+      <LastGenOutput>TourDB.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" />

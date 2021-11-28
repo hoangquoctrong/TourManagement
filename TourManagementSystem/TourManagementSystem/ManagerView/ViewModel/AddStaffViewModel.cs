@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using TourManagementSystem.Global.Model;
 using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ManagerView.View;
@@ -85,6 +86,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public AddStaffViewModel(int user_id)
         {
             User_ID = user_id;
+            Staff_Image_Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Images/Add.png", UriKind.Absolute));
         }
 
         private ICommand _AddStaffCommand;
@@ -106,23 +108,19 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private bool IsExcuteAddStaffCommand()
         {
-            if (string.IsNullOrEmpty(Staff_Name) ||
-                string.IsNullOrEmpty(Staff_Role) ||
-                string.IsNullOrEmpty(Staff_ID_Card) ||
-                string.IsNullOrEmpty(Staff_ID_Card_Place) ||
-                string.IsNullOrEmpty(Staff_Birth_Place) ||
-                string.IsNullOrEmpty(Staff_Address) ||
-                string.IsNullOrEmpty(Staff_Gender) ||
-                string.IsNullOrEmpty(Staff_Academic_Level) ||
-                string.IsNullOrEmpty(Staff_Email) ||
-                string.IsNullOrEmpty(Staff_Phone_Number) ||
-                string.IsNullOrEmpty(Staff_Username) ||
-                string.IsNullOrEmpty(Staff_Password))
-            {
-                return false;
-            }
-
-            return StaffHandleModel.CheckAccountStaff(Staff_Username);
+            return !string.IsNullOrEmpty(Staff_Name) &&
+                !string.IsNullOrEmpty(Staff_Role) &&
+                !string.IsNullOrEmpty(Staff_ID_Card) &&
+                !string.IsNullOrEmpty(Staff_ID_Card_Place) &&
+                !string.IsNullOrEmpty(Staff_Birth_Place) &&
+                !string.IsNullOrEmpty(Staff_Address) &&
+                !string.IsNullOrEmpty(Staff_Gender) &&
+                !string.IsNullOrEmpty(Staff_Academic_Level) &&
+                !string.IsNullOrEmpty(Staff_Email) &&
+                !string.IsNullOrEmpty(Staff_Phone_Number) &&
+                !string.IsNullOrEmpty(Staff_Username) &&
+                !string.IsNullOrEmpty(Staff_Password)
+                && StaffHandleModel.CheckAccountStaff(Staff_Username);
         }
 
         private void ExcuteAddStaffCommand(ContentControl p)

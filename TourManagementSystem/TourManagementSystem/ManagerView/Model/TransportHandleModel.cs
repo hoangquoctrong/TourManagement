@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity.Validation;
@@ -17,6 +18,37 @@ namespace TourManagementSystem.ManagerView.Model
             ObservableCollection<TransportModel> TransportList = new ObservableCollection<TransportModel>();
 
             var transportList = from trans in DataProvider.Ins.DB.TOUR_TRANSPORT
+                                select trans;
+
+            foreach (var item in transportList)
+            {
+                TransportModel transportModel = new TransportModel
+                {
+                    TRANSPORT_ID = item.TOUR_TRANSPORT_ID,
+                    TRANSPORT_NAME = item.TOUR_TRANSPORT_NAME,
+                    TRANSPORT_LICENSE_PLATE = item.TOUR_TRANSPORT_LICENSE_PLATE,
+                    TRANSPORT_COMPANY = item.TOUR_TRANSPORT_COMPANY,
+                    TRANSPORT_DESCRIPTION = item.TOUR_TRANSPORT_DESCRIPTION,
+                    TRANSPORT_TYPE = item.TOUR_TRANSPORT_TYPE,
+                    TRANSPORT_DATE = (DateTime)item.TOUR_TRANSPORT_START_DATE,
+                    TRANSPORT_IMAGE_BYTE_SOURCE = item.TOUR_TRANSPORT_IMAGE,
+                    TRANSPORT_PRICE = (double)item.TOUR_TRANSPORT_PRICE,
+                    TRANSPORT_TYPETRANS = item.TOUR_TRANSPORT_TYPETRANS,
+                    TRANSPORT_IS_DELETE = (bool)item.TOUR_TRANSPORT_DELETE
+                };
+
+                TransportList.Add(transportModel);
+            }
+
+            return TransportList;
+        }
+
+        public static ObservableCollection<TransportModel> GetTransportListWithoutDelete()
+        {
+            ObservableCollection<TransportModel> TransportList = new ObservableCollection<TransportModel>();
+
+            var transportList = from trans in DataProvider.Ins.DB.TOUR_TRANSPORT
+                                where trans.TOUR_TRANSPORT_DELETE == false
                                 select trans;
 
             foreach (var item in transportList)
@@ -215,6 +247,65 @@ namespace TourManagementSystem.ManagerView.Model
                 }
                 throw;
             }
+        }
+
+        public static bool InsertTransportDetail(BindableCollection<TransportModel> transports, int tour_informationID, int user_id, bool IsFirst)
+        {
+            try
+            {
+                int countTransport = 0;
+                foreach (TransportModel item in transports)
+                {
+                    TOUR_TRANSPORT_DETAIL transport_detail = new TOUR_TRANSPORT_DETAIL()
+                    {
+                        TOUR_TRANSPORT_ID = item.TRANSPORT_ID,
+                        TOUR_INFORMATION_ID = tour_informationID,
+                    };
+                    countTransport++;
+                    DataProvider.Ins.DB.TOUR_TRANSPORT_DETAIL.Add(transport_detail);
+                }
+                TOUR_RECORD tour_record = new TOUR_RECORD()
+                {
+                    TOUR_STAFF_ID = user_id,
+                    TOUR_RECORD_DATE = DateTime.Now,
+                    TOUR_RECORD_CONTENT = string.Format("{0} {1} transports in tour information with id is {2}", IsFirst ? "Add" : "Update", countTransport, tour_informationID)
+                };
+                DataProvider.Ins.DB.TOUR_RECORD.Add(tour_record);
+
+                DataProvider.Ins.DB.SaveChanges();
+                return true;
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (DbEntityValidationResult eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (DbValidationError ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+        }
+
+        public static double CalculateTotalTransportPrice(ObservableCollection<TransportModel> transports)
+        {
+            double total = 0;
+
+            if (transports.Count == 0)
+            {
+                return total;
+            }
+
+            foreach (var item in transports)
+            {
+                total += item.TRANSPORT_PRICE;
+            }
+
+            return total;
         }
     }
 }

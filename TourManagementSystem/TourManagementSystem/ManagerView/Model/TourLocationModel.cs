@@ -23,13 +23,5 @@ namespace TourManagementSystem.ManagerView.Model
 
         private DateTime _TOUR_DATE = DateTime.Now;
         public DateTime TOUR_DATE { get => _TOUR_DATE; set { _TOUR_DATE = value; OnPropertyChanged(); } }
-
-        public TourLocationModel(int tour_id, int location_id, string tour_name, string tour_date)
-        {
-            TOUR_ID = tour_id;
-            LOCATION_ID = location_id;
-            TOUR_NAME = tour_name;
-            TOUR_STRING_DATE = tour_date;
-        }
     }
 }

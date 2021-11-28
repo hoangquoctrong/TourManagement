@@ -72,7 +72,7 @@
                     VerticalAlignment="Center"
                     FontSize="24"
                     Foreground="White"
-                    Text="DISPLAY STAFF" />
+                    Text="D I S P L A Y    S T A F F " />
             </Grid>
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">

@@ -84,4 +84,24 @@
         <view:ShowLocationView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type viewmodel:AddTourViewModel}">
+        <view:AddTourView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowTourViewModel}">
+        <view:ShowTourView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:StatisticTourViewModel}">
+        <view:StatisticTourView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AddTourInformationViewModel}">
+        <view:AddTourInformationView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowTourInformationViewModel}">
+        <view:ShowTourInformationView />
+    </DataTemplate>
+
 </ResourceDictionary>

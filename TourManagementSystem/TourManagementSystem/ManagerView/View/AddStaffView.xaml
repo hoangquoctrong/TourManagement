@@ -44,7 +44,7 @@
                     VerticalAlignment="Center"
                     FontSize="24"
                     Foreground="White"
-                    Text="ADD NEW STAFF" />
+                    Text="A D D    N E W    S T A F F " />
             </Grid>
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">

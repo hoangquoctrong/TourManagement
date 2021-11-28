@@ -44,7 +44,7 @@
                     VerticalAlignment="Center"
                     FontSize="24"
                     Foreground="White"
-                    Text="ADD NEW PLACE" />
+                    Text="A D D    N E W    P L A C E " />
             </Grid>
 
             <StackPanel

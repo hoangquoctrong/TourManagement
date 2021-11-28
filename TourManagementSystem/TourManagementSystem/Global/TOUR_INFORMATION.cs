@@ -18,6 +18,7 @@ namespace TourManagementSystem.Global
         public TOUR_INFORMATION()
         {
             this.TOUR_HOTEL_DETAIL = new HashSet<TOUR_HOTEL_DETAIL>();
+            this.TOUR_LOCATION_DETAILED = new HashSet<TOUR_LOCATION_DETAILED>();
             this.TOUR_MISSION = new HashSet<TOUR_MISSION>();
             this.TOUR_SCHEDULE = new HashSet<TOUR_SCHEDULE>();
             this.TOUR_TRANSPORT_DETAIL = new HashSet<TOUR_TRANSPORT_DETAIL>();
@@ -33,6 +34,8 @@ namespace TourManagementSystem.Global
         public virtual ICollection<TOUR_HOTEL_DETAIL> TOUR_HOTEL_DETAIL { get; set; }
         public virtual TOUR_TIME TOUR_TIME { get; set; }
         public virtual TOUR_PRICE TOUR_PRICE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TOUR_LOCATION_DETAILED> TOUR_LOCATION_DETAILED { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_MISSION> TOUR_MISSION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

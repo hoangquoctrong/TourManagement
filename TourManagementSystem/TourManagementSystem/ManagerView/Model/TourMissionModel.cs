@@ -15,6 +15,9 @@ namespace TourManagementSystem.ManagerView.Model
         private int _STAFF_ID;
         public int STAFF_ID { get => _STAFF_ID; set { _STAFF_ID = value; OnPropertyChanged(); } }
 
+        private string _STAFF_NAME;
+        public string STAFF_NAME { get => _STAFF_NAME; set { _STAFF_NAME = value; OnPropertyChanged(); } }
+
         private string _TOUR_MISSION_RESPONSIBILITY;
         public string TOUR_MISSION_RESPONSIBILITY { get => _TOUR_MISSION_RESPONSIBILITY; set { _TOUR_MISSION_RESPONSIBILITY = value; OnPropertyChanged(); } }
 
@@ -38,6 +41,9 @@ namespace TourManagementSystem.ManagerView.Model
 
         private DateTime _TOUR_MISSION_ENDDATE = DateTime.Now;
         public DateTime TOUR_MISSION_ENDDATE { get => _TOUR_MISSION_ENDDATE; set { _TOUR_MISSION_ENDDATE = value; OnPropertyChanged(); } }
+
+        private double _TOUR_MISSION_PRICE;
+        public double TOUR_MISSION_PRICE { get => _TOUR_MISSION_PRICE; set { _TOUR_MISSION_PRICE = value; OnPropertyChanged(); } }
 
 
         public TourMissionModel(int ID, string tourname, string travelgroupname, string responsibility, string description, string startdate, string enddate)

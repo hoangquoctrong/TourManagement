@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using TourManagementSystem.Global.Model;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -76,6 +77,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public AddTransportViewModel(int user_id)
         {
             User_ID = user_id;
+            Transport_Image_Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Images/Add.png", UriKind.Absolute));
         }
 
         private ICommand _AddImageCommand;

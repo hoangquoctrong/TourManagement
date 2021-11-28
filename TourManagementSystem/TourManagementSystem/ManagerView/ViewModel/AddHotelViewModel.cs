@@ -61,6 +61,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public AddHotelViewModel(int user_id)
         {
             User_ID = user_id;
+            Hotel_Image_Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Images/Add.png", UriKind.Absolute));
             LoadPlaceCombobox();
         }
 

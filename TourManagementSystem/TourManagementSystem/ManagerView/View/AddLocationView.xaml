@@ -46,7 +46,7 @@
                     VerticalAlignment="Center"
                     FontSize="24"
                     Foreground="White"
-                    Text="ADD NEW LOCATION" />
+                    Text="A D D    N E W    L O C A T I O N " />
             </Grid>
 
             <Grid Grid.Row="1" Margin="120,20,120,20">

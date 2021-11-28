@@ -23,5 +23,8 @@ namespace TourManagementSystem.ManagerView.Model
 
         private int _PLACE_ID;
         public int PLACE_ID { get => _PLACE_ID; set { _PLACE_ID = value; OnPropertyChanged(); } }
+
+        private string _PLACE_NAME;
+        public string PLACE_NAME { get => _PLACE_NAME; set { _PLACE_NAME = value; OnPropertyChanged(); } }
     }
 }

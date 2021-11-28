@@ -44,7 +44,7 @@
                     VerticalAlignment="Center"
                     FontSize="24"
                     Foreground="White"
-                    Text="ADD NEW TRANSPORT" />
+                    Text="A D D    N E W    T R A N S P O R T " />
             </Grid>
 
             <ScrollViewer Grid.Row="1">

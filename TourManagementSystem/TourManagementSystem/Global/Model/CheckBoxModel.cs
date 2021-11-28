@@ -43,14 +43,19 @@ namespace TourManagementSystem.Global.Model
         private int _CB_ID;
         public int CB_ID { get => _CB_ID; set { _CB_ID = value; OnPropertyChanged(); } }
 
-        public ICommand CB_Click_Command { get; set; }
-
         public CheckBoxModel(string name, string sub_name, int id, bool is_selected)
         {
             this.IsSelected = is_selected;
             this.CB_ID = id;
             this.CB_Name = name;
             this.CB_Sub_Name = sub_name;
+        }
+
+        public CheckBoxModel(string name, int id, bool is_selected)
+        {
+            this.IsSelected = is_selected;
+            this.CB_ID = id;
+            this.CB_Name = name;
         }
     }
 }

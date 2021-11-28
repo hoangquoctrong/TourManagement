@@ -48,8 +48,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private string _Hotel_Email;
         public string Hotel_Email { get => _Hotel_Email; set { _Hotel_Email = value; OnPropertyChanged(); } }
 
-        private float _Hotel_Price;
-        public float Hotel_Price { get => _Hotel_Price; set { _Hotel_Price = value; OnPropertyChanged(); } }
+        private double _Hotel_Price;
+        public double Hotel_Price { get => _Hotel_Price; set { _Hotel_Price = value; OnPropertyChanged(); } }
 
         private int _Place_ID;
         public int Place_ID { get => _Place_ID; set { _Place_ID = value; OnPropertyChanged(); } }

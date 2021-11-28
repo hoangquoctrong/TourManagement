@@ -18,9 +18,9 @@ namespace TourManagementSystem.Global
         public TOUR_STAFF()
         {
             this.TOUR_ACCOUNT = new HashSet<TOUR_ACCOUNT>();
-            this.TOUR_MISSION = new HashSet<TOUR_MISSION>();
             this.TOUR_RECORD = new HashSet<TOUR_RECORD>();
             this.TOUR_STAFF_DELETE = new HashSet<TOUR_STAFF_DELETE>();
+            this.TOUR_STAFF_DETAIL = new HashSet<TOUR_STAFF_DETAIL>();
         }
     
         public int TOUR_STAFF_ID { get; set; }
@@ -43,10 +43,10 @@ namespace TourManagementSystem.Global
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_ACCOUNT> TOUR_ACCOUNT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TOUR_MISSION> TOUR_MISSION { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_RECORD> TOUR_RECORD { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_STAFF_DELETE> TOUR_STAFF_DELETE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TOUR_STAFF_DETAIL> TOUR_STAFF_DETAIL { get; set; }
     }
 }

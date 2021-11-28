@@ -39,8 +39,8 @@ namespace TourManagementSystem.ManagerView.Model
         private string _HOTEL_DESCRIPTION;
         public string HOTEL_DESCRIPTION { get => _HOTEL_DESCRIPTION; set { _HOTEL_DESCRIPTION = value; OnPropertyChanged(); } }
 
-        private float _HOTEL_PRICE;
-        public float HOTEL_PRICE { get => _HOTEL_PRICE; set { _HOTEL_PRICE = value; OnPropertyChanged(); } }
+        private double _HOTEL_PRICE;
+        public double HOTEL_PRICE { get => _HOTEL_PRICE; set { _HOTEL_PRICE = value; OnPropertyChanged(); } }
 
         private byte[] _HOTEL_IMAGE_BYTE_SOURCE;
         public byte[] HOTEL_IMAGE_BYTE_SOURCE { get => _HOTEL_IMAGE_BYTE_SOURCE; set { _HOTEL_IMAGE_BYTE_SOURCE = value; OnPropertyChanged(); } }

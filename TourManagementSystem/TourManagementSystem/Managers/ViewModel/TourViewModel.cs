@@ -808,7 +808,6 @@ namespace TourManagementSystem.Managers.ViewModel
             foreach (var placeItem in placeList)
             {
                 CheckBoxModel cbPlaceItem = new CheckBoxModel(placeItem.PLACE_NAME, placeItem.PLACE_NATION, placeItem.PLACE_ID, false);
-                cbPlaceItem.CB_Click_Command = new RelayCommand<object>(_ => true, _ => { if (cbPlaceItem.IsSelected == true) MessageBox.Show("Click"); });
                 PlaceList.Add(cbPlaceItem);
                 Refresh_PlaceList.Add(cbPlaceItem);
             }

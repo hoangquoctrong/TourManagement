@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity.Validation;
@@ -36,7 +37,7 @@ namespace TourManagementSystem.ManagerView.Model
                     HOTEL_DESCRIPTION = item.hotel.TOUR_HOTEL_DESCRIPTION,
                     HOTEL_TYPE = item.hotel.TOUR_HOTEL_TYPE,
                     HOTEL_IS_RESTAURANT = item.hotel.TOUR_HOTEL_IS_RESTAURANT,
-                    HOTEL_PRICE = (float)item.hotel.TOUR_HOTEL_PRICE,
+                    HOTEL_PRICE = (double)item.hotel.TOUR_HOTEL_PRICE,
                     HOTEL_EMAIL = item.hotel.TOUR_HOTEL_EMAIL,
                     HOTEL_IMAGE_BYTE_SOURCE = item.hotel.TOUR_HOTEL_IMAGE,
                     HOTEL_IS_DELETE = (bool)item.hotel.TOUR_HOTEL_DELETE,
@@ -163,7 +164,7 @@ namespace TourManagementSystem.ManagerView.Model
                 }
                 if (tour_hotel.PLACE_ID != hotel.PLACE_ID)
                 {
-                    changeToSave += string.Format("Place Change ({0} -> {1})    ", tour_hotel.PLACE.PLACE_NAME, hotel.PLACE_NAME);
+                    changeToSave += string.Format("Hotel Change ({0} -> {1})    ", tour_hotel.PLACE.PLACE_NAME, hotel.PLACE_NAME);
                     countChangeToSave++;
                 }
 
@@ -227,6 +228,101 @@ namespace TourManagementSystem.ManagerView.Model
                 }
                 throw;
             }
+        }
+
+        public static bool InsertHotelDetail(BindableCollection<HotelModel> hotels, int tour_informationID, int user_id, bool IsFirst)
+        {
+            try
+            {
+                int countHotel = 0;
+                foreach (HotelModel item in hotels)
+                {
+                    TOUR_HOTEL_DETAIL hotel_detail = new TOUR_HOTEL_DETAIL()
+                    {
+                        TOUR_HOTEL_ID = item.HOTEL_ID,
+                        TOUR_INFORMATION_ID = tour_informationID,
+                    };
+                    countHotel++;
+                    DataProvider.Ins.DB.TOUR_HOTEL_DETAIL.Add(hotel_detail);
+                }
+                TOUR_RECORD tour_record = new TOUR_RECORD()
+                {
+                    TOUR_STAFF_ID = user_id,
+                    TOUR_RECORD_DATE = DateTime.Now,
+                    TOUR_RECORD_CONTENT = string.Format("{0} {1} hotels in tour information with id is {2}", IsFirst ? "Add" : "Update", countHotel, tour_informationID)
+                };
+                DataProvider.Ins.DB.TOUR_RECORD.Add(tour_record);
+
+                DataProvider.Ins.DB.SaveChanges();
+                return true;
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (DbEntityValidationResult eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (DbValidationError ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+        }
+
+        public static BindableCollection<HotelModel> GetHotelFromPlaceList(ObservableCollection<PlaceModel> places)
+        {
+            BindableCollection<HotelModel> HotelList = new BindableCollection<HotelModel>();
+
+            foreach (var item in places)
+            {
+                var hotelList = from hotel in DataProvider.Ins.DB.TOUR_HOTEL
+                                where hotel.PLACE_ID == item.PLACE_ID && hotel.TOUR_HOTEL_DELETE == false
+                                select hotel;
+
+                foreach (var itemhotel in hotelList)
+                {
+                    HotelModel hotelModel = new HotelModel()
+                    {
+                        HOTEL_ID = itemhotel.TOUR_HOTEL_ID,
+                        HOTEL_NAME = itemhotel.TOUR_HOTEL_NAME,
+                        HOTEL_ADDRESS = itemhotel.TOUR_HOTEL_ADDRESS,
+                        HOTEL_PHONE_NUMBER = itemhotel.TOUR_HOTEL_PHONE_NUMBER,
+                        HOTEL_DESCRIPTION = itemhotel.TOUR_HOTEL_DESCRIPTION,
+                        HOTEL_TYPE = itemhotel.TOUR_HOTEL_TYPE,
+                        HOTEL_IS_RESTAURANT = itemhotel.TOUR_HOTEL_IS_RESTAURANT,
+                        HOTEL_PRICE = (double)itemhotel.TOUR_HOTEL_PRICE,
+                        HOTEL_EMAIL = itemhotel.TOUR_HOTEL_EMAIL,
+                        HOTEL_IMAGE_BYTE_SOURCE = itemhotel.TOUR_HOTEL_IMAGE,
+                        HOTEL_IS_DELETE = (bool)itemhotel.TOUR_HOTEL_DELETE,
+                        PLACE_ID = itemhotel.PLACE_ID,
+                        PLACE_NAME = itemhotel.PLACE.PLACE_NAME
+                    };
+
+                    HotelList.Add(hotelModel);
+                }
+            }
+
+            return HotelList;
+        }
+
+        public static double CalculateTotalHotelPrice(ObservableCollection<HotelModel> hotels)
+        {
+            double total = 0;
+
+            if (hotels.Count == 0)
+            {
+                return total;
+            }
+
+            foreach (var item in hotels)
+            {
+                total += item.HOTEL_PRICE;
+            }
+
+            return total;
         }
     }
 }

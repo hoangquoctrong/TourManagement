@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="PLACE">
           <Key>
             <PropertyRef Name="PLACE_ID" />
@@ -32,6 +32,7 @@
           <Property Name="TOUR_CHARACTERISTIS" Type="text" />
           <Property Name="TOUR_TYPE" Type="varchar" MaxLength="255" />
           <Property Name="TOUR_IS_EXIST" Type="varchar" MaxLength="255" />
+          <Property Name="TOUR_STAR" Type="float" />
         </EntityType>
         <EntityType Name="TOUR_ACCOUNT">
           <Key>
@@ -76,12 +77,9 @@
           <Property Name="TOUR_INFORMATION_ID" Type="int" Nullable="false" />
           <Property Name="TOUR_HOTEL_ID" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TOUR_IMAGE">
           <Key>
             <PropertyRef Name="TOUR_IMAGE_ID" />
-            <PropertyRef Name="TOUR_ID" />
           </Key>
           <Property Name="TOUR_IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TOUR_IMAGE" Type="image" />
@@ -106,6 +104,14 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <Property Name="TOUR_LOCATION_ADDRESS" Type="text" />
           <Property Name="TOUR_LOCATION_DESCRIPTION" Type="text" />
         </EntityType>
+        <EntityType Name="TOUR_LOCATION_DETAILED">
+          <Key>
+            <PropertyRef Name="TOUR_LOCATION_DETAILED_ID" />
+          </Key>
+          <Property Name="TOUR_LOCATION_DETAILED_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TOUR_LOCATION_ID" Type="int" Nullable="false" />
+          <Property Name="TOUR_INFORMATION_ID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="TOUR_MISSION">
           <Key>
             <PropertyRef Name="TOUR_MISSION_ID" />
@@ -114,7 +120,8 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <Property Name="TOUR_MISSION_DESCRIPTION" Type="text" />
           <Property Name="TOUR_MISSION_RESPONSIBILITY" Type="varchar" MaxLength="255" />
           <Property Name="TOUR_INFORMATION_ID" Type="int" Nullable="false" />
-          <Property Name="TOUR_STAFF_ID" Type="int" Nullable="false" />
+          <Property Name="TOUR_MISSION_PRICE" Type="float" />
+          <Property Name="TOUR_MISSION_COUNT" Type="int" />
         </EntityType>
         <EntityType Name="TOUR_PLACE_DETAILED">
           <Key>
@@ -184,6 +191,15 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <Property Name="TOUR_STAFF_ID" Type="int" Nullable="false" />
           <Property Name="TOUR_STAFF_DELETE_CONTENT" Type="text" />
         </EntityType>
+        <EntityType Name="TOUR_STAFF_DETAIL">
+          <Key>
+            <PropertyRef Name="TOUR_STAFF_DETAIL_ID" />
+          </Key>
+          <Property Name="TOUR_STAFF_DETAIL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TOUR_STAFF_ID" Type="int" Nullable="false" />
+          <Property Name="TOUR_MISSION_ID" Type="int" Nullable="false" />
+          <Property Name="TRAVEL_GROUP_ID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="TOUR_TIME">
           <Key>
             <PropertyRef Name="TOUR_TIME_ID" />
@@ -236,7 +252,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <Property Name="TRAVEL_GROUP_NAME" Type="varchar" MaxLength="255" />
           <Property Name="TRAVEL_GROUP_CONTENT_DETAIL" Type="text" />
           <Property Name="TRAVEL_COST_ID" Type="int" Nullable="false" />
-          <Property Name="TOUR_ID" Type="int" Nullable="false" />
+          <Property Name="TOUR_INFORMATION_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TRAVELLER">
           <Key>
@@ -377,6 +393,30 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__TOUR_LOCA__TOUR___00DF2177">
+          <End Role="TOUR_LOCATION" Type="Self.TOUR_LOCATION" Multiplicity="1" />
+          <End Role="TOUR_LOCATION_DETAILED" Type="Self.TOUR_LOCATION_DETAILED" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_LOCATION">
+              <PropertyRef Name="TOUR_LOCATION_ID" />
+            </Principal>
+            <Dependent Role="TOUR_LOCATION_DETAILED">
+              <PropertyRef Name="TOUR_LOCATION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_LOCA__TOUR___7FEAFD3E">
+          <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="1" />
+          <End Role="TOUR_LOCATION_DETAILED" Type="Self.TOUR_LOCATION_DETAILED" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_INFORMATION">
+              <PropertyRef Name="TOUR_INFORMATION_ID" />
+            </Principal>
+            <Dependent Role="TOUR_LOCATION_DETAILED">
+              <PropertyRef Name="TOUR_INFORMATION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__TOUR_MISS__TOUR___503BEA1C">
           <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="1" />
           <End Role="TOUR_MISSION" Type="Self.TOUR_MISSION" Multiplicity="*" />
@@ -386,18 +426,6 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
             </Principal>
             <Dependent Role="TOUR_MISSION">
               <PropertyRef Name="TOUR_INFORMATION_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TOUR_MISS__TOUR___51300E55">
-          <End Role="TOUR_STAFF" Type="Self.TOUR_STAFF" Multiplicity="1" />
-          <End Role="TOUR_MISSION" Type="Self.TOUR_MISSION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TOUR_STAFF">
-              <PropertyRef Name="TOUR_STAFF_ID" />
-            </Principal>
-            <Dependent Role="TOUR_MISSION">
-              <PropertyRef Name="TOUR_STAFF_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -449,6 +477,18 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__TOUR_STAF__TOUR___0880433F">
+          <End Role="TOUR_MISSION" Type="Self.TOUR_MISSION" Multiplicity="1" />
+          <End Role="TOUR_STAFF_DETAIL" Type="Self.TOUR_STAFF_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_MISSION">
+              <PropertyRef Name="TOUR_MISSION_ID" />
+            </Principal>
+            <Dependent Role="TOUR_STAFF_DETAIL">
+              <PropertyRef Name="TOUR_MISSION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__TOUR_STAF__TOUR___160F4887">
           <End Role="TOUR_STAFF" Type="Self.TOUR_STAFF" Multiplicity="1" />
           <End Role="TOUR_STAFF_DELETE" Type="Self.TOUR_STAFF_DELETE" Multiplicity="*" />
@@ -458,6 +498,30 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
             </Principal>
             <Dependent Role="TOUR_STAFF_DELETE">
               <PropertyRef Name="TOUR_STAFF_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_STAF__TRAVE__078C1F06">
+          <End Role="TOUR_STAFF" Type="Self.TOUR_STAFF" Multiplicity="1" />
+          <End Role="TOUR_STAFF_DETAIL" Type="Self.TOUR_STAFF_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_STAFF">
+              <PropertyRef Name="TOUR_STAFF_ID" />
+            </Principal>
+            <Dependent Role="TOUR_STAFF_DETAIL">
+              <PropertyRef Name="TOUR_STAFF_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_STAF__TRAVE__09746778">
+          <End Role="TRAVEL_GROUP" Type="Self.TRAVEL_GROUP" Multiplicity="1" />
+          <End Role="TOUR_STAFF_DETAIL" Type="Self.TOUR_STAFF_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAVEL_GROUP">
+              <PropertyRef Name="TRAVEL_GROUP_ID" />
+            </Principal>
+            <Dependent Role="TOUR_STAFF_DETAIL">
+              <PropertyRef Name="TRAVEL_GROUP_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -482,18 +546,6 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
             </Principal>
             <Dependent Role="TOUR_TRANSPORT_DETAIL">
               <PropertyRef Name="TOUR_TRANSPORT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TRAVEL_GR__TOUR___3D2915A8">
-          <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
-          <End Role="TRAVEL_GROUP" Type="Self.TRAVEL_GROUP" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TOUR">
-              <PropertyRef Name="TOUR_ID" />
-            </Principal>
-            <Dependent Role="TRAVEL_GROUP">
-              <PropertyRef Name="TOUR_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -553,8 +605,10 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <EntitySet Name="TOUR_HARD_PRICE" EntityType="Self.TOUR_HARD_PRICE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_HOTEL" EntityType="Self.TOUR_HOTEL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_HOTEL_DETAIL" EntityType="Self.TOUR_HOTEL_DETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOUR_IMAGE" EntityType="Self.TOUR_IMAGE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_INFORMATION" EntityType="Self.TOUR_INFORMATION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_LOCATION" EntityType="Self.TOUR_LOCATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOUR_LOCATION_DETAILED" EntityType="Self.TOUR_LOCATION_DETAILED" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_MISSION" EntityType="Self.TOUR_MISSION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_PLACE_DETAILED" EntityType="Self.TOUR_PLACE_DETAILED" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_PRICE" EntityType="Self.TOUR_PRICE" Schema="dbo" store:Type="Tables" />
@@ -562,6 +616,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <EntitySet Name="TOUR_SCHEDULE" EntityType="Self.TOUR_SCHEDULE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_STAFF" EntityType="Self.TOUR_STAFF" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_STAFF_DELETE" EntityType="Self.TOUR_STAFF_DELETE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOUR_STAFF_DETAIL" EntityType="Self.TOUR_STAFF_DETAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_TIME" EntityType="Self.TOUR_TIME" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_TRANSPORT" EntityType="Self.TOUR_TRANSPORT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOUR_TRANSPORT_DETAIL" EntityType="Self.TOUR_TRANSPORT_DETAIL" Schema="dbo" store:Type="Tables" />
@@ -570,13 +625,6 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <EntitySet Name="TRAVELLER" EntityType="Self.TRAVELLER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRAVELLER_ACCOUNT" EntityType="Self.TRAVELLER_ACCOUNT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRAVELLER_DETAIL" EntityType="Self.TRAVELLER_DETAIL" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TOUR_IMAGE" EntityType="Self.TOUR_IMAGE" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TOUR_IMAGE].[TOUR_IMAGE_ID] AS [TOUR_IMAGE_ID], 
-    [TOUR_IMAGE].[TOUR_IMAGE] AS [TOUR_IMAGE], 
-    [TOUR_IMAGE].[TOUR_ID] AS [TOUR_ID]
-    FROM [dbo].[TOUR_IMAGE] AS [TOUR_IMAGE]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__TOUR_ACCO__TOUR___0C85DE4D" Association="Self.FK__TOUR_ACCO__TOUR___0C85DE4D">
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
             <End Role="TOUR_ACCOUNT" EntitySet="TOUR_ACCOUNT" />
@@ -613,12 +661,16 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
             <End Role="PLACE" EntitySet="PLACE" />
             <End Role="TOUR_LOCATION" EntitySet="TOUR_LOCATION" />
           </AssociationSet>
+          <AssociationSet Name="FK__TOUR_LOCA__TOUR___00DF2177" Association="Self.FK__TOUR_LOCA__TOUR___00DF2177">
+            <End Role="TOUR_LOCATION" EntitySet="TOUR_LOCATION" />
+            <End Role="TOUR_LOCATION_DETAILED" EntitySet="TOUR_LOCATION_DETAILED" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_LOCA__TOUR___7FEAFD3E" Association="Self.FK__TOUR_LOCA__TOUR___7FEAFD3E">
+            <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
+            <End Role="TOUR_LOCATION_DETAILED" EntitySet="TOUR_LOCATION_DETAILED" />
+          </AssociationSet>
           <AssociationSet Name="FK__TOUR_MISS__TOUR___503BEA1C" Association="Self.FK__TOUR_MISS__TOUR___503BEA1C">
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
-            <End Role="TOUR_MISSION" EntitySet="TOUR_MISSION" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TOUR_MISS__TOUR___51300E55" Association="Self.FK__TOUR_MISS__TOUR___51300E55">
-            <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
             <End Role="TOUR_MISSION" EntitySet="TOUR_MISSION" />
           </AssociationSet>
           <AssociationSet Name="FK__TOUR_PLAC__PLACE__662B2B3B" Association="Self.FK__TOUR_PLAC__PLACE__662B2B3B">
@@ -637,9 +689,21 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
             <End Role="TOUR_SCHEDULE" EntitySet="TOUR_SCHEDULE" />
           </AssociationSet>
+          <AssociationSet Name="FK__TOUR_STAF__TOUR___0880433F" Association="Self.FK__TOUR_STAF__TOUR___0880433F">
+            <End Role="TOUR_MISSION" EntitySet="TOUR_MISSION" />
+            <End Role="TOUR_STAFF_DETAIL" EntitySet="TOUR_STAFF_DETAIL" />
+          </AssociationSet>
           <AssociationSet Name="FK__TOUR_STAF__TOUR___160F4887" Association="Self.FK__TOUR_STAF__TOUR___160F4887">
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
             <End Role="TOUR_STAFF_DELETE" EntitySet="TOUR_STAFF_DELETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_STAF__TRAVE__078C1F06" Association="Self.FK__TOUR_STAF__TRAVE__078C1F06">
+            <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
+            <End Role="TOUR_STAFF_DETAIL" EntitySet="TOUR_STAFF_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_STAF__TRAVE__09746778" Association="Self.FK__TOUR_STAF__TRAVE__09746778">
+            <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
+            <End Role="TOUR_STAFF_DETAIL" EntitySet="TOUR_STAFF_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK__TOUR_TRAN__TOUR___69FBBC1F" Association="Self.FK__TOUR_TRAN__TOUR___69FBBC1F">
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
@@ -648,10 +712,6 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <AssociationSet Name="FK__TOUR_TRAN__TOUR___6AEFE058" Association="Self.FK__TOUR_TRAN__TOUR___6AEFE058">
             <End Role="TOUR_TRANSPORT" EntitySet="TOUR_TRANSPORT" />
             <End Role="TOUR_TRANSPORT_DETAIL" EntitySet="TOUR_TRANSPORT_DETAIL" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TRAVEL_GR__TOUR___3D2915A8" Association="Self.FK__TRAVEL_GR__TOUR___3D2915A8">
-            <End Role="TOUR" EntitySet="TOUR" />
-            <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
           </AssociationSet>
           <AssociationSet Name="FK__TRAVEL_GR__TRAVE__70DDC3D8" Association="Self.FK__TRAVEL_GR__TRAVE__70DDC3D8">
             <End Role="TRAVEL_COST" EntitySet="TRAVEL_COST" />
@@ -670,8 +730,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
             <End Role="TRAVELLER_ACCOUNT" EntitySet="TRAVELLER_ACCOUNT" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Tour_Mangement_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -705,10 +764,10 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <Property Name="TOUR_CHARACTERISTIS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_IS_EXIST" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TOUR_STAR" Type="Double" />
           <NavigationProperty Name="TOUR_IMAGE" Relationship="Self.FK__TOUR_IMAG__TOUR___7755B73D" FromRole="TOUR" ToRole="TOUR_IMAGE" />
           <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___6FB49575" FromRole="TOUR" ToRole="TOUR_INFORMATION" />
           <NavigationProperty Name="TOUR_PLACE_DETAILED" Relationship="Self.FK__TOUR_PLAC__TOUR___671F4F74" FromRole="TOUR" ToRole="TOUR_PLACE_DETAILED" />
-          <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVEL_GR__TOUR___3D2915A8" FromRole="TOUR" ToRole="TRAVEL_GROUP" />
         </EntityType>
         <EntityType Name="TOUR_ACCOUNT">
           <Key>
@@ -758,6 +817,15 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <NavigationProperty Name="TOUR_HOTEL" Relationship="Self.FK__TOUR_HOTE__TOUR___6EC0713C" FromRole="TOUR_HOTEL_DETAIL" ToRole="TOUR_HOTEL" />
           <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_HOTE__TOUR___6DCC4D03" FromRole="TOUR_HOTEL_DETAIL" ToRole="TOUR_INFORMATION" />
         </EntityType>
+        <EntityType Name="TOUR_IMAGE">
+          <Key>
+            <PropertyRef Name="TOUR_IMAGE_ID" />
+          </Key>
+          <Property Name="TOUR_IMAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TOUR_IMAGE1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TOUR" Relationship="Self.FK__TOUR_IMAG__TOUR___7755B73D" FromRole="TOUR_IMAGE" ToRole="TOUR" />
+        </EntityType>
         <EntityType Name="TOUR_INFORMATION">
           <Key>
             <PropertyRef Name="TOUR_INFORMATION_ID" />
@@ -770,6 +838,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <NavigationProperty Name="TOUR_HOTEL_DETAIL" Relationship="Self.FK__TOUR_HOTE__TOUR___6DCC4D03" FromRole="TOUR_INFORMATION" ToRole="TOUR_HOTEL_DETAIL" />
           <NavigationProperty Name="TOUR_TIME" Relationship="Self.FK__TOUR_INFO__TOUR___70A8B9AE" FromRole="TOUR_INFORMATION" ToRole="TOUR_TIME" />
           <NavigationProperty Name="TOUR_PRICE" Relationship="Self.FK__TOUR_INFO__TOUR___719CDDE7" FromRole="TOUR_INFORMATION" ToRole="TOUR_PRICE" />
+          <NavigationProperty Name="TOUR_LOCATION_DETAILED" Relationship="Self.FK__TOUR_LOCA__TOUR___7FEAFD3E" FromRole="TOUR_INFORMATION" ToRole="TOUR_LOCATION_DETAILED" />
           <NavigationProperty Name="TOUR_MISSION" Relationship="Self.FK__TOUR_MISS__TOUR___503BEA1C" FromRole="TOUR_INFORMATION" ToRole="TOUR_MISSION" />
           <NavigationProperty Name="TOUR_SCHEDULE" Relationship="Self.FK__TOUR_SCHE__TOUR___72910220" FromRole="TOUR_INFORMATION" ToRole="TOUR_SCHEDULE" />
           <NavigationProperty Name="TOUR_TRANSPORT_DETAIL" Relationship="Self.FK__TOUR_TRAN__TOUR___69FBBC1F" FromRole="TOUR_INFORMATION" ToRole="TOUR_TRANSPORT_DETAIL" />
@@ -784,6 +853,17 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <Property Name="TOUR_LOCATION_ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_LOCATION_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PLACE" Relationship="Self.FK__TOUR_LOCA__PLACE__68487DD7" FromRole="TOUR_LOCATION" ToRole="PLACE" />
+          <NavigationProperty Name="TOUR_LOCATION_DETAILED" Relationship="Self.FK__TOUR_LOCA__TOUR___00DF2177" FromRole="TOUR_LOCATION" ToRole="TOUR_LOCATION_DETAILED" />
+        </EntityType>
+        <EntityType Name="TOUR_LOCATION_DETAILED">
+          <Key>
+            <PropertyRef Name="TOUR_LOCATION_DETAILED_ID" />
+          </Key>
+          <Property Name="TOUR_LOCATION_DETAILED_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TOUR_LOCATION_ID" Type="Int32" Nullable="false" />
+          <Property Name="TOUR_INFORMATION_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_LOCA__TOUR___7FEAFD3E" FromRole="TOUR_LOCATION_DETAILED" ToRole="TOUR_INFORMATION" />
+          <NavigationProperty Name="TOUR_LOCATION" Relationship="Self.FK__TOUR_LOCA__TOUR___00DF2177" FromRole="TOUR_LOCATION_DETAILED" ToRole="TOUR_LOCATION" />
         </EntityType>
         <EntityType Name="TOUR_MISSION">
           <Key>
@@ -793,9 +873,10 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <Property Name="TOUR_MISSION_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_MISSION_RESPONSIBILITY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_INFORMATION_ID" Type="Int32" Nullable="false" />
-          <Property Name="TOUR_STAFF_ID" Type="Int32" Nullable="false" />
+          <Property Name="TOUR_MISSION_PRICE" Type="Double" />
           <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_MISS__TOUR___503BEA1C" FromRole="TOUR_MISSION" ToRole="TOUR_INFORMATION" />
-          <NavigationProperty Name="TOUR_STAFF" Relationship="Self.FK__TOUR_MISS__TOUR___51300E55" FromRole="TOUR_MISSION" ToRole="TOUR_STAFF" />
+          <NavigationProperty Name="TOUR_STAFF_DETAIL" Relationship="Self.FK__TOUR_STAF__TOUR___0880433F" FromRole="TOUR_MISSION" ToRole="TOUR_STAFF_DETAIL" />
+          <Property Name="TOUR_MISSION_COUNT" Type="Int32" />
         </EntityType>
         <EntityType Name="TOUR_PLACE_DETAILED">
           <Key>
@@ -860,9 +941,9 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <Property Name="TOUR_STAFF_CITIZEN_IDENTITY_PLACE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_STAFF_CITIZEN_IDENTITY_DATE" Type="DateTime" Precision="3" />
           <NavigationProperty Name="TOUR_ACCOUNT" Relationship="Self.FK__TOUR_ACCO__TOUR___0C85DE4D" FromRole="TOUR_STAFF" ToRole="TOUR_ACCOUNT" />
-          <NavigationProperty Name="TOUR_MISSION" Relationship="Self.FK__TOUR_MISS__TOUR___51300E55" FromRole="TOUR_STAFF" ToRole="TOUR_MISSION" />
           <NavigationProperty Name="TOUR_RECORD" Relationship="Self.FK__TOUR_RECO__TOUR___1332DBDC" FromRole="TOUR_STAFF" ToRole="TOUR_RECORD" />
           <NavigationProperty Name="TOUR_STAFF_DELETE" Relationship="Self.FK__TOUR_STAF__TOUR___160F4887" FromRole="TOUR_STAFF" ToRole="TOUR_STAFF_DELETE" />
+          <NavigationProperty Name="TOUR_STAFF_DETAIL" Relationship="Self.FK__TOUR_STAF__TRAVE__078C1F06" FromRole="TOUR_STAFF" ToRole="TOUR_STAFF_DETAIL" />
         </EntityType>
         <EntityType Name="TOUR_STAFF_DELETE">
           <Key>
@@ -874,6 +955,18 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <Property Name="TOUR_STAFF_ID" Type="Int32" Nullable="false" />
           <Property Name="TOUR_STAFF_DELETE_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TOUR_STAFF" Relationship="Self.FK__TOUR_STAF__TOUR___160F4887" FromRole="TOUR_STAFF_DELETE" ToRole="TOUR_STAFF" />
+        </EntityType>
+        <EntityType Name="TOUR_STAFF_DETAIL">
+          <Key>
+            <PropertyRef Name="TOUR_STAFF_DETAIL_ID" />
+          </Key>
+          <Property Name="TOUR_STAFF_DETAIL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TOUR_STAFF_ID" Type="Int32" Nullable="false" />
+          <Property Name="TOUR_MISSION_ID" Type="Int32" Nullable="false" />
+          <Property Name="TRAVEL_GROUP_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TOUR_MISSION" Relationship="Self.FK__TOUR_STAF__TOUR___0880433F" FromRole="TOUR_STAFF_DETAIL" ToRole="TOUR_MISSION" />
+          <NavigationProperty Name="TOUR_STAFF" Relationship="Self.FK__TOUR_STAF__TRAVE__078C1F06" FromRole="TOUR_STAFF_DETAIL" ToRole="TOUR_STAFF" />
+          <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TOUR_STAF__TRAVE__09746778" FromRole="TOUR_STAFF_DETAIL" ToRole="TRAVEL_GROUP" />
         </EntityType>
         <EntityType Name="TOUR_TIME">
           <Key>
@@ -932,8 +1025,8 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <Property Name="TRAVEL_GROUP_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TRAVEL_GROUP_CONTENT_DETAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TRAVEL_COST_ID" Type="Int32" Nullable="false" />
-          <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TOUR" Relationship="Self.FK__TRAVEL_GR__TOUR___3D2915A8" FromRole="TRAVEL_GROUP" ToRole="TOUR" />
+          <Property Name="TOUR_INFORMATION_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TOUR_STAFF_DETAIL" Relationship="Self.FK__TOUR_STAF__TRAVE__09746778" FromRole="TRAVEL_GROUP" ToRole="TOUR_STAFF_DETAIL" />
           <NavigationProperty Name="TRAVEL_COST" Relationship="Self.FK__TRAVEL_GR__TRAVE__70DDC3D8" FromRole="TRAVEL_GROUP" ToRole="TRAVEL_COST" />
           <NavigationProperty Name="TRAVELLER_DETAIL" Relationship="Self.FK__TRAVELLER__TRAVE__07C12930" FromRole="TRAVEL_GROUP" ToRole="TRAVELLER_DETAIL" />
         </EntityType>
@@ -972,16 +1065,6 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <Property Name="TRAVELLER_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVELLER__TRAVE__07C12930" FromRole="TRAVELLER_DETAIL" ToRole="TRAVEL_GROUP" />
           <NavigationProperty Name="TRAVELLER" Relationship="Self.FK__TRAVELLER__TRAVE__08B54D69" FromRole="TRAVELLER_DETAIL" ToRole="TRAVELLER" />
-        </EntityType>
-        <EntityType Name="TOUR_IMAGE">
-          <Key>
-            <PropertyRef Name="TOUR_IMAGE_ID" />
-            <PropertyRef Name="TOUR_ID" />
-          </Key>
-          <Property Name="TOUR_IMAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TOUR_IMAGE1" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TOUR" Relationship="Self.FK__TOUR_IMAG__TOUR___7755B73D" FromRole="TOUR_IMAGE" ToRole="TOUR" />
         </EntityType>
         <Association Name="FK__TOUR_HOTE__PLACE__73852659">
           <End Role="PLACE" Type="Self.PLACE" Multiplicity="1" />
@@ -1055,18 +1138,6 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TRAVEL_GR__TOUR___3D2915A8">
-          <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
-          <End Role="TRAVEL_GROUP" Type="Self.TRAVEL_GROUP" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TOUR">
-              <PropertyRef Name="TOUR_ID" />
-            </Principal>
-            <Dependent Role="TRAVEL_GROUP">
-              <PropertyRef Name="TOUR_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__TOUR_ACCO__TOUR___0C85DE4D">
           <End Role="TOUR_STAFF" Type="Self.TOUR_STAFF" Multiplicity="1" />
           <End Role="TOUR_ACCOUNT" Type="Self.TOUR_ACCOUNT" Multiplicity="*" />
@@ -1127,6 +1198,18 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__TOUR_LOCA__TOUR___7FEAFD3E">
+          <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="1" />
+          <End Role="TOUR_LOCATION_DETAILED" Type="Self.TOUR_LOCATION_DETAILED" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_INFORMATION">
+              <PropertyRef Name="TOUR_INFORMATION_ID" />
+            </Principal>
+            <Dependent Role="TOUR_LOCATION_DETAILED">
+              <PropertyRef Name="TOUR_INFORMATION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__TOUR_MISS__TOUR___503BEA1C">
           <End Role="TOUR_INFORMATION" Type="Self.TOUR_INFORMATION" Multiplicity="1" />
           <End Role="TOUR_MISSION" Type="Self.TOUR_MISSION" Multiplicity="*" />
@@ -1163,15 +1246,27 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TOUR_MISS__TOUR___51300E55">
-          <End Role="TOUR_STAFF" Type="Self.TOUR_STAFF" Multiplicity="1" />
-          <End Role="TOUR_MISSION" Type="Self.TOUR_MISSION" Multiplicity="*" />
+        <Association Name="FK__TOUR_LOCA__TOUR___00DF2177">
+          <End Role="TOUR_LOCATION" Type="Self.TOUR_LOCATION" Multiplicity="1" />
+          <End Role="TOUR_LOCATION_DETAILED" Type="Self.TOUR_LOCATION_DETAILED" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TOUR_STAFF">
-              <PropertyRef Name="TOUR_STAFF_ID" />
+            <Principal Role="TOUR_LOCATION">
+              <PropertyRef Name="TOUR_LOCATION_ID" />
             </Principal>
-            <Dependent Role="TOUR_MISSION">
-              <PropertyRef Name="TOUR_STAFF_ID" />
+            <Dependent Role="TOUR_LOCATION_DETAILED">
+              <PropertyRef Name="TOUR_LOCATION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_STAF__TOUR___0880433F">
+          <End Role="TOUR_MISSION" Type="Self.TOUR_MISSION" Multiplicity="1" />
+          <End Role="TOUR_STAFF_DETAIL" Type="Self.TOUR_STAFF_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_MISSION">
+              <PropertyRef Name="TOUR_MISSION_ID" />
+            </Principal>
+            <Dependent Role="TOUR_STAFF_DETAIL">
+              <PropertyRef Name="TOUR_MISSION_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1196,6 +1291,30 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
             </Principal>
             <Dependent Role="TOUR_STAFF_DELETE">
               <PropertyRef Name="TOUR_STAFF_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_STAF__TRAVE__078C1F06">
+          <End Role="TOUR_STAFF" Type="Self.TOUR_STAFF" Multiplicity="1" />
+          <End Role="TOUR_STAFF_DETAIL" Type="Self.TOUR_STAFF_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOUR_STAFF">
+              <PropertyRef Name="TOUR_STAFF_ID" />
+            </Principal>
+            <Dependent Role="TOUR_STAFF_DETAIL">
+              <PropertyRef Name="TOUR_STAFF_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TOUR_STAF__TRAVE__09746778">
+          <End Role="TRAVEL_GROUP" Type="Self.TRAVEL_GROUP" Multiplicity="1" />
+          <End Role="TOUR_STAFF_DETAIL" Type="Self.TOUR_STAFF_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAVEL_GROUP">
+              <PropertyRef Name="TRAVEL_GROUP_ID" />
+            </Principal>
+            <Dependent Role="TOUR_STAFF_DETAIL">
+              <PropertyRef Name="TRAVEL_GROUP_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1267,8 +1386,10 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <EntitySet Name="TOUR_HARD_PRICE" EntityType="Self.TOUR_HARD_PRICE" />
           <EntitySet Name="TOUR_HOTEL" EntityType="Self.TOUR_HOTEL" />
           <EntitySet Name="TOUR_HOTEL_DETAIL" EntityType="Self.TOUR_HOTEL_DETAIL" />
+          <EntitySet Name="TOUR_IMAGE" EntityType="Self.TOUR_IMAGE" />
           <EntitySet Name="TOUR_INFORMATION" EntityType="Self.TOUR_INFORMATION" />
           <EntitySet Name="TOUR_LOCATION" EntityType="Self.TOUR_LOCATION" />
+          <EntitySet Name="TOUR_LOCATION_DETAILED" EntityType="Self.TOUR_LOCATION_DETAILED" />
           <EntitySet Name="TOUR_MISSION" EntityType="Self.TOUR_MISSION" />
           <EntitySet Name="TOUR_PLACE_DETAILED" EntityType="Self.TOUR_PLACE_DETAILED" />
           <EntitySet Name="TOUR_PRICE" EntityType="Self.TOUR_PRICE" />
@@ -1276,6 +1397,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <EntitySet Name="TOUR_SCHEDULE" EntityType="Self.TOUR_SCHEDULE" />
           <EntitySet Name="TOUR_STAFF" EntityType="Self.TOUR_STAFF" />
           <EntitySet Name="TOUR_STAFF_DELETE" EntityType="Self.TOUR_STAFF_DELETE" />
+          <EntitySet Name="TOUR_STAFF_DETAIL" EntityType="Self.TOUR_STAFF_DETAIL" />
           <EntitySet Name="TOUR_TIME" EntityType="Self.TOUR_TIME" />
           <EntitySet Name="TOUR_TRANSPORT" EntityType="Self.TOUR_TRANSPORT" />
           <EntitySet Name="TOUR_TRANSPORT_DETAIL" EntityType="Self.TOUR_TRANSPORT_DETAIL" />
@@ -1284,7 +1406,6 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <EntitySet Name="TRAVELLERs" EntityType="Self.TRAVELLER" />
           <EntitySet Name="TRAVELLER_ACCOUNT" EntityType="Self.TRAVELLER_ACCOUNT" />
           <EntitySet Name="TRAVELLER_DETAIL" EntityType="Self.TRAVELLER_DETAIL" />
-          <EntitySet Name="TOUR_IMAGE" EntityType="Self.TOUR_IMAGE" />
           <AssociationSet Name="FK__TOUR_HOTE__PLACE__73852659" Association="Self.FK__TOUR_HOTE__PLACE__73852659">
             <End Role="PLACE" EntitySet="PLACEs" />
             <End Role="TOUR_HOTEL" EntitySet="TOUR_HOTEL" />
@@ -1309,10 +1430,6 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
             <End Role="TOUR" EntitySet="TOURs" />
             <End Role="TOUR_PLACE_DETAILED" EntitySet="TOUR_PLACE_DETAILED" />
           </AssociationSet>
-          <AssociationSet Name="FK__TRAVEL_GR__TOUR___3D2915A8" Association="Self.FK__TRAVEL_GR__TOUR___3D2915A8">
-            <End Role="TOUR" EntitySet="TOURs" />
-            <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
-          </AssociationSet>
           <AssociationSet Name="FK__TOUR_ACCO__TOUR___0C85DE4D" Association="Self.FK__TOUR_ACCO__TOUR___0C85DE4D">
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
             <End Role="TOUR_ACCOUNT" EntitySet="TOUR_ACCOUNT" />
@@ -1333,6 +1450,10 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
             <End Role="TOUR_PRICE" EntitySet="TOUR_PRICE" />
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
           </AssociationSet>
+          <AssociationSet Name="FK__TOUR_LOCA__TOUR___7FEAFD3E" Association="Self.FK__TOUR_LOCA__TOUR___7FEAFD3E">
+            <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
+            <End Role="TOUR_LOCATION_DETAILED" EntitySet="TOUR_LOCATION_DETAILED" />
+          </AssociationSet>
           <AssociationSet Name="FK__TOUR_MISS__TOUR___503BEA1C" Association="Self.FK__TOUR_MISS__TOUR___503BEA1C">
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
             <End Role="TOUR_MISSION" EntitySet="TOUR_MISSION" />
@@ -1345,9 +1466,13 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
             <End Role="TOUR_TRANSPORT_DETAIL" EntitySet="TOUR_TRANSPORT_DETAIL" />
           </AssociationSet>
-          <AssociationSet Name="FK__TOUR_MISS__TOUR___51300E55" Association="Self.FK__TOUR_MISS__TOUR___51300E55">
-            <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
+          <AssociationSet Name="FK__TOUR_LOCA__TOUR___00DF2177" Association="Self.FK__TOUR_LOCA__TOUR___00DF2177">
+            <End Role="TOUR_LOCATION" EntitySet="TOUR_LOCATION" />
+            <End Role="TOUR_LOCATION_DETAILED" EntitySet="TOUR_LOCATION_DETAILED" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_STAF__TOUR___0880433F" Association="Self.FK__TOUR_STAF__TOUR___0880433F">
             <End Role="TOUR_MISSION" EntitySet="TOUR_MISSION" />
+            <End Role="TOUR_STAFF_DETAIL" EntitySet="TOUR_STAFF_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK__TOUR_RECO__TOUR___1332DBDC" Association="Self.FK__TOUR_RECO__TOUR___1332DBDC">
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
@@ -1356,6 +1481,14 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
           <AssociationSet Name="FK__TOUR_STAF__TOUR___160F4887" Association="Self.FK__TOUR_STAF__TOUR___160F4887">
             <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
             <End Role="TOUR_STAFF_DELETE" EntitySet="TOUR_STAFF_DELETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_STAF__TRAVE__078C1F06" Association="Self.FK__TOUR_STAF__TRAVE__078C1F06">
+            <End Role="TOUR_STAFF" EntitySet="TOUR_STAFF" />
+            <End Role="TOUR_STAFF_DETAIL" EntitySet="TOUR_STAFF_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TOUR_STAF__TRAVE__09746778" Association="Self.FK__TOUR_STAF__TRAVE__09746778">
+            <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
+            <End Role="TOUR_STAFF_DETAIL" EntitySet="TOUR_STAFF_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK__TOUR_TRAN__TOUR___6AEFE058" Association="Self.FK__TOUR_TRAN__TOUR___6AEFE058">
             <End Role="TOUR_TRANSPORT" EntitySet="TOUR_TRANSPORT" />
@@ -1412,6 +1545,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
                 <ScalarProperty Name="TOUR_CHARACTERISTIS" ColumnName="TOUR_CHARACTERISTIS" />
                 <ScalarProperty Name="TOUR_TYPE" ColumnName="TOUR_TYPE" />
                 <ScalarProperty Name="TOUR_IS_EXIST" ColumnName="TOUR_IS_EXIST" />
+                <ScalarProperty Name="TOUR_STAR" ColumnName="TOUR_STAR" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1462,6 +1596,15 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TOUR_IMAGE">
+            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_IMAGE">
+              <MappingFragment StoreEntitySet="TOUR_IMAGE">
+                <ScalarProperty Name="TOUR_IMAGE_ID" ColumnName="TOUR_IMAGE_ID" />
+                <ScalarProperty Name="TOUR_IMAGE1" ColumnName="TOUR_IMAGE" />
+                <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TOUR_INFORMATION">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_INFORMATION">
               <MappingFragment StoreEntitySet="TOUR_INFORMATION">
@@ -1483,14 +1626,24 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TOUR_LOCATION_DETAILED">
+            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_LOCATION_DETAILED">
+              <MappingFragment StoreEntitySet="TOUR_LOCATION_DETAILED">
+                <ScalarProperty Name="TOUR_LOCATION_DETAILED_ID" ColumnName="TOUR_LOCATION_DETAILED_ID" />
+                <ScalarProperty Name="TOUR_LOCATION_ID" ColumnName="TOUR_LOCATION_ID" />
+                <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TOUR_MISSION">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_MISSION">
               <MappingFragment StoreEntitySet="TOUR_MISSION">
+                <ScalarProperty Name="TOUR_MISSION_COUNT" ColumnName="TOUR_MISSION_COUNT" />
                 <ScalarProperty Name="TOUR_MISSION_ID" ColumnName="TOUR_MISSION_ID" />
                 <ScalarProperty Name="TOUR_MISSION_DESCRIPTION" ColumnName="TOUR_MISSION_DESCRIPTION" />
                 <ScalarProperty Name="TOUR_MISSION_RESPONSIBILITY" ColumnName="TOUR_MISSION_RESPONSIBILITY" />
                 <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
-                <ScalarProperty Name="TOUR_STAFF_ID" ColumnName="TOUR_STAFF_ID" />
+                <ScalarProperty Name="TOUR_MISSION_PRICE" ColumnName="TOUR_MISSION_PRICE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1568,6 +1721,16 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TOUR_STAFF_DETAIL">
+            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_STAFF_DETAIL">
+              <MappingFragment StoreEntitySet="TOUR_STAFF_DETAIL">
+                <ScalarProperty Name="TOUR_STAFF_DETAIL_ID" ColumnName="TOUR_STAFF_DETAIL_ID" />
+                <ScalarProperty Name="TOUR_STAFF_ID" ColumnName="TOUR_STAFF_ID" />
+                <ScalarProperty Name="TOUR_MISSION_ID" ColumnName="TOUR_MISSION_ID" />
+                <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TOUR_TIME">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TIME">
               <MappingFragment StoreEntitySet="TOUR_TIME">
@@ -1623,7 +1786,7 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
                 <ScalarProperty Name="TRAVEL_GROUP_NAME" ColumnName="TRAVEL_GROUP_NAME" />
                 <ScalarProperty Name="TRAVEL_GROUP_CONTENT_DETAIL" ColumnName="TRAVEL_GROUP_CONTENT_DETAIL" />
                 <ScalarProperty Name="TRAVEL_COST_ID" ColumnName="TRAVEL_COST_ID" />
-                <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
+                <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1658,15 +1821,6 @@ warning 6002: The table/view 'Tour_Mangement_Database.dbo.TOUR_IMAGE' does not h
                 <ScalarProperty Name="TRAVELLER_DETAIL_ID" ColumnName="TRAVELLER_DETAIL_ID" />
                 <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
                 <ScalarProperty Name="TRAVELLER_ID" ColumnName="TRAVELLER_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TOUR_IMAGE">
-            <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_IMAGE">
-              <MappingFragment StoreEntitySet="TOUR_IMAGE">
-                <ScalarProperty Name="TOUR_IMAGE_ID" ColumnName="TOUR_IMAGE_ID" />
-                <ScalarProperty Name="TOUR_IMAGE1" ColumnName="TOUR_IMAGE" />
-                <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
