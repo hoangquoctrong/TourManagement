@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using TourManagementSystem.Managers.ViewModel;
 using TourManagementSystem.ViewModel;
 
 namespace TourManagementSystem.Global.Model

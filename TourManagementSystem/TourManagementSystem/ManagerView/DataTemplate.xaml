@@ -104,4 +104,16 @@
         <view:ShowTourInformationView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type viewmodel:AddTravelGroupViewModel}">
+        <view:AddTravelGroupView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowTravelGroupViewModel}">
+        <view:ShowTravelGroupView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:StatisticTravelGroupViewModel}">
+        <view:StatisticTravelGroupView />
+    </DataTemplate>
+
 </ResourceDictionary>

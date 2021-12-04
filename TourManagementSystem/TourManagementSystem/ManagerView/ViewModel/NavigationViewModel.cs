@@ -36,7 +36,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             // get added, removed, or when the whole list is refreshed.
             ObservableCollection<MenuItems> menuItems = new ObservableCollection<MenuItems>()
             {
-                new MenuItems {MenuName = "Dashboard", MenuImage = @"Assets/home.png"},
+                new MenuItems {MenuName = "Record", MenuImage = @"Assets/home.png"},
                 new MenuItems {MenuName = "Tour", MenuImage = @"Assets/tour.png"},
                 new MenuItems {MenuName = "Travel Group", MenuImage = @"Assets/travelgroup.png"},
                 new MenuItems {MenuName = "Place", MenuImage = @"Assets/place.png"},

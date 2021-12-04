@@ -28,7 +28,6 @@ namespace TourManagementSystem.Global
         public Nullable<double> TOUR_HOTEL_PRICE { get; set; }
         public string TOUR_HOTEL_TYPE { get; set; }
         public string TOUR_HOTEL_DESCRIPTION { get; set; }
-        public byte[] TOUR_HOTEL_IMAGE { get; set; }
         public string TOUR_HOTEL_EMAIL { get; set; }
         public int PLACE_ID { get; set; }
         public Nullable<bool> TOUR_HOTEL_DELETE { get; set; }

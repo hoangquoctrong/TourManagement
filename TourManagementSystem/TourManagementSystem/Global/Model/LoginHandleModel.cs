@@ -10,6 +10,7 @@ namespace TourManagementSystem.Global.Model
     {
         public static int IsLoginAccount(string username, string password, out int user_id)
         {
+
             string passwordAfter = GlobalFunction.CreateMD5(GlobalFunction.Base64Encode(password));
             var user = (from u in DataProvider.Ins.DB.TOUR_ACCOUNT
                         where u.TOUR_ACCOUNT_NAME == username && u.TOUR_ACCOUNT_PASSWORD == passwordAfter

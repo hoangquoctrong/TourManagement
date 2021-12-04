@@ -6,97 +6,389 @@
     xmlns:local="clr-namespace:TourManagementSystem"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="1200"
+    Width="1190"
+    Height="620"
     mc:Ignorable="d">
-    <Grid>
+    <StackPanel Margin="20">
+
         <Border
-            Height="auto"
-            Margin="10"
-            Padding="10"
+            x:Name="BorderPlace"
+            Padding="8"
             BorderBrush="Black"
             BorderThickness="1">
-            <StackPanel Margin="10">
 
-                <Grid>
+            <StackPanel Margin="8,0,0,0">
+                <TextBlock
+                    FontSize="12"
+                    FontWeight="Bold"
+                    Text="{Binding HOTEL_NAME}" />
+                <TextBlock FontSize="12" Text="{Binding HOTEL_PRICE}" />
+                <TextBox
+                    Width="100"
+                    Margin="8,0,0,0"
+                    HorizontalAlignment="Left"
+                    materialDesign:HintAssist.Hint="Amount"
+                    FontSize="12">
+                    <TextBox.Text>
+                        <Binding
+                            Mode="TwoWay"
+                            Path="HOTEL_DAY"
+                            UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules />
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </StackPanel>
+        </Border>
+
+        <Border
+            Width="1060"
+            Height="auto"
+            Margin="0,16"
+            Padding="10"
+            HorizontalAlignment="Center"
+            BorderBrush="Black"
+            BorderThickness="1">
+
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel Margin="64,4,120,4" Orientation="Horizontal">
-                        <TextBlock
+                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+
+                        <materialDesign:PackIcon
+                            Width="30"
+                            Height="30"
                             VerticalAlignment="Center"
-                            FontSize="18"
                             Foreground="DimGray"
-                            Style="{StaticResource MaterialDesignButtonTextBlock}"
-                            Text="Responsibility : " />
+                            Kind="User" />
+
                         <ComboBox
-                            Width="224"
+                            Width="300"
                             Margin="10,0,0,0"
-                            materialDesign:HintAssist.Hint="Mission Responsibility"
                             DisplayMemberPath="CB_Name"
                             FontSize="18"
                             Foreground="DimGray"
-                            Text="{Binding Mission_Responsibility}">
-                            <ComboBoxItem Content="Driver" />
-                            <ComboBoxItem Content="Guide" />
-                            <ComboBoxItem Content="Guard" />
-                        </ComboBox>
+                            IsEditable="True"
+                            ItemsSource="{Binding DataContext.CB_StaffList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                            Text="{Binding Staff_Name}" />
+
                     </StackPanel>
 
-                    <StackPanel
-                        Grid.Column="1"
-                        Margin="62,4,120,4"
-                        HorizontalAlignment="Right"
-                        Orientation="Horizontal">
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Button
+                            Width="200"
+                            Height="40"
+                            Margin="16,0"
+                            HorizontalAlignment="Left"
+                            Command="{Binding DataContext.SearchStaffCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                            CommandParameter="{Binding Staff_Name}"
+                            Content="Search Exist Traveller"
+                            Foreground="#0f6f68"
+                            Style="{StaticResource AddButton}" />
+
                         <TextBlock
+                            Width="auto"
+                            Margin="10,0"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            FontSize="18"
-                            Foreground="DimGray"
-                            Style="{StaticResource MaterialDesignButtonTextBlock}"
-                            Text="Price: " />
-                        <TextBox
-                            Width="360"
-                            Margin="10,0,0,0"
-                            materialDesign:HintAssist.Hint="Price VND"
-                            materialDesign:TextFieldAssist.PrefixText="VND"
-                            FontSize="18"
-                            Text="{Binding Mission_Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            FontSize="20"
+                            Foreground="#F36E6B"
+                            Text="{Binding Staff_Notify, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
-
                 </Grid>
 
-                <StackPanel Margin="64,4,120,4" Orientation="Horizontal">
-                    <TextBlock
+                <StackPanel
+                    Grid.Row="1"
+                    Margin="0,30"
+                    Orientation="Horizontal">
+
+                    <materialDesign:PackIcon
+                        Width="30"
+                        Height="30"
                         VerticalAlignment="Center"
+                        Foreground="DimGray"
+                        Kind="ListStatus" />
+
+                    <ComboBox
+                        Width="300"
+                        Margin="10,0,0,0"
+                        DisplayMemberPath="CB_Name"
                         FontSize="18"
                         Foreground="DimGray"
-                        Style="{StaticResource MaterialDesignButtonTextBlock}"
-                        Text="Amount In Mision : " />
-                    <TextBox
-                        Width="190"
-                        Margin="10,0,0,0"
-                        materialDesign:HintAssist.Hint="0"
-                        FontSize="18"
-                        Text="{Binding Mission_Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        IsEditable="True"
+                        ItemsSource="{Binding DataContext.CB_MissionList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                        Text="{Binding Mission_Name}" />
+
                 </StackPanel>
-
-
-                <TextBox
-                    Width="1020"
-                    Height="60"
-                    Margin="20,10,20,0"
-                    HorizontalAlignment="Left"
-                    materialDesign:HintAssist.Hint="Description"
-                    AcceptsReturn="True"
-                    FontSize="17"
-                    Foreground="DimGray"
-                    MinLines="8"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Text="{Binding Mission_Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    TextWrapping="Wrap" />
-            </StackPanel>
+            </Grid>
         </Border>
-    </Grid>
+
+        <Border
+            Width="1060"
+            Height="auto"
+            Margin="0,16"
+            Padding="10"
+            HorizontalAlignment="Center"
+            BorderBrush="Black"
+            BorderThickness="1">
+
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+
+                        <materialDesign:PackIcon
+                            Width="30"
+                            Height="30"
+                            VerticalAlignment="Center"
+                            Foreground="DimGray"
+                            Kind="User" />
+
+                        <TextBox
+                            Width="300"
+                            Margin="8,0,0,0"
+                            materialDesign:HintAssist.HelperText="Travller Name"
+                            materialDesign:HintAssist.Hint="Name"
+                            FontSize="18">
+                            <TextBox.Text>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="Traveller_Name"
+                                    UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules />
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Button
+                            Width="200"
+                            Height="40"
+                            Margin="16,0"
+                            HorizontalAlignment="Left"
+                            Command="{Binding DataContext.SearchTravellerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                            CommandParameter="{Binding Traveller_Name}"
+                            Content="Search Exist Traveller"
+                            Foreground="#0f6f68"
+                            Style="{StaticResource AddButton}" />
+
+                        <TextBlock
+                            Width="auto"
+                            Margin="10,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="20"
+                            Foreground="#F36E6B"
+                            Text="{Binding Traveller_Notify, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                </Grid>
+
+                <Separator
+                    Grid.Row="1"
+                    Margin="0,24,0,0"
+                    BorderBrush="Black"
+                    BorderThickness="12"
+                    Opacity="1" />
+
+                <Grid Grid.Row="2" Margin="0,32">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                        <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+
+                            <materialDesign:PackIcon
+                                Width="30"
+                                Height="30"
+                                VerticalAlignment="Center"
+                                Foreground="DimGray"
+                                Kind="Sort" />
+
+                            <ComboBox
+                                Width="300"
+                                Margin="10,0,0,0"
+                                HorizontalAlignment="Left"
+                                materialDesign:HintAssist.Hint="Type"
+                                FontSize="18"
+                                Foreground="DimGray">
+                                <ComboBoxItem Content="Domestic Traveller" />
+                                <ComboBoxItem Content="Foreign Traveller" />
+                                <ComboBox.Text>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="Traveller_Type"
+                                        UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules />
+                                    </Binding>
+                                </ComboBox.Text>
+                            </ComboBox>
+
+                        </StackPanel>
+
+                        <StackPanel Margin="0,32,0,0" Orientation="Horizontal">
+
+                            <materialDesign:PackIcon
+                                Width="30"
+                                Height="30"
+                                VerticalAlignment="Center"
+                                Foreground="DimGray"
+                                Kind="AddressMarkerOutline" />
+
+                            <TextBox
+                                Width="300"
+                                Margin="8,0,0,0"
+                                materialDesign:HintAssist.Hint="Address"
+                                FontSize="18">
+                                <TextBox.Text>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="Traveller_Address"
+                                        UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules />
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+
+                        </StackPanel>
+
+                        <StackPanel Margin="0,32,0,0" Orientation="Horizontal">
+
+                            <materialDesign:PackIcon
+                                Width="30"
+                                Height="30"
+                                VerticalAlignment="Center"
+                                Foreground="DimGray"
+                                Kind="Phone" />
+
+                            <TextBox
+                                Width="300"
+                                Margin="8,0,0,0"
+                                materialDesign:HintAssist.Hint="Phone Number"
+                                FontSize="18">
+                                <TextBox.Text>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="Traveller_PhoneNumber"
+                                        UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules />
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                        <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+
+                            <materialDesign:PackIcon
+                                Width="30"
+                                Height="30"
+                                VerticalAlignment="Center"
+                                Foreground="DimGray"
+                                Kind="IdCard" />
+
+                            <TextBox
+                                Width="300"
+                                Margin="8,0,0,0"
+                                materialDesign:HintAssist.Hint="Citizen Identity Card"
+                                FontSize="18">
+                                <TextBox.Text>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="Traveller_CitizenIdentity"
+                                        UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules />
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+
+                        </StackPanel>
+
+                        <StackPanel Margin="0,32,0,0" Orientation="Horizontal">
+
+                            <materialDesign:PackIcon
+                                Width="30"
+                                Height="30"
+                                VerticalAlignment="Center"
+                                Foreground="DimGray"
+                                Kind="GenderEnby" />
+
+                            <ComboBox
+                                Width="300"
+                                Margin="10,0,0,0"
+                                HorizontalAlignment="Left"
+                                materialDesign:HintAssist.Hint="Gender"
+                                FontSize="18"
+                                Foreground="DimGray">
+                                <ComboBoxItem Content="Male" />
+                                <ComboBoxItem Content="Female" />
+                                <ComboBox.Text>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="Traveller_Sex"
+                                        UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules />
+                                    </Binding>
+                                </ComboBox.Text>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,32,0,0" Orientation="Horizontal">
+
+                            <materialDesign:PackIcon
+                                Width="30"
+                                Height="30"
+                                VerticalAlignment="Center"
+                                Foreground="DimGray"
+                                Kind="BirthdayCakeOutline" />
+
+                            <DatePicker
+                                x:Name="BirthdayDP"
+                                Width="300"
+                                Height="60"
+                                Margin="10,0,0,0"
+                                materialDesign:HintAssist.Hint="Birthday"
+                                FontSize="18"
+                                SelectedDateFormat="Short"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+                                <DatePicker.SelectedDate>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="Traveller_Birth"
+                                        StringFormat="{}{0: dd/MM/yyyy}"
+                                        UpdateSourceTrigger="PropertyChanged" />
+                                </DatePicker.SelectedDate>
+                            </DatePicker>
+
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+    </StackPanel>
 </UserControl>

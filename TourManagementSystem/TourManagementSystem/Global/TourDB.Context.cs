@@ -12,21 +12,21 @@ namespace TourManagementSystem.Global
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class Tour_Mangement_DatabaseEntities : DbContext
     {
         public Tour_Mangement_DatabaseEntities()
             : base("name=Tour_Mangement_DatabaseEntities")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-
+    
         public virtual DbSet<PLACE> PLACE { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TOUR> TOUR { get; set; }
         public virtual DbSet<TOUR_ACCOUNT> TOUR_ACCOUNT { get; set; }
         public virtual DbSet<TOUR_HARD_PRICE> TOUR_HARD_PRICE { get; set; }

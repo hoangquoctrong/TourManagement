@@ -9,6 +9,7 @@ using System.Windows.Input;
 using TourManagementSystem.EmployeeView.View;
 using TourManagementSystem.Global.Model;
 using TourManagementSystem.Global.View;
+using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ManagerView.View;
 using TourManagementSystem.ViewModel;
 
@@ -105,6 +106,10 @@ namespace TourManagementSystem.Global.ViewModel
         {
             int User_ID;
             int loginWindow = ForgetPasswordHandleModel.ConfirmForgetPassword(Username, out User_ID);
+            if (StaffHandleModel.IsStaffDelete(User_ID))
+            {
+                MessageBox.Show("Account have been deleted", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
             if (loginWindow == 1)
             {
                 ForgetPasswordHandleModel.SaveAccount(Username, User_ID);
@@ -121,7 +126,7 @@ namespace TourManagementSystem.Global.ViewModel
             }
             else
             {
-                MessageBox.Show("Login Failed");
+                MessageBox.Show("Username wrong!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

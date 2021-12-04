@@ -17,6 +17,7 @@ namespace TourManagementSystem.Global
         public int TRAVELLER_DETAIL_ID { get; set; }
         public int TRAVEL_GROUP_ID { get; set; }
         public int TRAVELLER_ID { get; set; }
+        public Nullable<int> TRAVELLER_DETAIL_STAR { get; set; }
     
         public virtual TRAVEL_GROUP TRAVEL_GROUP { get; set; }
         public virtual TRAVELLER TRAVELLER { get; set; }
