@@ -1,2 +1,0 @@
-Account: hoangquoctrong
-Password: 123

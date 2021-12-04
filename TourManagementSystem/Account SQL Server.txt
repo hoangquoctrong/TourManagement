@@ -1,5 +1,0 @@
-Server type: Database Engine
-Server name: tourmanagement.database.windows.net
-Authentication: SQL Server Authentication
-Login: freeuser
-Password: User1234
