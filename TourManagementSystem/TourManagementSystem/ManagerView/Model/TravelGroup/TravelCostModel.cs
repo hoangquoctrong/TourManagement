@@ -26,5 +26,11 @@ namespace TourManagementSystem.ManagerView.Model
 
         private double _AnotherPrice;
         public double AnotherPrice { get => _AnotherPrice; set { _AnotherPrice = value; OnPropertyChanged(); } }
+
+        private double _TotalPrice;
+        public double TotalPrice { get => _TotalPrice; set { _TotalPrice = value; OnPropertyChanged(); } }
+
+        private string _TravelCostDescription;
+        public string TravelCostDescription { get => _TravelCostDescription; set { _TravelCostDescription = value; OnPropertyChanged(); } }
     }
 }

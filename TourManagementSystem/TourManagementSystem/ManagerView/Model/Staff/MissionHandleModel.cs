@@ -100,6 +100,62 @@ namespace TourManagementSystem.ManagerView.Model
             }
         }
 
+        public static bool UpdateMissionList(ObservableCollection<MissionModel> MissionList, int tourinformation_id, int user_id)
+        {
+            try
+            {
+                var mission = DataProvider.Ins.DB.TOUR_MISSION.Where(x => x.TOUR_INFORMATION_ID == tourinformation_id);
+                foreach (var item in MissionList)
+                {
+                    if (item.Mission_ID == 0)
+                    {
+                        TOUR_MISSION tour_mission = new TOUR_MISSION()
+                        {
+                            TOUR_MISSION_COUNT = item.Mission_Count,
+                            TOUR_MISSION_DESCRIPTION = item.Mission_Description,
+                            TOUR_MISSION_PRICE = item.Mission_Price,
+                            TOUR_MISSION_RESPONSIBILITY = item.Mission_Responsibility,
+                            TOUR_INFORMATION_ID = tourinformation_id
+                        };
+                        DataProvider.Ins.DB.TOUR_MISSION.Add(tour_mission);
+                    }
+                    else
+                    {
+                        TOUR_MISSION tour_mission = mission.Where(x => x.TOUR_MISSION_ID == item.Mission_ID).FirstOrDefault();
+                        tour_mission.TOUR_MISSION_RESPONSIBILITY = item.Mission_Responsibility;
+                        tour_mission.TOUR_MISSION_DESCRIPTION = item.Mission_Description;
+                        tour_mission.TOUR_MISSION_PRICE = item.Mission_Price;
+                        tour_mission.TOUR_MISSION_COUNT = item.Mission_Count;
+                    }
+                }
+
+                TOUR_RECORD tour_record = new TOUR_RECORD()
+                {
+                    TOUR_STAFF_ID = user_id,
+                    TOUR_RECORD_DATE = DateTime.Now,
+                    TOUR_RECORD_CONTENT = string.Format("{0} {1} missions in tour information with id is {2}", "Update", MissionList.Count, tourinformation_id)
+                };
+                DataProvider.Ins.DB.TOUR_RECORD.Add(tour_record);
+
+                DataProvider.Ins.DB.SaveChanges();
+                return true;
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (DbEntityValidationResult eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (DbValidationError ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+        }
+
         public static BindableCollection<MissionModel> GetMissionFromTourInformation(int touinformation_id)
         {
             BindableCollection<MissionModel> MissionList = new BindableCollection<MissionModel>();
@@ -160,6 +216,100 @@ namespace TourManagementSystem.ManagerView.Model
             }
 
             return MissionList;
+        }
+
+        public static bool InsertStaffDetailList(ObservableCollection<StaffDetailModel> StaffDetailList, int travelgroup_id, int user_id, bool IsFirst)
+        {
+            try
+            {
+                int countStaff = 0;
+                foreach (StaffDetailModel item in StaffDetailList)
+                {
+                    TOUR_STAFF staff = DataProvider.Ins.DB.TOUR_STAFF.Where(x => x.TOUR_STAFF_NAME.Equals(item.StaffName)).FirstOrDefault();
+                    TOUR_STAFF_DETAIL staffdetail = new TOUR_STAFF_DETAIL()
+                    {
+                        TOUR_MISSION_ID = item.MissionID,
+                        TOUR_STAFF_ID = staff.TOUR_STAFF_ID,
+                        TRAVEL_GROUP_ID = travelgroup_id
+                    };
+                    countStaff++;
+                    DataProvider.Ins.DB.TOUR_STAFF_DETAIL.Add(staffdetail);
+                }
+                TOUR_RECORD tour_record = new TOUR_RECORD()
+                {
+                    TOUR_STAFF_ID = user_id,
+                    TOUR_RECORD_DATE = DateTime.Now,
+                    TOUR_RECORD_CONTENT = string.Format("{0} {1} staffs in travel group with id is {2}", IsFirst ? "Add" : "Update", countStaff, travelgroup_id)
+                };
+                DataProvider.Ins.DB.TOUR_RECORD.Add(tour_record);
+
+                DataProvider.Ins.DB.SaveChanges();
+                return true;
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (DbEntityValidationResult eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (DbValidationError ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+        }
+
+        public static bool DeleteStaffDetail(int travelgroup_id)
+        {
+            try
+            {
+                var staffdetail = DataProvider.Ins.DB.TOUR_STAFF_DETAIL.Where(x => x.TRAVEL_GROUP_ID == travelgroup_id);
+                DataProvider.Ins.DB.TOUR_STAFF_DETAIL.RemoveRange(staffdetail);
+                DataProvider.Ins.DB.SaveChanges();
+                return true;
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (DbEntityValidationResult eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (DbValidationError ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+        }
+
+        public static BindableCollection<StaffDetailModel> GetStaffDetailList(int travelgroup_id)
+        {
+            BindableCollection<StaffDetailModel> StaffDetailList = new BindableCollection<StaffDetailModel>();
+            var staffdetaillist = from staffdetail in DataProvider.Ins.DB.TOUR_STAFF_DETAIL
+                                  where staffdetail.TRAVEL_GROUP_ID == travelgroup_id
+                                  select staffdetail;
+
+            foreach (var item in staffdetaillist)
+            {
+                StaffDetailModel staffdetail = new StaffDetailModel()
+                {
+                    StaffDetailID = item.TOUR_STAFF_DETAIL_ID,
+                    StaffName = item.TOUR_STAFF.TOUR_STAFF_NAME,
+                    Staff_ID = item.TOUR_STAFF_ID,
+                    MissionID = item.TOUR_MISSION_ID,
+                    MissionResponsibility = item.TOUR_MISSION.TOUR_MISSION_RESPONSIBILITY,
+                    TravelGroupID = item.TRAVEL_GROUP_ID
+                };
+
+                StaffDetailList.Add(staffdetail);
+            }
+
+            return StaffDetailList;
         }
     }
 }

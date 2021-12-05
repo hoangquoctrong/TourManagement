@@ -235,10 +235,11 @@
     </Key>
     <Property Name="TRAVEL_COST_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TOTAL_HOTEL_COST" Type="float" />
-    <Property Name="TOTAL_MEAL_COST" Type="float" />
+    <Property Name="TOTAL_SERVICE_COST" Type="float" />
     <Property Name="TOTAL_TRANSPORT_COST" Type="float" />
     <Property Name="ANOTHER_COST" Type="float" />
     <Property Name="TRAVEL_GROUP_ID" Type="int" Nullable="false" />
+    <Property Name="TRAVEL_COST_DESCRIPTION" Type="text" />
   </EntityType>
   <EntityType Name="TRAVEL_GROUP">
     <Key>

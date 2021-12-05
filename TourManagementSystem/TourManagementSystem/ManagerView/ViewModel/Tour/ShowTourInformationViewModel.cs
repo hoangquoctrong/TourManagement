@@ -80,6 +80,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             MissionList = new BindableCollection<MissionModel>(tourInformation.INFORMATION_MISSION_LIST);
             RefreshMissionList = new BindableCollection<MissionModel>(tourInformation.INFORMATION_MISSION_LIST);
             MissionCount = MissionList.Count;
+            MissionBeforeSave = MissionList.Count;
             MissionPriceNotify = string.Format("Mission Price hasn't updated yet!");
         }
 
@@ -810,7 +811,10 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         CheckBoxTransportModel checkBoxModel = TransportList.Where(x => x.CB_ID == p).FirstOrDefault();
                         if (checkBoxModel.IsSelected)
                         {
-                            TransportSelectedList.Add(checkBoxModel.TransportSelect);
+                            TransportModel transport = checkBoxModel.TransportSelect;
+                            transport.TRANSPORT_IS_AMOUNT = transport.TRANSPORT_AMOUNT_MAX == 0 ? false : true;
+                            transport.CB_TransportAmount = LoadTransportComboBox(transport.TRANSPORT_AMOUNT_MAX);
+                            TransportSelectedList.Add(transport);
                             TransportPriceNotify = string.Format("Transport Price haven't updated yet!");
                         }
                         else
@@ -825,6 +829,23 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 }
                 return _TransportItemCheckCommand;
             }
+        }
+
+        private ObservableCollection<ComboBoxModel> LoadTransportComboBox(int amount_max)
+        {
+            ObservableCollection<ComboBoxModel> CB_TransportAmount = new ObservableCollection<ComboBoxModel>();
+            if (amount_max == 0)
+            {
+                return CB_TransportAmount;
+            }
+
+            for (int i = 1; i <= amount_max; i++)
+            {
+                ComboBoxModel comboBox = new ComboBoxModel(i.ToString(), i, false);
+                CB_TransportAmount.Add(comboBox);
+            }
+
+            return CB_TransportAmount;
         }
 
         private ICommand _SaveTransportCommand;
@@ -921,6 +942,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _MissionCount;
         public int MissionCount { get => _MissionCount; set { _MissionCount = value; OnPropertyChanged(); } }
 
+        public int MissionBeforeSave { get; set; }
+
         private string _MissionPriceNotify;
         public string MissionPriceNotify { get => _MissionPriceNotify; set { _MissionPriceNotify = value; OnPropertyChanged(); } }
 
@@ -955,7 +978,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             MissionCount++;
             MissionList.Add(new MissionModel()
             {
-                Mission_ID = MissionCount,
+                Mission_ID = 0,
                 Mission_Responsibility = "",
                 Mission_Description = "",
                 Mission_Count = 0,
@@ -989,7 +1012,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_RemoveMissionCommand == null)
                 {
-                    _RemoveMissionCommand = new RelayCommand<object>(p => MissionCount > 0 && IsEnable, p => RemoveMission());
+                    _RemoveMissionCommand = new RelayCommand<object>(p => MissionCount > MissionBeforeSave && IsEnable, p => RemoveMission());
                 }
                 return _RemoveMissionCommand;
             }
@@ -997,7 +1020,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private void RemoveMission()
         {
-            MissionList.RemoveAt(ScheduleCount - 1);
+            MissionList.RemoveAt(MissionCount - 1);
             MissionCount--;
         }
 
@@ -1020,13 +1043,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             if (MissionHandleModel.DeleteMissionDetail(TourInformation_ID))
             {
-                if (MissionHandleModel.InsertMissionList(MissionList, TourInformation_ID, User_ID, false))
+                if (MissionHandleModel.UpdateMissionList(MissionList, TourInformation_ID, User_ID))
                 {
                     if (TourInformationHandleModel.UpdateTourPrice(GetPriceModel(), TourInformation_ID, User_ID))
                     {
                         MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                         MissionPriceNotify = string.Format("Mission Price haven't updated yet!");
                         RefreshMissionList = MissionHandleModel.GetMissionFromTourInformation(TourInformation_ID);
+                        MissionBeforeSave = MissionList.Count;
                     }
                     else
                     {

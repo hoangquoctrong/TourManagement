@@ -381,5 +381,58 @@ namespace TourManagementSystem.ManagerView.Model
 
             return staffdelete.TOUR_STAFF_DELETE_ISDELETED == true;
         }
+
+        public static ObservableCollection<StaffModel> GetStaffListForTraveller()
+        {
+            ObservableCollection<StaffModel> StaffList = new ObservableCollection<StaffModel>();
+
+            var staffList =
+                            from staff in DataProvider.Ins.DB.TOUR_STAFF
+                            join staff_account in DataProvider.Ins.DB.TOUR_ACCOUNT on staff.TOUR_STAFF_ID equals staff_account.TOUR_STAFF_ID
+                            join staff_delete in DataProvider.Ins.DB.TOUR_STAFF_DELETE on staff.TOUR_STAFF_ID equals staff_delete.TOUR_STAFF_ID
+                            where staff_delete.TOUR_STAFF_DELETE_ISDELETED == false && staff.TOUR_STAFF_ROLE.Contains("Staff")
+                            orderby staff.TOUR_STAFF_ID ascending
+                            select new
+                            {
+                                staff,
+                                USERNAME = staff_account.TOUR_ACCOUNT_NAME,
+                                staff_delete
+                            };
+
+            foreach (var item in staffList)
+            {
+                StaffModel staffModel = new StaffModel
+                {
+                    STAFF_ID = item.staff.TOUR_STAFF_ID,
+                    STAFF_NAME = item.staff.TOUR_STAFF_NAME,
+                    STAFF_ROLE = item.staff.TOUR_STAFF_ROLE,
+                    STAFF_BIRTH_DATE = (DateTime)item.staff.TOUR_STAFF_BIRTH_DATE,
+                    STAFF_BIRTH_PLACE = item.staff.TOUR_STAFF_BIRTH_PLACE,
+                    STAFF_GENDER = item.staff.TOUR_STAFF_GENDER,
+                    STAFF_CITIZEN_CARD = item.staff.TOUR_STAFF_CITIZEN_IDENTITY,
+                    STAFF_CITIZEN_CARD_DATE = (DateTime)item.staff.TOUR_STAFF_CITIZEN_IDENTITY_DATE,
+                    STAFF_CITIZEN_CARD_PLACE = item.staff.TOUR_STAFF_CITIZEN_IDENTITY_PLACE,
+                    STAFF_ADDRESS = item.staff.TOUR_STAFF_ADDRESS,
+                    STAFF_START_DATE = (DateTime)item.staff.TOUR_STAFF_START_DATE,
+                    STAFF_PHONE_NUMBER = item.staff.TOUR_STAFF_PHONE_NUMBER,
+                    STAFF_ACADEMIC_LEVEL = item.staff.TOUR_STAFF_ACADEMIC_LEVEL,
+                    STAFF_EMAIL = item.staff.TOUR_STAFF_EMAIL,
+                    STAFF_NOTE = item.staff.TOUR_STAFF_NOTE,
+                    STAFF_IMAGE_BYTE_SOURCE = item.staff.TOUR_STAFF_IMAGE,
+                    STAFF_IS_DELETE = (bool)item.staff_delete.TOUR_STAFF_DELETE_ISDELETED,
+                    STAFF_DELETE_NOTE = item.staff_delete.TOUR_STAFF_DELETE_CONTENT,
+                    STAFF_USERNAME = item.USERNAME,
+                    STAFF_DELETE_DATE = (DateTime)((bool)item.staff_delete.TOUR_STAFF_DELETE_ISDELETED ? item.staff_delete.TOUR_STAFF_DELETE_DATE : DateTime.Now)
+                };
+                staffModel.STAFF_STRING_BIRTH_DATE = staffModel.STAFF_BIRTH_DATE.ToString("dd/MM/yyyy");
+                staffModel.STAFF_STRING_START_DATE = staffModel.STAFF_START_DATE.ToString("dd/MM/yyyy");
+                staffModel.STAFF_STRING_CITIZEN_CARD_DATE = staffModel.STAFF_CITIZEN_CARD_DATE.ToString("dd/MM/yyyy");
+                staffModel.STAFF_DELETE_STRING_DATE = staffModel.STAFF_DELETE_DATE.ToString("dd/MM/yyyy");
+
+                StaffList.Add(staffModel);
+            }
+
+            return StaffList;
+        }
     }
 }

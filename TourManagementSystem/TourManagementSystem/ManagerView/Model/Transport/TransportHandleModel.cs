@@ -124,7 +124,7 @@ namespace TourManagementSystem.ManagerView.Model
             {
                 TOUR_TRANSPORT tour_transport = DataProvider.Ins.DB.TOUR_TRANSPORT.Where(x => x.TOUR_TRANSPORT_ID == transport.TRANSPORT_ID).FirstOrDefault();
 
-                string changeToSave = "";
+                string changeToSave = string.Format("Update Transport with id {0}: ", transport.TRANSPORT_ID);
                 int countChangeToSave = 0;
                 DateTime Transport_Start_Date = (DateTime)tour_transport.TOUR_TRANSPORT_START_DATE;
                 string Transport_String_Date = Transport_Start_Date.ToString("dd/MM/yyyy");

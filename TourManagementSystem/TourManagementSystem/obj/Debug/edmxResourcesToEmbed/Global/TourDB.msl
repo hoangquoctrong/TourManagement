@@ -255,9 +255,10 @@
     <EntitySetMapping Name="TRAVEL_COST">
       <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TRAVEL_COST">
         <MappingFragment StoreEntitySet="TRAVEL_COST">
+          <ScalarProperty Name="TRAVEL_COST_DESCRIPTION" ColumnName="TRAVEL_COST_DESCRIPTION" />
           <ScalarProperty Name="TRAVEL_COST_ID" ColumnName="TRAVEL_COST_ID" />
           <ScalarProperty Name="TOTAL_HOTEL_COST" ColumnName="TOTAL_HOTEL_COST" />
-          <ScalarProperty Name="TOTAL_MEAL_COST" ColumnName="TOTAL_MEAL_COST" />
+          <ScalarProperty Name="TOTAL_SERVICE_COST" ColumnName="TOTAL_SERVICE_COST" />
           <ScalarProperty Name="TOTAL_TRANSPORT_COST" ColumnName="TOTAL_TRANSPORT_COST" />
           <ScalarProperty Name="ANOTHER_COST" ColumnName="ANOTHER_COST" />
           <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />

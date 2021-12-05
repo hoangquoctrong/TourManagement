@@ -16,10 +16,11 @@ namespace TourManagementSystem.Global
     {
         public int TRAVEL_COST_ID { get; set; }
         public Nullable<double> TOTAL_HOTEL_COST { get; set; }
-        public Nullable<double> TOTAL_MEAL_COST { get; set; }
+        public Nullable<double> TOTAL_SERVICE_COST { get; set; }
         public Nullable<double> TOTAL_TRANSPORT_COST { get; set; }
         public Nullable<double> ANOTHER_COST { get; set; }
         public int TRAVEL_GROUP_ID { get; set; }
+        public string TRAVEL_COST_DESCRIPTION { get; set; }
     
         public virtual TRAVEL_GROUP TRAVEL_GROUP { get; set; }
     }

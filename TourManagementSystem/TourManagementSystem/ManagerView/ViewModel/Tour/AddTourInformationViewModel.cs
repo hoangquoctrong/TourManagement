@@ -430,7 +430,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
             for (int i = 1; i <= amount_max; i++)
             {
-                ComboBoxModel comboBox = new ComboBoxModel(i.ToString(), false);
+                ComboBoxModel comboBox = new ComboBoxModel(i.ToString(), i, false);
                 CB_TransportAmount.Add(comboBox);
             }
 
@@ -473,7 +473,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                             TransportModel transport = checkBoxModel.TransportSelect;
                             transport.TRANSPORT_IS_AMOUNT = transport.TRANSPORT_AMOUNT_MAX == 0 ? false : true;
                             transport.CB_TransportAmount = LoadTransportComboBox(transport.TRANSPORT_AMOUNT_MAX);
-                            TransportSelectedList.Add(checkBoxModel.TransportSelect);
+                            TransportSelectedList.Add(transport);
                             TransportPriceNotify = string.Format("Transport Price haven't updated yet!");
                         }
                         else

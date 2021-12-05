@@ -103,7 +103,7 @@ namespace TourManagementSystem.ManagerView.Model
             {
                 TOUR_HOTEL tour_hotel = DataProvider.Ins.DB.TOUR_HOTEL.Where(x => x.TOUR_HOTEL_ID == hotel.HOTEL_ID).SingleOrDefault();
 
-                string changeToSave = "";
+                string changeToSave = string.Format("Update Hotel with id {0}: ", hotel.HOTEL_ID);
                 int countChangeToSave = 0;
 
                 if (tour_hotel.TOUR_HOTEL_NAME != hotel.HOTEL_NAME)

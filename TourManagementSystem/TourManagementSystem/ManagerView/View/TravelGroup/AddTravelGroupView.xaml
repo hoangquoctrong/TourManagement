@@ -57,7 +57,7 @@
                     Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
                     TabStripPlacement="Top">
                     <TabItem
-                        Width="390"
+                        Width="290"
                         Background="Transparent"
                         Style="{StaticResource MaterialDesignNavigationRailTabItem}"
                         TabIndex="0">
@@ -148,8 +148,8 @@
                                         materialDesign:HintAssist.Hint="Type"
                                         FontSize="18"
                                         Foreground="DimGray">
-                                        <ComboBoxItem Content="Family Tour" />
-                                        <ComboBoxItem Content="Random Tour" />
+                                        <ComboBoxItem Content="Family Traveller" />
+                                        <ComboBoxItem Content="Group Traveller" />
                                         <ComboBox.Text>
                                             <Binding
                                                 Mode="TwoWay"
@@ -196,6 +196,7 @@
                                         <ComboBox
                                             Width="770"
                                             Margin="10,0,0,0"
+                                            materialDesign:HintAssist.Hint="Tour Name"
                                             DisplayMemberPath="CB_Name"
                                             FontSize="18"
                                             Foreground="DimGray"
@@ -231,6 +232,7 @@
                                         <ComboBox
                                             Width="770"
                                             Margin="10,0,0,0"
+                                            materialDesign:HintAssist.Hint="Tour Information"
                                             DisplayMemberPath="CB_Name"
                                             FontSize="18"
                                             Foreground="DimGray"
@@ -251,7 +253,7 @@
                     </TabItem>
 
                     <TabItem
-                        Width="390"
+                        Width="290"
                         Background="Transparent"
                         Style="{StaticResource MaterialDesignNavigationRailTabItem}"
                         TabIndex="0">
@@ -316,18 +318,9 @@
                                     Width="100"
                                     Height="40"
                                     Margin="10,0"
-                                    Command="{Binding AddStaffCommand}"
-                                    Content="Add"
+                                    Command="{Binding SaveStaffCommand}"
+                                    Content="Save"
                                     Foreground="#0f6f68"
-                                    Style="{StaticResource AddButton}" />
-
-                                <Button
-                                    Width="100"
-                                    Height="40"
-                                    Margin="10,0"
-                                    Command="{Binding RemoveStaffCommand}"
-                                    Content="Remove"
-                                    Foreground="#F36E6B"
                                     Style="{StaticResource AddButton}" />
                             </StackPanel>
 
@@ -378,8 +371,8 @@
                                                             FontSize="18"
                                                             Foreground="DimGray"
                                                             IsEditable="True"
-                                                            ItemsSource="{Binding DataContext.CB_StaffList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                                                            Text="{Binding Staff_Name}" />
+                                                            ItemsSource="{Binding CB_StaffList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                            Text="{Binding StaffName}" />
 
                                                     </StackPanel>
 
@@ -390,8 +383,8 @@
                                                             Margin="16,0"
                                                             HorizontalAlignment="Left"
                                                             Command="{Binding DataContext.SearchStaffCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                                                            CommandParameter="{Binding Staff_Name}"
-                                                            Content="Search Staff"
+                                                            CommandParameter="{Binding StaffDetailID}"
+                                                            Content="Check Staff"
                                                             Foreground="#0f6f68"
                                                             Style="{StaticResource AddButton}" />
 
@@ -418,16 +411,21 @@
                                                         Foreground="DimGray"
                                                         Kind="ListStatus" />
 
-                                                    <ComboBox
+                                                    <TextBox
                                                         Width="300"
-                                                        Margin="10,0,0,0"
-                                                        DisplayMemberPath="CB_Name"
+                                                        Margin="8,0,0,0"
+                                                        materialDesign:HintAssist.Hint="Mission Responsibility"
                                                         FontSize="18"
-                                                        Foreground="DimGray"
-                                                        IsEditable="True"
-                                                        ItemsSource="{Binding DataContext.CB_MissionList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                                                        Text="{Binding Mission_Name}" />
-
+                                                        IsEnabled="False">
+                                                        <TextBox.Text>
+                                                            <Binding
+                                                                Mode="TwoWay"
+                                                                Path="MissionResponsibility"
+                                                                UpdateSourceTrigger="PropertyChanged">
+                                                                <Binding.ValidationRules />
+                                                            </Binding>
+                                                        </TextBox.Text>
+                                                    </TextBox>
                                                 </StackPanel>
                                             </Grid>
                                         </Border>
@@ -438,7 +436,186 @@
                     </TabItem>
 
                     <TabItem
-                        Width="390"
+                        Width="290"
+                        Background="Transparent"
+                        Style="{StaticResource MaterialDesignNavigationRailTabItem}"
+                        TabIndex="0">
+
+                        <TabItem.Header>
+                            <StackPanel
+                                Width="240"
+                                Height="50"
+                                HorizontalAlignment="Center"
+                                Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Width="30"
+                                    Height="30"
+                                    Margin="20,0"
+                                    VerticalAlignment="Center"
+                                    Kind="Money" />
+                                <TextBlock
+                                    Margin="20,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="24"
+                                    Foreground="Black"
+                                    Text="Price" />
+                            </StackPanel>
+                        </TabItem.Header>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0" Margin="120,0">
+                                <TextBlock
+                                    Margin="60,20,10,10"
+                                    FontSize="28"
+                                    Foreground="DimGray"
+                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                    Text="Price Information: " />
+                                <StackPanel Margin="0,8,0,8" Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="100,0,10,0"
+                                        FontSize="24"
+                                        Foreground="DimGray"
+                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                        Text="Hotel Price: " />
+                                    <TextBlock
+                                        Margin="0,0,10,0"
+                                        FontSize="24"
+                                        Foreground="DimGray"
+                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                        Text="{Binding TotalHotelPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock
+                                        Margin="0,0,10,0"
+                                        FontSize="24"
+                                        Foreground="DimGray"
+                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                        Text=" VND" />
+                                </StackPanel>
+                                <StackPanel Margin="0,8,0,8" Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="100,0,10,0"
+                                        FontSize="24"
+                                        Foreground="DimGray"
+                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                        Text="Transport Price: " />
+                                    <TextBlock
+                                        Margin="0,0,10,0"
+                                        FontSize="24"
+                                        Foreground="DimGray"
+                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                        Text="{Binding TotalTransportPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock
+                                        Margin="0,0,10,0"
+                                        FontSize="24"
+                                        Foreground="DimGray"
+                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                        Text=" VND" />
+                                </StackPanel>
+                                <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="100,0,10,0"
+                                        FontSize="24"
+                                        Foreground="DimGray"
+                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                        Text="Service Price: " />
+                                    <TextBlock
+                                        Margin="0,0,10,0"
+                                        FontSize="24"
+                                        Foreground="DimGray"
+                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                        Text="{Binding TotalServicePrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock
+                                        Margin="0,0,10,0"
+                                        FontSize="24"
+                                        Foreground="DimGray"
+                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                        Text=" VND" />
+                                </StackPanel>
+                                <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="100,0,10,0"
+                                        FontSize="24"
+                                        Foreground="DimGray"
+                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                        Text="Another Price: " />
+                                    <TextBox
+                                        Width="160"
+                                        Margin="0,0,10,0"
+                                        FontSize="24"
+                                        Foreground="DimGray"
+                                        IsEnabled="{Binding IsEnable}"
+                                        Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                                        Text="{Binding TotalAnotherPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock
+                                        Margin="0,0,10,0"
+                                        FontSize="24"
+                                        Foreground="DimGray"
+                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                        Text=" VND" />
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Row="1"
+                                Margin="20,10,20,0"
+                                VerticalAlignment="Top">
+
+                                <TextBlock
+                                    Margin="40,10,0,0"
+                                    FontSize="24"
+                                    Foreground="DimGray">
+                                    Description
+                                </TextBlock>
+
+                                <TextBox
+                                    Width="1000"
+                                    Height="200"
+                                    Margin="40,10,20,20"
+                                    HorizontalAlignment="Left"
+                                    materialDesign:HintAssist.HelperText="Detail about the price ?"
+                                    AcceptsReturn="True"
+                                    FontSize="24"
+                                    Foreground="DimGray"
+                                    IsEnabled="{Binding IsEnable}"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                    Text="{Binding TravelCost_Description, Mode=TwoWay}"
+                                    TextWrapping="Wrap" />
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Row="2"
+                                Margin="0,20,0,0"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="0,0,10,0"
+                                    FontSize="28"
+                                    Foreground="DimGray"
+                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                    Text="Total Price: " />
+                                <TextBlock
+                                    Margin="0,0,10,0"
+                                    FontSize="28"
+                                    Foreground="DimGray"
+                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                    Text="{Binding TotalPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock
+                                    Margin="0,0,120,0"
+                                    FontSize="28"
+                                    Foreground="DimGray"
+                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                    Text=" VND" />
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem
+                        Width="290"
                         Background="Transparent"
                         Style="{StaticResource MaterialDesignNavigationRailTabItem}"
                         TabIndex="0">
@@ -512,10 +689,19 @@
                                     Width="100"
                                     Height="40"
                                     Margin="10,0"
-                                    Command="{Binding RemoveTravellerCommand}"
-                                    Content="Remove"
+                                    Command="{Binding SaveTravellerCommand}"
+                                    Content="Save"
                                     Foreground="#F36E6B"
                                     Style="{StaticResource AddButton}" />
+
+                                <TextBlock
+                                    Width="auto"
+                                    Margin="10,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="20"
+                                    Foreground="#F36E6B"
+                                    Text="{Binding TravellerList_Notify, UpdateSourceTrigger=PropertyChanged}" />
                             </StackPanel>
 
                             <ItemsControl Grid.Row="2" ItemsSource="{Binding TravellerList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -560,15 +746,21 @@
                                                             Foreground="DimGray"
                                                             Kind="User" />
 
-                                                        <ComboBox
+                                                        <TextBox
                                                             Width="300"
-                                                            Margin="10,0,0,0"
-                                                            DisplayMemberPath="CB_Name"
-                                                            FontSize="18"
-                                                            Foreground="DimGray"
-                                                            IsEditable="True"
-                                                            ItemsSource="{Binding DataContext.CB_TravellerList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                                                            Text="{Binding Traveller_Name}" />
+                                                            Margin="8,0,0,0"
+                                                            materialDesign:HintAssist.HelperText="Travller Name"
+                                                            materialDesign:HintAssist.Hint="Name"
+                                                            FontSize="18">
+                                                            <TextBox.Text>
+                                                                <Binding
+                                                                    Mode="TwoWay"
+                                                                    Path="Traveller_Name"
+                                                                    UpdateSourceTrigger="PropertyChanged">
+                                                                    <Binding.ValidationRules />
+                                                                </Binding>
+                                                            </TextBox.Text>
+                                                        </TextBox>
 
                                                     </StackPanel>
 
@@ -579,8 +771,19 @@
                                                             Margin="16,0"
                                                             HorizontalAlignment="Left"
                                                             Command="{Binding DataContext.SearchTravellerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                                                            CommandParameter="{Binding Traveller_Name}"
+                                                            CommandParameter="{Binding Traveller_Index}"
                                                             Content="Search Exist Traveller"
+                                                            Foreground="#0f6f68"
+                                                            Style="{StaticResource AddButton}" />
+
+                                                        <Button
+                                                            Width="60"
+                                                            Height="40"
+                                                            Margin="16,0"
+                                                            HorizontalAlignment="Left"
+                                                            Command="{Binding DataContext.BackTravellerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                                            CommandParameter="{Binding Traveller_Index}"
+                                                            Content="Back"
                                                             Foreground="#0f6f68"
                                                             Style="{StaticResource AddButton}" />
 
@@ -592,6 +795,28 @@
                                                             FontSize="20"
                                                             Foreground="#F36E6B"
                                                             Text="{Binding Traveller_Notify, UpdateSourceTrigger=PropertyChanged}" />
+                                                        <Button
+                                                            Width="60"
+                                                            Height="40"
+                                                            Margin="16,0"
+                                                            HorizontalAlignment="Left"
+                                                            Command="{Binding DataContext.NextTravellerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                                            CommandParameter="{Binding Traveller_Index}"
+                                                            Content="Next"
+                                                            Foreground="#0f6f68"
+                                                            Style="{StaticResource AddButton}" />
+
+                                                        <Button
+                                                            Width="80"
+                                                            Height="40"
+                                                            Margin="16,0"
+                                                            HorizontalAlignment="Left"
+                                                            Command="{Binding DataContext.RemoveTravellerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                                            CommandParameter="{Binding Traveller_Index}"
+                                                            Content="Remove"
+                                                            Foreground="#F36E6B"
+                                                            Style="{StaticResource AddButton}" />
+
                                                     </StackPanel>
                                                 </Grid>
 

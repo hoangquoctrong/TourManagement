@@ -226,7 +226,9 @@
     <Compile Include="Global\View\MessageWindow.xaml.cs">
       <DependentUpon>MessageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManagerView\Model\ComboBox\ComboBoxInformationModel.cs" />
     <Compile Include="ManagerView\Model\ComboBox\ComboBoxStaffModel.cs" />
+    <Compile Include="ManagerView\Model\ComboBox\ComboBoxTourModel.cs" />
     <Compile Include="ManagerView\Model\ComboBox\ComboBoxTravellerModel.cs" />
     <Compile Include="ManagerView\Model\ComboBox\ComboBoxMissionModel.cs" />
     <Compile Include="ManagerView\Model\Staff\MissionHandleModel.cs" />

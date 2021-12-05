@@ -445,7 +445,7 @@ namespace TourManagementSystem.ManagerView.Model
             {
                 TOUR_TIME tourtime = DataProvider.Ins.DB.TOUR_TIME.Where(x => x.TOUR_INFORMATION_ID == tourinformation_id).FirstOrDefault();
 
-                string changeToSave = "";
+                string changeToSave = string.Format("Update Tour Time with id {0}: ", time.TIME_ID);
                 int countChangeToSave = 0;
                 if (tourtime.TOUR_TIME_DAY != time.TIME_DAY)
                 {
@@ -553,7 +553,7 @@ namespace TourManagementSystem.ManagerView.Model
             {
                 TOUR_PRICE tourprice = DataProvider.Ins.DB.TOUR_PRICE.Where(x => x.TOUR_INFORMATION_ID == tourinformation_id).FirstOrDefault();
 
-                string changeToSave = "";
+                string changeToSave = string.Format("Update Tour Price with id {0}: ", price.PRICE_ID);
                 int countChangeToSave = 0;
                 if (tourprice.TOUR_PRICE_COST_HOTEL != price.PRICE_COST_HOTEL)
                 {
@@ -624,11 +624,44 @@ namespace TourManagementSystem.ManagerView.Model
 
             for (int i = 1; i <= amount_max; i++)
             {
-                ComboBoxModel comboBox = new ComboBoxModel(i.ToString(), false);
+                ComboBoxModel comboBox = new ComboBoxModel(i.ToString(), i, false);
                 CB_TransportAmount.Add(comboBox);
             }
 
             return CB_TransportAmount;
+        }
+
+        public static ObservableCollection<TourModel> GetTourListHaveInformation()
+        {
+            ObservableCollection<TourModel> TourList = new ObservableCollection<TourModel>();
+
+            var tourlist = (from information in DataProvider.Ins.DB.TOUR_INFORMATION
+                            select new
+                            {
+                                information.TOUR_ID
+                            }).Distinct();
+
+            if (tourlist.Count() == 0)
+            {
+                return TourList;
+            }
+
+            foreach (var item in tourlist)
+            {
+                TOUR tourdb = DataProvider.Ins.DB.TOUR.Where(x => x.TOUR_ID == item.TOUR_ID).FirstOrDefault();
+                TourModel tour = new TourModel()
+                {
+                    TOUR_ID = tourdb.TOUR_ID,
+                    TOUR_NAME = tourdb.TOUR_NAME,
+                    TOUR_TYPE = tourdb.TOUR_TYPE,
+                    TOUR_CHARACTERISTIS = tourdb.TOUR_CHARACTERISTIS,
+                    TOUR_IS_EXIST = tourdb.TOUR_IS_EXIST,
+                    TOUR_STAR = (double)tourdb.TOUR_STAR
+                };
+
+                TourList.Add(tour);
+            }
+            return TourList;
         }
     }
 }

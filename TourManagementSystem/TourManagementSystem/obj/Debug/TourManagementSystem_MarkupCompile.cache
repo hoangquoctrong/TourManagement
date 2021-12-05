@@ -12,7 +12,7 @@ DEBUG;TRACE
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\App.xaml
 40350117494
 2-299886435
-156-753366448
+158203239602
 27-1870211992
 EmployeeView\DataTemplateEmployee.xaml;EmployeeView\View\EAccountView.xaml;EmployeeView\View\EDashboardView.xaml;EmployeeView\View\EmployeeWindow.xaml;EmployeeView\View\ETourView.xaml;EmployeeView\View\ETravelGroupView.xaml;Global\View\ForgetPasswordWindow.xaml;Global\View\LoginWindow.xaml;Global\View\MessageWindow.xaml;ManagerView\DataTemplate.xaml;ManagerView\View\Others\AccountView.xaml;ManagerView\View\Hotel\AddHotelView.xaml;ManagerView\View\Place\AddLocationView.xaml;ManagerView\View\Place\AddPlaceView.xaml;ManagerView\View\Staff\AddStaffView.xaml;ManagerView\View\Tour\AddTourInformationView.xaml;ManagerView\View\Tour\AddTourView.xaml;ManagerView\View\Transport\AddTransportView.xaml;ManagerView\View\TravelGroup\AddTravelGroupView.xaml;ManagerView\View\Others\DashboardView.xaml;ManagerView\View\Hotel\HotelView.xaml;ManagerView\View\ManagerWindow.xaml;ManagerView\View\Place\PlaceView.xaml;ManagerView\View\Hotel\ShowHotelView.xaml;ManagerView\View\Place\ShowLocationView.xaml;ManagerView\View\Place\ShowPlaceView.xaml;ManagerView\View\Staff\ShowStaffView.xaml;ManagerView\View\Tour\ShowTourInformationView.xaml;ManagerView\View\Tour\ShowTourView.xaml;ManagerView\View\Transport\ShowTransportView.xaml;ManagerView\View\TravelGroup\ShowTravelGroupView.xaml;ManagerView\View\Staff\StaffView.xaml;ManagerView\View\Staff\StatisticStaffView.xaml;ManagerView\View\Tour\StatisticTourView.xaml;ManagerView\View\TravelGroup\StatisticTravelGroupView.xaml;ManagerView\View\Tour\TourView.xaml;ManagerView\View\Transport\TransportView.xaml;ManagerView\View\TravelGroup\TravelGroupView.xaml;Style.xaml;TempItem.xaml;
 

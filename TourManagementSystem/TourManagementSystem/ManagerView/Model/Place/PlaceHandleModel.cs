@@ -94,7 +94,7 @@ namespace TourManagementSystem.ManagerView.Model
             {
                 PLACE tour_place = DataProvider.Ins.DB.PLACE.Where(x => x.PLACE_ID == place.PLACE_ID).SingleOrDefault();
 
-                string changeToSave = "";
+                string changeToSave = string.Format("Update Place with id {0}: ", place.PLACE_ID);
                 int countChangeToSave = 0;
                 if (tour_place.PLACE_NAME != place.PLACE_NAME)
                 {
@@ -216,7 +216,7 @@ namespace TourManagementSystem.ManagerView.Model
             {
                 TOUR_LOCATION tour_location = DataProvider.Ins.DB.TOUR_LOCATION.Where(x => x.TOUR_LOCATION_ID == location.LOCATION_ID).SingleOrDefault();
 
-                string changeToSave = "";
+                string changeToSave = string.Format("Update Location with id {0}: ", location.LOCATION_ID);
                 int countChangeToSave = 0;
                 if (tour_location.TOUR_LOCATION_NAME != location.LOCATION_NAME)
                 {

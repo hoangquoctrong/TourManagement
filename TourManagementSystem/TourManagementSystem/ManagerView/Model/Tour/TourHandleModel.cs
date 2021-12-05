@@ -187,7 +187,7 @@ namespace TourManagementSystem.ManagerView.Model
             {
                 TOUR tourdb = DataProvider.Ins.DB.TOUR.Where(x => x.TOUR_ID == tour.TOUR_ID).FirstOrDefault();
 
-                string changeToSave = "";
+                string changeToSave = string.Format("Update Tour with id {0}: ", tour.TOUR_ID);
                 int countChangeToSave = 0;
                 if (tourdb.TOUR_NAME != tour.TOUR_NAME)
                 {

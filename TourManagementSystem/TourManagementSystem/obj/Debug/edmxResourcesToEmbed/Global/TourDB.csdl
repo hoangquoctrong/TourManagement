@@ -279,11 +279,12 @@
     </Key>
     <Property Name="TRAVEL_COST_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TOTAL_HOTEL_COST" Type="Double" />
-    <Property Name="TOTAL_MEAL_COST" Type="Double" />
+    <Property Name="TOTAL_SERVICE_COST" Type="Double" />
     <Property Name="TOTAL_TRANSPORT_COST" Type="Double" />
     <Property Name="ANOTHER_COST" Type="Double" />
     <Property Name="TRAVEL_GROUP_ID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVEL_CO__TRAVE__15DA3E5D" FromRole="TRAVEL_COST" ToRole="TRAVEL_GROUP" />
+    <Property Name="TRAVEL_COST_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="TRAVEL_GROUP">
     <Key>

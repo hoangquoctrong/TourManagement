@@ -12,127 +12,6 @@
     <StackPanel Margin="20">
 
         <Border
-            x:Name="BorderPlace"
-            Padding="8"
-            BorderBrush="Black"
-            BorderThickness="1">
-
-            <StackPanel Margin="8,0,0,0">
-                <TextBlock
-                    FontSize="12"
-                    FontWeight="Bold"
-                    Text="{Binding HOTEL_NAME}" />
-                <TextBlock FontSize="12" Text="{Binding HOTEL_PRICE}" />
-                <TextBox
-                    Width="100"
-                    Margin="8,0,0,0"
-                    HorizontalAlignment="Left"
-                    materialDesign:HintAssist.Hint="Amount"
-                    FontSize="12">
-                    <TextBox.Text>
-                        <Binding
-                            Mode="TwoWay"
-                            Path="HOTEL_DAY"
-                            UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules />
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
-            </StackPanel>
-        </Border>
-
-        <Border
-            Width="1060"
-            Height="auto"
-            Margin="0,16"
-            Padding="10"
-            HorizontalAlignment="Center"
-            BorderBrush="Black"
-            BorderThickness="1">
-
-            <Grid Margin="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
-
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0" Orientation="Horizontal">
-
-                        <materialDesign:PackIcon
-                            Width="30"
-                            Height="30"
-                            VerticalAlignment="Center"
-                            Foreground="DimGray"
-                            Kind="User" />
-
-                        <ComboBox
-                            Width="300"
-                            Margin="10,0,0,0"
-                            DisplayMemberPath="CB_Name"
-                            FontSize="18"
-                            Foreground="DimGray"
-                            IsEditable="True"
-                            ItemsSource="{Binding DataContext.CB_StaffList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                            Text="{Binding Staff_Name}" />
-
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1" Orientation="Horizontal">
-                        <Button
-                            Width="200"
-                            Height="40"
-                            Margin="16,0"
-                            HorizontalAlignment="Left"
-                            Command="{Binding DataContext.SearchStaffCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                            CommandParameter="{Binding Staff_Name}"
-                            Content="Search Exist Traveller"
-                            Foreground="#0f6f68"
-                            Style="{StaticResource AddButton}" />
-
-                        <TextBlock
-                            Width="auto"
-                            Margin="10,0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="20"
-                            Foreground="#F36E6B"
-                            Text="{Binding Staff_Notify, UpdateSourceTrigger=PropertyChanged}" />
-                    </StackPanel>
-                </Grid>
-
-                <StackPanel
-                    Grid.Row="1"
-                    Margin="0,30"
-                    Orientation="Horizontal">
-
-                    <materialDesign:PackIcon
-                        Width="30"
-                        Height="30"
-                        VerticalAlignment="Center"
-                        Foreground="DimGray"
-                        Kind="ListStatus" />
-
-                    <ComboBox
-                        Width="300"
-                        Margin="10,0,0,0"
-                        DisplayMemberPath="CB_Name"
-                        FontSize="18"
-                        Foreground="DimGray"
-                        IsEditable="True"
-                        ItemsSource="{Binding DataContext.CB_MissionList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                        Text="{Binding Mission_Name}" />
-
-                </StackPanel>
-            </Grid>
-        </Border>
-
-        <Border
             Width="1060"
             Height="auto"
             Margin="0,16"
@@ -189,8 +68,19 @@
                             Margin="16,0"
                             HorizontalAlignment="Left"
                             Command="{Binding DataContext.SearchTravellerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                            CommandParameter="{Binding Traveller_Name}"
+                            CommandParameter="{Binding Traveller_Select}"
                             Content="Search Exist Traveller"
+                            Foreground="#0f6f68"
+                            Style="{StaticResource AddButton}" />
+
+                        <Button
+                            Width="60"
+                            Height="40"
+                            Margin="16,0"
+                            HorizontalAlignment="Left"
+                            Command="{Binding DataContext.BackTravellerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                            CommandParameter="{Binding Traveller_Name}"
+                            Content="Back"
                             Foreground="#0f6f68"
                             Style="{StaticResource AddButton}" />
 
@@ -202,6 +92,28 @@
                             FontSize="20"
                             Foreground="#F36E6B"
                             Text="{Binding Traveller_Notify, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button
+                            Width="60"
+                            Height="40"
+                            Margin="16,0"
+                            HorizontalAlignment="Left"
+                            Command="{Binding DataContext.NextTravellerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                            CommandParameter="{Binding Traveller_Select}"
+                            Content="Next"
+                            Foreground="#0f6f68"
+                            Style="{StaticResource AddButton}" />
+
+                        <Button
+                            Width="80"
+                            Height="40"
+                            Margin="16,0"
+                            HorizontalAlignment="Left"
+                            Command="{Binding DataContext.RemoveTravellerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                            CommandParameter="{Binding Traveller_Select}"
+                            Content="Remove"
+                            Foreground="#F36E6B"
+                            Style="{StaticResource AddButton}" />
+
                     </StackPanel>
                 </Grid>
 

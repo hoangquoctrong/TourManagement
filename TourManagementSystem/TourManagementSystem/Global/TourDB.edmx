@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="PLACE">
           <Key>
             <PropertyRef Name="PLACE_ID" />
@@ -240,10 +240,11 @@
           </Key>
           <Property Name="TRAVEL_COST_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TOTAL_HOTEL_COST" Type="float" />
-          <Property Name="TOTAL_MEAL_COST" Type="float" />
+          <Property Name="TOTAL_SERVICE_COST" Type="float" />
           <Property Name="TOTAL_TRANSPORT_COST" Type="float" />
           <Property Name="ANOTHER_COST" Type="float" />
           <Property Name="TRAVEL_GROUP_ID" Type="int" Nullable="false" />
+          <Property Name="TRAVEL_COST_DESCRIPTION" Type="text" />
         </EntityType>
         <EntityType Name="TRAVEL_GROUP">
           <Key>
@@ -746,8 +747,7 @@
             <End Role="TRAVELLER_ACCOUNT" EntitySet="TRAVELLER_ACCOUNT" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Tour_Mangement_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1030,11 +1030,12 @@
           </Key>
           <Property Name="TRAVEL_COST_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TOTAL_HOTEL_COST" Type="Double" />
-          <Property Name="TOTAL_MEAL_COST" Type="Double" />
+          <Property Name="TOTAL_SERVICE_COST" Type="Double" />
           <Property Name="TOTAL_TRANSPORT_COST" Type="Double" />
           <Property Name="ANOTHER_COST" Type="Double" />
           <Property Name="TRAVEL_GROUP_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVEL_CO__TRAVE__15DA3E5D" FromRole="TRAVEL_COST" ToRole="TRAVEL_GROUP" />
+          <Property Name="TRAVEL_COST_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TRAVEL_GROUP">
           <Key>
@@ -1806,9 +1807,10 @@
           <EntitySetMapping Name="TRAVEL_COST">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TRAVEL_COST">
               <MappingFragment StoreEntitySet="TRAVEL_COST">
+                <ScalarProperty Name="TRAVEL_COST_DESCRIPTION" ColumnName="TRAVEL_COST_DESCRIPTION" />
                 <ScalarProperty Name="TRAVEL_COST_ID" ColumnName="TRAVEL_COST_ID" />
                 <ScalarProperty Name="TOTAL_HOTEL_COST" ColumnName="TOTAL_HOTEL_COST" />
-                <ScalarProperty Name="TOTAL_MEAL_COST" ColumnName="TOTAL_MEAL_COST" />
+                <ScalarProperty Name="TOTAL_SERVICE_COST" ColumnName="TOTAL_SERVICE_COST" />
                 <ScalarProperty Name="TOTAL_TRANSPORT_COST" ColumnName="TOTAL_TRANSPORT_COST" />
                 <ScalarProperty Name="ANOTHER_COST" ColumnName="ANOTHER_COST" />
                 <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />

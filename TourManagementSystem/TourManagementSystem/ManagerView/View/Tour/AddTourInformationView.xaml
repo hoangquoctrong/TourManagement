@@ -854,7 +854,7 @@
                                                                     <ComboBox
                                                                         Width="100"
                                                                         Margin="10,0,0,0"
-                                                                        DisplayMemberPath="CB_Name"
+                                                                        DisplayMemberPath="CB_ID"
                                                                         FontSize="12"
                                                                         Foreground="DimGray"
                                                                         ItemsSource="{Binding CB_TransportAmount}"

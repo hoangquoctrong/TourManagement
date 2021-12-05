@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace TourManagementSystem.ManagerView.Model
         public int Traveller_ID { get => _Traveller_ID; set { _Traveller_ID = value; OnPropertyChanged(); } }
 
         private string _Traveller_Name;
-        public string Traveller_Name { get => _Traveller_Name; set { _Traveller_Name = value; OnPropertyChanged(); } }
+        public string Traveller_Name { get => _Traveller_Name; set { _Traveller_Name = value; OnPropertyChanged(); Traveller_Check = true; } }
 
         private string _Traveller_CitizenIdentity;
         public string Traveller_CitizenIdentity { get => _Traveller_CitizenIdentity; set { _Traveller_CitizenIdentity = value; OnPropertyChanged(); } }
@@ -36,7 +37,40 @@ namespace TourManagementSystem.ManagerView.Model
         private string _Traveller_Type;
         public string Traveller_Type { get => _Traveller_Type; set { _Traveller_Type = value; OnPropertyChanged(); } }
 
-        private string _Traveller_Notify;
+        #region Parameter for binding Item Control
+        private int _Traveller_Index;
+        public int Traveller_Index { get => _Traveller_Index; set { _Traveller_Index = value; OnPropertyChanged(); } }
+
+        private bool _Traveller_Check;
+        public bool Traveller_Check { get => _Traveller_Check; set { _Traveller_Check = value; OnPropertyChanged(); } }
+
+        private bool _Traveller_CheckCommand;
+        public bool Traveller_CheckCommand { get => _Traveller_CheckCommand; set { _Traveller_CheckCommand = value; OnPropertyChanged(); } }
+
+        private int _Traveller_Select;
+        public int Traveller_Select { get => _Traveller_Select; set { _Traveller_Select = value; OnPropertyChanged(); } }
+
+        private string _Traveller_Notify = "";
         public string Traveller_Notify { get => _Traveller_Notify; set { _Traveller_Notify = value; OnPropertyChanged(); } }
+
+        private ObservableCollection<TravellerModel> _TravelSearchList;
+        public ObservableCollection<TravellerModel> TravelSearchList
+        {
+            get
+            {
+                if (_TravelSearchList == null)
+                {
+                    _TravelSearchList = new ObservableCollection<TravellerModel>();
+                }
+                return _TravelSearchList;
+            }
+
+            set
+            {
+                _TravelSearchList = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion Parameter for binding Item Control
     }
 }
