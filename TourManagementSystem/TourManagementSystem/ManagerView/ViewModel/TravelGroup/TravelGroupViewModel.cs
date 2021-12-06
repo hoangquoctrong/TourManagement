@@ -106,7 +106,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_ShowDetailTravelGroupCommand == null)
                 {
-                    _ShowDetailTravelGroupCommand = new RelayCommand<ContentControl>(_ => TravelGroupSelected != null, p => p.Content = new ShowTourViewModel(User_ID, TravelGroupSelected.TravelGroup_ID));
+                    _ShowDetailTravelGroupCommand = new RelayCommand<ContentControl>(_ => TravelGroupSelected != null, p => p.Content = new ShowTravelGroupViewModel(User_ID, TravelGroupSelected));
                 }
                 return _ShowDetailTravelGroupCommand;
             }

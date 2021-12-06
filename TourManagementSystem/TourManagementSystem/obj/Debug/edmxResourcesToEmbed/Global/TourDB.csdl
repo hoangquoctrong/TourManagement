@@ -298,6 +298,7 @@
     <NavigationProperty Name="TOUR_STAFF_DETAIL" Relationship="Self.FK__TOUR_STAF__TRAVE__09746778" FromRole="TRAVEL_GROUP" ToRole="TOUR_STAFF_DETAIL" />
     <NavigationProperty Name="TRAVEL_COST" Relationship="Self.FK__TRAVEL_CO__TRAVE__15DA3E5D" FromRole="TRAVEL_GROUP" ToRole="TRAVEL_COST" />
     <NavigationProperty Name="TRAVELLER_DETAIL" Relationship="Self.FK__TRAVELLER__TRAVE__07C12930" FromRole="TRAVEL_GROUP" ToRole="TRAVELLER_DETAIL" />
+    <Property Name="TRAVEL_GROUP_ISDELETE" Type="Boolean" />
   </EntityType>
   <EntityType Name="TRAVELLER">
     <Key>

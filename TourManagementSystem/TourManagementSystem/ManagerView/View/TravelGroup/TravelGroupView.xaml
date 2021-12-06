@@ -160,6 +160,20 @@
                 SelectedItem="{Binding TravelGroupSelected}"
                 SelectionMode="Single"
                 VerticalScrollBarVisibility="Visible">
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsDelete}" Value="true">
+                                <Setter Property="Background" Value="White" />
+                                <Setter Property="Foreground" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsDelete}" Value="false">
+                                <Setter Property="Background" Value="White" />
+                                <Setter Property="Foreground" Value="DarkSlateGray" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
                 <DataGrid.InputBindings>
                     <MouseBinding
                         Command="{Binding ShowDetailTravelGroupCommand}"

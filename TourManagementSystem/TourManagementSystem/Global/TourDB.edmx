@@ -254,6 +254,7 @@
           <Property Name="TRAVEL_GROUP_NAME" Type="varchar" MaxLength="255" />
           <Property Name="TRAVEL_GROUP_CONTENT_DETAIL" Type="text" />
           <Property Name="TOUR_INFORMATION_ID" Type="int" Nullable="false" />
+          <Property Name="TRAVEL_GROUP_ISDELETE" Type="bit" />
         </EntityType>
         <EntityType Name="TRAVELLER">
           <Key>
@@ -1049,6 +1050,7 @@
           <NavigationProperty Name="TOUR_STAFF_DETAIL" Relationship="Self.FK__TOUR_STAF__TRAVE__09746778" FromRole="TRAVEL_GROUP" ToRole="TOUR_STAFF_DETAIL" />
           <NavigationProperty Name="TRAVEL_COST" Relationship="Self.FK__TRAVEL_CO__TRAVE__15DA3E5D" FromRole="TRAVEL_GROUP" ToRole="TRAVEL_COST" />
           <NavigationProperty Name="TRAVELLER_DETAIL" Relationship="Self.FK__TRAVELLER__TRAVE__07C12930" FromRole="TRAVEL_GROUP" ToRole="TRAVELLER_DETAIL" />
+          <Property Name="TRAVEL_GROUP_ISDELETE" Type="Boolean" />
         </EntityType>
         <EntityType Name="TRAVELLER">
           <Key>
@@ -1820,6 +1822,7 @@
           <EntitySetMapping Name="TRAVEL_GROUP">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TRAVEL_GROUP">
               <MappingFragment StoreEntitySet="TRAVEL_GROUP">
+                <ScalarProperty Name="TRAVEL_GROUP_ISDELETE" ColumnName="TRAVEL_GROUP_ISDELETE" />
                 <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
                 <ScalarProperty Name="TRAVEL_GROUP_NAME" ColumnName="TRAVEL_GROUP_NAME" />
                 <ScalarProperty Name="TRAVEL_GROUP_CONTENT_DETAIL" ColumnName="TRAVEL_GROUP_CONTENT_DETAIL" />

@@ -594,7 +594,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_SaveHotelPriceCommand == null)
                 {
-                    _SaveHotelPriceCommand = new RelayCommand<object>(p => true, p =>
+                    _SaveHotelPriceCommand = new RelayCommand<object>(p => IsEnable, p =>
                     {
                         TotalHotelPrice = HotelHandleModel.CalculateTotalHotelPrice(HotelSelectedList);
                         HotelPriceNotify = string.Format("Hotel Price have updated!");
@@ -788,7 +788,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_SaveTransportPriceCommand == null)
                 {
-                    _SaveTransportPriceCommand = new RelayCommand<object>(p => true, p =>
+                    _SaveTransportPriceCommand = new RelayCommand<object>(p => IsEnable, p =>
                     {
                         TotalTransportPrice = TransportHandleModel.CalculateTotalTransportPrice(TransportSelectedList);
                         TransportPriceNotify = string.Format("Transport Price have updated!");

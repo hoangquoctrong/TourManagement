@@ -72,8 +72,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
             TourInformationItems = new ObservableCollection<TourInformationModel>();
             Refresh_TourInformationItems = new ObservableCollection<TourInformationModel>();
-            TourInformationItems = TourInformationHandleModel.GetTourInformationList(tour_id);
-            Refresh_TourInformationItems = TourInformationHandleModel.GetTourInformationList(tour_id);
+            TourInformationItems = GetTourInformationList(tour_id);
+            Refresh_TourInformationItems = GetTourInformationList(tour_id);
         }
 
         private void SetTourInView(TourModel tour)
@@ -169,6 +169,18 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
 
             return placeList;
+        }
+
+        private ObservableCollection<TourInformationModel> GetTourInformationList(int tour_id)
+        {
+            ObservableCollection<TourInformationModel> InformationList = TourInformationHandleModel.GetTourInformationList(tour_id);
+
+            foreach (var item in InformationList)
+            {
+                item.INFORMATION_ENABLE = TourInformationHandleModel.IsEditableInformation(item);
+            }
+
+            return InformationList;
         }
 
         private ICommand _PlaceItemCheckCommand;
@@ -740,7 +752,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_ShowDetailTourInformationCommand == null)
                 {
-                    _ShowDetailTourInformationCommand = new RelayCommand<ContentControl>(p => TourInformationSelected != null, p => p.Content = new ShowTourInformationViewModel(User_ID, Tour_ID, TourInformationSelected, PlaceSelectedList, Is_Exist));
+                    _ShowDetailTourInformationCommand = new RelayCommand<ContentControl>(p => TourInformationSelected != null, p =>
+                    {
+                        bool IsEnable = Is_Exist && TourInformationHandleModel.IsEditableInformation(TourInformationSelected);
+                        p.Content = new ShowTourInformationViewModel(User_ID, Tour_ID, TourInformationSelected, PlaceSelectedList, IsEnable);
+                    });
                 }
                 return _ShowDetailTourInformationCommand;
             }

@@ -268,6 +268,7 @@
     <EntitySetMapping Name="TRAVEL_GROUP">
       <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TRAVEL_GROUP">
         <MappingFragment StoreEntitySet="TRAVEL_GROUP">
+          <ScalarProperty Name="TRAVEL_GROUP_ISDELETE" ColumnName="TRAVEL_GROUP_ISDELETE" />
           <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
           <ScalarProperty Name="TRAVEL_GROUP_NAME" ColumnName="TRAVEL_GROUP_NAME" />
           <ScalarProperty Name="TRAVEL_GROUP_CONTENT_DETAIL" ColumnName="TRAVEL_GROUP_CONTENT_DETAIL" />

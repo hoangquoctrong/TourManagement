@@ -241,9 +241,18 @@
     <Compile Include="ManagerView\Model\TravelGroup\TravelGroupModel.cs" />
     <Compile Include="ManagerView\Model\TravelGroup\TravellerDetailModel.cs" />
     <Compile Include="ManagerView\Model\TravelGroup\TravellerModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Traveller\AddTravellerViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Traveller\ShowTravellerViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\TravelGroup\AddTravelGroupViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\TravelGroup\ShowTravelGroupViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\TravelGroup\StatisticTravelGroupViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Traveller\TravellerViewModel.cs" />
+    <Compile Include="ManagerView\View\Traveller\AddTravellerView.xaml.cs">
+      <DependentUpon>AddTravellerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Traveller\ShowTravellerView.xaml.cs">
+      <DependentUpon>ShowTravellerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ManagerView\View\TravelGroup\AddTravelGroupView.xaml.cs">
       <DependentUpon>AddTravelGroupView.xaml</DependentUpon>
     </Compile>
@@ -252,6 +261,9 @@
     </Compile>
     <Compile Include="ManagerView\View\TravelGroup\StatisticTravelGroupView.xaml.cs">
       <DependentUpon>StatisticTravelGroupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Traveller\TravellerView.xaml.cs">
+      <DependentUpon>TravellerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="TempItem.xaml.cs">
       <DependentUpon>TempItem.xaml</DependentUpon>
@@ -301,6 +313,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ManagerView\View\Traveller\AddTravellerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ManagerView\View\Others\AccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -314,6 +330,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ManagerView\View\Place\AddPlaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\Traveller\ShowTravellerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -410,6 +430,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ManagerView\View\TravelGroup\TravelGroupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\Traveller\TravellerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -618,6 +642,7 @@
     <Resource Include="Resources\Images\Add.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\customer.png" />
     <Content Include="Global\TourDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TourDB.edmx</DependentUpon>

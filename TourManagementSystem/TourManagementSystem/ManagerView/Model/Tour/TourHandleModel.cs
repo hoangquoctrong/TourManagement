@@ -334,5 +334,44 @@ namespace TourManagementSystem.ManagerView.Model
                 throw;
             }
         }
+
+        public static double GetTourStar(int tour_id)
+        {
+            var tourinformationlist = from travelgroup in DataProvider.Ins.DB.TRAVEL_GROUP
+                                      join tgdetail in DataProvider.Ins.DB.TRAVELLER_DETAIL on travelgroup.TRAVEL_GROUP_ID equals tgdetail.TRAVEL_GROUP_ID
+                                      where travelgroup.TOUR_INFORMATION.TOUR_ID == tour_id
+                                      select new
+                                      {
+                                          tgdetail.TRAVELLER_DETAIL_STAR
+                                      };
+
+            double tour_star = 0;
+            int total = 0;
+            int count = 0;
+            foreach (var item in tourinformationlist)
+            {
+                if (item.TRAVELLER_DETAIL_STAR != 0)
+                {
+                    int star = (int)item.TRAVELLER_DETAIL_STAR;
+                    total += star;
+                    count++;
+                }
+            }
+
+            if (count == 0)
+            {
+                //Default star
+                tour_star = 5;
+            }
+            else
+            {
+                tour_star = total * 1.0 / count;
+                TOUR tour = DataProvider.Ins.DB.TOUR.Where(x => x.TOUR_ID == tour_id).First();
+                tour.TOUR_STAR = tour_star;
+                DataProvider.Ins.DB.SaveChanges();
+            }
+
+            return tour_star;
+        }
     }
 }

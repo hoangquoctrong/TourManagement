@@ -16,6 +16,9 @@ namespace TourManagementSystem.ManagerView.Model
         private int _INFORMATION_ID;
         public int INFORMATION_ID { get => _INFORMATION_ID; set { _INFORMATION_ID = value; OnPropertyChanged(); } }
 
+        private bool _INFORMATION_ENABLE;
+        public bool INFORMATION_ENABLE { get => _INFORMATION_ENABLE; set { _INFORMATION_ENABLE = value; OnPropertyChanged(); } }
+
         private TourTimeModel _INFORMATION_TIME;
         public TourTimeModel INFORMATION_TIME { get => _INFORMATION_TIME; set { _INFORMATION_TIME = value; OnPropertyChanged(); } }
 

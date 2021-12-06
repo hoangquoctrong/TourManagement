@@ -226,3 +226,9 @@ D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Tou
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.exe
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.pdb
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.AssemblyReference.cache
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Traveller\AddTravellerView.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Traveller\ShowTravellerView.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Traveller\TravellerView.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Traveller\AddTravellerView.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Traveller\ShowTravellerView.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Traveller\TravellerView.baml

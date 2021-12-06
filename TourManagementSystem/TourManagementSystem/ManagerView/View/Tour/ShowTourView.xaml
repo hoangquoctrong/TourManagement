@@ -696,6 +696,20 @@
                                 ItemsSource="{Binding TourInformationItems, Mode=TwoWay}"
                                 SelectedItem="{Binding TourInformationSelected}"
                                 SelectionMode="Single">
+                                <DataGrid.RowStyle>
+                                    <Style TargetType="{x:Type DataGridRow}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding INFORMATION_ENABLE}" Value="false">
+                                                <Setter Property="Background" Value="White" />
+                                                <Setter Property="Foreground" Value="Red" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding INFORMATION_ENABLE}" Value="true">
+                                                <Setter Property="Background" Value="White" />
+                                                <Setter Property="Foreground" Value="DarkSlateGray" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.RowStyle>
                                 <DataGrid.InputBindings>
                                     <MouseBinding
                                         Command="{Binding ShowDetailTourInformationCommand}"
@@ -707,31 +721,26 @@
                                         Width="0.1*"
                                         Binding="{Binding INFORMATION_ID}"
                                         ElementStyle="{StaticResource WrapText}"
-                                        Foreground="DarkSlateGray"
                                         Header="ID" />
                                     <DataGridTextColumn
                                         Width="0.2*"
                                         Binding="{Binding INFORMATION_TIME.TIME_STRING}"
                                         ElementStyle="{StaticResource WrapText}"
-                                        Foreground="DarkSlateGray"
                                         Header="Schedule" />
                                     <DataGridTextColumn
                                         Width="0.25*"
                                         Binding="{Binding INFORMATION_TIME.TIME_DEPARTMENT_STRING}"
                                         ElementStyle="{StaticResource WrapText}"
-                                        Foreground="DarkSlateGray"
                                         Header="Department Date" />
                                     <DataGridTextColumn
                                         Width="0.25*"
                                         Binding="{Binding INFORMATION_TIME.TIME_END_STRING}"
                                         ElementStyle="{StaticResource WrapText}"
-                                        Foreground="DarkSlateGray"
                                         Header="End Date" />
                                     <DataGridTextColumn
                                         Width="0.2*"
                                         Binding="{Binding INFORMATION_PRICE.PRICE_COST_TOTAL}"
                                         ElementStyle="{StaticResource WrapText}"
-                                        Foreground="DarkSlateGray"
                                         Header="Total Cost" />
                                 </DataGrid.Columns>
                             </DataGrid>

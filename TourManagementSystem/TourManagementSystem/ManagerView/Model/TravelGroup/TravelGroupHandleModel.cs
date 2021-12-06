@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity.Validation;
@@ -31,7 +32,9 @@ namespace TourManagementSystem.ManagerView.Model
                     Tour_Start = (DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_DEPARTMENT_DATE,
                     Tour_End = (DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_END_DATE,
                     Tour_StartString = ((DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_DEPARTMENT_DATE).ToString("dd/MM/yyyy"),
-                    Tour_EndString = ((DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_END_DATE).ToString("dd/MM/yyyy")
+                    Tour_EndString = ((DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_END_DATE).ToString("dd/MM/yyyy"),
+                    TourInformation_Price = (double)item.TOUR_INFORMATION.TOUR_PRICE.First().TOUR_PRICE_COST_TOTAL,
+                    IsDelete = (bool)item.TRAVEL_GROUP_ISDELETE
                 };
 
                 TravelGroupList.Add(travelgroup);
@@ -48,7 +51,8 @@ namespace TourManagementSystem.ManagerView.Model
                 {
                     TOUR_INFORMATION_ID = travelGroup.TourInformation_ID,
                     TRAVEL_GROUP_NAME = travelGroup.TravelGroup_Name,
-                    TRAVEL_GROUP_CONTENT_DETAIL = travelGroup.TravelGroup_Type
+                    TRAVEL_GROUP_CONTENT_DETAIL = travelGroup.TravelGroup_Type,
+                    TRAVEL_GROUP_ISDELETE = false
                 };
                 DataProvider.Ins.DB.TRAVEL_GROUP.Add(travelgroupdb);
 
@@ -114,6 +118,39 @@ namespace TourManagementSystem.ManagerView.Model
                 }
 
                 return false;
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (DbEntityValidationResult eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (DbValidationError ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+        }
+
+        public static bool DeleteTravelGroup(int travelgroup_id, int user_id)
+        {
+            try
+            {
+                TRAVEL_GROUP travelgroup = DataProvider.Ins.DB.TRAVEL_GROUP.Where(x => x.TRAVEL_GROUP_ID == travelgroup_id).SingleOrDefault();
+                travelgroup.TRAVEL_GROUP_ISDELETE = true;
+
+                TOUR_RECORD tour_record = new TOUR_RECORD()
+                {
+                    TOUR_STAFF_ID = user_id,
+                    TOUR_RECORD_DATE = DateTime.Now,
+                    TOUR_RECORD_CONTENT = string.Format("Remove Travel Group {0} with {1}", travelgroup.TRAVEL_GROUP_NAME, travelgroup.TRAVEL_GROUP_ID)
+                };
+                DataProvider.Ins.DB.TOUR_RECORD.Add(tour_record);
+                DataProvider.Ins.DB.SaveChanges();
+                return true;
             }
             catch (DbEntityValidationException e)
             {
@@ -341,7 +378,7 @@ namespace TourManagementSystem.ManagerView.Model
                     TRAVELLER traveller = DataProvider.Ins.DB.TRAVELLER.Where(x => x.TRAVELLER_NAME.Equals(item.Traveller_Name)).FirstOrDefault();
                     TRAVELLER_DETAIL travellerdetail = new TRAVELLER_DETAIL()
                     {
-                        TRAVELLER_DETAIL_STAR = 0,
+                        TRAVELLER_DETAIL_STAR = item.Traveller_Star,
                         TRAVELLER_ID = traveller.TRAVELLER_ID,
                         TRAVEL_GROUP_ID = travelgroup_id
                     };
@@ -398,6 +435,37 @@ namespace TourManagementSystem.ManagerView.Model
                 }
                 throw;
             }
+        }
+
+        public static BindableCollection<TravellerModel> GetTravellerListWithID(int travelgroup_id)
+        {
+            BindableCollection<TravellerModel> TravellerList = new BindableCollection<TravellerModel>();
+
+            var travellerlist = from travellerdetail in DataProvider.Ins.DB.TRAVELLER_DETAIL
+                                where travellerdetail.TRAVEL_GROUP_ID == travelgroup_id
+                                select travellerdetail;
+
+            foreach (var item in travellerlist)
+            {
+                TravellerModel traveller = new TravellerModel()
+                {
+                    Traveller_ID = item.TRAVELLER.TRAVELLER_ID,
+                    Traveller_Name = item.TRAVELLER.TRAVELLER_NAME,
+                    Traveller_Address = item.TRAVELLER.TRAVELLER_ADDRESS,
+                    Traveller_Birth = (DateTime)item.TRAVELLER.TRAVELLER_BIRTH,
+                    Traveller_BirthString = ((DateTime)item.TRAVELLER.TRAVELLER_BIRTH).ToString("dd/MM/yyyy"),
+                    Traveller_CitizenIdentity = item.TRAVELLER.TRAVELLER_CITIZEN_IDENTITY,
+                    Traveller_PhoneNumber = item.TRAVELLER.TRAVELLER_PHONE_NUMBER,
+                    Traveller_Sex = item.TRAVELLER.TRAVELLER_SEX,
+                    Traveller_Type = item.TRAVELLER.TRAVELLER_TYPE,
+                    Traveller_Star = (int)item.TRAVELLER_DETAIL_STAR,
+                    Traveller_Notify = "",
+                };
+
+                TravellerList.Add(traveller);
+            }
+
+            return TravellerList;
         }
 
         public static bool InsertTravelGroupCost(TravelCostModel TravelCost, int travelgroup_id, int user_id)
@@ -509,6 +577,67 @@ namespace TourManagementSystem.ManagerView.Model
                 }
                 throw;
             }
+        }
+
+        public static TravelCostModel GetTravelGroupCost(int travelgroup_id)
+        {
+            TRAVEL_COST cost = DataProvider.Ins.DB.TRAVEL_COST.Where(x => x.TRAVEL_GROUP_ID == travelgroup_id).First();
+
+            TravelCostModel travelcost = new TravelCostModel()
+            {
+                TravelCost_ID = cost.TRAVEL_COST_ID,
+                TravelGroup_ID = travelgroup_id,
+                TransportPrice = (double)cost.TOTAL_TRANSPORT_COST,
+                HotelPrice = (double)cost.TOTAL_HOTEL_COST,
+                ServicePrice = (double)cost.TOTAL_SERVICE_COST,
+                AnotherPrice = (double)cost.ANOTHER_COST,
+                TravelCostDescription = cost.TRAVEL_COST_DESCRIPTION
+            };
+
+            travelcost.TotalPrice = travelcost.HotelPrice + travelcost.ServicePrice + travelcost.TransportPrice + travelcost.AnotherPrice;
+
+            return travelcost;
+        }
+
+        public static int GetTravellerNumberTour(int traveller_id)
+        {
+            var travellertourlist = from travellerdetail in DataProvider.Ins.DB.TRAVELLER_DETAIL
+                                    where travellerdetail.TRAVELLER_ID == traveller_id
+                                    select travellerdetail;
+
+            return travellertourlist.Count();
+        }
+
+        public static ObservableCollection<TravelGroupModel> GetTravelGroupListWithTravellerID(int traveller_id)
+        {
+            ObservableCollection<TravelGroupModel> TravelGroupList = new ObservableCollection<TravelGroupModel>();
+
+            var travelgroupList = from travel in DataProvider.Ins.DB.TRAVEL_GROUP
+                                  join traveldetail in DataProvider.Ins.DB.TRAVELLER_DETAIL on travel.TRAVEL_GROUP_ID equals traveldetail.TRAVEL_GROUP_ID
+                                  where traveldetail.TRAVELLER_ID == traveller_id
+                                  select travel;
+
+            foreach (var item in travelgroupList)
+            {
+                TravelGroupModel travelgroup = new TravelGroupModel()
+                {
+                    TourInformation_ID = item.TOUR_INFORMATION_ID,
+                    TravelGroup_ID = item.TRAVEL_GROUP_ID,
+                    TravelGroup_Name = item.TRAVEL_GROUP_NAME,
+                    TravelGroup_Type = item.TRAVEL_GROUP_CONTENT_DETAIL,
+                    Tour_Name = item.TOUR_INFORMATION.TOUR.TOUR_NAME,
+                    Tour_Start = (DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_DEPARTMENT_DATE,
+                    Tour_End = (DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_END_DATE,
+                    Tour_StartString = ((DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_DEPARTMENT_DATE).ToString("dd/MM/yyyy"),
+                    Tour_EndString = ((DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_END_DATE).ToString("dd/MM/yyyy"),
+                    TourInformation_Price = (double)item.TOUR_INFORMATION.TOUR_PRICE.First().TOUR_PRICE_COST_TOTAL,
+                    IsDelete = (bool)item.TRAVEL_GROUP_ISDELETE
+                };
+
+                TravelGroupList.Add(travelgroup);
+            }
+
+            return TravelGroupList;
         }
     }
 }

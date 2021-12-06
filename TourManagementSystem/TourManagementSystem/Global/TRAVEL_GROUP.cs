@@ -26,6 +26,7 @@ namespace TourManagementSystem.Global
         public string TRAVEL_GROUP_NAME { get; set; }
         public string TRAVEL_GROUP_CONTENT_DETAIL { get; set; }
         public int TOUR_INFORMATION_ID { get; set; }
+        public Nullable<bool> TRAVEL_GROUP_ISDELETE { get; set; }
     
         public virtual TOUR_INFORMATION TOUR_INFORMATION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

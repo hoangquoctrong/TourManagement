@@ -39,6 +39,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 new MenuItems {MenuName = "Record", MenuImage = @"Assets/home.png"},
                 new MenuItems {MenuName = "Tour", MenuImage = @"Assets/tour.png"},
                 new MenuItems {MenuName = "Travel Group", MenuImage = @"Assets/travelgroup.png"},
+                new MenuItems {MenuName = "Customer", MenuImage = @"Assets/customer.png"},
                 new MenuItems {MenuName = "Place", MenuImage = @"Assets/place.png"},
                 new MenuItems {MenuName = "Staff", MenuImage = @"Assets/staff.png"},
                 new MenuItems {MenuName = "Transports", MenuImage = @"Assets/transport.png"},
@@ -107,6 +108,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
                     break;
                 case "Travel Group":
                     SelectedViewModel = new TravelGroupViewModel(User_ID);
+                    break;
+                case "Customer":
+                    SelectedViewModel = new TravellerViewModel(User_ID);
                     break;
                 case "Place":
                     SelectedViewModel = new PlaceViewModel(User_ID);

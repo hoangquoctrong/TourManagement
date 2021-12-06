@@ -26,6 +26,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
@@ -48,7 +49,8 @@
                             Margin="8,0,0,0"
                             materialDesign:HintAssist.HelperText="Travller Name"
                             materialDesign:HintAssist.Hint="Name"
-                            FontSize="18">
+                            FontSize="18"
+                            IsEnabled="{Binding Traveller_Enable}">
                             <TextBox.Text>
                                 <Binding
                                     Mode="TwoWay"
@@ -68,7 +70,7 @@
                             Margin="16,0"
                             HorizontalAlignment="Left"
                             Command="{Binding DataContext.SearchTravellerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                            CommandParameter="{Binding Traveller_Select}"
+                            CommandParameter="{Binding Traveller_Index}"
                             Content="Search Exist Traveller"
                             Foreground="#0f6f68"
                             Style="{StaticResource AddButton}" />
@@ -79,7 +81,7 @@
                             Margin="16,0"
                             HorizontalAlignment="Left"
                             Command="{Binding DataContext.BackTravellerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                            CommandParameter="{Binding Traveller_Name}"
+                            CommandParameter="{Binding Traveller_Index}"
                             Content="Back"
                             Foreground="#0f6f68"
                             Style="{StaticResource AddButton}" />
@@ -98,7 +100,7 @@
                             Margin="16,0"
                             HorizontalAlignment="Left"
                             Command="{Binding DataContext.NextTravellerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                            CommandParameter="{Binding Traveller_Select}"
+                            CommandParameter="{Binding Traveller_Index}"
                             Content="Next"
                             Foreground="#0f6f68"
                             Style="{StaticResource AddButton}" />
@@ -109,7 +111,7 @@
                             Margin="16,0"
                             HorizontalAlignment="Left"
                             Command="{Binding DataContext.RemoveTravellerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                            CommandParameter="{Binding Traveller_Select}"
+                            CommandParameter="{Binding Traveller_Index}"
                             Content="Remove"
                             Foreground="#F36E6B"
                             Style="{StaticResource AddButton}" />
@@ -117,14 +119,31 @@
                     </StackPanel>
                 </Grid>
 
+                <StackPanel
+                    Grid.Row="2"
+                    Margin="0,20"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Margin="35,0,0,0"
+                        FontSize="22"
+                        Foreground="DimGray">
+                        Evalution:
+                    </TextBlock>
+                    <materialDesign:RatingBar
+                        Margin="20,3"
+                        IsEnabled="False"
+                        Max="10"
+                        Value="{Binding Traveller_Star}" />
+                </StackPanel>
+
                 <Separator
-                    Grid.Row="1"
+                    Grid.Row="3"
                     Margin="0,24,0,0"
                     BorderBrush="Black"
                     BorderThickness="12"
                     Opacity="1" />
 
-                <Grid Grid.Row="2" Margin="0,32">
+                <Grid Grid.Row="4" Margin="0,32">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -146,7 +165,8 @@
                                 HorizontalAlignment="Left"
                                 materialDesign:HintAssist.Hint="Type"
                                 FontSize="18"
-                                Foreground="DimGray">
+                                Foreground="DimGray"
+                                IsEnabled="{Binding Traveller_Enable}">
                                 <ComboBoxItem Content="Domestic Traveller" />
                                 <ComboBoxItem Content="Foreign Traveller" />
                                 <ComboBox.Text>
@@ -174,7 +194,8 @@
                                 Width="300"
                                 Margin="8,0,0,0"
                                 materialDesign:HintAssist.Hint="Address"
-                                FontSize="18">
+                                FontSize="18"
+                                IsEnabled="{Binding Traveller_Enable}">
                                 <TextBox.Text>
                                     <Binding
                                         Mode="TwoWay"
@@ -200,7 +221,8 @@
                                 Width="300"
                                 Margin="8,0,0,0"
                                 materialDesign:HintAssist.Hint="Phone Number"
-                                FontSize="18">
+                                FontSize="18"
+                                IsEnabled="{Binding Traveller_Enable}">
                                 <TextBox.Text>
                                     <Binding
                                         Mode="TwoWay"
@@ -228,7 +250,8 @@
                                 Width="300"
                                 Margin="8,0,0,0"
                                 materialDesign:HintAssist.Hint="Citizen Identity Card"
-                                FontSize="18">
+                                FontSize="18"
+                                IsEnabled="{Binding Traveller_Enable}">
                                 <TextBox.Text>
                                     <Binding
                                         Mode="TwoWay"
@@ -256,7 +279,8 @@
                                 HorizontalAlignment="Left"
                                 materialDesign:HintAssist.Hint="Gender"
                                 FontSize="18"
-                                Foreground="DimGray">
+                                Foreground="DimGray"
+                                IsEnabled="{Binding Traveller_Enable}">
                                 <ComboBoxItem Content="Male" />
                                 <ComboBoxItem Content="Female" />
                                 <ComboBox.Text>
@@ -286,6 +310,7 @@
                                 Margin="10,0,0,0"
                                 materialDesign:HintAssist.Hint="Birthday"
                                 FontSize="18"
+                                IsEnabled="{Binding Traveller_Enable}"
                                 SelectedDateFormat="Short"
                                 Style="{StaticResource MaterialDesignOutlinedDatePicker}">
                                 <DatePicker.SelectedDate>

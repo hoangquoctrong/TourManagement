@@ -137,7 +137,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 return;
             }
 
-            ObservableCollection<TourInformationModel> TourInformationList = TourInformationHandleModel.GetTourInformationList(CB_TourSelected.CB_ID);
+            ObservableCollection<TourInformationModel> TourInformationList = TourInformationHandleModel.GetTourInformationListForTravelGroup(CB_TourSelected.CB_ID);
 
             if (TourInformationList.Count == 0)
             {

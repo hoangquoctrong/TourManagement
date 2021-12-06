@@ -249,6 +249,7 @@
     <Property Name="TRAVEL_GROUP_NAME" Type="varchar" MaxLength="255" />
     <Property Name="TRAVEL_GROUP_CONTENT_DETAIL" Type="text" />
     <Property Name="TOUR_INFORMATION_ID" Type="int" Nullable="false" />
+    <Property Name="TRAVEL_GROUP_ISDELETE" Type="bit" />
   </EntityType>
   <EntityType Name="TRAVELLER">
     <Key>

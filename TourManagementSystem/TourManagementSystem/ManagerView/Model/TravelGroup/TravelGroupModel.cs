@@ -35,5 +35,11 @@ namespace TourManagementSystem.ManagerView.Model
 
         private DateTime _Tour_End = DateTime.Now;
         public DateTime Tour_End { get => _Tour_End; set { _Tour_End = value; OnPropertyChanged(); } }
+
+        private bool _IsDelete;
+        public bool IsDelete { get => _IsDelete; set { _IsDelete = value; OnPropertyChanged(); } }
+
+        private double _TourInformation_Price;
+        public double TourInformation_Price { get => _TourInformation_Price; set { _TourInformation_Price = value; OnPropertyChanged(); } }
     }
 }
