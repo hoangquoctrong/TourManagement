@@ -602,19 +602,21 @@ namespace TourManagementSystem.ManagerView.Model
         public static int GetTravellerNumberTour(int traveller_id)
         {
             var travellertourlist = from travellerdetail in DataProvider.Ins.DB.TRAVELLER_DETAIL
-                                    where travellerdetail.TRAVELLER_ID == traveller_id
+                                    where travellerdetail.TRAVELLER_ID == traveller_id && travellerdetail.TRAVEL_GROUP.TRAVEL_GROUP_ISDELETE == false
                                     select travellerdetail;
 
             return travellertourlist.Count();
         }
 
+
+        #region Get Detail
         public static ObservableCollection<TravelGroupModel> GetTravelGroupListWithTravellerID(int traveller_id)
         {
             ObservableCollection<TravelGroupModel> TravelGroupList = new ObservableCollection<TravelGroupModel>();
 
             var travelgroupList = from travel in DataProvider.Ins.DB.TRAVEL_GROUP
                                   join traveldetail in DataProvider.Ins.DB.TRAVELLER_DETAIL on travel.TRAVEL_GROUP_ID equals traveldetail.TRAVEL_GROUP_ID
-                                  where traveldetail.TRAVELLER_ID == traveller_id
+                                  where traveldetail.TRAVELLER_ID == traveller_id && travel.TRAVEL_GROUP_ISDELETE == false
                                   select travel;
 
             foreach (var item in travelgroupList)
@@ -639,5 +641,87 @@ namespace TourManagementSystem.ManagerView.Model
 
             return TravelGroupList;
         }
+
+        public static ObservableCollection<TourTransportDetailModel> GetTravelGroupListWithTransportID(int transport_id)
+        {
+            ObservableCollection<TourTransportDetailModel> TransportList = new ObservableCollection<TourTransportDetailModel>();
+
+            var tranportList = from travel in DataProvider.Ins.DB.TRAVEL_GROUP
+                               join tranportdetail in DataProvider.Ins.DB.TOUR_TRANSPORT_DETAIL on travel.TOUR_INFORMATION_ID equals tranportdetail.TOUR_INFORMATION_ID
+                               where tranportdetail.TOUR_TRANSPORT_ID == transport_id && travel.TRAVEL_GROUP_ISDELETE == false
+                               select new
+                               {
+                                   travel,
+                                   tranportdetail.TOUR_TRANSPORT_DETAIL_ID,
+                                   tranportdetail.TOUR_TRANSPORT_DETAIL_AMOUNT,
+                               };
+
+            foreach (var item in tranportList)
+            {
+                TourTransportDetailModel transport = new TourTransportDetailModel(item.TOUR_TRANSPORT_DETAIL_ID, item.travel.TOUR_INFORMATION.TOUR.TOUR_NAME,
+                                        item.travel.TRAVEL_GROUP_NAME, (int)item.TOUR_TRANSPORT_DETAIL_AMOUNT,
+                                        (DateTime)item.travel.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_DEPARTMENT_DATE,
+                                        (DateTime)item.travel.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_END_DATE);
+
+                TransportList.Add(transport);
+            }
+
+            return TransportList;
+        }
+
+        public static ObservableCollection<TourHotelDetailModel> GetTravelGroupListWithHotelID(int hotel_id)
+        {
+            ObservableCollection<TourHotelDetailModel> HotelList = new ObservableCollection<TourHotelDetailModel>();
+
+            var hotelList = from travel in DataProvider.Ins.DB.TRAVEL_GROUP
+                            join hoteldetail in DataProvider.Ins.DB.TOUR_HOTEL_DETAIL on travel.TOUR_INFORMATION_ID equals hoteldetail.TOUR_INFORMATION_ID
+                            where hoteldetail.TOUR_HOTEL_ID == hotel_id && travel.TRAVEL_GROUP_ISDELETE == false
+                            select new
+                            {
+                                travel,
+                                hoteldetail.TOUR_HOTEL_DETAIL_ID,
+                                hoteldetail.TOUR_HOTEL_DETAIL_DAY,
+                            };
+
+            foreach (var item in hotelList)
+            {
+                TourHotelDetailModel hotel = new TourHotelDetailModel(item.TOUR_HOTEL_DETAIL_ID, item.travel.TOUR_INFORMATION.TOUR.TOUR_NAME,
+                                        item.travel.TRAVEL_GROUP_NAME, (int)item.TOUR_HOTEL_DETAIL_DAY,
+                                        (DateTime)item.travel.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_DEPARTMENT_DATE,
+                                        (DateTime)item.travel.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_END_DATE);
+
+                HotelList.Add(hotel);
+            }
+
+            return HotelList;
+        }
+
+        public static ObservableCollection<TourMissionModel> GetTravelGroupListWithStaffID(int staff_id)
+        {
+            ObservableCollection<TourMissionModel> MissionList = new ObservableCollection<TourMissionModel>();
+
+            var missionList = from travel in DataProvider.Ins.DB.TRAVEL_GROUP
+                              join staffdetail in DataProvider.Ins.DB.TOUR_STAFF_DETAIL on travel.TOUR_INFORMATION_ID equals staffdetail.TOUR_MISSION.TOUR_INFORMATION_ID
+                              where staffdetail.TOUR_STAFF_ID == staff_id && travel.TRAVEL_GROUP_ISDELETE == false
+                              select new
+                              {
+                                  travel,
+                                  staffdetail
+                              };
+
+            foreach (var item in missionList)
+            {
+                TourMissionModel mission = new TourMissionModel(item.staffdetail.TOUR_STAFF_DETAIL_ID, item.travel.TOUR_INFORMATION.TOUR.TOUR_NAME,
+                                        item.travel.TRAVEL_GROUP_NAME, item.staffdetail.TOUR_MISSION.TOUR_MISSION_RESPONSIBILITY,
+                                        item.staffdetail.TOUR_MISSION.TOUR_MISSION_DESCRIPTION,
+                                        (DateTime)item.travel.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_DEPARTMENT_DATE,
+                                        (DateTime)item.travel.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_END_DATE);
+
+                MissionList.Add(mission);
+            }
+
+            return MissionList;
+        }
+        #endregion Get Detail
     }
 }

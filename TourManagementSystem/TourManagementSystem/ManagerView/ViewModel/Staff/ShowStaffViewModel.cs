@@ -104,7 +104,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             StaffSelected = staff;
             SetStaffInView(staff);
             LoadTourMissionComboBox();
-            ObservableCollection<TourMissionModel> tourmissionItems = TourDetailHandleModel.GetTourMissionList();
+            ObservableCollection<TourMissionModel> tourmissionItems = TravelGroupHandleModel.GetTravelGroupListWithStaffID(staff.STAFF_ID);
             TourMissionItemsCollection = new CollectionViewSource { Source = tourmissionItems };
             TourMissionItemsCollection.Filter += TourMissionItem_Filter;
         }

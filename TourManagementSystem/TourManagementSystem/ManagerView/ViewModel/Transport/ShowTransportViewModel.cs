@@ -104,7 +104,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TransportSelected = transport;
             SetTransportInView(transport);
             LoadTourTransportDetailComboBox();
-            ObservableCollection<TourTransportDetailModel> tourtransportdetailItems = TourDetailHandleModel.GetTourTransportDetailList();
+            ObservableCollection<TourTransportDetailModel> tourtransportdetailItems = TravelGroupHandleModel.GetTravelGroupListWithTransportID(transport.TRANSPORT_ID);
             TourTransportDetailItemsCollection = new CollectionViewSource { Source = tourtransportdetailItems };
             TourTransportDetailItemsCollection.Filter += TourTransportDetailItem_Filter;
         }

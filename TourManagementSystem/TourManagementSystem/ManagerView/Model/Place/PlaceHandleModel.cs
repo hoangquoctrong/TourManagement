@@ -398,9 +398,11 @@ namespace TourManagementSystem.ManagerView.Model
             {
                 TourLocationModel tourLocationModel = new TourLocationModel()
                 {
-                    LOCATION_ID = item.TOUR_LOCATION_ID,
+                    LOCATION_ID = item.TOUR_LOCATION_DETAILED_ID,
                     TOUR_ID = item.TOUR_INFORMATION.TOUR_ID,
                     TOUR_NAME = item.TOUR_INFORMATION.TOUR.TOUR_NAME,
+                    TOUR_DATE = (DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_DEPARTMENT_DATE,
+                    TOUR_STRING_DATE = ((DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_DEPARTMENT_DATE).ToString("dd/MM/yyyy")
                 };
 
                 TourLocationList.Add(tourLocationModel);

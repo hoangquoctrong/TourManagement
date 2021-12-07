@@ -56,5 +56,18 @@ namespace TourManagementSystem.ManagerView.Model
             this.TOUR_MISSION_STRING_STARTDATE = startdate;
             this.TOUR_MISSION_STRING_ENDDATE = enddate;
         }
+
+        public TourMissionModel(int ID, string tourname, string travelgroupname, string responsibility, string description, DateTime startdate, DateTime enddate)
+        {
+            this.TOUR_MISSION_ID = ID;
+            this.TOUR_MISSION_TOURNAME = tourname;
+            this.TOUR_MISSION_TRAVELGROUPNAME = travelgroupname;
+            this.TOUR_MISSION_DESCRIPTION = description;
+            this.TOUR_MISSION_RESPONSIBILITY = responsibility;
+            this.TOUR_MISSION_STARTDATE = startdate;
+            this.TOUR_MISSION_STRING_STARTDATE = startdate.ToString("dd/MM/yyyy");
+            this.TOUR_MISSION_ENDDATE = enddate;
+            this.TOUR_MISSION_STRING_ENDDATE = enddate.ToString("dd/MM/yyyy");
+        }
     }
 }

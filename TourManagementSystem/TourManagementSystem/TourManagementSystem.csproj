@@ -488,8 +488,8 @@
     <Compile Include="ManagerView\ViewModel\NavigationViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\Place\PlaceViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\Hotel\ShowHotelViewModel.cs" />
-    <Compile Include="ManagerView\ViewModel\Tour\ShowLocationViewModel.cs" />
-    <Compile Include="ManagerView\ViewModel\Tour\ShowPlaceViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Place\ShowLocationViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Place\ShowPlaceViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\Staff\ShowStaffViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\Tour\ShowTourInformationViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\Tour\ShowTourViewModel.cs" />

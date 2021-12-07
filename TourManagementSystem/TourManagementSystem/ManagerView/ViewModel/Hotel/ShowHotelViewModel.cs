@@ -81,7 +81,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             SetHotelInView(hotel);
             LoadPlaceCombobox(Place_ID);
             LoadTourHotelDetailComboBox();
-            ObservableCollection<TourHotelDetailModel> tourhoteldetailItems = TourDetailHandleModel.GetTourHotelDetailList();
+            ObservableCollection<TourHotelDetailModel> tourhoteldetailItems = TravelGroupHandleModel.GetTravelGroupListWithHotelID(hotel.HOTEL_ID);
             TourHotelDetailItemsCollection = new CollectionViewSource { Source = tourhoteldetailItems };
             TourHotelDetailItemsCollection.Filter += TourHotelDetailItem_Filter;
         }

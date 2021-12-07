@@ -580,6 +580,12 @@
                                         ElementStyle="{StaticResource WrapText}"
                                         Foreground="DarkSlateGray"
                                         Header="End Date" />
+                                    <DataGridTextColumn
+                                        Width="0.15*"
+                                        Binding="{Binding TRANSPORT_AMOUNT}"
+                                        ElementStyle="{StaticResource WrapText}"
+                                        Foreground="DarkSlateGray"
+                                        Header="Amount" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
