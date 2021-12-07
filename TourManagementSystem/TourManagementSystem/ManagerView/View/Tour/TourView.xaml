@@ -1,0 +1,213 @@
+﻿<UserControl
+    x:Class="TourManagementSystem.ManagerView.View.TourView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TourManagementSystem.ManagerView.View"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="1190"
+    Height="620"
+    mc:Ignorable="d">
+    <UserControl.Style>
+        <Style>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="UserControl.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="Opacity"
+                                From="0.0"
+                                To="1.0"
+                                Duration="0:0:0.5" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+
+    <UserControl.Resources>
+        <Style x:Key="WrapText" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="BorderThickness" Value="0.5" />
+            <Setter Property="BorderBrush" Value="#D6D6D6" />
+            <Setter Property="Background" Value="#FFFFFF" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="{x:Type DataGridCell}">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="#d6d6d6" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FDF8EA" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <ContentControl x:Name="contentControlMain">
+        <Grid Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Border
+                    Grid.Column="0"
+                    Margin="40,5,19.6,4.6"
+                    Background="#FAFAFA"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    CornerRadius="10">
+
+                    <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                            Width="25"
+                            Height="30"
+                            Margin="0,0,0,0"
+                            VerticalAlignment="Center"
+                            Foreground="DimGray"
+                            Kind="Search" />
+                        <TextBox
+                            Width="300"
+                            Height="40"
+                            Margin="10,2,0,0"
+                            materialDesign:HintAssist.Hint="Search"
+                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                            BorderBrush="Transparent"
+                            FontSize="18"
+                            Style="{StaticResource MaterialDesignTextBoxBase}">
+                            <TextBox.Text>
+                                <Binding Path="FilterText" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules />
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel
+                    Grid.Column="1"
+                    Margin="0.4,0,27.4,-0.4"
+                    Orientation="Horizontal">
+                    <ComboBox
+                        Name="cbSearch"
+                        Width="140"
+                        Margin="10"
+                        DisplayMemberPath="CB_Name"
+                        FontSize="18"
+                        Foreground="DimGray"
+                        ItemsSource="{Binding CB_TourList, Mode=TwoWay}"
+                        SelectedValue="{Binding CB_TourSelected}">
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="ComboBoxItem">
+                                <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+                    </ComboBox>
+                </StackPanel>
+
+                <Button
+                    Grid.Column="2"
+                    Width="150"
+                    Margin="240,10,20,9.6"
+                    HorizontalAlignment="Right"
+                    Command="{Binding AddTourCommand}"
+                    CommandParameter="{Binding ElementName=contentControlMain}"
+                    Content="Add New Tour"
+                    Foreground="#0f6f68"
+                    Style="{StaticResource AddButton}" />
+
+                <Button
+                    Grid.Column="3"
+                    Width="150"
+                    Margin="0,10,40.4,9.6"
+                    HorizontalAlignment="Right"
+                    Command="{Binding StatisticTourCommand}"
+                    CommandParameter="{Binding ElementName=contentControlMain}"
+                    Content="Statistic"
+                    Foreground="#EB7B47"
+                    Style="{StaticResource StatisticButton}" />
+
+            </Grid>
+
+            <DataGrid
+                Grid.Row="1"
+                Width="1150"
+                Height="540"
+                VerticalAlignment="Top"
+                materialDesign:DataGridAssist.CellPadding="12 8 0 8"
+                materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
+                AllowDrop="True"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                CanUserReorderColumns="False"
+                CanUserSortColumns="True"
+                GridLinesVisibility="Vertical"
+                IsReadOnly="True"
+                ItemsSource="{Binding TourItems}"
+                SelectedItem="{Binding TourSelected}"
+                SelectionMode="Single"
+                VerticalScrollBarVisibility="Visible">
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding TOUR_IS_EXIST}" Value="Yes">
+                                <Setter Property="Background" Value="White" />
+                                <Setter Property="Foreground" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding TOUR_IS_EXIST}" Value="No">
+                                <Setter Property="Background" Value="White" />
+                                <Setter Property="Foreground" Value="DarkSlateGray" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.InputBindings>
+                    <MouseBinding
+                        Command="{Binding ShowDetailTourCommand}"
+                        CommandParameter="{Binding ElementName=contentControlMain}"
+                        Gesture="LeftDoubleClick" />
+                </DataGrid.InputBindings>
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="0.1*"
+                        Binding="{Binding TOUR_ID}"
+                        ElementStyle="{StaticResource WrapText}"
+                        Header="ID" />
+                    <DataGridTextColumn
+                        Width="0.25*"
+                        Binding="{Binding TOUR_NAME}"
+                        ElementStyle="{StaticResource WrapText}"
+                        Header="Name" />
+                    <DataGridTextColumn
+                        Width="0.15*"
+                        Binding="{Binding TOUR_TYPE}"
+                        ElementStyle="{StaticResource WrapText}"
+                        Header="Type" />
+                    <DataGridTextColumn
+                        Width="0.15*"
+                        Binding="{Binding TOUR_STAR}"
+                        ElementStyle="{StaticResource WrapText}"
+                        Header="Star" />
+                    <DataGridTextColumn
+                        Width="0.5*"
+                        Binding="{Binding TOUR_CHARACTERISTIS}"
+                        ElementStyle="{StaticResource WrapText}"
+                        Header="Characteristic" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </ContentControl>
+</UserControl>

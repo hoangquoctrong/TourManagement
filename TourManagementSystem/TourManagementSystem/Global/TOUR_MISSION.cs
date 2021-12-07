@@ -14,13 +14,21 @@ namespace TourManagementSystem.Global
     
     public partial class TOUR_MISSION
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TOUR_MISSION()
+        {
+            this.TOUR_STAFF_DETAIL = new HashSet<TOUR_STAFF_DETAIL>();
+        }
+    
         public int TOUR_MISSION_ID { get; set; }
         public string TOUR_MISSION_DESCRIPTION { get; set; }
         public string TOUR_MISSION_RESPONSIBILITY { get; set; }
         public int TOUR_INFORMATION_ID { get; set; }
-        public int TOUR_STAFF_ID { get; set; }
+        public Nullable<double> TOUR_MISSION_PRICE { get; set; }
+        public Nullable<int> TOUR_MISSION_COUNT { get; set; }
     
         public virtual TOUR_INFORMATION TOUR_INFORMATION { get; set; }
-        public virtual TOUR_STAFF TOUR_STAFF { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TOUR_STAFF_DETAIL> TOUR_STAFF_DETAIL { get; set; }
     }
 }

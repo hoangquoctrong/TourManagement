@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\App.xaml
-241061227953
+431964680017
 2-299886435
-78-340169594
-24302471790
-Global\MainWindow.xaml;Managers\ManagerView.xaml;Managers\View\AddHotelUC.xaml;Managers\View\AddLocationUC.xaml;Managers\View\AddPlaceUC.xaml;Managers\View\AddPriceUC.xaml;Managers\View\AddStaffUC.xaml;Managers\View\AddTimeUC.xaml;Managers\View\AddTourInformationUC.xaml;Managers\View\AddTourUC.xaml;Managers\View\AddTransportUC.xaml;Managers\View\DisplayHotelUC.xaml;Managers\View\DisplayLocationUC.xaml;Managers\View\DisplayPlaceUC.xaml;Managers\View\DisplayStaffUC.xaml;Managers\View\DisplayTourInformationUC.xaml;Managers\View\DisplayTourUC.xaml;Managers\View\DisplayTransportUC.xaml;Managers\View\HotelUC.xaml;Managers\View\PlaceUC.xaml;Managers\View\StaffUC.xaml;Managers\View\TourUC.xaml;Managers\View\TransportUC.xaml;Managers\View\TravelGroupUC.xaml;
+167219849208
+29780461790
+EmployeeView\DataTemplateEmployee.xaml;EmployeeView\View\EAccountView.xaml;EmployeeView\View\EDashboardView.xaml;EmployeeView\View\EmployeeWindow.xaml;EmployeeView\View\ETourView.xaml;EmployeeView\View\ETravelGroupView.xaml;Global\View\ForgetPasswordWindow.xaml;Global\View\LoginWindow.xaml;Global\View\MessageWindow.xaml;ManagerView\DataTemplate.xaml;ManagerView\View\InformationView.xaml;ManagerView\View\Traveller\AddTravellerView.xaml;ManagerView\View\Others\AccountView.xaml;ManagerView\View\Hotel\AddHotelView.xaml;ManagerView\View\Place\AddLocationView.xaml;ManagerView\View\Place\AddPlaceView.xaml;ManagerView\View\Traveller\ShowTravellerView.xaml;ManagerView\View\Staff\AddStaffView.xaml;ManagerView\View\Tour\AddTourInformationView.xaml;ManagerView\View\Tour\AddTourView.xaml;ManagerView\View\Transport\AddTransportView.xaml;ManagerView\View\TravelGroup\AddTravelGroupView.xaml;ManagerView\View\Others\DashboardView.xaml;ManagerView\View\Hotel\HotelView.xaml;ManagerView\View\ManagerWindow.xaml;ManagerView\View\Place\PlaceView.xaml;ManagerView\View\Hotel\ShowHotelView.xaml;ManagerView\View\Place\ShowLocationView.xaml;ManagerView\View\Place\ShowPlaceView.xaml;ManagerView\View\Staff\ShowStaffView.xaml;ManagerView\View\Tour\ShowTourInformationView.xaml;ManagerView\View\Tour\ShowTourView.xaml;ManagerView\View\Transport\ShowTransportView.xaml;ManagerView\View\TravelGroup\ShowTravelGroupView.xaml;ManagerView\View\Staff\StaffView.xaml;ManagerView\View\Staff\StatisticStaffView.xaml;ManagerView\View\Tour\StatisticTourView.xaml;ManagerView\View\Tour\TourView.xaml;ManagerView\View\Transport\TransportView.xaml;ManagerView\View\TravelGroup\TravelGroupView.xaml;ManagerView\View\Traveller\TravellerView.xaml;Style.xaml;TempItem.xaml;
 
 False
 

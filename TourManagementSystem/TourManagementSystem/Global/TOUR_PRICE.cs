@@ -14,20 +14,14 @@ namespace TourManagementSystem.Global
     
     public partial class TOUR_PRICE
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TOUR_PRICE()
-        {
-            this.TOUR_INFORMATION = new HashSet<TOUR_INFORMATION>();
-        }
-    
         public int TOUR_PRICE_ID { get; set; }
         public Nullable<double> TOUR_PRICE_COST_TOTAL { get; set; }
         public Nullable<double> TOUR_PRICE_COST_HOTEL { get; set; }
         public Nullable<double> TOUR_PRICE_COST_TRANSPORT { get; set; }
         public Nullable<double> TOUR_PRICE_COST_SERVICE { get; set; }
         public string TOUR_PRICE_NOTE { get; set; }
+        public int TOUR_INFORMATION_ID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TOUR_INFORMATION> TOUR_INFORMATION { get; set; }
+        public virtual TOUR_INFORMATION TOUR_INFORMATION { get; set; }
     }
 }

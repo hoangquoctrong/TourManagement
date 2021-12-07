@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -40,17 +41,26 @@
     <ApplicationIcon>Resources\Images\logo_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Caliburn.Micro.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Core.4.0.173\lib\netstandard2.0\Caliburn.Micro.Core.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignColors, Version=2.0.3.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesignColors.2.0.3\lib\net452\MaterialDesignColors.dll</HintPath>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignThemes.Wpf, Version=4.2.1.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesignThemes.4.2.1\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=2.0.4.3, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.2.0.4\lib\net452\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.3.0.3, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.4.3.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
@@ -60,6 +70,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -83,13 +98,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EmployeeView\Model\DatabaseHandleModel.cs" />
+    <Compile Include="EmployeeView\ViewModel\EAccountViewModel.cs" />
+    <Compile Include="EmployeeView\ViewModel\EDashboardViewModel.cs" />
+    <Compile Include="EmployeeView\ViewModel\ENavigationViewModel.cs" />
+    <Compile Include="EmployeeView\ViewModel\ETourViewModel.cs" />
+    <Compile Include="EmployeeView\ViewModel\ETravelGroupViewModel.cs" />
+    <Compile Include="EmployeeView\View\EAccountView.xaml.cs">
+      <DependentUpon>EAccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeView\View\EDashboardView.xaml.cs">
+      <DependentUpon>EDashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeView\View\EmployeeWindow.xaml.cs">
+      <DependentUpon>EmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeView\View\ETourView.xaml.cs">
+      <DependentUpon>ETourView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeView\View\ETravelGroupView.xaml.cs">
+      <DependentUpon>ETravelGroupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Global\Model\CheckBoxModel.cs" />
     <Compile Include="Global\Model\ComboBoxModel.cs" />
+    <Compile Include="Global\Model\DataProvider.cs" />
+    <Compile Include="Global\Model\ForgetPasswordHandleModel.cs" />
     <Compile Include="Global\Model\GlobalFunction.cs" />
+    <Compile Include="Global\Model\LoginHandleModel.cs" />
+    <Compile Include="Global\Model\MainModel.cs" />
     <Compile Include="Global\PLACE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Global\sysdiagram.cs">
+    <Compile Include="Global\sysdiagrams.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global\TOUR.cs">
@@ -119,16 +159,19 @@
     <Compile Include="Global\TOUR_HOTEL.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Global\TOUR_HOTEL_DELETE.cs">
+    <Compile Include="Global\TOUR_HOTEL_DETAIL.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Global\TOUR_HOTEL_DETAIL.cs">
+    <Compile Include="Global\TOUR_IMAGE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global\TOUR_INFORMATION.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global\TOUR_LOCATION.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global\TOUR_LOCATION_DETAILED.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global\TOUR_MISSION.cs">
@@ -152,13 +195,13 @@
     <Compile Include="Global\TOUR_STAFF_DELETE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Global\TOUR_STAFF_DETAIL.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global\TOUR_TIME.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global\TOUR_TRANSPORT.cs">
-      <DependentUpon>TourDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Global\TOUR_TRANSPORT_DELETE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global\TOUR_TRANSPORT_DETAIL.cs">
@@ -179,198 +222,368 @@
     <Compile Include="Global\TRAVEL_GROUP.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Managers\ManagerView.xaml.cs">
-      <DependentUpon>ManagerView.xaml</DependentUpon>
+    <Compile Include="Global\ViewModel\ForgetPasswordViewModel.cs" />
+    <Compile Include="Global\ViewModel\LoginViewModel.cs" />
+    <Compile Include="Global\View\ForgetPasswordWindow.xaml.cs">
+      <DependentUpon>ForgetPasswordWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Managers\Model\HotelModel.cs" />
-    <Compile Include="Managers\Model\LocationModel.cs" />
-    <Compile Include="Managers\Model\PlaceModel.cs" />
-    <Compile Include="Managers\Model\SideBarModel.cs" />
-    <Compile Include="Managers\Model\StaffModel.cs" />
-    <Compile Include="Managers\Model\TourInformationModel.cs" />
-    <Compile Include="Managers\Model\TourModel.cs" />
-    <Compile Include="Managers\Model\TourPriceModel.cs" />
-    <Compile Include="Managers\Model\TourScheduleModel.cs" />
-    <Compile Include="Managers\Model\TourTimeModel.cs" />
-    <Compile Include="Managers\Model\TransportModel.cs" />
-    <Compile Include="Managers\ViewModel\HotelViewModel.cs" />
-    <Compile Include="Managers\ViewModel\PlaceViewModel.cs" />
-    <Compile Include="Managers\ViewModel\StaffViewModel.cs" />
-    <Compile Include="Managers\ViewModel\TourViewModel.cs" />
-    <Compile Include="Managers\ViewModel\TransportViewModel.cs" />
-    <Compile Include="Managers\View\AddHotelUC.xaml.cs">
-      <DependentUpon>AddHotelUC.xaml</DependentUpon>
+    <Compile Include="Global\View\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Managers\View\AddLocationUC.xaml.cs">
-      <DependentUpon>AddLocationUC.xaml</DependentUpon>
+    <Compile Include="Global\View\MessageWindow.xaml.cs">
+      <DependentUpon>MessageWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Managers\View\AddPlaceUC.xaml.cs">
-      <DependentUpon>AddPlaceUC.xaml</DependentUpon>
+    <Compile Include="ManagerView\Model\ComboBox\ComboBoxInformationModel.cs" />
+    <Compile Include="ManagerView\Model\ComboBox\ComboBoxStaffModel.cs" />
+    <Compile Include="ManagerView\Model\ComboBox\ComboBoxTourModel.cs" />
+    <Compile Include="ManagerView\Model\ComboBox\ComboBoxTravellerModel.cs" />
+    <Compile Include="ManagerView\Model\ComboBox\ComboBoxMissionModel.cs" />
+    <Compile Include="ManagerView\Model\Staff\StaffStatisticModel.cs" />
+    <Compile Include="ManagerView\Model\Staff\MissionHandleModel.cs" />
+    <Compile Include="ManagerView\Model\Staff\MissionModel.cs" />
+    <Compile Include="ManagerView\Model\Record\RecordHandleModel.cs" />
+    <Compile Include="ManagerView\Model\Record\RecordModel.cs" />
+    <Compile Include="ManagerView\Model\Staff\StaffDetailModel.cs" />
+    <Compile Include="ManagerView\Model\Tour\TourDetailStatisticModel.cs" />
+    <Compile Include="ManagerView\Model\Tour\TourStatisticModel.cs" />
+    <Compile Include="ManagerView\Model\TravelGroup\TravelCostModel.cs" />
+    <Compile Include="ManagerView\Model\TravelGroup\TravelGroupHandleModel.cs" />
+    <Compile Include="ManagerView\Model\TravelGroup\TravelGroupModel.cs" />
+    <Compile Include="ManagerView\Model\TravelGroup\TravellerDetailModel.cs" />
+    <Compile Include="ManagerView\Model\TravelGroup\TravellerModel.cs" />
+    <Compile Include="ManagerView\ViewModel\InformationViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Traveller\AddTravellerViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Traveller\ShowTravellerViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\TravelGroup\AddTravelGroupViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\TravelGroup\ShowTravelGroupViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Traveller\TravellerViewModel.cs" />
+    <Compile Include="ManagerView\View\InformationView.xaml.cs">
+      <DependentUpon>InformationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Managers\View\AddPriceUC.xaml.cs">
-      <DependentUpon>AddPriceUC.xaml</DependentUpon>
+    <Compile Include="ManagerView\View\Traveller\AddTravellerView.xaml.cs">
+      <DependentUpon>AddTravellerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Managers\View\AddStaffUC.xaml.cs">
-      <DependentUpon>AddStaffUC.xaml</DependentUpon>
+    <Compile Include="ManagerView\View\Traveller\ShowTravellerView.xaml.cs">
+      <DependentUpon>ShowTravellerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Managers\View\AddTimeUC.xaml.cs">
-      <DependentUpon>AddTimeUC.xaml</DependentUpon>
+    <Compile Include="ManagerView\View\TravelGroup\AddTravelGroupView.xaml.cs">
+      <DependentUpon>AddTravelGroupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Managers\View\AddTourInformationUC.xaml.cs">
-      <DependentUpon>AddTourInformationUC.xaml</DependentUpon>
+    <Compile Include="ManagerView\View\TravelGroup\ShowTravelGroupView.xaml.cs">
+      <DependentUpon>ShowTravelGroupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Managers\View\AddTourUC.xaml.cs">
-      <DependentUpon>AddTourUC.xaml</DependentUpon>
+    <Compile Include="ManagerView\View\Traveller\TravellerView.xaml.cs">
+      <DependentUpon>TravellerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Managers\View\AddTransportUC.xaml.cs">
-      <DependentUpon>AddTransportUC.xaml</DependentUpon>
+    <Compile Include="TempItem.xaml.cs">
+      <DependentUpon>TempItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Managers\View\DisplayHotelUC.xaml.cs">
-      <DependentUpon>DisplayHotelUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Managers\View\DisplayLocationUC.xaml.cs">
-      <DependentUpon>DisplayLocationUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Managers\View\DisplayPlaceUC.xaml.cs">
-      <DependentUpon>DisplayPlaceUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Managers\View\DisplayStaffUC.xaml.cs">
-      <DependentUpon>DisplayStaffUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Managers\View\DisplayTourInformationUC.xaml.cs">
-      <DependentUpon>DisplayTourInformationUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Managers\View\DisplayTourUC.xaml.cs">
-      <DependentUpon>DisplayTourUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Managers\View\DisplayTransportUC.xaml.cs">
-      <DependentUpon>DisplayTransportUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Managers\View\HotelUC.xaml.cs">
-      <DependentUpon>HotelUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Managers\View\PlaceUC.xaml.cs">
-      <DependentUpon>PlaceUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Managers\View\StaffUC.xaml.cs">
-      <DependentUpon>StaffUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Managers\View\TourUC.xaml.cs">
-      <DependentUpon>TourUC.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Global\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="EmployeeView\DataTemplateEmployee.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeView\View\EAccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeView\View\EDashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeView\View\EmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeView\View\ETourView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeView\View\ETravelGroupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Global\ViewModel\BaseViewModel.cs" />
-    <Compile Include="Managers\ViewModel\InterfaceViewModel.cs" />
-    <Compile Include="Global\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Managers\ManagerView.xaml">
+    <Page Include="Global\View\ForgetPasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\AddHotelUC.xaml">
+    <Page Include="Global\View\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\AddLocationUC.xaml">
+    <Page Include="Global\View\MessageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\AddPlaceUC.xaml">
+    <Page Include="ManagerView\DataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\AddPriceUC.xaml">
+    <Page Include="ManagerView\View\InformationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\AddStaffUC.xaml">
+    <Page Include="ManagerView\View\Traveller\AddTravellerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\AddTimeUC.xaml">
+    <Page Include="ManagerView\View\Others\AccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\AddTourInformationUC.xaml">
+    <Page Include="ManagerView\View\Hotel\AddHotelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\AddTourUC.xaml">
+    <Page Include="ManagerView\View\Place\AddLocationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\AddTransportUC.xaml">
+    <Page Include="ManagerView\View\Place\AddPlaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\DisplayHotelUC.xaml">
+    <Page Include="ManagerView\View\Traveller\ShowTravellerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\DisplayLocationUC.xaml">
+    <Page Include="ManagerView\View\Staff\AddStaffView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\DisplayPlaceUC.xaml">
+    <Page Include="ManagerView\View\Tour\AddTourInformationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\DisplayStaffUC.xaml">
+    <Page Include="ManagerView\View\Tour\AddTourView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\DisplayTourInformationUC.xaml">
+    <Page Include="ManagerView\View\Transport\AddTransportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\DisplayTourUC.xaml">
+    <Page Include="ManagerView\View\TravelGroup\AddTravelGroupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\DisplayTransportUC.xaml">
+    <Page Include="ManagerView\View\Others\DashboardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\HotelUC.xaml">
+    <Page Include="ManagerView\View\Hotel\HotelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\PlaceUC.xaml">
+    <Page Include="ManagerView\View\ManagerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\StaffUC.xaml">
+    <Page Include="ManagerView\View\Place\PlaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\TourUC.xaml">
+    <Page Include="ManagerView\View\Hotel\ShowHotelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\TransportUC.xaml">
+    <Page Include="ManagerView\View\Place\ShowLocationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Managers\View\TravelGroupUC.xaml">
+    <Page Include="ManagerView\View\Place\ShowPlaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\Staff\ShowStaffView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\Tour\ShowTourInformationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\Tour\ShowTourView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\Transport\ShowTransportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\TravelGroup\ShowTravelGroupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\Staff\StaffView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\Staff\StatisticStaffView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\Tour\StatisticTourView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\Tour\TourView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\Transport\TransportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\TravelGroup\TravelGroupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\Traveller\TravellerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TempItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Managers\View\TransportUC.xaml.cs">
-      <DependentUpon>TransportUC.xaml</DependentUpon>
+    <Compile Include="ManagerView\Model\CheckBox\CheckBoxHotelModel.cs" />
+    <Compile Include="ManagerView\Model\CheckBox\CheckBoxTransportModel.cs" />
+    <Compile Include="ManagerView\Model\Hotel\HotelDetailModel.cs" />
+    <Compile Include="ManagerView\Model\Hotel\HotelHandleModel.cs" />
+    <Compile Include="ManagerView\Model\Hotel\HotelModel.cs" />
+    <Compile Include="ManagerView\Model\Place\LocationDetailModel.cs" />
+    <Compile Include="ManagerView\Model\Place\LocationModel.cs" />
+    <Compile Include="ManagerView\Model\Place\PlaceDetailModel.cs" />
+    <Compile Include="ManagerView\Model\Place\PlaceHandleModel.cs" />
+    <Compile Include="ManagerView\Model\Place\PlaceModel.cs" />
+    <Compile Include="ManagerView\Model\Staff\StaffHandleModel.cs" />
+    <Compile Include="ManagerView\Model\Staff\StaffModel.cs" />
+    <Compile Include="ManagerView\Model\Tour\TourDetailHandleModel.cs" />
+    <Compile Include="ManagerView\Model\Tour\TourHandleModel.cs" />
+    <Compile Include="ManagerView\Model\Hotel\TourHotelDetailModel.cs" />
+    <Compile Include="ManagerView\Model\Tour\TourImageModel.cs" />
+    <Compile Include="ManagerView\Model\Information\TourInformationHandleModel.cs" />
+    <Compile Include="ManagerView\Model\Information\TourInformationModel.cs" />
+    <Compile Include="ManagerView\Model\Place\TourLocationModel.cs" />
+    <Compile Include="ManagerView\Model\Staff\TourMissionModel.cs" />
+    <Compile Include="ManagerView\Model\Tour\TourModel.cs" />
+    <Compile Include="ManagerView\Model\Information\TourPriceModel.cs" />
+    <Compile Include="ManagerView\Model\Information\TourScheduleModel.cs" />
+    <Compile Include="ManagerView\Model\Information\TourTimeModel.cs" />
+    <Compile Include="ManagerView\Model\Transport\TourTransportDetailModel.cs" />
+    <Compile Include="ManagerView\Model\Transport\TransportDetailModel.cs" />
+    <Compile Include="ManagerView\Model\Transport\TransportHandleModel.cs" />
+    <Compile Include="ManagerView\Model\Transport\TransportModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Other\AccountViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Hotel\AddHotelViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Place\AddLocationViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Place\AddPlaceViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Staff\AddStaffViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Tour\AddTourInformationViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Tour\AddTourViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Transport\AddTransportViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Other\DashboardViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Hotel\HotelViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\NavigationViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Place\PlaceViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Hotel\ShowHotelViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Place\ShowLocationViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Place\ShowPlaceViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Staff\ShowStaffViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Tour\ShowTourInformationViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Tour\ShowTourViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Transport\ShowTransportViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Staff\StaffViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Staff\StatisticStaffViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Tour\StatisticTourViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Tour\TourViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Transport\TransportViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\TravelGroup\TravelGroupViewModel.cs" />
+    <Compile Include="ManagerView\View\Others\AccountView.xaml.cs">
+      <DependentUpon>AccountView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Managers\View\TravelGroupUC.xaml.cs">
-      <DependentUpon>TravelGroupUC.xaml</DependentUpon>
+    <Compile Include="ManagerView\View\Hotel\AddHotelView.xaml.cs">
+      <DependentUpon>AddHotelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Place\AddLocationView.xaml.cs">
+      <DependentUpon>AddLocationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Place\AddPlaceView.xaml.cs">
+      <DependentUpon>AddPlaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Staff\AddStaffView.xaml.cs">
+      <DependentUpon>AddStaffView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Tour\AddTourInformationView.xaml.cs">
+      <DependentUpon>AddTourInformationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Tour\AddTourView.xaml.cs">
+      <DependentUpon>AddTourView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Transport\AddTransportView.xaml.cs">
+      <DependentUpon>AddTransportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Others\DashboardView.xaml.cs">
+      <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Hotel\HotelView.xaml.cs">
+      <DependentUpon>HotelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\ManagerWindow.xaml.cs">
+      <DependentUpon>ManagerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Place\PlaceView.xaml.cs">
+      <DependentUpon>PlaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Hotel\ShowHotelView.xaml.cs">
+      <DependentUpon>ShowHotelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Place\ShowLocationView.xaml.cs">
+      <DependentUpon>ShowLocationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Place\ShowPlaceView.xaml.cs">
+      <DependentUpon>ShowPlaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Staff\ShowStaffView.xaml.cs">
+      <DependentUpon>ShowStaffView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Tour\ShowTourInformationView.xaml.cs">
+      <DependentUpon>ShowTourInformationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Tour\ShowTourView.xaml.cs">
+      <DependentUpon>ShowTourView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Transport\ShowTransportView.xaml.cs">
+      <DependentUpon>ShowTransportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Staff\StaffView.xaml.cs">
+      <DependentUpon>StaffView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Staff\StatisticStaffView.xaml.cs">
+      <DependentUpon>StatisticStaffView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Tour\StatisticTourView.xaml.cs">
+      <DependentUpon>StatisticTourView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Tour\TourView.xaml.cs">
+      <DependentUpon>TourView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Transport\TransportView.xaml.cs">
+      <DependentUpon>TransportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\TravelGroup\TravelGroupView.xaml.cs">
+      <DependentUpon>TravelGroupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -389,6 +602,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\Cairo-SemiBold.ttf" />
+    <Resource Include="Fonts\OpenSans-Regular.ttf" />
+    <Resource Include="Fonts\Roboto-Regular.ttf" />
     <EntityDeploy Include="Global\TourDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TourDB.Designer.cs</LastGenOutput>
@@ -409,11 +625,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Employees\ViewModel\" />
-    <Folder Include="Employees\View\" />
-    <Folder Include="Global\View\" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\logo_icon.ico" />
     <Resource Include="Resources\Images\logo.jpg" />
     <Resource Include="Resources\Images\User.png" />
@@ -426,6 +637,23 @@
     <Resource Include="Resources\Images\Tour.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\account.png" />
+    <Resource Include="Assets\home.png" />
+    <Resource Include="Assets\hotel.png" />
+    <Resource Include="Assets\place.png" />
+    <Resource Include="Assets\staff.png" />
+    <Resource Include="Assets\tour.png" />
+    <Resource Include="Assets\transport.png" />
+    <Resource Include="Assets\travelgroup.png" />
+    <Resource Include="Assets\close_icon.png" />
+    <Resource Include="Assets\close_mo_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\customer.png" />
+    <Resource Include="Assets\feedback.png" />
     <Content Include="Global\TourDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TourDB.edmx</DependentUpon>
@@ -438,11 +666,14 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets')" />
 </Project>

@@ -1,0 +1,138 @@
+﻿<UserControl
+    x:Class="TourManagementSystem.ManagerView.View.AddPlaceView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TourManagementSystem.ManagerView.View"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="1190"
+    Height="620"
+    mc:Ignorable="d">
+    <UserControl.Style>
+        <Style>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="UserControl.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="Opacity"
+                                From="0.0"
+                                To="1.0"
+                                Duration="0:0:0.5" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+    <ContentControl x:Name="contentControlAdd" Height="auto">
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid
+                Grid.Row="0"
+                Height="60"
+                Background="#0f6f68">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="24"
+                    Foreground="White"
+                    Text="A D D    N E W    P L A C E " />
+            </Grid>
+
+            <StackPanel
+                Grid.Row="1"
+                Width="500"
+                Margin="40"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+                <StackPanel Margin="20,30,0,30" Orientation="Horizontal">
+
+                    <materialDesign:PackIcon
+                        Width="30"
+                        Height="30"
+                        VerticalAlignment="Center"
+                        Foreground="DimGray"
+                        Kind="PlaceOutline" />
+
+                    <TextBox
+                        Width="360"
+                        Margin="8,0,0,0"
+                        materialDesign:HintAssist.HelperText="Place Name like Province of Nation"
+                        materialDesign:HintAssist.HelperTextFontSize="18"
+                        materialDesign:HintAssist.Hint="Name"
+                        FontSize="24">
+                        <TextBox.Text>
+                            <Binding
+                                Mode="TwoWay"
+                                Path="Place_Name"
+                                UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules />
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
+                </StackPanel>
+
+                <StackPanel Margin="20,30,0,30" Orientation="Horizontal">
+
+                    <materialDesign:PackIcon
+                        Width="30"
+                        Height="30"
+                        VerticalAlignment="Center"
+                        Foreground="DimGray"
+                        Kind="Earth" />
+
+                    <TextBox
+                        Width="360"
+                        Margin="8,0,0,0"
+                        materialDesign:HintAssist.HelperText="The name of the country"
+                        materialDesign:HintAssist.HelperTextFontSize="18"
+                        materialDesign:HintAssist.Hint="Nation"
+                        FontSize="24">
+                        <TextBox.Text>
+                            <Binding
+                                Mode="TwoWay"
+                                Path="Place_Nation"
+                                UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules />
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+
+                <Button
+                    Width="200"
+                    Height="60"
+                    Margin="340,14,20,2"
+                    Command="{Binding AddPlaceCommand}"
+                    CommandParameter="{Binding ElementName=contentControlAdd}"
+                    Content="Confirm"
+                    Foreground="#1885F2"
+                    Style="{StaticResource ResourceKey=ConfirmButton}" />
+
+                <Button
+                    Width="200"
+                    Height="60"
+                    Margin="20,14,20,2"
+                    Command="{Binding CancelCommand}"
+                    CommandParameter="{Binding ElementName=contentControlAdd}"
+                    Content="Cancel"
+                    Foreground="#F36E6B"
+                    Style="{StaticResource ResourceKey=CancelButton}" />
+            </StackPanel>
+        </Grid>
+    </ContentControl>
+</UserControl>

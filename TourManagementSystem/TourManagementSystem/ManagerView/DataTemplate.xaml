@@ -1,0 +1,130 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:view="clr-namespace:TourManagementSystem.ManagerView.View"
+    xmlns:viewmodel="clr-namespace:TourManagementSystem.ManagerView.ViewModel">
+
+    <DataTemplate DataType="{x:Type viewmodel:NavigationViewModel}">
+        <view:ManagerWindow />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:DashboardViewModel}">
+        <view:DashboardView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:TourViewModel}">
+        <view:TourView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:TravelGroupViewModel}">
+        <view:TravelGroupView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:PlaceViewModel}">
+        <view:PlaceView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:StaffViewModel}">
+        <view:StaffView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:TransportViewModel}">
+        <view:TransportView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:HotelViewModel}">
+        <view:HotelView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AccountViewModel}">
+        <view:AccountView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AddStaffViewModel}">
+        <view:AddStaffView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowStaffViewModel}">
+        <view:ShowStaffView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:StatisticStaffViewModel}">
+        <view:StatisticStaffView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AddHotelViewModel}">
+        <view:AddHotelView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowHotelViewModel}">
+        <view:ShowHotelView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AddTransportViewModel}">
+        <view:AddTransportView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowTransportViewModel}">
+        <view:ShowTransportView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AddPlaceViewModel}">
+        <view:AddPlaceView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowPlaceViewModel}">
+        <view:ShowPlaceView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AddLocationViewModel}">
+        <view:AddLocationView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowLocationViewModel}">
+        <view:ShowLocationView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AddTourViewModel}">
+        <view:AddTourView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowTourViewModel}">
+        <view:ShowTourView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:StatisticTourViewModel}">
+        <view:StatisticTourView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AddTourInformationViewModel}">
+        <view:AddTourInformationView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowTourInformationViewModel}">
+        <view:ShowTourInformationView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AddTravelGroupViewModel}">
+        <view:AddTravelGroupView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowTravelGroupViewModel}">
+        <view:ShowTravelGroupView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:TravellerViewModel}">
+        <view:TravellerView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:AddTravellerViewModel}">
+        <view:AddTravellerView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:ShowTravellerViewModel}">
+        <view:ShowTravellerView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:InformationViewModel}">
+        <view:InformationView />
+    </DataTemplate>
+</ResourceDictionary>

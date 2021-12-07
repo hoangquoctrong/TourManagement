@@ -1,0 +1,197 @@
+﻿<UserControl
+    x:Class="TourManagementSystem.ManagerView.View.StatisticTourView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TourManagementSystem.ManagerView.View"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="1190"
+    Height="620"
+    mc:Ignorable="d">
+    <UserControl.Style>
+        <Style>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="UserControl.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="Opacity"
+                                From="0.0"
+                                To="1.0"
+                                Duration="0:0:0.5" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+    <UserControl.Resources>
+        <Style x:Key="WrapText" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="BorderThickness" Value="0.5" />
+            <Setter Property="BorderBrush" Value="#D6D6D6" />
+            <Setter Property="Background" Value="#FFFFFF" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="{x:Type DataGridCell}">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="#d6d6d6" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FDF8EA" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <ContentControl x:Name="contentControlStatistic">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid
+                Grid.Row="0"
+                Height="60"
+                Background="#0f6f68">
+
+                <Button
+                    Width="60"
+                    Height="60"
+                    Margin="20,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Background="Transparent"
+                    Command="{Binding CancelCommand}"
+                    CommandParameter="{Binding ElementName=contentControlStatistic}"
+                    Style="{StaticResource BackButton}" />
+
+
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="24"
+                    Foreground="White"
+                    Text="D I S P L A Y    S T A T I S T I C    T O U R " />
+            </Grid>
+
+            <StackPanel
+                Grid.Row="1"
+                Margin="0,20"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+
+                <CheckBox
+                    Margin="24,12,0,15"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    materialDesign:CheckBoxAssist.CheckBoxSize="24"
+                    Background="#FFEB5215"
+                    BorderBrush="Black"
+                    FontSize="20"
+                    Foreground="Black"
+                    IsChecked="{Binding Checkbox_DisplayAll}"
+                    Style="{StaticResource MaterialDesignCheckBox}" />
+
+                <TextBlock
+                    Margin="8,0"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    Text="Select All" />
+                <DatePicker
+                    Width="200"
+                    Margin="40,10,10,10"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    materialDesign:HintAssist.Hint="Start Date"
+                    DisplayDateEnd="{Binding DateTimeNow}"
+                    FontSize="18"
+                    IsEnabled="{Binding IsEnable}">
+                    <DatePicker.SelectedDate>
+                        <Binding
+                            Mode="TwoWay"
+                            Path="StartDate"
+                            StringFormat="{}{0: dd/MM/yyyy}"
+                            UpdateSourceTrigger="PropertyChanged" />
+                    </DatePicker.SelectedDate>
+                </DatePicker>
+
+                <DatePicker
+                    Width="200"
+                    Margin="40,10,10,10"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    materialDesign:HintAssist.Hint="Start Date"
+                    DisplayDateStart="{Binding StartDate}"
+                    FontSize="18"
+                    IsEnabled="{Binding IsEnable}">
+                    <DatePicker.SelectedDate>
+                        <Binding
+                            Mode="TwoWay"
+                            Path="EndDate"
+                            StringFormat="{}{0: dd/MM/yyyy}"
+                            UpdateSourceTrigger="PropertyChanged" />
+                    </DatePicker.SelectedDate>
+                </DatePicker>
+
+                <Button
+                    Width="200"
+                    Height="60"
+                    Margin="60,10,20,10"
+                    Command="{Binding FilterCommand}"
+                    Content="Filter"
+                    Foreground="#1885F2"
+                    Style="{StaticResource ResourceKey=ConfirmButton}" />
+            </StackPanel>
+
+            <DataGrid
+                Grid.Row="3"
+                Width="1100"
+                Height="400"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                HorizontalContentAlignment="Center"
+                materialDesign:DataGridAssist.CellPadding="12 8 0 8"
+                materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
+                AllowDrop="True"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                CanUserReorderColumns="False"
+                CanUserSortColumns="True"
+                GridLinesVisibility="Vertical"
+                IsReadOnly="True"
+                ItemsSource="{Binding TourItems}"
+                SelectionMode="Single"
+                VerticalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="0.1*"
+                        Binding="{Binding Tour_ID}"
+                        Header="ID" />
+                    <DataGridTextColumn
+                        Width="0.2*"
+                        Binding="{Binding Tour_Name}"
+                        Header="Name" />
+                    <DataGridTextColumn
+                        Width="0.15*"
+                        Binding="{Binding Tour_NumberVisitGroup}"
+                        Header="Number Of Travel Group" />
+                    <DataGridTextColumn
+                        Width="0.15*"
+                        Binding="{Binding Tour_NumberVisitTraveller}"
+                        Header="Number Of Traveller" />
+                    <DataGridTextColumn
+                        Width="0.15*"
+                        Binding="{Binding Tour_TotalCost}"
+                        Header="Total Cost" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+    </ContentControl>
+</UserControl>

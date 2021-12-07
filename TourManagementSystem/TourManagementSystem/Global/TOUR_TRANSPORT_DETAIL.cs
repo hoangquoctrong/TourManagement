@@ -17,6 +17,7 @@ namespace TourManagementSystem.Global
         public int TOUR_TRANSPORT_DETAIL_ID { get; set; }
         public int TOUR_TRANSPORT_ID { get; set; }
         public int TOUR_INFORMATION_ID { get; set; }
+        public Nullable<int> TOUR_TRANSPORT_DETAIL_AMOUNT { get; set; }
     
         public virtual TOUR_INFORMATION TOUR_INFORMATION { get; set; }
         public virtual TOUR_TRANSPORT TOUR_TRANSPORT { get; set; }

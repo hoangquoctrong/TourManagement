@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
@@ -58,6 +60,37 @@ namespace TourManagementSystem.Global.Model
                 image.StreamSource = ms;
                 image.EndInit();
                 return image;
+            }
+        }
+
+        public static bool IsSendEmail(string text)
+        {
+            string from = "pplthdt.uit.team3@gmail.com";
+            string pass = "UIT@team3";
+            string to = "19522074@gm.uit.edu.vn";
+            using (MailMessage mail = new MailMessage())
+            {
+                mail.From = new MailAddress(from);
+                mail.To.Add(to);
+                mail.Subject = "Feedback";
+                mail.Body = string.Format("Feedback from TourX : {0}", text);
+
+                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new NetworkCredential(from, pass);
+                    smtp.EnableSsl = true;
+                    try
+                    {
+                        smtp.Send(mail);
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                        return false;
+                    }
+                }
             }
         }
     }

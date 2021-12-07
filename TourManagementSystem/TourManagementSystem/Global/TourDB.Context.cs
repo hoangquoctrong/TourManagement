@@ -12,29 +12,30 @@ namespace TourManagementSystem.Global
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class Tour_Mangement_DatabaseEntities : DbContext
     {
         public Tour_Mangement_DatabaseEntities()
             : base("name=Tour_Mangement_DatabaseEntities")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-
+    
         public virtual DbSet<PLACE> PLACE { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TOUR> TOUR { get; set; }
         public virtual DbSet<TOUR_ACCOUNT> TOUR_ACCOUNT { get; set; }
         public virtual DbSet<TOUR_HARD_PRICE> TOUR_HARD_PRICE { get; set; }
         public virtual DbSet<TOUR_HOTEL> TOUR_HOTEL { get; set; }
-        public virtual DbSet<TOUR_HOTEL_DELETE> TOUR_HOTEL_DELETE { get; set; }
         public virtual DbSet<TOUR_HOTEL_DETAIL> TOUR_HOTEL_DETAIL { get; set; }
+        public virtual DbSet<TOUR_IMAGE> TOUR_IMAGE { get; set; }
         public virtual DbSet<TOUR_INFORMATION> TOUR_INFORMATION { get; set; }
         public virtual DbSet<TOUR_LOCATION> TOUR_LOCATION { get; set; }
+        public virtual DbSet<TOUR_LOCATION_DETAILED> TOUR_LOCATION_DETAILED { get; set; }
         public virtual DbSet<TOUR_MISSION> TOUR_MISSION { get; set; }
         public virtual DbSet<TOUR_PLACE_DETAILED> TOUR_PLACE_DETAILED { get; set; }
         public virtual DbSet<TOUR_PRICE> TOUR_PRICE { get; set; }
@@ -42,9 +43,9 @@ namespace TourManagementSystem.Global
         public virtual DbSet<TOUR_SCHEDULE> TOUR_SCHEDULE { get; set; }
         public virtual DbSet<TOUR_STAFF> TOUR_STAFF { get; set; }
         public virtual DbSet<TOUR_STAFF_DELETE> TOUR_STAFF_DELETE { get; set; }
+        public virtual DbSet<TOUR_STAFF_DETAIL> TOUR_STAFF_DETAIL { get; set; }
         public virtual DbSet<TOUR_TIME> TOUR_TIME { get; set; }
         public virtual DbSet<TOUR_TRANSPORT> TOUR_TRANSPORT { get; set; }
-        public virtual DbSet<TOUR_TRANSPORT_DELETE> TOUR_TRANSPORT_DELETE { get; set; }
         public virtual DbSet<TOUR_TRANSPORT_DETAIL> TOUR_TRANSPORT_DETAIL { get; set; }
         public virtual DbSet<TRAVEL_COST> TRAVEL_COST { get; set; }
         public virtual DbSet<TRAVEL_GROUP> TRAVEL_GROUP { get; set; }
