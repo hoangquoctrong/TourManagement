@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using TourManagementSystem.Global.Model;
+using TourManagementSystem.ViewModel;
+
+namespace TourManagementSystem.ManagerView.ViewModel
+{
+    public class InformationViewModel : BaseViewModel
+    {
+        private int _User_ID;
+        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+        public InformationViewModel(int user_id)
+        {
+            User_ID = user_id;
+        }
+
+        private string _TextMail;
+        public string TextMail { get => _TextMail; set { _TextMail = value; OnPropertyChanged(); } }
+
+        private ICommand _SendEmailCommand;
+        public ICommand SendEmailCommand
+        {
+            get
+            {
+                if (_SendEmailCommand == null)
+                {
+                    _SendEmailCommand = new RelayCommand<object>(p => !string.IsNullOrEmpty(TextMail), p =>
+                    {
+                        if (GlobalFunction.IsSendEmail(TextMail))
+                        {
+                            MessageBox.Show("Send Email Successful!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                            TextMail = "";
+                        }
+                        else
+                        {
+                            MessageBox.Show("Send Email failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    });
+                }
+                return _SendEmailCommand;
+            }
+        }
+    }
+}

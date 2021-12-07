@@ -44,7 +44,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 new MenuItems {MenuName = "Staff", MenuImage = @"Assets/staff.png"},
                 new MenuItems {MenuName = "Transports", MenuImage = @"Assets/transport.png"},
                 new MenuItems {MenuName = "Hotel", MenuImage = @"Assets/hotel.png"},
-                new MenuItems {MenuName = "Account", MenuImage = @"Assets/account.png"}
+                new MenuItems {MenuName = "Account", MenuImage = @"Assets/account.png"},
+                new MenuItems {MenuName = "Feedback", MenuImage = @"Assets/feedback.png"}
             };
 
             MenuItemsCollection = new CollectionViewSource { Source = menuItems };
@@ -126,6 +127,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
                     break;
                 case "Account":
                     SelectedViewModel = new AccountViewModel(User_ID);
+                    break;
+                case "Feedback":
+                    SelectedViewModel = new InformationViewModel(User_ID);
                     break;
                 default:
                     SelectedViewModel = new DashboardViewModel(User_ID);

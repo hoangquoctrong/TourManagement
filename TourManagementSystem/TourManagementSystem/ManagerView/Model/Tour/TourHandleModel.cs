@@ -373,5 +373,79 @@ namespace TourManagementSystem.ManagerView.Model
 
             return tour_star;
         }
+
+        public static ObservableCollection<TourStatisticModel> GetTourStatisticList()
+        {
+            ObservableCollection<TourStatisticModel> TourStatisticList = new ObservableCollection<TourStatisticModel>();
+
+            var tourlist = (from information in DataProvider.Ins.DB.TOUR_INFORMATION
+                            where information.TOUR.TOUR_IS_EXIST.Equals("No")
+                            select new
+                            {
+                                information.TOUR_ID,
+                                information.TOUR.TOUR_NAME
+                            }).Distinct();
+
+            if (tourlist.Count() == 0)
+            {
+                return TourStatisticList;
+            }
+
+            foreach (var item in tourlist)
+            {
+                TourStatisticModel statisticModel = new TourStatisticModel()
+                {
+                    Tour_ID = item.TOUR_ID,
+                    Tour_Name = item.TOUR_NAME
+                };
+                ObservableCollection<TourDetailStatisticModel> detailStatistic = new ObservableCollection<TourDetailStatisticModel>();
+                var travelgroupList = from travelgroup in DataProvider.Ins.DB.TRAVEL_GROUP
+                                      join time in DataProvider.Ins.DB.TOUR_TIME on travelgroup.TOUR_INFORMATION_ID equals time.TOUR_INFORMATION_ID
+                                      where travelgroup.TOUR_INFORMATION.TOUR_ID == item.TOUR_ID
+                                      select travelgroup;
+
+                if (travelgroupList.Count() == 0)
+                {
+                    statisticModel.DetailStatistic = detailStatistic;
+                    statisticModel.Tour_NumberVisitGroup = 0;
+                    statisticModel.Tour_NumberVisitTraveller = 0;
+                    statisticModel.Tour_TotalCost = 0;
+
+
+                    TourStatisticList.Add(statisticModel);
+                }
+                else
+                {
+                    foreach (var itemGroup in travelgroupList)
+                    {
+                        statisticModel.Tour_NumberVisitGroup++;
+
+                        TourDetailStatisticModel detailStatisticModel = new TourDetailStatisticModel()
+                        {
+                            Tour_Department = (DateTime)itemGroup.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_DEPARTMENT_DATE,
+                            Tour_End = (DateTime)itemGroup.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_END_DATE,
+                        };
+
+                        TRAVEL_COST travel_cost = itemGroup.TRAVEL_COST.First();
+                        detailStatisticModel.Tour_Cost = (double)(travel_cost.ANOTHER_COST + travel_cost.TOTAL_HOTEL_COST + travel_cost.TOTAL_SERVICE_COST + travel_cost.TOTAL_TRANSPORT_COST);
+
+                        statisticModel.Tour_TotalCost += detailStatisticModel.Tour_Cost;
+
+                        var travellerList = DataProvider.Ins.DB.TRAVELLER_DETAIL.Where(x => x.TRAVEL_GROUP_ID == itemGroup.TRAVEL_GROUP_ID);
+                        detailStatisticModel.Tour_NumberTraveller = travellerList.Count();
+                        statisticModel.Tour_NumberVisitTraveller += detailStatisticModel.Tour_NumberTraveller;
+
+                        detailStatistic.Add(detailStatisticModel);
+                    }
+
+                    statisticModel.DetailStatistic = detailStatistic;
+
+                    TourStatisticList.Add(statisticModel);
+                }
+
+            }
+
+            return TourStatisticList;
+        }
     }
 }

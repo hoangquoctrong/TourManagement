@@ -112,10 +112,6 @@
         <view:ShowTravelGroupView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type viewmodel:StatisticTravelGroupViewModel}">
-        <view:StatisticTravelGroupView />
-    </DataTemplate>
-
     <DataTemplate DataType="{x:Type viewmodel:TravellerViewModel}">
         <view:TravellerView />
     </DataTemplate>
@@ -128,4 +124,7 @@
         <view:ShowTravellerView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type viewmodel:InformationViewModel}">
+        <view:InformationView />
+    </DataTemplate>
 </ResourceDictionary>

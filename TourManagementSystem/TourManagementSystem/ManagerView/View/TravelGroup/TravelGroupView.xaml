@@ -120,24 +120,13 @@
                 <Button
                     Grid.Column="2"
                     Width="200"
-                    Margin="140,10,20,9.6"
+                    Margin="340,10,20,9.6"
                     HorizontalAlignment="Right"
                     Command="{Binding AddTravelGroupCommand}"
                     CommandParameter="{Binding ElementName=contentControlMain}"
                     Content="Add New Travel Group"
                     Foreground="#0f6f68"
                     Style="{StaticResource AddButton}" />
-
-                <Button
-                    Grid.Column="3"
-                    Width="200"
-                    Margin="0,10,40.4,9.6"
-                    HorizontalAlignment="Right"
-                    Command="{Binding StatisticTravelGroupCommand}"
-                    CommandParameter="{Binding ElementName=contentControlMain}"
-                    Content="Statistic"
-                    Foreground="#EB7B47"
-                    Style="{StaticResource StatisticButton}" />
 
             </Grid>
 

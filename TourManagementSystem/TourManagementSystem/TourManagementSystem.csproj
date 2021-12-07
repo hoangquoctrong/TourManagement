@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -44,16 +45,22 @@
       <HintPath>..\packages\Caliburn.Micro.Core.4.0.173\lib\netstandard2.0\Caliburn.Micro.Core.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignColors, Version=2.0.3.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesignColors.2.0.3\lib\net452\MaterialDesignColors.dll</HintPath>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignThemes.Wpf, Version=4.2.1.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesignThemes.4.2.1\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=2.0.4.3, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.2.0.4\lib\net452\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.3.0.3, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.4.3.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
@@ -231,22 +238,28 @@
     <Compile Include="ManagerView\Model\ComboBox\ComboBoxTourModel.cs" />
     <Compile Include="ManagerView\Model\ComboBox\ComboBoxTravellerModel.cs" />
     <Compile Include="ManagerView\Model\ComboBox\ComboBoxMissionModel.cs" />
+    <Compile Include="ManagerView\Model\Staff\StaffStatisticModel.cs" />
     <Compile Include="ManagerView\Model\Staff\MissionHandleModel.cs" />
     <Compile Include="ManagerView\Model\Staff\MissionModel.cs" />
     <Compile Include="ManagerView\Model\Record\RecordHandleModel.cs" />
     <Compile Include="ManagerView\Model\Record\RecordModel.cs" />
     <Compile Include="ManagerView\Model\Staff\StaffDetailModel.cs" />
+    <Compile Include="ManagerView\Model\Tour\TourDetailStatisticModel.cs" />
+    <Compile Include="ManagerView\Model\Tour\TourStatisticModel.cs" />
     <Compile Include="ManagerView\Model\TravelGroup\TravelCostModel.cs" />
     <Compile Include="ManagerView\Model\TravelGroup\TravelGroupHandleModel.cs" />
     <Compile Include="ManagerView\Model\TravelGroup\TravelGroupModel.cs" />
     <Compile Include="ManagerView\Model\TravelGroup\TravellerDetailModel.cs" />
     <Compile Include="ManagerView\Model\TravelGroup\TravellerModel.cs" />
+    <Compile Include="ManagerView\ViewModel\InformationViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\Traveller\AddTravellerViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\Traveller\ShowTravellerViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\TravelGroup\AddTravelGroupViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\TravelGroup\ShowTravelGroupViewModel.cs" />
-    <Compile Include="ManagerView\ViewModel\TravelGroup\StatisticTravelGroupViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\Traveller\TravellerViewModel.cs" />
+    <Compile Include="ManagerView\View\InformationView.xaml.cs">
+      <DependentUpon>InformationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ManagerView\View\Traveller\AddTravellerView.xaml.cs">
       <DependentUpon>AddTravellerView.xaml</DependentUpon>
     </Compile>
@@ -258,9 +271,6 @@
     </Compile>
     <Compile Include="ManagerView\View\TravelGroup\ShowTravelGroupView.xaml.cs">
       <DependentUpon>ShowTravelGroupView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ManagerView\View\TravelGroup\StatisticTravelGroupView.xaml.cs">
-      <DependentUpon>StatisticTravelGroupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManagerView\View\Traveller\TravellerView.xaml.cs">
       <DependentUpon>TravellerView.xaml</DependentUpon>
@@ -310,6 +320,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ManagerView\DataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\InformationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -414,10 +428,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ManagerView\View\Tour\StatisticTourView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ManagerView\View\TravelGroup\StatisticTravelGroupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -643,6 +653,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\customer.png" />
+    <Resource Include="Assets\feedback.png" />
     <Content Include="Global\TourDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TourDB.edmx</DependentUpon>
@@ -655,11 +666,14 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets')" />
 </Project>

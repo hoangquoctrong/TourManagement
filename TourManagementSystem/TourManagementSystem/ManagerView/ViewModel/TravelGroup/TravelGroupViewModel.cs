@@ -124,18 +124,5 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 return _AddTravelGroupCommand;
             }
         }
-
-        private ICommand _StatisticTravelGroupCommand;
-        public ICommand StatisticTravelGroupCommand
-        {
-            get
-            {
-                if (_StatisticTravelGroupCommand == null)
-                {
-                    _StatisticTravelGroupCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new StatisticTravelGroupViewModel(User_ID));
-                }
-                return _StatisticTravelGroupCommand;
-            }
-        }
     }
 }

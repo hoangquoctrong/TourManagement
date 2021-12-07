@@ -83,5 +83,8 @@ namespace TourManagementSystem.ManagerView.Model
 
         private string _STAFF_DELETE_STRING_DATE;
         public string STAFF_DELETE_STRING_DATE { get => _STAFF_DELETE_STRING_DATE; set { _STAFF_DELETE_STRING_DATE = value; OnPropertyChanged(); } }
+
+        private int _STAFF_TOUR;
+        public int STAFF_TOUR { get => _STAFF_TOUR; set { _STAFF_TOUR = value; OnPropertyChanged(); } }
     }
 }

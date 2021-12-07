@@ -434,5 +434,57 @@ namespace TourManagementSystem.ManagerView.Model
 
             return StaffList;
         }
+
+        public static ObservableCollection<StaffStatisticModel> GetStaffListForStatistic()
+        {
+            ObservableCollection<StaffStatisticModel> StaffList = new ObservableCollection<StaffStatisticModel>();
+
+            var stafflist = from staff in DataProvider.Ins.DB.TOUR_STAFF
+                            join delete in DataProvider.Ins.DB.TOUR_STAFF_DELETE on staff.TOUR_STAFF_ID equals delete.TOUR_STAFF_ID
+                            where delete.TOUR_STAFF_DELETE_ISDELETED == false && staff.TOUR_STAFF_ROLE == "Staff"
+                            select staff;
+
+            foreach (var item in stafflist)
+            {
+                ObservableCollection<TourTimeModel> timeList = GetTimeTravelGroupStaff(item.TOUR_STAFF_ID);
+                StaffStatisticModel staff = new StaffStatisticModel()
+                {
+                    Staff_ID = item.TOUR_STAFF_ID,
+                    Staff_Name = item.TOUR_STAFF_NAME,
+                    Staff_Tour = timeList.Count,
+                    TimeList = timeList
+                };
+
+                StaffList.Add(staff);
+            }
+            return StaffList;
+        }
+
+        public static ObservableCollection<TourTimeModel> GetTimeTravelGroupStaff(int staff_id)
+        {
+            var staffdetailList = from staffdetail in DataProvider.Ins.DB.TOUR_STAFF_DETAIL
+                                  join time in DataProvider.Ins.DB.TOUR_TIME on staffdetail.TRAVEL_GROUP.TOUR_INFORMATION_ID equals time.TOUR_INFORMATION_ID
+                                  where staffdetail.TOUR_STAFF_ID == staff_id && time.TOUR_TIME_END_DATE < DateTime.Now
+                                  select new { staffdetail, time };
+            ObservableCollection<TourTimeModel> TimeList = new ObservableCollection<TourTimeModel>();
+            if (staffdetailList.Count() == 0)
+            {
+                return TimeList;
+            }
+            foreach (var item in staffdetailList)
+            {
+                TourTimeModel time = new TourTimeModel()
+                {
+                    TIME_ID = item.time.TOUR_TIME_ID,
+                    TIME_DAY = (int)item.time.TOUR_TIME_DAY,
+                    TIME_NIGHT = (int)item.time.TOUR_TIME_NIGHT,
+                    TIME_DEPARTMENT_TIME = (DateTime)item.time.TOUR_TIME_DEPARTMENT_DATE,
+                    TIME_END_TIME = (DateTime)item.time.TOUR_TIME_END_DATE
+                };
+
+                TimeList.Add(time);
+            }
+            return TimeList;
+        }
     }
 }

@@ -72,47 +72,6 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="PCStyle" TargetType="RadioButton">
-
-        <Setter Property="TextBlock.Text" Value="My PC" />
-
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="RadioButton">
-
-
-                    <Border
-                        x:Name="border"
-                        Margin="7"
-                        CornerRadius="4">
-
-                        <ContentPresenter />
-
-
-                    </Border>
-
-
-                    <ControlTemplate.Triggers>
-
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="border" Property="Background" Value="#202020" />
-                            <Setter TargetName="border" Property="BorderBrush" Value="#8C8C8C" />
-                            <Setter TargetName="border" Property="BorderThickness" Value="3" />
-                        </Trigger>
-
-                        <Trigger Property="IsChecked" Value="true">
-                            <Setter TargetName="border" Property="Background" Value="#202020" />
-                            <Setter TargetName="border" Property="BorderBrush" Value="#8C8C8C" />
-                            <Setter TargetName="border" Property="BorderThickness" Value="3" />
-                        </Trigger>
-
-                    </ControlTemplate.Triggers>
-
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <ImageBrush
         x:Key="def_img"
         ImageSource="Assets/close_icon.png"
@@ -157,7 +116,7 @@
 
         <Setter Property="Width" Value="180" />
         <Setter Property="Height" Value="40" />
-        <Setter Property="Margin" Value="0,12" />
+        <Setter Property="Margin" Value="0,8" />
 
         <Setter Property="Template">
             <Setter.Value>

@@ -168,7 +168,6 @@ D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Man
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Staff\StaffView.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Staff\StatisticStaffView.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Tour\StatisticTourView.g.cs
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\TravelGroup\StatisticTravelGroupView.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Tour\TourView.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Transport\TransportView.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\TravelGroup\TravelGroupView.g.cs
@@ -213,7 +212,6 @@ D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Man
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Staff\StaffView.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Staff\StatisticStaffView.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Tour\StatisticTourView.baml
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\TravelGroup\StatisticTravelGroupView.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Tour\TourView.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Transport\TransportView.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\TravelGroup\TravelGroupView.baml
@@ -232,3 +230,11 @@ D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Man
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Traveller\AddTravellerView.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Traveller\ShowTravellerView.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Traveller\TravellerView.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\LiveCharts.dll
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\LiveCharts.Wpf.dll
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\LiveCharts.pdb
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\LiveCharts.xml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\LiveCharts.Wpf.pdb
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\LiveCharts.Wpf.xml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\InformationView.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\InformationView.baml
