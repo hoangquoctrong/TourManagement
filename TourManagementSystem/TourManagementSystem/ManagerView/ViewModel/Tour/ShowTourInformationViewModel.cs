@@ -34,6 +34,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private bool _IsEnable;
         public bool IsEnable { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
 
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
         public ShowTourInformationViewModel(int user_id, int tour_id, TourInformationModel tourInformation, ObservableCollection<PlaceModel> places, bool isenable)
         {
             //Setup when intitalize
@@ -41,6 +44,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             Tour_ID = tour_id;
             PlaceList = places;
             IsEnable = isenable;
+
+            ProgressBarVisbility = Visibility.Visible;
+            LoadDataInUC(tour_id, tourInformation);
+        }
+
+        private async void LoadDataInUC(int tour_id, TourInformationModel tourInformation)
+        {
+
+            await Task.Delay(6000);
+
             Tour_Name = TourHandleModel.GetTourName(tour_id);
             InformationSelected = tourInformation;
             TourInformation_ID = tourInformation.INFORMATION_ID;
@@ -81,7 +94,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             RefreshMissionList = new BindableCollection<MissionModel>(tourInformation.INFORMATION_MISSION_LIST);
             MissionCount = MissionList.Count;
             MissionBeforeSave = MissionList.Count;
-            MissionPriceNotify = string.Format("Mission Price hasn't updated yet!");
+            MissionPriceNotify = string.Format("Mission Price haven't updated yet!");
+
+            ProgressBarVisbility = Visibility.Hidden;
         }
 
         private void SetDataInView(TourPriceModel price, TourTimeModel time)
@@ -125,7 +140,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Time
 
         #region Parameter
-        private TourTimeModel _SelectTime;
+        private TourTimeModel _SelectTime = new TourTimeModel();
         public TourTimeModel SelectTime { get => _SelectTime; set { _SelectTime = value; OnPropertyChanged(); } }
 
         private string _Tour_Name;
@@ -152,14 +167,19 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_SaveTourTimeCommand == null)
                 {
-                    _SaveTourTimeCommand = new RelayCommand<object>(p => IsExcuteSaveTimeCommand(), p => ExcuteSaveTimeCommand());
+                    _SaveTourTimeCommand = new RelayCommand<object>(p => IsExcuteSaveTimeCommand(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteSaveTimeCommand();
+                    });
                 }
                 return _SaveTourTimeCommand;
             }
         }
 
-        private void ExcuteSaveTimeCommand()
+        private async void ExcuteSaveTimeCommand()
         {
+            await Task.Delay(3000);
             TourTimeModel time = new TourTimeModel()
             {
                 TIME_ID = SelectTime.TIME_ID,
@@ -174,12 +194,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
             if (TourInformationHandleModel.UpdateTourTime(time, TourInformation_ID, User_ID))
             {
-                MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Tour Time successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 SelectTime = time;
+                ProgressBarVisbility = Visibility.Hidden;
             }
             else
             {
-                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Tour Time failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 
@@ -213,16 +235,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         #region Parameter
 
-        private BindableCollection<CheckBoxModel> _LocationList;
+        private BindableCollection<CheckBoxModel> _LocationList = new BindableCollection<CheckBoxModel>();
         public BindableCollection<CheckBoxModel> LocationList { get => _LocationList; set { _LocationList = value; OnPropertyChanged(); } }
 
-        private BindableCollection<LocationModel> _LocationSelectedList;
+        private BindableCollection<LocationModel> _LocationSelectedList = new BindableCollection<LocationModel>();
         public BindableCollection<LocationModel> LocationSelectedList { get => _LocationSelectedList; set { _LocationSelectedList = value; OnPropertyChanged(); } }
 
-        private BindableCollection<LocationModel> _RefreshLocationSelectedList;
+        private BindableCollection<LocationModel> _RefreshLocationSelectedList = new BindableCollection<LocationModel>();
         public BindableCollection<LocationModel> RefreshLocationSelectedList { get => _RefreshLocationSelectedList; set { _RefreshLocationSelectedList = value; OnPropertyChanged(); } }
 
-        private BindableCollection<CheckBoxModel> _RefreshLocationList;
+        private BindableCollection<CheckBoxModel> _RefreshLocationList = new BindableCollection<CheckBoxModel>();
         public BindableCollection<CheckBoxModel> RefreshLocationList { get => _RefreshLocationList; set { _RefreshLocationList = value; OnPropertyChanged(); } }
 
         private string _FilterLocationText;
@@ -313,29 +335,37 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_SaveLocationCommand == null)
                 {
-                    _SaveLocationCommand = new RelayCommand<object>(p => IsExcuteSaveLocationCommand(), p => ExcuteSaveLocationCommand());
+                    _SaveLocationCommand = new RelayCommand<object>(p => IsExcuteSaveLocationCommand(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteSaveLocationCommand();
+                    });
                 }
                 return _SaveLocationCommand;
             }
         }
 
-        private void ExcuteSaveLocationCommand()
+        private async void ExcuteSaveLocationCommand()
         {
+            await Task.Delay(3000);
             if (PlaceHandleModel.DeleteLocationDetail(TourInformation_ID))
             {
                 if (PlaceHandleModel.InsertLocationDetail(LocationSelectedList, TourInformation_ID, User_ID, false))
                 {
-                    MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Update Tour Location successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                     RefreshLocationSelectedList = PlaceHandleModel.GetLocationFromLocationDetail(TourInformation_ID, PlaceList);
+                    ProgressBarVisbility = Visibility.Hidden;
                 }
                 else
                 {
-                    MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Update Tour Loacation failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ProgressBarVisbility = Visibility.Hidden;
                 }
             }
             else
             {
-                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 
@@ -368,16 +398,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Schedule
 
         #region Parameter
-        private BindableCollection<TourScheduleModel> _ScheduleList;
+        private BindableCollection<TourScheduleModel> _ScheduleList = new BindableCollection<TourScheduleModel>();
         public BindableCollection<TourScheduleModel> ScheduleList { get => _ScheduleList; set { _ScheduleList = value; OnPropertyChanged(); } }
 
-        private BindableCollection<TourScheduleModel> _RefreshScheduleList;
+        private BindableCollection<TourScheduleModel> _RefreshScheduleList = new BindableCollection<TourScheduleModel>();
         public BindableCollection<TourScheduleModel> RefreshScheduleList { get => _RefreshScheduleList; set { _RefreshScheduleList = value; OnPropertyChanged(); } }
 
         private int _ScheduleCount;
         public int ScheduleCount { get => _ScheduleCount; set { _ScheduleCount = value; OnPropertyChanged(); } }
 
-        private string _ScheduleNotify;
+        private string _ScheduleNotify = "";
         public string ScheduleNotify { get => _ScheduleNotify; set { _ScheduleNotify = value; OnPropertyChanged(); } }
         #endregion Parameter
 
@@ -445,30 +475,38 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_SaveScheduleCommand == null)
                 {
-                    _SaveScheduleCommand = new RelayCommand<object>(p => IsExcuteSaveScheduleCommand(), p => ExcuteSaveScheduleCommand());
+                    _SaveScheduleCommand = new RelayCommand<object>(p => IsExcuteSaveScheduleCommand(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteSaveScheduleCommand();
+                    });
                 }
                 return _SaveScheduleCommand;
             }
         }
 
-        private void ExcuteSaveScheduleCommand()
+        private async void ExcuteSaveScheduleCommand()
         {
+            await Task.Delay(5000);
             if (TourInformationHandleModel.DeleteScheduleDetail(TourInformation_ID))
             {
                 if (TourInformationHandleModel.InsertTourScheduleList(ScheduleList, TourInformation_ID, User_ID, false))
                 {
-                    MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Update Tour Schedule successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                     ScheduleNotify = string.Format("Schedule hasn't updated yet!");
                     RefreshScheduleList = new BindableCollection<TourScheduleModel>(TourInformationHandleModel.GetTourScheduleList(TourInformation_ID));
+                    ProgressBarVisbility = Visibility.Hidden;
                 }
                 else
                 {
-                    MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Update Tour Schedule failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ProgressBarVisbility = Visibility.Hidden;
                 }
             }
             else
             {
-                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Tour Schedule failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 
@@ -510,19 +548,19 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Hotel
 
         #region Parameter
-        private string _HotelPriceNotify;
+        private string _HotelPriceNotify = "";
         public string HotelPriceNotify { get => _HotelPriceNotify; set { _HotelPriceNotify = value; OnPropertyChanged(); } }
 
-        private BindableCollection<CheckBoxHotelModel> _HotelList;
+        private BindableCollection<CheckBoxHotelModel> _HotelList = new BindableCollection<CheckBoxHotelModel>();
         public BindableCollection<CheckBoxHotelModel> HotelList { get => _HotelList; set { _HotelList = value; OnPropertyChanged(); } }
 
-        private BindableCollection<HotelModel> _HotelSelectedList;
+        private BindableCollection<HotelModel> _HotelSelectedList = new BindableCollection<HotelModel>();
         public BindableCollection<HotelModel> HotelSelectedList { get => _HotelSelectedList; set { _HotelSelectedList = value; OnPropertyChanged(); } }
 
-        private BindableCollection<HotelModel> _RefreshHotelSelectedList;
+        private BindableCollection<HotelModel> _RefreshHotelSelectedList = new BindableCollection<HotelModel>();
         public BindableCollection<HotelModel> RefreshHotelSelectedList { get => _RefreshHotelSelectedList; set { _RefreshHotelSelectedList = value; OnPropertyChanged(); } }
 
-        private BindableCollection<CheckBoxHotelModel> _RefreshHotelList;
+        private BindableCollection<CheckBoxHotelModel> _RefreshHotelList = new BindableCollection<CheckBoxHotelModel>();
         public BindableCollection<CheckBoxHotelModel> RefreshHotelList { get => _RefreshHotelList; set { _RefreshHotelList = value; OnPropertyChanged(); } }
 
         private string _FilterHotelText;
@@ -641,32 +679,40 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_SaveHotelCommand == null)
                 {
-                    _SaveHotelCommand = new RelayCommand<object>(p => IsExcuteSaveHotelCommand(), p => ExcuteSaveHotelCommand());
+                    _SaveHotelCommand = new RelayCommand<object>(p => IsExcuteSaveHotelCommand(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteSaveHotelCommand();
+                    });
                 }
                 return _SaveHotelCommand;
             }
         }
 
-        private void ExcuteSaveHotelCommand()
+        private async void ExcuteSaveHotelCommand()
         {
+            await Task.Delay(5000);
             if (HotelHandleModel.DeleteHotelDetail(TourInformation_ID))
             {
                 if (HotelHandleModel.InsertHotelDetail(HotelSelectedList, TourInformation_ID, User_ID, false))
                 {
                     if (TourInformationHandleModel.UpdateTourPrice(GetPriceModel(), TourInformation_ID, User_ID))
                     {
-                        MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Update Tour Hotel Detail successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                         RefreshHotelSelectedList = HotelHandleModel.GetHotelFromTourInformation(TourInformation_ID);
                         HotelPriceNotify = string.Format("Hotel Price haven't updated yet!");
+                        ProgressBarVisbility = Visibility.Hidden;
                     }
                     else
                     {
-                        MessageBox.Show("Update Price failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Update Price failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        ProgressBarVisbility = Visibility.Hidden;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Update Hotel Detail failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Update Tour Hotel Detail failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ProgressBarVisbility = Visibility.Hidden;
                 }
             }
             else
@@ -706,19 +752,19 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         #region Parameter
 
-        private string _TransportPriceNotify;
+        private string _TransportPriceNotify = "";
         public string TransportPriceNotify { get => _TransportPriceNotify; set { _TransportPriceNotify = value; OnPropertyChanged(); } }
 
-        private BindableCollection<CheckBoxTransportModel> _TransportList;
+        private BindableCollection<CheckBoxTransportModel> _TransportList = new BindableCollection<CheckBoxTransportModel>();
         public BindableCollection<CheckBoxTransportModel> TransportList { get => _TransportList; set { _TransportList = value; OnPropertyChanged(); } }
 
-        private BindableCollection<TransportModel> _TransportSelectedList;
+        private BindableCollection<TransportModel> _TransportSelectedList = new BindableCollection<TransportModel>();
         public BindableCollection<TransportModel> TransportSelectedList { get => _TransportSelectedList; set { _TransportSelectedList = value; OnPropertyChanged(); } }
 
-        private BindableCollection<TransportModel> _RefreshTransportSelectedList;
+        private BindableCollection<TransportModel> _RefreshTransportSelectedList = new BindableCollection<TransportModel>();
         public BindableCollection<TransportModel> RefreshTransportSelectedList { get => _RefreshTransportSelectedList; set { _RefreshTransportSelectedList = value; OnPropertyChanged(); } }
 
-        private BindableCollection<CheckBoxTransportModel> _RefreshTransportList;
+        private BindableCollection<CheckBoxTransportModel> _RefreshTransportList = new BindableCollection<CheckBoxTransportModel>();
         public BindableCollection<CheckBoxTransportModel> RefreshTransportList { get => _RefreshTransportList; set { _RefreshTransportList = value; OnPropertyChanged(); } }
 
         private string _FilterTransportText;
@@ -855,37 +901,46 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_SaveTransportCommand == null)
                 {
-                    _SaveTransportCommand = new RelayCommand<object>(p => IsExcuteSaveTransportCommand(), p => ExcuteSaveTransportCommand());
+                    _SaveTransportCommand = new RelayCommand<object>(p => IsExcuteSaveTransportCommand(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteSaveTransportCommand();
+                    });
                 }
                 return _SaveTransportCommand;
             }
         }
 
-        private void ExcuteSaveTransportCommand()
+        private async void ExcuteSaveTransportCommand()
         {
+            await Task.Delay(5000);
             if (TransportHandleModel.DeleteTransportDetail(TourInformation_ID))
             {
                 if (TransportHandleModel.InsertTransportDetail(TransportSelectedList, TourInformation_ID, User_ID, false))
                 {
                     if (TourInformationHandleModel.UpdateTourPrice(GetPriceModel(), TourInformation_ID, User_ID))
                     {
-                        MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Update Tour Transport Detail successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                         RefreshTransportSelectedList = TransportHandleModel.GetTransportFromTourInformation(TourInformation_ID);
                         TransportPriceNotify = string.Format("Transport Price haven't updated yet!");
+                        ProgressBarVisbility = Visibility.Hidden;
                     }
                     else
                     {
-                        MessageBox.Show("Update Price failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Update Tour Price failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        ProgressBarVisbility = Visibility.Hidden;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Update Transport Detail failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Update Tour Transport Detail failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ProgressBarVisbility = Visibility.Hidden;
                 }
             }
             else
             {
-                MessageBox.Show("Delete failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("There are something wrong when update. Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 
@@ -919,7 +974,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Mission
 
         #region Parameter
-        private BindableCollection<MissionModel> _MissionList;
+        private BindableCollection<MissionModel> _MissionList = new BindableCollection<MissionModel>();
         public BindableCollection<MissionModel> MissionList
         {
             get => _MissionList; set
@@ -944,7 +999,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         public int MissionBeforeSave { get; set; }
 
-        private string _MissionPriceNotify;
+        private string _MissionPriceNotify = "";
         public string MissionPriceNotify { get => _MissionPriceNotify; set { _MissionPriceNotify = value; OnPropertyChanged(); } }
 
         private double _TotalMissionPrice = 0;
@@ -995,11 +1050,24 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_SaveMissionPriceCommand == null)
                 {
-                    _SaveMissionPriceCommand = new RelayCommand<object>(p => MissionCount > 0 && IsEnable, p =>
+                    _SaveMissionPriceCommand = new RelayCommand<object>(p =>
                     {
-                        TotalMissionPrice = MissionHandleModel.CalculateTotalMissionPrice(MissionList);
-                        MissionPriceNotify = string.Format("Mission Price have updated!");
-                    });
+                        for (int i = 1; i < MissionCount; i++)
+                        {
+                            for (int j = 0; j < i; j++)
+                            {
+                                if (MissionList[i].Mission_Responsibility == MissionList[j].Mission_Responsibility)
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                        return MissionCount > 0 && IsEnable;
+                    }, p =>
+                   {
+                       TotalMissionPrice = MissionHandleModel.CalculateTotalMissionPrice(MissionList);
+                       MissionPriceNotify = string.Format("Mission Price have updated!");
+                   });
                 }
                 return _SaveMissionPriceCommand;
             }
@@ -1032,40 +1100,42 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_SaveMissionCommand == null)
                 {
-                    _SaveMissionCommand = new RelayCommand<object>(p => IsExcuteSaveMissionCommand(), p => ExcuteSaveMissionCommand());
+                    _SaveMissionCommand = new RelayCommand<object>(p => IsExcuteSaveMissionCommand(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteSaveMissionCommand();
+                    });
                 }
 
                 return _SaveMissionCommand;
             }
         }
 
-        private void ExcuteSaveMissionCommand()
+        private async void ExcuteSaveMissionCommand()
         {
-            if (MissionHandleModel.DeleteMissionDetail(TourInformation_ID))
+            await Task.Delay(5000);
+            if (MissionHandleModel.UpdateMissionList(MissionList, TourInformation_ID, User_ID))
             {
-                if (MissionHandleModel.UpdateMissionList(MissionList, TourInformation_ID, User_ID))
+                if (TourInformationHandleModel.UpdateTourPrice(GetPriceModel(), TourInformation_ID, User_ID))
                 {
-                    if (TourInformationHandleModel.UpdateTourPrice(GetPriceModel(), TourInformation_ID, User_ID))
-                    {
-                        MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                        MissionPriceNotify = string.Format("Mission Price haven't updated yet!");
-                        RefreshMissionList = MissionHandleModel.GetMissionFromTourInformation(TourInformation_ID);
-                        MissionBeforeSave = MissionList.Count;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Update Price failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
+                    MessageBox.Show("Update Tour Mission successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MissionPriceNotify = string.Format("Mission Price haven't updated yet!");
+                    RefreshMissionList = MissionHandleModel.GetMissionFromTourInformation(TourInformation_ID);
+                    MissionBeforeSave = MissionList.Count;
+                    ProgressBarVisbility = Visibility.Hidden;
                 }
                 else
                 {
-                    MessageBox.Show("Update Hotel Detail failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Update Tour Price failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ProgressBarVisbility = Visibility.Hidden;
                 }
             }
             else
             {
-                MessageBox.Show("Delete failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Tour Mission failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
+
         }
 
         private bool IsExcuteSaveMissionCommand()

@@ -17,10 +17,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public InformationViewModel(int user_id)
         {
             User_ID = user_id;
+            ProgressBarVisbility = Visibility.Hidden;
         }
 
         private string _TextMail;
         public string TextMail { get => _TextMail; set { _TextMail = value; OnPropertyChanged(); } }
+
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         private ICommand _SendEmailCommand;
         public ICommand SendEmailCommand
@@ -29,15 +33,18 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_SendEmailCommand == null)
                 {
-                    _SendEmailCommand = new RelayCommand<object>(p => !string.IsNullOrEmpty(TextMail), p =>
+                    _SendEmailCommand = new RelayCommand<object>(p => !string.IsNullOrEmpty(TextMail), async p =>
                     {
-                        if (GlobalFunction.IsSendEmail(TextMail))
+                        ProgressBarVisbility = Visibility.Visible;
+                        if (await GlobalFunction.IsSendEmail(TextMail))
                         {
+                            ProgressBarVisbility = Visibility.Hidden;
                             MessageBox.Show("Send Email Successful!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                             TextMail = "";
                         }
                         else
                         {
+                            ProgressBarVisbility = Visibility.Hidden;
                             MessageBox.Show("Send Email failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     });

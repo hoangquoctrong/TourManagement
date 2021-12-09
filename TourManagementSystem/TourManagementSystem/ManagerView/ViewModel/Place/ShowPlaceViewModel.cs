@@ -86,11 +86,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
             PlaceModel place = InsertDataToPlaceSelected();
             if (PlaceHandleModel.UpdatePlace(place, User_ID))
             {
-                MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Place successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Place failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

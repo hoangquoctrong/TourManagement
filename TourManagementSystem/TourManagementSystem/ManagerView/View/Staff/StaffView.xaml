@@ -20,7 +20,7 @@
                                 Storyboard.TargetProperty="Opacity"
                                 From="0.0"
                                 To="1.0"
-                                Duration="0:0:0.5" />
+                                Duration="0:0:1" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -49,195 +49,248 @@
     </UserControl.Resources>
 
     <ContentControl x:Name="ContentControlMain">
-        <Grid Margin="0,0,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="270" />
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="auto" />
-                </Grid.ColumnDefinitions>
+        <Border
+            BorderBrush="#0f6f68"
+            BorderThickness="3"
+            CornerRadius="15">
+            <Grid>
 
                 <Border
-                    Grid.Column="0"
-                    Width="400"
-                    Height="50"
-                    Margin="40,5,20,5"
-                    Background="#FAFAFA"
-                    BorderBrush="Gray"
-                    BorderThickness="1"
-                    CornerRadius="10">
+                    Panel.ZIndex="1000"
+                    BorderThickness="0.5"
+                    CornerRadius="25">
+                    <Grid Visibility="{Binding ProgressBarVisbility}">
 
-                    <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
-                        <materialDesign:PackIcon
-                            Width="25"
-                            Height="30"
-                            Margin="0,0,0,0"
-                            VerticalAlignment="Center"
-                            Foreground="DimGray"
-                            Kind="Search" />
-                        <TextBox
-                            Width="300"
-                            Height="40"
-                            Margin="10,2,0,0"
-                            materialDesign:HintAssist.Hint="Search"
-                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                            BorderBrush="Transparent"
-                            FontSize="18"
-                            Style="{StaticResource MaterialDesignTextBoxBase}">
-                            <TextBox.Text>
-                                <Binding Path="FilterText" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules />
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                    </StackPanel>
+                        <Grid.Background>
+                            <SolidColorBrush Opacity=".3" Color="Black" />
+                        </Grid.Background>
+                        <StackPanel
+                            Margin="0,120,0,120"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                            <ProgressBar
+                                Width="80"
+                                Height="80"
+                                Foreground="White"
+                                IsIndeterminate="True"
+                                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                Value="35" />
+                            <TextBlock
+                                Margin="16,0"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                Foreground="White"
+                                Text="Loading..." />
+                        </StackPanel>
+                    </Grid>
                 </Border>
 
-                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <ComboBox
-                        Name="cbSearch"
-                        Width="140"
-                        Margin="10"
-                        DisplayMemberPath="CB_Name"
-                        FontSize="18"
-                        Foreground="DimGray"
-                        ItemsSource="{Binding CB_StaffList, Mode=TwoWay}"
-                        SelectedValue="{Binding CB_StaffSelected}">
-                        <ComboBox.ItemContainerStyle>
-                            <Style TargetType="ComboBoxItem">
-                                <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                <Grid Margin="0,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <Border
+                        Grid.Row="0"
+                        Height="60"
+                        Background="#0f6f68"
+                        CornerRadius="15 15 0 0">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="24"
+                            Foreground="White"
+                            Text="S T A F F    L I S T " />
+                    </Border>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="270" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border
+                            Grid.Column="0"
+                            Width="400"
+                            Height="50"
+                            Margin="40,5,20,5"
+                            Background="#FAFAFA"
+                            BorderBrush="Gray"
+                            BorderThickness="1"
+                            CornerRadius="10">
+
+                            <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Width="25"
+                                    Height="30"
+                                    Margin="0,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="DimGray"
+                                    Kind="Search" />
+                                <TextBox
+                                    Width="300"
+                                    Height="40"
+                                    Margin="10,2,0,0"
+                                    materialDesign:HintAssist.Hint="Search"
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                    BorderBrush="Transparent"
+                                    FontSize="18"
+                                    Style="{StaticResource MaterialDesignTextBoxBase}">
+                                    <TextBox.Text>
+                                        <Binding Path="FilterText" UpdateSourceTrigger="PropertyChanged">
+                                            <Binding.ValidationRules />
+                                        </Binding>
+                                    </TextBox.Text>
+                                </TextBox>
+                            </StackPanel>
+                        </Border>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <ComboBox
+                                Name="cbSearch"
+                                Width="140"
+                                Margin="10"
+                                DisplayMemberPath="CB_Name"
+                                FontSize="18"
+                                Foreground="DimGray"
+                                ItemsSource="{Binding CB_StaffList, Mode=TwoWay}"
+                                SelectedValue="{Binding CB_StaffSelected}">
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="ComboBoxItem">
+                                        <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
+                            </ComboBox>
+                            <CheckBox
+                                Margin="10,12,0,15"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch"
+                                materialDesign:CheckBoxAssist.CheckBoxSize="24"
+                                Background="#FFEB5215"
+                                BorderBrush="Black"
+                                FontSize="20"
+                                Foreground="Black"
+                                IsChecked="{Binding Checkbox_DisplayAllStaff}"
+                                Style="{StaticResource MaterialDesignCheckBox}">
+                                All Staff
+                            </CheckBox>
+                        </StackPanel>
+
+                        <Button
+                            Grid.Column="2"
+                            Width="150"
+                            Height="40"
+                            Margin="60,5,10,5"
+                            HorizontalAlignment="Right"
+                            Command="{Binding AddStaffCommand}"
+                            CommandParameter="{Binding ElementName=ContentControlMain}"
+                            Content="Add New Staff"
+                            Foreground="#0f6f68"
+                            Style="{StaticResource AddButton}" />
+
+                        <Button
+                            Grid.Column="3"
+                            Width="150"
+                            Height="40"
+                            Margin="60,5,40,5"
+                            HorizontalAlignment="Right"
+                            Command="{Binding StatisticStaffCommand}"
+                            CommandParameter="{Binding ElementName=ContentControlMain}"
+                            Content="Statistic"
+                            Foreground="#EB7B47"
+                            Style="{StaticResource StatisticButton}" />
+
+                    </Grid>
+
+                    <DataGrid
+                        Grid.Row="2"
+                        Width="1170"
+                        Height="550"
+                        VerticalAlignment="Top"
+                        materialDesign:DataGridAssist.CellPadding="12 8 0 8"
+                        materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
+                        AllowDrop="True"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        CanUserDeleteRows="False"
+                        CanUserReorderColumns="False"
+                        CanUserSortColumns="True"
+                        GridLinesVisibility="Vertical"
+                        IsReadOnly="True"
+                        ItemsSource="{Binding StaffItems}"
+                        SelectedItem="{Binding StaffSelected}"
+                        SelectionMode="Single"
+                        VerticalScrollBarVisibility="Visible">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="{x:Type DataGridRow}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding STAFF_IS_DELETE}" Value="true">
+                                        <Setter Property="Background" Value="White" />
+                                        <Setter Property="Foreground" Value="Red" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding STAFF_IS_DELETE}" Value="false">
+                                        <Setter Property="Background" Value="White" />
+                                        <Setter Property="Foreground" Value="DarkSlateGray" />
+                                    </DataTrigger>
+                                </Style.Triggers>
                             </Style>
-                        </ComboBox.ItemContainerStyle>
-                    </ComboBox>
-                    <CheckBox
-                        Margin="10,12,0,15"
-                        HorizontalContentAlignment="Stretch"
-                        VerticalContentAlignment="Stretch"
-                        materialDesign:CheckBoxAssist.CheckBoxSize="24"
-                        Background="#FFEB5215"
-                        BorderBrush="Black"
-                        FontSize="20"
-                        Foreground="Black"
-                        IsChecked="{Binding Checkbox_DisplayAllStaff}"
-                        Style="{StaticResource MaterialDesignCheckBox}">
-                        All Staff
-                    </CheckBox>
-                </StackPanel>
-
-                <Button
-                    Grid.Column="2"
-                    Width="150"
-                    Height="40"
-                    Margin="60,5,10,5"
-                    HorizontalAlignment="Right"
-                    Command="{Binding AddStaffCommand}"
-                    CommandParameter="{Binding ElementName=ContentControlMain}"
-                    Content="Add New Staff"
-                    Foreground="#0f6f68"
-                    Style="{StaticResource AddButton}" />
-
-                <Button
-                    Grid.Column="3"
-                    Width="150"
-                    Height="40"
-                    Margin="60,5,40,5"
-                    HorizontalAlignment="Right"
-                    Command="{Binding StatisticStaffCommand}"
-                    CommandParameter="{Binding ElementName=ContentControlMain}"
-                    Content="Statistic"
-                    Foreground="#EB7B47"
-                    Style="{StaticResource StatisticButton}" />
-
+                        </DataGrid.RowStyle>
+                        <DataGrid.InputBindings>
+                            <MouseBinding
+                                Command="{Binding ShowDetailStaffCommand}"
+                                CommandParameter="{Binding ElementName=ContentControlMain}"
+                                Gesture="LeftDoubleClick" />
+                        </DataGrid.InputBindings>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="0.05*"
+                                Binding="{Binding STAFF_ID}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="ID" />
+                            <DataGridTextColumn
+                                Width="0.175*"
+                                Binding="{Binding STAFF_NAME}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Name" />
+                            <DataGridTextColumn
+                                Width="0.1*"
+                                Binding="{Binding STAFF_ROLE}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Role" />
+                            <DataGridTextColumn
+                                Width="0.075*"
+                                Binding="{Binding STAFF_GENDER}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Gender" />
+                            <DataGridTextColumn
+                                Width="0.15*"
+                                Binding="{Binding STAFF_CITIZEN_CARD}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Citizen Identity" />
+                            <DataGridTextColumn
+                                Width="0.2*"
+                                Binding="{Binding STAFF_ADDRESS}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Address" />
+                            <DataGridTextColumn
+                                Width="0.15*"
+                                Binding="{Binding STAFF_PHONE_NUMBER}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Phone Number" />
+                            <DataGridTextColumn
+                                Width="0.1*"
+                                Binding="{Binding STAFF_STRING_START_DATE}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Start Date" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </Grid>
+        </Border>
 
-            <DataGrid
-                Grid.Row="1"
-                Width="1170"
-                Height="550"
-                VerticalAlignment="Top"
-                materialDesign:DataGridAssist.CellPadding="12 8 0 8"
-                materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
-                AllowDrop="True"
-                AutoGenerateColumns="False"
-                CanUserAddRows="False"
-                CanUserDeleteRows="False"
-                CanUserReorderColumns="False"
-                CanUserSortColumns="True"
-                GridLinesVisibility="Vertical"
-                IsReadOnly="True"
-                ItemsSource="{Binding StaffItems}"
-                SelectedItem="{Binding StaffSelected}"
-                SelectionMode="Single"
-                VerticalScrollBarVisibility="Visible">
-                <DataGrid.RowStyle>
-                    <Style TargetType="{x:Type DataGridRow}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding STAFF_IS_DELETE}" Value="true">
-                                <Setter Property="Background" Value="White" />
-                                <Setter Property="Foreground" Value="Red" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding STAFF_IS_DELETE}" Value="false">
-                                <Setter Property="Background" Value="White" />
-                                <Setter Property="Foreground" Value="DarkSlateGray" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.RowStyle>
-                <DataGrid.InputBindings>
-                    <MouseBinding
-                        Command="{Binding ShowDetailStaffCommand}"
-                        CommandParameter="{Binding ElementName=ContentControlMain}"
-                        Gesture="LeftDoubleClick" />
-                </DataGrid.InputBindings>
-                <DataGrid.Columns>
-                    <DataGridTextColumn
-                        Width="0.05*"
-                        Binding="{Binding STAFF_ID}"
-                        ElementStyle="{StaticResource WrapText}"
-                        Header="ID" />
-                    <DataGridTextColumn
-                        Width="0.175*"
-                        Binding="{Binding STAFF_NAME}"
-                        ElementStyle="{StaticResource WrapText}"
-                        Header="Name" />
-                    <DataGridTextColumn
-                        Width="0.1*"
-                        Binding="{Binding STAFF_ROLE}"
-                        ElementStyle="{StaticResource WrapText}"
-                        Header="Role" />
-                    <DataGridTextColumn
-                        Width="0.075*"
-                        Binding="{Binding STAFF_GENDER}"
-                        ElementStyle="{StaticResource WrapText}"
-                        Header="Gender" />
-                    <DataGridTextColumn
-                        Width="0.15*"
-                        Binding="{Binding STAFF_CITIZEN_CARD}"
-                        ElementStyle="{StaticResource WrapText}"
-                        Header="Citizen Identity" />
-                    <DataGridTextColumn
-                        Width="0.2*"
-                        Binding="{Binding STAFF_ADDRESS}"
-                        ElementStyle="{StaticResource WrapText}"
-                        Header="Address" />
-                    <DataGridTextColumn
-                        Width="0.15*"
-                        Binding="{Binding STAFF_PHONE_NUMBER}"
-                        ElementStyle="{StaticResource WrapText}"
-                        Header="Phone Number" />
-                    <DataGridTextColumn
-                        Width="0.1*"
-                        Binding="{Binding STAFF_STRING_START_DATE}"
-                        ElementStyle="{StaticResource WrapText}"
-                        Header="Start Date" />
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
     </ContentControl>
 </UserControl>

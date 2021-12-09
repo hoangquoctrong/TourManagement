@@ -49,12 +49,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
             PlaceModel place = InsertPlaceModel();
             if (PlaceHandleModel.InsertPlace(place, User_ID))
             {
-                MessageBox.Show("Add successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Add Place Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 p.Content = new PlaceViewModel(User_ID);
             }
             else
             {
-                MessageBox.Show("Add failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Add Place failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

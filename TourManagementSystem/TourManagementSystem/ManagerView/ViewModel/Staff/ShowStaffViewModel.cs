@@ -23,6 +23,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
         private StaffModel _StaffSelected;
         public StaffModel StaffSelected { get => _StaffSelected; set { _StaffSelected = value; OnPropertyChanged("StaffSelected"); } }
 
@@ -102,15 +105,21 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             User_ID = user_id;
             StaffSelected = staff;
+            ProgressBarVisbility = Visibility.Visible;
             SetStaffInView(staff);
             LoadTourMissionComboBox();
+
             ObservableCollection<TourMissionModel> tourmissionItems = TravelGroupHandleModel.GetTravelGroupListWithStaffID(staff.STAFF_ID);
             TourMissionItemsCollection = new CollectionViewSource { Source = tourmissionItems };
             TourMissionItemsCollection.Filter += TourMissionItem_Filter;
+
         }
 
-        private void SetStaffInView(StaffModel staff)
+        private async void SetStaffInView(StaffModel staff)
         {
+
+            await Task.Delay(3000);
+
             Staff_ID = staff.STAFF_ID;
             Staff_Name = staff.STAFF_NAME;
             Staff_Role = staff.STAFF_ROLE;
@@ -139,6 +148,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 Staff_Note_Remove = string.Format("Vao ngay {0} da nghi lam do {1}", staff.STAFF_DELETE_STRING_DATE, staff.STAFF_DELETE_NOTE);
             }
+
+            ProgressBarVisbility = Visibility.Hidden;
         }
 
         private ICommand _CancelCommand;
@@ -189,7 +200,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_SaveChangeCommand == null)
                 {
-                    _SaveChangeCommand = new RelayCommand<object>(p => IsExcuteSaveChangeCommand(), p => ExcuteSaveChangeCommand());
+                    _SaveChangeCommand = new RelayCommand<object>(p => IsExcuteSaveChangeCommand(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteSaveChangeCommand();
+                    });
                 }
                 return _SaveChangeCommand;
             }
@@ -265,16 +280,20 @@ namespace TourManagementSystem.ManagerView.ViewModel
             return false;
         }
 
-        private void ExcuteSaveChangeCommand()
+        private async void ExcuteSaveChangeCommand()
         {
+            await Task.Delay(3000);
+
             StaffSelected = InsertDataToStaffSeleted();
             if (StaffHandleModel.UpdateStaff(StaffSelected, User_ID))
             {
-                MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Staff successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
             else
             {
-                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Staff failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 
@@ -322,7 +341,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         }
                         else
                         {
-                            MessageBox.Show("Change Password failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Change Password failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     });
                 }
@@ -339,18 +358,31 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     _RemoveStaffCommand = new RelayCommand<ContentControl>(p => !string.IsNullOrEmpty(Staff_Note_Remove) && IsDelete, p =>
                     {
-                        if (StaffHandleModel.DeleteStaff(Staff_ID, Staff_Name, Staff_Note_Remove, User_ID))
-                        {
-                            MessageBox.Show("Delete staff successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                            p.Content = new StaffViewModel(User_ID);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Delete staff failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteDeleteCommand(p);
                     });
                 }
                 return _RemoveStaffCommand;
+            }
+        }
+
+        private async void ExcuteDeleteCommand(ContentControl p)
+        {
+            await Task.Delay(3000);
+            if (MessageBox.Show("Do you want to delete this staff?",
+                   "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                if (StaffHandleModel.DeleteStaff(Staff_ID, Staff_Name, Staff_Note_Remove, User_ID))
+                {
+                    MessageBox.Show("Delete staff successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    p.Content = new StaffViewModel(User_ID);
+                    ProgressBarVisbility = Visibility.Hidden;
+                }
+                else
+                {
+                    MessageBox.Show("Delete staff failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ProgressBarVisbility = Visibility.Hidden;
+                }
             }
         }
 

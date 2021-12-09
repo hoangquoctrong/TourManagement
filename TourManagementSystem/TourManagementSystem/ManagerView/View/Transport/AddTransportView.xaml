@@ -19,7 +19,7 @@
                                 Storyboard.TargetProperty="Opacity"
                                 From="0.0"
                                 To="1.0"
-                                Duration="0:0:0.5" />
+                                Duration="0:0:1" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -27,317 +27,326 @@
         </Style>
     </UserControl.Style>
     <ContentControl x:Name="contentControlAdd" Height="auto">
-        <Grid>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-
-            <Grid
-                Grid.Row="0"
-                Height="60"
-                Background="#0f6f68">
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="24"
-                    Foreground="White"
-                    Text="A D D    N E W    T R A N S P O R T " />
-            </Grid>
-
-            <ScrollViewer Grid.Row="1">
-                <Grid Margin="150,0">
+        <Border
+            BorderBrush="#0f6f68"
+            BorderThickness="3"
+            CornerRadius="15">
+            <Grid>
+                <Grid>
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0">
+                    <Border
+                        Grid.Row="0"
+                        Height="60"
+                        Background="#0f6f68"
+                        CornerRadius="15 15 0 0">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="24"
+                            Foreground="White"
+                            Text="A D D    N E W    T R A N S P O R T " />
+                    </Border>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <ScrollViewer Grid.Row="1">
+                        <Grid Margin="150,0">
 
-                        <StackPanel
-                            Margin="20,70,20,20"
-                            HorizontalAlignment="Left"
-                            Orientation="Horizontal">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
 
-                            <materialDesign:PackIcon
-                                Width="30"
-                                Height="30"
-                                VerticalAlignment="Center"
-                                Foreground="DimGray"
-                                Kind="Car" />
+                            <Grid Grid.Row="0">
 
-                            <TextBox
-                                Width="460"
-                                Margin="8,0,0,0"
-                                materialDesign:HintAssist.HelperText="Transport Name."
-                                materialDesign:HintAssist.Hint="Name"
-                                FontSize="18">
-                                <TextBox.Text>
-                                    <Binding
-                                        Mode="TwoWay"
-                                        Path="Transport_Name"
-                                        UpdateSourceTrigger="PropertyChanged">
-                                        <Binding.ValidationRules />
-                                    </Binding>
-                                </TextBox.Text>
-                            </TextBox>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                        </StackPanel>
-
-                        <StackPanel
-                            Grid.Column="1"
-                            Margin="20,70,30,20"
-                            HorizontalAlignment="Right"
-                            Orientation="Horizontal">
-
-                            <materialDesign:PackIcon
-                                Width="30"
-                                Height="30"
-                                VerticalAlignment="Center"
-                                Foreground="DimGray"
-                                Kind="FormatListBulletedType" />
-                            <ComboBox
-                                Width="260"
-                                Margin="10,0,0,0"
-                                HorizontalAlignment="Left"
-                                materialDesign:HintAssist.Hint="Status"
-                                FontSize="18"
-                                Foreground="DimGray">
-                                <ComboBoxItem Content="National" />
-                                <ComboBoxItem Content="International" />
-                                <ComboBox.Text>
-                                    <Binding
-                                        Mode="TwoWay"
-                                        Path="Transport_Type"
-                                        UpdateSourceTrigger="PropertyChanged">
-                                        <Binding.ValidationRules />
-                                    </Binding>
-                                </ComboBox.Text>
-                            </ComboBox>
-
-                        </StackPanel>
-                    </Grid>
-
-                    <Separator
-                        Grid.Row="1"
-                        Margin="0,10,0,0"
-                        BorderBrush="Black"
-                        BorderThickness="12"
-                        Opacity="0.8" />
-
-                    <Grid Grid.Row="2">
-
-                        <StackPanel
-                            Margin="20"
-                            HorizontalAlignment="Left"
-                            Orientation="Vertical">
-
-                            <StackPanel
-                                Margin="0,0,0,0"
-                                DockPanel.Dock="Left"
-                                Orientation="Horizontal">
-
-                                <materialDesign:PackIcon
-                                    Width="30"
-                                    Height="30"
-                                    VerticalAlignment="Center"
-                                    Foreground="DimGray"
-                                    Kind="Class" />
-
-                                <ComboBox
-                                    Width="260"
-                                    Margin="10,0,0,0"
+                                <StackPanel
+                                    Margin="20,70,20,20"
                                     HorizontalAlignment="Left"
-                                    materialDesign:HintAssist.Hint="Type Transport"
-                                    FontSize="18"
+                                    Orientation="Horizontal">
+
+                                    <materialDesign:PackIcon
+                                        Width="30"
+                                        Height="30"
+                                        VerticalAlignment="Center"
+                                        Foreground="DimGray"
+                                        Kind="Car" />
+
+                                    <TextBox
+                                        Width="460"
+                                        Margin="8,0,0,0"
+                                        materialDesign:HintAssist.HelperText="Transport Name."
+                                        materialDesign:HintAssist.Hint="Name"
+                                        FontSize="18">
+                                        <TextBox.Text>
+                                            <Binding
+                                                Mode="TwoWay"
+                                                Path="Transport_Name"
+                                                UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules />
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+
+                                </StackPanel>
+
+                                <StackPanel
+                                    Grid.Column="1"
+                                    Margin="20,70,30,20"
+                                    HorizontalAlignment="Right"
+                                    Orientation="Horizontal">
+
+                                    <materialDesign:PackIcon
+                                        Width="30"
+                                        Height="30"
+                                        VerticalAlignment="Center"
+                                        Foreground="DimGray"
+                                        Kind="FormatListBulletedType" />
+                                    <ComboBox
+                                        Width="260"
+                                        Margin="10,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        materialDesign:HintAssist.Hint="Status"
+                                        FontSize="18"
+                                        Foreground="DimGray">
+                                        <ComboBoxItem Content="National" />
+                                        <ComboBoxItem Content="International" />
+                                        <ComboBox.Text>
+                                            <Binding
+                                                Mode="TwoWay"
+                                                Path="Transport_Type"
+                                                UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules />
+                                            </Binding>
+                                        </ComboBox.Text>
+                                    </ComboBox>
+
+                                </StackPanel>
+                            </Grid>
+
+                            <Separator
+                                Grid.Row="1"
+                                Margin="0,10,0,0"
+                                BorderBrush="Black"
+                                BorderThickness="12"
+                                Opacity="0.8" />
+
+                            <Grid Grid.Row="2">
+
+                                <StackPanel
+                                    Margin="20"
+                                    HorizontalAlignment="Left"
+                                    Orientation="Vertical">
+
+                                    <StackPanel
+                                        Margin="0,0,0,0"
+                                        DockPanel.Dock="Left"
+                                        Orientation="Horizontal">
+
+                                        <materialDesign:PackIcon
+                                            Width="30"
+                                            Height="30"
+                                            VerticalAlignment="Center"
+                                            Foreground="DimGray"
+                                            Kind="Class" />
+
+                                        <ComboBox
+                                            Width="260"
+                                            Margin="10,0,0,0"
+                                            HorizontalAlignment="Left"
+                                            materialDesign:HintAssist.Hint="Type Transport"
+                                            FontSize="18"
+                                            Foreground="DimGray">
+                                            <ComboBoxItem Content="Road Transport" />
+                                            <ComboBoxItem Content="Water Transport" />
+                                            <ComboBoxItem Content="Air Transport" />
+                                            <ComboBox.Text>
+                                                <Binding
+                                                    Mode="TwoWay"
+                                                    Path="Transport_TypeTrans"
+                                                    UpdateSourceTrigger="PropertyChanged">
+                                                    <Binding.ValidationRules />
+                                                </Binding>
+                                            </ComboBox.Text>
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                    <StackPanel
+                                        Margin="0,30,0,0"
+                                        DockPanel.Dock="Left"
+                                        Orientation="Horizontal">
+
+                                        <materialDesign:PackIcon
+                                            Width="30"
+                                            Height="30"
+                                            VerticalAlignment="Center"
+                                            Foreground="DimGray"
+                                            Kind="Numeric" />
+
+                                        <TextBox
+                                            Width="260"
+                                            Margin="10,0,0,0"
+                                            materialDesign:HintAssist.HelperText="Except Flight and Ship"
+                                            materialDesign:HintAssist.HelperTextFontSize="12"
+                                            materialDesign:HintAssist.Hint="Amount Max"
+                                            FontSize="18"
+                                            IsEnabled="{Binding Transport_TypeTrans_Choose}">
+                                            <TextBox.Text>
+                                                <Binding
+                                                    Mode="TwoWay"
+                                                    Path="Transport_Amount_Max"
+                                                    UpdateSourceTrigger="PropertyChanged">
+                                                    <Binding.ValidationRules />
+                                                </Binding>
+                                            </TextBox.Text>
+                                        </TextBox>
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                                <StackPanel
+                                    Margin="20,20,30,20"
+                                    HorizontalAlignment="Right"
+                                    Orientation="Vertical">
+
+                                    <StackPanel
+                                        Margin="0,0,0,0"
+                                        DockPanel.Dock="Left"
+                                        Orientation="Horizontal">
+
+                                        <materialDesign:PackIcon
+                                            Width="30"
+                                            Height="30"
+                                            VerticalAlignment="Center"
+                                            Foreground="DimGray"
+                                            Kind="Money" />
+
+                                        <TextBox
+                                            Width="260"
+                                            Margin="8,0,0,0"
+                                            materialDesign:HintAssist.Hint="Price"
+                                            FontSize="18">
+                                            <TextBox.Text>
+                                                <Binding
+                                                    Mode="TwoWay"
+                                                    Path="Transport_Price"
+                                                    UpdateSourceTrigger="PropertyChanged">
+                                                    <Binding.ValidationRules />
+                                                </Binding>
+                                            </TextBox.Text>
+                                        </TextBox>
+
+                                    </StackPanel>
+
+                                    <StackPanel
+                                        Margin="0,30,0,0"
+                                        DockPanel.Dock="Left"
+                                        Orientation="Horizontal">
+
+                                        <materialDesign:PackIcon
+                                            Width="30"
+                                            Height="30"
+                                            VerticalAlignment="Center"
+                                            Foreground="DimGray"
+                                            Kind="HomeOutline" />
+
+                                        <TextBox
+                                            Width="260"
+                                            Margin="8,0,0,0"
+                                            materialDesign:HintAssist.Hint="Company"
+                                            FontSize="18">
+                                            <TextBox.Text>
+                                                <Binding
+                                                    Mode="TwoWay"
+                                                    Path="Transport_Company"
+                                                    UpdateSourceTrigger="PropertyChanged">
+                                                    <Binding.ValidationRules />
+                                                </Binding>
+                                            </TextBox.Text>
+                                        </TextBox>
+
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                            <Separator
+                                Grid.Row="3"
+                                Margin="0,10,0,0"
+                                BorderBrush="Black"
+                                BorderThickness="12"
+                                Opacity="0.8" />
+
+                            <StackPanel
+                                Grid.Row="4"
+                                Margin="20,10,20,0"
+                                VerticalAlignment="Top">
+
+                                <TextBlock
+                                    Margin="35,10,0,0"
+                                    FontSize="22"
                                     Foreground="DimGray">
-                                    <ComboBoxItem Content="Road Transport" />
-                                    <ComboBoxItem Content="Water Transport" />
-                                    <ComboBoxItem Content="Air Transport" />
-                                    <ComboBox.Text>
-                                        <Binding
-                                            Mode="TwoWay"
-                                            Path="Transport_TypeTrans"
-                                            UpdateSourceTrigger="PropertyChanged">
-                                            <Binding.ValidationRules />
-                                        </Binding>
-                                    </ComboBox.Text>
-                                </ComboBox>
-                            </StackPanel>
-
-                            <StackPanel
-                                Margin="0,30,0,0"
-                                DockPanel.Dock="Left"
-                                Orientation="Horizontal">
-
-                                <materialDesign:PackIcon
-                                    Width="30"
-                                    Height="30"
-                                    VerticalAlignment="Center"
-                                    Foreground="DimGray"
-                                    Kind="Numeric" />
+                                    Description
+                                </TextBlock>
 
                                 <TextBox
-                                    Width="260"
-                                    Margin="10,0,0,0"
-                                    materialDesign:HintAssist.HelperText="Except Flight and Ship"
-                                    materialDesign:HintAssist.HelperTextFontSize="12"
-                                    materialDesign:HintAssist.Hint="Amount Max"
-                                    FontSize="18"
-                                    IsEnabled="{Binding Transport_TypeTrans_Choose}">
-                                    <TextBox.Text>
-                                        <Binding
-                                            Mode="TwoWay"
-                                            Path="Transport_Amount_Max"
-                                            UpdateSourceTrigger="PropertyChanged">
-                                            <Binding.ValidationRules />
-                                        </Binding>
-                                    </TextBox.Text>
-                                </TextBox>
-                            </StackPanel>
-
-                        </StackPanel>
-
-                        <StackPanel
-                            Margin="20,20,30,20"
-                            HorizontalAlignment="Right"
-                            Orientation="Vertical">
-
-                            <StackPanel
-                                Margin="0,0,0,0"
-                                DockPanel.Dock="Left"
-                                Orientation="Horizontal">
-
-                                <materialDesign:PackIcon
-                                    Width="30"
-                                    Height="30"
-                                    VerticalAlignment="Center"
+                                    Width="720"
+                                    Height="100"
+                                    Margin="35,10,20,20"
+                                    HorizontalAlignment="Left"
+                                    materialDesign:HintAssist.HelperText="Detail about the transport ?"
+                                    AcceptsReturn="True"
+                                    FontSize="17"
                                     Foreground="DimGray"
-                                    Kind="Money" />
-
-                                <TextBox
-                                    Width="260"
-                                    Margin="8,0,0,0"
-                                    materialDesign:HintAssist.Hint="Price"
-                                    FontSize="18">
-                                    <TextBox.Text>
-                                        <Binding
-                                            Mode="TwoWay"
-                                            Path="Transport_Price"
-                                            UpdateSourceTrigger="PropertyChanged">
-                                            <Binding.ValidationRules />
-                                        </Binding>
-                                    </TextBox.Text>
-                                </TextBox>
-
+                                    MinLines="8"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                    Text="{Binding Transport_Description, Mode=TwoWay}"
+                                    TextWrapping="Wrap" />
                             </StackPanel>
 
-                            <StackPanel
-                                Margin="0,30,0,0"
-                                DockPanel.Dock="Left"
-                                Orientation="Horizontal">
-
-                                <materialDesign:PackIcon
-                                    Width="30"
-                                    Height="30"
-                                    VerticalAlignment="Center"
-                                    Foreground="DimGray"
-                                    Kind="HomeOutline" />
-
-                                <TextBox
-                                    Width="260"
-                                    Margin="8,0,0,0"
-                                    materialDesign:HintAssist.Hint="Company"
-                                    FontSize="18">
-                                    <TextBox.Text>
-                                        <Binding
-                                            Mode="TwoWay"
-                                            Path="Transport_Company"
-                                            UpdateSourceTrigger="PropertyChanged">
-                                            <Binding.ValidationRules />
-                                        </Binding>
-                                    </TextBox.Text>
-                                </TextBox>
-
-                            </StackPanel>
-
-                        </StackPanel>
-
-                    </Grid>
-
-                    <Separator
-                        Grid.Row="3"
-                        Margin="0,10,0,0"
-                        BorderBrush="Black"
-                        BorderThickness="12"
-                        Opacity="0.8" />
+                        </Grid>
+                    </ScrollViewer>
 
                     <StackPanel
-                        Grid.Row="4"
-                        Margin="20,10,20,0"
-                        VerticalAlignment="Top">
+                        Grid.Row="2"
+                        Background="#F9F9F9"
+                        Orientation="Horizontal">
 
-                        <TextBlock
-                            Margin="35,10,0,0"
-                            FontSize="22"
-                            Foreground="DimGray">
-                            Description
-                        </TextBlock>
+                        <Button
+                            Width="200"
+                            Height="60"
+                            Margin="360,10,20,2"
+                            Command="{Binding AddTransportCommand}"
+                            CommandParameter="{Binding ElementName=contentControlAdd}"
+                            Content="Confirm"
+                            Foreground="#1885F2"
+                            Style="{StaticResource ResourceKey=ConfirmButton}" />
 
-                        <TextBox
-                            Width="720"
-                            Height="100"
-                            Margin="35,10,20,20"
-                            HorizontalAlignment="Left"
-                            materialDesign:HintAssist.HelperText="Detail about the transport ?"
-                            AcceptsReturn="True"
-                            FontSize="17"
-                            Foreground="DimGray"
-                            MinLines="8"
-                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                            Text="{Binding Transport_Description, Mode=TwoWay}"
-                            TextWrapping="Wrap" />
+                        <Button
+                            Width="200"
+                            Height="60"
+                            Margin="20,10,20,2"
+                            Command="{Binding CancelCommand}"
+                            CommandParameter="{Binding ElementName=contentControlAdd}"
+                            Content="Cancel"
+                            Foreground="#F36E6B"
+                            Style="{StaticResource ResourceKey=CancelButton}" />
                     </StackPanel>
-
                 </Grid>
-            </ScrollViewer>
+            </Grid>
+        </Border>
 
-            <StackPanel
-                Grid.Row="2"
-                Background="#F9F9F9"
-                Orientation="Horizontal">
-
-                <Button
-                    Width="200"
-                    Height="60"
-                    Margin="360,10,20,2"
-                    Command="{Binding AddTransportCommand}"
-                    CommandParameter="{Binding ElementName=contentControlAdd}"
-                    Content="Confirm"
-                    Foreground="#1885F2"
-                    Style="{StaticResource ResourceKey=ConfirmButton}" />
-
-                <Button
-                    Width="200"
-                    Height="60"
-                    Margin="20,10,20,2"
-                    Command="{Binding CancelCommand}"
-                    CommandParameter="{Binding ElementName=contentControlAdd}"
-                    Content="Cancel"
-                    Foreground="#F36E6B"
-                    Style="{StaticResource ResourceKey=CancelButton}" />
-            </StackPanel>
-        </Grid>
     </ContentControl>
 </UserControl>

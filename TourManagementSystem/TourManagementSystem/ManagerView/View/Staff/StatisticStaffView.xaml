@@ -19,7 +19,7 @@
                                 Storyboard.TargetProperty="Opacity"
                                 From="0.0"
                                 To="1.0"
-                                Duration="0:0:0.5" />
+                                Duration="0:0:1" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -46,153 +46,193 @@
         </Style>
     </UserControl.Resources>
     <ContentControl x:Name="contentControlStatistic">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
 
-            <Grid
-                Grid.Row="0"
-                Height="60"
-                Background="#0f6f68">
+        <Border
+            BorderBrush="#0f6f68"
+            BorderThickness="3"
+            CornerRadius="15">
+            <Grid>
 
-                <Button
-                    Width="60"
-                    Height="60"
-                    Margin="20,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Background="Transparent"
-                    Command="{Binding CancelCommand}"
-                    CommandParameter="{Binding ElementName=contentControlStatistic}"
-                    Style="{StaticResource BackButton}" />
+                <Border
+                    Panel.ZIndex="1000"
+                    BorderThickness="0.5"
+                    CornerRadius="25">
+                    <Grid Visibility="{Binding ProgressBarVisbility}">
+
+                        <Grid.Background>
+                            <SolidColorBrush Opacity=".3" Color="Black" />
+                        </Grid.Background>
+                        <StackPanel
+                            Margin="0,120,0,120"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                            <ProgressBar
+                                Width="80"
+                                Height="80"
+                                Foreground="White"
+                                IsIndeterminate="True"
+                                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                Value="35" />
+                            <TextBlock
+                                Margin="16,0"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                Foreground="White"
+                                Text="Loading..." />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <Border
+                        Grid.Row="0"
+                        Height="60"
+                        Background="#0f6f68"
+                        CornerRadius="15 15 0 0">
+                        <Grid>
+
+                            <Button
+                                Width="60"
+                                Height="60"
+                                Margin="20,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Background="Transparent"
+                                Command="{Binding CancelCommand}"
+                                CommandParameter="{Binding ElementName=contentControlStatistic}"
+                                Style="{StaticResource BackButton}" />
 
 
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="24"
-                    Foreground="White"
-                    Text="D I S P L A Y    S T A T I S T I C    S T A F F " />
-            </Grid>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                Foreground="White"
+                                Text="D I S P L A Y    S T A T I S T I C    S T A F F " />
+                        </Grid>
+                    </Border>
 
-            <StackPanel
-                Grid.Row="1"
-                Margin="0,20"
-                HorizontalAlignment="Center"
-                Orientation="Horizontal">
+                    <StackPanel
+                        Grid.Row="1"
+                        Margin="0,20"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
 
-                <CheckBox
-                    Margin="24,12,0,15"
-                    HorizontalContentAlignment="Stretch"
-                    VerticalContentAlignment="Stretch"
-                    materialDesign:CheckBoxAssist.CheckBoxSize="24"
-                    Background="#FFEB5215"
-                    BorderBrush="Black"
-                    FontSize="20"
-                    Foreground="Black"
-                    IsChecked="{Binding Checkbox_DisplayAll}"
-                    Style="{StaticResource MaterialDesignCheckBox}" />
+                        <CheckBox
+                            Margin="24,12,0,15"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            materialDesign:CheckBoxAssist.CheckBoxSize="24"
+                            Background="#FFEB5215"
+                            BorderBrush="Black"
+                            FontSize="20"
+                            Foreground="Black"
+                            IsChecked="{Binding Checkbox_DisplayAll}"
+                            Style="{StaticResource MaterialDesignCheckBox}" />
 
-                <TextBlock
-                    Margin="8,0"
-                    VerticalAlignment="Center"
-                    FontSize="20"
-                    Text="Select All" />
-                <DatePicker
-                    Width="200"
-                    Margin="40,10,10,10"
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    materialDesign:HintAssist.Hint="Start Date"
-                    DisplayDateEnd="{Binding DateTimeNow}"
-                    FontSize="18"
-                    IsEnabled="{Binding IsEnable}">
-                    <DatePicker.SelectedDate>
-                        <Binding
-                            Mode="TwoWay"
-                            Path="StartDate"
-                            StringFormat="{}{0: dd/MM/yyyy}"
-                            UpdateSourceTrigger="PropertyChanged" />
-                    </DatePicker.SelectedDate>
-                </DatePicker>
+                        <TextBlock
+                            Margin="8,0"
+                            VerticalAlignment="Center"
+                            FontSize="20"
+                            Text="Select All" />
+                        <DatePicker
+                            Width="200"
+                            Margin="40,10,10,10"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            materialDesign:HintAssist.Hint="Start Date"
+                            DisplayDateEnd="{Binding DateTimeNow}"
+                            FontSize="18"
+                            IsEnabled="{Binding IsEnable}">
+                            <DatePicker.SelectedDate>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="StartDate"
+                                    StringFormat="{}{0: dd/MM/yyyy}"
+                                    UpdateSourceTrigger="PropertyChanged" />
+                            </DatePicker.SelectedDate>
+                        </DatePicker>
 
-                <DatePicker
-                    Width="200"
-                    Margin="40,10,10,10"
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    materialDesign:HintAssist.Hint="Start Date"
-                    DisplayDateStart="{Binding StartDate}"
-                    FontSize="18"
-                    IsEnabled="{Binding IsEnable}">
-                    <DatePicker.SelectedDate>
-                        <Binding
-                            Mode="TwoWay"
-                            Path="EndDate"
-                            StringFormat="{}{0: dd/MM/yyyy}"
-                            UpdateSourceTrigger="PropertyChanged" />
-                    </DatePicker.SelectedDate>
-                </DatePicker>
+                        <DatePicker
+                            Width="200"
+                            Margin="40,10,10,10"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            materialDesign:HintAssist.Hint="Start Date"
+                            DisplayDateStart="{Binding StartDate}"
+                            FontSize="18"
+                            IsEnabled="{Binding IsEnable}">
+                            <DatePicker.SelectedDate>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="EndDate"
+                                    StringFormat="{}{0: dd/MM/yyyy}"
+                                    UpdateSourceTrigger="PropertyChanged" />
+                            </DatePicker.SelectedDate>
+                        </DatePicker>
 
-                <Button
-                    Width="200"
-                    Height="60"
-                    Margin="60,10,20,10"
-                    Command="{Binding FilterCommand}"
-                    Content="Filter"
-                    Foreground="#1885F2"
-                    Style="{StaticResource ResourceKey=ConfirmButton}" />
-            </StackPanel>
+                        <Button
+                            Width="200"
+                            Height="60"
+                            Margin="60,10,20,10"
+                            Command="{Binding FilterCommand}"
+                            Content="Filter"
+                            Foreground="#1885F2"
+                            Style="{StaticResource ResourceKey=ConfirmButton}" />
+                    </StackPanel>
 
-            <Separator
-                Grid.Row="2"
-                Height="10"
-                Margin="0,10"
-                BorderBrush="Black"
-                BorderThickness="10" />
+                    <Separator
+                        Grid.Row="2"
+                        Height="10"
+                        Margin="0,10"
+                        BorderBrush="Black"
+                        BorderThickness="10" />
 
-            <DataGrid
-                Grid.Row="3"
-                Width="600"
-                Height="360"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                HorizontalContentAlignment="Center"
-                materialDesign:DataGridAssist.CellPadding="12 8 0 8"
-                materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
-                AllowDrop="True"
-                AutoGenerateColumns="False"
-                CanUserAddRows="False"
-                CanUserDeleteRows="False"
-                CanUserReorderColumns="False"
-                CanUserSortColumns="True"
-                GridLinesVisibility="Vertical"
-                IsReadOnly="True"
-                ItemsSource="{Binding StaffItems}"
-                SelectionMode="Single"
-                VerticalScrollBarVisibility="Auto">
-                <DataGrid.Columns>
-                    <DataGridTextColumn
-                        Width="0.05*"
-                        Binding="{Binding Staff_ID}"
-                        Header="ID" />
-                    <DataGridTextColumn
-                        Width="0.175*"
-                        Binding="{Binding Staff_Name}"
-                        Header="Name" />
-                    <DataGridTextColumn
-                        Width="0.1*"
-                        Binding="{Binding Staff_Tour}"
-                        Header="Number Of Tour" />
-                </DataGrid.Columns>
-            </DataGrid>
+                    <DataGrid
+                        Grid.Row="3"
+                        Width="600"
+                        Height="360"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        HorizontalContentAlignment="Center"
+                        materialDesign:DataGridAssist.CellPadding="12 8 0 8"
+                        materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
+                        AllowDrop="True"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        CanUserDeleteRows="False"
+                        CanUserReorderColumns="False"
+                        CanUserSortColumns="True"
+                        GridLinesVisibility="Vertical"
+                        IsReadOnly="True"
+                        ItemsSource="{Binding StaffItems}"
+                        SelectionMode="Single"
+                        VerticalScrollBarVisibility="Auto">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="0.05*"
+                                Binding="{Binding Staff_ID}"
+                                Header="ID" />
+                            <DataGridTextColumn
+                                Width="0.175*"
+                                Binding="{Binding Staff_Name}"
+                                Header="Name" />
+                            <DataGridTextColumn
+                                Width="0.1*"
+                                Binding="{Binding Staff_Tour}"
+                                Header="Number Of Tour" />
+                        </DataGrid.Columns>
+                    </DataGrid>
 
-            <!--<StackPanel
+                    <!--<StackPanel
                 Grid.Row="4"
                 Margin="400,0"
                 HorizontalAlignment="Right"
@@ -207,6 +247,9 @@
                     Foreground="Black"
                     Text="{Binding TotalTour}" />
             </StackPanel>-->
-        </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+
     </ContentControl>
 </UserControl>

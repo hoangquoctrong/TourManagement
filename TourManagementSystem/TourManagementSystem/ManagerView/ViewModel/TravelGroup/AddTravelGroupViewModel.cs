@@ -19,6 +19,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
         #region Data Binding
 
         #region Information
@@ -32,13 +35,31 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public ObservableCollection<ComboBoxTourModel> CB_TourList { get => _CB_TourList; set { _CB_TourList = value; OnPropertyChanged(); } }
 
         private ComboBoxTourModel _CB_TourSelected;
-        public ComboBoxTourModel CB_TourSelected { get => _CB_TourSelected; set { _CB_TourSelected = value; OnPropertyChanged(); SetTourInformationComboBox(); } }
+        public ComboBoxTourModel CB_TourSelected
+        {
+            get => _CB_TourSelected; set
+            {
+                _CB_TourSelected = value;
+                OnPropertyChanged();
+                ProgressBarVisbility = Visibility.Visible;
+                SetTourInformationComboBox();
+            }
+        }
 
         private ObservableCollection<ComboBoxInformationModel> _CB_TourInformationList;
         public ObservableCollection<ComboBoxInformationModel> CB_TourInformationList { get => _CB_TourInformationList; set { _CB_TourInformationList = value; OnPropertyChanged(); } }
 
         private ComboBoxInformationModel _CB_TourInformationSelected;
-        public ComboBoxInformationModel CB_TourInformationSelected { get => _CB_TourInformationSelected; set { _CB_TourInformationSelected = value; OnPropertyChanged(); CreateStaffListBaseOnMission(); SetPriceEnable(); } }
+        public ComboBoxInformationModel CB_TourInformationSelected
+        {
+            get => _CB_TourInformationSelected; set
+            {
+                _CB_TourInformationSelected = value;
+                OnPropertyChanged();
+                ProgressBarVisbility = Visibility.Visible;
+                HandleWhenChooseTourInformation();
+            }
+        }
         #endregion Travel Information
 
         #region Traveller
@@ -93,6 +114,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public AddTravelGroupViewModel(int user_id)
         {
             User_ID = user_id;
+            ProgressBarVisbility = Visibility.Hidden;
 
             //Information
             SetTourComboBox();
@@ -110,8 +132,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         #region Command Information
 
-        private void SetTourComboBox()
+        private async void SetTourComboBox()
         {
+            await Task.Delay(1000);
             CB_TourList = new ObservableCollection<ComboBoxTourModel>();
 
             ObservableCollection<TourModel> TourList = TourInformationHandleModel.GetTourListHaveInformation();
@@ -128,8 +151,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
         }
 
-        private void SetTourInformationComboBox()
+        private async void SetTourInformationComboBox()
         {
+            await Task.Delay(3000);
             CB_TourInformationList = new ObservableCollection<ComboBoxInformationModel>();
 
             if (CB_TourSelected == null)
@@ -149,6 +173,15 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 ComboBoxInformationModel cbInformation = new ComboBoxInformationModel(item.INFORMATION_TIME.TIME_DEPARTMENT_STRING, item.INFORMATION_ID, false, item);
                 CB_TourInformationList.Add(cbInformation);
             }
+            ProgressBarVisbility = Visibility.Hidden;
+        }
+
+        private async void HandleWhenChooseTourInformation()
+        {
+            await Task.Delay(3000);
+            CreateStaffListBaseOnMission();
+            SetPriceEnable();
+            ProgressBarVisbility = Visibility.Hidden;
         }
         #endregion Command Information
 
@@ -573,7 +606,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_AddTravelGroupCommand == null)
                 {
-                    _AddTravelGroupCommand = new RelayCommand<ContentControl>(p => IsExucteAddTravelGroupCommand(), p => ExcuteAddTravelGroupCommand(p));
+                    _AddTravelGroupCommand = new RelayCommand<ContentControl>(p => IsExucteAddTravelGroupCommand(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteAddTravelGroupCommand(p);
+                    });
                 }
 
                 return _AddTravelGroupCommand;
@@ -638,8 +675,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #endregion IsExcute Save
 
         #region Excute Save
-        private void ExcuteAddTravelGroupCommand(ContentControl p)
+        private async void ExcuteAddTravelGroupCommand(ContentControl p)
         {
+            await Task.Delay(6000);
             int countSuccess = 0;
             //Traveller
             if (TravelGroupHandleModel.InsertOrUpdateTravellerList(InsertTravellerModelDatabase(), User_ID))
@@ -649,6 +687,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             else
             {
                 MessageBox.Show("Add Or Update Traveller failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
             int travelgroup_id = TravelGroupHandleModel.InsertTravelGroup(InsertTravelGroupDatabase(), User_ID);
@@ -656,6 +695,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             if (travelgroup_id <= 0)
             {
                 MessageBox.Show("Add Travel Group failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
             //Staff List
@@ -665,7 +705,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageBox.Show("Add Staff List failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("There is something wrong (Staff List failed) when add Travel Group. Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
 
@@ -676,7 +717,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageBox.Show("Add Travel Cost failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("There is something wrong (Travel Group Cost failed) when add Travel Group. Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
 
@@ -687,18 +729,21 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageBox.Show("Add Traveller Detail failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("There is something wrong (Traveller List failed) when add Travel Group. Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
 
             if (countSuccess == 4)
             {
-                MessageBox.Show("Add successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Add Travel Group Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 p.Content = new TravelGroupViewModel(User_ID);
+                ProgressBarVisbility = Visibility.Hidden;
             }
             else
             {
-                MessageBox.Show("Add failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("There is something wrong (Undifinte Now) when add Travel Group. Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 

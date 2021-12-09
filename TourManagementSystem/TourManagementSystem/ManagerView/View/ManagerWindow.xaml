@@ -17,6 +17,24 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
+    <Window.Style>
+        <Style>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Window.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="Opacity"
+                                From="0.0"
+                                To="1.0"
+                                Duration="0:0:1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Style>
+
     <Window.DataContext>
         <vm:NavigationViewModel />
     </Window.DataContext>

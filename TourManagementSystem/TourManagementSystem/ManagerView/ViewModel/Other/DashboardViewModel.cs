@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using TourManagementSystem.Global.Model;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
@@ -24,7 +26,15 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 _FilterText = value;
                 OnPropertyChanged("FilterText");
-                RecordItems_Filter();
+                if (Checkbox_DisplayAllRecord)
+                {
+                    Task FillterAll = RecordItemsAll_Filter();
+                }
+                else
+                {
+                    RecordItems_Filter();
+                }
+
             }
         }
 
@@ -41,7 +51,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 _Checkbox_DisplayAllRecord = value;
                 OnPropertyChanged();
-                CheckBoxDisplay();
+                _ = CheckBoxDisplayAsync();
             }
         }
 
@@ -72,6 +82,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private int _Record_Amount;
         public int Record_Amount { get => _Record_Amount; set { _Record_Amount = value; OnPropertyChanged(); } }
+
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
+        private Visibility _ItemVisbility;
+        public Visibility ItemVisbility { get => _ItemVisbility; set { _ItemVisbility = value; OnPropertyChanged("ItemVisbility"); } }
         #endregion Data binding
 
 
@@ -79,8 +95,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             User_ID = user_id;
             Checkbox_DisplayAllRecord = true;
-            IsEnable = false;
-            CheckBoxDisplay();
         }
 
         private void LoadRecordComboBox()
@@ -106,27 +120,75 @@ namespace TourManagementSystem.ManagerView.ViewModel
             CB_RecordSelected = CB_RecordList.FirstOrDefault(x => x.IsSelected);
         }
 
-        private void CheckBoxDisplay()
+        private async Task<bool> CheckBoxDisplayAsync()
         {
             LoadRecordComboBox();
             if (Checkbox_DisplayAllRecord)
             {
-                IsEnable = false;
-                RecordList = RecordHandleModel.GetRecordList();
-                RefreshRecordList = RecordHandleModel.GetRecordList();
-                Record_Amount = RecordList.Count;
+                ItemVisbility = Visibility.Hidden;
+                ProgressBarVisbility = Visibility.Visible;
+                await LoadRecordData();
+                ProgressBarVisbility = Visibility.Hidden;
+                ItemVisbility = Visibility.Visible;
             }
             else
             {
-                IsEnable = true;
-                RecordList = RecordHandleModel.GetRecordListByDate(Select_Date);
-                RefreshRecordList = RecordHandleModel.GetRecordListByDate(Select_Date);
-                Record_Amount = RecordList.Count;
+                ItemVisbility = Visibility.Hidden;
+                ProgressBarVisbility = Visibility.Visible;
+                await LoadRecordDataWithDate();
+                ProgressBarVisbility = Visibility.Hidden;
+                ItemVisbility = Visibility.Visible;
             }
+            return true;
+        }
+
+        private async Task LoadRecordData()
+        {
+            await Task.Delay(5000);
+            IsEnable = false;
+            RecordList = RecordHandleModel.GetRecordList();
+            RefreshRecordList = RecordHandleModel.GetRecordList();
+            Record_Amount = RecordList.Count;
+        }
+
+        private async Task LoadRecordDataWithDate()
+        {
+            await Task.Delay(3000);
+            IsEnable = true;
+            RecordList = RecordHandleModel.GetRecordListByDate(Select_Date);
+            RefreshRecordList = RecordHandleModel.GetRecordListByDate(Select_Date);
+            Record_Amount = RecordList.Count;
         }
 
         private void RecordItems_Filter()
         {
+            RecordList = RefreshRecordList;
+
+            if (!string.IsNullOrEmpty(FilterText))
+            {
+                switch (CB_RecordSelected.CB_Name)
+                {
+                    case "Name":
+                        RecordList = new BindableCollection<RecordModel>(RecordList.Where(x => x.Staff_Name.Contains(FilterText) ||
+                                                                                                            x.Staff_Name.ToLower().Contains(FilterText) ||
+                                                                                                            x.Staff_Name.ToUpper().Contains(FilterText)));
+                        Record_Amount = RecordList.Count;
+                        break;
+                    case "Date":
+                        RecordList = new BindableCollection<RecordModel>(RecordList.Where(x => x.Record_Date_String.Contains(FilterText)));
+                        Record_Amount = RecordList.Count;
+                        break;
+                    case "ID":
+                        RecordList = new BindableCollection<RecordModel>(RecordList.Where(x => x.Staff_ID.ToString().Contains(FilterText)));
+                        Record_Amount = RecordList.Count;
+                        break;
+                }
+            }
+        }
+
+        private async Task RecordItemsAll_Filter()
+        {
+            await Task.Delay(1000);
             RecordList = RefreshRecordList;
 
             if (!string.IsNullOrEmpty(FilterText))

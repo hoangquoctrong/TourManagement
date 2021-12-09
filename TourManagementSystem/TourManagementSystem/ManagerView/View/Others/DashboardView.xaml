@@ -9,234 +9,302 @@
     Width="1190"
     Height="620"
     mc:Ignorable="d">
-    <ScrollViewer>
+
+    <UserControl.Style>
+        <Style>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="UserControl.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="Opacity"
+                                From="0.0"
+                                To="1.0"
+                                Duration="0:0:1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+
+
+    <Border
+        BorderBrush="#0f6f68"
+        BorderThickness="3"
+        CornerRadius="15">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
 
-            <Grid
-                Grid.Row="0"
-                Height="60"
-                Background="#0f6f68">
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="24"
-                    Foreground="White"
-                    Text="D I S P L A Y    R E C O R D " />
-            </Grid>
+            <Border
+                Panel.ZIndex="1000"
+                BorderThickness="0.5"
+                CornerRadius="25">
+                <Grid Visibility="{Binding ProgressBarVisbility}">
 
-            <StackPanel
-                Grid.Row="1"
-                Margin="0,20"
-                Orientation="Horizontal">
+                    <Grid.Background>
+                        <SolidColorBrush Opacity=".3" Color="Black" />
+                    </Grid.Background>
+                    <StackPanel
+                        Margin="0,120,0,120"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                        <ProgressBar
+                            Width="80"
+                            Height="80"
+                            Foreground="White"
+                            IsIndeterminate="True"
+                            Style="{StaticResource MaterialDesignCircularProgressBar}"
+                            Value="35" />
+                        <TextBlock
+                            Margin="16,0"
+                            VerticalAlignment="Center"
+                            FontSize="24"
+                            Foreground="White"
+                            Text="Loading..." />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
 
                 <Border
-                    Margin="40,0"
-                    Background="#FAFAFA"
-                    BorderBrush="Gray"
-                    BorderThickness="1"
-                    CornerRadius="10">
-
-                    <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
-                        <materialDesign:PackIcon
-                            Width="25"
-                            Height="30"
-                            Margin="0,0,0,0"
-                            VerticalAlignment="Center"
-                            Foreground="DimGray"
-                            Kind="Search" />
-                        <TextBox
-                            Width="300"
-                            Height="40"
-                            Margin="10,2,0,0"
-                            materialDesign:HintAssist.Hint="Search"
-                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                            BorderBrush="Transparent"
-                            FontSize="18"
-                            Style="{StaticResource MaterialDesignTextBoxBase}">
-                            <TextBox.Text>
-                                <Binding Path="FilterText" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules />
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                    </StackPanel>
+                    Grid.Row="0"
+                    Height="60"
+                    Background="#0f6f68"
+                    CornerRadius="15 15 0 0">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        Foreground="White"
+                        Text="D I S P L A Y    R E C O R D " />
                 </Border>
 
-                <ComboBox
-                    Width="200"
-                    Margin="10"
-                    DisplayMemberPath="CB_Name"
-                    FontSize="18"
-                    Foreground="DimGray"
-                    ItemsSource="{Binding CB_RecordList, Mode=TwoWay}"
-                    SelectedValue="{Binding CB_RecordSelected}">
-                    <ComboBox.ItemContainerStyle>
-                        <Style TargetType="ComboBoxItem">
-                            <Setter Property="IsSelected" Value="{Binding IsSelected}" />
-                        </Style>
-                    </ComboBox.ItemContainerStyle>
-                </ComboBox>
+                <StackPanel
+                    Grid.Row="1"
+                    Margin="0,20"
+                    Orientation="Horizontal">
 
-                <CheckBox
-                    Margin="24,12,0,15"
-                    HorizontalContentAlignment="Stretch"
-                    VerticalContentAlignment="Stretch"
-                    materialDesign:CheckBoxAssist.CheckBoxSize="24"
-                    Background="#FFEB5215"
+                    <Border
+                        Margin="40,0"
+                        Background="#FAFAFA"
+                        BorderBrush="Gray"
+                        BorderThickness="1"
+                        CornerRadius="10">
+
+                        <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Width="25"
+                                Height="30"
+                                Margin="0,0,0,0"
+                                VerticalAlignment="Center"
+                                Foreground="DimGray"
+                                Kind="Search" />
+                            <TextBox
+                                Width="300"
+                                Height="40"
+                                Margin="10,2,0,0"
+                                materialDesign:HintAssist.Hint="Search"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                BorderBrush="Transparent"
+                                FontSize="18"
+                                Style="{StaticResource MaterialDesignTextBoxBase}">
+                                <TextBox.Text>
+                                    <Binding Path="FilterText" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules />
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+                    </Border>
+
+                    <ComboBox
+                        Width="200"
+                        Margin="10"
+                        DisplayMemberPath="CB_Name"
+                        FontSize="18"
+                        Foreground="DimGray"
+                        ItemsSource="{Binding CB_RecordList, Mode=TwoWay}"
+                        SelectedValue="{Binding CB_RecordSelected}">
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="ComboBoxItem">
+                                <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+                    </ComboBox>
+
+                    <CheckBox
+                        Margin="24,12,0,15"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        materialDesign:CheckBoxAssist.CheckBoxSize="24"
+                        Background="#FFEB5215"
+                        BorderBrush="Black"
+                        FontSize="20"
+                        Foreground="Black"
+                        IsChecked="{Binding Checkbox_DisplayAllRecord}"
+                        Style="{StaticResource MaterialDesignCheckBox}">
+                        All Record
+                    </CheckBox>
+
+                    <DatePicker
+                        Width="200"
+                        Margin="40,10,10,10"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        materialDesign:HintAssist.Hint="Pick Date"
+                        DisplayDateEnd="{Binding EndDate}"
+                        FontSize="18"
+                        IsEnabled="{Binding IsEnable}">
+                        <DatePicker.SelectedDate>
+                            <Binding
+                                Mode="TwoWay"
+                                Path="Select_Date"
+                                StringFormat="{}{0: dd/MM/yyyy}"
+                                UpdateSourceTrigger="PropertyChanged" />
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </StackPanel>
+
+                <Separator
+                    Grid.Row="2"
+                    Height="10"
+                    Margin="0,10"
                     BorderBrush="Black"
-                    FontSize="20"
-                    Foreground="Black"
-                    IsChecked="{Binding Checkbox_DisplayAllRecord}"
-                    Style="{StaticResource MaterialDesignCheckBox}">
-                    All Record
-                </CheckBox>
+                    BorderThickness="2" />
 
-                <DatePicker
-                    Width="200"
-                    Margin="40,10,10,10"
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    materialDesign:HintAssist.Hint="Pick Date"
-                    DisplayDateEnd="{Binding EndDate}"
-                    FontSize="18"
-                    IsEnabled="{Binding IsEnable}">
-                    <DatePicker.SelectedDate>
-                        <Binding
-                            Mode="TwoWay"
-                            Path="Select_Date"
-                            StringFormat="{}{0: dd/MM/yyyy}"
-                            UpdateSourceTrigger="PropertyChanged" />
-                    </DatePicker.SelectedDate>
-                </DatePicker>
-            </StackPanel>
+                <ScrollViewer
+                    Grid.Row="3"
+                    Margin="20"
+                    Visibility="{Binding ItemVisbility}">
+                    <ItemsControl ItemsSource="{Binding RecordList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
 
-            <ItemsControl
-                Grid.Row="2"
-                Margin="20"
-                ItemsSource="{Binding RecordList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border
-                            Width="520"
-                            Height="auto"
-                            Margin="20"
-                            Padding="10"
-                            BorderBrush="Black"
-                            BorderThickness="1">
-
-                            <Grid Margin="10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition Height="auto" />
-                                </Grid.RowDefinitions>
-
-                                <StackPanel Margin="32,16,0,8" Orientation="Horizontal">
-                                    <TextBlock
-                                        VerticalAlignment="Center"
-                                        FontSize="18"
-                                        Foreground="DimGray"
-                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                        Text="Staff ID : " />
-                                    <TextBlock
-                                        Margin="16,0,0,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="18"
-                                        Foreground="DimGray"
-                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                        Text="{Binding Staff_ID}" />
-                                </StackPanel>
-
-                                <StackPanel
-                                    Grid.Row="1"
-                                    Margin="32,16,0,8"
-                                    Orientation="Horizontal">
-                                    <TextBlock
-                                        VerticalAlignment="Center"
-                                        FontSize="18"
-                                        Foreground="DimGray"
-                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                        Text="Staff Name : " />
-                                    <TextBlock
-                                        Margin="16,0,0,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="18"
-                                        Foreground="DimGray"
-                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                        Text="{Binding Staff_Name}" />
-                                </StackPanel>
-
-                                <StackPanel
-                                    Grid.Row="2"
-                                    Margin="32,16,0,8"
-                                    Orientation="Horizontal">
-                                    <TextBlock
-                                        VerticalAlignment="Center"
-                                        FontSize="18"
-                                        Foreground="DimGray"
-                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                        Text="Date Change : " />
-                                    <TextBlock
-                                        Margin="16,0,0,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="18"
-                                        Foreground="DimGray"
-                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                        Text="{Binding Record_Date_String}" />
-                                </StackPanel>
-
-                                <TextBox
-                                    Grid.Row="3"
-                                    Width="440"
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Width="520"
                                     Height="auto"
-                                    Margin="16,16,16,8"
-                                    HorizontalAlignment="Left"
-                                    materialDesign:HintAssist.Hint="Content"
-                                    AcceptsReturn="True"
-                                    FontSize="18"
-                                    Foreground="Black"
-                                    IsEnabled="False"
-                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                    Text="{Binding Record_Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    TextWrapping="Wrap" />
+                                    Margin="20"
+                                    Padding="10"
+                                    BorderBrush="Black"
+                                    BorderThickness="1">
 
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                                    <Grid Margin="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                        </Grid.RowDefinitions>
 
-            <StackPanel
-                Grid.Row="3"
-                Margin="32,10"
-                Orientation="Horizontal">
-                <TextBlock
-                    VerticalAlignment="Center"
-                    FontSize="24"
-                    Foreground="DimGray"
-                    Style="{StaticResource MaterialDesignButtonTextBlock}"
-                    Text="Number of Record: " />
-                <TextBlock
-                    Margin="16,0,0,0"
-                    VerticalAlignment="Center"
-                    FontSize="24"
-                    Foreground="DimGray"
-                    Style="{StaticResource MaterialDesignButtonTextBlock}"
-                    Text="{Binding Record_Amount}" />
-            </StackPanel>
+                                        <StackPanel Margin="32,16,0,8" Orientation="Horizontal">
+                                            <TextBlock
+                                                VerticalAlignment="Center"
+                                                FontSize="18"
+                                                Foreground="DimGray"
+                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                Text="Staff ID : " />
+                                            <TextBlock
+                                                Margin="16,0,0,0"
+                                                VerticalAlignment="Center"
+                                                FontSize="18"
+                                                Foreground="DimGray"
+                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                Text="{Binding Staff_ID}" />
+                                        </StackPanel>
+
+                                        <StackPanel
+                                            Grid.Row="1"
+                                            Margin="32,16,0,8"
+                                            Orientation="Horizontal">
+                                            <TextBlock
+                                                VerticalAlignment="Center"
+                                                FontSize="18"
+                                                Foreground="DimGray"
+                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                Text="Staff Name : " />
+                                            <TextBlock
+                                                Margin="16,0,0,0"
+                                                VerticalAlignment="Center"
+                                                FontSize="18"
+                                                Foreground="DimGray"
+                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                Text="{Binding Staff_Name}" />
+                                        </StackPanel>
+
+                                        <StackPanel
+                                            Grid.Row="2"
+                                            Margin="32,16,0,8"
+                                            Orientation="Horizontal">
+                                            <TextBlock
+                                                VerticalAlignment="Center"
+                                                FontSize="18"
+                                                Foreground="DimGray"
+                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                Text="Date Change : " />
+                                            <TextBlock
+                                                Margin="16,0,0,0"
+                                                VerticalAlignment="Center"
+                                                FontSize="18"
+                                                Foreground="DimGray"
+                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                Text="{Binding Record_Date_String}" />
+                                        </StackPanel>
+
+                                        <TextBox
+                                            Grid.Row="3"
+                                            Width="440"
+                                            Height="auto"
+                                            Margin="16,16,16,8"
+                                            HorizontalAlignment="Left"
+                                            materialDesign:HintAssist.Hint="Content"
+                                            AcceptsReturn="True"
+                                            FontSize="18"
+                                            Foreground="Black"
+                                            IsEnabled="False"
+                                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                            Text="{Binding Record_Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            TextWrapping="Wrap" />
+
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+
+                <StackPanel
+                    Grid.Row="4"
+                    Margin="32,10"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        Foreground="DimGray"
+                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                        Text="Number of Record: " />
+                    <TextBlock
+                        Margin="16,0,0,0"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        Foreground="DimGray"
+                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                        Text="{Binding Record_Amount}" />
+                </StackPanel>
+            </Grid>
+
         </Grid>
-    </ScrollViewer>
+    </Border>
 </UserControl>

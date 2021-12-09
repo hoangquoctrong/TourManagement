@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TourManagementSystem.Global.Model;
@@ -17,6 +18,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
         private ObservableCollection<TransportModel> _TransportItems;
         public ObservableCollection<TransportModel> TransportItems { get => _TransportItems; set { _TransportItems = value; OnPropertyChanged("TransportItems"); } }
 
@@ -28,12 +32,20 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         public TransportViewModel(int user_id)
         {
+            ProgressBarVisbility = Visibility.Visible;
             User_ID = user_id;
             LoadTransportComboBox();
             TransportItems = new ObservableCollection<TransportModel>();
             Refresh_TransportItems = new ObservableCollection<TransportModel>();
+            LoadDataToUI();
+        }
+
+        private async void LoadDataToUI()
+        {
+            await Task.Delay(3000);
             TransportItems = TransportHandleModel.GetTransportList();
             Refresh_TransportItems = TransportHandleModel.GetTransportList();
+            ProgressBarVisbility = Visibility.Hidden;
         }
 
         private ObservableCollection<ComboBoxModel> _CB_TransportList;

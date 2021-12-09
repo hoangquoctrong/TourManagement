@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using TourManagementSystem.EmployeeView.Model;
 using TourManagementSystem.Global.Model;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ViewModel;
 
 namespace TourManagementSystem.EmployeeView.ViewModel
@@ -33,7 +34,6 @@ namespace TourManagementSystem.EmployeeView.ViewModel
         {
             User_ID = Properties.Settings.Default.User_ID;
             TypeText = SetTypeText(User_ID);
-            MessageBox.Show(string.Format("{0}, {1}, {2}", Properties.Settings.Default.User_ID, Properties.Settings.Default.Username, Properties.Settings.Default.Password));
 
             // ObservableCollection represents a dynamic data collection that provides notifications when items
             // get added, removed, or when the whole list is refreshed.
@@ -150,7 +150,16 @@ namespace TourManagementSystem.EmployeeView.ViewModel
             {
                 if (_CloseCommand == null)
                 {
-                    _CloseCommand = new RelayCommand<Window>(p => true, p => p.Close());
+                    _CloseCommand = new RelayCommand<Window>(p => true, p =>
+                    {
+                        if (MessageBox.Show("Do you want to log out?",
+                                "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                        {
+                            LoginWindow wLogin = new LoginWindow();
+                            p.Close();
+                            wLogin.ShowDialog();
+                        }
+                    });
                 }
                 return _CloseCommand;
             }

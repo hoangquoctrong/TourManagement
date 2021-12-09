@@ -22,6 +22,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
         #region Data Binding
         private string _Staff_Name;
         public string Staff_Name { get => _Staff_Name; set { _Staff_Name = value; OnPropertyChanged(); } }
@@ -86,6 +89,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public AddStaffViewModel(int user_id)
         {
             User_ID = user_id;
+            ProgressBarVisbility = Visibility.Hidden;
             Staff_Image_Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Images/Add.png", UriKind.Absolute));
         }
 
@@ -99,6 +103,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     _AddStaffCommand = new RelayCommand<ContentControl>(_ => IsExcuteAddStaffCommand(), p =>
                     {
+                        ProgressBarVisbility = Visibility.Visible;
                         ExcuteAddStaffCommand(p);
                     });
                 }
@@ -123,17 +128,21 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 && StaffHandleModel.CheckAccountStaff(Staff_Username);
         }
 
-        private void ExcuteAddStaffCommand(ContentControl p)
+        private async void ExcuteAddStaffCommand(ContentControl p)
         {
+            await Task.Delay(3000);
+
             StaffModel staff = InsertStaffModel();
             if (StaffHandleModel.InsertStaff(staff, User_ID))
             {
-                MessageBox.Show("Add successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Add Staff successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 p.Content = new StaffViewModel(User_ID);
+                ProgressBarVisbility = Visibility.Hidden;
             }
             else
             {
-                MessageBox.Show("Add failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Add Staff failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 

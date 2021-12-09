@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TourManagementSystem.Global.Model;
@@ -26,14 +27,24 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private TourModel _TourSelected;
         public TourModel TourSelected { get => _TourSelected; set { _TourSelected = value; OnPropertyChanged("TourSelected"); } }
 
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
         public TourViewModel(int user_id)
         {
             User_ID = user_id;
             LoadTourComboBox();
-            TourItems = new ObservableCollection<TourModel>();
-            Refresh_TourItems = new ObservableCollection<TourModel>();
+            ProgressBarVisbility = Visibility.Visible;
+            LoadTourData();
+
+        }
+
+        private async void LoadTourData()
+        {
+            await Task.Delay(3000);
             TourItems = TourHandleModel.GetTourList();
             Refresh_TourItems = TourHandleModel.GetTourList();
+            ProgressBarVisbility = Visibility.Hidden;
         }
 
         private ObservableCollection<ComboBoxModel> _CB_TourList;

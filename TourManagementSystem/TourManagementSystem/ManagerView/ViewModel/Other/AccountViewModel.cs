@@ -88,8 +88,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             SetStaffInView(StaffHandleModel.GetStaffFromID(user_id));
         }
 
-        private void SetStaffInView(StaffModel staff)
+        private async void SetStaffInView(StaffModel staff)
         {
+            await Task.Delay(1000);
             Staff_ID = staff.STAFF_ID;
             Staff_Name = staff.STAFF_NAME;
             Staff_Role = staff.STAFF_ROLE;
@@ -129,7 +130,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         }
                         else
                         {
-                            MessageBox.Show("Change Password failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Change Password failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     });
                 }

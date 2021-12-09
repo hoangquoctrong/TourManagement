@@ -28,6 +28,9 @@ namespace TourManagementSystem.Global.ViewModel
 
         private int _ValidateNumber;
         public int ValidateNumber { get => _ValidateNumber; set { _ValidateNumber = value; OnPropertyChanged(); } }
+
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
         public ForgetPasswordViewModel()
         {
             Username = Properties.Settings.Default.Username;
@@ -75,17 +78,27 @@ namespace TourManagementSystem.Global.ViewModel
                 {
                     _SendEmailCommand = new RelayCommand<object>(null, p =>
                     {
-                        if (ForgetPasswordHandleModel.IsSendEmail(UserEmail, ValidateNumber))
-                        {
-                            MessageBox.Show("Send email successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Send email failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteSendEmail();
                     });
                 }
                 return _SendEmailCommand;
+            }
+        }
+
+        private async void ExcuteSendEmail()
+        {
+            await Task.Delay(3000);
+
+            if (ForgetPasswordHandleModel.IsSendEmail(UserEmail, ValidateNumber))
+            {
+                MessageBox.Show("Send email successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
+            }
+            else
+            {
+                MessageBox.Show("Send email failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 
@@ -96,25 +109,35 @@ namespace TourManagementSystem.Global.ViewModel
             {
                 if (_ConfirmCommand == null)
                 {
-                    _ConfirmCommand = new RelayCommand<Window>(p => IsExcuteConfirmCommand(), p => ExcuteConfirmCommand(p));
+                    _ConfirmCommand = new RelayCommand<Window>(p => IsExcuteConfirmCommand(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteConfirmCommand(p);
+                    });
                 }
                 return _ConfirmCommand;
             }
         }
 
-        private void ExcuteConfirmCommand(Window p)
+        private async void ExcuteConfirmCommand(Window p)
         {
+            await Task.Delay(6000);
             int User_ID;
             int loginWindow = ForgetPasswordHandleModel.ConfirmForgetPassword(Username, out User_ID);
+
             if (StaffHandleModel.IsStaffDelete(User_ID))
             {
                 MessageBox.Show("Account have been deleted", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
+                return;
             }
+
             if (loginWindow == 1)
             {
                 ForgetPasswordHandleModel.SaveAccount(Username, User_ID);
                 ManagerWindow window = new ManagerWindow();
                 p.Close();
+                ProgressBarVisbility = Visibility.Hidden;
                 window.ShowDialog();
             }
             else if (loginWindow == -1)
@@ -122,11 +145,13 @@ namespace TourManagementSystem.Global.ViewModel
                 ForgetPasswordHandleModel.SaveAccount(Username, User_ID);
                 EmployeeWindow window = new EmployeeWindow();
                 p.Close();
+                ProgressBarVisbility = Visibility.Hidden;
                 window.ShowDialog();
             }
             else
             {
                 MessageBox.Show("Username wrong!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 

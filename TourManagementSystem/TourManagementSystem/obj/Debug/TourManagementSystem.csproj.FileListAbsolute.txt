@@ -236,5 +236,7 @@ D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\Liv
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\LiveCharts.xml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\LiveCharts.Wpf.pdb
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\LiveCharts.Wpf.xml
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\InformationView.g.cs
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\InformationView.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Others\InformationView.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Others\InformationView.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\XamlAnimatedGif.dll
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\XamlAnimatedGif.pdb

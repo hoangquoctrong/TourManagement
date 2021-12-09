@@ -19,7 +19,7 @@
                                 Storyboard.TargetProperty="Opacity"
                                 From="0.0"
                                 To="1.0"
-                                Duration="0:0:0.5" />
+                                Duration="0:0:1" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -48,151 +48,205 @@
     </UserControl.Resources>
 
     <ContentControl x:Name="contentControlMain">
-        <Grid Margin="0,0,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="auto" />
-                </Grid.ColumnDefinitions>
+        <Border
+            BorderBrush="#0f6f68"
+            BorderThickness="3"
+            CornerRadius="15">
+            <Grid>
 
                 <Border
-                    Grid.Column="0"
-                    Margin="40,5,19.6,4.6"
-                    Background="#FAFAFA"
-                    BorderBrush="Gray"
-                    BorderThickness="1"
-                    CornerRadius="10">
+                    Panel.ZIndex="1000"
+                    BorderThickness="0.5"
+                    CornerRadius="25">
+                    <Grid Visibility="{Binding ProgressBarVisbility}">
 
-                    <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
-                        <materialDesign:PackIcon
-                            Width="25"
-                            Height="30"
-                            Margin="0,0,0,0"
-                            VerticalAlignment="Center"
-                            Foreground="DimGray"
-                            Kind="Search" />
-                        <TextBox
-                            Width="300"
-                            Height="40"
-                            Margin="10,2,0,0"
-                            materialDesign:HintAssist.Hint="Search"
-                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                            BorderBrush="Transparent"
-                            FontSize="18"
-                            Style="{StaticResource MaterialDesignTextBoxBase}">
-                            <TextBox.Text>
-                                <Binding Path="FilterText" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules />
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                    </StackPanel>
+                        <Grid.Background>
+                            <SolidColorBrush Opacity=".3" Color="Black" />
+                        </Grid.Background>
+                        <StackPanel
+                            Margin="0,120,0,120"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                            <ProgressBar
+                                Width="80"
+                                Height="80"
+                                Foreground="White"
+                                IsIndeterminate="True"
+                                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                Value="35" />
+                            <TextBlock
+                                Margin="16,0"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                Foreground="White"
+                                Text="Loading..." />
+                        </StackPanel>
+                    </Grid>
                 </Border>
 
-                <StackPanel
-                    Grid.Column="1"
-                    Margin="0.4,0,27.4,-0.4"
-                    Orientation="Horizontal">
-                    <ComboBox
-                        Name="cbSearch"
-                        Width="140"
-                        Margin="10"
-                        DisplayMemberPath="CB_Name"
-                        FontSize="18"
-                        Foreground="DimGray"
-                        ItemsSource="{Binding CB_TravellerList, Mode=TwoWay}"
-                        SelectedValue="{Binding CB_TravellerSelected}">
-                        <ComboBox.ItemContainerStyle>
-                            <Style TargetType="ComboBoxItem">
-                                <Setter Property="IsSelected" Value="{Binding IsSelected}" />
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-                    </ComboBox>
-                </StackPanel>
 
-                <Button
-                    Grid.Column="2"
-                    Width="150"
-                    Margin="360,10,20,9.6"
-                    HorizontalAlignment="Right"
-                    Command="{Binding AddTravellerCommand}"
-                    CommandParameter="{Binding ElementName=contentControlMain}"
-                    Content="Add New Traveller"
-                    Foreground="#0f6f68"
-                    Style="{StaticResource AddButton}" />
+                <Grid Margin="0,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
 
+                    <Border
+                        Grid.Row="0"
+                        Height="60"
+                        Background="#0f6f68"
+                        CornerRadius="15 15 0 0">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="24"
+                            Foreground="White"
+                            Text="T R A V E L L E R    L I S T " />
+                    </Border>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border
+                            Grid.Column="0"
+                            Margin="40,5,19.6,4.6"
+                            Background="#FAFAFA"
+                            BorderBrush="Gray"
+                            BorderThickness="1"
+                            CornerRadius="10">
+
+                            <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Width="25"
+                                    Height="30"
+                                    Margin="0,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="DimGray"
+                                    Kind="Search" />
+                                <TextBox
+                                    Width="300"
+                                    Height="40"
+                                    Margin="10,2,0,0"
+                                    materialDesign:HintAssist.Hint="Search"
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                    BorderBrush="Transparent"
+                                    FontSize="18"
+                                    Style="{StaticResource MaterialDesignTextBoxBase}">
+                                    <TextBox.Text>
+                                        <Binding Path="FilterText" UpdateSourceTrigger="PropertyChanged">
+                                            <Binding.ValidationRules />
+                                        </Binding>
+                                    </TextBox.Text>
+                                </TextBox>
+                            </StackPanel>
+                        </Border>
+
+                        <StackPanel
+                            Grid.Column="1"
+                            Margin="0.4,0,27.4,-0.4"
+                            Orientation="Horizontal">
+                            <ComboBox
+                                Name="cbSearch"
+                                Width="140"
+                                Margin="10"
+                                DisplayMemberPath="CB_Name"
+                                FontSize="18"
+                                Foreground="DimGray"
+                                ItemsSource="{Binding CB_TravellerList, Mode=TwoWay}"
+                                SelectedValue="{Binding CB_TravellerSelected}">
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="ComboBoxItem">
+                                        <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <Button
+                            Grid.Column="2"
+                            Width="150"
+                            Margin="360,10,20,9.6"
+                            HorizontalAlignment="Right"
+                            Command="{Binding AddTravellerCommand}"
+                            CommandParameter="{Binding ElementName=contentControlMain}"
+                            Content="Add New Traveller"
+                            Foreground="#0f6f68"
+                            Style="{StaticResource AddButton}" />
+
+                    </Grid>
+
+                    <DataGrid
+                        Grid.Row="2"
+                        Width="1150"
+                        Height="540"
+                        VerticalAlignment="Top"
+                        materialDesign:DataGridAssist.CellPadding="12 8 0 8"
+                        materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
+                        AllowDrop="True"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        CanUserDeleteRows="False"
+                        CanUserReorderColumns="False"
+                        CanUserSortColumns="True"
+                        GridLinesVisibility="Vertical"
+                        IsReadOnly="True"
+                        ItemsSource="{Binding TravellerItems}"
+                        SelectedItem="{Binding TravellerSelected}"
+                        SelectionMode="Single"
+                        VerticalScrollBarVisibility="Visible">
+                        <DataGrid.InputBindings>
+                            <MouseBinding
+                                Command="{Binding ShowDetailTravellerCommand}"
+                                CommandParameter="{Binding ElementName=contentControlMain}"
+                                Gesture="LeftDoubleClick" />
+                        </DataGrid.InputBindings>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="0.1*"
+                                Binding="{Binding Traveller_ID}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="ID" />
+                            <DataGridTextColumn
+                                Width="0.25*"
+                                Binding="{Binding Traveller_Name}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Name" />
+                            <DataGridTextColumn
+                                Width="0.2*"
+                                Binding="{Binding Traveller_CitizenIdentity}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Citizen Identity" />
+                            <DataGridTextColumn
+                                Width="0.1*"
+                                Binding="{Binding Traveller_Sex}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Gender" />
+                            <DataGridTextColumn
+                                Width="0.2*"
+                                Binding="{Binding Traveller_PhoneNumber}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Phone Number" />
+                            <DataGridTextColumn
+                                Width="0.2*"
+                                Binding="{Binding Traveller_Type}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Type" />
+                            <DataGridTextColumn
+                                Width="0.15*"
+                                Binding="{Binding Traveller_Number_Tour}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Number Tour" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </Grid>
-
-            <DataGrid
-                Grid.Row="1"
-                Width="1150"
-                Height="540"
-                VerticalAlignment="Top"
-                materialDesign:DataGridAssist.CellPadding="12 8 0 8"
-                materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
-                AllowDrop="True"
-                AutoGenerateColumns="False"
-                CanUserAddRows="False"
-                CanUserDeleteRows="False"
-                CanUserReorderColumns="False"
-                CanUserSortColumns="True"
-                GridLinesVisibility="Vertical"
-                IsReadOnly="True"
-                ItemsSource="{Binding TravellerItems}"
-                SelectedItem="{Binding TravellerSelected}"
-                SelectionMode="Single"
-                VerticalScrollBarVisibility="Visible">
-                <DataGrid.InputBindings>
-                    <MouseBinding
-                        Command="{Binding ShowDetailTravellerCommand}"
-                        CommandParameter="{Binding ElementName=contentControlMain}"
-                        Gesture="LeftDoubleClick" />
-                </DataGrid.InputBindings>
-                <DataGrid.Columns>
-                    <DataGridTextColumn
-                        Width="0.1*"
-                        Binding="{Binding Traveller_ID}"
-                        ElementStyle="{StaticResource WrapText}"
-                        Header="ID" />
-                    <DataGridTextColumn
-                        Width="0.25*"
-                        Binding="{Binding Traveller_Name}"
-                        ElementStyle="{StaticResource WrapText}"
-                        Header="Name" />
-                    <DataGridTextColumn
-                        Width="0.2*"
-                        Binding="{Binding Traveller_CitizenIdentity}"
-                        ElementStyle="{StaticResource WrapText}"
-                        Header="Citizen Identity" />
-                    <DataGridTextColumn
-                        Width="0.1*"
-                        Binding="{Binding Traveller_Sex}"
-                        ElementStyle="{StaticResource WrapText}"
-                        Header="Gender" />
-                    <DataGridTextColumn
-                        Width="0.2*"
-                        Binding="{Binding Traveller_PhoneNumber}"
-                        ElementStyle="{StaticResource WrapText}"
-                        Header="Phone Number" />
-                    <DataGridTextColumn
-                        Width="0.2*"
-                        Binding="{Binding Traveller_Type}"
-                        ElementStyle="{StaticResource WrapText}"
-                        Header="Type" />
-                    <DataGridTextColumn
-                        Width="0.15*"
-                        Binding="{Binding Traveller_Number_Tour}"
-                        ElementStyle="{StaticResource WrapText}"
-                        Header="Number Tour" />
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
+        </Border>
     </ContentControl>
 </UserControl>

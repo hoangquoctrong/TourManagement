@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TourManagementSystem.ManagerView.Model;
@@ -16,15 +17,18 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
         public StatisticTourViewModel(int user_id)
         {
             User_ID = user_id;
-            Refresh_TourItems = GetTourList();
             Checkbox_DisplayAll = true;
         }
 
-        private ObservableCollection<TourStatisticModel> GetTourList()
+        private async Task<ObservableCollection<TourStatisticModel>> GetTourList()
         {
+            await Task.Delay(5000);
             ObservableCollection<TourStatisticModel> tourListBeforeSort = TourHandleModel.GetTourStatisticList();
             var tourlist = from tour in tourListBeforeSort
                            orderby tour.Tour_NumberVisitGroup descending, tour.Tour_ID ascending
@@ -34,20 +38,26 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 tourList.Add(item);
             }
+
+            Refresh_TourItems = tourList;
             return tourList;
         }
 
-        private void CheckBoxDisplay()
+        private async void CheckBoxDisplay()
         {
             if (Checkbox_DisplayAll)
             {
                 IsEnable = false;
-                TourItems = GetTourList();
+                ProgressBarVisbility = Visibility.Visible;
+                TourItems = await GetTourList();
+                ProgressBarVisbility = Visibility.Hidden;
             }
             else
             {
                 IsEnable = true;
-                TourItems = GetFillterList(StartDate, EndDate);
+                ProgressBarVisbility = Visibility.Visible;
+                TourItems = await GetFillterList(StartDate, EndDate);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 
@@ -87,9 +97,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
         }
 
-        private void ExcuteFilter()
+        private async void ExcuteFilter()
         {
-            TourItems = GetFillterList(StartDate, EndDate);
+            ProgressBarVisbility = Visibility.Visible;
+            TourItems = await GetFillterList(StartDate, EndDate);
+            ProgressBarVisbility = Visibility.Hidden;
         }
 
         private bool IsExcuteFilter()
@@ -97,8 +109,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             return IsEnable;
         }
 
-        private ObservableCollection<TourStatisticModel> GetFillterList(DateTime datestart, DateTime dateend)
+        private async Task<ObservableCollection<TourStatisticModel>> GetFillterList(DateTime datestart, DateTime dateend)
         {
+            await Task.Delay(3000);
             ObservableCollection<TourStatisticModel> filterList = new ObservableCollection<TourStatisticModel>();
             foreach (var item in Refresh_TourItems)
             {

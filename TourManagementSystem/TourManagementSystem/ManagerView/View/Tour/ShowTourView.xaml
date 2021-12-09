@@ -48,709 +48,749 @@
     </UserControl.Resources>
 
     <ContentControl x:Name="contentControlDisplay" Height="auto">
-        <Grid>
+        <Border
+            BorderBrush="#0f6f68"
+            BorderThickness="3"
+            CornerRadius="15">
+            <Grid>
+                <Grid>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-            <Grid
-                Grid.Row="0"
-                Height="60"
-                Background="#0f6f68">
-                <Button
-                    Width="60"
-                    Height="60"
-                    Margin="20,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Background="Transparent"
-                    Command="{Binding CancelCommand}"
-                    CommandParameter="{Binding ElementName=contentControlDisplay}"
-                    Style="{StaticResource BackButton}" />
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="24"
-                    Foreground="White"
-                    Text="D I S P L A Y    T O U R " />
-            </Grid>
-
-            <ScrollViewer Grid.Row="1">
-                <TabControl
-                    materialDesign:ColorZoneAssist.Mode="Standard"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                    Background="Transparent"
-                    Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
-                    TabStripPlacement="Top">
-                    <TabItem
-                        Width="290"
-                        Background="Transparent"
-                        Style="{StaticResource MaterialDesignNavigationRailTabItem}"
-                        TabIndex="0">
-                        <TabItem.Header>
-                            <StackPanel
-                                Width="240"
-                                Height="50"
-                                HorizontalAlignment="Center"
-                                Orientation="Horizontal">
-                                <materialDesign:PackIcon
-                                    Width="30"
-                                    Height="30"
-                                    Margin="20,0"
-                                    VerticalAlignment="Center"
-                                    Kind="FolderInformation" />
-                                <TextBlock
-                                    Margin="20,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="24"
-                                    Foreground="Black"
-                                    Text="Information" />
-                            </StackPanel>
-                        </TabItem.Header>
-                        <Grid Margin="150,0">
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-
-                            <Grid Grid.Row="0">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-
-                                <StackPanel Margin="20,20,20,20" Orientation="Horizontal">
-
-                                    <materialDesign:PackIcon
-                                        Width="30"
-                                        Height="30"
-                                        VerticalAlignment="Center"
-                                        Foreground="DimGray"
-                                        Kind="NoteOutline" />
-
-                                    <TextBox
-                                        Width="260"
-                                        Margin="8,0,0,0"
-                                        materialDesign:HintAssist.HelperText="Tour Name."
-                                        materialDesign:HintAssist.Hint="Name"
-                                        FontSize="18"
-                                        IsEnabled="{Binding Is_Exist}">
-                                        <TextBox.Text>
-                                            <Binding
-                                                Mode="TwoWay"
-                                                Path="Tour_Name"
-                                                UpdateSourceTrigger="PropertyChanged">
-                                                <Binding.ValidationRules />
-                                            </Binding>
-                                        </TextBox.Text>
-                                    </TextBox>
-
-                                </StackPanel>
-
-                                <StackPanel
-                                    Grid.Column="1"
-                                    Margin="20,20,20,20"
-                                    Orientation="Horizontal">
-
-                                    <materialDesign:PackIcon
-                                        Width="30"
-                                        Height="30"
-                                        VerticalAlignment="Center"
-                                        Foreground="DimGray"
-                                        Kind="FormatListBulletedType" />
-                                    <ComboBox
-                                        Width="260"
-                                        Margin="10,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        materialDesign:HintAssist.Hint="Status"
-                                        FontSize="18"
-                                        Foreground="DimGray"
-                                        IsEnabled="{Binding Is_Exist}">
-                                        <ComboBoxItem Content="Family Tour" />
-                                        <ComboBoxItem Content="Group Tour" />
-                                        <ComboBox.Text>
-                                            <Binding
-                                                Mode="TwoWay"
-                                                Path="Tour_Type"
-                                                UpdateSourceTrigger="PropertyChanged">
-                                                <Binding.ValidationRules />
-                                            </Binding>
-                                        </ComboBox.Text>
-                                    </ComboBox>
-
-                                </StackPanel>
-                            </Grid>
-
-                            <Separator
-                                Grid.Row="1"
-                                Margin="0,10,0,0"
-                                BorderBrush="Black"
-                                BorderThickness="12"
-                                Opacity="0.8" />
-
-                            <StackPanel
-                                Grid.Row="2"
-                                Margin="20"
-                                Orientation="Horizontal">
-                                <TextBlock
-                                    Margin="35,0,0,0"
-                                    FontSize="22"
-                                    Foreground="DimGray">
-                                    Evalution:
-                                </TextBlock>
-                                <materialDesign:RatingBar
-                                    Margin="20,3"
-                                    IsEnabled="False"
-                                    Max="10"
-                                    Value="{Binding Tour_Star}" />
-                            </StackPanel>
-
-                            <Separator
-                                Grid.Row="3"
-                                Margin="0,10,0,0"
-                                BorderBrush="Black"
-                                BorderThickness="12"
-                                Opacity="0.8" />
-
-                            <StackPanel
-                                Grid.Row="4"
-                                Margin="20"
-                                VerticalAlignment="Top">
-
-                                <TextBlock
-                                    Margin="35,10,0,0"
-                                    FontSize="22"
-                                    Foreground="DimGray">
-                                    Characteristic
-                                </TextBlock>
-
-                                <TextBox
-                                    Width="720"
-                                    Height="220"
-                                    Margin="35,10,20,0"
-                                    HorizontalAlignment="Left"
-                                    materialDesign:HintAssist.HelperText="Detail about the tour ?"
-                                    AcceptsReturn="True"
-                                    FontSize="17"
-                                    Foreground="DimGray"
-                                    IsEnabled="{Binding Is_Exist}"
-                                    MinLines="8"
-                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                    Text="{Binding Tour_Description, Mode=TwoWay}"
-                                    TextWrapping="Wrap" />
-                            </StackPanel>
-
-                            <Grid Grid.Row="5">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Button
-                                    Width="200"
-                                    Height="60"
-                                    Margin="10,16,20,16"
-                                    HorizontalAlignment="Left"
-                                    Command="{Binding DeleteTourCommand}"
-                                    CommandParameter="{Binding ElementName=contentControlDisplay}"
-                                    Content="Delete"
-                                    Foreground="#F36E6B"
-                                    Style="{StaticResource ResourceKey=CancelButton}" />
-                                <Button
-                                    Grid.Column="1"
-                                    Width="200"
-                                    Height="60"
-                                    Margin="0,14,60,2"
-                                    HorizontalAlignment="Right"
-                                    Command="{Binding SaveTourCommand}"
-                                    Content="Save Changes"
-                                    Foreground="#1885F2"
-                                    Style="{StaticResource ResourceKey=ConfirmButton}" />
-                            </Grid>
-                        </Grid>
-                    </TabItem>
-
-                    <TabItem
-                        Width="290"
-                        Background="Transparent"
-                        Style="{StaticResource MaterialDesignNavigationRailTabItem}"
-                        TabIndex="0">
-                        <TabItem.Header>
-                            <StackPanel
-                                Width="240"
-                                Height="50"
-                                HorizontalAlignment="Center"
-                                Orientation="Horizontal">
-                                <materialDesign:PackIcon
-                                    Width="30"
-                                    Height="30"
-                                    Margin="20,0"
-                                    VerticalAlignment="Center"
-                                    Kind="Image" />
-                                <TextBlock
-                                    Margin="20,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="24"
-                                    Foreground="Black"
-                                    Text="Image" />
-                            </StackPanel>
-                        </TabItem.Header>
+                    <Border
+                        Grid.Row="0"
+                        Height="60"
+                        Background="#0f6f68"
+                        CornerRadius="15 15 0 0">
                         <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-                            <WrapPanel Margin="90,0">
-                                <Button
-                                    Width="240"
-                                    Height="240"
-                                    Margin="90,30,30,30"
-                                    HorizontalAlignment="Center"
-                                    Background="Transparent"
-                                    BorderBrush="#EBF9E2"
-                                    BorderThickness="1"
-                                    Command="{Binding ModifyImageCommand_1}">
-                                    <Image Source="{Binding Tour_Image_Source_1}" Stretch="Fill" />
-                                </Button>
-
-                                <Button
-                                    Width="240"
-                                    Height="240"
-                                    Margin="30"
-                                    HorizontalAlignment="Center"
-                                    Background="Transparent"
-                                    BorderBrush="#EBF9E2"
-                                    BorderThickness="1"
-                                    Command="{Binding ModifyImageCommand_2}">
-                                    <Image Source="{Binding Tour_Image_Source_2}" Stretch="Fill" />
-                                </Button>
-
-                                <Button
-                                    Width="240"
-                                    Height="240"
-                                    Margin="30"
-                                    HorizontalAlignment="Center"
-                                    Background="Transparent"
-                                    BorderBrush="#EBF9E2"
-                                    BorderThickness="1"
-                                    Command="{Binding ModifyImageCommand_3}">
-                                    <Image Source="{Binding Tour_Image_Source_3}" Stretch="Fill" />
-                                </Button>
-
-                                <Button
-                                    Width="240"
-                                    Height="240"
-                                    Margin="90,30,30,30"
-                                    HorizontalAlignment="Center"
-                                    Background="Transparent"
-                                    BorderBrush="#EBF9E2"
-                                    BorderThickness="1"
-                                    Command="{Binding ModifyImageCommand_4}">
-                                    <Image Source="{Binding Tour_Image_Source_4}" Stretch="Fill" />
-                                </Button>
-
-                                <Button
-                                    Width="240"
-                                    Height="240"
-                                    Margin="30"
-                                    HorizontalAlignment="Center"
-                                    Background="Transparent"
-                                    BorderBrush="#EBF9E2"
-                                    BorderThickness="1"
-                                    Command="{Binding ModifyImageCommand_5}">
-                                    <Image Source="{Binding Tour_Image_Source_5}" Stretch="Fill" />
-                                </Button>
-
-                                <Button
-                                    Width="240"
-                                    Height="240"
-                                    Margin="30"
-                                    HorizontalAlignment="Center"
-                                    Background="Transparent"
-                                    BorderBrush="#EBF9E2"
-                                    BorderThickness="1"
-                                    Command="{Binding ModifyImageCommand_6}">
-                                    <Image Source="{Binding Tour_Image_Source_6}" Stretch="Fill" />
-                                </Button>
-                            </WrapPanel>
-                            <StackPanel
-                                Grid.Row="1"
-                                HorizontalAlignment="Right"
-                                Orientation="Horizontal">
-
-                                <Button
-                                    Width="200"
-                                    Height="60"
-                                    Margin="0,14,60,2"
-                                    Command="{Binding SaveImageTourCommand}"
-                                    Content="Save Changes"
-                                    Foreground="#1885F2"
-                                    Style="{StaticResource ResourceKey=ConfirmButton}" />
-                            </StackPanel>
-                        </Grid>
-                    </TabItem>
-
-                    <TabItem
-                        Width="290"
-                        Background="Transparent"
-                        Style="{StaticResource MaterialDesignNavigationRailTabItem}">
-
-                        <TabItem.Header>
-                            <StackPanel
-                                Width="240"
-                                Height="50"
-                                HorizontalAlignment="Center"
-                                Orientation="Horizontal">
-                                <materialDesign:PackIcon
-                                    Width="30"
-                                    Height="30"
-                                    Margin="20,0"
-                                    VerticalAlignment="Center"
-                                    Kind="Earth" />
-                                <TextBlock
-                                    Margin="20,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="24"
-                                    Foreground="Black"
-                                    Text="Place" />
-                            </StackPanel>
-                        </TabItem.Header>
-                        <Grid Margin="0,0,0,14">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-
-                            <Border
-                                Grid.Row="0"
-                                Width="360"
-                                Height="50"
-                                Margin="20,20,40,5"
-                                Background="#FAFAFA"
-                                BorderBrush="Gray"
-                                BorderThickness="1"
-                                CornerRadius="10">
-
-                                <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
-                                    <materialDesign:PackIcon
-                                        Width="25"
-                                        Height="30"
-                                        Margin="0,0,0,0"
-                                        VerticalAlignment="Center"
-                                        Foreground="DimGray"
-                                        Kind="Search" />
-                                    <TextBox
-                                        Width="300"
-                                        Height="40"
-                                        Margin="10,2,0,0"
-                                        materialDesign:HintAssist.Hint="Search"
-                                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                        BorderBrush="Transparent"
-                                        FontSize="18"
-                                        Style="{StaticResource MaterialDesignTextBoxBase}">
-                                        <TextBox.Text>
-                                            <Binding Path="FilterPlaceText" UpdateSourceTrigger="PropertyChanged">
-                                                <Binding.ValidationRules />
-                                            </Binding>
-                                        </TextBox.Text>
-                                    </TextBox>
-                                </StackPanel>
-                            </Border>
-
-
-                            <Grid Grid.Row="1" Margin="20">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <StackPanel Margin="16">
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        FontFamily="helvetica"
-                                        FontSize="24"
-                                        Foreground="Black"
-                                        Text="Select Place" />
-
-                                    <ItemsControl
-                                        Grid.IsSharedSizeScope="True"
-                                        IsEnabled="{Binding Is_Exist}"
-                                        ItemsSource="{Binding PlaceList}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Border
-                                                    x:Name="BorderPlace"
-                                                    Padding="8"
-                                                    BorderBrush="Black"
-                                                    BorderThickness="1">
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition SharedSizeGroup="Checkerz" />
-                                                            <ColumnDefinition />
-                                                        </Grid.ColumnDefinitions>
-                                                        <CheckBox
-                                                            VerticalAlignment="Center"
-                                                            Command="{Binding DataContext.PlaceItemCheckCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                                                            CommandParameter="{Binding CB_ID}"
-                                                            IsChecked="{Binding IsSelected}" />
-                                                        <StackPanel Grid.Column="1" Margin="8,0,0,0">
-                                                            <TextBlock FontWeight="Bold" Text="{Binding CB_Name}" />
-                                                            <TextBlock Text="{Binding CB_Sub_Name}" />
-                                                        </StackPanel>
-                                                    </Grid>
-                                                </Border>
-                                                <DataTemplate.Triggers>
-                                                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                                        <Setter TargetName="BorderPlace" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
-                                                    </DataTrigger>
-                                                </DataTemplate.Triggers>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </StackPanel>
-
-
-                                <StackPanel Grid.Column="1" Margin="16">
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        FontFamily="helvetica"
-                                        FontSize="24"
-                                        Foreground="Black"
-                                        Text="Place Selected" />
-                                    <ItemsControl
-                                        Grid.IsSharedSizeScope="True"
-                                        IsEnabled="{Binding Is_Exist}"
-                                        ItemsSource="{Binding PlaceSelectedList}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Border
-                                                    x:Name="BorderPlace"
-                                                    Padding="8"
-                                                    BorderBrush="Black"
-                                                    BorderThickness="1">
-
-                                                    <StackPanel Margin="8,0,0,0">
-                                                        <TextBlock FontWeight="Bold" Text="{Binding PLACE_NAME}" />
-                                                        <TextBlock Text="{Binding PLACE_NATION}" />
-                                                    </StackPanel>
-                                                </Border>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </StackPanel>
-
-                            </Grid>
-
-
-                            <StackPanel
-                                Grid.Row="2"
-                                HorizontalAlignment="Right"
-                                Orientation="Horizontal">
-
-                                <Button
-                                    Width="200"
-                                    Height="60"
-                                    Margin="0,0,60,2"
-                                    Command="{Binding SavePlaceDetailCommand}"
-                                    Content="Save Changes"
-                                    Foreground="#1885F2"
-                                    Style="{StaticResource ResourceKey=ConfirmButton}" />
-                            </StackPanel>
-                        </Grid>
-                    </TabItem>
-
-                    <TabItem
-                        Width="290"
-                        Background="Transparent"
-                        Style="{StaticResource MaterialDesignNavigationRailTabItem}">
-
-                        <TabItem.Header>
-                            <StackPanel
-                                Width="240"
-                                Height="50"
-                                HorizontalAlignment="Center"
-                                Orientation="Horizontal">
-                                <materialDesign:PackIcon
-                                    Width="30"
-                                    Height="30"
-                                    Margin="20,0"
-                                    VerticalAlignment="Center"
-                                    Kind="Grid" />
-                                <TextBlock
-                                    Margin="20,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="24"
-                                    Foreground="Black"
-                                    Text="Tour List" />
-                            </StackPanel>
-                        </TabItem.Header>
-
-                        <Grid Margin="0,0,0,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-
-                            <Grid Grid.Row="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition Width="auto" />
-                                </Grid.ColumnDefinitions>
-
-                                <Border
-                                    Grid.Column="0"
-                                    Width="400"
-                                    Height="50"
-                                    Margin="40,5,40,5"
-                                    Background="#FAFAFA"
-                                    BorderBrush="Gray"
-                                    BorderThickness="1"
-                                    CornerRadius="10">
-
-                                    <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
-                                        <materialDesign:PackIcon
-                                            Width="25"
-                                            Height="30"
-                                            Margin="0,0,0,0"
-                                            VerticalAlignment="Center"
-                                            Foreground="DimGray"
-                                            Kind="Search" />
-                                        <TextBox
-                                            Width="300"
-                                            Height="40"
-                                            Margin="10,2,0,0"
-                                            materialDesign:HintAssist.Hint="Search"
-                                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                            BorderBrush="Transparent"
-                                            FontSize="18"
-                                            Style="{StaticResource MaterialDesignTextBoxBase}">
-                                            <TextBox.Text>
-                                                <Binding Path="TourInformationFilterText" UpdateSourceTrigger="PropertyChanged">
-                                                    <Binding.ValidationRules />
-                                                </Binding>
-                                            </TextBox.Text>
-                                        </TextBox>
-                                    </StackPanel>
-                                </Border>
-
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <ComboBox
-                                        Width="160"
-                                        Margin="10,10,80,10"
-                                        DisplayMemberPath="CB_Name"
-                                        FontSize="18"
-                                        Foreground="DimGray"
-                                        ItemsSource="{Binding CB_TourInformationList, Mode=TwoWay}"
-                                        SelectedValue="{Binding CB_TourInformationSelected}">
-                                        <ComboBox.ItemContainerStyle>
-                                            <Style TargetType="ComboBoxItem">
-                                                <Setter Property="IsSelected" Value="{Binding IsSelected}" />
-                                            </Style>
-                                        </ComboBox.ItemContainerStyle>
-                                    </ComboBox>
-                                </StackPanel>
-
-                                <Button
-                                    Grid.Column="2"
-                                    Width="240"
-                                    Height="60"
-                                    Margin="160,0"
-                                    Command="{Binding AddTourInformationCommand}"
-                                    CommandParameter="{Binding ElementName=contentControlDisplay}"
-                                    Content="Add New Tour Information"
-                                    Foreground="#0f6f68"
-                                    Style="{StaticResource AddButton}" />
-
-                            </Grid>
-
-                            <DataGrid
-                                Grid.Row="1"
-                                Width="1100"
-                                Height="360"
-                                Margin="20"
+                            <Button
+                                Width="60"
+                                Height="60"
+                                Margin="20,0"
+                                HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
-                                materialDesign:DataGridAssist.CellPadding="12 8 0 8"
-                                materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
-                                AllowDrop="True"
-                                AutoGenerateColumns="False"
-                                CanUserAddRows="False"
-                                CanUserDeleteRows="False"
-                                CanUserReorderColumns="False"
-                                CanUserSortColumns="True"
-                                GridLinesVisibility="Vertical"
-                                IsReadOnly="True"
-                                ItemsSource="{Binding TourInformationItems, Mode=TwoWay}"
-                                SelectedItem="{Binding TourInformationSelected}"
-                                SelectionMode="Single">
-                                <DataGrid.RowStyle>
-                                    <Style TargetType="{x:Type DataGridRow}">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding INFORMATION_ENABLE}" Value="false">
-                                                <Setter Property="Background" Value="White" />
-                                                <Setter Property="Foreground" Value="Red" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding INFORMATION_ENABLE}" Value="true">
-                                                <Setter Property="Background" Value="White" />
-                                                <Setter Property="Foreground" Value="DarkSlateGray" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </DataGrid.RowStyle>
-                                <DataGrid.InputBindings>
-                                    <MouseBinding
-                                        Command="{Binding ShowDetailTourInformationCommand}"
-                                        CommandParameter="{Binding ElementName=contentControlDisplay}"
-                                        Gesture="LeftDoubleClick" />
-                                </DataGrid.InputBindings>
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn
-                                        Width="0.1*"
-                                        Binding="{Binding INFORMATION_ID}"
-                                        ElementStyle="{StaticResource WrapText}"
-                                        Header="ID" />
-                                    <DataGridTextColumn
-                                        Width="0.2*"
-                                        Binding="{Binding INFORMATION_TIME.TIME_STRING}"
-                                        ElementStyle="{StaticResource WrapText}"
-                                        Header="Schedule" />
-                                    <DataGridTextColumn
-                                        Width="0.25*"
-                                        Binding="{Binding INFORMATION_TIME.TIME_DEPARTMENT_STRING}"
-                                        ElementStyle="{StaticResource WrapText}"
-                                        Header="Department Date" />
-                                    <DataGridTextColumn
-                                        Width="0.25*"
-                                        Binding="{Binding INFORMATION_TIME.TIME_END_STRING}"
-                                        ElementStyle="{StaticResource WrapText}"
-                                        Header="End Date" />
-                                    <DataGridTextColumn
-                                        Width="0.2*"
-                                        Binding="{Binding INFORMATION_PRICE.PRICE_COST_TOTAL}"
-                                        ElementStyle="{StaticResource WrapText}"
-                                        Header="Total Cost" />
-                                </DataGrid.Columns>
-                            </DataGrid>
-
+                                Background="Transparent"
+                                Command="{Binding CancelCommand}"
+                                CommandParameter="{Binding ElementName=contentControlDisplay}"
+                                Style="{StaticResource BackButton}" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                Foreground="White"
+                                Text="D I S P L A Y    T O U R " />
                         </Grid>
+                    </Border>
 
-                    </TabItem>
-                </TabControl>
-            </ScrollViewer>
-        </Grid>
+                    <Border
+                        Grid.Row="1"
+                        Panel.ZIndex="1000"
+                        BorderThickness="0.5"
+                        CornerRadius="25">
+                        <Grid Visibility="{Binding ProgressBarVisbility}">
 
+                            <Grid.Background>
+                                <SolidColorBrush Opacity=".3" Color="Black" />
+                            </Grid.Background>
+                            <StackPanel
+                                Margin="0,120,0,120"
+                                HorizontalAlignment="Center"
+                                Orientation="Horizontal">
+                                <ProgressBar
+                                    Width="80"
+                                    Height="80"
+                                    Foreground="White"
+                                    IsIndeterminate="True"
+                                    Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                    Value="35" />
+                                <TextBlock
+                                    Margin="16,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="24"
+                                    Foreground="White"
+                                    Text="Loading..." />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <ScrollViewer Grid.Row="1">
+                        <TabControl
+                            materialDesign:ColorZoneAssist.Mode="Standard"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                            Background="Transparent"
+                            Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                            TabStripPlacement="Top">
+                            <TabItem
+                                Width="290"
+                                Background="Transparent"
+                                Style="{StaticResource MaterialDesignNavigationRailTabItem}"
+                                TabIndex="0">
+                                <TabItem.Header>
+                                    <StackPanel
+                                        Width="240"
+                                        Height="50"
+                                        HorizontalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <materialDesign:PackIcon
+                                            Width="30"
+                                            Height="30"
+                                            Margin="20,0"
+                                            VerticalAlignment="Center"
+                                            Kind="FolderInformation" />
+                                        <TextBlock
+                                            Margin="20,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="24"
+                                            Foreground="Black"
+                                            Text="Information" />
+                                    </StackPanel>
+                                </TabItem.Header>
+                                <Grid Margin="150,0">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+
+                                        <StackPanel Margin="20,20,20,20" Orientation="Horizontal">
+
+                                            <materialDesign:PackIcon
+                                                Width="30"
+                                                Height="30"
+                                                VerticalAlignment="Center"
+                                                Foreground="DimGray"
+                                                Kind="NoteOutline" />
+
+                                            <TextBox
+                                                Width="260"
+                                                Margin="8,0,0,0"
+                                                materialDesign:HintAssist.HelperText="Tour Name *"
+                                                materialDesign:HintAssist.Hint="Name"
+                                                FontSize="18"
+                                                IsEnabled="{Binding Is_Exist}">
+                                                <TextBox.Text>
+                                                    <Binding
+                                                        Mode="TwoWay"
+                                                        Path="Tour_Name"
+                                                        UpdateSourceTrigger="PropertyChanged">
+                                                        <Binding.ValidationRules />
+                                                    </Binding>
+                                                </TextBox.Text>
+                                            </TextBox>
+
+                                        </StackPanel>
+
+                                        <StackPanel
+                                            Grid.Column="1"
+                                            Margin="20,20,20,20"
+                                            Orientation="Horizontal">
+
+                                            <materialDesign:PackIcon
+                                                Width="30"
+                                                Height="30"
+                                                VerticalAlignment="Center"
+                                                Foreground="DimGray"
+                                                Kind="FormatListBulletedType" />
+                                            <ComboBox
+                                                Width="260"
+                                                Margin="10,0,0,0"
+                                                HorizontalAlignment="Left"
+                                                materialDesign:HintAssist.Hint="Status"
+                                                FontSize="18"
+                                                Foreground="DimGray"
+                                                IsEnabled="{Binding Is_Exist}">
+                                                <ComboBoxItem Content="Family Tour" />
+                                                <ComboBoxItem Content="Group Tour" />
+                                                <ComboBox.Text>
+                                                    <Binding
+                                                        Mode="TwoWay"
+                                                        Path="Tour_Type"
+                                                        UpdateSourceTrigger="PropertyChanged">
+                                                        <Binding.ValidationRules />
+                                                    </Binding>
+                                                </ComboBox.Text>
+                                            </ComboBox>
+
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <Separator
+                                        Grid.Row="1"
+                                        Margin="0,10,0,0"
+                                        BorderBrush="Black"
+                                        BorderThickness="12"
+                                        Opacity="0.8" />
+
+                                    <StackPanel
+                                        Grid.Row="2"
+                                        Margin="20"
+                                        Orientation="Horizontal">
+                                        <TextBlock
+                                            Margin="35,0,0,0"
+                                            FontSize="22"
+                                            Foreground="DimGray">
+                                            Evalution:
+                                        </TextBlock>
+                                        <materialDesign:RatingBar
+                                            Margin="20,3"
+                                            IsEnabled="False"
+                                            Max="10"
+                                            Value="{Binding Tour_Star}" />
+                                    </StackPanel>
+
+                                    <Separator
+                                        Grid.Row="3"
+                                        Margin="0,10,0,0"
+                                        BorderBrush="Black"
+                                        BorderThickness="12"
+                                        Opacity="0.8" />
+
+                                    <StackPanel
+                                        Grid.Row="4"
+                                        Margin="20"
+                                        VerticalAlignment="Top">
+
+                                        <TextBlock
+                                            Margin="35,10,0,0"
+                                            FontSize="22"
+                                            Foreground="DimGray">
+                                            Characteristic
+                                        </TextBlock>
+
+                                        <TextBox
+                                            Width="720"
+                                            Height="220"
+                                            Margin="35,10,20,0"
+                                            HorizontalAlignment="Left"
+                                            materialDesign:HintAssist.HelperText="Detail about the tour ?"
+                                            AcceptsReturn="True"
+                                            FontSize="17"
+                                            Foreground="DimGray"
+                                            IsEnabled="{Binding Is_Exist}"
+                                            MinLines="8"
+                                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                            Text="{Binding Tour_Description, Mode=TwoWay}"
+                                            TextWrapping="Wrap" />
+                                    </StackPanel>
+
+                                    <Grid Grid.Row="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Button
+                                            Width="200"
+                                            Height="60"
+                                            Margin="10,16,20,16"
+                                            HorizontalAlignment="Left"
+                                            Command="{Binding DeleteTourCommand}"
+                                            CommandParameter="{Binding ElementName=contentControlDisplay}"
+                                            Content="Delete"
+                                            Foreground="#F36E6B"
+                                            Style="{StaticResource ResourceKey=CancelButton}" />
+                                        <Button
+                                            Grid.Column="1"
+                                            Width="200"
+                                            Height="60"
+                                            Margin="0,14,60,2"
+                                            HorizontalAlignment="Right"
+                                            Command="{Binding SaveTourCommand}"
+                                            Content="Save Changes"
+                                            Foreground="#1885F2"
+                                            Style="{StaticResource ResourceKey=ConfirmButton}" />
+                                    </Grid>
+                                </Grid>
+                            </TabItem>
+
+                            <TabItem
+                                Width="290"
+                                Background="Transparent"
+                                Style="{StaticResource MaterialDesignNavigationRailTabItem}"
+                                TabIndex="0">
+                                <TabItem.Header>
+                                    <StackPanel
+                                        Width="240"
+                                        Height="50"
+                                        HorizontalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <materialDesign:PackIcon
+                                            Width="30"
+                                            Height="30"
+                                            Margin="20,0"
+                                            VerticalAlignment="Center"
+                                            Kind="Image" />
+                                        <TextBlock
+                                            Margin="20,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="24"
+                                            Foreground="Black"
+                                            Text="Image" />
+                                    </StackPanel>
+                                </TabItem.Header>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+                                    <WrapPanel Margin="90,0">
+                                        <Button
+                                            Width="240"
+                                            Height="240"
+                                            Margin="90,30,30,30"
+                                            HorizontalAlignment="Center"
+                                            Background="Transparent"
+                                            BorderBrush="#EBF9E2"
+                                            BorderThickness="1"
+                                            Command="{Binding ModifyImageCommand_1}">
+                                            <Image Source="{Binding Tour_Image_Source_1}" Stretch="Fill" />
+                                        </Button>
+
+                                        <Button
+                                            Width="240"
+                                            Height="240"
+                                            Margin="30"
+                                            HorizontalAlignment="Center"
+                                            Background="Transparent"
+                                            BorderBrush="#EBF9E2"
+                                            BorderThickness="1"
+                                            Command="{Binding ModifyImageCommand_2}">
+                                            <Image Source="{Binding Tour_Image_Source_2}" Stretch="Fill" />
+                                        </Button>
+
+                                        <Button
+                                            Width="240"
+                                            Height="240"
+                                            Margin="30"
+                                            HorizontalAlignment="Center"
+                                            Background="Transparent"
+                                            BorderBrush="#EBF9E2"
+                                            BorderThickness="1"
+                                            Command="{Binding ModifyImageCommand_3}">
+                                            <Image Source="{Binding Tour_Image_Source_3}" Stretch="Fill" />
+                                        </Button>
+
+                                        <Button
+                                            Width="240"
+                                            Height="240"
+                                            Margin="90,30,30,30"
+                                            HorizontalAlignment="Center"
+                                            Background="Transparent"
+                                            BorderBrush="#EBF9E2"
+                                            BorderThickness="1"
+                                            Command="{Binding ModifyImageCommand_4}">
+                                            <Image Source="{Binding Tour_Image_Source_4}" Stretch="Fill" />
+                                        </Button>
+
+                                        <Button
+                                            Width="240"
+                                            Height="240"
+                                            Margin="30"
+                                            HorizontalAlignment="Center"
+                                            Background="Transparent"
+                                            BorderBrush="#EBF9E2"
+                                            BorderThickness="1"
+                                            Command="{Binding ModifyImageCommand_5}">
+                                            <Image Source="{Binding Tour_Image_Source_5}" Stretch="Fill" />
+                                        </Button>
+
+                                        <Button
+                                            Width="240"
+                                            Height="240"
+                                            Margin="30"
+                                            HorizontalAlignment="Center"
+                                            Background="Transparent"
+                                            BorderBrush="#EBF9E2"
+                                            BorderThickness="1"
+                                            Command="{Binding ModifyImageCommand_6}">
+                                            <Image Source="{Binding Tour_Image_Source_6}" Stretch="Fill" />
+                                        </Button>
+                                    </WrapPanel>
+                                    <StackPanel
+                                        Grid.Row="1"
+                                        HorizontalAlignment="Right"
+                                        Orientation="Horizontal">
+
+                                        <Button
+                                            Width="200"
+                                            Height="60"
+                                            Margin="0,14,60,2"
+                                            Command="{Binding SaveImageTourCommand}"
+                                            Content="Save Changes"
+                                            Foreground="#1885F2"
+                                            Style="{StaticResource ResourceKey=ConfirmButton}" />
+                                    </StackPanel>
+                                </Grid>
+                            </TabItem>
+
+                            <TabItem
+                                Width="290"
+                                Background="Transparent"
+                                Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+
+                                <TabItem.Header>
+                                    <StackPanel
+                                        Width="240"
+                                        Height="50"
+                                        HorizontalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <materialDesign:PackIcon
+                                            Width="30"
+                                            Height="30"
+                                            Margin="20,0"
+                                            VerticalAlignment="Center"
+                                            Kind="Earth" />
+                                        <TextBlock
+                                            Margin="20,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="24"
+                                            Foreground="Black"
+                                            Text="Place" />
+                                    </StackPanel>
+                                </TabItem.Header>
+                                <Grid Margin="0,0,0,14">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Border
+                                        Grid.Row="0"
+                                        Width="360"
+                                        Height="50"
+                                        Margin="20,20,40,5"
+                                        Background="#FAFAFA"
+                                        BorderBrush="Gray"
+                                        BorderThickness="1"
+                                        CornerRadius="10">
+
+                                        <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                            <materialDesign:PackIcon
+                                                Width="25"
+                                                Height="30"
+                                                Margin="0,0,0,0"
+                                                VerticalAlignment="Center"
+                                                Foreground="DimGray"
+                                                Kind="Search" />
+                                            <TextBox
+                                                Width="300"
+                                                Height="40"
+                                                Margin="10,2,0,0"
+                                                materialDesign:HintAssist.Hint="Search"
+                                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                BorderBrush="Transparent"
+                                                FontSize="18"
+                                                Style="{StaticResource MaterialDesignTextBoxBase}">
+                                                <TextBox.Text>
+                                                    <Binding Path="FilterPlaceText" UpdateSourceTrigger="PropertyChanged">
+                                                        <Binding.ValidationRules />
+                                                    </Binding>
+                                                </TextBox.Text>
+                                            </TextBox>
+                                        </StackPanel>
+                                    </Border>
+
+
+                                    <Grid Grid.Row="1" Margin="20">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Margin="16">
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                FontFamily="helvetica"
+                                                FontSize="24"
+                                                Foreground="Black"
+                                                Text="Select Place" />
+
+                                            <ItemsControl
+                                                Grid.IsSharedSizeScope="True"
+                                                IsEnabled="{Binding Is_Exist}"
+                                                ItemsSource="{Binding PlaceList}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border
+                                                            x:Name="BorderPlace"
+                                                            Padding="8"
+                                                            BorderBrush="Black"
+                                                            BorderThickness="1">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                                                    <ColumnDefinition />
+                                                                </Grid.ColumnDefinitions>
+                                                                <CheckBox
+                                                                    VerticalAlignment="Center"
+                                                                    Command="{Binding DataContext.PlaceItemCheckCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                                                    CommandParameter="{Binding CB_ID}"
+                                                                    IsChecked="{Binding IsSelected}" />
+                                                                <StackPanel Grid.Column="1" Margin="8,0,0,0">
+                                                                    <TextBlock FontWeight="Bold" Text="{Binding CB_Name}" />
+                                                                    <TextBlock Text="{Binding CB_Sub_Name}" />
+                                                                </StackPanel>
+                                                            </Grid>
+                                                        </Border>
+                                                        <DataTemplate.Triggers>
+                                                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                                <Setter TargetName="BorderPlace" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+                                                            </DataTrigger>
+                                                        </DataTemplate.Triggers>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+
+
+                                        <StackPanel Grid.Column="1" Margin="16">
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                FontFamily="helvetica"
+                                                FontSize="24"
+                                                Foreground="Black"
+                                                Text="Place Selected" />
+                                            <ItemsControl
+                                                Grid.IsSharedSizeScope="True"
+                                                IsEnabled="{Binding Is_Exist}"
+                                                ItemsSource="{Binding PlaceSelectedList}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border
+                                                            x:Name="BorderPlace"
+                                                            Padding="8"
+                                                            BorderBrush="Black"
+                                                            BorderThickness="1">
+
+                                                            <StackPanel Margin="8,0,0,0">
+                                                                <TextBlock FontWeight="Bold" Text="{Binding PLACE_NAME}" />
+                                                                <TextBlock Text="{Binding PLACE_NATION}" />
+                                                            </StackPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+
+                                    </Grid>
+
+
+                                    <StackPanel
+                                        Grid.Row="2"
+                                        HorizontalAlignment="Right"
+                                        Orientation="Horizontal">
+
+                                        <Button
+                                            Width="200"
+                                            Height="60"
+                                            Margin="0,0,60,2"
+                                            Command="{Binding SavePlaceDetailCommand}"
+                                            Content="Save Changes"
+                                            Foreground="#1885F2"
+                                            Style="{StaticResource ResourceKey=ConfirmButton}" />
+                                    </StackPanel>
+                                </Grid>
+                            </TabItem>
+
+                            <TabItem
+                                Width="290"
+                                Background="Transparent"
+                                Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+
+                                <TabItem.Header>
+                                    <StackPanel
+                                        Width="240"
+                                        Height="50"
+                                        HorizontalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <materialDesign:PackIcon
+                                            Width="30"
+                                            Height="30"
+                                            Margin="20,0"
+                                            VerticalAlignment="Center"
+                                            Kind="Grid" />
+                                        <TextBlock
+                                            Margin="20,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="24"
+                                            Foreground="Black"
+                                            Text="Tour List" />
+                                    </StackPanel>
+                                </TabItem.Header>
+
+                                <Grid Margin="0,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Border
+                                            Grid.Column="0"
+                                            Width="400"
+                                            Height="50"
+                                            Margin="40,5,40,5"
+                                            Background="#FAFAFA"
+                                            BorderBrush="Gray"
+                                            BorderThickness="1"
+                                            CornerRadius="10">
+
+                                            <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                                <materialDesign:PackIcon
+                                                    Width="25"
+                                                    Height="30"
+                                                    Margin="0,0,0,0"
+                                                    VerticalAlignment="Center"
+                                                    Foreground="DimGray"
+                                                    Kind="Search" />
+                                                <TextBox
+                                                    Width="300"
+                                                    Height="40"
+                                                    Margin="10,2,0,0"
+                                                    materialDesign:HintAssist.Hint="Search"
+                                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                    BorderBrush="Transparent"
+                                                    FontSize="18"
+                                                    Style="{StaticResource MaterialDesignTextBoxBase}">
+                                                    <TextBox.Text>
+                                                        <Binding Path="TourInformationFilterText" UpdateSourceTrigger="PropertyChanged">
+                                                            <Binding.ValidationRules />
+                                                        </Binding>
+                                                    </TextBox.Text>
+                                                </TextBox>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                            <ComboBox
+                                                Width="160"
+                                                Margin="10,10,80,10"
+                                                DisplayMemberPath="CB_Name"
+                                                FontSize="18"
+                                                Foreground="DimGray"
+                                                ItemsSource="{Binding CB_TourInformationList, Mode=TwoWay}"
+                                                SelectedValue="{Binding CB_TourInformationSelected}">
+                                                <ComboBox.ItemContainerStyle>
+                                                    <Style TargetType="ComboBoxItem">
+                                                        <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                                                    </Style>
+                                                </ComboBox.ItemContainerStyle>
+                                            </ComboBox>
+                                        </StackPanel>
+
+                                        <Button
+                                            Grid.Column="2"
+                                            Width="240"
+                                            Height="60"
+                                            Margin="160,0"
+                                            Command="{Binding AddTourInformationCommand}"
+                                            CommandParameter="{Binding ElementName=contentControlDisplay}"
+                                            Content="Add New Tour Information"
+                                            Foreground="#0f6f68"
+                                            Style="{StaticResource AddButton}" />
+
+                                    </Grid>
+
+                                    <DataGrid
+                                        Grid.Row="1"
+                                        Width="1100"
+                                        Height="360"
+                                        Margin="20"
+                                        VerticalAlignment="Top"
+                                        materialDesign:DataGridAssist.CellPadding="12 8 0 8"
+                                        materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
+                                        AllowDrop="True"
+                                        AutoGenerateColumns="False"
+                                        CanUserAddRows="False"
+                                        CanUserDeleteRows="False"
+                                        CanUserReorderColumns="False"
+                                        CanUserSortColumns="True"
+                                        GridLinesVisibility="Vertical"
+                                        IsReadOnly="True"
+                                        ItemsSource="{Binding TourInformationItems, Mode=TwoWay}"
+                                        SelectedItem="{Binding TourInformationSelected}"
+                                        SelectionMode="Single">
+                                        <DataGrid.RowStyle>
+                                            <Style TargetType="{x:Type DataGridRow}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding INFORMATION_ENABLE}" Value="false">
+                                                        <Setter Property="Background" Value="White" />
+                                                        <Setter Property="Foreground" Value="Red" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding INFORMATION_ENABLE}" Value="true">
+                                                        <Setter Property="Background" Value="White" />
+                                                        <Setter Property="Foreground" Value="DarkSlateGray" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </DataGrid.RowStyle>
+                                        <DataGrid.InputBindings>
+                                            <MouseBinding
+                                                Command="{Binding ShowDetailTourInformationCommand}"
+                                                CommandParameter="{Binding ElementName=contentControlDisplay}"
+                                                Gesture="LeftDoubleClick" />
+                                        </DataGrid.InputBindings>
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn
+                                                Width="0.1*"
+                                                Binding="{Binding INFORMATION_ID}"
+                                                ElementStyle="{StaticResource WrapText}"
+                                                Header="ID" />
+                                            <DataGridTextColumn
+                                                Width="0.2*"
+                                                Binding="{Binding INFORMATION_TIME.TIME_STRING}"
+                                                ElementStyle="{StaticResource WrapText}"
+                                                Header="Schedule" />
+                                            <DataGridTextColumn
+                                                Width="0.25*"
+                                                Binding="{Binding INFORMATION_TIME.TIME_DEPARTMENT_STRING}"
+                                                ElementStyle="{StaticResource WrapText}"
+                                                Header="Department Date" />
+                                            <DataGridTextColumn
+                                                Width="0.25*"
+                                                Binding="{Binding INFORMATION_TIME.TIME_END_STRING}"
+                                                ElementStyle="{StaticResource WrapText}"
+                                                Header="End Date" />
+                                            <DataGridTextColumn
+                                                Width="0.2*"
+                                                Binding="{Binding INFORMATION_PRICE.PRICE_COST_TOTAL}"
+                                                ElementStyle="{StaticResource WrapText}"
+                                                Header="Total Cost" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+
+                                </Grid>
+
+                            </TabItem>
+                        </TabControl>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+        </Border>
     </ContentControl>
 </UserControl>

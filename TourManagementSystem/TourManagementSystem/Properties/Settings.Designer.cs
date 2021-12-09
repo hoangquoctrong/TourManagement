@@ -58,5 +58,17 @@ namespace TourManagementSystem.Properties {
                 this["User_ID"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsCheck {
+            get {
+                return ((bool)(this["IsCheck"]));
+            }
+            set {
+                this["IsCheck"] = value;
+            }
+        }
     }
 }

@@ -58,12 +58,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
             LocationModel location = InsertLocationModel();
             if (PlaceHandleModel.InsertLocation(location, User_ID))
             {
-                MessageBox.Show("Add successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Add Location successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 p.Content = new ShowPlaceViewModel(User_ID, Place_ID);
             }
             else
             {
-                MessageBox.Show("Add failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Add Location failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

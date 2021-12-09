@@ -152,7 +152,7 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             FontFamily="Fonts/Roboto-Regular.ttf #Roboto Regular"
-                            FontSize="18"
+                            FontSize="16"
                             Foreground="#F8F9FA"
                             Text="{TemplateBinding Property=Content}" />
 

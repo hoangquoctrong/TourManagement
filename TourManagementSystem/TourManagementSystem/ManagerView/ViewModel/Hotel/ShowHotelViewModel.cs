@@ -145,11 +145,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
             HotelSelected = InsertDataToHotelSelect();
             if (HotelHandleModel.UpdateHotel(HotelSelected, User_ID))
             {
-                MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update hotel successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update hotel failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -224,14 +224,18 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private void ExcuteDeleteCommand(ContentControl p)
         {
-            if (HotelHandleModel.DeleteHotel(Hotel_ID, User_ID))
+            if (MessageBox.Show("Do you want to delete this hotel?",
+                   "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                MessageBox.Show("Delete hotel successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                p.Content = new HotelViewModel(User_ID);
-            }
-            else
-            {
-                MessageBox.Show("Delete hotel failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (HotelHandleModel.DeleteHotel(Hotel_ID, User_ID))
+                {
+                    MessageBox.Show("Delete hotel successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    p.Content = new HotelViewModel(User_ID);
+                }
+                else
+                {
+                    MessageBox.Show("Delete hotel failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
 

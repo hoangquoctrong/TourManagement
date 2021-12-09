@@ -18,6 +18,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
         private TravelGroupModel _TravelGroupSelect;
         public TravelGroupModel TravelGroupSelect { get => _TravelGroupSelect; set { _TravelGroupSelect = value; OnPropertyChanged(); } }
 
@@ -27,7 +30,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             User_ID = user_id;
             TravelGroupSelect = travelgroup;
-
+            ProgressBarVisbility = Visibility.Visible;
             SetTravelGroupInformation(travelgroup);
             GetTravellerList();
             TravellerList_Notify = "";
@@ -125,8 +128,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             return false;
         }
-        private void SetTravelGroupInformation(TravelGroupModel travelGroup)
+        private async void SetTravelGroupInformation(TravelGroupModel travelGroup)
         {
+            await Task.Delay(5000);
             TravelGroup_ID = travelGroup.TravelGroup_ID;
             TravelGroup_Name = travelGroup.TravelGroup_Name;
             TravelGroup_Type = travelGroup.TravelGroup_Type;
@@ -144,6 +148,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
             SetTravellerList(travelGroup.TravelGroup_ID);
             SetPrice(travelGroup.TravelGroup_ID);
             SetPriceEnable();
+
+            ProgressBarVisbility = Visibility.Hidden;
         }
 
         private ICommand _SaveTravelGroupCommand;
@@ -205,27 +211,42 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_DeleteTravelGroupCommand == null)
                 {
-                    _DeleteTravelGroupCommand = new RelayCommand<ContentControl>(p => IsEcuteDelete(), p => ExcuteDelete(p));
+                    _DeleteTravelGroupCommand = new RelayCommand<ContentControl>(p => IsEcuteDelete(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteDelete(p);
+                    });
                 }
                 return _DeleteTravelGroupCommand;
             }
         }
 
-        private void ExcuteDelete(ContentControl p)
+        private async void ExcuteDelete(ContentControl p)
         {
-            if (TravelGroupHandleModel.DeleteTravelGroup(TravelGroup_ID, User_ID))
+            if (MessageBox.Show("Do you want to delete this travel group?",
+                    "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                MessageBox.Show("Delete travel group successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                p.Content = new TravelGroupViewModel(User_ID);
-            }
-            else
-            {
-                MessageBox.Show("Delete tour failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Visible;
+                await Task.Delay(2000);
+                if (TravelGroupHandleModel.DeleteTravelGroup(TravelGroup_ID, User_ID))
+                {
+                    MessageBox.Show("Delete Travel Group successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    p.Content = new TravelGroupViewModel(User_ID);
+                }
+                else
+                {
+                    MessageBox.Show("Delete Travel Group failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ProgressBarVisbility = Visibility.Hidden;
+                }
             }
         }
 
         private bool IsEcuteDelete()
         {
+            if(TourInformationData == null)
+            {
+                return false;
+            }
             DateTime TravelDate = TourInformationData.INFORMATION_TIME.TIME_DEPARTMENT_TIME;
             if (DateTime.Now < TravelDate && !TravelGroup_IsDelete)
             {
@@ -320,35 +341,47 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_SaveStaffCommand == null)
                 {
-                    _SaveStaffCommand = new RelayCommand<object>(p => IsExcuteSaveStaffList(), p => ExcuteSaveStaffList());
+                    _SaveStaffCommand = new RelayCommand<object>(p => IsExcuteSaveStaffList(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteSaveStaffList();
+                    });
                 }
 
                 return _SaveStaffCommand;
             }
         }
 
-        private void ExcuteSaveStaffList()
+        private async void ExcuteSaveStaffList()
         {
+            await Task.Delay(5000);
             if (MissionHandleModel.DeleteMissionDetail(TravelGroup_ID))
             {
                 if (MissionHandleModel.InsertStaffDetailList(StaffList, TravelGroup_ID, User_ID, false))
                 {
-                    MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Update Staff Mission List successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                     CountChange = false;
+                    ProgressBarVisbility = Visibility.Hidden;
                 }
                 else
                 {
-                    MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Update Staff Mission List failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ProgressBarVisbility = Visibility.Hidden;
                 }
             }
             else
             {
-                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("There is something wrong when update Staff Mission List. Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 
         private bool IsExcuteSaveStaffList()
         {
+            if(StaffList == null)
+            {
+                return false;
+            }
             int count = 0;
             foreach (var item in StaffList)
             {
@@ -423,23 +456,30 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_SavePriceCommand == null)
                 {
-                    _SavePriceCommand = new RelayCommand<object>(p => IsExcuteSavePrice(), p => ExcuteSavePrice());
+                    _SavePriceCommand = new RelayCommand<object>(p => IsExcuteSavePrice(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteSavePrice();
+                    });
                 }
                 return _SavePriceCommand;
             }
 
         }
 
-        private void ExcuteSavePrice()
+        private async void ExcuteSavePrice()
         {
+            await Task.Delay(3000);
             if (TravelGroupHandleModel.UpdateTravelGroupCost(UpdateTraveGroupCost(), User_ID))
             {
-                MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Travel Group Price successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 PriceItem = UpdateTraveGroupCost();
+                ProgressBarVisbility = Visibility.Hidden;
             }
             else
             {
-                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Travel Group Price failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 
@@ -459,7 +499,10 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
         private bool IsExcuteSavePrice()
         {
-
+            if (string.IsNullOrEmpty(TravelCost_Description))
+            {
+                return false;
+            }
             if (TravelCost_Description != PriceItem.TravelCostDescription)
             {
                 return true;
@@ -476,12 +519,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public int IndexCount { get; set; }
         public ObservableCollection<TravellerModel> AllTravellerList { get; set; }
 
-        private void GetTravellerList()
+        private async void GetTravellerList()
         {
+            await Task.Delay(2000);
             AllTravellerList = TravelGroupHandleModel.GetTravellerList();
         }
-        private void SetTravellerList(int travelgroup_id)
+        private async void SetTravellerList(int travelgroup_id)
         {
+            await Task.Delay(2000);
             BindableCollection<TravellerModel> travellerList = TravelGroupHandleModel.GetTravellerListWithID(travelgroup_id);
             TravellerList = new BindableCollection<TravellerModel>();
 
@@ -812,14 +857,19 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_SaveTravellerCommand == null)
                 {
-                    _SaveTravellerCommand = new RelayCommand<object>(p => IsExcuteSaveTraveller(), p => ExcuteSaveTraveller());
+                    _SaveTravellerCommand = new RelayCommand<object>(p => IsExcuteSaveTraveller(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteSaveTraveller();
+                    });
                 }
                 return _SaveTravellerCommand;
             }
         }
 
-        private void ExcuteSaveTraveller()
+        private async void ExcuteSaveTraveller()
         {
+            await Task.Delay(6000);
             if (TravelGroupHandleModel.InsertOrUpdateTravellerList(TravellerList, User_ID))
             {
                 if (TravelGroupHandleModel.DeleteTravellerDetail(TravelGroup_ID))
@@ -830,43 +880,49 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         {
                             if (TravelGroupHandleModel.UpdateTravelGroupCost(UpdateTraveGroupCost(), User_ID))
                             {
-                                MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                                MessageBox.Show("Update Traveller List successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                                 TravellerList_Notify = "";
                                 PriceItem = UpdateTraveGroupCost();
                                 foreach (var item in TravellerList)
                                 {
                                     item.Traveller_CheckCommand = false;
                                 }
+                                ProgressBarVisbility = Visibility.Hidden;
                             }
                             else
                             {
-                                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                                MessageBox.Show("Update Traveller List failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                                ProgressBarVisbility = Visibility.Hidden;
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Update Traveller List (Rating) successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                             TravellerList_Notify = "";
                             TourHandleModel.GetTourStar(TourData.TOUR_ID);
                             foreach (var item in TravellerList)
                             {
                                 item.Traveller_CheckCommand = false;
                             }
+                            ProgressBarVisbility = Visibility.Hidden;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Update Traveller List failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        ProgressBarVisbility = Visibility.Hidden;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("There is something wrong when update Traveller list. Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ProgressBarVisbility = Visibility.Hidden;
                 }
             }
             else
             {
-                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("There is something wrong when update Traveller list. Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 

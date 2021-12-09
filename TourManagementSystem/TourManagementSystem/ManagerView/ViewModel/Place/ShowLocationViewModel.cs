@@ -94,14 +94,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private void ExcuteSaveChangeCommand()
         {
-            LocationModel location = InsertDataToLocationSelected();
-            if (PlaceHandleModel.UpdateLocation(location, User_ID))
+            LocationSelected = InsertDataToLocationSelected();
+            if (PlaceHandleModel.UpdateLocation(LocationSelected, User_ID))
             {
-                MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Location successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Location failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

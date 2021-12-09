@@ -32,7 +32,6 @@ namespace TourManagementSystem.ManagerView.Model
 
                 RecordList.Add(record);
             }
-
             return RecordList;
         }
 

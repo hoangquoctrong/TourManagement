@@ -23,10 +23,18 @@ namespace TourManagementSystem.Global.ViewModel
         private string _UserPassword;
         public string UserPassword { get => _UserPassword; set { _UserPassword = value; OnPropertyChanged(); } }
 
+        private bool _IsCheck;
+        public bool IsCheck { get => _IsCheck; set { _IsCheck = value; OnPropertyChanged(); } }
+
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
         public LoginViewModel()
         {
             Username = Properties.Settings.Default.Username;
             UserPassword = Properties.Settings.Default.Password;
+            IsCheck = Properties.Settings.Default.IsCheck;
+            ProgressBarVisbility = Visibility.Hidden;
         }
         private ICommand _LoginCommand;
         public ICommand LoginCommand
@@ -35,7 +43,11 @@ namespace TourManagementSystem.Global.ViewModel
             {
                 if (_LoginCommand == null)
                 {
-                    _LoginCommand = new RelayCommand<Window>(p => IsExcuteLoginCommand(), p => ExcuteLoginCommand(p));
+                    _LoginCommand = new RelayCommand<Window>(p => IsExcuteLoginCommand(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        Task LoginTask = ExcuteLoginCommand(p);
+                    });
                 }
                 return _LoginCommand;
             }
@@ -44,31 +56,62 @@ namespace TourManagementSystem.Global.ViewModel
         {
             return !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(UserPassword);
         }
-        private void ExcuteLoginCommand(Window p)
+        private async Task ExcuteLoginCommand(Window p)
         {
+            await Task.Delay(6000);
             int User_ID;
             int loginWindow = LoginHandleModel.IsLoginAccount(Username, UserPassword, out User_ID);
-            if (StaffHandleModel.IsStaffDelete(User_ID))
-            {
-                MessageBox.Show("Account have been deleted", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
             if (loginWindow == 1)
             {
-                LoginHandleModel.SaveAccount(Username, UserPassword, User_ID);
-                ManagerWindow window = new ManagerWindow();
-                p.Close();
-                window.ShowDialog();
+                if (StaffHandleModel.IsStaffDelete(User_ID))
+                {
+                    MessageBox.Show("Account have been deleted", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ProgressBarVisbility = Visibility.Hidden;
+                }
+                else
+                {
+                    if (IsCheck)
+                    {
+                        LoginHandleModel.SaveAccount(Username, UserPassword, User_ID);
+                    }
+                    else
+                    {
+                        LoginHandleModel.SaveID(User_ID);
+                    }
+                    ManagerWindow window = new ManagerWindow();
+                    p.Close();
+                    ProgressBarVisbility = Visibility.Hidden;
+                    window.ShowDialog();
+                }
+
             }
             else if (loginWindow == -1)
             {
-                LoginHandleModel.SaveAccount(Username, UserPassword, User_ID);
-                EmployeeWindow window = new EmployeeWindow();
-                p.Close();
-                window.ShowDialog();
+                if (StaffHandleModel.IsStaffDelete(User_ID))
+                {
+                    MessageBox.Show("Account have been deleted", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ProgressBarVisbility = Visibility.Hidden;
+                }
+                else
+                {
+                    if (IsCheck)
+                    {
+                        LoginHandleModel.SaveAccount(Username, UserPassword, User_ID);
+                    }
+                    else
+                    {
+                        LoginHandleModel.SaveID(User_ID);
+                    }
+                    EmployeeWindow window = new EmployeeWindow();
+                    p.Close();
+                    ProgressBarVisbility = Visibility.Hidden;
+                    window.ShowDialog();
+                }
             }
             else
             {
                 MessageBox.Show("Username or Password wrong!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
 
         }

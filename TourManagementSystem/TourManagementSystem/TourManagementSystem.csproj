@@ -92,6 +92,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="XamlAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=20a987d8023d9690, processorArchitecture=MSIL">
+      <HintPath>..\packages\XamlAnimatedGif.2.0.2\lib\net45\XamlAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -251,13 +254,13 @@
     <Compile Include="ManagerView\Model\TravelGroup\TravelGroupModel.cs" />
     <Compile Include="ManagerView\Model\TravelGroup\TravellerDetailModel.cs" />
     <Compile Include="ManagerView\Model\TravelGroup\TravellerModel.cs" />
-    <Compile Include="ManagerView\ViewModel\InformationViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Other\InformationViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\Traveller\AddTravellerViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\Traveller\ShowTravellerViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\TravelGroup\AddTravelGroupViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\TravelGroup\ShowTravelGroupViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\Traveller\TravellerViewModel.cs" />
-    <Compile Include="ManagerView\View\InformationView.xaml.cs">
+    <Compile Include="ManagerView\View\Others\InformationView.xaml.cs">
       <DependentUpon>InformationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManagerView\View\Traveller\AddTravellerView.xaml.cs">
@@ -323,7 +326,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ManagerView\View\InformationView.xaml">
+    <Page Include="ManagerView\View\Others\InformationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

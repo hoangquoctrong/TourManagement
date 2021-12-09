@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TourManagementSystem.ManagerView.Model;
@@ -16,13 +17,20 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
         public StatisticStaffViewModel(int user_id)
         {
             User_ID = user_id;
-            Refresh_StaffItems = GetStaffList();
+            LoadRefreshList();
             Checkbox_DisplayAll = true;
         }
-
+        private async void LoadRefreshList()
+        {
+            await Task.Delay(1000);
+            Refresh_StaffItems = GetStaffList();
+        }
         private ObservableCollection<StaffStatisticModel> GetStaffList()
         {
             ObservableCollection<StaffStatisticModel> staffListBeforeSort = StaffHandleModel.GetStaffListForStatistic();
@@ -37,23 +45,36 @@ namespace TourManagementSystem.ManagerView.ViewModel
             return staffList;
         }
 
-        private void CheckBoxDisplay()
+        private async void CheckBoxDisplay()
         {
             if (Checkbox_DisplayAll)
             {
+                await Task.Delay(3000);
                 IsEnable = false;
                 StaffItems = GetStaffList();
+                ProgressBarVisbility = Visibility.Hidden;
             }
             else
             {
+                await Task.Delay(2000);
                 IsEnable = true;
                 StaffItems = GetFillterList(StartDate, EndDate);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 
         #region Data Binding
         private bool _Checkbox_DisplayAll;
-        public bool Checkbox_DisplayAll { get => _Checkbox_DisplayAll; set { _Checkbox_DisplayAll = value; OnPropertyChanged(); CheckBoxDisplay(); } }
+        public bool Checkbox_DisplayAll
+        {
+            get => _Checkbox_DisplayAll; set
+            {
+                _Checkbox_DisplayAll = value;
+                OnPropertyChanged();
+                ProgressBarVisbility = Visibility.Visible;
+                CheckBoxDisplay();
+            }
+        }
 
         private bool _IsEnable;
         public bool IsEnable { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
@@ -81,15 +102,21 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_FilterCommand == null)
                 {
-                    _FilterCommand = new RelayCommand<object>(p => IsExcuteFilter(), p => ExcuteFilter());
+                    _FilterCommand = new RelayCommand<object>(p => IsExcuteFilter(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteFilter();
+                    });
                 }
                 return _FilterCommand;
             }
         }
 
-        private void ExcuteFilter()
+        private async void ExcuteFilter()
         {
+            await Task.Delay(1500);
             StaffItems = GetFillterList(StartDate, EndDate);
+            ProgressBarVisbility = Visibility.Hidden;
         }
 
         private ObservableCollection<StaffStatisticModel> GetFillterList(DateTime datestart, DateTime dateend)

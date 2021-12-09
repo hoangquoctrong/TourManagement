@@ -155,11 +155,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TransportSelected = InsertDataToTransportSelect();
             if (TransportHandleModel.UpdateTransport(TransportSelected, User_ID))
             {
-                MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Transport successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Transport failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -238,14 +238,18 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private void ExcuteDeleteCommand(ContentControl p)
         {
-            if (TransportHandleModel.DeleteTransport(Transport_ID, User_ID))
+            if (MessageBox.Show("Do you want to delete this transport?",
+                    "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                MessageBox.Show("Delete transport successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                p.Content = new TransportViewModel(User_ID);
-            }
-            else
-            {
-                MessageBox.Show("Delete transport failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (TransportHandleModel.DeleteTransport(Transport_ID, User_ID))
+                {
+                    MessageBox.Show("Delete Transport successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    p.Content = new TransportViewModel(User_ID);
+                }
+                else
+                {
+                    MessageBox.Show("Delete Transport failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
 

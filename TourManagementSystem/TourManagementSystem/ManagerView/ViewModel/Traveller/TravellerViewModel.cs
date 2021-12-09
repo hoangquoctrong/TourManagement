@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TourManagementSystem.Global.Model;
@@ -16,18 +17,29 @@ namespace TourManagementSystem.ManagerView.ViewModel
     {
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
         public TravellerViewModel(int user_id)
         {
             User_ID = user_id;
+            ProgressBarVisbility = Visibility.Visible;
             LoadTravellerComboBox();
-            TravellerItems = GetTravellerList();
-            Refresh_TravellerItems = GetTravellerList();
+            LoadDataToUC();
         }
 
-        private ObservableCollection<TravellerModel> _TravellerItems;
+        private async void LoadDataToUC()
+        {
+            await Task.Delay(3000);
+            TravellerItems = GetTravellerList();
+            Refresh_TravellerItems = GetTravellerList();
+            ProgressBarVisbility = Visibility.Hidden;
+        }
+
+        private ObservableCollection<TravellerModel> _TravellerItems = new ObservableCollection<TravellerModel>();
         public ObservableCollection<TravellerModel> TravellerItems { get => _TravellerItems; set { _TravellerItems = value; OnPropertyChanged("TravellerItems"); } }
 
-        private ObservableCollection<TravellerModel> _Refresh_TravellerItems;
+        private ObservableCollection<TravellerModel> _Refresh_TravellerItems = new ObservableCollection<TravellerModel>();
         public ObservableCollection<TravellerModel> Refresh_TravellerItems { get => _Refresh_TravellerItems; set { _Refresh_TravellerItems = value; OnPropertyChanged("Refresh_TravellerItems"); } }
 
         private TravellerModel _TravellerSelected;

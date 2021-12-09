@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TourManagementSystem.Global.Model;
@@ -16,6 +17,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
     {
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         private ObservableCollection<TravelGroupModel> _TravelGroupItems;
         public ObservableCollection<TravelGroupModel> TravelGroupItems { get => _TravelGroupItems; set { _TravelGroupItems = value; OnPropertyChanged("TravelGroupItems"); } }
@@ -31,8 +35,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             LoadTravelGroupComboBox();
             TravelGroupItems = new ObservableCollection<TravelGroupModel>();
             Refresh_TravelGroupItems = new ObservableCollection<TravelGroupModel>();
+            ProgressBarVisbility = Visibility.Visible;
+            LoadDataInUC();
+        }
+
+        private async void LoadDataInUC()
+        {
+            await Task.Delay(3000);
             TravelGroupItems = TravelGroupHandleModel.GetTravelGroupList();
             Refresh_TravelGroupItems = TravelGroupHandleModel.GetTravelGroupList();
+            ProgressBarVisbility = Visibility.Hidden;
         }
 
         private ObservableCollection<ComboBoxModel> _CB_TravelGroupList;

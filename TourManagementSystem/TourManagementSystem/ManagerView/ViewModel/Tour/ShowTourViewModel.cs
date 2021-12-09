@@ -22,6 +22,10 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
         private TourModel _TourSelected;
         public TourModel TourSelected { get => _TourSelected; set { _TourSelected = value; OnPropertyChanged("TourSelected"); } }
 
@@ -62,6 +66,19 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             User_ID = user_id;
             TourSelected = TourHandleModel.GetTour(tour_id);
+
+            PlaceList = new BindableCollection<CheckBoxModel>();
+            PlaceSelectedList = new BindableCollection<PlaceModel>();
+            RefreshPlaceSelectedList = new BindableCollection<PlaceModel>();
+            TourInformationItems = new ObservableCollection<TourInformationModel>();
+
+            ProgressBarVisbility = Visibility.Visible;
+            SetDataToUC(tour_id);
+        }
+
+        private async void SetDataToUC(int tour_id)
+        {
+            await Task.Delay(5000);
             SetTourInView(TourSelected);
             SetTourImageInView(Tour_ID);
             LoadTourInformationComboBox();
@@ -70,10 +87,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             PlaceList = GetPlaceList();
             RefreshPlaceList = GetPlaceList();
 
-            TourInformationItems = new ObservableCollection<TourInformationModel>();
-            Refresh_TourInformationItems = new ObservableCollection<TourInformationModel>();
             TourInformationItems = GetTourInformationList(tour_id);
             Refresh_TourInformationItems = GetTourInformationList(tour_id);
+            ProgressBarVisbility = Visibility.Hidden;
         }
 
         private void SetTourInView(TourModel tour)
@@ -469,11 +485,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TourSelected = InsertDataToTourSelect();
             if (TourHandleModel.UpdateTour(TourSelected, User_ID))
             {
-                MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Tour Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Tour failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -515,22 +531,29 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_SaveImageTourCommand == null)
                 {
-                    _SaveImageTourCommand = new RelayCommand<object>(p => IsExcuteSaveImageCommand(), p => ExcuteSaveImageCommand());
+                    _SaveImageTourCommand = new RelayCommand<object>(p => IsExcuteSaveImageCommand(), p =>
+                    {
+                        ProgressBarVisbility = Visibility.Visible;
+                        ExcuteSaveImageCommand();
+                    });
                 }
                 return _SaveImageTourCommand;
             }
         }
 
-        private void ExcuteSaveImageCommand()
+        private async void ExcuteSaveImageCommand()
         {
+            await Task.Delay(4000);
             InsertDataToTourImageSelect();
             if (TourHandleModel.UpdateTourImage(ImageByteSource, Tour_ID, User_ID))
             {
-                MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Tour Image Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
             else
             {
-                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Tour Image failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 
@@ -592,17 +615,25 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
         }
 
-        private void ExcuteDeleteCommand(ContentControl p)
+        private async void ExcuteDeleteCommand(ContentControl p)
         {
-            if (TourHandleModel.DeleteTour(Tour_ID, User_ID))
+            if (MessageBox.Show("Do you want to delete this tour?",
+                    "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                MessageBox.Show("Delete tour successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                p.Content = new TourViewModel(User_ID);
+                ProgressBarVisbility = Visibility.Visible;
+                await Task.Delay(2000);
+                if (TourHandleModel.DeleteTour(Tour_ID, User_ID))
+                {
+                    MessageBox.Show("Delete Tour Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    p.Content = new TourViewModel(User_ID);
+                }
+                else
+                {
+                    MessageBox.Show("Delete Tour Failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ProgressBarVisbility = Visibility.Hidden;
+                }
             }
-            else
-            {
-                MessageBox.Show("Delete tour failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+
         }
 
         private ICommand _SavePlaceDetailCommand;
@@ -624,17 +655,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (PlaceHandleModel.InsertPlaceDetail(PlaceSelectedList, Tour_Name, User_ID, false))
                 {
-                    MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Update Places For Tour Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                     RefreshPlaceSelectedList = PlaceHandleModel.GetPlaceFromPlaceDetail(Tour_ID);
                 }
                 else
                 {
-                    MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Update Places For Tour failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             else
             {
-                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Places For Tour failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

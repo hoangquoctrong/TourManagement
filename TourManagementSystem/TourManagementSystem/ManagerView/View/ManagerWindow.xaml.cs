@@ -23,7 +23,6 @@ namespace TourManagementSystem.ManagerView.View
         public ManagerWindow()
         {
             InitializeComponent();
-
         }
     }
 }

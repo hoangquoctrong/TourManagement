@@ -22,6 +22,10 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+        private Visibility _ProgressBarVisbility;
+        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
+
         #region Data Binding 
         private string _Tour_Name;
         public string Tour_Name { get => _Tour_Name; set { _Tour_Name = value; OnPropertyChanged(); } }
@@ -81,10 +85,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public AddTourViewModel(int user_id)
         {
             User_ID = user_id;
+            ProgressBarVisbility = Visibility.Hidden;
             SetTourImageInView();
-            PlaceList = GetPlaceList();
-            RefreshPlaceList = GetPlaceList();
+            SetPlaceData();
             PlaceSelectedList = new BindableCollection<PlaceModel>();
+        }
+
+        private async void SetPlaceData()
+        {
+            PlaceList = await GetPlaceList();
+            RefreshPlaceList = PlaceList;
         }
 
         private void SetTourImageInView()
@@ -102,8 +112,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             Tour_Image_Source_6 = new BitmapImage(new Uri("pack://application:,,,/Resources/Images/Add.png", UriKind.Absolute));
         }
 
-        private BindableCollection<CheckBoxModel> GetPlaceList()
+        private async Task<BindableCollection<CheckBoxModel>> GetPlaceList()
         {
+            await Task.Delay(2000);
             ObservableCollection<PlaceModel> PlaceItems = PlaceHandleModel.GetPlaceList();
             BindableCollection<CheckBoxModel> placeList = new BindableCollection<CheckBoxModel>();
             foreach (PlaceModel item in PlaceItems)
@@ -181,6 +192,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     _AddTourCommand = new RelayCommand<ContentControl>(_ => IsExcuteAddTourCommand(), p =>
                     {
+                        ProgressBarVisbility = Visibility.Visible;
                         ExcuteAddTourCommand(p);
                     });
                 }
@@ -188,8 +200,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
         }
 
-        private void ExcuteAddTourCommand(ContentControl p)
+        private async void ExcuteAddTourCommand(ContentControl p)
         {
+            await Task.Delay(5000);
             TourModel tour = InsertTourModel();
             if (TourHandleModel.InsertTour(tour, User_ID))
             {
@@ -197,24 +210,27 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     if (PlaceHandleModel.InsertPlaceDetail(PlaceSelectedList, Tour_Name, User_ID, true))
                     {
-                        MessageBox.Show("Add successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Add Tour Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                         p.Content = new TourViewModel(User_ID);
                     }
                     else
                     {
-                        MessageBox.Show("Add failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Disconect to Server! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        ProgressBarVisbility = Visibility.Hidden;
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("Add failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Disconect to Server! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ProgressBarVisbility = Visibility.Hidden;
                 }
 
             }
             else
             {
-                MessageBox.Show("Add failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Disconect to Server! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                ProgressBarVisbility = Visibility.Hidden;
             }
         }
 

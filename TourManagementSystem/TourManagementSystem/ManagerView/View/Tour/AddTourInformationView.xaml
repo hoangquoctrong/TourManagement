@@ -19,7 +19,7 @@
                                 Storyboard.TargetProperty="Opacity"
                                 From="0.0"
                                 To="1.0"
-                                Duration="0:0:0.5" />
+                                Duration="0:0:1" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -47,420 +47,80 @@
         </Style>
     </UserControl.Resources>
     <ContentControl x:Name="contentControlAdd" Height="auto">
-        <Grid>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
+        <Border
+            BorderBrush="#0f6f68"
+            BorderThickness="3"
+            CornerRadius="15">
+            <Grid>
 
-            <Grid
-                Grid.Row="0"
-                Height="60"
-                Background="#0f6f68">
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="24"
-                    Foreground="White"
-                    Text="A D D    N E W    T O U R    I N F O R M A T I O N" />
-            </Grid>
+                <Border
+                    Panel.ZIndex="1000"
+                    BorderThickness="0.5"
+                    CornerRadius="25">
+                    <Grid Visibility="{Binding ProgressBarVisbility}">
 
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                <TabControl
-                    x:Name="TabItemBtn"
-                    Margin="0,0,10,0"
-                    materialDesign:ColorZoneAssist.Mode="Standard"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                    Background="Transparent"
-                    Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
-                    TabStripPlacement="Top">
+                        <Grid.Background>
+                            <SolidColorBrush Opacity=".3" Color="Black" />
+                        </Grid.Background>
+                        <StackPanel
+                            Margin="0,120,0,120"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                            <ProgressBar
+                                Width="80"
+                                Height="80"
+                                Foreground="White"
+                                IsIndeterminate="True"
+                                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                Value="35" />
+                            <TextBlock
+                                Margin="16,0"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                Foreground="White"
+                                Text="Loading..." />
+                        </StackPanel>
+                    </Grid>
+                </Border>
 
-                    <TabItem
-                        Width="290"
-                        Background="Transparent"
-                        Style="{StaticResource MaterialDesignNavigationRailTabItem}"
-                        TabIndex="0">
+                <Grid>
 
-                        <TabItem.Header>
-                            <StackPanel
-                                Width="240"
-                                Height="50"
-                                HorizontalAlignment="Center"
-                                Orientation="Horizontal">
-                                <materialDesign:PackIcon
-                                    Width="30"
-                                    Height="30"
-                                    Margin="20,0"
-                                    VerticalAlignment="Center"
-                                    Kind="ClockOutline" />
-                                <TextBlock
-                                    Margin="20,0,20,8.6"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Bottom"
-                                    FontSize="24"
-                                    Foreground="Black"
-                                    Text="Time" />
-                            </StackPanel>
-                        </TabItem.Header>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
 
-                        <Grid Margin="50,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
+                    <Border
+                        Grid.Row="0"
+                        Height="60"
+                        Background="#0f6f68"
+                        CornerRadius="15 15 0 0">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="24"
+                            Foreground="White"
+                            Text="A D D    N E W    T O U R    I N F O R M A T I O N" />
+                    </Border>
 
-                            <StackPanel Margin="0,24,0,0" VerticalAlignment="Center">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontFamily="helvetica"
-                                    FontSize="24"
-                                    Foreground="Black"
-                                    Text="Register Tour Time" />
-                            </StackPanel>
-
-                            <Grid Grid.Row="1">
-                                <DockPanel Margin="20,20,30,20" HorizontalAlignment="Left">
-
-                                    <StackPanel DockPanel.Dock="Left">
-
-                                        <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
-
-                                            <materialDesign:PackIcon
-                                                Width="30"
-                                                Height="30"
-                                                VerticalAlignment="Center"
-                                                Foreground="DimGray"
-                                                Kind="Place" />
-
-                                            <TextBox
-                                                Width="400"
-                                                Margin="10,0,0,0"
-                                                materialDesign:HintAssist.Hint="Tour Name"
-                                                FontSize="18"
-                                                IsEnabled="False">
-                                                <TextBox.Text>
-                                                    <Binding
-                                                        Mode="TwoWay"
-                                                        Path="Tour_Name"
-                                                        UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules />
-                                                    </Binding>
-                                                </TextBox.Text>
-                                            </TextBox>
-                                        </StackPanel>
-
-                                        <StackPanel Margin="0,70,0,0" Orientation="Horizontal">
-
-                                            <DatePicker
-                                                Width="450"
-                                                Height="60"
-                                                materialDesign:HintAssist.Hint="Department Date"
-                                                FontSize="22"
-                                                SelectedDateFormat="Short"
-                                                Style="{StaticResource MaterialDesignOutlinedDatePicker}">
-                                                <DatePicker.SelectedDate>
-                                                    <Binding
-                                                        Mode="TwoWay"
-                                                        Path="Time_Department"
-                                                        StringFormat="{}{0: dd/MM/yyyy}"
-                                                        UpdateSourceTrigger="PropertyChanged" />
-                                                </DatePicker.SelectedDate>
-                                            </DatePicker>
-
-                                        </StackPanel>
-                                    </StackPanel>
-
-                                </DockPanel>
-
-                                <DockPanel Margin="20,20,30,20" HorizontalAlignment="Right">
-
-                                    <StackPanel DockPanel.Dock="Left">
-
-                                        <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
-
-                                            <materialDesign:PackIcon
-                                                Width="30"
-                                                Height="30"
-                                                VerticalAlignment="Center"
-                                                Foreground="DimGray"
-                                                Kind="Clock" />
-
-                                            <TextBox
-                                                Width="50"
-                                                Margin="10,0,0,0"
-                                                HorizontalContentAlignment="Center"
-                                                VerticalContentAlignment="Center"
-                                                materialDesign:HintAssist.Hint="Day"
-                                                FontSize="18">
-                                                <TextBox.Text>
-                                                    <Binding
-                                                        Mode="TwoWay"
-                                                        Path="Time_Day"
-                                                        UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules />
-                                                    </Binding>
-                                                </TextBox.Text>
-                                            </TextBox>
-
-                                            <TextBlock
-                                                Margin="8,0"
-                                                Padding="8"
-                                                FontSize="19"
-                                                Text="Day(s)" />
-
-                                            <TextBox
-                                                Width="50"
-                                                Margin="10,0,0,0"
-                                                HorizontalContentAlignment="Center"
-                                                VerticalContentAlignment="Center"
-                                                materialDesign:HintAssist.Hint="Night"
-                                                FontSize="18">
-                                                <TextBox.Text>
-                                                    <Binding
-                                                        Mode="TwoWay"
-                                                        Path="Time_Night"
-                                                        UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules />
-                                                    </Binding>
-                                                </TextBox.Text>
-                                            </TextBox>
-
-                                            <TextBlock
-                                                Margin="8,0"
-                                                Padding="8"
-                                                FontSize="19"
-                                                Text="Night(s)" />
-
-                                        </StackPanel>
-
-                                        <StackPanel Margin="0,60,0,0" Orientation="Horizontal">
-
-                                            <DatePicker
-                                                Width="450"
-                                                Height="60"
-                                                materialDesign:HintAssist.Hint="End Date"
-                                                DisplayDateStart="{Binding Time_Department}"
-                                                FontSize="22"
-                                                SelectedDateFormat="Short"
-                                                Style="{StaticResource MaterialDesignOutlinedDatePicker}">
-                                                <DatePicker.SelectedDate>
-                                                    <Binding
-                                                        Mode="TwoWay"
-                                                        Path="Time_End"
-                                                        StringFormat="{}{0: dd/MM/yyyy}"
-                                                        UpdateSourceTrigger="PropertyChanged" />
-                                                </DatePicker.SelectedDate>
-                                            </DatePicker>
-
-                                        </StackPanel>
-                                    </StackPanel>
-
-                                </DockPanel>
-                            </Grid>
-                        </Grid>
-
-                    </TabItem>
-
-                    <TabItem
-                        Width="290"
-                        Background="Transparent"
-                        Style="{StaticResource MaterialDesignNavigationRailTabItem}"
-                        TabIndex="1">
-
-                        <TabItem.Header>
-                            <StackPanel
-                                Width="240"
-                                Height="50"
-                                HorizontalAlignment="Center"
-                                Orientation="Horizontal">
-                                <materialDesign:PackIcon
-                                    Width="30"
-                                    Height="30"
-                                    Margin="20,0"
-                                    VerticalAlignment="Center"
-                                    Kind="PlaceOutline" />
-                                <TextBlock
-                                    Margin="20,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="24"
-                                    Foreground="Black"
-                                    Text="Location" />
-                            </StackPanel>
-                        </TabItem.Header>
-
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-
-                            <StackPanel Margin="0,24,0,0" VerticalAlignment="Center">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontFamily="helvetica"
-                                    FontSize="24"
-                                    Foreground="Black"
-                                    Text="Register Tour Location" />
-                            </StackPanel>
-
-                            <Border
-                                Grid.Row="1"
-                                Width="360"
-                                Height="50"
-                                Margin="20,20,40,5"
-                                Background="#FAFAFA"
-                                BorderBrush="Gray"
-                                BorderThickness="1"
-                                CornerRadius="10">
-
-                                <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
-                                    <materialDesign:PackIcon
-                                        Width="25"
-                                        Height="30"
-                                        Margin="0,0,0,0"
-                                        VerticalAlignment="Center"
-                                        Foreground="DimGray"
-                                        Kind="Search" />
-                                    <TextBox
-                                        Width="300"
-                                        Height="40"
-                                        Margin="10,2,0,0"
-                                        materialDesign:HintAssist.Hint="Search"
-                                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                        BorderBrush="Transparent"
-                                        FontSize="18"
-                                        Style="{StaticResource MaterialDesignTextBoxBase}">
-                                        <TextBox.Text>
-                                            <Binding Path="FilterLocationText" UpdateSourceTrigger="PropertyChanged">
-                                                <Binding.ValidationRules />
-                                            </Binding>
-                                        </TextBox.Text>
-                                    </TextBox>
-                                </StackPanel>
-                            </Border>
-
-                            <Grid Grid.Row="2" Margin="20">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <StackPanel Margin="16">
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        FontFamily="helvetica"
-                                        FontSize="24"
-                                        Foreground="Black"
-                                        Text="Select Location" />
-
-                                    <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding LocationList}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Border
-                                                    x:Name="BorderPlace"
-                                                    Padding="8"
-                                                    BorderBrush="Black"
-                                                    BorderThickness="1">
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition SharedSizeGroup="Checkerz" />
-                                                            <ColumnDefinition />
-                                                        </Grid.ColumnDefinitions>
-                                                        <CheckBox
-                                                            VerticalAlignment="Center"
-                                                            Command="{Binding DataContext.LocationItemCheckCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                                                            CommandParameter="{Binding CB_ID}"
-                                                            IsChecked="{Binding IsSelected}" />
-                                                        <StackPanel Grid.Column="1" Margin="8,0,0,0">
-                                                            <TextBlock FontWeight="Bold" Text="{Binding CB_Name}" />
-                                                            <TextBlock Text="{Binding CB_Sub_Name}" />
-                                                        </StackPanel>
-                                                    </Grid>
-                                                </Border>
-                                                <DataTemplate.Triggers>
-                                                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                                        <Setter TargetName="BorderPlace" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
-                                                    </DataTrigger>
-                                                </DataTemplate.Triggers>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </StackPanel>
-
-
-                                <StackPanel Grid.Column="1" Margin="16">
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        FontFamily="helvetica"
-                                        FontSize="24"
-                                        Foreground="Black"
-                                        Text="Location Selected" />
-                                    <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding LocationSelectedList}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Border
-                                                    x:Name="BorderPlace"
-                                                    Padding="8"
-                                                    BorderBrush="Black"
-                                                    BorderThickness="1">
-
-                                                    <StackPanel Margin="8,0,0,0">
-                                                        <TextBlock FontWeight="Bold" Text="{Binding LOCATION_NAME}" />
-                                                        <TextBlock Text="{Binding PLACE_NAME}" />
-                                                    </StackPanel>
-                                                </Border>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </StackPanel>
-
-                            </Grid>
-                        </Grid>
-                    </TabItem>
-
-                    <TabItem
-                        Width="290"
-                        Background="Transparent"
-                        Style="{StaticResource MaterialDesignNavigationRailTabItem}"
-                        TabIndex="2">
-                        <TabItem.Header>
-                            <StackPanel
-                                Width="240"
-                                Height="50"
-                                HorizontalAlignment="Center"
-                                Orientation="Horizontal">
-                                <materialDesign:PackIcon
-                                    Width="30"
-                                    Height="30"
-                                    Margin="20,0"
-                                    VerticalAlignment="Center"
-                                    Kind="Money" />
-                                <TextBlock
-                                    Margin="20,0,20,8.6"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Bottom"
-                                    FontSize="24"
-                                    Foreground="Black"
-                                    Text="Price" />
-                            </StackPanel>
-                        </TabItem.Header>
-
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                         <TabControl
+                            x:Name="TabItemBtn"
                             Margin="0,0,10,0"
                             materialDesign:ColorZoneAssist.Mode="Standard"
                             materialDesign:ShadowAssist.ShadowDepth="Depth0"
                             Background="Transparent"
                             Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
                             TabStripPlacement="Top">
+
                             <TabItem
                                 Width="290"
                                 Background="Transparent"
                                 Style="{StaticResource MaterialDesignNavigationRailTabItem}"
-                                TabIndex="2">
+                                TabIndex="0">
+
                                 <TabItem.Header>
                                     <StackPanel
                                         Width="240"
@@ -472,14 +132,200 @@
                                             Height="30"
                                             Margin="20,0"
                                             VerticalAlignment="Center"
-                                            Kind="Hotel" />
+                                            Kind="ClockOutline" />
                                         <TextBlock
                                             Margin="20,0,20,8.6"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Bottom"
                                             FontSize="24"
                                             Foreground="Black"
-                                            Text="Hotel" />
+                                            Text="Time" />
+                                    </StackPanel>
+                                </TabItem.Header>
+
+                                <Grid Margin="50,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Margin="0,24,0,0" VerticalAlignment="Center">
+                                        <TextBlock
+                                            HorizontalAlignment="Center"
+                                            FontFamily="helvetica"
+                                            FontSize="24"
+                                            Foreground="Black"
+                                            Text="Register Tour Time" />
+                                    </StackPanel>
+
+                                    <Grid Grid.Row="1">
+                                        <DockPanel Margin="20,20,30,20" HorizontalAlignment="Left">
+
+                                            <StackPanel DockPanel.Dock="Left">
+
+                                                <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
+
+                                                    <materialDesign:PackIcon
+                                                        Width="30"
+                                                        Height="30"
+                                                        VerticalAlignment="Center"
+                                                        Foreground="DimGray"
+                                                        Kind="Place" />
+
+                                                    <TextBox
+                                                        Width="400"
+                                                        Margin="10,0,0,0"
+                                                        materialDesign:HintAssist.Hint="Tour Name"
+                                                        FontSize="18"
+                                                        IsEnabled="False">
+                                                        <TextBox.Text>
+                                                            <Binding
+                                                                Mode="TwoWay"
+                                                                Path="Tour_Name"
+                                                                UpdateSourceTrigger="PropertyChanged">
+                                                                <Binding.ValidationRules />
+                                                            </Binding>
+                                                        </TextBox.Text>
+                                                    </TextBox>
+                                                </StackPanel>
+
+                                                <StackPanel Margin="0,70,0,0" Orientation="Horizontal">
+
+                                                    <DatePicker
+                                                        Width="450"
+                                                        Height="60"
+                                                        materialDesign:HintAssist.Hint="Department Date"
+                                                        FontSize="22"
+                                                        SelectedDateFormat="Short"
+                                                        Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+                                                        <DatePicker.SelectedDate>
+                                                            <Binding
+                                                                Mode="TwoWay"
+                                                                Path="Time_Department"
+                                                                StringFormat="{}{0: dd/MM/yyyy}"
+                                                                UpdateSourceTrigger="PropertyChanged" />
+                                                        </DatePicker.SelectedDate>
+                                                    </DatePicker>
+
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                        </DockPanel>
+
+                                        <DockPanel Margin="20,20,30,20" HorizontalAlignment="Right">
+
+                                            <StackPanel DockPanel.Dock="Left">
+
+                                                <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
+
+                                                    <materialDesign:PackIcon
+                                                        Width="30"
+                                                        Height="30"
+                                                        VerticalAlignment="Center"
+                                                        Foreground="DimGray"
+                                                        Kind="Clock" />
+
+                                                    <TextBox
+                                                        Width="50"
+                                                        Margin="10,0,0,0"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        materialDesign:HintAssist.Hint="Day"
+                                                        FontSize="18">
+                                                        <TextBox.Text>
+                                                            <Binding
+                                                                Mode="TwoWay"
+                                                                Path="Time_Day"
+                                                                UpdateSourceTrigger="PropertyChanged">
+                                                                <Binding.ValidationRules />
+                                                            </Binding>
+                                                        </TextBox.Text>
+                                                    </TextBox>
+
+                                                    <TextBlock
+                                                        Margin="8,0"
+                                                        Padding="8"
+                                                        FontSize="19"
+                                                        Text="Day(s)" />
+
+                                                    <TextBox
+                                                        Width="50"
+                                                        Margin="10,0,0,0"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        materialDesign:HintAssist.Hint="Night"
+                                                        FontSize="18">
+                                                        <TextBox.Text>
+                                                            <Binding
+                                                                Mode="TwoWay"
+                                                                Path="Time_Night"
+                                                                UpdateSourceTrigger="PropertyChanged">
+                                                                <Binding.ValidationRules />
+                                                            </Binding>
+                                                        </TextBox.Text>
+                                                    </TextBox>
+
+                                                    <TextBlock
+                                                        Margin="8,0"
+                                                        Padding="8"
+                                                        FontSize="19"
+                                                        Text="Night(s)" />
+
+                                                </StackPanel>
+
+                                                <StackPanel Margin="0,60,0,0" Orientation="Horizontal">
+
+                                                    <DatePicker
+                                                        Width="450"
+                                                        Height="60"
+                                                        materialDesign:HintAssist.Hint="End Date"
+                                                        DisplayDateStart="{Binding Time_Department}"
+                                                        FontSize="22"
+                                                        SelectedDateFormat="Short"
+                                                        Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+                                                        <DatePicker.SelectedDate>
+                                                            <Binding
+                                                                Mode="TwoWay"
+                                                                Path="Time_End"
+                                                                StringFormat="{}{0: dd/MM/yyyy}"
+                                                                UpdateSourceTrigger="PropertyChanged" />
+                                                        </DatePicker.SelectedDate>
+                                                    </DatePicker>
+
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                        </DockPanel>
+                                    </Grid>
+                                </Grid>
+
+                            </TabItem>
+
+                            <TabItem
+                                Width="290"
+                                Background="Transparent"
+                                Style="{StaticResource MaterialDesignNavigationRailTabItem}"
+                                TabIndex="1">
+
+                                <TabItem.Header>
+                                    <StackPanel
+                                        Width="240"
+                                        Height="50"
+                                        HorizontalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <materialDesign:PackIcon
+                                            Width="30"
+                                            Height="30"
+                                            Margin="20,0"
+                                            VerticalAlignment="Center"
+                                            Kind="PlaceOutline" />
+                                        <TextBlock
+                                            Margin="20,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="24"
+                                            Foreground="Black"
+                                            Text="Location" />
                                     </StackPanel>
                                 </TabItem.Header>
 
@@ -496,64 +342,44 @@
                                             FontFamily="helvetica"
                                             FontSize="24"
                                             Foreground="Black"
-                                            Text="Register Tour Hotel" />
+                                            Text="Register Tour Location" />
                                     </StackPanel>
 
-                                    <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                        <Border
-                                            Grid.Row="1"
-                                            Width="360"
-                                            Height="50"
-                                            Margin="160,10,40,5"
-                                            Background="#FAFAFA"
-                                            BorderBrush="Gray"
-                                            BorderThickness="1"
-                                            CornerRadius="10">
+                                    <Border
+                                        Grid.Row="1"
+                                        Width="360"
+                                        Height="50"
+                                        Margin="20,20,40,5"
+                                        Background="#FAFAFA"
+                                        BorderBrush="Gray"
+                                        BorderThickness="1"
+                                        CornerRadius="10">
 
-                                            <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
-                                                <materialDesign:PackIcon
-                                                    Width="25"
-                                                    Height="30"
-                                                    Margin="0,0,0,0"
-                                                    VerticalAlignment="Center"
-                                                    Foreground="DimGray"
-                                                    Kind="Search" />
-                                                <TextBox
-                                                    Width="300"
-                                                    Height="40"
-                                                    Margin="10,2,0,0"
-                                                    materialDesign:HintAssist.Hint="Search"
-                                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                                    BorderBrush="Transparent"
-                                                    FontSize="18"
-                                                    Style="{StaticResource MaterialDesignTextBoxBase}">
-                                                    <TextBox.Text>
-                                                        <Binding Path="FilterHotelText" UpdateSourceTrigger="PropertyChanged">
-                                                            <Binding.ValidationRules />
-                                                        </Binding>
-                                                    </TextBox.Text>
-                                                </TextBox>
-                                            </StackPanel>
-                                        </Border>
-                                        <Button
-                                            Width="100"
-                                            Height="40"
-                                            Margin="10,0"
-                                            VerticalAlignment="Center"
-                                            Command="{Binding SaveHotelPriceCommand}"
-                                            Content="Save"
-                                            Foreground="#1885F2"
-                                            Style="{StaticResource SaveButton}" />
-
-                                        <TextBlock
-                                            Width="auto"
-                                            Margin="10,0"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="20"
-                                            Foreground="#F36E6B"
-                                            Text="{Binding HotelPriceNotify, UpdateSourceTrigger=PropertyChanged}" />
-                                    </StackPanel>
+                                        <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                            <materialDesign:PackIcon
+                                                Width="25"
+                                                Height="30"
+                                                Margin="0,0,0,0"
+                                                VerticalAlignment="Center"
+                                                Foreground="DimGray"
+                                                Kind="Search" />
+                                            <TextBox
+                                                Width="300"
+                                                Height="40"
+                                                Margin="10,2,0,0"
+                                                materialDesign:HintAssist.Hint="Search"
+                                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                BorderBrush="Transparent"
+                                                FontSize="18"
+                                                Style="{StaticResource MaterialDesignTextBoxBase}">
+                                                <TextBox.Text>
+                                                    <Binding Path="FilterLocationText" UpdateSourceTrigger="PropertyChanged">
+                                                        <Binding.ValidationRules />
+                                                    </Binding>
+                                                </TextBox.Text>
+                                            </TextBox>
+                                        </StackPanel>
+                                    </Border>
 
                                     <Grid Grid.Row="2" Margin="20">
                                         <Grid.ColumnDefinitions>
@@ -567,9 +393,9 @@
                                                 FontFamily="helvetica"
                                                 FontSize="24"
                                                 Foreground="Black"
-                                                Text="Select Hotel" />
+                                                Text="Select Location" />
 
-                                            <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding HotelList}">
+                                            <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding LocationList}">
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
                                                         <Border
@@ -584,12 +410,12 @@
                                                                 </Grid.ColumnDefinitions>
                                                                 <CheckBox
                                                                     VerticalAlignment="Center"
-                                                                    Command="{Binding DataContext.HotelItemCheckCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                                                    Command="{Binding DataContext.LocationItemCheckCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
                                                                     CommandParameter="{Binding CB_ID}"
                                                                     IsChecked="{Binding IsSelected}" />
                                                                 <StackPanel Grid.Column="1" Margin="8,0,0,0">
                                                                     <TextBlock FontWeight="Bold" Text="{Binding CB_Name}" />
-                                                                    <TextBlock Text="{Binding Hotel_Price}" />
+                                                                    <TextBlock Text="{Binding CB_Sub_Name}" />
                                                                 </StackPanel>
                                                             </Grid>
                                                         </Border>
@@ -610,8 +436,8 @@
                                                 FontFamily="helvetica"
                                                 FontSize="24"
                                                 Foreground="Black"
-                                                Text="Hotel Selected" />
-                                            <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding HotelSelectedList}">
+                                                Text="Location Selected" />
+                                            <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding LocationSelectedList}">
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
                                                         <Border
@@ -621,41 +447,8 @@
                                                             BorderThickness="1">
 
                                                             <StackPanel Margin="8,0,0,0">
-                                                                <StackPanel Orientation="Horizontal">
-                                                                    <TextBlock
-                                                                        FontSize="12"
-                                                                        FontWeight="Bold"
-                                                                        Text="Hotel Name: " />
-
-                                                                    <TextBlock
-                                                                        FontSize="12"
-                                                                        FontWeight="Bold"
-                                                                        Text="{Binding HOTEL_NAME}" />
-                                                                </StackPanel>
-                                                                <StackPanel Orientation="Horizontal">
-                                                                    <TextBlock FontSize="12" Text="Hotel Price: " />
-                                                                    <TextBlock FontSize="12" Text="{Binding HOTEL_PRICE}" />
-                                                                    <TextBlock FontSize="12" Text=" VND" />
-                                                                </StackPanel>
-                                                                <StackPanel Orientation="Horizontal">
-                                                                    <TextBlock FontSize="12" Text="Day : " />
-                                                                    <TextBox
-                                                                        Width="100"
-                                                                        Margin="8,0,0,0"
-                                                                        HorizontalAlignment="Left"
-                                                                        materialDesign:HintAssist.Hint="Amount"
-                                                                        FontSize="12">
-                                                                        <TextBox.Text>
-                                                                            <Binding
-                                                                                Mode="TwoWay"
-                                                                                Path="HOTEL_DAY"
-                                                                                UpdateSourceTrigger="PropertyChanged">
-                                                                                <Binding.ValidationRules />
-                                                                            </Binding>
-                                                                        </TextBox.Text>
-                                                                    </TextBox>
-                                                                </StackPanel>
-
+                                                                <TextBlock FontWeight="Bold" Text="{Binding LOCATION_NAME}" />
+                                                                <TextBlock Text="{Binding PLACE_NAME}" />
                                                             </StackPanel>
                                                         </Border>
                                                     </DataTemplate>
@@ -664,7 +457,6 @@
                                         </StackPanel>
 
                                     </Grid>
-
                                 </Grid>
                             </TabItem>
 
@@ -684,193 +476,927 @@
                                             Height="30"
                                             Margin="20,0"
                                             VerticalAlignment="Center"
-                                            Kind="Transportation" />
+                                            Kind="Money" />
                                         <TextBlock
                                             Margin="20,0,20,8.6"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Bottom"
                                             FontSize="24"
                                             Foreground="Black"
-                                            Text="Transport" />
+                                            Text="Price" />
                                     </StackPanel>
                                 </TabItem.Header>
 
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto" />
-                                        <RowDefinition Height="auto" />
-                                        <RowDefinition Height="auto" />
-                                    </Grid.RowDefinitions>
-
-                                    <StackPanel Margin="0,24,0,0" VerticalAlignment="Center">
-                                        <TextBlock
-                                            HorizontalAlignment="Center"
-                                            FontFamily="helvetica"
-                                            FontSize="24"
-                                            Foreground="Black"
-                                            Text="Register Tour Transport" />
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                        <Border
-                                            Width="360"
-                                            Height="50"
-                                            Margin="160,10,40,5"
-                                            Background="#FAFAFA"
-                                            BorderBrush="Gray"
-                                            BorderThickness="1"
-                                            CornerRadius="10">
-
-                                            <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                <TabControl
+                                    Margin="0,0,10,0"
+                                    materialDesign:ColorZoneAssist.Mode="Standard"
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                    Background="Transparent"
+                                    Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                                    TabStripPlacement="Top">
+                                    <TabItem
+                                        Width="290"
+                                        Background="Transparent"
+                                        Style="{StaticResource MaterialDesignNavigationRailTabItem}"
+                                        TabIndex="2">
+                                        <TabItem.Header>
+                                            <StackPanel
+                                                Width="240"
+                                                Height="50"
+                                                HorizontalAlignment="Center"
+                                                Orientation="Horizontal">
                                                 <materialDesign:PackIcon
-                                                    Width="25"
+                                                    Width="30"
                                                     Height="30"
-                                                    Margin="0,0,0,0"
+                                                    Margin="20,0"
                                                     VerticalAlignment="Center"
-                                                    Foreground="DimGray"
-                                                    Kind="Search" />
-                                                <TextBox
-                                                    Width="300"
-                                                    Height="40"
-                                                    Margin="10,2,0,0"
-                                                    materialDesign:HintAssist.Hint="Search"
-                                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                                    BorderBrush="Transparent"
-                                                    FontSize="18"
-                                                    Style="{StaticResource MaterialDesignTextBoxBase}">
-                                                    <TextBox.Text>
-                                                        <Binding Path="FilterTransportText" UpdateSourceTrigger="PropertyChanged">
-                                                            <Binding.ValidationRules />
-                                                        </Binding>
-                                                    </TextBox.Text>
-                                                </TextBox>
+                                                    Kind="Hotel" />
+                                                <TextBlock
+                                                    Margin="20,0,20,8.6"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Bottom"
+                                                    FontSize="24"
+                                                    Foreground="Black"
+                                                    Text="Hotel" />
                                             </StackPanel>
-                                        </Border>
+                                        </TabItem.Header>
 
-                                        <Button
-                                            Width="100"
-                                            Height="40"
-                                            Margin="10,0"
-                                            VerticalAlignment="Center"
-                                            Command="{Binding SaveTransportPriceCommand}"
-                                            Content="Save"
-                                            Foreground="#1885F2"
-                                            Style="{StaticResource SaveButton}" />
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                            </Grid.RowDefinitions>
 
-                                        <TextBlock
-                                            Width="auto"
-                                            Margin="10,0"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="20"
-                                            Foreground="#F36E6B"
-                                            Text="{Binding TransportPriceNotify, UpdateSourceTrigger=PropertyChanged}" />
-                                    </StackPanel>
+                                            <StackPanel Margin="0,24,0,0" VerticalAlignment="Center">
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    FontFamily="helvetica"
+                                                    FontSize="24"
+                                                    Foreground="Black"
+                                                    Text="Register Tour Hotel" />
+                                            </StackPanel>
 
-                                    <Grid Grid.Row="2" Margin="20">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                                <Border
+                                                    Grid.Row="1"
+                                                    Width="360"
+                                                    Height="50"
+                                                    Margin="160,10,40,5"
+                                                    Background="#FAFAFA"
+                                                    BorderBrush="Gray"
+                                                    BorderThickness="1"
+                                                    CornerRadius="10">
 
-                                        <StackPanel Margin="16">
-                                            <TextBlock
+                                                    <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                                        <materialDesign:PackIcon
+                                                            Width="25"
+                                                            Height="30"
+                                                            Margin="0,0,0,0"
+                                                            VerticalAlignment="Center"
+                                                            Foreground="DimGray"
+                                                            Kind="Search" />
+                                                        <TextBox
+                                                            Width="300"
+                                                            Height="40"
+                                                            Margin="10,2,0,0"
+                                                            materialDesign:HintAssist.Hint="Search"
+                                                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                            BorderBrush="Transparent"
+                                                            FontSize="18"
+                                                            Style="{StaticResource MaterialDesignTextBoxBase}">
+                                                            <TextBox.Text>
+                                                                <Binding Path="FilterHotelText" UpdateSourceTrigger="PropertyChanged">
+                                                                    <Binding.ValidationRules />
+                                                                </Binding>
+                                                            </TextBox.Text>
+                                                        </TextBox>
+                                                    </StackPanel>
+                                                </Border>
+                                                <Button
+                                                    Width="100"
+                                                    Height="40"
+                                                    Margin="10,0"
+                                                    VerticalAlignment="Center"
+                                                    Command="{Binding SaveHotelPriceCommand}"
+                                                    Content="Save"
+                                                    Foreground="#1885F2"
+                                                    Style="{StaticResource SaveButton}" />
+
+                                                <TextBlock
+                                                    Width="auto"
+                                                    Margin="10,0"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="20"
+                                                    Foreground="#F36E6B"
+                                                    Text="{Binding HotelPriceNotify, UpdateSourceTrigger=PropertyChanged}" />
+                                            </StackPanel>
+
+                                            <Grid Grid.Row="2" Margin="20">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackPanel Margin="16">
+                                                    <TextBlock
+                                                        HorizontalAlignment="Center"
+                                                        FontFamily="helvetica"
+                                                        FontSize="24"
+                                                        Foreground="Black"
+                                                        Text="Select Hotel" />
+
+                                                    <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding HotelList}">
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Border
+                                                                    x:Name="BorderPlace"
+                                                                    Padding="8"
+                                                                    BorderBrush="Black"
+                                                                    BorderThickness="1">
+                                                                    <Grid>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                                                            <ColumnDefinition />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <CheckBox
+                                                                            VerticalAlignment="Center"
+                                                                            Command="{Binding DataContext.HotelItemCheckCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                                                            CommandParameter="{Binding CB_ID}"
+                                                                            IsChecked="{Binding IsSelected}" />
+                                                                        <StackPanel Grid.Column="1" Margin="8,0,0,0">
+                                                                            <TextBlock FontWeight="Bold" Text="{Binding CB_Name}" />
+                                                                            <TextBlock Text="{Binding Hotel_Price}" />
+                                                                        </StackPanel>
+                                                                    </Grid>
+                                                                </Border>
+                                                                <DataTemplate.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                                        <Setter TargetName="BorderPlace" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+                                                                    </DataTrigger>
+                                                                </DataTemplate.Triggers>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </StackPanel>
+
+
+                                                <StackPanel Grid.Column="1" Margin="16">
+                                                    <TextBlock
+                                                        HorizontalAlignment="Center"
+                                                        FontFamily="helvetica"
+                                                        FontSize="24"
+                                                        Foreground="Black"
+                                                        Text="Hotel Selected" />
+                                                    <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding HotelSelectedList}">
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Border
+                                                                    x:Name="BorderPlace"
+                                                                    Padding="8"
+                                                                    BorderBrush="Black"
+                                                                    BorderThickness="1">
+
+                                                                    <StackPanel Margin="8,0,0,0">
+                                                                        <StackPanel Orientation="Horizontal">
+                                                                            <TextBlock
+                                                                                FontSize="12"
+                                                                                FontWeight="Bold"
+                                                                                Text="Hotel Name: " />
+
+                                                                            <TextBlock
+                                                                                FontSize="12"
+                                                                                FontWeight="Bold"
+                                                                                Text="{Binding HOTEL_NAME}" />
+                                                                        </StackPanel>
+                                                                        <StackPanel Orientation="Horizontal">
+                                                                            <TextBlock FontSize="12" Text="Hotel Price: " />
+                                                                            <TextBlock FontSize="12" Text="{Binding HOTEL_PRICE}" />
+                                                                            <TextBlock FontSize="12" Text=" VND" />
+                                                                        </StackPanel>
+                                                                        <StackPanel Orientation="Horizontal">
+                                                                            <TextBlock FontSize="12" Text="Day : " />
+                                                                            <TextBox
+                                                                                Width="100"
+                                                                                Margin="8,0,0,0"
+                                                                                HorizontalAlignment="Left"
+                                                                                materialDesign:HintAssist.Hint="Amount"
+                                                                                FontSize="12">
+                                                                                <TextBox.Text>
+                                                                                    <Binding
+                                                                                        Mode="TwoWay"
+                                                                                        Path="HOTEL_DAY"
+                                                                                        UpdateSourceTrigger="PropertyChanged">
+                                                                                        <Binding.ValidationRules />
+                                                                                    </Binding>
+                                                                                </TextBox.Text>
+                                                                            </TextBox>
+                                                                        </StackPanel>
+
+                                                                    </StackPanel>
+                                                                </Border>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </StackPanel>
+
+                                            </Grid>
+
+                                        </Grid>
+                                    </TabItem>
+
+                                    <TabItem
+                                        Width="290"
+                                        Background="Transparent"
+                                        Style="{StaticResource MaterialDesignNavigationRailTabItem}"
+                                        TabIndex="2">
+                                        <TabItem.Header>
+                                            <StackPanel
+                                                Width="240"
+                                                Height="50"
                                                 HorizontalAlignment="Center"
-                                                FontFamily="helvetica"
-                                                FontSize="24"
-                                                Foreground="Black"
-                                                Text="Select Transport" />
+                                                Orientation="Horizontal">
+                                                <materialDesign:PackIcon
+                                                    Width="30"
+                                                    Height="30"
+                                                    Margin="20,0"
+                                                    VerticalAlignment="Center"
+                                                    Kind="Transportation" />
+                                                <TextBlock
+                                                    Margin="20,0,20,8.6"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Bottom"
+                                                    FontSize="24"
+                                                    Foreground="Black"
+                                                    Text="Transport" />
+                                            </StackPanel>
+                                        </TabItem.Header>
 
-                                            <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding TransportList}">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                            </Grid.RowDefinitions>
+
+                                            <StackPanel Margin="0,24,0,0" VerticalAlignment="Center">
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    FontFamily="helvetica"
+                                                    FontSize="24"
+                                                    Foreground="Black"
+                                                    Text="Register Tour Transport" />
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                                <Border
+                                                    Width="360"
+                                                    Height="50"
+                                                    Margin="160,10,40,5"
+                                                    Background="#FAFAFA"
+                                                    BorderBrush="Gray"
+                                                    BorderThickness="1"
+                                                    CornerRadius="10">
+
+                                                    <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                                        <materialDesign:PackIcon
+                                                            Width="25"
+                                                            Height="30"
+                                                            Margin="0,0,0,0"
+                                                            VerticalAlignment="Center"
+                                                            Foreground="DimGray"
+                                                            Kind="Search" />
+                                                        <TextBox
+                                                            Width="300"
+                                                            Height="40"
+                                                            Margin="10,2,0,0"
+                                                            materialDesign:HintAssist.Hint="Search"
+                                                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                            BorderBrush="Transparent"
+                                                            FontSize="18"
+                                                            Style="{StaticResource MaterialDesignTextBoxBase}">
+                                                            <TextBox.Text>
+                                                                <Binding Path="FilterTransportText" UpdateSourceTrigger="PropertyChanged">
+                                                                    <Binding.ValidationRules />
+                                                                </Binding>
+                                                            </TextBox.Text>
+                                                        </TextBox>
+                                                    </StackPanel>
+                                                </Border>
+
+                                                <Button
+                                                    Width="100"
+                                                    Height="40"
+                                                    Margin="10,0"
+                                                    VerticalAlignment="Center"
+                                                    Command="{Binding SaveTransportPriceCommand}"
+                                                    Content="Save"
+                                                    Foreground="#1885F2"
+                                                    Style="{StaticResource SaveButton}" />
+
+                                                <TextBlock
+                                                    Width="auto"
+                                                    Margin="10,0"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="20"
+                                                    Foreground="#F36E6B"
+                                                    Text="{Binding TransportPriceNotify, UpdateSourceTrigger=PropertyChanged}" />
+                                            </StackPanel>
+
+                                            <Grid Grid.Row="2" Margin="20">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackPanel Margin="16">
+                                                    <TextBlock
+                                                        HorizontalAlignment="Center"
+                                                        FontFamily="helvetica"
+                                                        FontSize="24"
+                                                        Foreground="Black"
+                                                        Text="Select Transport" />
+
+                                                    <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding TransportList}">
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Border
+                                                                    x:Name="BorderPlace"
+                                                                    Padding="8"
+                                                                    BorderBrush="Black"
+                                                                    BorderThickness="1">
+                                                                    <Grid>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                                                            <ColumnDefinition />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <CheckBox
+                                                                            VerticalAlignment="Center"
+                                                                            Command="{Binding DataContext.TransportItemCheckCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                                                            CommandParameter="{Binding CB_ID}"
+                                                                            IsChecked="{Binding IsSelected}" />
+                                                                        <StackPanel Grid.Column="1" Margin="8,0,0,0">
+                                                                            <TextBlock FontWeight="Bold" Text="{Binding CB_Name}" />
+                                                                            <TextBlock Text="{Binding Transport_Price}" />
+                                                                        </StackPanel>
+                                                                    </Grid>
+                                                                </Border>
+                                                                <DataTemplate.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                                        <Setter TargetName="BorderPlace" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+                                                                    </DataTrigger>
+                                                                </DataTemplate.Triggers>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </StackPanel>
+
+
+                                                <StackPanel Grid.Column="1" Margin="16">
+                                                    <TextBlock
+                                                        HorizontalAlignment="Center"
+                                                        FontFamily="helvetica"
+                                                        FontSize="24"
+                                                        Foreground="Black"
+                                                        Text="Transport Selected" />
+                                                    <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding TransportSelectedList}">
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Border
+                                                                    x:Name="BorderPlace"
+                                                                    Padding="8"
+                                                                    BorderBrush="Black"
+                                                                    BorderThickness="1">
+
+                                                                    <StackPanel Margin="8,0,0,0">
+                                                                        <StackPanel Orientation="Horizontal">
+                                                                            <TextBlock
+                                                                                FontSize="12"
+                                                                                FontWeight="Bold"
+                                                                                Text="Transport Name: " />
+                                                                            <TextBlock
+                                                                                FontSize="12"
+                                                                                FontWeight="Bold"
+                                                                                Text="{Binding TRANSPORT_NAME}" />
+                                                                        </StackPanel>
+                                                                        <StackPanel Orientation="Horizontal">
+                                                                            <TextBlock FontSize="12" Text="Transport Price: " />
+                                                                            <TextBlock FontSize="12" Text="{Binding TRANSPORT_PRICE}" />
+                                                                            <TextBlock FontSize="12" Text=" VND" />
+                                                                        </StackPanel>
+
+                                                                        <StackPanel IsEnabled="{Binding TRANSPORT_IS_AMOUNT}" Orientation="Horizontal">
+                                                                            <TextBlock FontSize="12" Text="Amount : " />
+                                                                            <ComboBox
+                                                                                Width="100"
+                                                                                Margin="10,0,0,0"
+                                                                                DisplayMemberPath="CB_ID"
+                                                                                FontSize="12"
+                                                                                Foreground="DimGray"
+                                                                                ItemsSource="{Binding CB_TransportAmount}"
+                                                                                Text="{Binding TRANSPORT_AMOUNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                                        </StackPanel>
+
+                                                                    </StackPanel>
+                                                                </Border>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </StackPanel>
+
+                                            </Grid>
+
+                                        </Grid>
+                                    </TabItem>
+
+                                    <TabItem
+                                        Width="290"
+                                        Background="Transparent"
+                                        Style="{StaticResource MaterialDesignNavigationRailTabItem}"
+                                        TabIndex="2">
+                                        <TabItem.Header>
+                                            <StackPanel
+                                                Width="240"
+                                                Height="50"
+                                                HorizontalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <materialDesign:PackIcon
+                                                    Width="30"
+                                                    Height="30"
+                                                    Margin="20,0"
+                                                    VerticalAlignment="Center"
+                                                    Kind="People" />
+                                                <TextBlock
+                                                    Margin="20,0,20,8.6"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Bottom"
+                                                    FontSize="24"
+                                                    Foreground="Black"
+                                                    Text="Mission" />
+                                            </StackPanel>
+                                        </TabItem.Header>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                            </Grid.RowDefinitions>
+
+                                            <StackPanel Margin="0,24,0,0" VerticalAlignment="Center">
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    FontFamily="helvetica"
+                                                    FontSize="24"
+                                                    Foreground="Black"
+                                                    Text="Register Tour Mission" />
+                                            </StackPanel>
+
+                                            <StackPanel
+                                                Grid.Row="1"
+                                                Margin="40"
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    Margin="10,0"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="20">
+                                                    Number Of Mission
+                                                </TextBlock>
+
+                                                <TextBlock
+                                                    Width="40"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="20"
+                                                    Text="{Binding MissionCount, UpdateSourceTrigger=PropertyChanged}" />
+
+                                                <Button
+                                                    Width="100"
+                                                    Height="40"
+                                                    Margin="10,0"
+                                                    Command="{Binding AddMissionCommand}"
+                                                    Content="Add"
+                                                    Foreground="#0f6f68"
+                                                    Style="{StaticResource AddButton}" />
+
+                                                <Button
+                                                    Width="100"
+                                                    Height="40"
+                                                    Margin="10,0"
+                                                    Command="{Binding RemoveMissionCommand}"
+                                                    Content="Remove"
+                                                    Foreground="#F36E6B"
+                                                    Style="{StaticResource AddButton}" />
+
+                                                <Button
+                                                    Width="100"
+                                                    Height="40"
+                                                    Margin="10,0"
+                                                    Command="{Binding SaveMissionPriceCommand}"
+                                                    Content="Save"
+                                                    Foreground="#1885F2"
+                                                    Style="{StaticResource SaveButton}" />
+
+                                                <TextBlock
+                                                    Width="auto"
+                                                    Margin="10,0"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="20"
+                                                    Foreground="#F36E6B"
+                                                    Text="{Binding MissionPriceNotify, UpdateSourceTrigger=PropertyChanged}" />
+                                            </StackPanel>
+
+                                            <ItemsControl Grid.Row="2" ItemsSource="{Binding MissionList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel Orientation="Vertical" />
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
                                                         <Border
-                                                            x:Name="BorderPlace"
-                                                            Padding="8"
+                                                            Height="auto"
+                                                            Margin="10"
+                                                            Padding="10"
                                                             BorderBrush="Black"
                                                             BorderThickness="1">
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition SharedSizeGroup="Checkerz" />
-                                                                    <ColumnDefinition />
-                                                                </Grid.ColumnDefinitions>
-                                                                <CheckBox
-                                                                    VerticalAlignment="Center"
-                                                                    Command="{Binding DataContext.TransportItemCheckCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                                                                    CommandParameter="{Binding CB_ID}"
-                                                                    IsChecked="{Binding IsSelected}" />
-                                                                <StackPanel Grid.Column="1" Margin="8,0,0,0">
-                                                                    <TextBlock FontWeight="Bold" Text="{Binding CB_Name}" />
-                                                                    <TextBlock Text="{Binding Transport_Price}" />
-                                                                </StackPanel>
-                                                            </Grid>
-                                                        </Border>
-                                                        <DataTemplate.Triggers>
-                                                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                                                <Setter TargetName="BorderPlace" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
-                                                            </DataTrigger>
-                                                        </DataTemplate.Triggers>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
-                                        </StackPanel>
+                                                            <StackPanel Margin="10">
 
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="auto" />
+                                                                        <ColumnDefinition Width="auto" />
+                                                                    </Grid.ColumnDefinitions>
 
-                                        <StackPanel Grid.Column="1" Margin="16">
-                                            <TextBlock
-                                                HorizontalAlignment="Center"
-                                                FontFamily="helvetica"
-                                                FontSize="24"
-                                                Foreground="Black"
-                                                Text="Transport Selected" />
-                                            <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding TransportSelectedList}">
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Border
-                                                            x:Name="BorderPlace"
-                                                            Padding="8"
-                                                            BorderBrush="Black"
-                                                            BorderThickness="1">
+                                                                    <StackPanel Margin="64,4,120,4" Orientation="Horizontal">
+                                                                        <TextBlock
+                                                                            VerticalAlignment="Center"
+                                                                            FontSize="18"
+                                                                            Foreground="DimGray"
+                                                                            Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                                            Text="Responsibility : " />
+                                                                        <ComboBox
+                                                                            Width="224"
+                                                                            Margin="10,0,0,0"
+                                                                            materialDesign:HintAssist.Hint="Mission Responsibility"
+                                                                            FontSize="18"
+                                                                            Foreground="DimGray"
+                                                                            Text="{Binding Mission_Responsibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                                            <ComboBoxItem Content="Driver" />
+                                                                            <ComboBoxItem Content="Guide" />
+                                                                            <ComboBoxItem Content="Guard" />
+                                                                        </ComboBox>
+                                                                    </StackPanel>
 
-                                                            <StackPanel Margin="8,0,0,0">
-                                                                <StackPanel Orientation="Horizontal">
+                                                                    <StackPanel
+                                                                        Grid.Column="1"
+                                                                        Margin="62,4,120,4"
+                                                                        HorizontalAlignment="Right"
+                                                                        Orientation="Horizontal">
+                                                                        <TextBlock
+                                                                            VerticalAlignment="Center"
+                                                                            FontSize="18"
+                                                                            Foreground="DimGray"
+                                                                            Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                                            Text="Price: " />
+                                                                        <TextBox
+                                                                            Width="360"
+                                                                            Margin="10,0,0,0"
+                                                                            materialDesign:HintAssist.Hint="Price"
+                                                                            materialDesign:TextFieldAssist.PrefixText="VND"
+                                                                            FontSize="18"
+                                                                            Text="{Binding Mission_Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                                    </StackPanel>
+
+                                                                </Grid>
+
+                                                                <StackPanel Margin="64,4,120,4" Orientation="Horizontal">
                                                                     <TextBlock
-                                                                        FontSize="12"
-                                                                        FontWeight="Bold"
-                                                                        Text="Transport Name: " />
-                                                                    <TextBlock
-                                                                        FontSize="12"
-                                                                        FontWeight="Bold"
-                                                                        Text="{Binding TRANSPORT_NAME}" />
-                                                                </StackPanel>
-                                                                <StackPanel Orientation="Horizontal">
-                                                                    <TextBlock FontSize="12" Text="Transport Price: " />
-                                                                    <TextBlock FontSize="12" Text="{Binding TRANSPORT_PRICE}" />
-                                                                    <TextBlock FontSize="12" Text=" VND" />
-                                                                </StackPanel>
-
-                                                                <StackPanel IsEnabled="{Binding TRANSPORT_IS_AMOUNT}" Orientation="Horizontal">
-                                                                    <TextBlock FontSize="12" Text="Amount : " />
-                                                                    <ComboBox
-                                                                        Width="100"
-                                                                        Margin="10,0,0,0"
-                                                                        DisplayMemberPath="CB_ID"
-                                                                        FontSize="12"
+                                                                        VerticalAlignment="Center"
+                                                                        FontSize="18"
                                                                         Foreground="DimGray"
-                                                                        ItemsSource="{Binding CB_TransportAmount}"
-                                                                        Text="{Binding TRANSPORT_AMOUNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                                        Text="Amount In Mision : " />
+                                                                    <TextBox
+                                                                        Width="190"
+                                                                        Margin="10,0,0,0"
+                                                                        materialDesign:HintAssist.Hint="0"
+                                                                        FontSize="18"
+                                                                        Text="{Binding Mission_Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                                                 </StackPanel>
 
+                                                                <TextBox
+                                                                    Width="1020"
+                                                                    Height="220"
+                                                                    Margin="20,10,20,0"
+                                                                    HorizontalAlignment="Left"
+                                                                    materialDesign:HintAssist.Hint="Content"
+                                                                    AcceptsReturn="True"
+                                                                    FontSize="17"
+                                                                    Foreground="DimGray"
+                                                                    MinLines="8"
+                                                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                                                    Text="{Binding Mission_Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                    TextWrapping="Wrap" />
                                                             </StackPanel>
                                                         </Border>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
-                                        </StackPanel>
+                                        </Grid>
+                                    </TabItem>
 
-                                    </Grid>
+                                    <TabItem
+                                        Width="290"
+                                        Background="Transparent"
+                                        Style="{StaticResource MaterialDesignNavigationRailTabItem}"
+                                        TabIndex="2">
+                                        <TabItem.Header>
+                                            <StackPanel
+                                                Width="240"
+                                                Height="50"
+                                                HorizontalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <materialDesign:PackIcon
+                                                    Width="30"
+                                                    Height="30"
+                                                    Margin="20,0"
+                                                    VerticalAlignment="Center"
+                                                    Kind="Money100" />
+                                                <TextBlock
+                                                    Margin="20,0,20,8.6"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Bottom"
+                                                    FontSize="24"
+                                                    Foreground="Black"
+                                                    Text="Total" />
+                                            </StackPanel>
+                                        </TabItem.Header>
 
-                                </Grid>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+
+                                            <StackPanel Grid.Row="0" Orientation="Vertical">
+                                                <TextBlock
+                                                    Margin="100,12"
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="Hotel List" />
+                                                <DataGrid
+                                                    Grid.Row="1"
+                                                    Width="1080"
+                                                    Height="auto"
+                                                    VerticalAlignment="Top"
+                                                    materialDesign:DataGridAssist.CellPadding="12 8 0 8"
+                                                    materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
+                                                    AllowDrop="True"
+                                                    AutoGenerateColumns="False"
+                                                    CanUserAddRows="False"
+                                                    CanUserDeleteRows="False"
+                                                    CanUserReorderColumns="False"
+                                                    CanUserSortColumns="True"
+                                                    GridLinesVisibility="Vertical"
+                                                    IsReadOnly="True"
+                                                    ItemsSource="{Binding HotelSelectedList}"
+                                                    SelectionMode="Single">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn
+                                                            Width="0.05*"
+                                                            Binding="{Binding HOTEL_ID}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Header="ID" />
+                                                        <DataGridTextColumn
+                                                            Width="0.15*"
+                                                            Binding="{Binding HOTEL_NAME}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Header="Name" />
+                                                        <DataGridTextColumn
+                                                            Width="0.15*"
+                                                            Binding="{Binding HOTEL_ADDRESS}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Header="Address" />
+                                                        <DataGridTextColumn
+                                                            Width="0.15*"
+                                                            Binding="{Binding PLACE_NAME}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Header="Place" />
+                                                        <DataGridTextColumn
+                                                            Width="0.15*"
+                                                            Binding="{Binding HOTEL_PHONE_NUMBER}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Header="Phone Number" />
+                                                        <DataGridTextColumn
+                                                            Width="0.15*"
+                                                            Binding="{Binding HOTEL_EMAIL}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Header="Email" />
+                                                        <DataGridTextColumn
+                                                            Width="0.15*"
+                                                            Binding="{Binding HOTEL_PRICE}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Header="Price" />
+                                                        <DataGridTextColumn
+                                                            Width="0.1*"
+                                                            Binding="{Binding HOTEL_DAY}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Header="Day" />
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                                <StackPanel
+                                                    Margin="0,4,120,4"
+                                                    HorizontalAlignment="Right"
+                                                    Orientation="Horizontal">
+                                                    <TextBlock
+                                                        FontSize="16"
+                                                        Foreground="DimGray"
+                                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                        Text="Total Price: " />
+                                                    <TextBlock
+                                                        FontSize="16"
+                                                        Foreground="DimGray"
+                                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                        Text="{Binding TotalHotelPrice}" />
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Row="1" Orientation="Vertical">
+                                                <TextBlock
+                                                    Margin="100,12"
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="Transport List" />
+
+                                                <DataGrid
+                                                    Grid.Row="1"
+                                                    Width="1080"
+                                                    Height="auto"
+                                                    VerticalAlignment="Top"
+                                                    materialDesign:DataGridAssist.CellPadding="12 8 0 8"
+                                                    materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
+                                                    AllowDrop="True"
+                                                    AutoGenerateColumns="False"
+                                                    CanUserAddRows="False"
+                                                    CanUserDeleteRows="False"
+                                                    CanUserReorderColumns="False"
+                                                    CanUserSortColumns="True"
+                                                    GridLinesVisibility="Vertical"
+                                                    IsReadOnly="True"
+                                                    ItemsSource="{Binding TransportSelectedList}"
+                                                    SelectionMode="Single">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn
+                                                            Width="0.05*"
+                                                            Binding="{Binding TRANSPORT_ID}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Header="ID" />
+                                                        <DataGridTextColumn
+                                                            Width="0.2*"
+                                                            Binding="{Binding TRANSPORT_NAME}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Header="Name" />
+                                                        <DataGridTextColumn
+                                                            Width="0.2*"
+                                                            Binding="{Binding TRANSPORT_TYPETRANS}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Header="Type" />
+                                                        <DataGridTextColumn
+                                                            Width="0.2*"
+                                                            Binding="{Binding TRANSPORT_AMOUNT}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Header="Amount" />
+                                                        <DataGridTextColumn
+                                                            Width="0.2*"
+                                                            Binding="{Binding TRANSPORT_PRICE}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Header="Price" />
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+
+                                                <StackPanel
+                                                    Margin="0,4,120,4"
+                                                    HorizontalAlignment="Right"
+                                                    Orientation="Horizontal">
+                                                    <TextBlock
+                                                        FontSize="16"
+                                                        Foreground="DimGray"
+                                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                        Text="Total Price: " />
+                                                    <TextBlock
+                                                        FontSize="16"
+                                                        Foreground="DimGray"
+                                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                        Text="{Binding TotalTransportPrice}" />
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Row="2" Orientation="Vertical">
+                                                <TextBlock
+                                                    Margin="100,12"
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="Service List" />
+
+                                                <DataGrid
+                                                    Grid.Row="1"
+                                                    Width="1080"
+                                                    Height="auto"
+                                                    VerticalAlignment="Top"
+                                                    materialDesign:DataGridAssist.CellPadding="12 8 0 8"
+                                                    materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
+                                                    AllowDrop="True"
+                                                    AutoGenerateColumns="False"
+                                                    CanUserAddRows="False"
+                                                    CanUserDeleteRows="False"
+                                                    CanUserReorderColumns="False"
+                                                    CanUserSortColumns="True"
+                                                    GridLinesVisibility="Vertical"
+                                                    IsReadOnly="True"
+                                                    ItemsSource="{Binding MissionList}"
+                                                    SelectionMode="Single">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn
+                                                            Width="0.1*"
+                                                            Binding="{Binding Mission_ID}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Foreground="DarkSlateGray"
+                                                            Header="ID" />
+                                                        <DataGridTextColumn
+                                                            Width="0.2*"
+                                                            Binding="{Binding Mission_Responsibility}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Foreground="DarkSlateGray"
+                                                            Header="Responsibility" />
+                                                        <DataGridTextColumn
+                                                            Width="0.1*"
+                                                            Binding="{Binding Mission_Count}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Foreground="DarkSlateGray"
+                                                            Header="Amount" />
+                                                        <DataGridTextColumn
+                                                            Width="0.2*"
+                                                            Binding="{Binding Mission_Price}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Foreground="DarkSlateGray"
+                                                            Header="Price" />
+                                                        <DataGridTextColumn
+                                                            Width="0.4*"
+                                                            Binding="{Binding Mission_Description}"
+                                                            ElementStyle="{StaticResource WrapText}"
+                                                            Foreground="DarkSlateGray"
+                                                            Header="Description" />
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+
+                                                <StackPanel
+                                                    Margin="0,4,120,4"
+                                                    HorizontalAlignment="Right"
+                                                    Orientation="Horizontal">
+                                                    <TextBlock
+                                                        FontSize="16"
+                                                        Foreground="DimGray"
+                                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                        Text="Total Price: " />
+                                                    <TextBlock
+                                                        FontSize="16"
+                                                        Foreground="DimGray"
+                                                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                        Text="{Binding TotalMissionPrice}" />
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                            <StackPanel
+                                                Grid.Row="3"
+                                                Margin="-100,40,0,20"
+                                                HorizontalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="Total Price: " />
+                                                <TextBlock
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="{Binding TotalPrice}" />
+                                            </StackPanel>
+                                        </Grid>
+
+                                    </TabItem>
+                                </TabControl>
                             </TabItem>
 
                             <TabItem
@@ -889,14 +1415,14 @@
                                             Height="30"
                                             Margin="20,0"
                                             VerticalAlignment="Center"
-                                            Kind="People" />
+                                            Kind="TimelineClockOutline" />
                                         <TextBlock
                                             Margin="20,0,20,8.6"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Bottom"
                                             FontSize="24"
                                             Foreground="Black"
-                                            Text="Mission" />
+                                            Text="Schedule" />
                                     </StackPanel>
                                 </TabItem.Header>
                                 <Grid>
@@ -912,7 +1438,7 @@
                                             FontFamily="helvetica"
                                             FontSize="24"
                                             Foreground="Black"
-                                            Text="Register Tour Mission" />
+                                            Text="Register Tour Schedule" />
                                     </StackPanel>
 
                                     <StackPanel
@@ -923,7 +1449,7 @@
                                             Margin="10,0"
                                             VerticalAlignment="Center"
                                             FontSize="20">
-                                            Number Of Mission
+                                            Number Of Content
                                         </TextBlock>
 
                                         <TextBlock
@@ -931,13 +1457,13 @@
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center"
                                             FontSize="20"
-                                            Text="{Binding MissionCount, UpdateSourceTrigger=PropertyChanged}" />
+                                            Text="{Binding ScheduleCount, UpdateSourceTrigger=PropertyChanged}" />
 
                                         <Button
                                             Width="100"
                                             Height="40"
                                             Margin="10,0"
-                                            Command="{Binding AddMissionCommand}"
+                                            Command="{Binding AddScheduleCommand}"
                                             Content="Add"
                                             Foreground="#0f6f68"
                                             Style="{StaticResource AddButton}" />
@@ -946,31 +1472,13 @@
                                             Width="100"
                                             Height="40"
                                             Margin="10,0"
-                                            Command="{Binding RemoveMissionCommand}"
+                                            Command="{Binding RemoveScheduleCommand}"
                                             Content="Remove"
                                             Foreground="#F36E6B"
                                             Style="{StaticResource AddButton}" />
-
-                                        <Button
-                                            Width="100"
-                                            Height="40"
-                                            Margin="10,0"
-                                            Command="{Binding SaveMissionPriceCommand}"
-                                            Content="Save"
-                                            Foreground="#1885F2"
-                                            Style="{StaticResource SaveButton}" />
-
-                                        <TextBlock
-                                            Width="auto"
-                                            Margin="10,0"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="20"
-                                            Foreground="#F36E6B"
-                                            Text="{Binding MissionPriceNotify, UpdateSourceTrigger=PropertyChanged}" />
                                     </StackPanel>
 
-                                    <ItemsControl Grid.Row="2" ItemsSource="{Binding MissionList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <ItemsControl Grid.Row="2" ItemsSource="{Binding ScheduleList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
@@ -981,75 +1489,17 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <Border
-                                                    Height="auto"
                                                     Margin="10"
                                                     Padding="10"
                                                     BorderBrush="Black"
                                                     BorderThickness="1">
                                                     <StackPanel Margin="10">
 
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="auto" />
-                                                                <ColumnDefinition Width="auto" />
-                                                            </Grid.ColumnDefinitions>
-
-                                                            <StackPanel Margin="64,4,120,4" Orientation="Horizontal">
-                                                                <TextBlock
-                                                                    VerticalAlignment="Center"
-                                                                    FontSize="18"
-                                                                    Foreground="DimGray"
-                                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                                    Text="Responsibility : " />
-                                                                <ComboBox
-                                                                    Width="224"
-                                                                    Margin="10,0,0,0"
-                                                                    materialDesign:HintAssist.Hint="Mission Responsibility"
-                                                                    FontSize="18"
-                                                                    Foreground="DimGray"
-                                                                    Text="{Binding Mission_Responsibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                                                    <ComboBoxItem Content="Driver" />
-                                                                    <ComboBoxItem Content="Guide" />
-                                                                    <ComboBoxItem Content="Guard" />
-                                                                </ComboBox>
-                                                            </StackPanel>
-
-                                                            <StackPanel
-                                                                Grid.Column="1"
-                                                                Margin="62,4,120,4"
-                                                                HorizontalAlignment="Right"
-                                                                Orientation="Horizontal">
-                                                                <TextBlock
-                                                                    VerticalAlignment="Center"
-                                                                    FontSize="18"
-                                                                    Foreground="DimGray"
-                                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                                    Text="Price: " />
-                                                                <TextBox
-                                                                    Width="360"
-                                                                    Margin="10,0,0,0"
-                                                                    materialDesign:HintAssist.Hint="Price"
-                                                                    materialDesign:TextFieldAssist.PrefixText="VND"
-                                                                    FontSize="18"
-                                                                    Text="{Binding Mission_Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                                            </StackPanel>
-
-                                                        </Grid>
-
-                                                        <StackPanel Margin="64,4,120,4" Orientation="Horizontal">
-                                                            <TextBlock
-                                                                VerticalAlignment="Center"
-                                                                FontSize="18"
-                                                                Foreground="DimGray"
-                                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                                Text="Amount In Mision : " />
-                                                            <TextBox
-                                                                Width="190"
-                                                                Margin="10,0,0,0"
-                                                                materialDesign:HintAssist.Hint="0"
-                                                                FontSize="18"
-                                                                Text="{Binding Mission_Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                                        </StackPanel>
+                                                        <TextBox
+                                                            Margin="20,10,20,10"
+                                                            materialDesign:HintAssist.Hint="Days"
+                                                            FontSize="22"
+                                                            Text="{Binding SCHEDULE_DAY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                                                         <TextBox
                                                             Width="1020"
@@ -1062,7 +1512,7 @@
                                                             Foreground="DimGray"
                                                             MinLines="8"
                                                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                                            Text="{Binding Mission_Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                            Text="{Binding SCHEDULE_CONTENT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                             TextWrapping="Wrap" />
                                                     </StackPanel>
                                                 </Border>
@@ -1072,444 +1522,33 @@
                                 </Grid>
                             </TabItem>
 
-                            <TabItem
-                                Width="290"
-                                Background="Transparent"
-                                Style="{StaticResource MaterialDesignNavigationRailTabItem}"
-                                TabIndex="2">
-                                <TabItem.Header>
-                                    <StackPanel
-                                        Width="240"
-                                        Height="50"
-                                        HorizontalAlignment="Center"
-                                        Orientation="Horizontal">
-                                        <materialDesign:PackIcon
-                                            Width="30"
-                                            Height="30"
-                                            Margin="20,0"
-                                            VerticalAlignment="Center"
-                                            Kind="Money100" />
-                                        <TextBlock
-                                            Margin="20,0,20,8.6"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Bottom"
-                                            FontSize="24"
-                                            Foreground="Black"
-                                            Text="Total" />
-                                    </StackPanel>
-                                </TabItem.Header>
-
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-
-                                    <StackPanel Grid.Row="0" Orientation="Vertical">
-                                        <TextBlock
-                                            Margin="100,12"
-                                            FontSize="24"
-                                            Foreground="DimGray"
-                                            Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                            Text="Hotel List" />
-                                        <DataGrid
-                                            Grid.Row="1"
-                                            Width="1080"
-                                            Height="auto"
-                                            VerticalAlignment="Top"
-                                            materialDesign:DataGridAssist.CellPadding="12 8 0 8"
-                                            materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
-                                            AllowDrop="True"
-                                            AutoGenerateColumns="False"
-                                            CanUserAddRows="False"
-                                            CanUserDeleteRows="False"
-                                            CanUserReorderColumns="False"
-                                            CanUserSortColumns="True"
-                                            GridLinesVisibility="Vertical"
-                                            IsReadOnly="True"
-                                            ItemsSource="{Binding HotelSelectedList}"
-                                            SelectionMode="Single">
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn
-                                                    Width="0.05*"
-                                                    Binding="{Binding HOTEL_ID}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Header="ID" />
-                                                <DataGridTextColumn
-                                                    Width="0.15*"
-                                                    Binding="{Binding HOTEL_NAME}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Header="Name" />
-                                                <DataGridTextColumn
-                                                    Width="0.15*"
-                                                    Binding="{Binding HOTEL_ADDRESS}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Header="Address" />
-                                                <DataGridTextColumn
-                                                    Width="0.15*"
-                                                    Binding="{Binding PLACE_NAME}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Header="Place" />
-                                                <DataGridTextColumn
-                                                    Width="0.15*"
-                                                    Binding="{Binding HOTEL_PHONE_NUMBER}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Header="Phone Number" />
-                                                <DataGridTextColumn
-                                                    Width="0.15*"
-                                                    Binding="{Binding HOTEL_EMAIL}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Header="Email" />
-                                                <DataGridTextColumn
-                                                    Width="0.15*"
-                                                    Binding="{Binding HOTEL_PRICE}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Header="Price" />
-                                                <DataGridTextColumn
-                                                    Width="0.1*"
-                                                    Binding="{Binding HOTEL_DAY}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Header="Day" />
-                                            </DataGrid.Columns>
-                                        </DataGrid>
-                                        <StackPanel
-                                            Margin="0,4,120,4"
-                                            HorizontalAlignment="Right"
-                                            Orientation="Horizontal">
-                                            <TextBlock
-                                                FontSize="16"
-                                                Foreground="DimGray"
-                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text="Total Price: " />
-                                            <TextBlock
-                                                FontSize="16"
-                                                Foreground="DimGray"
-                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text="{Binding TotalHotelPrice}" />
-                                        </StackPanel>
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Row="1" Orientation="Vertical">
-                                        <TextBlock
-                                            Margin="100,12"
-                                            FontSize="24"
-                                            Foreground="DimGray"
-                                            Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                            Text="Transport List" />
-
-                                        <DataGrid
-                                            Grid.Row="1"
-                                            Width="1080"
-                                            Height="auto"
-                                            VerticalAlignment="Top"
-                                            materialDesign:DataGridAssist.CellPadding="12 8 0 8"
-                                            materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
-                                            AllowDrop="True"
-                                            AutoGenerateColumns="False"
-                                            CanUserAddRows="False"
-                                            CanUserDeleteRows="False"
-                                            CanUserReorderColumns="False"
-                                            CanUserSortColumns="True"
-                                            GridLinesVisibility="Vertical"
-                                            IsReadOnly="True"
-                                            ItemsSource="{Binding TransportSelectedList}"
-                                            SelectionMode="Single">
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn
-                                                    Width="0.05*"
-                                                    Binding="{Binding TRANSPORT_ID}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Header="ID" />
-                                                <DataGridTextColumn
-                                                    Width="0.2*"
-                                                    Binding="{Binding TRANSPORT_NAME}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Header="Name" />
-                                                <DataGridTextColumn
-                                                    Width="0.2*"
-                                                    Binding="{Binding TRANSPORT_TYPETRANS}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Header="Type" />
-                                                <DataGridTextColumn
-                                                    Width="0.2*"
-                                                    Binding="{Binding TRANSPORT_AMOUNT}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Header="Amount" />
-                                                <DataGridTextColumn
-                                                    Width="0.2*"
-                                                    Binding="{Binding TRANSPORT_PRICE}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Header="Price" />
-                                            </DataGrid.Columns>
-                                        </DataGrid>
-
-                                        <StackPanel
-                                            Margin="0,4,120,4"
-                                            HorizontalAlignment="Right"
-                                            Orientation="Horizontal">
-                                            <TextBlock
-                                                FontSize="16"
-                                                Foreground="DimGray"
-                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text="Total Price: " />
-                                            <TextBlock
-                                                FontSize="16"
-                                                Foreground="DimGray"
-                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text="{Binding TotalTransportPrice}" />
-                                        </StackPanel>
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Row="2" Orientation="Vertical">
-                                        <TextBlock
-                                            Margin="100,12"
-                                            FontSize="24"
-                                            Foreground="DimGray"
-                                            Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                            Text="Service List" />
-
-                                        <DataGrid
-                                            Grid.Row="1"
-                                            Width="1080"
-                                            Height="auto"
-                                            VerticalAlignment="Top"
-                                            materialDesign:DataGridAssist.CellPadding="12 8 0 8"
-                                            materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
-                                            AllowDrop="True"
-                                            AutoGenerateColumns="False"
-                                            CanUserAddRows="False"
-                                            CanUserDeleteRows="False"
-                                            CanUserReorderColumns="False"
-                                            CanUserSortColumns="True"
-                                            GridLinesVisibility="Vertical"
-                                            IsReadOnly="True"
-                                            ItemsSource="{Binding MissionList}"
-                                            SelectionMode="Single">
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn
-                                                    Width="0.1*"
-                                                    Binding="{Binding Mission_ID}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Foreground="DarkSlateGray"
-                                                    Header="ID" />
-                                                <DataGridTextColumn
-                                                    Width="0.2*"
-                                                    Binding="{Binding Mission_Responsibility}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Foreground="DarkSlateGray"
-                                                    Header="Responsibility" />
-                                                <DataGridTextColumn
-                                                    Width="0.1*"
-                                                    Binding="{Binding Mission_Count}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Foreground="DarkSlateGray"
-                                                    Header="Amount" />
-                                                <DataGridTextColumn
-                                                    Width="0.2*"
-                                                    Binding="{Binding Mission_Price}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Foreground="DarkSlateGray"
-                                                    Header="Price" />
-                                                <DataGridTextColumn
-                                                    Width="0.4*"
-                                                    Binding="{Binding Mission_Description}"
-                                                    ElementStyle="{StaticResource WrapText}"
-                                                    Foreground="DarkSlateGray"
-                                                    Header="Description" />
-                                            </DataGrid.Columns>
-                                        </DataGrid>
-
-                                        <StackPanel
-                                            Margin="0,4,120,4"
-                                            HorizontalAlignment="Right"
-                                            Orientation="Horizontal">
-                                            <TextBlock
-                                                FontSize="16"
-                                                Foreground="DimGray"
-                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text="Total Price: " />
-                                            <TextBlock
-                                                FontSize="16"
-                                                Foreground="DimGray"
-                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text="{Binding TotalMissionPrice}" />
-                                        </StackPanel>
-                                    </StackPanel>
-
-                                    <StackPanel
-                                        Grid.Row="3"
-                                        Margin="-100,40,0,20"
-                                        HorizontalAlignment="Center"
-                                        Orientation="Horizontal">
-                                        <TextBlock
-                                            FontSize="24"
-                                            Foreground="DimGray"
-                                            Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                            Text="Total Price: " />
-                                        <TextBlock
-                                            FontSize="24"
-                                            Foreground="DimGray"
-                                            Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                            Text="{Binding TotalPrice}" />
-                                    </StackPanel>
-                                </Grid>
-
-                            </TabItem>
                         </TabControl>
-                    </TabItem>
+                    </ScrollViewer>
 
-                    <TabItem
-                        Width="290"
-                        Background="Transparent"
-                        Style="{StaticResource MaterialDesignNavigationRailTabItem}"
-                        TabIndex="2">
-                        <TabItem.Header>
-                            <StackPanel
-                                Width="240"
-                                Height="50"
-                                HorizontalAlignment="Center"
-                                Orientation="Horizontal">
-                                <materialDesign:PackIcon
-                                    Width="30"
-                                    Height="30"
-                                    Margin="20,0"
-                                    VerticalAlignment="Center"
-                                    Kind="TimelineClockOutline" />
-                                <TextBlock
-                                    Margin="20,0,20,8.6"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Bottom"
-                                    FontSize="24"
-                                    Foreground="Black"
-                                    Text="Schedule" />
-                            </StackPanel>
-                        </TabItem.Header>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
 
-                            <StackPanel Margin="0,24,0,0" VerticalAlignment="Center">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontFamily="helvetica"
-                                    FontSize="24"
-                                    Foreground="Black"
-                                    Text="Register Tour Schedule" />
-                            </StackPanel>
+                        <Button
+                            Width="200"
+                            Height="60"
+                            Margin="340,16,20,2"
+                            Command="{Binding AddTourInformationCommand}"
+                            CommandParameter="{Binding ElementName=contentControlAdd}"
+                            Content="Confirm"
+                            Foreground="#1885F2"
+                            Style="{StaticResource ResourceKey=ConfirmButton}" />
 
-                            <StackPanel
-                                Grid.Row="1"
-                                Margin="40"
-                                Orientation="Horizontal">
-                                <TextBlock
-                                    Margin="10,0"
-                                    VerticalAlignment="Center"
-                                    FontSize="20">
-                                    Number Of Content
-                                </TextBlock>
-
-                                <TextBlock
-                                    Width="40"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="20"
-                                    Text="{Binding ScheduleCount, UpdateSourceTrigger=PropertyChanged}" />
-
-                                <Button
-                                    Width="100"
-                                    Height="40"
-                                    Margin="10,0"
-                                    Command="{Binding AddScheduleCommand}"
-                                    Content="Add"
-                                    Foreground="#0f6f68"
-                                    Style="{StaticResource AddButton}" />
-
-                                <Button
-                                    Width="100"
-                                    Height="40"
-                                    Margin="10,0"
-                                    Command="{Binding RemoveScheduleCommand}"
-                                    Content="Remove"
-                                    Foreground="#F36E6B"
-                                    Style="{StaticResource AddButton}" />
-                            </StackPanel>
-
-                            <ItemsControl Grid.Row="2" ItemsSource="{Binding ScheduleList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Vertical" />
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Border
-                                            Margin="10"
-                                            Padding="10"
-                                            BorderBrush="Black"
-                                            BorderThickness="1">
-                                            <StackPanel Margin="10">
-
-                                                <TextBox
-                                                    Margin="20,10,20,10"
-                                                    materialDesign:HintAssist.Hint="Days"
-                                                    FontSize="22"
-                                                    Text="{Binding SCHEDULE_DAY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-                                                <TextBox
-                                                    Width="1020"
-                                                    Height="220"
-                                                    Margin="20,10,20,0"
-                                                    HorizontalAlignment="Left"
-                                                    materialDesign:HintAssist.Hint="Content"
-                                                    AcceptsReturn="True"
-                                                    FontSize="17"
-                                                    Foreground="DimGray"
-                                                    MinLines="8"
-                                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                                    Text="{Binding SCHEDULE_CONTENT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                    TextWrapping="Wrap" />
-                                            </StackPanel>
-                                        </Border>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </Grid>
-                    </TabItem>
-
-                </TabControl>
-            </ScrollViewer>
-
-            <StackPanel Grid.Row="2" Orientation="Horizontal">
-
-                <Button
-                    Width="200"
-                    Height="60"
-                    Margin="340,16,20,2"
-                    Command="{Binding AddTourInformationCommand}"
-                    CommandParameter="{Binding ElementName=contentControlAdd}"
-                    Content="Confirm"
-                    Foreground="#1885F2"
-                    Style="{StaticResource ResourceKey=ConfirmButton}" />
-
-                <Button
-                    Width="200"
-                    Height="60"
-                    Margin="20,16,20,2"
-                    Command="{Binding CancelCommand}"
-                    CommandParameter="{Binding ElementName=contentControlAdd}"
-                    Content="Cancel"
-                    Foreground="#F36E6B"
-                    Style="{StaticResource ResourceKey=CancelButton}" />
-            </StackPanel>
-        </Grid>
-
+                        <Button
+                            Width="200"
+                            Height="60"
+                            Margin="20,16,20,2"
+                            Command="{Binding CancelCommand}"
+                            CommandParameter="{Binding ElementName=contentControlAdd}"
+                            Content="Cancel"
+                            Foreground="#F36E6B"
+                            Style="{StaticResource ResourceKey=CancelButton}" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
     </ContentControl>
 </UserControl>

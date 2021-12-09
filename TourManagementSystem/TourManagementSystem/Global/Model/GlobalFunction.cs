@@ -63,8 +63,9 @@ namespace TourManagementSystem.Global.Model
             }
         }
 
-        public static bool IsSendEmail(string text)
+        public static async Task<bool> IsSendEmail(string text)
         {
+            await Task.Delay(6000);
             string from = "pplthdt.uit.team3@gmail.com";
             string pass = "UIT@team3";
             string to = "19522074@gm.uit.edu.vn";
@@ -82,7 +83,7 @@ namespace TourManagementSystem.Global.Model
                     smtp.EnableSsl = true;
                     try
                     {
-                        smtp.Send(mail);
+                        smtp.Send(mail);                        
                         return true;
                     }
                     catch (Exception ex)

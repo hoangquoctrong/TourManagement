@@ -17,10 +17,10 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
-        private ObservableCollection<PlaceModel> _PlaceItems;
+        private ObservableCollection<PlaceModel> _PlaceItems = new ObservableCollection<PlaceModel>();
         public ObservableCollection<PlaceModel> PlaceItems { get => _PlaceItems; set { _PlaceItems = value; OnPropertyChanged("PlaceItems"); } }
 
-        private ObservableCollection<PlaceModel> _Refresh_PlaceItems;
+        private ObservableCollection<PlaceModel> _Refresh_PlaceItems = new ObservableCollection<PlaceModel>();
         public ObservableCollection<PlaceModel> Refresh_PlaceItems { get => _Refresh_PlaceItems; set { _Refresh_PlaceItems = value; OnPropertyChanged("Refresh_PlaceItems"); } }
 
         private PlaceModel _PlaceSelected;
@@ -29,6 +29,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             LoadPlaceComboBox();
             User_ID = user_id;
+            LoadDataToUI();
+        }
+
+        private async void LoadDataToUI()
+        {
+            await Task.Delay(1000);
             PlaceItems = PlaceHandleModel.GetPlaceList();
             Refresh_PlaceItems = PlaceHandleModel.GetPlaceList();
         }

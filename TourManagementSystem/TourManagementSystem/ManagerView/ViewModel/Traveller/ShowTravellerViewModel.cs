@@ -67,8 +67,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public int NumberOfTour { get => _NumberOfTour; set { _NumberOfTour = value; OnPropertyChanged(); } }
         #endregion Data Binding
 
-        private void SetTraveller(TravellerModel traveller)
+        private async void SetTraveller(TravellerModel traveller)
         {
+            await Task.Delay(1000);
             Traveller_ID = traveller.Traveller_ID;
             Traveller_Name = traveller.Traveller_Name;
             Traveller_Address = traveller.Traveller_Address;
@@ -113,16 +114,21 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TravellerSelected = UpdateTraveller();
             if (TravelGroupHandleModel.UpdateTraveller(TravellerSelected, User_ID, true))
             {
-                MessageBox.Show("Update successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Traveller successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageBox.Show("Update failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update Traveller failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
         private bool IsExcuteTravellerCommand()
         {
+            if (string.IsNullOrEmpty(Traveller_Name))
+            {
+                return false;
+            }
+
             if (Traveller_Name != TravellerSelected.Traveller_Name)
             {
                 return true;
