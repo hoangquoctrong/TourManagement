@@ -50,7 +50,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             if (PlaceHandleModel.InsertPlace(place, User_ID))
             {
                 MessageBox.Show("Add Place Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                p.Content = new PlaceViewModel(User_ID);
+                p.Content = new PlaceViewModel(User_ID, Visibility.Visible);
             }
             else
             {
@@ -80,7 +80,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new PlaceViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new PlaceViewModel(User_ID, Visibility.Visible));
                 }
 
                 return _CancelCommand;

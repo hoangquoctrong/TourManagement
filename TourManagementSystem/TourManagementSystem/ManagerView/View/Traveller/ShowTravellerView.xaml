@@ -183,7 +183,8 @@
                                                     Margin="8,0,0,0"
                                                     materialDesign:HintAssist.HelperText="Travller Name"
                                                     materialDesign:HintAssist.Hint="Name"
-                                                    FontSize="18">
+                                                    FontSize="18"
+                                                    IsEnabled="{Binding IsEnable}">
                                                     <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
@@ -252,7 +253,8 @@
                                                         HorizontalAlignment="Left"
                                                         materialDesign:HintAssist.Hint="Type"
                                                         FontSize="18"
-                                                        Foreground="DimGray">
+                                                        Foreground="DimGray"
+                                                        IsEnabled="{Binding IsEnable}">
                                                         <ComboBoxItem Content="Domestic Traveller" />
                                                         <ComboBoxItem Content="Foreign Traveller" />
                                                         <ComboBox.Text>
@@ -280,7 +282,8 @@
                                                         Width="300"
                                                         Margin="8,0,0,0"
                                                         materialDesign:HintAssist.Hint="Address"
-                                                        FontSize="18">
+                                                        FontSize="18"
+                                                        IsEnabled="{Binding IsEnable}">
                                                         <TextBox.Text>
                                                             <Binding
                                                                 Mode="TwoWay"
@@ -306,7 +309,8 @@
                                                         Width="300"
                                                         Margin="8,0,0,0"
                                                         materialDesign:HintAssist.Hint="Phone Number"
-                                                        FontSize="18">
+                                                        FontSize="18"
+                                                        IsEnabled="{Binding IsEnable}">
                                                         <TextBox.Text>
                                                             <Binding
                                                                 Mode="TwoWay"
@@ -334,7 +338,8 @@
                                                         Width="300"
                                                         Margin="8,0,0,0"
                                                         materialDesign:HintAssist.Hint="Citizen Identity Card"
-                                                        FontSize="18">
+                                                        FontSize="18"
+                                                        IsEnabled="{Binding IsEnable}">
                                                         <TextBox.Text>
                                                             <Binding
                                                                 Mode="TwoWay"
@@ -362,7 +367,8 @@
                                                         HorizontalAlignment="Left"
                                                         materialDesign:HintAssist.Hint="Gender"
                                                         FontSize="18"
-                                                        Foreground="DimGray">
+                                                        Foreground="DimGray"
+                                                        IsEnabled="{Binding IsEnable}">
                                                         <ComboBoxItem Content="Male" />
                                                         <ComboBoxItem Content="Female" />
                                                         <ComboBox.Text>
@@ -392,6 +398,7 @@
                                                         Margin="10,0,0,0"
                                                         materialDesign:HintAssist.Hint="Birthday"
                                                         FontSize="18"
+                                                        IsEnabled="{Binding IsEnable}"
                                                         SelectedDateFormat="Short"
                                                         Style="{StaticResource MaterialDesignOutlinedDatePicker}">
                                                         <DatePicker.SelectedDate>
@@ -420,7 +427,8 @@
                                                 Command="{Binding SaveTravellerCommand}"
                                                 Content="Save Changes"
                                                 Foreground="#1885F2"
-                                                Style="{StaticResource ResourceKey=ConfirmButton}" />
+                                                Style="{StaticResource ResourceKey=ConfirmButton}"
+                                                Visibility="{Binding IsVisibility}" />
                                         </StackPanel>
                                     </Grid>
                                 </Grid>

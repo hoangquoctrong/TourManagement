@@ -398,7 +398,10 @@
                                             TextWrapping="Wrap" />
                                     </StackPanel>
 
-                                    <Grid Grid.Row="6" Background="#F9F9F9">
+                                    <Grid
+                                        Grid.Row="6"
+                                        Background="#F9F9F9"
+                                        Visibility="{Binding IsVisibility}">
 
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition />

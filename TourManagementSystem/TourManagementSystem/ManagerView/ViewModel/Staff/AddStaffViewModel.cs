@@ -136,7 +136,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             if (StaffHandleModel.InsertStaff(staff, User_ID))
             {
                 MessageBox.Show("Add Staff successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                p.Content = new StaffViewModel(User_ID);
+                p.Content = new StaffViewModel(User_ID, Visibility.Visible);
                 ProgressBarVisbility = Visibility.Hidden;
             }
             else
@@ -175,7 +175,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new StaffViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new StaffViewModel(User_ID, Visibility.Visible));
                 }
 
                 return _CancelCommand;

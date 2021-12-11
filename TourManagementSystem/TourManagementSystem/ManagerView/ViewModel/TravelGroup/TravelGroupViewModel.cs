@@ -18,6 +18,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
         private Visibility _ProgressBarVisbility;
         public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
@@ -29,9 +32,10 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private TravelGroupModel _TravelGroupSelected;
         public TravelGroupModel TravelGroupSelected { get => _TravelGroupSelected; set { _TravelGroupSelected = value; OnPropertyChanged("TravelGroupSelected"); } }
-        public TravelGroupViewModel(int user_id)
+        public TravelGroupViewModel(int user_id, Visibility visibility)
         {
             User_ID = user_id;
+            IsVisibility = visibility;
             LoadTravelGroupComboBox();
             TravelGroupItems = new ObservableCollection<TravelGroupModel>();
             Refresh_TravelGroupItems = new ObservableCollection<TravelGroupModel>();
@@ -41,11 +45,22 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private async void LoadDataInUC()
         {
-            await Task.Delay(3000);
-            TravelGroupItems = TravelGroupHandleModel.GetTravelGroupList();
-            Refresh_TravelGroupItems = TravelGroupHandleModel.GetTravelGroupList();
+            if (IsVisibility == Visibility.Visible)
+            {
+                await Task.Delay(3000);
+                TravelGroupItems = TravelGroupHandleModel.GetTravelGroupList();
+                Refresh_TravelGroupItems = TravelGroupHandleModel.GetTravelGroupList();
+            }
+            else
+            {
+                await Task.Delay(4000);
+                TravelGroupItems = TravelGroupHandleModel.GetTravelGroupListByUser(User_ID);
+                Refresh_TravelGroupItems = TravelGroupHandleModel.GetTravelGroupListByUser(User_ID);
+            }
+
             ProgressBarVisbility = Visibility.Hidden;
         }
+
 
         private ObservableCollection<ComboBoxModel> _CB_TravelGroupList;
         public ObservableCollection<ComboBoxModel> CB_TravelGroupList { get => _CB_TravelGroupList; set { _CB_TravelGroupList = value; OnPropertyChanged("CB_TourList"); } }
@@ -118,7 +133,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_ShowDetailTravelGroupCommand == null)
                 {
-                    _ShowDetailTravelGroupCommand = new RelayCommand<ContentControl>(_ => TravelGroupSelected != null, p => p.Content = new ShowTravelGroupViewModel(User_ID, TravelGroupSelected));
+                    _ShowDetailTravelGroupCommand = new RelayCommand<ContentControl>(_ => TravelGroupSelected != null, p => p.Content = new ShowTravelGroupViewModel(User_ID, TravelGroupSelected, IsVisibility));
                 }
                 return _ShowDetailTravelGroupCommand;
             }

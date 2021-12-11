@@ -725,7 +725,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 MessageBox.Show("Add Tour Information Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
-                p.Content = new ShowTourViewModel(User_ID, Tour_ID);
+                p.Content = new ShowTourViewModel(User_ID, Tour_ID, Visibility.Visible, Visibility.Visible);
             }
             else
             {
@@ -860,7 +860,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(null, p => p.Content = new ShowTourViewModel(User_ID, Tour_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(null, p => p.Content = new ShowTourViewModel(User_ID, Tour_ID, Visibility.Visible, Visibility.Visible));
                 }
                 return _CancelCommand;
             }

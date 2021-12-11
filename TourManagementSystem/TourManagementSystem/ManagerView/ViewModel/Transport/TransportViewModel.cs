@@ -21,6 +21,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private Visibility _ProgressBarVisbility;
         public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
         private ObservableCollection<TransportModel> _TransportItems;
         public ObservableCollection<TransportModel> TransportItems { get => _TransportItems; set { _TransportItems = value; OnPropertyChanged("TransportItems"); } }
 
@@ -30,8 +33,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private TransportModel _TransportSelected;
         public TransportModel TransportSelected { get => _TransportSelected; set { _TransportSelected = value; OnPropertyChanged("TransportSelected"); } }
 
-        public TransportViewModel(int user_id)
+        public TransportViewModel(int user_id, Visibility visibility)
         {
+            IsVisibility = visibility;
             ProgressBarVisbility = Visibility.Visible;
             User_ID = user_id;
             LoadTransportComboBox();
@@ -120,7 +124,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_ShowDetailTransportCommand == null)
                 {
-                    _ShowDetailTransportCommand = new RelayCommand<ContentControl>(_ => TransportSelected != null, p => p.Content = new ShowTransportViewModel(User_ID, TransportSelected));
+                    _ShowDetailTransportCommand = new RelayCommand<ContentControl>(_ => TransportSelected != null, p => p.Content = new ShowTransportViewModel(User_ID, TransportSelected, IsVisibility));
                 }
                 return _ShowDetailTransportCommand;
             }

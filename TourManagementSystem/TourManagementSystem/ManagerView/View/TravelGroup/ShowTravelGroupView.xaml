@@ -292,7 +292,8 @@
                                 <StackPanel
                                     Grid.Row="3"
                                     HorizontalAlignment="Left"
-                                    Orientation="Horizontal">
+                                    Orientation="Horizontal"
+                                    Visibility="{Binding IsVisibility}">
 
                                     <Button
                                         Width="200"
@@ -307,7 +308,8 @@
                                 <StackPanel
                                     Grid.Row="3"
                                     HorizontalAlignment="Right"
-                                    Orientation="Horizontal">
+                                    Orientation="Horizontal"
+                                    Visibility="{Binding IsVisibility}">
 
                                     <Button
                                         Width="200"
@@ -497,10 +499,11 @@
                                 </ItemsControl>
 
                                 <StackPanel
-                                    Grid.Row="4"
+                                    Grid.Row="3"
                                     Margin="20,20"
                                     HorizontalAlignment="Right"
-                                    Orientation="Horizontal">
+                                    Orientation="Horizontal"
+                                    Visibility="{Binding IsVisibility}">
 
                                     <Button
                                         Width="200"
@@ -695,7 +698,8 @@
                                     Grid.Row="3"
                                     Margin="10,20"
                                     HorizontalAlignment="Right"
-                                    Orientation="Horizontal">
+                                    Orientation="Horizontal"
+                                    Visibility="{Binding IsVisibility}">
 
                                     <Button
                                         Width="200"
@@ -778,7 +782,8 @@
                                         Command="{Binding AddTravellerCommand}"
                                         Content="Add"
                                         Foreground="#0f6f68"
-                                        Style="{StaticResource AddButton}" />
+                                        Style="{StaticResource AddButton}"
+                                        Visibility="{Binding IsVisibility}" />
 
                                     <Button
                                         Width="100"
@@ -787,7 +792,8 @@
                                         Command="{Binding CheckTravellerCommand}"
                                         Content="Save"
                                         Foreground="#F36E6B"
-                                        Style="{StaticResource AddButton}" />
+                                        Style="{StaticResource AddButton}"
+                                        Visibility="{Binding IsVisibility}" />
 
                                     <TextBlock
                                         Width="auto"
@@ -796,7 +802,8 @@
                                         VerticalAlignment="Center"
                                         FontSize="20"
                                         Foreground="#F36E6B"
-                                        Text="{Binding TravellerList_Notify, UpdateSourceTrigger=PropertyChanged}" />
+                                        Text="{Binding TravellerList_Notify, UpdateSourceTrigger=PropertyChanged}"
+                                        Visibility="{Binding IsVisibility}" />
                                 </StackPanel>
 
                                 <ItemsControl Grid.Row="2" ItemsSource="{Binding TravellerList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -1120,7 +1127,8 @@
                                     Grid.Row="3"
                                     Margin="10,20"
                                     HorizontalAlignment="Right"
-                                    Orientation="Horizontal">
+                                    Orientation="Horizontal"
+                                    Visibility="{Binding IsVisibility}">
 
                                     <Button
                                         Width="200"

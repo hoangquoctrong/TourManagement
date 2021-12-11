@@ -81,7 +81,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new TransportViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new TransportViewModel(User_ID, Visibility.Visible));
                 }
 
                 return _CancelCommand;
@@ -107,7 +107,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             if (TransportHandleModel.InsertTransport(transport, User_ID))
             {
                 MessageBox.Show("Add Transport successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                p.Content = new TransportViewModel(User_ID);
+                p.Content = new TransportViewModel(User_ID, Visibility.Visible);
             }
             else
             {

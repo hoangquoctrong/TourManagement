@@ -23,6 +23,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
         private Visibility _ProgressBarVisbility;
         public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
@@ -101,10 +104,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public bool IsDelete { get => _IsDelete; set { _IsDelete = value; OnPropertyChanged(); } }
         #endregion
 
-        public ShowStaffViewModel(int user_id, StaffModel staff)
+        public ShowStaffViewModel(int user_id, StaffModel staff, Visibility visibility)
         {
             User_ID = user_id;
             StaffSelected = staff;
+            IsVisibility = visibility;
             ProgressBarVisbility = Visibility.Visible;
             SetStaffInView(staff);
             LoadTourMissionComboBox();
@@ -142,11 +146,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 ? new BitmapImage(new Uri("pack://application:,,,/Resources/Images/User.png", UriKind.Absolute))
                 : GlobalFunction.ToImage(Staff_Image_Byte_Source);
 
-            IsDelete = !staff.STAFF_IS_DELETE;
+            IsDelete = !staff.STAFF_IS_DELETE && IsVisibility == Visibility.Visible;
 
             if (!IsDelete)
             {
-                Staff_Note_Remove = string.Format("Vao ngay {0} da nghi lam do {1}", staff.STAFF_DELETE_STRING_DATE, staff.STAFF_DELETE_NOTE);
+                Staff_Note_Remove = string.Format("On {0}, {1} has left the company beacause {2}", staff.STAFF_DELETE_STRING_DATE, staff.STAFF_NAME, staff.STAFF_DELETE_NOTE);
             }
 
             ProgressBarVisbility = Visibility.Hidden;
@@ -159,7 +163,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new StaffViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new StaffViewModel(User_ID, IsVisibility));
                 }
 
                 return _CancelCommand;
@@ -375,7 +379,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 if (StaffHandleModel.DeleteStaff(Staff_ID, Staff_Name, Staff_Note_Remove, User_ID))
                 {
                     MessageBox.Show("Delete staff successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                    p.Content = new StaffViewModel(User_ID);
+                    p.Content = new StaffViewModel(User_ID, IsVisibility);
                     ProgressBarVisbility = Visibility.Hidden;
                 }
                 else

@@ -20,11 +20,18 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
+        private bool _IsEnable;
+        public bool IsEnable { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
+
         private TravellerModel _TravellerSelected;
         public TravellerModel TravellerSelected { get => _TravellerSelected; set { _TravellerSelected = value; OnPropertyChanged(); } }
-        public ShowTravellerViewModel(int user_id, TravellerModel traveller)
+        public ShowTravellerViewModel(int user_id, TravellerModel traveller, Visibility visibility)
         {
             User_ID = user_id;
+            IsVisibility = visibility;
             TravellerSelected = traveller;
             SetTraveller(traveller);
 
@@ -80,6 +87,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
             Traveller_Birth = traveller.Traveller_Birth;
             Traveller_BirthString = Traveller_Birth.ToString("dd/MM/yyyy");
             NumberOfTour = traveller.Traveller_Number_Tour;
+
+            IsEnable = IsVisibility == Visibility.Visible;
         }
 
         private ICommand _CancelCommand;
@@ -89,7 +98,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new TravellerViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new TravellerViewModel(User_ID, IsVisibility));
                 }
 
                 return _CancelCommand;

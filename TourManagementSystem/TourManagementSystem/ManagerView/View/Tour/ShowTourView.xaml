@@ -303,7 +303,8 @@
                                             CommandParameter="{Binding ElementName=contentControlDisplay}"
                                             Content="Delete"
                                             Foreground="#F36E6B"
-                                            Style="{StaticResource ResourceKey=CancelButton}" />
+                                            Style="{StaticResource ResourceKey=CancelButton}"
+                                            Visibility="{Binding IsVisibility}" />
                                         <Button
                                             Grid.Column="1"
                                             Width="200"
@@ -313,7 +314,8 @@
                                             Command="{Binding SaveTourCommand}"
                                             Content="Save Changes"
                                             Foreground="#1885F2"
-                                            Style="{StaticResource ResourceKey=ConfirmButton}" />
+                                            Style="{StaticResource ResourceKey=ConfirmButton}"
+                                            Visibility="{Binding IsVisibility}" />
                                     </Grid>
                                 </Grid>
                             </TabItem>
@@ -515,7 +517,7 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
 
-                                        <StackPanel Margin="16">
+                                        <StackPanel Margin="16" Visibility="{Binding IsVisibility}">
                                             <TextBlock
                                                 HorizontalAlignment="Center"
                                                 FontFamily="helvetica"
@@ -712,7 +714,8 @@
                                             CommandParameter="{Binding ElementName=contentControlDisplay}"
                                             Content="Add New Tour Information"
                                             Foreground="#0f6f68"
-                                            Style="{StaticResource AddButton}" />
+                                            Style="{StaticResource AddButton}"
+                                            Visibility="{Binding IsVisibility}" />
 
                                     </Grid>
 

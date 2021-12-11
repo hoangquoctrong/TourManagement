@@ -87,7 +87,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             if (HotelHandleModel.InsertHotel(hotel, User_ID))
             {
                 MessageBox.Show("Add Hotel Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                p.Content = new HotelViewModel(User_ID);
+                p.Content = new HotelViewModel(User_ID, Visibility.Visible);
             }
             else
             {
@@ -130,7 +130,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new HotelViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new HotelViewModel(User_ID, Visibility.Visible));
                 }
 
                 return _CancelCommand;

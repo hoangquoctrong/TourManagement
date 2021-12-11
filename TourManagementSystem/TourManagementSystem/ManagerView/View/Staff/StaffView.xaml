@@ -190,7 +190,8 @@
                             CommandParameter="{Binding ElementName=ContentControlMain}"
                             Content="Add New Staff"
                             Foreground="#0f6f68"
-                            Style="{StaticResource AddButton}" />
+                            Style="{StaticResource AddButton}"
+                            Visibility="{Binding IsVisibility}" />
 
                         <Button
                             Grid.Column="3"
@@ -209,7 +210,7 @@
                     <DataGrid
                         Grid.Row="2"
                         Width="1170"
-                        Height="550"
+                        Height="480"
                         VerticalAlignment="Top"
                         materialDesign:DataGridAssist.CellPadding="12 8 0 8"
                         materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
@@ -224,7 +225,7 @@
                         ItemsSource="{Binding StaffItems}"
                         SelectedItem="{Binding StaffSelected}"
                         SelectionMode="Single"
-                        VerticalScrollBarVisibility="Visible">
+                        VerticalScrollBarVisibility="Auto">
                         <DataGrid.RowStyle>
                             <Style TargetType="{x:Type DataGridRow}">
                                 <Style.Triggers>

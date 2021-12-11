@@ -16,6 +16,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
         private Visibility _ProgressBarVisbility;
         public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
@@ -28,9 +31,10 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private StaffModel _StaffSelected;
         public StaffModel StaffSelected { get => _StaffSelected; set { _StaffSelected = value; OnPropertyChanged("StaffSelected"); } }
 
-        public StaffViewModel(int user_id)
+        public StaffViewModel(int user_id, Visibility visibility)
         {
             User_ID = user_id;
+            IsVisibility = visibility;
             ProgressBarVisbility = Visibility.Hidden;
             LoadStaffComboBox();
             Checkbox_DisplayAllStaff = false;
@@ -154,7 +158,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_ShowDetailStaffCommand == null)
                 {
-                    _ShowDetailStaffCommand = new RelayCommand<ContentControl>(_ => StaffSelected != null, p => p.Content = new ShowStaffViewModel(User_ID, StaffSelected));
+                    _ShowDetailStaffCommand = new RelayCommand<ContentControl>(_ => StaffSelected != null, p => p.Content = new ShowStaffViewModel(User_ID, StaffSelected, IsVisibility));
                 }
                 return _ShowDetailStaffCommand;
             }
@@ -180,7 +184,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_StatisticStaffCommand == null)
                 {
-                    _StatisticStaffCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new StatisticStaffViewModel(User_ID));
+                    _StatisticStaffCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new StatisticStaffViewModel(User_ID, IsVisibility));
                 }
                 return _StatisticStaffCommand;
             }

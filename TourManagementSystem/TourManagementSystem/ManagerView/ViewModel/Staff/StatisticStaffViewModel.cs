@@ -17,12 +17,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
         private Visibility _ProgressBarVisbility;
         public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
-        public StatisticStaffViewModel(int user_id)
+        public StatisticStaffViewModel(int user_id, Visibility visibility)
         {
             User_ID = user_id;
+            IsVisibility = visibility;
             LoadRefreshList();
             Checkbox_DisplayAll = true;
         }
@@ -164,7 +168,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(null, p => p.Content = new StaffViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(null, p => p.Content = new StaffViewModel(User_ID, IsVisibility));
                 }
                 return _CancelCommand;
             }

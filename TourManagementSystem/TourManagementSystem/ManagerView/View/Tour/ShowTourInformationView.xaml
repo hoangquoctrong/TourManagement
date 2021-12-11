@@ -326,7 +326,8 @@
                                             Command="{Binding SaveTourTimeCommand}"
                                             Content="SaveChange"
                                             Foreground="#1885F2"
-                                            Style="{StaticResource ResourceKey=ConfirmButton}" />
+                                            Style="{StaticResource ResourceKey=ConfirmButton}"
+                                            Visibility="{Binding IsVisibility}" />
                                     </StackPanel>
                                 </Grid>
 
@@ -419,7 +420,7 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
 
-                                        <StackPanel Margin="16">
+                                        <StackPanel Margin="16" Visibility="{Binding IsVisibility}">
                                             <TextBlock
                                                 HorizontalAlignment="Center"
                                                 FontFamily="helvetica"
@@ -500,7 +501,8 @@
                                     <StackPanel
                                         Grid.Row="3"
                                         HorizontalAlignment="Right"
-                                        Orientation="Horizontal">
+                                        Orientation="Horizontal"
+                                        Visibility="{Binding IsVisibility}">
 
                                         <Button
                                             Width="200"
@@ -636,7 +638,8 @@
                                                     Command="{Binding SaveHotelPriceCommand}"
                                                     Content="Save"
                                                     Foreground="#1885F2"
-                                                    Style="{StaticResource SaveButton}" />
+                                                    Style="{StaticResource SaveButton}"
+                                                    Visibility="{Binding IsVisibility}" />
 
                                                 <TextBlock
                                                     Width="auto"
@@ -645,7 +648,8 @@
                                                     VerticalAlignment="Center"
                                                     FontSize="20"
                                                     Foreground="#F36E6B"
-                                                    Text="{Binding HotelPriceNotify, UpdateSourceTrigger=PropertyChanged}" />
+                                                    Text="{Binding HotelPriceNotify, UpdateSourceTrigger=PropertyChanged}"
+                                                    Visibility="{Binding IsVisibility}" />
                                             </StackPanel>
                                             <Grid Grid.Row="2" Margin="20">
                                                 <Grid.ColumnDefinitions>
@@ -653,7 +657,7 @@
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
 
-                                                <StackPanel Margin="16">
+                                                <StackPanel Margin="16" Visibility="{Binding IsVisibility}">
                                                     <TextBlock
                                                         HorizontalAlignment="Center"
                                                         FontFamily="helvetica"
@@ -767,7 +771,8 @@
                                             <StackPanel
                                                 Grid.Row="3"
                                                 HorizontalAlignment="Right"
-                                                Orientation="Horizontal">
+                                                Orientation="Horizontal"
+                                                Visibility="{Binding IsVisibility}">
 
                                                 <Button
                                                     Width="200"
@@ -869,7 +874,8 @@
                                                     Command="{Binding SaveTransportPriceCommand}"
                                                     Content="Save"
                                                     Foreground="#1885F2"
-                                                    Style="{StaticResource SaveButton}" />
+                                                    Style="{StaticResource SaveButton}"
+                                                    Visibility="{Binding IsVisibility}" />
 
                                                 <TextBlock
                                                     Width="auto"
@@ -887,7 +893,7 @@
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
 
-                                                <StackPanel Margin="16">
+                                                <StackPanel Margin="16" Visibility="{Binding IsVisibility}">
                                                     <TextBlock
                                                         HorizontalAlignment="Center"
                                                         FontFamily="helvetica"
@@ -993,7 +999,8 @@
                                             <StackPanel
                                                 Grid.Row="3"
                                                 HorizontalAlignment="Right"
-                                                Orientation="Horizontal">
+                                                Orientation="Horizontal"
+                                                Visibility="{Binding IsVisibility}">
 
                                                 <Button
                                                     Width="200"
@@ -1075,7 +1082,8 @@
                                                     Command="{Binding AddMissionCommand}"
                                                     Content="Add"
                                                     Foreground="#0f6f68"
-                                                    Style="{StaticResource AddButton}" />
+                                                    Style="{StaticResource AddButton}"
+                                                    Visibility="{Binding IsVisibility}" />
 
                                                 <Button
                                                     Width="100"
@@ -1084,7 +1092,8 @@
                                                     Command="{Binding RemoveMissionCommand}"
                                                     Content="Remove"
                                                     Foreground="#F36E6B"
-                                                    Style="{StaticResource AddButton}" />
+                                                    Style="{StaticResource AddButton}"
+                                                    Visibility="{Binding IsVisibility}" />
 
                                                 <Button
                                                     Width="100"
@@ -1093,7 +1102,8 @@
                                                     Command="{Binding SaveMissionPriceCommand}"
                                                     Content="Save"
                                                     Foreground="#1885F2"
-                                                    Style="{StaticResource SaveButton}" />
+                                                    Style="{StaticResource SaveButton}"
+                                                    Visibility="{Binding IsVisibility}" />
 
                                                 <TextBlock
                                                     Width="auto"
@@ -1102,7 +1112,8 @@
                                                     VerticalAlignment="Center"
                                                     FontSize="20"
                                                     Foreground="#F36E6B"
-                                                    Text="{Binding MissionPriceNotify, UpdateSourceTrigger=PropertyChanged}" />
+                                                    Text="{Binding MissionPriceNotify, UpdateSourceTrigger=PropertyChanged}"
+                                                    Visibility="{Binding IsVisibility}" />
                                             </StackPanel>
 
                                             <ItemsControl
@@ -1207,7 +1218,8 @@
                                             <StackPanel
                                                 Grid.Row="3"
                                                 HorizontalAlignment="Right"
-                                                Orientation="Horizontal">
+                                                Orientation="Horizontal"
+                                                Visibility="{Binding IsVisibility}">
 
                                                 <Button
                                                     Width="200"
@@ -1578,7 +1590,8 @@
                                             Command="{Binding AddScheduleCommand}"
                                             Content="Add"
                                             Foreground="#0f6f68"
-                                            Style="{StaticResource AddButton}" />
+                                            Style="{StaticResource AddButton}"
+                                            Visibility="{Binding IsVisibility}" />
 
                                         <Button
                                             Width="100"
@@ -1587,7 +1600,8 @@
                                             Command="{Binding RemoveScheduleCommand}"
                                             Content="Remove"
                                             Foreground="#F36E6B"
-                                            Style="{StaticResource AddButton}" />
+                                            Style="{StaticResource AddButton}"
+                                            Visibility="{Binding IsVisibility}" />
 
                                         <Button
                                             Width="100"
@@ -1596,7 +1610,8 @@
                                             Command="{Binding SaveScheduleListCommand}"
                                             Content="Save"
                                             Foreground="#1885F2"
-                                            Style="{StaticResource SaveButton}" />
+                                            Style="{StaticResource SaveButton}"
+                                            Visibility="{Binding IsVisibility}" />
 
                                         <TextBlock
                                             Width="auto"
@@ -1605,7 +1620,8 @@
                                             VerticalAlignment="Center"
                                             FontSize="20"
                                             Foreground="#F36E6B"
-                                            Text="{Binding ScheduleNotify, UpdateSourceTrigger=PropertyChanged}" />
+                                            Text="{Binding ScheduleNotify, UpdateSourceTrigger=PropertyChanged}"
+                                            Visibility="{Binding IsVisibility}" />
                                     </StackPanel>
 
                                     <ItemsControl
@@ -1656,7 +1672,8 @@
                                     <StackPanel
                                         Grid.Row="3"
                                         HorizontalAlignment="Right"
-                                        Orientation="Horizontal">
+                                        Orientation="Horizontal"
+                                        Visibility="{Binding IsVisibility}">
 
                                         <Button
                                             Width="200"

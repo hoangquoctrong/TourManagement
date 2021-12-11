@@ -43,6 +43,44 @@ namespace TourManagementSystem.ManagerView.Model
             return TravelGroupList;
         }
 
+        public static ObservableCollection<TravelGroupModel> GetTravelGroupListByUser(int user_id)
+        {
+            ObservableCollection<TravelGroupModel> TravelGroupList = new ObservableCollection<TravelGroupModel>();
+
+            var travelgroupList = from travel in DataProvider.Ins.DB.TRAVEL_GROUP
+                                  select travel;
+
+            foreach (var item in travelgroupList)
+            {
+                var staffList = item.TOUR_STAFF_DETAIL;
+                foreach (var itemStaff in staffList)
+                {
+                    if (itemStaff.TOUR_STAFF_ID == user_id)
+                    {
+                        TravelGroupModel travelgroup = new TravelGroupModel()
+                        {
+                            TourInformation_ID = item.TOUR_INFORMATION_ID,
+                            TravelGroup_ID = item.TRAVEL_GROUP_ID,
+                            TravelGroup_Name = item.TRAVEL_GROUP_NAME,
+                            TravelGroup_Type = item.TRAVEL_GROUP_CONTENT_DETAIL,
+                            Tour_Name = item.TOUR_INFORMATION.TOUR.TOUR_NAME,
+                            Tour_Start = (DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_DEPARTMENT_DATE,
+                            Tour_End = (DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_END_DATE,
+                            Tour_StartString = ((DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_DEPARTMENT_DATE).ToString("dd/MM/yyyy"),
+                            Tour_EndString = ((DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_END_DATE).ToString("dd/MM/yyyy"),
+                            TourInformation_Price = (double)item.TOUR_INFORMATION.TOUR_PRICE.First().TOUR_PRICE_COST_TOTAL,
+                            IsDelete = (bool)item.TRAVEL_GROUP_ISDELETE
+                        };
+
+                        TravelGroupList.Add(travelgroup);
+                    }
+                }
+
+            }
+
+            return TravelGroupList;
+        }
+
         public static int InsertTravelGroup(TravelGroupModel travelGroup, int user_id)
         {
             try

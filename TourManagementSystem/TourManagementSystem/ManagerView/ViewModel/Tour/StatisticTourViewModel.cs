@@ -17,13 +17,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+        private Visibility _IsDirectorVisibility;
+        public Visibility IsDirectorVisibility { get => _IsDirectorVisibility; set { _IsDirectorVisibility = value; OnPropertyChanged("IsDirectorVisibility"); } }
+
         private Visibility _ProgressBarVisbility;
         public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
-        public StatisticTourViewModel(int user_id)
+        public StatisticTourViewModel(int user_id, Visibility directorVisibility)
         {
             User_ID = user_id;
             Checkbox_DisplayAll = true;
+            IsDirectorVisibility = directorVisibility;
         }
 
         private async Task<ObservableCollection<TourStatisticModel>> GetTourList()
@@ -153,7 +157,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(null, p => p.Content = new TourViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(null, p => p.Content = new TourViewModel(User_ID, Visibility.Visible, IsDirectorVisibility));
                 }
                 return _CancelCommand;
             }

@@ -23,6 +23,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private HotelModel _HotelSelected;
         public HotelModel HotelSelected { get => _HotelSelected; set { _HotelSelected = value; OnPropertyChanged(); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
         #region Data Binding
         private int _Hotel_ID;
         public int Hotel_ID { get => _Hotel_ID; set { _Hotel_ID = value; OnPropertyChanged(); } }
@@ -74,8 +77,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
         #endregion
 
-        public ShowHotelViewModel(int user_id, HotelModel hotel)
+        public ShowHotelViewModel(int user_id, HotelModel hotel, Visibility visibility)
         {
+            IsVisibility = visibility;
             User_ID = user_id;
             HotelSelected = hotel;
             SetHotelInView(hotel);
@@ -96,7 +100,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             Hotel_Email = hotel.HOTEL_EMAIL;
             Hotel_Description = hotel.HOTEL_DESCRIPTION;
             Hotel_Price = hotel.HOTEL_PRICE;
-            Hotel_Is_Delete = !hotel.HOTEL_IS_DELETE;
+            Hotel_Is_Delete = !hotel.HOTEL_IS_DELETE && IsVisibility == Visibility.Visible;
             Place_ID = hotel.PLACE_ID;
             Place_Name = hotel.PLACE_NAME;
         }
@@ -121,7 +125,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(p => true, p => p.Content = new HotelViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(p => true, p => p.Content = new HotelViewModel(User_ID, IsVisibility));
                 }
                 return _CancelCommand;
             }
@@ -230,7 +234,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 if (HotelHandleModel.DeleteHotel(Hotel_ID, User_ID))
                 {
                     MessageBox.Show("Delete hotel successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                    p.Content = new HotelViewModel(User_ID);
+                    p.Content = new HotelViewModel(User_ID, IsVisibility);
                 }
                 else
                 {

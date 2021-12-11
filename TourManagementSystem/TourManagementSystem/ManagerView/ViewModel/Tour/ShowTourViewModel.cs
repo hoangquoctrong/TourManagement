@@ -22,6 +22,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
+        private Visibility _IsDirectorVisibility;
+        public Visibility IsDirectorVisibility { get => _IsDirectorVisibility; set { _IsDirectorVisibility = value; OnPropertyChanged("IsDirectorVisibility"); } }
 
         private Visibility _ProgressBarVisbility;
         public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
@@ -62,9 +67,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         #endregion Data Binding
 
-        public ShowTourViewModel(int user_id, int tour_id)
+        public ShowTourViewModel(int user_id, int tour_id, Visibility visibility, Visibility directorVisibility)
         {
             User_ID = user_id;
+            IsVisibility = visibility;
+            IsDirectorVisibility = directorVisibility;
             TourSelected = TourHandleModel.GetTour(tour_id);
 
             PlaceList = new BindableCollection<CheckBoxModel>();
@@ -99,7 +106,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             Tour_Type = tour.TOUR_TYPE;
             Tour_Description = tour.TOUR_CHARACTERISTIS;
             Tour_Star = tour.TOUR_STAR;
-            Is_Exist = tour.TOUR_IS_EXIST.Equals("No") ? true : false;
+            Is_Exist = tour.TOUR_IS_EXIST.Equals("No") && IsVisibility == Visibility.Visible ? true : false;
         }
 
         private void SetTourImageInView(int tour_id)
@@ -263,7 +270,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new TourViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new TourViewModel(User_ID, IsVisibility, IsDirectorVisibility));
                 }
 
                 return _CancelCommand;
@@ -625,7 +632,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 if (TourHandleModel.DeleteTour(Tour_ID, User_ID))
                 {
                     MessageBox.Show("Delete Tour Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                    p.Content = new TourViewModel(User_ID);
+                    p.Content = new TourViewModel(User_ID, IsVisibility, IsDirectorVisibility);
                 }
                 else
                 {
@@ -786,7 +793,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                     _ShowDetailTourInformationCommand = new RelayCommand<ContentControl>(p => TourInformationSelected != null, p =>
                     {
                         bool IsEnable = Is_Exist && TourInformationHandleModel.IsEditableInformation(TourInformationSelected);
-                        p.Content = new ShowTourInformationViewModel(User_ID, Tour_ID, TourInformationSelected, PlaceSelectedList, IsEnable);
+                        p.Content = new ShowTourInformationViewModel(User_ID, Tour_ID, TourInformationSelected, PlaceSelectedList, IsEnable, IsVisibility, IsDirectorVisibility);
                     });
                 }
                 return _ShowDetailTourInformationCommand;

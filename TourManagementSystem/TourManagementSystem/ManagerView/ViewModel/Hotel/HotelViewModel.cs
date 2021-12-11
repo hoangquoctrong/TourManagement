@@ -21,6 +21,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private Visibility _ProgressBarVisbility;
         public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
         private ObservableCollection<HotelModel> _HotelItems;
         public ObservableCollection<HotelModel> HotelItems { get => _HotelItems; set { _HotelItems = value; OnPropertyChanged("HotelItems"); } }
 
@@ -29,13 +32,15 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private HotelModel _HotelSelected;
         public HotelModel HotelSelected { get => _HotelSelected; set { _HotelSelected = value; OnPropertyChanged("HotelSelected"); } }
-        public HotelViewModel(int user_id)
+        public HotelViewModel(int user_id, Visibility visibility)
         {
+            IsVisibility = visibility;
             ProgressBarVisbility = Visibility.Visible;
             LoadHotelComboBox();
             User_ID = user_id;
             HotelItems = new ObservableCollection<HotelModel>();
             Refresh_HotelItems = new ObservableCollection<HotelModel>();
+            LoadDataToUC();
 
         }
 
@@ -117,7 +122,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_ShowDetailHotelCommand == null)
                 {
-                    _ShowDetailHotelCommand = new RelayCommand<ContentControl>(_ => HotelSelected != null, p => p.Content = new ShowHotelViewModel(User_ID, HotelSelected));
+                    _ShowDetailHotelCommand = new RelayCommand<ContentControl>(_ => HotelSelected != null, p => p.Content = new ShowHotelViewModel(User_ID, HotelSelected, IsVisibility));
                 }
                 return _ShowDetailHotelCommand;
             }

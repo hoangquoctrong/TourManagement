@@ -25,7 +25,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private Visibility _ProgressBarVisbility;
         public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
-
         #region Data Binding 
         private string _Tour_Name;
         public string Tour_Name { get => _Tour_Name; set { _Tour_Name = value; OnPropertyChanged(); } }
@@ -211,7 +210,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                     if (PlaceHandleModel.InsertPlaceDetail(PlaceSelectedList, Tour_Name, User_ID, true))
                     {
                         MessageBox.Show("Add Tour Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                        p.Content = new TourViewModel(User_ID);
+                        p.Content = new TourViewModel(User_ID, Visibility.Visible, Visibility.Visible);
                     }
                     else
                     {
@@ -293,7 +292,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new TourViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new TourViewModel(User_ID, Visibility.Visible, Visibility.Visible));
                 }
 
                 return _CancelCommand;

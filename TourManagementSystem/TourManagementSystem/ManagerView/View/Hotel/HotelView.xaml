@@ -166,6 +166,7 @@
                         </StackPanel>
 
                         <Button
+                            Visibility="{Binding IsVisibility}"
                             Grid.Column="2"
                             Width="150"
                             Height="40"

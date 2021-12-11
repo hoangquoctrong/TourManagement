@@ -611,7 +611,8 @@
                                             Command="{Binding SaveChangeCommand}"
                                             Content="Save Changes"
                                             Foreground="#1885F2"
-                                            Style="{StaticResource AddButton}" />
+                                            Style="{StaticResource AddButton}"
+                                            Visibility="{Binding IsVisibility}" />
 
                                     </StackPanel>
 
@@ -774,7 +775,8 @@
                             <TabItem
                                 Width="290"
                                 Background="Transparent"
-                                Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                                Style="{StaticResource MaterialDesignNavigationRailTabItem}"
+                                Visibility="{Binding IsVisibility}">
 
                                 <TabItem.Header>
                                     <StackPanel
@@ -976,7 +978,8 @@
                                             CommandParameter="{Binding ElementName=contentControlDisplay}"
                                             Content="Remove"
                                             FontSize="18"
-                                            Foreground="#F36E6B" />
+                                            Foreground="#F36E6B"
+                                            Visibility="{Binding IsVisibility}" />
                                     </Border>
 
                                 </StackPanel>

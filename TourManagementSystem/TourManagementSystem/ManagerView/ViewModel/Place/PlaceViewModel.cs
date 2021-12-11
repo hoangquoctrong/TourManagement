@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TourManagementSystem.Global.Model;
@@ -17,6 +18,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
         private ObservableCollection<PlaceModel> _PlaceItems = new ObservableCollection<PlaceModel>();
         public ObservableCollection<PlaceModel> PlaceItems { get => _PlaceItems; set { _PlaceItems = value; OnPropertyChanged("PlaceItems"); } }
 
@@ -25,10 +29,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private PlaceModel _PlaceSelected;
         public PlaceModel PlaceSelected { get => _PlaceSelected; set { _PlaceSelected = value; OnPropertyChanged("PlaceSelected"); } }
-        public PlaceViewModel(int user_id)
+        public PlaceViewModel(int user_id, Visibility visibility)
         {
-            LoadPlaceComboBox();
             User_ID = user_id;
+            IsVisibility = visibility;
+            LoadPlaceComboBox();
             LoadDataToUI();
         }
 
@@ -101,7 +106,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_ShowDetailPlaceCommand == null)
                 {
-                    _ShowDetailPlaceCommand = new RelayCommand<ContentControl>(_ => PlaceSelected != null, p => p.Content = new ShowPlaceViewModel(User_ID, PlaceSelected.PLACE_ID));
+                    _ShowDetailPlaceCommand = new RelayCommand<ContentControl>(_ => PlaceSelected != null, p => p.Content = new ShowPlaceViewModel(User_ID, PlaceSelected.PLACE_ID, IsVisibility));
                 }
                 return _ShowDetailPlaceCommand;
             }

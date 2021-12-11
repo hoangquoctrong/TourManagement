@@ -22,6 +22,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _Tour_ID;
         public int Tour_ID { get => _Tour_ID; set { _Tour_ID = value; OnPropertyChanged(); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
+        private Visibility _IsDirectorVisibility;
+        public Visibility IsDirectorVisibility { get => _IsDirectorVisibility; set { _IsDirectorVisibility = value; OnPropertyChanged("IsDirectorVisibility"); } }
+
         private int _TourInformation_ID;
         public int TourInformation_ID { get => _TourInformation_ID; set { _TourInformation_ID = value; OnPropertyChanged(); } }
 
@@ -37,13 +43,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private Visibility _ProgressBarVisbility;
         public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
-        public ShowTourInformationViewModel(int user_id, int tour_id, TourInformationModel tourInformation, ObservableCollection<PlaceModel> places, bool isenable)
+        public ShowTourInformationViewModel(int user_id, int tour_id, TourInformationModel tourInformation, ObservableCollection<PlaceModel> places,
+                                                bool isenable, Visibility visibility, Visibility directorVisibility)
         {
             //Setup when intitalize
             User_ID = user_id;
             Tour_ID = tour_id;
             PlaceList = places;
-            IsEnable = isenable;
+            IsVisibility = visibility;
+            IsEnable = isenable && IsVisibility == Visibility.Visible;
+            IsDirectorVisibility = directorVisibility;
 
             ProgressBarVisbility = Visibility.Visible;
             LoadDataInUC(tour_id, tourInformation);
@@ -1180,7 +1189,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(null, p => p.Content = new ShowTourViewModel(User_ID, Tour_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(null, p => p.Content = new ShowTourViewModel(User_ID, Tour_ID, IsVisibility, IsDirectorVisibility));
                 }
                 return _CancelCommand;
             }

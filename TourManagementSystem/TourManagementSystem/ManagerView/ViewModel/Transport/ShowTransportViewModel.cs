@@ -26,6 +26,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private TransportModel _TransportSelected;
         public TransportModel TransportSelected { get => _TransportSelected; set { _TransportSelected = value; OnPropertyChanged(); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
         #region Data Binding
         private int _Transport_ID;
         public int Transport_ID { get => _Transport_ID; set { _Transport_ID = value; OnPropertyChanged(); } }
@@ -98,9 +101,10 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public double Transport_Price { get => _Transport_Price; set { _Transport_Price = value; OnPropertyChanged(); } }
 
         #endregion Data Binding
-        public ShowTransportViewModel(int user_id, TransportModel transport)
+        public ShowTransportViewModel(int user_id, TransportModel transport, Visibility visibility)
         {
             User_ID = user_id;
+            IsVisibility = visibility;
             TransportSelected = transport;
             SetTransportInView(transport);
             LoadTourTransportDetailComboBox();
@@ -121,7 +125,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             Transport_Price = transport.TRANSPORT_PRICE;
             Transport_Company = transport.TRANSPORT_COMPANY;
             Transport_Description = transport.TRANSPORT_DESCRIPTION;
-            Transport_Is_Delete = !transport.TRANSPORT_IS_DELETE;
+            Transport_Is_Delete = !transport.TRANSPORT_IS_DELETE && IsVisibility == Visibility.Visible;
         }
 
         private ICommand _CancelCommand;
@@ -131,7 +135,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(p => true, p => p.Content = new TransportViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(p => true, p => p.Content = new TransportViewModel(User_ID, IsVisibility));
                 }
                 return _CancelCommand;
             }
@@ -244,7 +248,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 if (TransportHandleModel.DeleteTransport(Transport_ID, User_ID))
                 {
                     MessageBox.Show("Delete Transport successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                    p.Content = new TransportViewModel(User_ID);
+                    p.Content = new TransportViewModel(User_ID, IsVisibility);
                 }
                 else
                 {

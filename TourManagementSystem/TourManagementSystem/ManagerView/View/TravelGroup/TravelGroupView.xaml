@@ -180,7 +180,8 @@
                             CommandParameter="{Binding ElementName=contentControlMain}"
                             Content="Add New Travel Group"
                             Foreground="#0f6f68"
-                            Style="{StaticResource AddButton}" />
+                            Style="{StaticResource AddButton}"
+                            Visibility="{Binding IsVisibility}" />
 
                     </Grid>
 
@@ -202,7 +203,7 @@
                         ItemsSource="{Binding TravelGroupItems}"
                         SelectedItem="{Binding TravelGroupSelected}"
                         SelectionMode="Single"
-                        VerticalScrollBarVisibility="Visible">
+                        VerticalScrollBarVisibility="Auto">
                         <DataGrid.RowStyle>
                             <Style TargetType="{x:Type DataGridRow}">
                                 <Style.Triggers>

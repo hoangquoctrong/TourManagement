@@ -51,7 +51,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new TravellerViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new TravellerViewModel(User_ID, Visibility.Visible));
                 }
 
                 return _CancelCommand;
@@ -77,7 +77,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             if (TravelGroupHandleModel.InsertTraveller(traveller, User_ID, true))
             {
                 MessageBox.Show("Add Traveller successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                p.Content = new TravellerViewModel(User_ID);
+                p.Content = new TravellerViewModel(User_ID, Visibility.Visible);
             }
             else
             {

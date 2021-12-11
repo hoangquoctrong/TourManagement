@@ -23,6 +23,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private PlaceModel _PlaceSelected;
         public PlaceModel PlaceSelected { get => _PlaceSelected; set { _PlaceSelected = value; OnPropertyChanged(); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
+        private bool _IsEnable;
+        public bool IsEnable { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
+
         #region Data Binding
         private int _Place_ID;
         public int Place_ID { get => _Place_ID; set { _Place_ID = value; OnPropertyChanged(); } }
@@ -37,8 +43,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public int Place_Location { get => _Place_Location; set { _Place_Location = value; OnPropertyChanged(); } }
         #endregion Data Binding
 
-        public ShowPlaceViewModel(int user_id, int place_id)
+        public ShowPlaceViewModel(int user_id, int place_id, Visibility visibility)
         {
+            IsVisibility = visibility;
             User_ID = user_id;
             PlaceSelected = PlaceHandleModel.GetPlace(place_id);
             SetPlaceInView(PlaceSelected);
@@ -53,6 +60,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
             Place_Name = place.PLACE_NAME;
             Place_Location = place.PLACE_LOCATION;
             Place_Nation = place.PLACE_NATION;
+
+            IsEnable = IsVisibility == Visibility.Visible;
         }
 
         private ICommand _CancelCommand;
@@ -62,7 +71,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(p => true, p => p.Content = new PlaceViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(p => true, p => p.Content = new PlaceViewModel(User_ID, IsVisibility));
                 }
                 return _CancelCommand;
             }
@@ -200,7 +209,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_ShowDetailLocationCommand == null)
                 {
-                    _ShowDetailLocationCommand = new RelayCommand<ContentControl>(null, p => p.Content = new ShowLocationViewModel(User_ID, Place_ID, LocationSelected));
+                    _ShowDetailLocationCommand = new RelayCommand<ContentControl>(null, p => p.Content = new ShowLocationViewModel(User_ID, Place_ID, LocationSelected, IsVisibility));
                 }
                 return _ShowDetailLocationCommand;
             }

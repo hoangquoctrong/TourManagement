@@ -18,6 +18,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
         private ObservableCollection<TourModel> _TourItems;
         public ObservableCollection<TourModel> TourItems { get => _TourItems; set { _TourItems = value; OnPropertyChanged("TourItems"); } }
 
@@ -30,9 +33,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private Visibility _ProgressBarVisbility;
         public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
-        public TourViewModel(int user_id)
+        private Visibility _IsDirectorVisibility;
+        public Visibility IsDirectorVisibility { get => _IsDirectorVisibility; set { _IsDirectorVisibility = value; OnPropertyChanged("IsDirectorVisibility"); } }
+
+        public TourViewModel(int user_id, Visibility visibility, Visibility directorVisibility)
         {
             User_ID = user_id;
+            IsVisibility = visibility;
+            IsDirectorVisibility = directorVisibility;
             LoadTourComboBox();
             ProgressBarVisbility = Visibility.Visible;
             LoadTourData();
@@ -105,7 +113,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_ShowDetailTourCommand == null)
                 {
-                    _ShowDetailTourCommand = new RelayCommand<ContentControl>(_ => TourSelected != null, p => p.Content = new ShowTourViewModel(User_ID, TourSelected.TOUR_ID));
+                    _ShowDetailTourCommand = new RelayCommand<ContentControl>(_ => TourSelected != null, p => p.Content = new ShowTourViewModel(User_ID, TourSelected.TOUR_ID, IsVisibility, IsDirectorVisibility));
                 }
                 return _ShowDetailTourCommand;
             }
@@ -131,7 +139,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_StatisticTourCommand == null)
                 {
-                    _StatisticTourCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new StatisticTourViewModel(User_ID));
+                    _StatisticTourCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new StatisticTourViewModel(User_ID, IsDirectorVisibility));
                 }
                 return _StatisticTourCommand;
             }

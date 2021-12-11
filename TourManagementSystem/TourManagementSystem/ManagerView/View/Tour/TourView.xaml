@@ -178,7 +178,8 @@
                             CommandParameter="{Binding ElementName=contentControlMain}"
                             Content="Add New Tour"
                             Foreground="#0f6f68"
-                            Style="{StaticResource AddButton}" />
+                            Style="{StaticResource AddButton}"
+                            Visibility="{Binding IsVisibility}" />
 
                         <Button
                             Grid.Column="3"
@@ -189,7 +190,8 @@
                             CommandParameter="{Binding ElementName=contentControlMain}"
                             Content="Statistic"
                             Foreground="#EB7B47"
-                            Style="{StaticResource StatisticButton}" />
+                            Style="{StaticResource StatisticButton}"
+                            Visibility="{Binding IsDirectorVisibility}" />
 
                     </Grid>
 

@@ -148,7 +148,8 @@
                                             materialDesign:HintAssist.HelperText="Place Name like Province of Nation"
                                             materialDesign:HintAssist.HelperTextFontSize="18"
                                             materialDesign:HintAssist.Hint="Name"
-                                            FontSize="24">
+                                            FontSize="24"
+                                            IsEnabled="{Binding IsEnable}">
                                             <TextBox.Text>
                                                 <Binding
                                                     Mode="TwoWay"
@@ -176,7 +177,8 @@
                                             materialDesign:HintAssist.HelperText="The name of the country"
                                             materialDesign:HintAssist.HelperTextFontSize="18"
                                             materialDesign:HintAssist.Hint="Nation"
-                                            FontSize="24">
+                                            FontSize="24"
+                                            IsEnabled="{Binding IsEnable}">
                                             <TextBox.Text>
                                                 <Binding
                                                     Mode="TwoWay"
@@ -231,7 +233,8 @@
                                         Command="{Binding SaveChangeCommand}"
                                         Content="Save Changes"
                                         Foreground="#1885F2"
-                                        Style="{StaticResource AddButton}" />
+                                        Style="{StaticResource AddButton}"
+                                        Visibility="{Binding IsVisibility}" />
 
                                 </StackPanel>
                             </Grid>
@@ -338,7 +341,8 @@
                                         CommandParameter="{Binding ElementName=contentControlDisplay}"
                                         Content="Add New Location"
                                         Foreground="#0f6f68"
-                                        Style="{StaticResource AddButton}" />
+                                        Style="{StaticResource AddButton}"
+                                        Visibility="{Binding IsVisibility}" />
                                 </Grid>
 
                                 <DataGrid

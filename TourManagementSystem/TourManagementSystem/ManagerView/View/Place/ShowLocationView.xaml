@@ -150,7 +150,8 @@
                                             materialDesign:HintAssist.HelperText="Location Name is the name of famous Site"
                                             materialDesign:HintAssist.HelperTextFontSize="18"
                                             materialDesign:HintAssist.Hint="Name"
-                                            FontSize="24">
+                                            FontSize="24"
+                                            IsEnabled="{Binding IsEnable}">
                                             <TextBox.Text>
                                                 <Binding
                                                     Mode="TwoWay"
@@ -214,7 +215,8 @@
                                         materialDesign:HintAssist.HelperText="Include Apartment Number, Street Name, Ward Name"
                                         materialDesign:HintAssist.HelperTextFontSize="16"
                                         materialDesign:HintAssist.Hint="Address"
-                                        FontSize="18">
+                                        FontSize="18"
+                                        IsEnabled="{Binding IsEnable}">
                                         <TextBox.Text>
                                             <Binding
                                                 Mode="TwoWay"
@@ -248,6 +250,7 @@
                                         AcceptsReturn="True"
                                         FontSize="18"
                                         Foreground="DimGray"
+                                        IsEnabled="{Binding IsEnable}"
                                         MinLines="8"
                                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                         Text="{Binding Location_Description, Mode=TwoWay}"
@@ -265,7 +268,8 @@
                                         Command="{Binding SaveChangeCommand}"
                                         Content="Save Changes"
                                         Foreground="#1885F2"
-                                        Style="{StaticResource AddButton}" />
+                                        Style="{StaticResource AddButton}"
+                                        Visibility="{Binding IsVisibility}" />
 
                                 </StackPanel>
                             </Grid>

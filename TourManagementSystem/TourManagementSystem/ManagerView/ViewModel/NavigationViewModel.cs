@@ -103,29 +103,29 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             switch (parameter)
             {
-                case "Dashboard":
+                case "Record":
                     SelectedViewModel = new DashboardViewModel(User_ID);
                     break;
                 case "Tour":
-                    SelectedViewModel = new TourViewModel(User_ID);
+                    SelectedViewModel = new TourViewModel(User_ID, Visibility.Visible, Visibility.Visible);
                     break;
                 case "Travel Group":
-                    SelectedViewModel = new TravelGroupViewModel(User_ID);
+                    SelectedViewModel = new TravelGroupViewModel(User_ID, Visibility.Visible);
                     break;
                 case "Customer":
-                    SelectedViewModel = new TravellerViewModel(User_ID);
+                    SelectedViewModel = new TravellerViewModel(User_ID, Visibility.Visible);
                     break;
                 case "Place":
-                    SelectedViewModel = new PlaceViewModel(User_ID);
+                    SelectedViewModel = new PlaceViewModel(User_ID, Visibility.Visible);
                     break;
                 case "Staff":
-                    SelectedViewModel = new StaffViewModel(User_ID);
+                    SelectedViewModel = new StaffViewModel(User_ID, Visibility.Visible);
                     break;
                 case "Transports":
-                    SelectedViewModel = new TransportViewModel(User_ID);
+                    SelectedViewModel = new TransportViewModel(User_ID, Visibility.Visible);
                     break;
                 case "Hotel":
-                    SelectedViewModel = new HotelViewModel(User_ID);
+                    SelectedViewModel = new HotelViewModel(User_ID, Visibility.Visible);
                     break;
                 case "Account":
                     SelectedViewModel = new AccountViewModel(User_ID);

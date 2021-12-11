@@ -737,7 +737,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             if (countSuccess == 4)
             {
                 MessageBox.Show("Add Travel Group Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                p.Content = new TravelGroupViewModel(User_ID);
+                p.Content = new TravelGroupViewModel(User_ID, Visibility.Visible);
                 ProgressBarVisbility = Visibility.Hidden;
             }
             else
@@ -794,7 +794,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(null, p => p.Content = new TravelGroupViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(null, p => p.Content = new TravelGroupViewModel(User_ID, Visibility.Visible));
                 }
 
                 return _CancelCommand;

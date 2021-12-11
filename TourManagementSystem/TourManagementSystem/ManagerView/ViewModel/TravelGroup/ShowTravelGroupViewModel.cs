@@ -18,6 +18,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
         private Visibility _ProgressBarVisbility;
         public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
@@ -26,9 +29,10 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private bool _IsEnable;
         public bool IsEnable { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
-        public ShowTravelGroupViewModel(int user_id, TravelGroupModel travelgroup)
+        public ShowTravelGroupViewModel(int user_id, TravelGroupModel travelgroup, Visibility visibility)
         {
             User_ID = user_id;
+            IsVisibility = visibility;
             TravelGroupSelect = travelgroup;
             ProgressBarVisbility = Visibility.Visible;
             SetTravelGroupInformation(travelgroup);
@@ -141,8 +145,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
             Tour_End = TourInformationData.INFORMATION_TIME.TIME_END_TIME;
 
 
-            IsEnable = IsEnableFunction(Tour_Department, TravelGroup_IsDelete);
-            IsEnablePrice = IsEnablePriceFunction(Tour_End);
+            IsEnable = IsEnableFunction(Tour_Department, TravelGroup_IsDelete) && IsVisibility == Visibility.Visible;
+            IsEnablePrice = IsEnablePriceFunction(Tour_End) && IsVisibility == Visibility.Visible;
             SetComboBoxStaffList();
             SetStaffList(travelGroup.TravelGroup_ID);
             SetTravellerList(travelGroup.TravelGroup_ID);
@@ -231,7 +235,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 if (TravelGroupHandleModel.DeleteTravelGroup(TravelGroup_ID, User_ID))
                 {
                     MessageBox.Show("Delete Travel Group successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
-                    p.Content = new TravelGroupViewModel(User_ID);
+                    p.Content = new TravelGroupViewModel(User_ID, IsVisibility);
                 }
                 else
                 {
@@ -243,7 +247,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private bool IsEcuteDelete()
         {
-            if(TourInformationData == null)
+            if (TourInformationData == null)
             {
                 return false;
             }
@@ -378,7 +382,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private bool IsExcuteSaveStaffList()
         {
-            if(StaffList == null)
+            if (StaffList == null)
             {
                 return false;
             }
@@ -979,7 +983,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new TravelGroupViewModel(User_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(_ => true, p => p.Content = new TravelGroupViewModel(User_ID, IsVisibility));
                 }
 
                 return _CancelCommand;

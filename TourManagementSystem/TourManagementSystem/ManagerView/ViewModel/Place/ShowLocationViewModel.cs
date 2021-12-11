@@ -23,6 +23,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private LocationModel _LocationSelected;
         public LocationModel LocationSelected { get => _LocationSelected; set { _LocationSelected = value; OnPropertyChanged(); } }
 
+        private Visibility _IsVisibility;
+        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
+        private bool _IsEnable;
+        public bool IsEnable { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
+
         #region Data Binding
         private int _Place_ID;
         public int Place_ID { get => _Place_ID; set { _Place_ID = value; OnPropertyChanged(); } }
@@ -44,10 +50,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         #endregion Data Binding
 
-        public ShowLocationViewModel(int user_id, int place_id, LocationModel location)
+        public ShowLocationViewModel(int user_id, int place_id, LocationModel location, Visibility visibility)
         {
             User_ID = user_id;
             Place_ID = place_id;
+            IsVisibility = visibility;
             LocationSelected = location;
             SetLocationInView(location);
             LoadTourLocationComboBox();
@@ -64,6 +71,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
             Location_Name = location.LOCATION_NAME;
             Location_Address = location.LOCATION_ADDRESS;
             Location_Description = location.LOCATION_DESCRIPTION;
+
+            IsEnable = IsVisibility == Visibility.Visible;
         }
 
         private ICommand _CancelCommand;
@@ -73,7 +82,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_CancelCommand == null)
                 {
-                    _CancelCommand = new RelayCommand<ContentControl>(null, p => p.Content = new ShowPlaceViewModel(User_ID, Place_ID));
+                    _CancelCommand = new RelayCommand<ContentControl>(null, p => p.Content = new ShowPlaceViewModel(User_ID, Place_ID, IsVisibility));
                 }
                 return _CancelCommand;
             }
