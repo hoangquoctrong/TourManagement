@@ -112,6 +112,45 @@
         </Setter>
     </Style>
 
+    <ImageBrush
+        x:Key="mini_img"
+        ImageSource="Assets/minimize-sign.png"
+        Stretch="Fill" />
+    <ImageBrush
+        x:Key="mini_img_hover"
+        ImageSource="Assets/minimize.png"
+        Stretch="Fill" />
+
+    <Style x:Key="MiniBtn_Style" TargetType="Button">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Border x:Name="border" Background="{StaticResource mini_img}">
+                        <ContentPresenter />
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource mini_img_hover}" />
+
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource mini_img}" />
+
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="MenuButtonStyle" TargetType="RadioButton">
 
         <Setter Property="Width" Value="180" />

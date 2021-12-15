@@ -175,5 +175,21 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 return _CloseCommand;
             }
         }
+
+        private ICommand _MinimizeCommand;
+        public ICommand MinimizeCommand
+        {
+            get
+            {
+                if (_MinimizeCommand == null)
+                {
+                    _MinimizeCommand = new RelayCommand<Window>(p => true, p =>
+                    {
+                        p.WindowState = WindowState.Minimized;
+                    });
+                } 
+                return _MinimizeCommand;
+            }
+        }
     }
 }
