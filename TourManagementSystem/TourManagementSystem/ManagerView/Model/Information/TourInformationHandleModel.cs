@@ -143,6 +143,17 @@ namespace TourManagementSystem.ManagerView.Model
                     TIME_STRING = string.Format("{0} day(s) {1} night(s)", (int)time.TOUR_TIME_DAY, (int)time.TOUR_TIME_NIGHT)
                 };
 
+                if (informationModel.INFORMATION_TIME.TIME_END_TIME < DateTime.Now)
+                {
+                    informationModel.INFORMATION_ENABLE = false;
+                    informationModel.INFORMATION_STATUS = "Overdue";
+                }
+                else
+                {
+                    informationModel.INFORMATION_ENABLE = true;
+                    informationModel.INFORMATION_STATUS = "Available";
+                }
+
                 InformationList.Add(informationModel);
             }
 

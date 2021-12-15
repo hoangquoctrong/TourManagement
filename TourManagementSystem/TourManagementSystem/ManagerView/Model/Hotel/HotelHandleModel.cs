@@ -40,6 +40,7 @@ namespace TourManagementSystem.ManagerView.Model
                     HOTEL_PRICE = (double)item.hotel.TOUR_HOTEL_PRICE,
                     HOTEL_EMAIL = item.hotel.TOUR_HOTEL_EMAIL,
                     HOTEL_IS_DELETE = (bool)item.hotel.TOUR_HOTEL_DELETE,
+                    HOTEL_STATUS = (!(bool)item.hotel.TOUR_HOTEL_DELETE) ? "Active" : "Closed",
                     PLACE_ID = item.hotel.PLACE_ID,
                     PLACE_NAME = item.place.PLACE_NAME
                 };

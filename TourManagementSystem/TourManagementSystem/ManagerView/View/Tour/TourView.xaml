@@ -256,6 +256,11 @@
                                 ElementStyle="{StaticResource WrapText}"
                                 Header="Star" />
                             <DataGridTextColumn
+                                Width="0.15*"
+                                Binding="{Binding TOUR_STATUS}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Exist" />
+                            <DataGridTextColumn
                                 Width="0.5*"
                                 Binding="{Binding TOUR_CHARACTERISTIS}"
                                 ElementStyle="{StaticResource WrapText}"

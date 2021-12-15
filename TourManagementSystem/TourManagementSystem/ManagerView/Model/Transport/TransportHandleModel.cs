@@ -33,7 +33,8 @@ namespace TourManagementSystem.ManagerView.Model
                     TRANSPORT_DATE = (DateTime)item.TOUR_TRANSPORT_START_DATE,
                     TRANSPORT_PRICE = (double)item.TOUR_TRANSPORT_PRICE,
                     TRANSPORT_TYPETRANS = item.TOUR_TRANSPORT_TYPETRANS,
-                    TRANSPORT_IS_DELETE = (bool)item.TOUR_TRANSPORT_DELETE
+                    TRANSPORT_IS_DELETE = (bool)item.TOUR_TRANSPORT_DELETE,
+                    TRANSPORT_STATUS = (!(bool)item.TOUR_TRANSPORT_DELETE) ? "Usable" : "Unusable",
                 };
 
                 TransportList.Add(transportModel);
@@ -63,7 +64,8 @@ namespace TourManagementSystem.ManagerView.Model
                     TRANSPORT_DATE = (DateTime)item.TOUR_TRANSPORT_START_DATE,
                     TRANSPORT_PRICE = (double)item.TOUR_TRANSPORT_PRICE,
                     TRANSPORT_TYPETRANS = item.TOUR_TRANSPORT_TYPETRANS,
-                    TRANSPORT_IS_DELETE = (bool)item.TOUR_TRANSPORT_DELETE
+                    TRANSPORT_IS_DELETE = (bool)item.TOUR_TRANSPORT_DELETE,
+                    TRANSPORT_STATUS = (!(bool)item.TOUR_TRANSPORT_DELETE) ? "Usable" : "Unusable"
                 };
 
                 TransportList.Add(transportModel);

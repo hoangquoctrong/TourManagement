@@ -44,6 +44,9 @@ namespace TourManagementSystem.ManagerView.Model
         private bool _TRANSPORT_IS_DELETE;
         public bool TRANSPORT_IS_DELETE { get => _TRANSPORT_IS_DELETE; set { _TRANSPORT_IS_DELETE = value; OnPropertyChanged(); } }
 
+        private string _TRANSPORT_STATUS;
+        public string TRANSPORT_STATUS { get => _TRANSPORT_STATUS; set { _TRANSPORT_STATUS = value; OnPropertyChanged(); } }
+
         private int _TRANSPORT_AMOUNT;
         public int TRANSPORT_AMOUNT { get => _TRANSPORT_AMOUNT; set { _TRANSPORT_AMOUNT = value; OnPropertyChanged(); } }
 

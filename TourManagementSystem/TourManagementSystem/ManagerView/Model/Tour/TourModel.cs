@@ -24,6 +24,9 @@ namespace TourManagementSystem.ManagerView.Model
         private string _TOUR_IS_EXIST;
         public string TOUR_IS_EXIST { get => _TOUR_IS_EXIST; set { _TOUR_IS_EXIST = value; OnPropertyChanged(); } }
 
+        private string _TOUR_STATUS;
+        public string TOUR_STATUS { get => _TOUR_STATUS; set { _TOUR_STATUS = value; OnPropertyChanged(); } }
+
         private double _TOUR_STAR;
         public double TOUR_STAR { get => _TOUR_STAR; set { _TOUR_STAR = value; OnPropertyChanged(); } }
     }

@@ -166,7 +166,6 @@
                         </StackPanel>
 
                         <Button
-                            Visibility="{Binding IsVisibility}"
                             Grid.Column="2"
                             Width="150"
                             Height="40"
@@ -176,14 +175,15 @@
                             CommandParameter="{Binding ElementName=contentControlMain}"
                             Content="Add New Hotel"
                             Foreground="#0f6f68"
-                            Style="{StaticResource AddButton}" />
+                            Style="{StaticResource AddButton}"
+                            Visibility="{Binding IsVisibility}" />
 
                     </Grid>
 
                     <DataGrid
                         Grid.Row="2"
                         Width="1170"
-                        Height="550"
+                        Height="480"
                         VerticalAlignment="Top"
                         materialDesign:DataGridAssist.CellPadding="12 8 0 8"
                         materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
@@ -250,6 +250,11 @@
                                 Binding="{Binding HOTEL_EMAIL}"
                                 ElementStyle="{StaticResource WrapText}"
                                 Header="Email" />
+                            <DataGridTextColumn
+                                Width="0.1*"
+                                Binding="{Binding HOTEL_STATUS}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Status" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

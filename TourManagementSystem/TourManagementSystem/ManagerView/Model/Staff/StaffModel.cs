@@ -75,6 +75,9 @@ namespace TourManagementSystem.ManagerView.Model
         private bool _STAFF_IS_DELETE;
         public bool STAFF_IS_DELETE { get => _STAFF_IS_DELETE; set { _STAFF_IS_DELETE = value; OnPropertyChanged(); } }
 
+        private string _STAFF_STATUS;
+        public string STAFF_STATUS { get => _STAFF_STATUS; set { _STAFF_STATUS = value; OnPropertyChanged(); } }
+
         private string _STAFF_DELETE_NOTE;
         public string STAFF_DELETE_NOTE { get => _STAFF_DELETE_NOTE; set { _STAFF_DELETE_NOTE = value; OnPropertyChanged(); } }
 

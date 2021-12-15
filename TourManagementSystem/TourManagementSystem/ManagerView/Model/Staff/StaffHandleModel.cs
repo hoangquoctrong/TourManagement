@@ -59,6 +59,7 @@ namespace TourManagementSystem.ManagerView.Model
                     STAFF_NOTE = item.staff.TOUR_STAFF_NOTE,
                     STAFF_IMAGE_BYTE_SOURCE = item.staff.TOUR_STAFF_IMAGE,
                     STAFF_IS_DELETE = (bool)item.staff_delete.TOUR_STAFF_DELETE_ISDELETED,
+                    STAFF_STATUS = (!(bool)item.staff_delete.TOUR_STAFF_DELETE_ISDELETED) ? "Working" : "Retired",
                     STAFF_DELETE_NOTE = item.staff_delete.TOUR_STAFF_DELETE_CONTENT,
                     STAFF_USERNAME = item.USERNAME,
                     STAFF_DELETE_DATE = (DateTime)((bool)item.staff_delete.TOUR_STAFF_DELETE_ISDELETED ? item.staff_delete.TOUR_STAFF_DELETE_DATE : DateTime.Now)
@@ -420,6 +421,7 @@ namespace TourManagementSystem.ManagerView.Model
                     STAFF_NOTE = item.staff.TOUR_STAFF_NOTE,
                     STAFF_IMAGE_BYTE_SOURCE = item.staff.TOUR_STAFF_IMAGE,
                     STAFF_IS_DELETE = (bool)item.staff_delete.TOUR_STAFF_DELETE_ISDELETED,
+                    STAFF_STATUS = (!(bool)item.staff_delete.TOUR_STAFF_DELETE_ISDELETED) ? "Working" : "Retired",
                     STAFF_DELETE_NOTE = item.staff_delete.TOUR_STAFF_DELETE_CONTENT,
                     STAFF_USERNAME = item.USERNAME,
                     STAFF_DELETE_DATE = (DateTime)((bool)item.staff_delete.TOUR_STAFF_DELETE_ISDELETED ? item.staff_delete.TOUR_STAFF_DELETE_DATE : DateTime.Now)

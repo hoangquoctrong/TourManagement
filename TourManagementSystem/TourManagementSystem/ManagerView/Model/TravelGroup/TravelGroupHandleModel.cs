@@ -34,7 +34,8 @@ namespace TourManagementSystem.ManagerView.Model
                     Tour_StartString = ((DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_DEPARTMENT_DATE).ToString("dd/MM/yyyy"),
                     Tour_EndString = ((DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_END_DATE).ToString("dd/MM/yyyy"),
                     TourInformation_Price = (double)item.TOUR_INFORMATION.TOUR_PRICE.First().TOUR_PRICE_COST_TOTAL,
-                    IsDelete = (bool)item.TRAVEL_GROUP_ISDELETE
+                    IsDelete = (bool)item.TRAVEL_GROUP_ISDELETE,
+                    Group_Status = (!(bool)item.TRAVEL_GROUP_ISDELETE) ? "Active" : "Closed",
                 };
 
                 TravelGroupList.Add(travelgroup);
@@ -69,7 +70,8 @@ namespace TourManagementSystem.ManagerView.Model
                             Tour_StartString = ((DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_DEPARTMENT_DATE).ToString("dd/MM/yyyy"),
                             Tour_EndString = ((DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_END_DATE).ToString("dd/MM/yyyy"),
                             TourInformation_Price = (double)item.TOUR_INFORMATION.TOUR_PRICE.First().TOUR_PRICE_COST_TOTAL,
-                            IsDelete = (bool)item.TRAVEL_GROUP_ISDELETE
+                            IsDelete = (bool)item.TRAVEL_GROUP_ISDELETE,
+                            Group_Status = (!(bool)item.TRAVEL_GROUP_ISDELETE) ? "Active" : "Closed"
                         };
 
                         TravelGroupList.Add(travelgroup);
@@ -671,7 +673,8 @@ namespace TourManagementSystem.ManagerView.Model
                     Tour_StartString = ((DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_DEPARTMENT_DATE).ToString("dd/MM/yyyy"),
                     Tour_EndString = ((DateTime)item.TOUR_INFORMATION.TOUR_TIME.First().TOUR_TIME_END_DATE).ToString("dd/MM/yyyy"),
                     TourInformation_Price = (double)item.TOUR_INFORMATION.TOUR_PRICE.First().TOUR_PRICE_COST_TOTAL,
-                    IsDelete = (bool)item.TRAVEL_GROUP_ISDELETE
+                    IsDelete = (bool)item.TRAVEL_GROUP_ISDELETE,
+                    Group_Status = (!(bool)item.TRAVEL_GROUP_ISDELETE) ? "Active" : "Closed"
                 };
 
                 TravelGroupList.Add(travelgroup);

@@ -287,6 +287,11 @@
                                 Binding="{Binding STAFF_STRING_START_DATE}"
                                 ElementStyle="{StaticResource WrapText}"
                                 Header="Start Date" />
+                            <DataGridTextColumn
+                                Width="0.1*"
+                                Binding="{Binding STAFF_STATUS}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="Status" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

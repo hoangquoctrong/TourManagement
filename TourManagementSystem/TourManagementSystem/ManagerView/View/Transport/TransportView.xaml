@@ -182,7 +182,7 @@
                     <DataGrid
                         Grid.Row="2"
                         Width="1170"
-                        Height="550"
+                        Height="480"
                         VerticalAlignment="Top"
                         materialDesign:DataGridAssist.CellPadding="12 8 0 8"
                         materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
@@ -247,6 +247,11 @@
                             <DataGridTextColumn
                                 Width="0.2*"
                                 Binding="{Binding TRANSPORT_TYPE}"
+                                ElementStyle="{StaticResource WrapText}"
+                                Header="National" />
+                            <DataGridTextColumn
+                                Width="0.2*"
+                                Binding="{Binding TRANSPORT_STATUS}"
                                 ElementStyle="{StaticResource WrapText}"
                                 Header="Status" />
                         </DataGrid.Columns>

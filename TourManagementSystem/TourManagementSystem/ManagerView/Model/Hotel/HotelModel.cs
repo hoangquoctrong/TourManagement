@@ -45,6 +45,9 @@ namespace TourManagementSystem.ManagerView.Model
         private bool _HOTEL_IS_DELETE;
         public bool HOTEL_IS_DELETE { get => _HOTEL_IS_DELETE; set { _HOTEL_IS_DELETE = value; OnPropertyChanged(); } }
 
+        private string _HOTEL_STATUS;
+        public string HOTEL_STATUS { get => _HOTEL_STATUS; set { _HOTEL_STATUS = value; OnPropertyChanged(); } }
+
         private int _HOTEL_DAY;
         public int HOTEL_DAY { get => _HOTEL_DAY; set { _HOTEL_DAY = value; OnPropertyChanged(); } }
     }

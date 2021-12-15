@@ -784,6 +784,11 @@
                                                 Binding="{Binding INFORMATION_PRICE.PRICE_COST_TOTAL}"
                                                 ElementStyle="{StaticResource WrapText}"
                                                 Header="Total Cost" />
+                                            <DataGridTextColumn
+                                                Width="0.2*"
+                                                Binding="{Binding INFORMATION_STATUS}"
+                                                ElementStyle="{StaticResource WrapText}"
+                                                Header="Status" />
                                         </DataGrid.Columns>
                                     </DataGrid>
 

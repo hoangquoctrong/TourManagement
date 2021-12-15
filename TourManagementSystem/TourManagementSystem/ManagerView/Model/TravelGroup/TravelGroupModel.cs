@@ -39,6 +39,9 @@ namespace TourManagementSystem.ManagerView.Model
         private bool _IsDelete;
         public bool IsDelete { get => _IsDelete; set { _IsDelete = value; OnPropertyChanged(); } }
 
+        private string _Group_Status;
+        public string Group_Status { get => _Group_Status; set { _Group_Status = value; OnPropertyChanged(); } }
+
         private double _TourInformation_Price;
         public double TourInformation_Price { get => _TourInformation_Price; set { _TourInformation_Price = value; OnPropertyChanged(); } }
     }
