@@ -116,7 +116,7 @@
 
                         <Border
                             Grid.Column="0"
-                            Margin="40,5,19.6,4.6"
+                            Margin="15,5,19.6,4.6"
                             Background="#FAFAFA"
                             BorderBrush="Gray"
                             BorderThickness="1"
@@ -172,7 +172,7 @@
                         <Button
                             Grid.Column="2"
                             Width="150"
-                            Margin="240,10,20,9.6"
+                            Margin="275,10,20,9.6"
                             HorizontalAlignment="Right"
                             Command="{Binding AddTourCommand}"
                             CommandParameter="{Binding ElementName=contentControlMain}"

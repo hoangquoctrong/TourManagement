@@ -215,8 +215,8 @@ namespace TourManagementSystem.Global.Model
                 PdfPTable table = new PdfPTable(data.Columns.Count);
                 //Table header
                 BaseFont btnColumnHeader = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-                Font fntColumnHeader = new Font(btnColumnHeader, 6, 1, BaseColor.WHITE);
-                Font fntColumnData = new Font(btnColumnHeader, 5, 1, BaseColor.BLACK);
+                Font fntColumnHeader = new Font(btnColumnHeader, 10, 1, BaseColor.WHITE);
+                Font fntColumnData = new Font(btnColumnHeader, 10, 1, BaseColor.BLACK);
                 for (int i = 0; i < data.Columns.Count; i++)
                 {
                     PdfPCell cell = new PdfPCell();

@@ -5,9 +5,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:TourManagementSystem.ManagerView.View"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodel="clr-namespace:TourManagementSystem.ManagerView.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:StatisticTourViewModel}"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="clr-namespace:TourManagementSystem.ManagerView.ViewModel"
     Width="1190"
     Height="620"
+    d:DataContext="{d:DesignInstance Type=viewmodel:StatisticTourViewModel}"
     mc:Ignorable="d">
     <UserControl.Style>
         <Style>
@@ -55,7 +57,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="auto" />
+
                     </Grid.RowDefinitions>
 
                     <Border
@@ -90,10 +92,11 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
 
                         <Border
-                            Grid.RowSpan="2"
+                            Grid.RowSpan="3"
                             Panel.ZIndex="1000"
                             BorderThickness="0.5"
                             CornerRadius="25">
@@ -236,30 +239,31 @@
                                     Header="Total Cost" />
                             </DataGrid.Columns>
                         </DataGrid>
+                        <StackPanel
+                            Grid.Row="2"
+                            Margin="0,10,0,0"
+                            Orientation="Horizontal">
+                            <Button
+                                Width="150"
+                                Height="40"
+                                Margin="30,0,20,10"
+                                Command="{Binding PDFCommand}"
+                                CommandParameter="{Binding ElementName=StatisticDatagrid}"
+                                Content="PDF Export"
+                                Foreground="#1885F2"
+                                Style="{StaticResource ResourceKey=ConfirmButton}" />
+                            <Button
+                                Width="150"
+                                Height="40"
+                                Margin="30,0,20,10"
+                                Command="{Binding ExcelCommand}"
+                                CommandParameter="{Binding ElementName=StatisticDatagrid}"
+                                Content="Excel Export"
+                                Foreground="#1885F2"
+                                Style="{StaticResource ResourceKey=ConfirmButton}" />
+                        </StackPanel>
                     </Grid>
-                    <StackPanel
-                        Grid.Row="2"
-                        Margin="0,10,0,0"
-                        Orientation="Horizontal">
-                        <Button
-                            Width="150"
-                            Height="40"
-                            Margin="30,0,20,10"
-                            Command="{Binding PDFCommand}"
-                            CommandParameter="{Binding ElementName=StatisticDatagrid}"
-                            Content="PDF Export"
-                            Foreground="#1885F2"
-                            Style="{StaticResource ResourceKey=ConfirmButton}" />
-                        <Button
-                            Width="150"
-                            Height="40"
-                            Margin="30,0,20,10"
-                            Command="{Binding ExcelCommand}"
-                            CommandParameter="{Binding ElementName=StatisticDatagrid}"
-                            Content="Excel Export"
-                            Foreground="#1885F2"
-                            Style="{StaticResource ResourceKey=ConfirmButton}" />
-                    </StackPanel>
+
 
 
                 </Grid>

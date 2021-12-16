@@ -20,6 +20,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private int _User_ID;
         public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
+
         private Visibility _IsDirectorVisibility;
         public Visibility IsDirectorVisibility { get => _IsDirectorVisibility; set { _IsDirectorVisibility = value; OnPropertyChanged("IsDirectorVisibility"); } }
 
@@ -187,14 +188,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     _PDFCommand = new RelayCommand<DataGrid>(p => p.ItemsSource.Cast<TourStatisticExportModel>().ToList().Count > 0, p =>
                     {
-                        MessageBox.Show(_User_ID.ToString());
+                       
                         string message = "";
                         List<TourStatisticExportModel> ExportList = new List<TourStatisticExportModel>();
                         foreach (var item in p.ItemsSource.Cast<TourStatisticModel>().ToList())
                         {
                             ExportList.Add(new TourStatisticExportModel(item.Tour_ID, item.Tour_Name, item.Tour_NumberVisitGroup,item.Tour_NumberVisitTraveller,item.Tour_TotalCost));
                         }
-                        GlobalFunction.ExportPDF(ExportList, HeaderList, "Tour Statistic", "Quan", ref message);
+                        GlobalFunction.ExportPDF(ExportList, HeaderList, "Tour Statistic", "ID"+ _User_ID, ref message);
                         MessageWindow messageWindow = new MessageWindow(message, MessageType.Info, MessageButtons.Ok);
                         messageWindow.ShowDialog();
                         //MessageBox.Show(message);
@@ -219,7 +220,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         {
                             ExportList.Add(new TourStatisticExportModel(item.Tour_ID, item.Tour_Name, item.Tour_NumberVisitGroup, item.Tour_NumberVisitTraveller, item.Tour_TotalCost));
                         }
-                        GlobalFunction.ExportExcel(ExportList, HeaderList, "All", ref message);
+                        GlobalFunction.ExportExcel(ExportList, HeaderList, "Tour Statistic", ref message);
                         MessageWindow messageWindow = new MessageWindow(message, MessageType.Info, MessageButtons.Ok);
                         messageWindow.ShowDialog();
                         //MessageBox.Show(message);
