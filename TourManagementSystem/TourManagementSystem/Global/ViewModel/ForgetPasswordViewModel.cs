@@ -33,6 +33,7 @@ namespace TourManagementSystem.Global.ViewModel
         public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
         public ForgetPasswordViewModel()
         {
+            ProgressBarVisbility = Visibility.Hidden;
             Username = Properties.Settings.Default.Username;
             Random random = new Random();
             ValidateNumber = random.Next(100000, 999999);

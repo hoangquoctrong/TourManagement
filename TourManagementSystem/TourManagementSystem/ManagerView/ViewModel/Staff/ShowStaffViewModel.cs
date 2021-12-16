@@ -102,6 +102,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private bool _IsDelete;
         public bool IsDelete { get => _IsDelete; set { _IsDelete = value; OnPropertyChanged(); } }
+
+        private ObservableCollection<TourMissionModel> _MisionList;
+        public ObservableCollection<TourMissionModel> MissionList { get => _MisionList; set { _MisionList = value; OnPropertyChanged(); } }
         #endregion
 
         public ShowStaffViewModel(int user_id, StaffModel staff, Visibility visibility)
@@ -113,8 +116,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
             SetStaffInView(staff);
             LoadTourMissionComboBox();
 
-            ObservableCollection<TourMissionModel> tourmissionItems = TravelGroupHandleModel.GetTravelGroupListWithStaffID(staff.STAFF_ID);
-            TourMissionItemsCollection = new CollectionViewSource { Source = tourmissionItems };
+            MissionList = TravelGroupHandleModel.GetTravelGroupListWithStaffID(staff.STAFF_ID);
+            TourMissionItemsCollection = new CollectionViewSource { Source = MissionList };
             TourMissionItemsCollection.Filter += TourMissionItem_Filter;
 
         }

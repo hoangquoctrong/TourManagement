@@ -139,7 +139,14 @@ namespace TourManagementSystem.Global.ViewModel
             {
                 if (_CloseCommand == null)
                 {
-                    _CloseCommand = new RelayCommand<Window>(null, p => p.Close());
+                    _CloseCommand = new RelayCommand<Window>(null, p =>
+                    {
+                        bool? Result = new MessageWindow("Do you want to close?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                        if (Result == true)
+                        {
+                            p.Close();
+                        }
+                    });
                 }
                 return _CloseCommand;
             }
