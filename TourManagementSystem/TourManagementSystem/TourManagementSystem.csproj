@@ -266,6 +266,7 @@
     <Compile Include="ManagerView\Model\Record\RecordModel.cs" />
     <Compile Include="ManagerView\Model\Staff\StaffDetailModel.cs" />
     <Compile Include="ManagerView\Model\Tour\TourDetailStatisticModel.cs" />
+    <Compile Include="ManagerView\Model\Tour\TourStatisticExportModel.cs" />
     <Compile Include="ManagerView\Model\Tour\TourStatisticModel.cs" />
     <Compile Include="ManagerView\Model\TravelGroup\TravelCostModel.cs" />
     <Compile Include="ManagerView\Model\TravelGroup\TravelGroupHandleModel.cs" />

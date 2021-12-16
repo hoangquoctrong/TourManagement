@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using TourManagementSystem.Global.Model;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
+using TourManagementSystem.ManagerView.Model.Tour;
 using TourManagementSystem.ViewModel;
 
 namespace TourManagementSystem.ManagerView.ViewModel
@@ -28,6 +31,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             User_ID = user_id;
             Checkbox_DisplayAll = true;
             IsDirectorVisibility = directorVisibility;
+            SetHeaderList();
         }
 
         private async Task<ObservableCollection<TourStatisticModel>> GetTourList()
@@ -160,6 +164,68 @@ namespace TourManagementSystem.ManagerView.ViewModel
                     _CancelCommand = new RelayCommand<ContentControl>(null, p => p.Content = new TourViewModel(User_ID, Visibility.Visible, IsDirectorVisibility));
                 }
                 return _CancelCommand;
+            }
+        }
+
+        public List<string> HeaderList { get; set; }
+        private void SetHeaderList()
+        {
+            HeaderList = new List<string>();
+            HeaderList.Add("ID");
+            HeaderList.Add("Name");
+            HeaderList.Add("Number of Travel Group");
+            HeaderList.Add("Number of Traveller");
+            HeaderList.Add("Total Cost");
+        }
+
+        private ICommand _PDFCommand;
+        public ICommand PDFCommand
+        {
+            get
+            {
+                if (_PDFCommand == null)
+                {
+                    _PDFCommand = new RelayCommand<DataGrid>(p => p.ItemsSource.Cast<TourStatisticExportModel>().ToList().Count > 0, p =>
+                    {
+                        MessageBox.Show(_User_ID.ToString());
+                        string message = "";
+                        List<TourStatisticExportModel> ExportList = new List<TourStatisticExportModel>();
+                        foreach (var item in p.ItemsSource.Cast<TourStatisticModel>().ToList())
+                        {
+                            ExportList.Add(new TourStatisticExportModel(item.Tour_ID, item.Tour_Name, item.Tour_NumberVisitGroup,item.Tour_NumberVisitTraveller,item.Tour_TotalCost));
+                        }
+                        GlobalFunction.ExportPDF(ExportList, HeaderList, "Tour Statistic", "Quan", ref message);
+                        MessageWindow messageWindow = new MessageWindow(message, MessageType.Info, MessageButtons.Ok);
+                        messageWindow.ShowDialog();
+                        //MessageBox.Show(message);
+                    });
+                }
+                return _PDFCommand;
+            }
+        }
+
+        private ICommand _ExcelCommand;
+        public ICommand ExcelCommand
+        {
+            get
+            {
+                if (_ExcelCommand == null)
+                {
+                    _ExcelCommand = new RelayCommand<DataGrid>(p => p.ItemsSource.Cast<TourStatisticExportModel>().ToList().Count > 0, p =>
+                    {
+                        string message = "";
+                        List<TourStatisticExportModel> ExportList = new List<TourStatisticExportModel>();
+                        foreach (var item in p.ItemsSource.Cast<TourStatisticModel>().ToList())
+                        {
+                            ExportList.Add(new TourStatisticExportModel(item.Tour_ID, item.Tour_Name, item.Tour_NumberVisitGroup, item.Tour_NumberVisitTraveller, item.Tour_TotalCost));
+                        }
+                        GlobalFunction.ExportExcel(ExportList, HeaderList, "All", ref message);
+                        MessageWindow messageWindow = new MessageWindow(message, MessageType.Info, MessageButtons.Ok);
+                        messageWindow.ShowDialog();
+                        //MessageBox.Show(message);
+                    });
+                }
+                return _ExcelCommand;
             }
         }
     }

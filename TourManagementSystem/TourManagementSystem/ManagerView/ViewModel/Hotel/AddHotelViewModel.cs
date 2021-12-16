@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TourManagementSystem.Global.Model;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -86,12 +87,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             HotelModel hotel = InsertHotelModel();
             if (HotelHandleModel.InsertHotel(hotel, User_ID))
             {
-                MessageBox.Show("Add Hotel Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Hotel Successfully!", MessageType.Success, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Hotel Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 p.Content = new HotelViewModel(User_ID, Visibility.Visible);
             }
             else
             {
-                MessageBox.Show("Add Hotel Failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Hotel Failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Hotel Failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

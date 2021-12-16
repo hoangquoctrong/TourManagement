@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using TourManagementSystem.Global.Model;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ViewModel;
 
 namespace TourManagementSystem.ManagerView.ViewModel
@@ -39,13 +40,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         if (await GlobalFunction.IsSendEmail(TextMail))
                         {
                             ProgressBarVisbility = Visibility.Hidden;
-                            MessageBox.Show("Send Email Successful!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageWindow messageWindow = new MessageWindow("Send Email Successful!", MessageType.Success, MessageButtons.Ok);
+                            messageWindow.ShowDialog();
+                            //MessageBox.Show("Send Email Successful!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                             TextMail = "";
                         }
                         else
                         {
                             ProgressBarVisbility = Visibility.Hidden;
-                            MessageBox.Show("Send Email failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageWindow messageWindow = new MessageWindow("Send Email failed!", MessageType.Error, MessageButtons.Ok);
+                            messageWindow.ShowDialog();
+                            //MessageBox.Show("Send Email failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     });
                 }

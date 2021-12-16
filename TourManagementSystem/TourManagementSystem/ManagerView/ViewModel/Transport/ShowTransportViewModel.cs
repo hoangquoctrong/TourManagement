@@ -13,6 +13,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TourManagementSystem.Global.Model;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -159,11 +160,15 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TransportSelected = InsertDataToTransportSelect();
             if (TransportHandleModel.UpdateTransport(TransportSelected, User_ID))
             {
+                MessageWindow messageWindow = new MessageWindow("Update Transport successfully!", MessageType.Success, MessageButtons.Ok);
+                messageWindow.ShowDialog();
                 MessageBox.Show("Update Transport successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageBox.Show("Update Transport failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Update Transport failed! Please try again!", MessageType.Success, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Update Transport failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -242,19 +247,36 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private void ExcuteDeleteCommand(ContentControl p)
         {
-            if (MessageBox.Show("Do you want to delete this transport?",
-                    "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            bool? Result = new MessageWindow("Do you want to delete this transport?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+            if (Result == true)
             {
                 if (TransportHandleModel.DeleteTransport(Transport_ID, User_ID))
                 {
+                    MessageWindow messageWindow = new MessageWindow("Delete Transport successfully!", MessageType.Success, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
                     MessageBox.Show("Delete Transport successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                     p.Content = new TransportViewModel(User_ID, IsVisibility);
                 }
                 else
                 {
+                    MessageWindow messageWindow = new MessageWindow("Delete Transport failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
                     MessageBox.Show("Delete Transport failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
+            //    if (MessageBox.Show("Do you want to delete this transport?",
+            //        "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            //{
+            //    if (TransportHandleModel.DeleteTransport(Transport_ID, User_ID))
+            //    {
+            //        MessageBox.Show("Delete Transport successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+            //        p.Content = new TransportViewModel(User_ID, IsVisibility);
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Delete Transport failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+            //    }
+            //}
         }
 
         private CollectionViewSource TourTransportDetailItemsCollection;

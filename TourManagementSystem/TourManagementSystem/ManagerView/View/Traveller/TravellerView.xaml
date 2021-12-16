@@ -116,7 +116,7 @@
 
                         <Border
                             Grid.Column="0"
-                            Margin="40,5,19.6,4.6"
+                            Margin="16,5,19.6,4.6"
                             Background="#FAFAFA"
                             BorderBrush="Gray"
                             BorderThickness="1"
@@ -172,7 +172,7 @@
                         <Button
                             Grid.Column="2"
                             Width="150"
-                            Margin="360,10,20,9.6"
+                            Margin="435,10,20,9.6"
                             HorizontalAlignment="Right"
                             Command="{Binding AddTravellerCommand}"
                             CommandParameter="{Binding ElementName=contentControlMain}"
@@ -196,6 +196,7 @@
                         CanUserDeleteRows="False"
                         CanUserReorderColumns="False"
                         CanUserSortColumns="True"
+                        FontSize="15"
                         GridLinesVisibility="Vertical"
                         IsReadOnly="True"
                         ItemsSource="{Binding TravellerItems}"

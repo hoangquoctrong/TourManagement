@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TourManagementSystem.Global.Model;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -106,12 +107,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TransportModel transport = InsertTransportModel();
             if (TransportHandleModel.InsertTransport(transport, User_ID))
             {
-                MessageBox.Show("Add Transport successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Transport successfully!", MessageType.Success, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Transport successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 p.Content = new TransportViewModel(User_ID, Visibility.Visible);
             }
             else
             {
-                MessageBox.Show("Add Transport failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Transport failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Transport failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

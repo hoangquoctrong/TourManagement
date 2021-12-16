@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TourManagementSystem.Global.Model;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -209,26 +210,34 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     if (PlaceHandleModel.InsertPlaceDetail(PlaceSelectedList, Tour_Name, User_ID, true))
                     {
-                        MessageBox.Show("Add Tour Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageWindow messageWindow = new MessageWindow("Add Tour Successfully!", MessageType.Success, MessageButtons.Ok);
+                        messageWindow.ShowDialog();
+                        //MessageBox.Show("Add Tour Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                         p.Content = new TourViewModel(User_ID, Visibility.Visible, Visibility.Visible);
                     }
                     else
                     {
-                        MessageBox.Show("Disconect to Server! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageWindow messageWindow = new MessageWindow("Disconected to Server! Please try again!", MessageType.Error, MessageButtons.Ok);
+                        messageWindow.ShowDialog();
+                        //MessageBox.Show("Disconect to Server! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                         ProgressBarVisbility = Visibility.Hidden;
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("Disconect to Server! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageWindow messageWindow = new MessageWindow("Disconected to Server! Please try again!", MessageType.Error, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
+                    //MessageBox.Show("Disconect to Server! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                     ProgressBarVisbility = Visibility.Hidden;
                 }
 
             }
             else
             {
-                MessageBox.Show("Disconect to Server! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Disconected to Server! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Disconect to Server! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }

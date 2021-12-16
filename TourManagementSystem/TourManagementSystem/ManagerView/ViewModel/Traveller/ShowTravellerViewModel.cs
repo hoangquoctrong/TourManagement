@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using TourManagementSystem.Global.Model;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -123,11 +124,15 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TravellerSelected = UpdateTraveller();
             if (TravelGroupHandleModel.UpdateTraveller(TravellerSelected, User_ID, true))
             {
-                MessageBox.Show("Update Traveller successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Update Traveller successfully!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Update Traveller successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageBox.Show("Update Traveller failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Update Traveller failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Update Traveller failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

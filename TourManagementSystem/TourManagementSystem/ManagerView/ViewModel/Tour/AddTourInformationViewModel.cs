@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TourManagementSystem.Global.Model;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -633,7 +634,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
             if (tourinformation_id <= 0)
             {
-                MessageBox.Show("Add Tour Information failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Tour Information failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Tour Information failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -644,7 +647,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageBox.Show("Add Tour Time failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Tour Time failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Tour Time failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -656,7 +661,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageBox.Show("Add Tour Price failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Tour Price failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Tour Price failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -668,7 +675,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageBox.Show("Add Tour Locations failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Tour Locations failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Tour Locations failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -680,7 +689,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageBox.Show("Add Tour Hotel failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Tour Hotel failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Tour Hotel failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -692,7 +703,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageBox.Show("Add Tour Transport failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Tour Transport failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Tour Transport failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -704,7 +717,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageBox.Show("Add Tour Mission failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Tour Mission failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Tour Mission failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -716,20 +731,26 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageBox.Show("Add Tour Schedule failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Tour Schedule failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Tour Schedule failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
 
             if (countSuccess == 7)
             {
-                MessageBox.Show("Add Tour Information Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Tour Information Successfully!", MessageType.Success, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Tour Information Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 p.Content = new ShowTourViewModel(User_ID, Tour_ID, Visibility.Visible, Visibility.Visible);
             }
             else
             {
-                MessageBox.Show("Add Tour Information failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Tour Information failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Tour Information failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }

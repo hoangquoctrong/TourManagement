@@ -48,6 +48,7 @@
     </UserControl.Resources>
     <ContentControl x:Name="contentControlMain">
 
+
         <Border
             BorderBrush="#0f6f68"
             BorderThickness="3"
@@ -85,7 +86,7 @@
                             Grid.Column="0"
                             Width="400"
                             Height="50"
-                            Margin="40,5,40,5"
+                            Margin="5,5,40,5"
                             Background="#FAFAFA"
                             BorderBrush="Gray"
                             BorderThickness="1"
@@ -162,6 +163,7 @@
                         CanUserDeleteRows="False"
                         CanUserReorderColumns="False"
                         CanUserSortColumns="True"
+                        FontSize="15"
                         GridLinesVisibility="Vertical"
                         IsReadOnly="True"
                         ItemsSource="{Binding PlaceItems}"

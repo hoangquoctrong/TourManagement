@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TourManagementSystem.Global.Model;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -203,13 +204,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
             if (TourInformationHandleModel.UpdateTourTime(time, TourInformation_ID, User_ID))
             {
-                MessageBox.Show("Update Tour Time successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Update Tour Time successfully!", MessageType.Success, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Update Tour Time successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 SelectTime = time;
                 ProgressBarVisbility = Visibility.Hidden;
             }
             else
             {
-                MessageBox.Show("Update Tour Time failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Update Tour Time failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Update Tour Time failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }
@@ -361,19 +366,25 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (PlaceHandleModel.InsertLocationDetail(LocationSelectedList, TourInformation_ID, User_ID, false))
                 {
-                    MessageBox.Show("Update Tour Location successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageWindow messageWindow = new MessageWindow("Update Tour Location successfully!", MessageType.Success, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
+                    //MessageBox.Show("Update Tour Location successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                     RefreshLocationSelectedList = PlaceHandleModel.GetLocationFromLocationDetail(TourInformation_ID, PlaceList);
                     ProgressBarVisbility = Visibility.Hidden;
                 }
                 else
                 {
-                    MessageBox.Show("Update Tour Loacation failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageWindow messageWindow = new MessageWindow("Update Tour Location failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
+                    //MessageBox.Show("Update Tour Loacation failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                     ProgressBarVisbility = Visibility.Hidden;
                 }
             }
             else
             {
-                MessageBox.Show("Update failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Update failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Update failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }

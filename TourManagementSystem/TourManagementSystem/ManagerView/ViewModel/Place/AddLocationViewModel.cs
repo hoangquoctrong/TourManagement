@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -58,12 +59,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             LocationModel location = InsertLocationModel();
             if (PlaceHandleModel.InsertLocation(location, User_ID))
             {
-                MessageBox.Show("Add Location successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Location successfully!", MessageType.Success, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Location successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 p.Content = new ShowPlaceViewModel(User_ID, Place_ID, Visibility.Visible);
             }
             else
             {
-                MessageBox.Show("Add Location failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Location failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Location failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

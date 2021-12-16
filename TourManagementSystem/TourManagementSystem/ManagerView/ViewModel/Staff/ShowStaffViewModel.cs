@@ -13,6 +13,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TourManagementSystem.Global.Model;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -294,12 +295,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             StaffSelected = InsertDataToStaffSeleted();
             if (StaffHandleModel.UpdateStaff(StaffSelected, User_ID))
             {
-                MessageBox.Show("Update Staff successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Update Staff successfully!", MessageType.Success, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Update Staff successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
             }
             else
             {
-                MessageBox.Show("Update Staff failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Update Staff failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Update Staff failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }
@@ -343,12 +348,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
                     {
                         if (StaffHandleModel.ChangePassword(Staff_ID, Staff_Password))
                         {
-                            MessageBox.Show("Change Password successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageWindow messageWindow = new MessageWindow("Change Password successfully!", MessageType.Success, MessageButtons.Ok);
+                            messageWindow.ShowDialog();
+                            //MessageBox.Show("Change Password successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                             Staff_Password = "";
                         }
                         else
                         {
-                            MessageBox.Show("Change Password failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageWindow messageWindow = new MessageWindow("Change Password failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                            messageWindow.ShowDialog();
+                            //MessageBox.Show("Change Password failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     });
                 }
@@ -376,21 +385,44 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private async void ExcuteDeleteCommand(ContentControl p)
         {
             await Task.Delay(3000);
-            if (MessageBox.Show("Do you want to delete this staff?",
-                   "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            bool? Result = new MessageWindow("Do you want to delete this staff?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+            if (Result == true)
             {
                 if (StaffHandleModel.DeleteStaff(Staff_ID, Staff_Name, Staff_Note_Remove, User_ID))
                 {
-                    MessageBox.Show("Delete staff successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageWindow messageWindow = new MessageWindow("Delete staff successfully!", MessageType.Success, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
+                    //MessageBox.Show("Delete staff successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                     p.Content = new StaffViewModel(User_ID, IsVisibility);
                     ProgressBarVisbility = Visibility.Hidden;
                 }
                 else
                 {
-                    MessageBox.Show("Delete staff failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageWindow messageWindow = new MessageWindow("Delete staff failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
+                    //MessageBox.Show("Delete staff failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                     ProgressBarVisbility = Visibility.Hidden;
                 }
             }
+            //    if (MessageBox.Show("Do you want to delete this staff?",
+            //       "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            //{
+            //    if (StaffHandleModel.DeleteStaff(Staff_ID, Staff_Name, Staff_Note_Remove, User_ID))
+            //    {
+            //        MessageWindow messageWindow = new MessageWindow("Delete staff successfully!", MessageType.Success, MessageButtons.Ok);
+            //        messageWindow.ShowDialog();
+            //        //MessageBox.Show("Delete staff successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+            //        p.Content = new StaffViewModel(User_ID, IsVisibility);
+            //        ProgressBarVisbility = Visibility.Hidden;
+            //    }
+            //    else
+            //    {
+            //        MessageWindow messageWindow = new MessageWindow("Delete staff failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+            //        messageWindow.ShowDialog();
+            //        //MessageBox.Show("Delete staff failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+            //        ProgressBarVisbility = Visibility.Hidden;
+            //    }
+            //}
         }
 
         private CollectionViewSource TourMissionItemsCollection;

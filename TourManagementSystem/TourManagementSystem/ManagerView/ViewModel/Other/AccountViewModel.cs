@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TourManagementSystem.Global.Model;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -125,12 +126,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
                     {
                         if (StaffHandleModel.ChangePassword(User_ID, Staff_Password))
                         {
-                            MessageBox.Show("Change Password successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                            MessageWindow messageWindow = new MessageWindow("Change Password successfully!", MessageType.Success, MessageButtons.Ok);
+                            messageWindow.ShowDialog();
+                            //MessageBox.Show("Change Password successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                             Staff_Password = "";
                         }
                         else
                         {
-                            MessageBox.Show("Change Password failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageWindow messageWindow = new MessageWindow("Change Password failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                            messageWindow.ShowDialog();
+                            //MessageBox.Show("Change Password failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     });
                 }

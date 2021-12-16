@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TourManagementSystem.Global.Model;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -624,22 +625,42 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private async void ExcuteDeleteCommand(ContentControl p)
         {
-            if (MessageBox.Show("Do you want to delete this tour?",
-                    "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            bool? Result = new MessageWindow("Do you want to delete this tour?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+            if(Result == true)
             {
                 ProgressBarVisbility = Visibility.Visible;
                 await Task.Delay(2000);
                 if (TourHandleModel.DeleteTour(Tour_ID, User_ID))
                 {
-                    MessageBox.Show("Delete Tour Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageWindow messageWindow = new MessageWindow("Delete Tour Successfully!", MessageType.Success, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
+                    //MessageBox.Show("Delete Tour Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                     p.Content = new TourViewModel(User_ID, IsVisibility, IsDirectorVisibility);
                 }
                 else
                 {
-                    MessageBox.Show("Delete Tour Failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageWindow messageWindow = new MessageWindow("Delete Tour Failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
+                    //MessageBox.Show("Delete Tour Failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                     ProgressBarVisbility = Visibility.Hidden;
                 }
             }
+            //if (MessageBox.Show("Do you want to delete this tour?",
+            //        "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            //{
+            //    ProgressBarVisbility = Visibility.Visible;
+            //    await Task.Delay(2000);
+            //    if (TourHandleModel.DeleteTour(Tour_ID, User_ID))
+            //    {
+            //        MessageBox.Show("Delete Tour Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+            //        p.Content = new TourViewModel(User_ID, IsVisibility, IsDirectorVisibility);
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Delete Tour Failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+            //        ProgressBarVisbility = Visibility.Hidden;
+            //    }
+            //}
 
         }
 
@@ -662,17 +683,23 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (PlaceHandleModel.InsertPlaceDetail(PlaceSelectedList, Tour_Name, User_ID, false))
                 {
-                    MessageBox.Show("Update Places For Tour Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageWindow messageWindow = new MessageWindow("Update Places For Tour Successfully!", MessageType.Success, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
+                    //MessageBox.Show("Update Places For Tour Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                     RefreshPlaceSelectedList = PlaceHandleModel.GetPlaceFromPlaceDetail(Tour_ID);
                 }
                 else
                 {
-                    MessageBox.Show("Update Places For Tour failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageWindow messageWindow = new MessageWindow("Update Places For Tour failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
+                    //MessageBox.Show("Update Places For Tour failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             else
             {
-                MessageBox.Show("Update Places For Tour failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Update Places For Tour failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Update Places For Tour failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

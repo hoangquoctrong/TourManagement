@@ -196,6 +196,22 @@ namespace TourManagementSystem.EmployeeView.ViewModel
             }
         }
 
+        // Minimize Button Command
+        private ICommand _MinimizeCommand;
+        public ICommand MinimizeCommand
+        {
+            get
+            {
+                if (_MinimizeCommand == null)
+                {
+                    _MinimizeCommand = new RelayCommand<Window>(p => true, p =>
+                    {
+                        p.WindowState = WindowState.Minimized;
+                    });
+                }
+                return _MinimizeCommand;
+            }
+        }
         // Close App Command
         private ICommand _CloseCommand;
         public ICommand CloseAppCommand
@@ -206,14 +222,17 @@ namespace TourManagementSystem.EmployeeView.ViewModel
                 {
                     _CloseCommand = new RelayCommand<Window>(p => true, p =>
                     {
-                        if (MessageBox.Show("Do you want to log out?",
-                                "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                        bool? Result = new MessageWindow("Do you want to log out?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                        if (Result == true)
                         {
                             LoginWindow wLogin = new LoginWindow();
                             p.Close();
                             wLogin.ShowDialog();
                         }
-                    });
+                    })
+                    {
+
+                    };
                 }
                 return _CloseCommand;
             }

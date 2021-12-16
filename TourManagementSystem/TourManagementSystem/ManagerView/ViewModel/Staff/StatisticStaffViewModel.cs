@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TourManagementSystem.Global.Model;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -201,7 +202,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
                             ExportList.Add(new StaffSatisticExportModel(item.Staff_ID, item.Staff_Name, item.Staff_Tour));
                         }
                         GlobalFunction.ExportPDF(ExportList, HeaderList, "All", "Quan", ref message);
-                        MessageBox.Show(message);
+                        MessageWindow messageWindow = new MessageWindow(message, MessageType.Info, MessageButtons.Ok);
+                        messageWindow.ShowDialog();
+                        //MessageBox.Show(message);
                     });
                 }
                 return _PDFCommand;
@@ -224,7 +227,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
                             ExportList.Add(new StaffSatisticExportModel(item.Staff_ID, item.Staff_Name, item.Staff_Tour));
                         }
                         GlobalFunction.ExportExcel(ExportList, HeaderList, "All", ref message);
-                        MessageBox.Show(message);
+                        MessageWindow messageWindow = new MessageWindow(message, MessageType.Info, MessageButtons.Ok);
+                        messageWindow.ShowDialog();
+                        //MessageBox.Show(message);
                     });
                 }
                 return _ExcelCommand;

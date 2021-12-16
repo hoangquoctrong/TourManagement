@@ -47,7 +47,7 @@
 
         <!--  Header  -->
         <Border
-            Width="1390"
+            Width="1340"
             Height="80"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -181,7 +181,15 @@
         </Grid>
 
         <!--  Close Button  -->
-
+        <Button
+            Width="35"
+            Height="35"
+            Margin="0,10,80,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Command="{Binding MinimizeCommand}"
+            CommandParameter="{Binding ElementName=EmployeeViewWindow}"
+            Style="{StaticResource MiniBtn_Style}" />
         <Button
             Width="50"
             Height="50"

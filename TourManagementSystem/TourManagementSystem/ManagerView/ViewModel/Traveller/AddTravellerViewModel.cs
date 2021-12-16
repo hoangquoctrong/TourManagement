@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -76,12 +77,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TravellerModel traveller = InsertTravellerModel();
             if (TravelGroupHandleModel.InsertTraveller(traveller, User_ID, true))
             {
-                MessageBox.Show("Add Traveller successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Traveller successfully!", MessageType.Success, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Traveller successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 p.Content = new TravellerViewModel(User_ID, Visibility.Visible);
             }
             else
             {
-                MessageBox.Show("Add Traveller failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Add Traveller failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                //MessageBox.Show("Add Traveller failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

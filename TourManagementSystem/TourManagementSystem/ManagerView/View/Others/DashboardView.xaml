@@ -93,7 +93,7 @@
                     Orientation="Horizontal">
 
                     <Border
-                        Margin="40,0"
+                        Margin="5,0"
                         Background="#FAFAFA"
                         BorderBrush="Gray"
                         BorderThickness="1"
