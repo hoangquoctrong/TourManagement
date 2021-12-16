@@ -34,7 +34,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
 using TourManagementSystem.Global.ViewModel;
-using XamlAnimatedGif;
 
 
 namespace TourManagementSystem.Global.View {

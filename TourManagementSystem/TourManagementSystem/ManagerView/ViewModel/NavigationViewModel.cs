@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Forms;
 using System.Windows.Input;
 using TourManagementSystem.Global.Model;
 using TourManagementSystem.Global.View;
@@ -163,14 +164,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     _CloseCommand = new RelayCommand<Window>(p => true, p =>
                     {
-                        if (MessageBox.Show("Do you want to log out?",
-                            "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                        bool? Result = new MessageWindow("Do you want to log out?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                        if (Result == true)
                         {
                             LoginWindow wLogin = new LoginWindow();
                             p.Close();
                             wLogin.ShowDialog();
                         }
-                    });
+                    })
+                    {
+
+                    };
                 }
                 return _CloseCommand;
             }
@@ -187,7 +191,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                     {
                         p.WindowState = WindowState.Minimized;
                     });
-                } 
+                }
                 return _MinimizeCommand;
             }
         }

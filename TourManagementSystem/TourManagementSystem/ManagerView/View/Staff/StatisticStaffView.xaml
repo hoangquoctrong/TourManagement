@@ -197,6 +197,7 @@
                         BorderThickness="10" />
 
                     <DataGrid
+                        x:Name="StatisticDatagrid"
                         Grid.Row="3"
                         Width="600"
                         Height="360"
@@ -232,6 +233,26 @@
                         </DataGrid.Columns>
                     </DataGrid>
 
+                    <StackPanel Grid.Row="4" Orientation="Horizontal">
+                        <Button
+                            Width="150"
+                            Height="40"
+                            Margin="30,0,20,10"
+                            Command="{Binding PDFCommand}"
+                            CommandParameter="{Binding ElementName=StatisticDatagrid}"
+                            Content="PDF Export"
+                            Foreground="#1885F2"
+                            Style="{StaticResource ResourceKey=ConfirmButton}" />
+                        <Button
+                            Width="150"
+                            Height="40"
+                            Margin="30,0,20,10"
+                            Command="{Binding ExcelCommand}"
+                            CommandParameter="{Binding ElementName=StatisticDatagrid}"
+                            Content="Excel Export"
+                            Foreground="#1885F2"
+                            Style="{StaticResource ResourceKey=ConfirmButton}" />
+                    </StackPanel>
                     <!--<StackPanel
                 Grid.Row="4"
                 Margin="400,0"

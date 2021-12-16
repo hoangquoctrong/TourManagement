@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using TourManagementSystem.Global.Model;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
@@ -29,6 +30,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             IsVisibility = visibility;
             LoadRefreshList();
             Checkbox_DisplayAll = true;
+            SetHeaderList();
         }
         private async void LoadRefreshList()
         {
@@ -171,6 +173,61 @@ namespace TourManagementSystem.ManagerView.ViewModel
                     _CancelCommand = new RelayCommand<ContentControl>(null, p => p.Content = new StaffViewModel(User_ID, IsVisibility));
                 }
                 return _CancelCommand;
+            }
+        }
+
+        public List<string> HeaderList { get; set; }
+        private void SetHeaderList()
+        {
+            HeaderList = new List<string>();
+            HeaderList.Add("ID");
+            HeaderList.Add("Name");
+            HeaderList.Add("Number of Tour");
+        }
+
+        private ICommand _PDFCommand;
+        public ICommand PDFCommand
+        {
+            get
+            {
+                if (_PDFCommand == null)
+                {
+                    _PDFCommand = new RelayCommand<DataGrid>(p => p.ItemsSource.Cast<StaffSatisticExportModel>().ToList().Count > 0, p =>
+                    {
+                        string message = "";
+                        List<StaffSatisticExportModel> ExportList = new List<StaffSatisticExportModel>();
+                        foreach (var item in p.ItemsSource.Cast<StaffStatisticModel>().ToList())
+                        {
+                            ExportList.Add(new StaffSatisticExportModel(item.Staff_ID, item.Staff_Name, item.Staff_Tour));
+                        }
+                        GlobalFunction.ExportPDF(ExportList, HeaderList, "All", "Quan", ref message);
+                        MessageBox.Show(message);
+                    });
+                }
+                return _PDFCommand;
+            }
+        }
+
+        private ICommand _ExcelCommand;
+        public ICommand ExcelCommand
+        {
+            get
+            {
+                if (_ExcelCommand == null)
+                {
+                    _ExcelCommand = new RelayCommand<DataGrid>(p => p.ItemsSource.Cast<StaffSatisticExportModel>().ToList().Count > 0, p =>
+                    {
+                        string message = "";
+                        List<StaffSatisticExportModel> ExportList = new List<StaffSatisticExportModel>();
+                        foreach (var item in p.ItemsSource.Cast<StaffStatisticModel>().ToList())
+                        {
+                            ExportList.Add(new StaffSatisticExportModel(item.Staff_ID, item.Staff_Name, item.Staff_Tour));
+                        }
+                        GlobalFunction.ExportExcel(ExportList, HeaderList, "All", ref message);
+                        MessageBox.Show(message);
+                    });
+                }
+                return _ExcelCommand;
             }
         }
     }
