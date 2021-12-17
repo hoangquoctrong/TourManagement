@@ -74,6 +74,23 @@ namespace TourManagementSystem.Global.Model
             }
         }
 
+        public static bool IsValidEmail(string email)
+        {
+            if (email.Trim().EndsWith("."))
+            {
+                return false;
+            }
+            try
+            {
+                var addr = new MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public static async Task<bool> IsSendEmail(string text)
         {
             await Task.Delay(6000);
@@ -181,8 +198,8 @@ namespace TourManagementSystem.Global.Model
 
             if (saveFileDialog.FileName != "")
             {
-                System.IO.FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create, FileAccess.Write, FileShare.None);
-                Document document = new Document(iTextSharp.text.PageSize.A4);
+                FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create, FileAccess.Write, FileShare.None);
+                Document document = new Document(PageSize.A4);
 
                 PdfWriter writer = PdfWriter.GetInstance(document, fs);
                 document.Open();
@@ -258,8 +275,8 @@ namespace TourManagementSystem.Global.Model
                 document.Close();
                 writer.Close();
                 fs.Close();
+                message = "Export data to " + saveFileDialog.FileName + " successful";
             }
-            message = "Export data to " + saveFileDialog.FileName + " successful";
         }
 
         //Lưu datagrid thành excel (title: Title for Header, message: message after doing this code)

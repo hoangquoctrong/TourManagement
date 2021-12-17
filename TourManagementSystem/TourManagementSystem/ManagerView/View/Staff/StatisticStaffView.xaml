@@ -88,7 +88,7 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
@@ -233,23 +233,29 @@
                         </DataGrid.Columns>
                     </DataGrid>
 
-                    <StackPanel Grid.Row="4" Orientation="Horizontal">
+                    <StackPanel
+                        Grid.Row="4"
+                        Margin="0,10,40,0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                        <ComboBox
+                            Width="140"
+                            Margin="10"
+                            HorizontalContentAlignment="Right"
+                            VerticalContentAlignment="Center"
+                            FontSize="18"
+                            Foreground="DimGray"
+                            Text="{Binding SelectedExport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBoxItem Content="Excel" IsSelected="True" />
+                            <ComboBoxItem Content="PDF" IsSelected="False" />
+                        </ComboBox>
                         <Button
-                            Width="150"
-                            Height="40"
+                            Width="200"
+                            Height="60"
                             Margin="30,0,20,10"
-                            Command="{Binding PDFCommand}"
+                            Command="{Binding ExportCommand}"
                             CommandParameter="{Binding ElementName=StatisticDatagrid}"
-                            Content="PDF Export"
-                            Foreground="#1885F2"
-                            Style="{StaticResource ResourceKey=ConfirmButton}" />
-                        <Button
-                            Width="150"
-                            Height="40"
-                            Margin="30,0,20,10"
-                            Command="{Binding ExcelCommand}"
-                            CommandParameter="{Binding ElementName=StatisticDatagrid}"
-                            Content="Excel Export"
+                            Content="Export"
                             Foreground="#1885F2"
                             Style="{StaticResource ResourceKey=ConfirmButton}" />
                     </StackPanel>

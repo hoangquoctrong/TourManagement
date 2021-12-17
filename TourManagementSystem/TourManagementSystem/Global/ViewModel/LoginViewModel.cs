@@ -65,7 +65,8 @@ namespace TourManagementSystem.Global.ViewModel
             {
                 if (StaffHandleModel.IsStaffDelete(User_ID))
                 {
-                    MessageBox.Show("Account have been deleted", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageWindow messageWindow = new MessageWindow("Account have been deleted", MessageType.Info, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
                     ProgressBarVisbility = Visibility.Hidden;
                 }
                 else
@@ -89,7 +90,8 @@ namespace TourManagementSystem.Global.ViewModel
             {
                 if (StaffHandleModel.IsStaffDelete(User_ID))
                 {
-                    MessageBox.Show("Account have been deleted", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageWindow messageWindow = new MessageWindow("Account have been deleted", MessageType.Info, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
                     ProgressBarVisbility = Visibility.Hidden;
                 }
                 else
@@ -110,7 +112,8 @@ namespace TourManagementSystem.Global.ViewModel
             }
             else
             {
-                MessageBox.Show("Username or Password wrong!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Username or Password wrong!", MessageType.Info, MessageButtons.Ok);
+                messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }
 

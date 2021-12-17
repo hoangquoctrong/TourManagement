@@ -6,10 +6,8 @@
     xmlns:local="clr-namespace:TourManagementSystem.ManagerView.View"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewmodel="clr-namespace:TourManagementSystem.ManagerView.ViewModel"
     Width="1190"
     Height="620"
-    d:DataContext="{d:DesignInstance Type=viewmodel:StatisticTourViewModel}"
     mc:Ignorable="d">
     <UserControl.Style>
         <Style>
@@ -53,6 +51,37 @@
             BorderThickness="3"
             CornerRadius="15">
             <Grid>
+
+                <Border
+                    Panel.ZIndex="1000"
+                    BorderThickness="0.5"
+                    CornerRadius="25">
+                    <Grid Visibility="{Binding ProgressBarVisbility}">
+
+                        <Grid.Background>
+                            <SolidColorBrush Opacity=".3" Color="Black" />
+                        </Grid.Background>
+                        <StackPanel
+                            Margin="0,120,0,120"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                            <ProgressBar
+                                Width="80"
+                                Height="80"
+                                Foreground="White"
+                                IsIndeterminate="True"
+                                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                Value="35" />
+                            <TextBlock
+                                Margin="16,0"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                Foreground="White"
+                                Text="Loading..." />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -95,36 +124,7 @@
                             <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
 
-                        <Border
-                            Grid.RowSpan="3"
-                            Panel.ZIndex="1000"
-                            BorderThickness="0.5"
-                            CornerRadius="25">
-                            <Grid Visibility="{Binding ProgressBarVisbility}">
 
-                                <Grid.Background>
-                                    <SolidColorBrush Opacity=".3" Color="Black" />
-                                </Grid.Background>
-                                <StackPanel
-                                    Margin="0,120,0,120"
-                                    HorizontalAlignment="Center"
-                                    Orientation="Horizontal">
-                                    <ProgressBar
-                                        Width="80"
-                                        Height="80"
-                                        Foreground="White"
-                                        IsIndeterminate="True"
-                                        Style="{StaticResource MaterialDesignCircularProgressBar}"
-                                        Value="35" />
-                                    <TextBlock
-                                        Margin="16,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="24"
-                                        Foreground="White"
-                                        Text="Loading..." />
-                                </StackPanel>
-                            </Grid>
-                        </Border>
 
                         <StackPanel
                             Grid.Row="0"
@@ -241,24 +241,27 @@
                         </DataGrid>
                         <StackPanel
                             Grid.Row="2"
-                            Margin="0,10,0,0"
+                            Margin="0,10,40,0"
+                            HorizontalAlignment="Right"
                             Orientation="Horizontal">
+                            <ComboBox
+                                Width="140"
+                                Margin="10"
+                                HorizontalContentAlignment="Right"
+                                VerticalContentAlignment="Center"
+                                FontSize="18"
+                                Foreground="DimGray"
+                                Text="{Binding SelectedExport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <ComboBoxItem Content="Excel" IsSelected="True" />
+                                <ComboBoxItem Content="PDF" IsSelected="False" />
+                            </ComboBox>
                             <Button
-                                Width="150"
-                                Height="40"
+                                Width="200"
+                                Height="60"
                                 Margin="30,0,20,10"
-                                Command="{Binding PDFCommand}"
+                                Command="{Binding ExportCommand}"
                                 CommandParameter="{Binding ElementName=StatisticDatagrid}"
-                                Content="PDF Export"
-                                Foreground="#1885F2"
-                                Style="{StaticResource ResourceKey=ConfirmButton}" />
-                            <Button
-                                Width="150"
-                                Height="40"
-                                Margin="30,0,20,10"
-                                Command="{Binding ExcelCommand}"
-                                CommandParameter="{Binding ElementName=StatisticDatagrid}"
-                                Content="Excel Export"
+                                Content="Export"
                                 Foreground="#1885F2"
                                 Style="{StaticResource ResourceKey=ConfirmButton}" />
                         </StackPanel>

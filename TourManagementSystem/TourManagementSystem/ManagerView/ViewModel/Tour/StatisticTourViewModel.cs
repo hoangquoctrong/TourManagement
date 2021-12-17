@@ -168,6 +168,23 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
         }
 
+        private string _SelectedExport;
+        public string SelectedExport
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_SelectedExport))
+                {
+                    _SelectedExport = "Excel";
+                }
+                return _SelectedExport;
+            }
+            set
+            {
+                _SelectedExport = value;
+                OnPropertyChanged();
+            }
+        }
         public List<string> HeaderList { get; set; }
         private void SetHeaderList()
         {
@@ -179,6 +196,71 @@ namespace TourManagementSystem.ManagerView.ViewModel
             HeaderList.Add("Total Cost");
         }
 
+        private ICommand _ExportCommand;
+        public ICommand ExportCommand
+        {
+            get
+            {
+                _ExportCommand = new RelayCommand<DataGrid>(p => p.ItemsSource.Cast<TourStatisticExportModel>().ToList().Count > 0 && !string.IsNullOrEmpty(SelectedExport), p =>
+                {
+                    switch (SelectedExport)
+                    {
+                        case "Excel":
+                            ExcuteExcelCommand(p);
+                            break;
+                        case "PDF":
+                            ExcutePDFCommand(p);
+                            break;
+                        default:
+                            break;
+                    }
+                });
+                return _ExportCommand;
+            }
+        }
+
+        private void ExcutePDFCommand(DataGrid p)
+        {
+            string message = "";
+            List<TourStatisticExportModel> ExportList = new List<TourStatisticExportModel>();
+            foreach (var item in p.ItemsSource.Cast<TourStatisticModel>().ToList())
+            {
+                ExportList.Add(new TourStatisticExportModel(item.Tour_ID, item.Tour_Name, item.Tour_NumberVisitGroup, item.Tour_NumberVisitTraveller, item.Tour_TotalCost));
+            }
+            GlobalFunction.ExportPDF(ExportList, HeaderList, "Tour Statistic", "ID" + _User_ID, ref message);
+            if (string.IsNullOrEmpty(message))
+            {
+                MessageWindow messageWindow = new MessageWindow("Export Failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+            }
+            else
+            {
+                MessageWindow messageWindow = new MessageWindow(message, MessageType.Info, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+            }
+        }
+
+        private void ExcuteExcelCommand(DataGrid p)
+        {
+            string message = "";
+            List<TourStatisticExportModel> ExportList = new List<TourStatisticExportModel>();
+            foreach (var item in p.ItemsSource.Cast<TourStatisticModel>().ToList())
+            {
+                ExportList.Add(new TourStatisticExportModel(item.Tour_ID, item.Tour_Name, item.Tour_NumberVisitGroup, item.Tour_NumberVisitTraveller, item.Tour_TotalCost));
+            }
+            GlobalFunction.ExportExcel(ExportList, HeaderList, "Tour Statistic", ref message);
+            if (string.IsNullOrEmpty(message))
+            {
+                MessageWindow messageWindow = new MessageWindow("Export Failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+            }
+            else
+            {
+                MessageWindow messageWindow = new MessageWindow(message, MessageType.Info, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+            }
+        }
+
         private ICommand _PDFCommand;
         public ICommand PDFCommand
         {
@@ -188,17 +270,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     _PDFCommand = new RelayCommand<DataGrid>(p => p.ItemsSource.Cast<TourStatisticExportModel>().ToList().Count > 0, p =>
                     {
-                       
-                        string message = "";
-                        List<TourStatisticExportModel> ExportList = new List<TourStatisticExportModel>();
-                        foreach (var item in p.ItemsSource.Cast<TourStatisticModel>().ToList())
-                        {
-                            ExportList.Add(new TourStatisticExportModel(item.Tour_ID, item.Tour_Name, item.Tour_NumberVisitGroup,item.Tour_NumberVisitTraveller,item.Tour_TotalCost));
-                        }
-                        GlobalFunction.ExportPDF(ExportList, HeaderList, "Tour Statistic", "ID"+ _User_ID, ref message);
-                        MessageWindow messageWindow = new MessageWindow(message, MessageType.Info, MessageButtons.Ok);
-                        messageWindow.ShowDialog();
-                        //MessageBox.Show(message);
+                        ExcutePDFCommand(p);
                     });
                 }
                 return _PDFCommand;
@@ -214,16 +286,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     _ExcelCommand = new RelayCommand<DataGrid>(p => p.ItemsSource.Cast<TourStatisticExportModel>().ToList().Count > 0, p =>
                     {
-                        string message = "";
-                        List<TourStatisticExportModel> ExportList = new List<TourStatisticExportModel>();
-                        foreach (var item in p.ItemsSource.Cast<TourStatisticModel>().ToList())
-                        {
-                            ExportList.Add(new TourStatisticExportModel(item.Tour_ID, item.Tour_Name, item.Tour_NumberVisitGroup, item.Tour_NumberVisitTraveller, item.Tour_TotalCost));
-                        }
-                        GlobalFunction.ExportExcel(ExportList, HeaderList, "Tour Statistic", ref message);
-                        MessageWindow messageWindow = new MessageWindow(message, MessageType.Info, MessageButtons.Ok);
-                        messageWindow.ShowDialog();
-                        //MessageBox.Show(message);
+                        ExcuteExcelCommand(p);
                     });
                 }
                 return _ExcelCommand;

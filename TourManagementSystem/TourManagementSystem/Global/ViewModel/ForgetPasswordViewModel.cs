@@ -46,7 +46,14 @@ namespace TourManagementSystem.Global.ViewModel
             {
                 if (_CloseCommand == null)
                 {
-                    _CloseCommand = new RelayCommand<Window>(null, p => p.Close());
+                    _CloseCommand = new RelayCommand<Window>(null, p =>
+                    {
+                        bool? Result = new MessageWindow("Do you want to close?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+                        if (Result == true)
+                        {
+                            p.Close();
+                        }
+                    });
                 }
                 return _CloseCommand;
             }
@@ -77,7 +84,7 @@ namespace TourManagementSystem.Global.ViewModel
             {
                 if (_SendEmailCommand == null)
                 {
-                    _SendEmailCommand = new RelayCommand<object>(null, p =>
+                    _SendEmailCommand = new RelayCommand<object>(p => GlobalFunction.IsValidEmail(UserEmail), p =>
                     {
                         ProgressBarVisbility = Visibility.Visible;
                         ExcuteSendEmail();
@@ -93,12 +100,14 @@ namespace TourManagementSystem.Global.ViewModel
 
             if (ForgetPasswordHandleModel.IsSendEmail(UserEmail, ValidateNumber))
             {
-                MessageBox.Show("Send email successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Send email successfully!", MessageType.Info, MessageButtons.Ok);
+                messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }
             else
             {
-                MessageBox.Show("Send email failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Send email failed! Please try again!", MessageType.Info, MessageButtons.Ok);
+                messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }
@@ -128,7 +137,8 @@ namespace TourManagementSystem.Global.ViewModel
 
             if (StaffHandleModel.IsStaffDelete(User_ID))
             {
-                MessageBox.Show("Account have been deleted", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Account have been deleted", MessageType.Info, MessageButtons.Ok);
+                messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -151,7 +161,8 @@ namespace TourManagementSystem.Global.ViewModel
             }
             else
             {
-                MessageBox.Show("Username wrong!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageWindow messageWindow = new MessageWindow("Username wrong!", MessageType.Info, MessageButtons.Ok);
+                messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }
