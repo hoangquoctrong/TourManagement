@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using TourManagementSystem.EmployeeView.View;
 using TourManagementSystem.Global.Model;
@@ -18,19 +14,25 @@ namespace TourManagementSystem.Global.ViewModel
     public class ForgetPasswordViewModel : BaseViewModel
     {
         private string _Username;
-        public string Username { get => _Username; set { _Username = value; OnPropertyChanged("Username"); } }
+        public string Username
+        { get => _Username; set { _Username = value; OnPropertyChanged("Username"); } }
 
         private string _UserEmail;
-        public string UserEmail { get => _UserEmail; set { _UserEmail = value; OnPropertyChanged("Username"); } }
+        public string UserEmail
+        { get => _UserEmail; set { _UserEmail = value; OnPropertyChanged("Username"); } }
 
         private int _NumberConfirm;
-        public int NumberConfirm { get => _NumberConfirm; set { _NumberConfirm = value; OnPropertyChanged(); } }
+        public int NumberConfirm
+        { get => _NumberConfirm; set { _NumberConfirm = value; OnPropertyChanged(); } }
 
         private int _ValidateNumber;
-        public int ValidateNumber { get => _ValidateNumber; set { _ValidateNumber = value; OnPropertyChanged(); } }
+        public int ValidateNumber
+        { get => _ValidateNumber; set { _ValidateNumber = value; OnPropertyChanged(); } }
 
         private Visibility _ProgressBarVisbility;
-        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+        public Visibility ProgressBarVisbility
+        { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
         public ForgetPasswordViewModel()
         {
             ProgressBarVisbility = Visibility.Hidden;
@@ -40,6 +42,7 @@ namespace TourManagementSystem.Global.ViewModel
         }
 
         private ICommand _CloseCommand;
+
         public ICommand CloseCommand
         {
             get
@@ -60,6 +63,7 @@ namespace TourManagementSystem.Global.ViewModel
         }
 
         private ICommand _LoginCommand;
+
         public ICommand LoginCommand
         {
             get
@@ -78,6 +82,7 @@ namespace TourManagementSystem.Global.ViewModel
         }
 
         private ICommand _SendEmailCommand;
+
         public ICommand SendEmailCommand
         {
             get
@@ -94,7 +99,6 @@ namespace TourManagementSystem.Global.ViewModel
                         {
                             return false;
                         }
-
                     }, p =>
                    {
                        ProgressBarVisbility = Visibility.Visible;
@@ -124,6 +128,7 @@ namespace TourManagementSystem.Global.ViewModel
         }
 
         private ICommand _ConfirmCommand;
+
         public ICommand ConfirmCommand
         {
             get
