@@ -12,32 +12,90 @@
     <StackPanel Margin="20">
 
         <Border
-            Width="1060"
+            Width="520"
             Height="auto"
-            Margin="0,16"
+            Margin="20"
             Padding="10"
-            HorizontalAlignment="Center">
+            BorderBrush="Black"
+            BorderThickness="1">
 
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock
-                    Grid.Row="0"
-                    Margin="24,10"
-                    FontSize="24"
-                    FontWeight="SemiBold"
-                    Text="{Binding TextContent}" />
+                <StackPanel Margin="32,8,0,4" Orientation="Horizontal">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Foreground="DimGray"
+                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                        Text="Staff ID : " />
+                    <TextBlock
+                        Margin="16,0,0,0"
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Foreground="DimGray"
+                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                        Text="{Binding Staff_ID}" />
+                </StackPanel>
 
-                <TextBlock
+                <StackPanel
                     Grid.Row="1"
-                    Margin="24,10"
-                    FontSize="24"
-                    FontWeight="SemiBold"
-                    Text="aa"
+                    Margin="32,4,0,4"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Foreground="DimGray"
+                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                        Text="Staff Name : " />
+                    <TextBlock
+                        Margin="16,0,0,0"
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Foreground="DimGray"
+                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                        Text="{Binding Staff_Name}" />
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Row="2"
+                    Margin="32,4,0,4"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Foreground="DimGray"
+                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                        Text="Date Change : " />
+                    <TextBlock
+                        Margin="16,0,0,0"
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Foreground="DimGray"
+                        Style="{StaticResource MaterialDesignButtonTextBlock}"
+                        Text="{Binding Record_Date_String}" />
+                </StackPanel>
+
+                <TextBox
+                    Grid.Row="3"
+                    Width="440"
+                    Height="auto"
+                    Margin="16,4,16,4"
+                    HorizontalAlignment="Left"
+                    materialDesign:HintAssist.Hint="Content"
+                    AcceptsReturn="True"
+                    FontSize="18"
+                    Foreground="Black"
+                    IsEnabled="False"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    Text="{Binding Record_Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     TextWrapping="Wrap" />
+
             </Grid>
         </Border>
     </StackPanel>

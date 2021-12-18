@@ -209,7 +209,7 @@
                                             <RowDefinition Height="auto" />
                                         </Grid.RowDefinitions>
 
-                                        <StackPanel Margin="32,16,0,8" Orientation="Horizontal">
+                                        <StackPanel Margin="32,8,0,4" Orientation="Horizontal">
                                             <TextBlock
                                                 VerticalAlignment="Center"
                                                 FontSize="18"
@@ -227,7 +227,7 @@
 
                                         <StackPanel
                                             Grid.Row="1"
-                                            Margin="32,16,0,8"
+                                            Margin="32,4,0,4"
                                             Orientation="Horizontal">
                                             <TextBlock
                                                 VerticalAlignment="Center"
@@ -246,7 +246,7 @@
 
                                         <StackPanel
                                             Grid.Row="2"
-                                            Margin="32,16,0,8"
+                                            Margin="32,4,0,4"
                                             Orientation="Horizontal">
                                             <TextBlock
                                                 VerticalAlignment="Center"
@@ -267,7 +267,7 @@
                                             Grid.Row="3"
                                             Width="440"
                                             Height="auto"
-                                            Margin="16,16,16,8"
+                                            Margin="16,4,16,4"
                                             HorizontalAlignment="Left"
                                             materialDesign:HintAssist.Hint="Content"
                                             AcceptsReturn="True"

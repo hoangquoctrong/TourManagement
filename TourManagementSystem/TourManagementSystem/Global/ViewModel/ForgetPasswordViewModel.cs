@@ -84,11 +84,22 @@ namespace TourManagementSystem.Global.ViewModel
             {
                 if (_SendEmailCommand == null)
                 {
-                    _SendEmailCommand = new RelayCommand<object>(p => GlobalFunction.IsValidEmail(UserEmail), p =>
+                    _SendEmailCommand = new RelayCommand<object>(p =>
                     {
-                        ProgressBarVisbility = Visibility.Visible;
-                        ExcuteSendEmail();
-                    });
+                        if (!string.IsNullOrEmpty(UserEmail))
+                        {
+                            return GlobalFunction.IsValidEmail(UserEmail);
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                    }, p =>
+                   {
+                       ProgressBarVisbility = Visibility.Visible;
+                       ExcuteSendEmail();
+                   });
                 }
                 return _SendEmailCommand;
             }

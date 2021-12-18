@@ -45,7 +45,7 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <ContentControl x:Name="contentControlMain" Height="660">
+    <ContentControl x:Name="contentControlMain">
         <Border
             BorderBrush="#0f6f68"
             BorderThickness="3"
