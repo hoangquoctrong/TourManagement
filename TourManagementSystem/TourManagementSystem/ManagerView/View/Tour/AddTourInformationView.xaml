@@ -488,37 +488,19 @@
                                 </TabItem.Header>
 
                                 <TabControl
-                                    Margin="0,0,10,0"
+                                    Margin="10,0,10,0"
                                     materialDesign:ColorZoneAssist.Mode="Standard"
                                     materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                     Background="Transparent"
                                     Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
-                                    TabStripPlacement="Top">
+                                    TabStripPlacement="Left">
                                     <TabItem
-                                        Width="290"
+                                        Width="60"
                                         Background="Transparent"
                                         Style="{StaticResource MaterialDesignNavigationRailTabItem}"
-                                        TabIndex="2">
+                                        TabIndex="0">
                                         <TabItem.Header>
-                                            <StackPanel
-                                                Width="240"
-                                                Height="50"
-                                                HorizontalAlignment="Center"
-                                                Orientation="Horizontal">
-                                                <materialDesign:PackIcon
-                                                    Width="30"
-                                                    Height="30"
-                                                    Margin="20,0"
-                                                    VerticalAlignment="Center"
-                                                    Kind="Hotel" />
-                                                <TextBlock
-                                                    Margin="20,0,20,8.6"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Bottom"
-                                                    FontSize="24"
-                                                    Foreground="Black"
-                                                    Text="Hotel" />
-                                            </StackPanel>
+                                            <TextBlock FontSize="18" Text="Hotel" />
                                         </TabItem.Header>
 
                                         <Grid>
@@ -707,30 +689,12 @@
                                     </TabItem>
 
                                     <TabItem
-                                        Width="290"
+                                        Width="60"
                                         Background="Transparent"
                                         Style="{StaticResource MaterialDesignNavigationRailTabItem}"
-                                        TabIndex="2">
+                                        TabIndex="1">
                                         <TabItem.Header>
-                                            <StackPanel
-                                                Width="240"
-                                                Height="50"
-                                                HorizontalAlignment="Center"
-                                                Orientation="Horizontal">
-                                                <materialDesign:PackIcon
-                                                    Width="30"
-                                                    Height="30"
-                                                    Margin="20,0"
-                                                    VerticalAlignment="Center"
-                                                    Kind="Transportation" />
-                                                <TextBlock
-                                                    Margin="20,0,20,8.6"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Bottom"
-                                                    FontSize="24"
-                                                    Foreground="Black"
-                                                    Text="Transport" />
-                                            </StackPanel>
+                                            <TextBlock FontSize="18" Text="Transport" />
                                         </TabItem.Header>
 
                                         <Grid>
@@ -912,30 +876,12 @@
                                     </TabItem>
 
                                     <TabItem
-                                        Width="290"
+                                        Width="60"
                                         Background="Transparent"
                                         Style="{StaticResource MaterialDesignNavigationRailTabItem}"
                                         TabIndex="2">
                                         <TabItem.Header>
-                                            <StackPanel
-                                                Width="240"
-                                                Height="50"
-                                                HorizontalAlignment="Center"
-                                                Orientation="Horizontal">
-                                                <materialDesign:PackIcon
-                                                    Width="30"
-                                                    Height="30"
-                                                    Margin="20,0"
-                                                    VerticalAlignment="Center"
-                                                    Kind="People" />
-                                                <TextBlock
-                                                    Margin="20,0,20,8.6"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Bottom"
-                                                    FontSize="24"
-                                                    Foreground="Black"
-                                                    Text="Mission" />
-                                            </StackPanel>
+                                            <TextBlock FontSize="18" Text="Mission" />
                                         </TabItem.Header>
                                         <Grid>
                                             <Grid.RowDefinitions>
@@ -1111,30 +1057,12 @@
                                     </TabItem>
 
                                     <TabItem
-                                        Width="290"
+                                        Width="60"
                                         Background="Transparent"
                                         Style="{StaticResource MaterialDesignNavigationRailTabItem}"
-                                        TabIndex="2">
+                                        TabIndex="3">
                                         <TabItem.Header>
-                                            <StackPanel
-                                                Width="240"
-                                                Height="50"
-                                                HorizontalAlignment="Center"
-                                                Orientation="Horizontal">
-                                                <materialDesign:PackIcon
-                                                    Width="30"
-                                                    Height="30"
-                                                    Margin="20,0"
-                                                    VerticalAlignment="Center"
-                                                    Kind="Money100" />
-                                                <TextBlock
-                                                    Margin="20,0,20,8.6"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Bottom"
-                                                    FontSize="24"
-                                                    Foreground="Black"
-                                                    Text="Total" />
-                                            </StackPanel>
+                                            <TextBlock FontSize="18" Text="Total" />
                                         </TabItem.Header>
 
                                         <Grid>

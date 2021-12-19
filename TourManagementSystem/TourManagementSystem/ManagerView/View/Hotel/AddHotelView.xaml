@@ -86,7 +86,8 @@
                                         <TextBox
                                             Width="260"
                                             Margin="8,0,0,0"
-                                            materialDesign:HintAssist.HelperText="Hotel Name."
+                                            materialDesign:HintAssist.HelperText="Hotel Name *"
+                                            materialDesign:HintAssist.HelperTextFontSize="16"
                                             materialDesign:HintAssist.Hint="Name"
                                             FontSize="18">
                                             <TextBox.Text>
@@ -156,7 +157,6 @@
 
                                 <TextBox
                                     Width="760"
-                                    Margin="10,0,0,0"
                                     materialDesign:HintAssist.HelperText="Include Apartment Number, Street Name, Ward Name, City Name, Provide Name"
                                     materialDesign:HintAssist.HelperTextFontSize="16"
                                     materialDesign:HintAssist.Hint="Address"
