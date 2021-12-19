@@ -199,11 +199,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             ObservableCollection<TourInformationModel> InformationList = TourInformationHandleModel.GetTourInformationList(tour_id);
 
-            foreach (var item in InformationList)
-            {
-                item.INFORMATION_ENABLE = TourInformationHandleModel.IsEditableInformation(item);
-            }
-
             return InformationList;
         }
 
@@ -626,7 +621,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private async void ExcuteDeleteCommand(ContentControl p)
         {
             bool? Result = new MessageWindow("Do you want to delete this tour?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
-            if(Result == true)
+            if (Result == true)
             {
                 ProgressBarVisbility = Visibility.Visible;
                 await Task.Delay(2000);
@@ -819,7 +814,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     _ShowDetailTourInformationCommand = new RelayCommand<ContentControl>(p => TourInformationSelected != null, p =>
                     {
-                        bool IsEnable = Is_Exist && TourInformationHandleModel.IsEditableInformation(TourInformationSelected);
+                        bool IsEnable = Is_Exist && TourInformationSelected.INFORMATION_ENABLE;
                         p.Content = new ShowTourInformationViewModel(User_ID, Tour_ID, TourInformationSelected, PlaceSelectedList, IsEnable, IsVisibility, IsDirectorVisibility);
                     });
                 }

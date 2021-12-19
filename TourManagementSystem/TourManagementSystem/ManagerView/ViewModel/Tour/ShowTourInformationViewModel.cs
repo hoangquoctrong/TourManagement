@@ -52,7 +52,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             Tour_ID = tour_id;
             PlaceList = places;
             IsVisibility = visibility;
-            IsEnable = isenable && IsVisibility == Visibility.Visible;
+            IsEnable = isenable;
             IsDirectorVisibility = directorVisibility;
 
             ProgressBarVisbility = Visibility.Visible;
@@ -240,7 +240,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             int total_date = Math.Max(Time_Day, Time_Night);
             int department_int = (Time_End - Time_Department).Days;
-            return department_int >= total_date;
+            return department_int == total_date;
         }
         #endregion Command
         #endregion Time

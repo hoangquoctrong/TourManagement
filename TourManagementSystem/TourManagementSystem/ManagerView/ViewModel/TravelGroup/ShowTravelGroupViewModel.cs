@@ -112,7 +112,19 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public double TotalServicePrice { get => _TotalServicePrice; set { _TotalServicePrice = value; OnPropertyChanged(); } }
 
         private double _TotalAnotherPrice;
-        public double TotalAnotherPrice { get => _TotalAnotherPrice; set { _TotalAnotherPrice = value; OnPropertyChanged(); SetPriceBaseOnCustomer(TravellerCount); } }
+        public double TotalAnotherPrice
+        {
+            get => _TotalAnotherPrice;
+            set
+            {
+                _TotalAnotherPrice = value;
+                OnPropertyChanged();
+                if (TravellerCount != 0)
+                {
+                    SetPriceBaseOnCustomer(TravellerCount);
+                }
+            }
+        }
 
         private double _TotalPrice;
         public double TotalPrice { get => _TotalPrice; set { _TotalPrice = value; OnPropertyChanged(); } }

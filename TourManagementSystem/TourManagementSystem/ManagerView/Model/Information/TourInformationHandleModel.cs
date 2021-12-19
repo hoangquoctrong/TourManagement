@@ -143,7 +143,7 @@ namespace TourManagementSystem.ManagerView.Model
                     TIME_STRING = string.Format("{0} day(s) {1} night(s)", (int)time.TOUR_TIME_DAY, (int)time.TOUR_TIME_NIGHT)
                 };
 
-                if (informationModel.INFORMATION_TIME.TIME_END_TIME < DateTime.Now)
+                if (GetTravelGroupCount(informationModel.INFORMATION_ID) > 0)
                 {
                     informationModel.INFORMATION_ENABLE = false;
                     informationModel.INFORMATION_STATUS = "Overdue";
@@ -644,7 +644,7 @@ namespace TourManagementSystem.ManagerView.Model
 
         public static bool IsEditableInformation(TourInformationModel information)
         {
-            if (information.INFORMATION_TIME.TIME_DEPARTMENT_TIME > DateTime.Now)
+            if (GetTravelGroupCount(information.INFORMATION_ID) > 0)
             {
                 return true;
             }
@@ -652,6 +652,15 @@ namespace TourManagementSystem.ManagerView.Model
             {
                 return false;
             }
+        }
+
+        public static int GetTravelGroupCount(int tour_information_id)
+        {
+            var travelgrouplist = from travelgroup in DataProvider.Ins.DB.TRAVEL_GROUP
+                                  where travelgroup.TOUR_INFORMATION_ID == tour_information_id
+                                  select travelgroup;
+
+            return travelgrouplist.Count();
         }
 
         public static ObservableCollection<TourModel> GetTourListHaveInformation()
