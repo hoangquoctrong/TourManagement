@@ -204,17 +204,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
             if (TourInformationHandleModel.UpdateTourTime(time, TourInformation_ID, User_ID))
             {
-                MessageWindow messageWindow = new MessageWindow("Update Tour Time successfully!", MessageType.Success, MessageButtons.Ok);
+                string messageDisplay = string.Format("Update Tour Time Successfully!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Update Tour Time successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 SelectTime = time;
                 ProgressBarVisbility = Visibility.Hidden;
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Update Tour Time failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Update Tour Time Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Update Tour Time failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }
@@ -238,7 +238,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 return false;
             }
-            int total_date = Math.Max(Time_Day, Time_Night);
+            int total_date = Math.Min(Time_Day, Time_Night);
             int department_int = (Time_End - Time_Department).Days;
             return department_int == total_date;
         }
@@ -366,25 +366,25 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (PlaceHandleModel.InsertLocationDetail(LocationSelectedList, TourInformation_ID, User_ID, false))
                 {
-                    MessageWindow messageWindow = new MessageWindow("Update Tour Location successfully!", MessageType.Success, MessageButtons.Ok);
+                    string messageDisplay = string.Format("Update Tour Location Successfully!");
+                    MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
                     messageWindow.ShowDialog();
-                    //MessageBox.Show("Update Tour Location successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                     RefreshLocationSelectedList = PlaceHandleModel.GetLocationFromLocationDetail(TourInformation_ID, PlaceList);
                     ProgressBarVisbility = Visibility.Hidden;
                 }
                 else
                 {
-                    MessageWindow messageWindow = new MessageWindow("Update Tour Location failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                    string messageDisplay = string.Format("Update Tour Location Failed! Please try again!");
+                    MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                     messageWindow.ShowDialog();
-                    //MessageBox.Show("Update Tour Loacation failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                     ProgressBarVisbility = Visibility.Hidden;
                 }
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Update failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Update Tour Location Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Update failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }
@@ -512,20 +512,26 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (TourInformationHandleModel.InsertTourScheduleList(ScheduleList, TourInformation_ID, User_ID, false))
                 {
-                    MessageBox.Show("Update Tour Schedule successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    string messageDisplay = string.Format("Update Tour Schedule Successfully!");
+                    MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
                     ScheduleNotify = string.Format("Schedule hasn't updated yet!");
                     RefreshScheduleList = new BindableCollection<TourScheduleModel>(TourInformationHandleModel.GetTourScheduleList(TourInformation_ID));
                     ProgressBarVisbility = Visibility.Hidden;
                 }
                 else
                 {
-                    MessageBox.Show("Update Tour Schedule failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    string messageDisplay = string.Format("Update Tour Schedule Failed! Please try again!");
+                    MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
                     ProgressBarVisbility = Visibility.Hidden;
                 }
             }
             else
             {
-                MessageBox.Show("Update Tour Schedule failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                string messageDisplay = string.Format("Update Tour Schedule Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }
@@ -718,51 +724,55 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     if (TourInformationHandleModel.UpdateTourPrice(GetPriceModel(), TourInformation_ID, User_ID))
                     {
-                        MessageBox.Show("Update Tour Hotel Detail successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        string messageDisplay = string.Format("Update Tour Hotel Detail Successfully!");
+                        MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
+                        messageWindow.ShowDialog();
                         RefreshHotelSelectedList = HotelHandleModel.GetHotelFromTourInformation(TourInformation_ID);
                         HotelPriceNotify = string.Format("Hotel Price haven't updated yet!");
                         ProgressBarVisbility = Visibility.Hidden;
                     }
                     else
                     {
-                        MessageBox.Show("Update Price failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        string messageDisplay = string.Format("Update Price Failed! Please try again!");
+                        MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                        messageWindow.ShowDialog();
                         ProgressBarVisbility = Visibility.Hidden;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Update Tour Hotel Detail failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    string messageDisplay = string.Format("Update Tour Hotel Detail Failed! Please try again!");
+                    MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
                     ProgressBarVisbility = Visibility.Hidden;
                 }
             }
             else
             {
-                MessageBox.Show("Delete failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                string messageDisplay = string.Format("There are something wrong when update. Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
             }
         }
 
         private bool IsExcuteSaveHotelCommand()
         {
-            return !HotelPriceNotify.Equals("Hotel Price haven't updated yet!");
-            /*if (RefreshHotelSelectedList.Count != HotelSelectedList.Count)
+            int countValid = 0;
+            foreach(var item in HotelSelectedList)
+            {
+                if(item.HOTEL_DAY > 0)
+                {
+                    countValid++;
+                }
+            }
+            if(countValid == HotelSelectedList.Count && !HotelPriceNotify.Equals("Hotel Price haven't updated yet!"))
             {
                 return true;
             }
-
-            int count_equal = 0;
-            foreach (HotelModel item in HotelSelectedList)
+            else
             {
-                foreach (HotelModel item_before in RefreshHotelSelectedList)
-                {
-                    if (item.HOTEL_ID == item_before.HOTEL_ID)
-                    {
-                        count_equal++;
-                        break;
-                    }
-                }
+                return false;
             }
-
-            return count_equal != RefreshHotelSelectedList.Count;*/
         }
         #endregion Command
 
@@ -940,52 +950,56 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     if (TourInformationHandleModel.UpdateTourPrice(GetPriceModel(), TourInformation_ID, User_ID))
                     {
-                        MessageBox.Show("Update Tour Transport Detail successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        string messageDisplay = string.Format("Update Tour Transport Detail Successfully!");
+                        MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
+                        messageWindow.ShowDialog();
                         RefreshTransportSelectedList = TransportHandleModel.GetTransportFromTourInformation(TourInformation_ID);
                         TransportPriceNotify = string.Format("Transport Price haven't updated yet!");
                         ProgressBarVisbility = Visibility.Hidden;
                     }
                     else
                     {
-                        MessageBox.Show("Update Tour Price failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                        string messageDisplay = string.Format("Update Tour Price Failed! Please try again!");
+                        MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                        messageWindow.ShowDialog();
                         ProgressBarVisbility = Visibility.Hidden;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Update Tour Transport Detail failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    string messageDisplay = string.Format("Update Tour Transport Detail Failed! Please try again!");
+                    MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
                     ProgressBarVisbility = Visibility.Hidden;
                 }
             }
             else
             {
-                MessageBox.Show("There are something wrong when update. Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                string messageDisplay = string.Format("There are something wrong when update. Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }
 
         private bool IsExcuteSaveTransportCommand()
         {
-            return !TransportPriceNotify.Equals("Transport Price haven't updated yet!");
-            /*if (RefreshTransportSelectedList.Count != TransportSelectedList.Count)
+            int countValid = 0;
+            foreach (var item in TransportSelectedList)
+            {
+                if (item.TRANSPORT_AMOUNT > 0)
+                {
+                    countValid++;
+                }
+            }
+            if (countValid == TransportSelectedList.Count && !TransportPriceNotify.Equals("Transport Price haven't updated yet!"))
             {
                 return true;
             }
-
-            int count_equal = 0;
-            foreach (TransportModel item in TransportSelectedList)
+            else
             {
-                foreach (TransportModel item_before in RefreshTransportSelectedList)
-                {
-                    if (item.TRANSPORT_ID == item_before.TRANSPORT_ID)
-                    {
-                        count_equal++;
-                        break;
-                    }
-                }
-            }
-
-            return count_equal != RefreshTransportSelectedList.Count;*/
+                return false;
+            }            
         }
         #endregion Command
 
@@ -1138,7 +1152,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (TourInformationHandleModel.UpdateTourPrice(GetPriceModel(), TourInformation_ID, User_ID))
                 {
-                    MessageBox.Show("Update Tour Mission successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    string messageDisplay = string.Format("Update Tour Mission Successfully!");
+                    MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
                     MissionPriceNotify = string.Format("Mission Price haven't updated yet!");
                     RefreshMissionList = MissionHandleModel.GetMissionFromTourInformation(TourInformation_ID);
                     MissionBeforeSave = MissionList.Count;
@@ -1146,13 +1162,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 }
                 else
                 {
-                    MessageBox.Show("Update Tour Price failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    string messageDisplay = string.Format("Update Tour Price Failed!");
+                    MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
                     ProgressBarVisbility = Visibility.Hidden;
                 }
             }
             else
             {
-                MessageBox.Show("Update Tour Mission failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                string messageDisplay = string.Format("Update Tour Mission Failed!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }
 

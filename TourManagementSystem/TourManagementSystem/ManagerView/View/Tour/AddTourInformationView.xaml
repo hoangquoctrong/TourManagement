@@ -495,7 +495,7 @@
                                     Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
                                     TabStripPlacement="Left">
                                     <TabItem
-                                        Width="60"
+                                        Margin="4 16"
                                         Background="Transparent"
                                         Style="{StaticResource MaterialDesignNavigationRailTabItem}"
                                         TabIndex="0">
@@ -689,7 +689,8 @@
                                     </TabItem>
 
                                     <TabItem
-                                        Width="60"
+                                        Width="80"
+                                        Margin="4 16"
                                         Background="Transparent"
                                         Style="{StaticResource MaterialDesignNavigationRailTabItem}"
                                         TabIndex="1">
@@ -876,7 +877,7 @@
                                     </TabItem>
 
                                     <TabItem
-                                        Width="60"
+                                        Margin="4 16"
                                         Background="Transparent"
                                         Style="{StaticResource MaterialDesignNavigationRailTabItem}"
                                         TabIndex="2">
@@ -1057,7 +1058,7 @@
                                     </TabItem>
 
                                     <TabItem
-                                        Width="60"
+                                        Margin="4 16"
                                         Background="Transparent"
                                         Style="{StaticResource MaterialDesignNavigationRailTabItem}"
                                         TabIndex="3">
@@ -1082,8 +1083,7 @@
                                                     Style="{StaticResource MaterialDesignButtonTextBlock}"
                                                     Text="Hotel List" />
                                                 <DataGrid
-                                                    Grid.Row="1"
-                                                    Width="1080"
+                                                    Width="900"
                                                     Height="auto"
                                                     VerticalAlignment="Top"
                                                     materialDesign:DataGridAssist.CellPadding="12 8 0 8"
@@ -1168,7 +1168,7 @@
 
                                                 <DataGrid
                                                     Grid.Row="1"
-                                                    Width="1080"
+                                                    Width="900"
                                                     Height="auto"
                                                     VerticalAlignment="Top"
                                                     materialDesign:DataGridAssist.CellPadding="12 8 0 8"
@@ -1239,7 +1239,7 @@
 
                                                 <DataGrid
                                                     Grid.Row="1"
-                                                    Width="1080"
+                                                    Width="900"
                                                     Height="auto"
                                                     VerticalAlignment="Top"
                                                     materialDesign:DataGridAssist.CellPadding="12 8 0 8"
@@ -1458,7 +1458,7 @@
                         <Button
                             Width="200"
                             Height="60"
-                            Margin="340,16,20,2"
+                            Margin="340,16,20,12"
                             Command="{Binding AddTourInformationCommand}"
                             CommandParameter="{Binding ElementName=contentControlAdd}"
                             Content="Confirm"

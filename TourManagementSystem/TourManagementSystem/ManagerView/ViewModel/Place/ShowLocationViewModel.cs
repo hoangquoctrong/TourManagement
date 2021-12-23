@@ -107,15 +107,15 @@ namespace TourManagementSystem.ManagerView.ViewModel
             LocationSelected = InsertDataToLocationSelected();
             if (PlaceHandleModel.UpdateLocation(LocationSelected, User_ID))
             {
-                MessageWindow messageWindow = new MessageWindow("Update Location successfully!", MessageType.Success, MessageButtons.Ok);
+                string messageDisplay = string.Format("Update Location Successfully!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Update Location successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Place Successfully!", MessageType.Error, MessageButtons.Ok);
-                messageWindow.ShowDialog();
-                //MessageBox.Show("Update Location failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                string messageDisplay = string.Format("Update Location Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();               
             }
         }
 

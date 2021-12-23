@@ -57,28 +57,24 @@
                     Message Title
                 </TextBlock>
             </Border>
-            <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                <Grid Margin="20">
+            <Grid Grid.Row="1">
+                <Grid Margin="20 20 20 0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
                         <materialDesign:TransitioningContent>
                             <materialDesign:TransitioningContent.OpeningEffects>
                                 <materialDesign:TransitionEffect Kind="FadeIn" />
                                 <materialDesign:TransitionEffect Kind="SlideInFromBottom" />
                             </materialDesign:TransitioningContent.OpeningEffects>
                             <TextBlock
+                                Height="auto"
                                 x:Name="txtMessage"
                                 Margin="5"
+                                TextWrapping="Wrap"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 FontSize="18"
@@ -105,8 +101,7 @@
                             Click="btnOk_Click"
                             Content="OK"
                             Foreground="#0f6f68"
-                            Style="{StaticResource ResourceKey=CloseButton}"
-                            ToolTip="Ok" />
+                            Style="{StaticResource ResourceKey=CloseButton}" />
                         <Button
                             x:Name="btnCancel"
                             Grid.Column="2"
@@ -116,8 +111,7 @@
                             Click="btnCancel_Click"
                             Content="Cancel"
                             Foreground="#F36E6B"
-                            Style="{StaticResource ResourceKey=NoButton}"
-                            ToolTip="Cancel" />
+                            Style="{StaticResource ResourceKey=NoButton}"/>
                         <Button
                             x:Name="btnYes"
                             Grid.Column="1"
@@ -127,8 +121,7 @@
                             Click="btnYes_Click"
                             Content="Yes"
                             Foreground="#0f6f68"
-                            Style="{StaticResource ResourceKey=CloseButton}"
-                            ToolTip="Yes" />
+                            Style="{StaticResource ResourceKey=CloseButton}"/>
                         <Button
                             x:Name="btnNo"
                             Grid.Column="2"
@@ -138,8 +131,7 @@
                             Click="btnNo_Click"
                             Content="No"
                             Foreground="#F36E6B"
-                            Style="{StaticResource ResourceKey=NoButton}"
-                            ToolTip="No" />
+                            Style="{StaticResource ResourceKey=NoButton}"/>
                     </Grid>
 
                 </Grid>

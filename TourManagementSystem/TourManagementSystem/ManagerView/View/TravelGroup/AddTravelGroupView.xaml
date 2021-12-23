@@ -351,15 +351,6 @@
                                             VerticalAlignment="Center"
                                             FontSize="20"
                                             Text="{Binding StaffCount, UpdateSourceTrigger=PropertyChanged}" />
-
-                                        <Button
-                                            Width="100"
-                                            Height="40"
-                                            Margin="10,0"
-                                            Command="{Binding SaveStaffCommand}"
-                                            Content="Save"
-                                            Foreground="#0f6f68"
-                                            Style="{StaticResource AddButton}" />
                                     </StackPanel>
 
                                     <ItemsControl Grid.Row="2" ItemsSource="{Binding StaffList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -704,7 +695,7 @@
                                             Margin="10,0"
                                             VerticalAlignment="Center"
                                             FontSize="20">
-                                            Number Of Content
+                                            Number Of Traveller
                                         </TextBlock>
 
                                         <TextBlock

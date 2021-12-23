@@ -59,16 +59,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             LocationModel location = InsertLocationModel();
             if (PlaceHandleModel.InsertLocation(location, User_ID))
             {
-                MessageWindow messageWindow = new MessageWindow("Add Location successfully!", MessageType.Success, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Location Successfully!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Location successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 p.Content = new ShowPlaceViewModel(User_ID, Place_ID, Visibility.Visible);
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Location failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Location Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Location failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

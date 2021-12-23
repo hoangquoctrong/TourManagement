@@ -50,16 +50,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             PlaceModel place = InsertPlaceModel();
             if (PlaceHandleModel.InsertPlace(place, User_ID))
             {
-                MessageWindow messageWindow = new MessageWindow("Add Place Successfully!", MessageType.Success, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Place Successfully!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Place Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 p.Content = new PlaceViewModel(User_ID, Visibility.Visible);
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Place failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Place Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Place failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

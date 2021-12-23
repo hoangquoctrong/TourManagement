@@ -40,6 +40,19 @@ namespace TourManagementSystem.Global.Model
             }
         }
 
+        public static bool IsValidUserName(string username)
+        {
+            TOUR_ACCOUNT account = DataProvider.Ins.DB.TOUR_ACCOUNT.Where(x => x.TOUR_ACCOUNT_NAME == username).FirstOrDefault();
+            if(account == null)
+            {
+                  return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public static int ConfirmForgetPassword(string username, out int user_id)
         {
             var user = (from u in DataProvider.Ins.DB.TOUR_ACCOUNT

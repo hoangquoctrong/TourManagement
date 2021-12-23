@@ -94,7 +94,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public DashboardViewModel(int user_id)
         {
             User_ID = user_id;
-            Checkbox_DisplayAllRecord = true;
+            Checkbox_DisplayAllRecord = false;
         }
 
         private void LoadRecordComboBox()

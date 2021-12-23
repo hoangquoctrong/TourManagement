@@ -124,15 +124,15 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TravellerSelected = UpdateTraveller();
             if (TravelGroupHandleModel.UpdateTraveller(TravellerSelected, User_ID, true))
             {
-                MessageWindow messageWindow = new MessageWindow("Update Traveller successfully!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Update Traveller Successfully!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Update Traveller successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Update Traveller failed! Please try again!", MessageType.Error, MessageButtons.Ok);
-                messageWindow.ShowDialog();
-                //MessageBox.Show("Update Traveller failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                string messageDisplay = string.Format("Update Traveller Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();                
             }
         }
 

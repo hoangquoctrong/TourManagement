@@ -687,9 +687,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Or Update Traveller failed!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Or Update Traveller Failed! Please try again.");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Or Update Traveller failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -697,9 +697,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
             if (travelgroup_id <= 0)
             {
-                MessageWindow messageWindow = new MessageWindow("Add Travel Group failed!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Travel Group failed! Please try again.");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Travel Group failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -710,9 +710,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("There is something wrong (Staff List failed) when add Travel Group. Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("There is something wrong (Staff List failed) when add Travel Group. Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("There is something wrong (Staff List failed) when add Travel Group. Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -724,9 +724,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("There is something wrong (Travel Group Cost failed) when add Travel Group. Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("There is something wrong (Travel Group Cost failed) when add Travel Group. Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("There is something wrong (Travel Group Cost failed) when add Travel Group. Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -738,26 +738,26 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("There is something wrong (Traveller List failed) when add Travel Group. Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("There is something wrong (Traveller List failed) when add Travel Group. Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("There is something wrong (Traveller List failed) when add Travel Group. Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
 
             if (countSuccess == 4)
             {
-                MessageWindow messageWindow = new MessageWindow("Add Travel Group Successfully!", MessageType.Success, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Travel Group Successfully!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Travel Group Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 p.Content = new TravelGroupViewModel(User_ID, Visibility.Visible);
                 ProgressBarVisbility = Visibility.Hidden;
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("There is something wrong (Undifinte Now) when add Travel Group. Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("There is something wrong (Undifinte Now) when add Travel Group. Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("There is something wrong (Undifinte Now) when add Travel Group. Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }

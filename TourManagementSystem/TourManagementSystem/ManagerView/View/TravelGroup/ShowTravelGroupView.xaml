@@ -28,6 +28,9 @@
     </UserControl.Style>
     <ContentControl x:Name="contentControlDisplay" Height="auto">
 
+        <Border BorderBrush="#0f6f68"
+            BorderThickness="3"
+            CornerRadius="15">
         <Grid>
 
 
@@ -765,7 +768,7 @@
                                         Margin="10,0"
                                         VerticalAlignment="Center"
                                         FontSize="20">
-                                        Number Of Content
+                                        Number Of Traveller
                                     </TextBlock>
 
                                     <TextBlock
@@ -971,11 +974,19 @@
                                                                     materialDesign:HintAssist.Hint="Type"
                                                                     FontSize="18"
                                                                     Foreground="DimGray"
+                                                                    IsEditable="True"
                                                                     IsEnabled="{Binding Traveller_Enable}"
-                                                                    Text="{Binding Traveller_Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                                     Visibility="Visible">
-                                                                    <ComboBoxItem>Domestic Traveller</ComboBoxItem>
-                                                                    <ComboBoxItem>Foreign Traveller</ComboBoxItem>
+                                                                    <ComboBoxItem Content="Domestic Traveller" />
+                                                                    <ComboBoxItem Content="Foreign Traveller" />
+                                                                    <ComboBox.Text>
+                                                                        <Binding
+                                                                            Mode="TwoWay"
+                                                                            Path="Traveller_Type"
+                                                                            UpdateSourceTrigger="PropertyChanged">
+                                                                            <Binding.ValidationRules />
+                                                                        </Binding>
+                                                                    </ComboBox.Text>
                                                                 </ComboBox>
 
                                                             </StackPanel>
@@ -1079,10 +1090,18 @@
                                                                     materialDesign:HintAssist.Hint="Gender"
                                                                     FontSize="18"
                                                                     Foreground="DimGray"
-                                                                    IsEnabled="{Binding Traveller_Enable}"
-                                                                    Text="{Binding Traveller_Sex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                                    IsEditable="True"
+                                                                    IsEnabled="{Binding Traveller_Enable}">
                                                                     <ComboBoxItem Content="Male" />
                                                                     <ComboBoxItem Content="Female" />
+                                                                    <ComboBox.Text>
+                                                                        <Binding
+                                                                            Mode="TwoWay"
+                                                                            Path="Traveller_Sex"
+                                                                            UpdateSourceTrigger="PropertyChanged">
+                                                                            <Binding.ValidationRules />
+                                                                        </Binding>
+                                                                    </ComboBox.Text>
                                                                 </ComboBox>
                                                             </StackPanel>
 
@@ -1146,6 +1165,6 @@
             </Grid>
 
         </Grid>
-
+        </Border>
     </ContentControl>
 </UserControl>

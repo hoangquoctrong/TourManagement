@@ -40,17 +40,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         if (await GlobalFunction.IsSendEmail(TextMail))
                         {
                             ProgressBarVisbility = Visibility.Hidden;
-                            MessageWindow messageWindow = new MessageWindow("Send Email Successful!", MessageType.Success, MessageButtons.Ok);
+                            string messageDisplay = string.Format("Send Email Successful!");
+                            MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
                             messageWindow.ShowDialog();
-                            //MessageBox.Show("Send Email Successful!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                             TextMail = "";
                         }
                         else
                         {
                             ProgressBarVisbility = Visibility.Hidden;
-                            MessageWindow messageWindow = new MessageWindow("Send Email failed!", MessageType.Error, MessageButtons.Ok);
+                            string messageDisplay = string.Format("Send Email failed!");
+                            MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                             messageWindow.ShowDialog();
-                            //MessageBox.Show("Send Email failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     });
                 }

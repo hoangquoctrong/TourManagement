@@ -376,3 +376,4 @@ D:\Study\HUONGDOITUONG\App\TourManagementSystem\TourManagementSystem\bin\Debug\C
 D:\Study\HUONGDOITUONG\App\TourManagementSystem\TourManagementSystem\bin\Debug\DocumentFormat.OpenXml.xml
 D:\Study\HUONGDOITUONG\App\TourManagementSystem\TourManagementSystem\bin\Debug\ExcelNumberFormat.xml
 D:\Study\HUONGDOITUONG\App\TourManagementSystem\TourManagementSystem\bin\Debug\itextsharp.xml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.SuggestedBindingRedirects.cache

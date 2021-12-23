@@ -150,15 +150,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             HotelSelected = InsertDataToHotelSelect();
             if (HotelHandleModel.UpdateHotel(HotelSelected, User_ID))
             {
-                MessageWindow messageWindow = new MessageWindow("Update hotel successfully!", MessageType.Success, MessageButtons.Ok);
+                string messageDisplay = string.Format("Update Hotel Successfully!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
                 messageWindow.ShowDialog();
                 //MessageBox.Show("Update hotel successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Update hotel failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Update Hotel Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Update hotel failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -233,17 +234,21 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private void ExcuteDeleteCommand(ContentControl p)
         {
-            if (MessageBox.Show("Do you want to delete this hotel?",
-                   "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            bool? Result = new MessageWindow("Do you want to delete this hotel?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+            if (Result == true)
             {
                 if (HotelHandleModel.DeleteHotel(Hotel_ID, User_ID))
                 {
-                    MessageBox.Show("Delete hotel successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    string messageDisplay = string.Format("Delete Hotel Successfully!");
+                    MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Info, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
                     p.Content = new HotelViewModel(User_ID, IsVisibility);
                 }
                 else
                 {
-                    MessageBox.Show("Delete hotel failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                    string messageDisplay = string.Format("Delete Hotel Failed! Please try again!");
+                    MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
                 }
             }
         }

@@ -126,17 +126,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
                     {
                         if (StaffHandleModel.ChangePassword(User_ID, Staff_Password))
                         {
-
-                            MessageWindow messageWindow = new MessageWindow("Change Password successfully!", MessageType.Success, MessageButtons.Ok);
-                            messageWindow.ShowDialog();
-                            //MessageBox.Show("Change Password successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                            string messageDisplay = string.Format("Change Password Successfully!");
+                            MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
+                            messageWindow.ShowDialog();                            
                             Staff_Password = "";
                         }
                         else
                         {
-                            MessageWindow messageWindow = new MessageWindow("Change Password failed! Please try again!", MessageType.Error, MessageButtons.Ok);
-                            messageWindow.ShowDialog();
-                            //MessageBox.Show("Change Password failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                            string messageDisplay = string.Format("Change Password Failed! Please try again!");
+                            MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                            messageWindow.ShowDialog();                           
                         }
                     });
                 }

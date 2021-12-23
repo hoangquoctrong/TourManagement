@@ -112,7 +112,7 @@ namespace TourManagementSystem.Global.ViewModel
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Username or Password wrong!", MessageType.Info, MessageButtons.Ok);
+                MessageWindow messageWindow = new MessageWindow("Username or Password wrong!", MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }

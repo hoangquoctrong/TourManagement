@@ -87,16 +87,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             HotelModel hotel = InsertHotelModel();
             if (HotelHandleModel.InsertHotel(hotel, User_ID))
             {
-                MessageWindow messageWindow = new MessageWindow("Add Hotel Successfully!", MessageType.Success, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Hotel Successfully!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Hotel Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 p.Content = new HotelViewModel(User_ID, Visibility.Visible);
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Hotel Failed! Please try again!", MessageType.Error, MessageButtons.Ok);
-                messageWindow.ShowDialog();
-                //MessageBox.Show("Add Hotel Failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                string messageDisplay = string.Format("Add Hotel Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();                
             }
         }
 

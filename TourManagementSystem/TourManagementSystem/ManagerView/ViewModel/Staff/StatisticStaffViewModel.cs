@@ -238,12 +238,13 @@ namespace TourManagementSystem.ManagerView.ViewModel
             GlobalFunction.ExportExcel(ExportList, HeaderList, "Staff Statistic", ref message);
             if (string.IsNullOrEmpty(message))
             {
-                MessageWindow messageWindow = new MessageWindow("Export Failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Export File Excel Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow(message, MessageType.Info, MessageButtons.Ok);
+                MessageWindow messageWindow = new MessageWindow(message, MessageType.Success, MessageButtons.Ok);
                 messageWindow.ShowDialog();
             }
         }
@@ -259,12 +260,13 @@ namespace TourManagementSystem.ManagerView.ViewModel
             GlobalFunction.ExportPDF(ExportList, HeaderList, "Staff Statistic", "ID" + _User_ID, ref message);
             if (string.IsNullOrEmpty(message))
             {
-                MessageWindow messageWindow = new MessageWindow("Export Failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Export File PDF Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow(message, MessageType.Info, MessageButtons.Ok);
+                MessageWindow messageWindow = new MessageWindow(message, MessageType.Success, MessageButtons.Ok);
                 messageWindow.ShowDialog();
             }
         }

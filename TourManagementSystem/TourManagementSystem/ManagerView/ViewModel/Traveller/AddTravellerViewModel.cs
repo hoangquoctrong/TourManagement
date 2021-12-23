@@ -77,16 +77,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TravellerModel traveller = InsertTravellerModel();
             if (TravelGroupHandleModel.InsertTraveller(traveller, User_ID, true))
             {
-                MessageWindow messageWindow = new MessageWindow("Add Traveller successfully!", MessageType.Success, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Traveller Successfully!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Traveller successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 p.Content = new TravellerViewModel(User_ID, Visibility.Visible);
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Traveller failed! Please try again!", MessageType.Error, MessageButtons.Ok);
-                messageWindow.ShowDialog();
-                //MessageBox.Show("Add Traveller failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                string messageDisplay = string.Format("Add Traveller Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();                
             }
         }
 

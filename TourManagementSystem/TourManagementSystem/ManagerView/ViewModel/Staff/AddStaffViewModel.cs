@@ -135,17 +135,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
             StaffModel staff = InsertStaffModel();
             if (StaffHandleModel.InsertStaff(staff, User_ID))
             {
-                MessageWindow messageWindow = new MessageWindow("Add Staff successfully!", MessageType.Success, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Staff Successfully!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Staff successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 p.Content = new StaffViewModel(User_ID, Visibility.Visible);
                 ProgressBarVisbility = Visibility.Hidden;
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Staff failed!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Staff Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Staff failed!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }

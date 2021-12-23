@@ -37,6 +37,26 @@ namespace TourManagementSystem.ManagerView.ViewModel
             Tour_ID = tour_id;
             PlaceList = places;
 
+            //Setup Schedule
+            ScheduleList = new BindableCollection<TourScheduleModel>();
+            ScheduleCount = 0;
+
+            //Setup Location
+            LocationSelectedList = new BindableCollection<LocationModel>();
+
+            //Setup Hotel
+            HotelSelectedList = new BindableCollection<HotelModel>();
+            HotelPriceNotify = string.Format("Hotel Price haven't updated yet!");
+
+            //Setup Transport
+            TransportSelectedList = new BindableCollection<TransportModel>();
+            TransportPriceNotify = string.Format("Transport Price haven't updated yet!");
+
+            //Setup Mission
+            MissionList = new BindableCollection<MissionModel>();
+            MissionCount = 0;
+            MissionPriceNotify = string.Format("Mission Price haven't updated yet!");
+
             ProgressBarVisbility = Visibility.Visible;
             LoadDataInUC(tour_id);
 
@@ -46,33 +66,19 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             await Task.Delay(3000);
             Tour_Name = TourHandleModel.GetTourName(tour_id);
-
-            //Setup Schedule
-            ScheduleList = new BindableCollection<TourScheduleModel>();
-            ScheduleCount = 0;
-
+           
             //Setup Location
             LocationList = GetLocationList(PlaceList);
-            RefreshLocationList = GetLocationList(PlaceList);
-            LocationSelectedList = new BindableCollection<LocationModel>();
+            RefreshLocationList = GetLocationList(PlaceList);            
 
             //Setup Hotel
             HotelList = GetHotelList(PlaceList);
             RefreshHotelList = GetHotelList(PlaceList);
-            HotelSelectedList = new BindableCollection<HotelModel>();
-            HotelPriceNotify = string.Format("Hotel Price haven't updated yet!");
-
+            
             //Setup Transport
             TransportList = GetTransportList();
             RefreshTransportList = GetTransportList();
-            TransportSelectedList = new BindableCollection<TransportModel>();
-            TransportPriceNotify = string.Format("Transport Price haven't updated yet!");
-
-            //Setup Mission
-            MissionList = new BindableCollection<MissionModel>();
-            MissionCount = 0;
-            MissionPriceNotify = string.Format("Mission Price haven't updated yet!");
-
+                        
             ProgressBarVisbility = Visibility.Hidden;
         }
 
@@ -99,7 +105,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public int Time_Night { get => _Time_Night; set { _Time_Night = value; OnPropertyChanged(); } }
 
         private DateTime _Time_Department = DateTime.Now;
-        public DateTime Time_Department { get => _Time_Department; set { _Time_Department = value; OnPropertyChanged(); } }
+        public DateTime Time_Department { get => _Time_Department; set { _Time_Department = value; OnPropertyChanged();  Time_End = Time_Department; } }
 
         private DateTime _Time_End = DateTime.Now;
         public DateTime Time_End { get => _Time_End; set { _Time_End = value; OnPropertyChanged(); } }
@@ -617,8 +623,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     _AddTourInformationCommand = new RelayCommand<ContentControl>(p => IsExcuteAddInformationCommand(), p =>
                     {
-                        ProgressBarVisbility = Visibility.Visible;
-                        ExcuteAddInformationCommand(p);
+                        if (IsExcuteAddInformationCommand())
+                        {
+                            ProgressBarVisbility = Visibility.Visible;
+                            ExcuteAddInformationCommand(p);
+                        }                        
                     });
                 }
                 return _AddTourInformationCommand;
@@ -634,9 +643,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
             if (tourinformation_id <= 0)
             {
-                MessageWindow messageWindow = new MessageWindow("Add Tour Information failed! Please try again!", MessageType.Error, MessageButtons.Ok);
-                messageWindow.ShowDialog();
-                //MessageBox.Show("Add Tour Information failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                string messageDisplay = string.Format("Add Tour Information Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();                
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -647,9 +656,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Tour Time failed! Please try again!", MessageType.Error, MessageButtons.Ok);
-                messageWindow.ShowDialog();
-                //MessageBox.Show("Add Tour Time failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+                string messageDisplay = string.Format("Add Tour Time Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();                
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -661,9 +670,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Tour Price failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Tour Price Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Tour Price failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -675,9 +684,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Tour Locations failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Tour Locations Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Tour Locations failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -689,9 +698,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Tour Hotel failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Tour Hotel Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Tour Hotel failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -703,9 +712,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Tour Transport failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Tour Transport Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Tour Transport failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -717,9 +726,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Tour Mission failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Tour Mission Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Tour Mission failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
@@ -731,26 +740,26 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Tour Schedule failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Tour Schedule Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Tour Schedule failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 return;
             }
 
             if (countSuccess == 7)
             {
-                MessageWindow messageWindow = new MessageWindow("Add Tour Information Successfully!", MessageType.Success, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Tour Information Successfully!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Tour Information Successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
                 p.Content = new ShowTourViewModel(User_ID, Tour_ID, Visibility.Visible, Visibility.Visible);
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Tour Information failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Tour Information failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Tour Information failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }
@@ -792,7 +801,81 @@ namespace TourManagementSystem.ManagerView.ViewModel
             Console.WriteLine("Mission " + IsExcuteMission());
             Console.WriteLine("Price " + IsExcutePrice());
             Console.WriteLine("Schedule " + IsExcuteSchedule());
-            return IsExcuteTime() && IsExcuteLocation() && IsExcuteHotel() && IsExcuteTransport() && IsExcuteMission() && IsExcutePrice() && IsExcuteSchedule();
+            string messageError = "";
+            int countValid = 0; 
+            if (!IsExcuteTime())
+            {
+                messageError += string.Format("The Time is unavailable.\n");
+            }
+            else
+            {
+                countValid++;
+            }
+
+            if (!IsExcuteLocation())
+            {
+                messageError += string.Format("Please choose the location.\n");
+            }
+            else
+            {
+                countValid++;
+            }
+
+            if (!IsExcuteHotel())
+            {
+                messageError += string.Format("Please choose hotel and choose the Day of each Hotel.\n");
+            }
+            else
+            {
+                countValid++;
+            }
+
+            if (!IsExcuteTransport())
+            {
+                messageError += string.Format("Please choose transport and choose the Amount of each Transport.\n");
+            }
+            else
+            {
+                countValid++;
+            }
+
+            if (!IsExcuteMission())
+            {
+                messageError += string.Format("Please fill Mission for tour.\n");
+            }
+            else
+            {
+                countValid++;
+            }
+
+            if (!IsExcutePrice())
+            {
+                messageError += string.Format("Please check the Price of Hotel,Transport, Mission.\n");
+            }
+            else
+            {
+                countValid++;
+            }
+
+            if (!IsExcuteSchedule())
+            {
+                messageError += string.Format("Please fill Schedule for tour. ");
+            }
+            else
+            {
+                countValid++;
+            }
+            
+            if(countValid == 7)
+            {
+                return true;
+            }
+            else
+            {
+                //MessageWindow messageWindow = new MessageWindow(messageError, MessageType.Error, MessageButtons.Ok);
+                //messageWindow.ShowDialog();
+                return false;
+            }
         }
 
         private bool IsExcuteTime()
@@ -811,7 +894,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             int total_date = Math.Min(Time_Day, Time_Night);
             int department_int = (Time_End - Time_Department).Days;
-            return department_int >= total_date;
+            return department_int == total_date;
         }
 
         private bool IsExcuteLocation()
@@ -839,12 +922,54 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private bool IsExcuteHotel()
         {
-            return HotelSelectedList.Count() > 0;
+            if(HotelSelectedList.Count() == 0)
+            {
+                return false;
+            }
+
+            int countValid = 0;
+            for (int i = 0; i < HotelSelectedList.Count(); i++)
+            {
+                if(HotelSelectedList[i].HOTEL_DAY > 0)
+                {
+                    countValid++;
+                } 
+            }
+
+            if(countValid == HotelSelectedList.Count())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private bool IsExcuteTransport()
         {
-            return TransportSelectedList.Count() > 0;
+            if (TransportSelectedList.Count() == 0)
+            {
+                return false;
+            }
+
+            int countValid = 0;
+            for (int i = 0; i < TransportSelectedList.Count(); i++)
+            {
+                if (TransportSelectedList[i].TRANSPORT_AMOUNT > 0)
+                {
+                    countValid++;
+                }
+            }
+
+            if (countValid == TransportSelectedList.Count())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private bool IsExcuteMission()

@@ -107,16 +107,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TransportModel transport = InsertTransportModel();
             if (TransportHandleModel.InsertTransport(transport, User_ID))
             {
-                MessageWindow messageWindow = new MessageWindow("Add Transport successfully!", MessageType.Success, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Transport Successfully!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Transport successfully!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
                 p.Content = new TransportViewModel(User_ID, Visibility.Visible);
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Add Transport failed! Please try again!", MessageType.Error, MessageButtons.Ok);
+                string messageDisplay = string.Format("Add Transport Failed! Please try again!");
+                MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
-                //MessageBox.Show("Add Transport failed! Please try again!", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

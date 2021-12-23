@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:TourManagementSystem.ManagerView.ViewModel"
     x:Name="ManagerViewWindow"
-    Title="MainWindow"
+    Title="Manager Window"
     Width="1470"
     Height="780"
     AllowsTransparency="True"

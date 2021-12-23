@@ -113,15 +113,23 @@ namespace TourManagementSystem.Global.ViewModel
         {
             await Task.Delay(3000);
 
+            if (!ForgetPasswordHandleModel.IsValidUserName(Username))
+            {
+                MessageWindow messageWindow = new MessageWindow("Username wrong!", MessageType.Error, MessageButtons.Ok);
+                messageWindow.ShowDialog();
+                ProgressBarVisbility = Visibility.Hidden;
+                return;
+            }
+
             if (ForgetPasswordHandleModel.IsSendEmail(UserEmail, ValidateNumber))
             {
-                MessageWindow messageWindow = new MessageWindow("Send email successfully!", MessageType.Info, MessageButtons.Ok);
+                MessageWindow messageWindow = new MessageWindow("Send email successfully!", MessageType.Success, MessageButtons.Ok);
                 messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Send email failed! Please try again!", MessageType.Info, MessageButtons.Ok);
+                MessageWindow messageWindow = new MessageWindow("Send email failed! Please try again!", MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }
@@ -177,7 +185,7 @@ namespace TourManagementSystem.Global.ViewModel
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Username wrong!", MessageType.Info, MessageButtons.Ok);
+                MessageWindow messageWindow = new MessageWindow("Username wrong!", MessageType.Error, MessageButtons.Ok);
                 messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }
