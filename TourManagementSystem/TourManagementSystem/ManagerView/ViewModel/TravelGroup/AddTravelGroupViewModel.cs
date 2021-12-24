@@ -15,10 +15,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class AddTravelGroupViewModel : BaseViewModel
     {
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private Visibility _ProgressBarVisbility;
+
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
@@ -27,14 +29,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Information
 
         private string _TravelGroup_Name;
+
         public string TravelGroup_Name
         { get => _TravelGroup_Name; set { _TravelGroup_Name = value; OnPropertyChanged(); } }
 
         private string _TravelGroup_Type;
+
         public string TravelGroup_Type
         { get => _TravelGroup_Type; set { _TravelGroup_Type = value; OnPropertyChanged(); } }
 
         private ObservableCollection<ComboBoxTourModel> _CB_TourList;
+
         public ObservableCollection<ComboBoxTourModel> CB_TourList
         { get => _CB_TourList; set { _CB_TourList = value; OnPropertyChanged(); } }
 
@@ -52,6 +57,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<ComboBoxInformationModel> _CB_TourInformationList;
+
         public ObservableCollection<ComboBoxInformationModel> CB_TourInformationList
         { get => _CB_TourInformationList; set { _CB_TourInformationList = value; OnPropertyChanged(); } }
 
@@ -73,18 +79,22 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Traveller
 
         private int _TravellerCount;
+
         public int TravellerCount
         { get => _TravellerCount; set { _TravellerCount = value; OnPropertyChanged(); } }
 
         private string _TravellerList_Notify;
+
         public string TravellerList_Notify
         { get => _TravellerList_Notify; set { _TravellerList_Notify = value; OnPropertyChanged(); } }
 
         private BindableCollection<TravellerModel> _TravellerList;
+
         public BindableCollection<TravellerModel> TravellerList
         { get => _TravellerList; set { _TravellerList = value; OnPropertyChanged(); } }
 
         private BindableCollection<ComboBoxTravellerModel> _CB_TravellerList;
+
         public BindableCollection<ComboBoxTravellerModel> CB_TravellerList
         { get => _CB_TravellerList; set { _CB_TravellerList = value; OnPropertyChanged(); } }
 
@@ -93,14 +103,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Staff
 
         private int _StaffCount;
+
         public int StaffCount
         { get => _StaffCount; set { _StaffCount = value; OnPropertyChanged(); } }
 
         private BindableCollection<StaffDetailModel> _StaffList;
+
         public BindableCollection<StaffDetailModel> StaffList
         { get => _StaffList; set { _StaffList = value; OnPropertyChanged(); } }
 
         private BindableCollection<ComboBoxStaffModel> _CB_StaffList;
+
         public BindableCollection<ComboBoxStaffModel> CB_StaffList
         { get => _CB_StaffList; set { _CB_StaffList = value; OnPropertyChanged(); } }
 
@@ -109,30 +122,37 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Price
 
         private double _TotalHotelPrice;
+
         public double TotalHotelPrice
         { get => _TotalHotelPrice; set { _TotalHotelPrice = value; OnPropertyChanged(); } }
 
         private double _TotalTransportPrice;
+
         public double TotalTransportPrice
         { get => _TotalTransportPrice; set { _TotalTransportPrice = value; OnPropertyChanged(); } }
 
         private double _TotalServicePrice;
+
         public double TotalServicePrice
         { get => _TotalServicePrice; set { _TotalServicePrice = value; OnPropertyChanged(); } }
 
         private double _TotalAnotherPrice;
+
         public double TotalAnotherPrice
         { get => _TotalAnotherPrice; set { _TotalAnotherPrice = value; OnPropertyChanged(); SetPriceBaseOnCustomer(TravellerCount); } }
 
         private double _TotalPrice;
+
         public double TotalPrice
         { get => _TotalPrice; set { _TotalPrice = value; OnPropertyChanged(); } }
 
         private bool _IsEnable;
+
         public bool IsEnable
         { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
 
         private string _TravelCost_Description;
+
         public string TravelCost_Description
         { get => _TravelCost_Description; set { _TravelCost_Description = value; OnPropertyChanged(); } }
 
@@ -217,9 +237,20 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         #region Command Price
 
-        public double HotelPrice { get; set; }
-        public double TransportPrice { get; set; }
-        public double ServicePrice { get; set; }
+        private double _HotelPrice;
+
+        public double HotelPrice
+        { get => _HotelPrice; set { _HotelPrice = value; OnPropertyChanged(); } }
+
+        private double _TransportPrice;
+
+        public double TransportPrice
+        { get => _TransportPrice; set { _TransportPrice = value; OnPropertyChanged(); } }
+
+        private double _ServicePrice;
+
+        public double ServicePrice
+        { get => _ServicePrice; set { _ServicePrice = value; OnPropertyChanged(); } }
 
         private void SetPriceEnable()
         {
@@ -335,8 +366,19 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     _SearchStaffCommand = new RelayCommand<int>(p =>
                     {
+                        if (p < 0)
+                        {
+                            return false;
+                        }
                         StaffDetailModel staffdetail = StaffList.Where(x => x.StaffDetailID == p).FirstOrDefault();
-                        return staffdetail.Staff_Check;
+                        if (staffdetail != null)
+                        {
+                            return staffdetail.Staff_Check;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }, p =>
                     {
                         SearchStaffItem(p);
@@ -603,15 +645,15 @@ namespace TourManagementSystem.ManagerView.ViewModel
             SetPriceBaseOnCustomer(TravellerCount);
         }
 
-        private ICommand _SaveTravellerCommand;
+        private ICommand _CheckTravellerCommand;
 
-        public ICommand SaveTravellerCommand
+        public ICommand CheckTravellerCommand
         {
             get
             {
-                if (_SaveTravellerCommand == null)
+                if (_CheckTravellerCommand == null)
                 {
-                    _SaveTravellerCommand = new RelayCommand<object>(p => TravellerCount > 0, p =>
+                    _CheckTravellerCommand = new RelayCommand<object>(p => TravellerCount > 0, p =>
                     {
                         int max = TravellerList.Count;
                         for (int i = 1; i < max; i++)
@@ -635,7 +677,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         TravellerList_Notify = "Valid Customer List";
                     });
                 }
-                return _SaveTravellerCommand;
+                return _CheckTravellerCommand;
             }
         }
 

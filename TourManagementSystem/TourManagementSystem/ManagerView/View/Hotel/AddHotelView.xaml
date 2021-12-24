@@ -96,10 +96,11 @@
                                                     Path="Hotel_Name"
                                                     UpdateSourceTrigger="PropertyChanged">
                                                     <Binding.ValidationRules>
-                                                        <ruler:MiniMumCharacterRuler  ValidatesOnTargetUpdated="True"
-                                                                                      MinimumCharacters="0"
-                                                                                      NameFill="Hotel Name"
-                                                                                      MaximumCharacters="30" />
+                                                        <ruler:MiniMumCharacterRuler
+                                                            ValidatesOnTargetUpdated="True"
+                                                            MinimumCharacters="0"
+                                                            NameFill="Hotel Name"
+                                                            MaximumCharacters="30" />
                                                     </Binding.ValidationRules>
                                                 </Binding>
                                             </TextBox.Text>
@@ -169,7 +170,10 @@
                                             Path="Hotel_Address"
                                             UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
-                                                <ruler:MiniMumCharacterRuler  ValidatesOnTargetUpdated="True" MinimumCharacters="0" NameFill="Hotel Address" />
+                                                <ruler:MiniMumCharacterRuler
+                                                    ValidatesOnTargetUpdated="True"
+                                                    MinimumCharacters="0"
+                                                    NameFill="Hotel Address" />
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </TextBox.Text>
@@ -201,10 +205,11 @@
                                                     Path="Hotel_Phone_Number"
                                                     UpdateSourceTrigger="PropertyChanged">
                                                     <Binding.ValidationRules>
-                                                        <ruler:PhoneNumberRuler  ValidatesOnTargetUpdated="True"
-                                                                                 MinimumCharacters="6"
-                                                                                 NameFill="Hotel Phone Number"
-                                                                                 MaximumCharacters="12" />
+                                                        <ruler:PhoneNumberRuler
+                                                            ValidatesOnTargetUpdated="True"
+                                                            MinimumCharacters="6"
+                                                            NameFill="Hotel Phone Number"
+                                                            MaximumCharacters="12" />
                                                     </Binding.ValidationRules>
                                                 </Binding>
                                             </TextBox.Text>
@@ -300,9 +305,10 @@
                                                     Path="Hotel_Is_Restaurant"
                                                     UpdateSourceTrigger="PropertyChanged">
                                                     <Binding.ValidationRules>
-                                                        <ruler:MiniMumCharacterRuler ValidatesOnTargetUpdated="True"
-                                                                                     MinimumCharacters="0"
-                                                                                     NameFill="Hotel Restaurant" />
+                                                        <ruler:MiniMumCharacterRuler
+                                                            ValidatesOnTargetUpdated="True"
+                                                            MinimumCharacters="0"
+                                                            NameFill="Hotel Restaurant" />
                                                     </Binding.ValidationRules>
                                                 </Binding>
                                             </ComboBox.Text>

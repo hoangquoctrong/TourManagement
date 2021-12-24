@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:TourManagementSystem.ManagerView.View"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ruler="clr-namespace:TourManagementSystem.Global.Ruler"
     Width="1190"
     Height="620"
     mc:Ignorable="d">
@@ -152,16 +153,22 @@
                                                 <TextBox
                                                     Width="260"
                                                     Margin="8,0,0,0"
-                                                    materialDesign:HintAssist.HelperText="Hotel name."
                                                     materialDesign:HintAssist.Hint="Name"
                                                     FontSize="18"
-                                                    IsEnabled="{Binding Hotel_Is_Delete}">
+                                                    IsEnabled="{Binding Hotel_Is_Delete}"
+                                                    ToolTip="Hotel Name">
                                                     <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
                                                             Path="Hotel_Name"
                                                             UpdateSourceTrigger="PropertyChanged">
-                                                            <Binding.ValidationRules />
+                                                            <Binding.ValidationRules>
+                                                                <ruler:MiniMumCharacterRuler
+                                                                    MaximumCharacters="30"
+                                                                    MinimumCharacters="0"
+                                                                    NameFill="Hotel Name"
+                                                                    ValidatesOnTargetUpdated="True" />
+                                                            </Binding.ValidationRules>
                                                         </Binding>
                                                     </TextBox.Text>
                                                 </TextBox>
@@ -222,17 +229,21 @@
                                         <TextBox
                                             Width="760"
                                             Margin="10,0,0,0"
-                                            materialDesign:HintAssist.HelperText="Include Apartment Number, Street Name, Ward Name, City Name, Provide Name"
-                                            materialDesign:HintAssist.HelperTextFontSize="16"
                                             materialDesign:HintAssist.Hint="Address"
                                             FontSize="18"
-                                            IsEnabled="{Binding Hotel_Is_Delete}">
+                                            IsEnabled="{Binding Hotel_Is_Delete}"
+                                            ToolTip="Include Apartment Number, Street Name, Ward Name, City Name, Provide Name">
                                             <TextBox.Text>
                                                 <Binding
                                                     Mode="TwoWay"
                                                     Path="Hotel_Address"
                                                     UpdateSourceTrigger="PropertyChanged">
-                                                    <Binding.ValidationRules />
+                                                    <Binding.ValidationRules>
+                                                        <ruler:MiniMumCharacterRuler
+                                                            MinimumCharacters="0"
+                                                            NameFill="Hotel Address"
+                                                            ValidatesOnTargetUpdated="True" />
+                                                    </Binding.ValidationRules>
                                                 </Binding>
                                             </TextBox.Text>
                                         </TextBox>
@@ -256,13 +267,20 @@
                                                     Margin="10,0,0,0"
                                                     materialDesign:HintAssist.Hint="Phone Number"
                                                     FontSize="18"
-                                                    IsEnabled="{Binding Hotel_Is_Delete}">
+                                                    IsEnabled="{Binding Hotel_Is_Delete}"
+                                                    ToolTip="Hotel Phone Number - Accept Number Only">
                                                     <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
                                                             Path="Hotel_Phone_Number"
                                                             UpdateSourceTrigger="PropertyChanged">
-                                                            <Binding.ValidationRules />
+                                                            <Binding.ValidationRules>
+                                                                <ruler:PhoneNumberRuler
+                                                                    MaximumCharacters="12"
+                                                                    MinimumCharacters="6"
+                                                                    NameFill="Hotel Phone Number"
+                                                                    ValidatesOnTargetUpdated="True" />
+                                                            </Binding.ValidationRules>
                                                         </Binding>
                                                     </TextBox.Text>
                                                 </TextBox>
@@ -281,14 +299,18 @@
                                                     Width="260"
                                                     Margin="10,0,0,0"
                                                     materialDesign:HintAssist.Hint="Price"
+                                                    materialDesign:TextFieldAssist.PrefixText="VND"
                                                     FontSize="18"
-                                                    IsEnabled="{Binding Hotel_Is_Delete}">
+                                                    IsEnabled="{Binding Hotel_Is_Delete}"
+                                                    ToolTip="Hotel Price - Accept Price Only">
                                                     <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
                                                             Path="Hotel_Price"
                                                             UpdateSourceTrigger="PropertyChanged">
-                                                            <Binding.ValidationRules />
+                                                            <Binding.ValidationRules>
+                                                                <ruler:MoneyRuler NameFill="Hotel Price" ValidatesOnTargetUpdated="True" />
+                                                            </Binding.ValidationRules>
                                                         </Binding>
                                                     </TextBox.Text>
                                                 </TextBox>
@@ -312,13 +334,16 @@
                                                     Margin="8,0,0,0"
                                                     materialDesign:HintAssist.Hint="Email"
                                                     FontSize="18"
-                                                    IsEnabled="{Binding Hotel_Is_Delete}">
+                                                    IsEnabled="{Binding Hotel_Is_Delete}"
+                                                    ToolTip="Hotel Email - Accept Email Type">
                                                     <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
                                                             Path="Hotel_Email"
                                                             UpdateSourceTrigger="PropertyChanged">
-                                                            <Binding.ValidationRules />
+                                                            <Binding.ValidationRules>
+                                                                <ruler:EmailRuler NameFill="Hotel Email" ValidatesOnTargetUpdated="True" />
+                                                            </Binding.ValidationRules>
                                                         </Binding>
                                                     </TextBox.Text>
                                                 </TextBox>
@@ -340,7 +365,8 @@
                                                     materialDesign:HintAssist.Hint="Restaurant"
                                                     FontSize="18"
                                                     Foreground="DimGray"
-                                                    IsEnabled="{Binding Hotel_Is_Delete}">
+                                                    IsEnabled="{Binding Hotel_Is_Delete}"
+                                                    ToolTip="Is Hotel has restaurant?">
                                                     <ComboBoxItem Content="Yes" />
                                                     <ComboBoxItem Content="No" />
                                                     <ComboBox.Text>
@@ -348,7 +374,12 @@
                                                             Mode="TwoWay"
                                                             Path="Hotel_Is_Restaurant"
                                                             UpdateSourceTrigger="PropertyChanged">
-                                                            <Binding.ValidationRules />
+                                                            <Binding.ValidationRules>
+                                                                <ruler:MiniMumCharacterRuler
+                                                                    MinimumCharacters="0"
+                                                                    NameFill="Hotel Restaurant"
+                                                                    ValidatesOnTargetUpdated="True" />
+                                                            </Binding.ValidationRules>
                                                         </Binding>
                                                     </ComboBox.Text>
                                                 </ComboBox>
@@ -418,7 +449,7 @@
                                             Margin="10,16,20,16"
                                             HorizontalAlignment="Right"
                                             Command="{Binding SaveChangeCommand}"
-                                            Content="Save Change"
+                                            Content="Save Changes"
                                             Foreground="#1885F2"
                                             Style="{StaticResource ResourceKey=ConfirmButton}" />
                                     </Grid>

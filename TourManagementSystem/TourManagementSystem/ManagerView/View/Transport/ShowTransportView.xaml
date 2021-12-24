@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:TourManagementSystem.ManagerView.View"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ruler="clr-namespace:TourManagementSystem.Global.Ruler"
     Width="1190"
     Height="620"
     mc:Ignorable="d">
@@ -148,16 +149,21 @@
                                         <TextBox
                                             Width="780"
                                             Margin="8,0,0,0"
-                                            materialDesign:HintAssist.HelperText="Transport name."
                                             materialDesign:HintAssist.Hint="Name"
                                             FontSize="18"
-                                            IsEnabled="{Binding Transport_Is_Delete}">
+                                            IsEnabled="{Binding Transport_Is_Delete}"
+                                            ToolTip="Transport Name">
                                             <TextBox.Text>
                                                 <Binding
                                                     Mode="TwoWay"
                                                     Path="Transport_Name"
                                                     UpdateSourceTrigger="PropertyChanged">
-                                                    <Binding.ValidationRules />
+                                                    <Binding.ValidationRules>
+                                                        <ruler:MiniMumCharacterRuler
+                                                            MinimumCharacters="0"
+                                                            NameFill="Transport Name"
+                                                            ValidatesOnTargetUpdated="True" />
+                                                    </Binding.ValidationRules>
                                                 </Binding>
                                             </TextBox.Text>
                                         </TextBox>
@@ -187,7 +193,8 @@
                                                     materialDesign:HintAssist.Hint="Status"
                                                     FontSize="18"
                                                     Foreground="DimGray"
-                                                    IsEnabled="{Binding Transport_Is_Delete}">
+                                                    IsEnabled="{Binding Transport_Is_Delete}"
+                                                    ToolTip="Transport Status">
                                                     <ComboBoxItem Content="National" />
                                                     <ComboBoxItem Content="International" />
                                                     <ComboBox.Text>
@@ -195,7 +202,12 @@
                                                             Mode="TwoWay"
                                                             Path="Transport_Type"
                                                             UpdateSourceTrigger="PropertyChanged">
-                                                            <Binding.ValidationRules />
+                                                            <Binding.ValidationRules>
+                                                                <ruler:MiniMumCharacterRuler
+                                                                    MinimumCharacters="0"
+                                                                    NameFill="Transport Status"
+                                                                    ValidatesOnTargetUpdated="True" />
+                                                            </Binding.ValidationRules>
                                                         </Binding>
                                                     </ComboBox.Text>
                                                 </ComboBox>
@@ -215,7 +227,8 @@
                                                 FontSize="22"
                                                 IsEnabled="{Binding Transport_Is_Delete}"
                                                 SelectedDateFormat="Short"
-                                                Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+                                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                                ToolTip="Transport Start Date">
                                                 <DatePicker.SelectedDate>
                                                     <Binding
                                                         Mode="TwoWay"
@@ -264,7 +277,8 @@
                                                     materialDesign:HintAssist.Hint="Type Transport"
                                                     FontSize="18"
                                                     Foreground="DimGray"
-                                                    IsEnabled="{Binding Transport_Is_Delete}">
+                                                    IsEnabled="{Binding Transport_Is_Delete}"
+                                                    ToolTip="Transport Type">
                                                     <ComboBoxItem Content="Road Transport" />
                                                     <ComboBoxItem Content="Water Transport" />
                                                     <ComboBoxItem Content="Air Transport" />
@@ -273,7 +287,12 @@
                                                             Mode="TwoWay"
                                                             Path="Transport_TypeTrans"
                                                             UpdateSourceTrigger="PropertyChanged">
-                                                            <Binding.ValidationRules />
+                                                            <Binding.ValidationRules>
+                                                                <ruler:MiniMumCharacterRuler
+                                                                    MinimumCharacters="0"
+                                                                    NameFill="Transport Type"
+                                                                    ValidatesOnTargetUpdated="True" />
+                                                            </Binding.ValidationRules>
                                                         </Binding>
                                                     </ComboBox.Text>
                                                 </ComboBox>
@@ -294,17 +313,18 @@
                                                 <TextBox
                                                     Width="260"
                                                     Margin="10,0,0,0"
-                                                    materialDesign:HintAssist.HelperText="Except Flight or Ship"
-                                                    materialDesign:HintAssist.HelperTextFontSize="12"
-                                                    materialDesign:HintAssist.Hint="Amount Max"
+                                                    materialDesign:HintAssist.Hint="Amount Max (Except Plane/Ship)"
                                                     FontSize="18"
-                                                    IsEnabled="{Binding Transport_TypeTrans_Choose}">
+                                                    IsEnabled="{Binding Transport_TypeTrans_Choose}"
+                                                    ToolTip="All Amount Land Transport">
                                                     <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
                                                             Path="Transport_Amount_Max"
                                                             UpdateSourceTrigger="PropertyChanged">
-                                                            <Binding.ValidationRules />
+                                                            <Binding.ValidationRules>
+                                                                <ruler:NumberRuler NameFill="Transport Amount Max" ValidatesOnTargetUpdated="True" />
+                                                            </Binding.ValidationRules>
                                                         </Binding>
                                                     </TextBox.Text>
                                                 </TextBox>
@@ -334,13 +354,16 @@
                                                     Margin="8,0,0,0"
                                                     materialDesign:HintAssist.Hint="Price"
                                                     FontSize="18"
-                                                    IsEnabled="{Binding Transport_Is_Delete}">
+                                                    IsEnabled="{Binding Transport_Is_Delete}"
+                                                    ToolTip="Transport Price (per ticket)">
                                                     <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
                                                             Path="Transport_Price"
                                                             UpdateSourceTrigger="PropertyChanged">
-                                                            <Binding.ValidationRules />
+                                                            <Binding.ValidationRules>
+                                                                <ruler:MoneyRuler NameFill="Transport Price" ValidatesOnTargetUpdated="True" />
+                                                            </Binding.ValidationRules>
                                                         </Binding>
                                                     </TextBox.Text>
                                                 </TextBox>
@@ -363,13 +386,19 @@
                                                     Margin="8,0,0,0"
                                                     materialDesign:HintAssist.Hint="Company"
                                                     FontSize="18"
-                                                    IsEnabled="{Binding Transport_Is_Delete}">
+                                                    IsEnabled="{Binding Transport_Is_Delete}"
+                                                    ToolTip="Transport Company">
                                                     <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
                                                             Path="Transport_Company"
                                                             UpdateSourceTrigger="PropertyChanged">
-                                                            <Binding.ValidationRules />
+                                                            <Binding.ValidationRules>
+                                                                <ruler:MiniMumCharacterRuler
+                                                                    MinimumCharacters="0"
+                                                                    NameFill="Transport Company"
+                                                                    ValidatesOnTargetUpdated="True" />
+                                                            </Binding.ValidationRules>
                                                         </Binding>
                                                     </TextBox.Text>
                                                 </TextBox>
@@ -440,7 +469,7 @@
                                             Margin="10,16,20,16"
                                             HorizontalAlignment="Right"
                                             Command="{Binding SaveChangeCommand}"
-                                            Content="Save Change"
+                                            Content="Save Changes"
                                             Foreground="#1885F2"
                                             Style="{StaticResource ResourceKey=ConfirmButton}" />
                                     </Grid>

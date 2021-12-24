@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:TourManagementSystem.ManagerView.View"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ruler="clr-namespace:TourManagementSystem.Global.Ruler"
     Width="1190"
     Height="620"
     mc:Ignorable="d">
@@ -179,16 +180,22 @@
                                             <TextBox
                                                 Width="260"
                                                 Margin="8,0,0,0"
-                                                materialDesign:HintAssist.HelperText="Tour Name *"
                                                 materialDesign:HintAssist.Hint="Name"
                                                 FontSize="18"
-                                                IsEnabled="{Binding Is_Exist}">
+                                                IsEnabled="{Binding Is_Exist}"
+                                                ToolTip="Tour Name">
                                                 <TextBox.Text>
                                                     <Binding
                                                         Mode="TwoWay"
                                                         Path="Tour_Name"
                                                         UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules />
+                                                        <Binding.ValidationRules>
+                                                            <ruler:MiniMumCharacterRuler
+                                                                MaximumCharacters="30"
+                                                                MinimumCharacters="0"
+                                                                NameFill="Tour Name"
+                                                                ValidatesOnTargetUpdated="True" />
+                                                        </Binding.ValidationRules>
                                                     </Binding>
                                                 </TextBox.Text>
                                             </TextBox>
@@ -212,7 +219,8 @@
                                                 materialDesign:HintAssist.Hint="Status"
                                                 FontSize="18"
                                                 Foreground="DimGray"
-                                                IsEnabled="{Binding Is_Exist}">
+                                                IsEnabled="{Binding Is_Exist}"
+                                                ToolTip="Tour Status">
                                                 <ComboBoxItem Content="Family Tour" />
                                                 <ComboBoxItem Content="Group Tour" />
                                                 <ComboBox.Text>
@@ -220,7 +228,12 @@
                                                         Mode="TwoWay"
                                                         Path="Tour_Type"
                                                         UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules />
+                                                        <Binding.ValidationRules>
+                                                            <ruler:MiniMumCharacterRuler
+                                                                MinimumCharacters="0"
+                                                                NameFill="Tour Status"
+                                                                ValidatesOnTargetUpdated="True" />
+                                                        </Binding.ValidationRules>
                                                     </Binding>
                                                 </ComboBox.Text>
                                             </ComboBox>
@@ -357,7 +370,8 @@
                                             Background="Transparent"
                                             BorderBrush="#EBF9E2"
                                             BorderThickness="1"
-                                            Command="{Binding ModifyImageCommand_1}">
+                                            Command="{Binding ModifyImageCommand_1}"
+                                            ToolTip="Tour Image 1">
                                             <Image Source="{Binding Tour_Image_Source_1}" Stretch="Fill" />
                                         </Button>
 
@@ -369,7 +383,8 @@
                                             Background="Transparent"
                                             BorderBrush="#EBF9E2"
                                             BorderThickness="1"
-                                            Command="{Binding ModifyImageCommand_2}">
+                                            Command="{Binding ModifyImageCommand_2}"
+                                            ToolTip="Tour Image 2">
                                             <Image Source="{Binding Tour_Image_Source_2}" Stretch="Fill" />
                                         </Button>
 
@@ -381,7 +396,8 @@
                                             Background="Transparent"
                                             BorderBrush="#EBF9E2"
                                             BorderThickness="1"
-                                            Command="{Binding ModifyImageCommand_3}">
+                                            Command="{Binding ModifyImageCommand_3}"
+                                            ToolTip="Tour Image 3">
                                             <Image Source="{Binding Tour_Image_Source_3}" Stretch="Fill" />
                                         </Button>
 
@@ -393,7 +409,8 @@
                                             Background="Transparent"
                                             BorderBrush="#EBF9E2"
                                             BorderThickness="1"
-                                            Command="{Binding ModifyImageCommand_4}">
+                                            Command="{Binding ModifyImageCommand_4}"
+                                            ToolTip="Tour Image 4">
                                             <Image Source="{Binding Tour_Image_Source_4}" Stretch="Fill" />
                                         </Button>
 
@@ -405,7 +422,8 @@
                                             Background="Transparent"
                                             BorderBrush="#EBF9E2"
                                             BorderThickness="1"
-                                            Command="{Binding ModifyImageCommand_5}">
+                                            Command="{Binding ModifyImageCommand_5}"
+                                            ToolTip="Tour Image 5">
                                             <Image Source="{Binding Tour_Image_Source_5}" Stretch="Fill" />
                                         </Button>
 
@@ -417,7 +435,8 @@
                                             Background="Transparent"
                                             BorderBrush="#EBF9E2"
                                             BorderThickness="1"
-                                            Command="{Binding ModifyImageCommand_6}">
+                                            Command="{Binding ModifyImageCommand_6}"
+                                            ToolTip="Tour Image 6">
                                             <Image Source="{Binding Tour_Image_Source_6}" Stretch="Fill" />
                                         </Button>
                                     </WrapPanel>
@@ -468,6 +487,7 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="*" />
+                                        <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
                                     </Grid.RowDefinitions>
 
@@ -590,6 +610,20 @@
 
                                     <StackPanel
                                         Grid.Row="2"
+                                        Margin="60,0,0,0"
+                                        Orientation="Horizontal">
+                                        <TextBlock FontSize="24" Text="Note" />
+                                        <TextBlock
+                                            Margin="8,4,0,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            FontStyle="Italic"
+                                            Foreground="#F36E6B"
+                                            Text="You must choose at least 1 place" />
+                                    </StackPanel>
+
+                                    <StackPanel
+                                        Grid.Row="3"
                                         HorizontalAlignment="Right"
                                         Orientation="Horizontal">
 

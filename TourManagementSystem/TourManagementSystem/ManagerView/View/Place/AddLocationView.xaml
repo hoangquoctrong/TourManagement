@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:TourManagementSystem.ManagerView.View"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ruler="clr-namespace:TourManagementSystem.Global.Ruler"
     Width="1190"
     Height="620"
     mc:Ignorable="d">
@@ -75,16 +76,20 @@
                         <TextBox
                             Width="360"
                             Margin="8,0,0,0"
-                            materialDesign:HintAssist.HelperText="Location Name is the name of famous Site"
-                            materialDesign:HintAssist.HelperTextFontSize="18"
                             materialDesign:HintAssist.Hint="Name"
-                            FontSize="24">
+                            FontSize="24"
+                            ToolTip="Location Name is the name of famous Site">
                             <TextBox.Text>
                                 <Binding
                                     Mode="TwoWay"
                                     Path="Location_Name"
                                     UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules />
+                                    <Binding.ValidationRules>
+                                        <ruler:MiniMumCharacterRuler
+                                            MinimumCharacters="0"
+                                            NameFill="Location Name"
+                                            ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
@@ -137,16 +142,20 @@
                     <TextBox
                         Width="850"
                         Margin="10,0,0,0"
-                        materialDesign:HintAssist.HelperText="Include Apartment Number, Street Name, Ward Name"
-                        materialDesign:HintAssist.HelperTextFontSize="16"
                         materialDesign:HintAssist.Hint="Address"
-                        FontSize="18">
+                        FontSize="18"
+                        ToolTip="Include Apartment Number, Street Name, Ward Name">
                         <TextBox.Text>
                             <Binding
                                 Mode="TwoWay"
                                 Path="Location_Address"
                                 UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules />
+                                <Binding.ValidationRules>
+                                    <ruler:MiniMumCharacterRuler
+                                        MinimumCharacters="0"
+                                        NameFill="Location Address"
+                                        ValidatesOnTargetUpdated="True" />
+                                </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>

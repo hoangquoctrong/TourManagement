@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +24,8 @@ namespace TourManagementSystem.Global.Model
         /*
          *
          */
+
+        #region Password
 
         /*
          * Base64Encode to encode text by Base64
@@ -58,6 +61,10 @@ namespace TourManagementSystem.Global.Model
             }
         }
 
+        #endregion Password
+
+        #region Image
+
         /*
          * Convert Image from byte[] to bitmap
          */
@@ -75,22 +82,9 @@ namespace TourManagementSystem.Global.Model
             }
         }
 
-        public static bool IsValidEmail(string email)
-        {
-            if (email.Trim().EndsWith("."))
-            {
-                return false;
-            }
-            try
-            {
-                var addr = new MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        #endregion Image
+
+        #region Handle Email
 
         public static async Task<bool> IsSendEmail(string text)
         {
@@ -123,6 +117,10 @@ namespace TourManagementSystem.Global.Model
                 }
             }
         }
+
+        #endregion Handle Email
+
+        #region Export File
 
         //Chuyển từ datagrid sang datatable
         public static DataTable ToDataTable<T>(List<T> items, List<string> headerList)
@@ -298,5 +296,130 @@ namespace TourManagementSystem.Global.Model
                 message = "Export data to " + saveFileDialog.FileName + " successful";
             }
         }
+
+        #endregion Export File
+
+        #region Validation
+
+        public static bool IsValidEmail(string email)
+        {
+            if (email.Trim().EndsWith("."))
+            {
+                return false;
+            }
+            try
+            {
+                var addr = new MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool IsValidChar(string charString, int MinimumCharacters, int MaximumCharacters)
+        {
+            if (string.IsNullOrEmpty(charString))
+            {
+                return false;
+            }
+            else if (charString.Length < MinimumCharacters)
+            {
+                return false;
+            }
+            else if (MaximumCharacters > 0)
+            {
+                if (charString.Length > MaximumCharacters)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public static bool IsValidNumber(string charString)
+        {
+            Regex regex = new Regex(@"^[0-9]*$");
+
+            if (string.IsNullOrEmpty(charString))
+            {
+                return false;
+            }
+            else if (!regex.IsMatch(charString))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public static bool IsValidVietnameseMoney(string charString)
+        {
+            double num;
+            if (string.IsNullOrEmpty(charString))
+            {
+                return false;
+            }
+            else if (!double.TryParse(charString, out num))
+            {
+                return false;
+            }
+            else
+            {
+                if (num < 1000)
+                {
+                    return false;
+                }
+                else if (num % 1000 != 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        public static bool IsValidPhoneNumber(string charString, int MinimumCharacters, int MaximumCharacters)
+        {
+            Regex regex = new Regex(@"^[0-9]*$");
+
+            if (string.IsNullOrEmpty(charString))
+            {
+                return false;
+            }
+            else if (!regex.IsMatch(charString))
+            {
+                return false;
+            }
+            else
+            {
+                if (charString.Length < MinimumCharacters)
+                {
+                    return false;
+                }
+                else if (charString.Length > MaximumCharacters)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        #endregion Validation
     }
 }

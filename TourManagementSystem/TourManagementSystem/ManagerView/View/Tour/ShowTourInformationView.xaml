@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:TourManagementSystem.ManagerView.View"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ruler="clr-namespace:TourManagementSystem.Global.Ruler"
     Width="1190"
     Height="620"
     mc:Ignorable="d">
@@ -159,6 +160,7 @@
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
                                     </Grid.RowDefinitions>
 
                                     <StackPanel Margin="0,24,0,0" VerticalAlignment="Center">
@@ -201,7 +203,7 @@
                                                     </TextBox>
                                                 </StackPanel>
 
-                                                <StackPanel Margin="0,70,0,0" Orientation="Horizontal">
+                                                <StackPanel Margin="0,40,0,0" Orientation="Horizontal">
 
                                                     <DatePicker
                                                         Width="450"
@@ -237,7 +239,7 @@
                                                         Kind="Clock" />
 
                                                     <TextBox
-                                                        Width="50"
+                                                        Width="80"
                                                         Margin="10,0,0,0"
                                                         HorizontalContentAlignment="Center"
                                                         VerticalContentAlignment="Center"
@@ -249,7 +251,9 @@
                                                                 Mode="TwoWay"
                                                                 Path="Time_Day"
                                                                 UpdateSourceTrigger="PropertyChanged">
-                                                                <Binding.ValidationRules />
+                                                                <Binding.ValidationRules>
+                                                                    <ruler:NumberRuler NameFill="Day" ValidatesOnTargetUpdated="True" />
+                                                                </Binding.ValidationRules>
                                                             </Binding>
                                                         </TextBox.Text>
                                                     </TextBox>
@@ -261,7 +265,7 @@
                                                         Text="Day(s)" />
 
                                                     <TextBox
-                                                        Width="50"
+                                                        Width="80"
                                                         Margin="10,0,0,0"
                                                         HorizontalContentAlignment="Center"
                                                         VerticalContentAlignment="Center"
@@ -273,7 +277,9 @@
                                                                 Mode="TwoWay"
                                                                 Path="Time_Night"
                                                                 UpdateSourceTrigger="PropertyChanged">
-                                                                <Binding.ValidationRules />
+                                                                <Binding.ValidationRules>
+                                                                    <ruler:NumberRuler NameFill="Night" ValidatesOnTargetUpdated="True" />
+                                                                </Binding.ValidationRules>
                                                             </Binding>
                                                         </TextBox.Text>
                                                     </TextBox>
@@ -285,7 +291,7 @@
                                                         Text="Night(s)" />
                                                 </StackPanel>
 
-                                                <StackPanel Margin="0,60,0,0" Orientation="Horizontal">
+                                                <StackPanel Margin="0,40,0,0" Orientation="Horizontal">
 
                                                     <DatePicker
                                                         Width="450"
@@ -311,6 +317,26 @@
 
                                     <StackPanel
                                         Grid.Row="2"
+                                        Margin="20,16"
+                                        Orientation="Vertical">
+                                        <TextBlock
+                                            FontSize="24"
+                                            FontWeight="Bold"
+                                            Text="Note: " />
+                                        <TextBlock
+                                            Margin="12,4"
+                                            FontSize="18"
+                                            FontStyle="Italic"
+                                            Text="1. Day - Night is equal or smaller than 1" />
+                                        <TextBlock
+                                            Margin="12,4"
+                                            FontSize="18"
+                                            FontStyle="Italic"
+                                            Text="2. Department Date - End Date is the same with Min of Day and Night" />
+                                    </StackPanel>
+
+                                    <StackPanel
+                                        Grid.Row="3"
                                         HorizontalAlignment="Right"
                                         Orientation="Horizontal">
 
@@ -319,7 +345,7 @@
                                             Height="60"
                                             Margin="0,16,64,2"
                                             Command="{Binding SaveTourTimeCommand}"
-                                            Content="SaveChange"
+                                            Content="Save Changes"
                                             Foreground="#1885F2"
                                             Style="{StaticResource ResourceKey=ConfirmButton}"
                                             Visibility="{Binding IsVisibility}" />
@@ -357,6 +383,7 @@
 
                                 <Grid>
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
@@ -491,6 +518,28 @@
 
                                     <StackPanel
                                         Grid.Row="3"
+                                        Margin="20,16"
+                                        Orientation="Vertical">
+                                        <TextBlock
+                                            FontSize="24"
+                                            FontWeight="Bold"
+                                            Text="Note: " />
+                                        <TextBlock
+                                            Margin="12,4"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            FontStyle="Italic"
+                                            Text="1. You must choose at least 1 location" />
+                                        <TextBlock
+                                            Margin="12,4"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            FontStyle="Italic"
+                                            Text="2. The location list you choose must have some difference compare with before" />
+                                    </StackPanel>
+
+                                    <StackPanel
+                                        Grid.Row="4"
                                         HorizontalAlignment="Right"
                                         Orientation="Horizontal"
                                         Visibility="{Binding IsVisibility}">
@@ -500,7 +549,7 @@
                                             Height="60"
                                             Margin="0,16,64,16"
                                             Command="{Binding SaveLocationCommand}"
-                                            Content="SaveChange"
+                                            Content="Save Changes"
                                             Foreground="#1885F2"
                                             Style="{StaticResource ResourceKey=ConfirmButton}" />
                                     </StackPanel>
@@ -575,6 +624,7 @@
                                                 <RowDefinition Height="auto" />
                                                 <RowDefinition Height="auto" />
                                                 <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
                                             </Grid.RowDefinitions>
 
                                             <StackPanel Margin="0,24,0,0" VerticalAlignment="Center">
@@ -623,12 +673,12 @@
                                                     </StackPanel>
                                                 </Border>
                                                 <Button
-                                                    Width="100"
+                                                    Width="160"
                                                     Height="40"
                                                     Margin="10,0"
                                                     VerticalAlignment="Center"
                                                     Command="{Binding SaveHotelPriceCommand}"
-                                                    Content="Save"
+                                                    Content="Save Total Price"
                                                     Foreground="#1885F2"
                                                     Style="{StaticResource SaveButton}"
                                                     Visibility="{Binding IsVisibility}" />
@@ -737,13 +787,16 @@
                                                                                 Margin="8,0,0,0"
                                                                                 HorizontalAlignment="Left"
                                                                                 materialDesign:HintAssist.Hint="Amount"
-                                                                                FontSize="12">
+                                                                                FontSize="12"
+                                                                                ToolTip="The amount of Day in Hotel">
                                                                                 <TextBox.Text>
                                                                                     <Binding
                                                                                         Mode="TwoWay"
                                                                                         Path="HOTEL_DAY"
                                                                                         UpdateSourceTrigger="PropertyChanged">
-                                                                                        <Binding.ValidationRules />
+                                                                                        <Binding.ValidationRules>
+                                                                                            <ruler:NumberRuler NameFill="Hotel Amount Day" ValidatesOnTargetUpdated="True" />
+                                                                                        </Binding.ValidationRules>
                                                                                     </Binding>
                                                                                 </TextBox.Text>
                                                                             </TextBox>
@@ -758,6 +811,35 @@
 
                                             <StackPanel
                                                 Grid.Row="3"
+                                                Margin="20,16"
+                                                Orientation="Vertical">
+                                                <TextBlock
+                                                    FontSize="24"
+                                                    FontWeight="Bold"
+                                                    Text="Note: " />
+                                                <TextBlock
+                                                    Margin="12,0"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="18"
+                                                    FontStyle="Italic"
+                                                    Text="1. You must choose at least 1 hotel" />
+                                                <TextBlock
+                                                    Margin="12,0"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="18"
+                                                    FontStyle="Italic"
+                                                    Text="2. In each hotel you choose, you must fill the day in this hotel" />
+                                                <TextBlock
+                                                    Margin="12,0"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="18"
+                                                    FontStyle="Italic"
+                                                    Foreground="#F36E6B"
+                                                    Text="3. After you choose fill the Hotel Amount, you must click button Save to Save the Price if you want to Save Changes" />
+                                            </StackPanel>
+
+                                            <StackPanel
+                                                Grid.Row="4"
                                                 HorizontalAlignment="Right"
                                                 Orientation="Horizontal"
                                                 Visibility="{Binding IsVisibility}">
@@ -767,7 +849,7 @@
                                                     Height="60"
                                                     Margin="0,16,64,16"
                                                     Command="{Binding SaveHotelCommand}"
-                                                    Content="SaveChange"
+                                                    Content="Save Changes"
                                                     Foreground="#1885F2"
                                                     Style="{StaticResource ResourceKey=ConfirmButton}" />
                                             </StackPanel>
@@ -804,6 +886,7 @@
 
                                         <Grid>
                                             <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto" />
                                                 <RowDefinition Height="auto" />
                                                 <RowDefinition Height="auto" />
                                                 <RowDefinition Height="auto" />
@@ -856,12 +939,12 @@
                                                 </Border>
 
                                                 <Button
-                                                    Width="100"
+                                                    Width="160"
                                                     Height="40"
                                                     Margin="10,0"
                                                     VerticalAlignment="Center"
                                                     Command="{Binding SaveTransportPriceCommand}"
-                                                    Content="Save"
+                                                    Content="Save Total Price"
                                                     Foreground="#1885F2"
                                                     Style="{StaticResource SaveButton}"
                                                     Visibility="{Binding IsVisibility}" />
@@ -971,8 +1054,18 @@
                                                                                 DisplayMemberPath="CB_ID"
                                                                                 FontSize="12"
                                                                                 Foreground="DimGray"
-                                                                                ItemsSource="{Binding CB_TransportAmount}"
-                                                                                Text="{Binding TRANSPORT_AMOUNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                                                ItemsSource="{Binding CB_TransportAmount}">
+                                                                                <ComboBox.Text>
+                                                                                    <Binding
+                                                                                        Mode="TwoWay"
+                                                                                        Path="TRANSPORT_AMOUNT"
+                                                                                        UpdateSourceTrigger="PropertyChanged">
+                                                                                        <Binding.ValidationRules>
+                                                                                            <ruler:NumberRuler NameFill="Transport Amount" ValidatesOnTargetUpdated="True" />
+                                                                                        </Binding.ValidationRules>
+                                                                                    </Binding>
+                                                                                </ComboBox.Text>
+                                                                            </ComboBox>
                                                                         </StackPanel>
                                                                     </StackPanel>
                                                                 </Border>
@@ -984,6 +1077,35 @@
 
                                             <StackPanel
                                                 Grid.Row="3"
+                                                Margin="20,16"
+                                                Orientation="Vertical">
+                                                <TextBlock
+                                                    FontSize="24"
+                                                    FontWeight="Bold"
+                                                    Text="Note: " />
+                                                <TextBlock
+                                                    Margin="12,0"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="18"
+                                                    FontStyle="Italic"
+                                                    Text="1. You must choose at least 1 transport" />
+                                                <TextBlock
+                                                    Margin="12,0"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="18"
+                                                    FontStyle="Italic"
+                                                    Text="2. In each transport you choose, you must fill the amount of this transport" />
+                                                <TextBlock
+                                                    Margin="12,0"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="18"
+                                                    FontStyle="Italic"
+                                                    Foreground="#F36E6B"
+                                                    Text="3. After you fill the Transport Amount, you must click button Save to Save the Price if you want to Save Changes" />
+                                            </StackPanel>
+
+                                            <StackPanel
+                                                Grid.Row="4"
                                                 HorizontalAlignment="Right"
                                                 Orientation="Horizontal"
                                                 Visibility="{Binding IsVisibility}">
@@ -993,7 +1115,7 @@
                                                     Height="60"
                                                     Margin="0,16,64,16"
                                                     Command="{Binding SaveTransportCommand}"
-                                                    Content="SaveChange"
+                                                    Content="Save Changes"
                                                     Foreground="#1885F2"
                                                     Style="{StaticResource ResourceKey=ConfirmButton}" />
                                             </StackPanel>
@@ -1029,6 +1151,7 @@
                                         </TabItem.Header>
                                         <Grid>
                                             <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto" />
                                                 <RowDefinition Height="auto" />
                                                 <RowDefinition Height="auto" />
                                                 <RowDefinition Height="auto" />
@@ -1083,11 +1206,11 @@
                                                     Visibility="{Binding IsVisibility}" />
 
                                                 <Button
-                                                    Width="100"
+                                                    Width="160"
                                                     Height="40"
                                                     Margin="10,0"
                                                     Command="{Binding SaveMissionPriceCommand}"
-                                                    Content="Save"
+                                                    Content="Save Total Price"
                                                     Foreground="#1885F2"
                                                     Style="{StaticResource SaveButton}"
                                                     Visibility="{Binding IsVisibility}" />
@@ -1137,13 +1260,29 @@
                                                                             Foreground="DimGray"
                                                                             Style="{StaticResource MaterialDesignButtonTextBlock}"
                                                                             Text="Responsibility : " />
-                                                                        <TextBox
+                                                                        <ComboBox
                                                                             Width="224"
                                                                             Margin="10,0,0,0"
                                                                             materialDesign:HintAssist.Hint="Mission Responsibility"
                                                                             FontSize="18"
-                                                                            Foreground="DimGray"
-                                                                            Text="{Binding Mission_Responsibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                                            Foreground="DimGray">
+                                                                            <ComboBoxItem Content="Driver" />
+                                                                            <ComboBoxItem Content="Guide" />
+                                                                            <ComboBoxItem Content="Guard" />
+                                                                            <ComboBox.Text>
+                                                                                <Binding
+                                                                                    Mode="TwoWay"
+                                                                                    Path="Mission_Responsibility"
+                                                                                    UpdateSourceTrigger="PropertyChanged">
+                                                                                    <Binding.ValidationRules>
+                                                                                        <ruler:MiniMumCharacterRuler
+                                                                                            MinimumCharacters="0"
+                                                                                            NameFill="Mission Responsibility"
+                                                                                            ValidatesOnTargetUpdated="True" />
+                                                                                    </Binding.ValidationRules>
+                                                                                </Binding>
+                                                                            </ComboBox.Text>
+                                                                        </ComboBox>
                                                                     </StackPanel>
 
                                                                     <StackPanel
@@ -1162,12 +1301,22 @@
                                                                             Margin="10,0,0,0"
                                                                             materialDesign:HintAssist.Hint="Price"
                                                                             materialDesign:TextFieldAssist.PrefixText="VND"
-                                                                            FontSize="18"
-                                                                            Text="{Binding Mission_Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                                            FontSize="18">
+                                                                            <TextBox.Text>
+                                                                                <Binding
+                                                                                    Mode="TwoWay"
+                                                                                    Path="Mission_Price"
+                                                                                    UpdateSourceTrigger="PropertyChanged">
+                                                                                    <Binding.ValidationRules>
+                                                                                        <ruler:MoneyRuler NameFill="Mission Price" ValidatesOnTargetUpdated="True" />
+                                                                                    </Binding.ValidationRules>
+                                                                                </Binding>
+                                                                            </TextBox.Text>
+                                                                        </TextBox>
                                                                     </StackPanel>
                                                                 </Grid>
 
-                                                                <StackPanel Margin="64,4,120,4" Orientation="Horizontal">
+                                                                <StackPanel Margin="64,16,120,4" Orientation="Horizontal">
                                                                     <TextBlock
                                                                         VerticalAlignment="Center"
                                                                         FontSize="18"
@@ -1178,14 +1327,24 @@
                                                                         Width="190"
                                                                         Margin="10,0,0,0"
                                                                         materialDesign:HintAssist.Hint="0"
-                                                                        FontSize="18"
-                                                                        Text="{Binding Mission_Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                                        FontSize="18">
+                                                                        <TextBox.Text>
+                                                                            <Binding
+                                                                                Mode="TwoWay"
+                                                                                Path="Mission_Count"
+                                                                                UpdateSourceTrigger="PropertyChanged">
+                                                                                <Binding.ValidationRules>
+                                                                                    <ruler:NumberRuler NameFill="Mission Count" ValidatesOnTargetUpdated="True" />
+                                                                                </Binding.ValidationRules>
+                                                                            </Binding>
+                                                                        </TextBox.Text>
+                                                                    </TextBox>
                                                                 </StackPanel>
 
                                                                 <TextBox
                                                                     Width="1020"
                                                                     Height="220"
-                                                                    Margin="20,10,20,0"
+                                                                    Margin="20,20,20,0"
                                                                     HorizontalAlignment="Left"
                                                                     materialDesign:HintAssist.Hint="Content"
                                                                     AcceptsReturn="True"
@@ -1203,6 +1362,35 @@
 
                                             <StackPanel
                                                 Grid.Row="3"
+                                                Margin="20,16"
+                                                Orientation="Vertical">
+                                                <TextBlock
+                                                    FontSize="24"
+                                                    FontWeight="Bold"
+                                                    Text="Note: " />
+                                                <TextBlock
+                                                    Margin="12,0"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="18"
+                                                    FontStyle="Italic"
+                                                    Text="1. You must have at least 1 mission" />
+                                                <TextBlock
+                                                    Margin="12,0"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="18"
+                                                    FontStyle="Italic"
+                                                    Text="2. In each mission you choose, you must fill all require field" />
+                                                <TextBlock
+                                                    Margin="12,0"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="18"
+                                                    FontStyle="Italic"
+                                                    Foreground="#F36E6B"
+                                                    Text="3. After you fill all the required field, you must click button Save to Save the Price if you want to Save Changes" />
+                                            </StackPanel>
+
+                                            <StackPanel
+                                                Grid.Row="4"
                                                 HorizontalAlignment="Right"
                                                 Orientation="Horizontal"
                                                 Visibility="{Binding IsVisibility}">
@@ -1212,7 +1400,7 @@
                                                     Height="60"
                                                     Margin="0,16,64,16"
                                                     Command="{Binding SaveMissionCommand}"
-                                                    Content="SaveChange"
+                                                    Content="Save Changes"
                                                     Foreground="#1885F2"
                                                     Style="{StaticResource ResourceKey=ConfirmButton}" />
                                             </StackPanel>
@@ -1540,6 +1728,7 @@
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
                                     </Grid.RowDefinitions>
 
                                     <StackPanel Margin="0,24,0,0" VerticalAlignment="Center">
@@ -1590,11 +1779,11 @@
                                             Visibility="{Binding IsVisibility}" />
 
                                         <Button
-                                            Width="100"
+                                            Width="160"
                                             Height="40"
                                             Margin="10,0"
                                             Command="{Binding SaveScheduleListCommand}"
-                                            Content="Save"
+                                            Content="Check Schedule List"
                                             Foreground="#1885F2"
                                             Style="{StaticResource SaveButton}"
                                             Visibility="{Binding IsVisibility}" />
@@ -1631,11 +1820,23 @@
                                                     <StackPanel Margin="10">
 
                                                         <TextBox
-                                                            Margin="20,10,20,10"
+                                                            Margin="20,10,50,10"
                                                             materialDesign:HintAssist.Hint="Days"
-                                                            FontSize="22"
-                                                            Text="{Binding SCHEDULE_DAY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
+                                                            FontSize="22">
+                                                            <TextBox.Text>
+                                                                <Binding
+                                                                    Mode="TwoWay"
+                                                                    Path="SCHEDULE_DAY"
+                                                                    UpdateSourceTrigger="PropertyChanged">
+                                                                    <Binding.ValidationRules>
+                                                                        <ruler:MiniMumCharacterRuler
+                                                                            MinimumCharacters="0"
+                                                                            NameFill="Schedule Title"
+                                                                            ValidatesOnTargetUpdated="True" />
+                                                                    </Binding.ValidationRules>
+                                                                </Binding>
+                                                            </TextBox.Text>
+                                                        </TextBox>
                                                         <TextBox
                                                             Width="1020"
                                                             Height="220"
@@ -1647,8 +1848,21 @@
                                                             Foreground="DimGray"
                                                             MinLines="8"
                                                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                                            Text="{Binding SCHEDULE_CONTENT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                            TextWrapping="Wrap" />
+                                                            TextWrapping="Wrap">
+                                                            <TextBox.Text>
+                                                                <Binding
+                                                                    Mode="TwoWay"
+                                                                    Path="SCHEDULE_CONTENT"
+                                                                    UpdateSourceTrigger="PropertyChanged">
+                                                                    <Binding.ValidationRules>
+                                                                        <ruler:MiniMumCharacterRuler
+                                                                            MinimumCharacters="0"
+                                                                            NameFill="Schedule Content"
+                                                                            ValidatesOnTargetUpdated="True" />
+                                                                    </Binding.ValidationRules>
+                                                                </Binding>
+                                                            </TextBox.Text>
+                                                        </TextBox>
                                                     </StackPanel>
                                                 </Border>
                                             </DataTemplate>
@@ -1657,6 +1871,35 @@
 
                                     <StackPanel
                                         Grid.Row="3"
+                                        Margin="20,16"
+                                        Orientation="Vertical">
+                                        <TextBlock
+                                            FontSize="24"
+                                            FontWeight="Bold"
+                                            Text="Note: " />
+                                        <TextBlock
+                                            Margin="12,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            FontStyle="Italic"
+                                            Text="1. You must have at least 1 schedule content" />
+                                        <TextBlock
+                                            Margin="12,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            FontStyle="Italic"
+                                            Text="2. In each schedule you add, you must fill all require field" />
+                                        <TextBlock
+                                            Margin="12,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            FontStyle="Italic"
+                                            Foreground="#F36E6B"
+                                            Text="3. After you change or add anything in Schedule List, you click Check Button if you want to Save Changes " />
+                                    </StackPanel>
+
+                                    <StackPanel
+                                        Grid.Row="4"
                                         HorizontalAlignment="Right"
                                         Orientation="Horizontal"
                                         Visibility="{Binding IsVisibility}">
@@ -1666,7 +1909,7 @@
                                             Height="60"
                                             Margin="0,16,64,16"
                                             Command="{Binding SaveScheduleCommand}"
-                                            Content="SaveChange"
+                                            Content="Save Changes"
                                             Foreground="#1885F2"
                                             Style="{StaticResource ResourceKey=ConfirmButton}" />
                                     </StackPanel>

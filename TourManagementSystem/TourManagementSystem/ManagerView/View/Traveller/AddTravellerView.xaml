@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:TourManagementSystem.ManagerView.View"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ruler="clr-namespace:TourManagementSystem.Global.Ruler"
     Width="1190"
     Height="620"
     mc:Ignorable="d">
@@ -111,15 +112,21 @@
                                         <TextBox
                                             Width="400"
                                             Margin="8,0,0,0"
-                                            materialDesign:HintAssist.HelperText="Travller Name"
                                             materialDesign:HintAssist.Hint="Name"
-                                            FontSize="18">
+                                            FontSize="18"
+                                            ToolTip="Travller Name">
                                             <TextBox.Text>
                                                 <Binding
                                                     Mode="TwoWay"
                                                     Path="Traveller_Name"
                                                     UpdateSourceTrigger="PropertyChanged">
-                                                    <Binding.ValidationRules />
+                                                    <Binding.ValidationRules>
+                                                        <ruler:MiniMumCharacterRuler
+                                                            MaximumCharacters="40"
+                                                            MinimumCharacters="0"
+                                                            NameFill="Traveller Name"
+                                                            ValidatesOnTargetUpdated="True" />
+                                                    </Binding.ValidationRules>
                                                 </Binding>
                                             </TextBox.Text>
                                         </TextBox>
@@ -155,7 +162,8 @@
                                                 HorizontalAlignment="Left"
                                                 materialDesign:HintAssist.Hint="Type"
                                                 FontSize="18"
-                                                Foreground="DimGray">
+                                                Foreground="DimGray"
+                                                ToolTip="Traveller Type">
                                                 <ComboBoxItem Content="Domestic Traveller" />
                                                 <ComboBoxItem Content="Foreign Traveller" />
                                                 <ComboBox.Text>
@@ -163,7 +171,12 @@
                                                         Mode="TwoWay"
                                                         Path="Traveller_Type"
                                                         UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules />
+                                                        <Binding.ValidationRules>
+                                                            <ruler:MiniMumCharacterRuler
+                                                                MinimumCharacters="0"
+                                                                NameFill="Traveller Type"
+                                                                ValidatesOnTargetUpdated="True" />
+                                                        </Binding.ValidationRules>
                                                     </Binding>
                                                 </ComboBox.Text>
                                             </ComboBox>
@@ -182,13 +195,19 @@
                                                 Width="300"
                                                 Margin="8,0,0,0"
                                                 materialDesign:HintAssist.Hint="Address"
-                                                FontSize="18">
+                                                FontSize="18"
+                                                ToolTip="Traveller Address - Province Only">
                                                 <TextBox.Text>
                                                     <Binding
                                                         Mode="TwoWay"
                                                         Path="Traveller_Address"
                                                         UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules />
+                                                        <Binding.ValidationRules>
+                                                            <ruler:MiniMumCharacterRuler
+                                                                MinimumCharacters="0"
+                                                                NameFill="Traveller Address"
+                                                                ValidatesOnTargetUpdated="True" />
+                                                        </Binding.ValidationRules>
                                                     </Binding>
                                                 </TextBox.Text>
                                             </TextBox>
@@ -207,13 +226,20 @@
                                                 Width="300"
                                                 Margin="8,0,0,0"
                                                 materialDesign:HintAssist.Hint="Phone Number"
-                                                FontSize="18">
+                                                FontSize="18"
+                                                ToolTip="Traveller Phone Number from 6 to 12 number">
                                                 <TextBox.Text>
                                                     <Binding
                                                         Mode="TwoWay"
                                                         Path="Traveller_PhoneNumber"
                                                         UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules />
+                                                        <Binding.ValidationRules>
+                                                            <ruler:PhoneNumberRuler
+                                                                MaximumCharacters="12"
+                                                                MinimumCharacters="6"
+                                                                NameFill="Traveller Phone Number"
+                                                                ValidatesOnTargetUpdated="True" />
+                                                        </Binding.ValidationRules>
                                                     </Binding>
                                                 </TextBox.Text>
                                             </TextBox>
@@ -234,13 +260,20 @@
                                                 Width="300"
                                                 Margin="8,0,0,0"
                                                 materialDesign:HintAssist.Hint="Citizen Identity Card"
-                                                FontSize="18">
+                                                FontSize="18"
+                                                ToolTip="Traveller ID Card from 9 to 12 number">
                                                 <TextBox.Text>
                                                     <Binding
                                                         Mode="TwoWay"
                                                         Path="Traveller_CitizenIdentity"
                                                         UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules />
+                                                        <Binding.ValidationRules>
+                                                            <ruler:PhoneNumberRuler
+                                                                MaximumCharacters="12"
+                                                                MinimumCharacters="9"
+                                                                NameFill="Traveller ID Card"
+                                                                ValidatesOnTargetUpdated="True" />
+                                                        </Binding.ValidationRules>
                                                     </Binding>
                                                 </TextBox.Text>
                                             </TextBox>
@@ -261,7 +294,8 @@
                                                 HorizontalAlignment="Left"
                                                 materialDesign:HintAssist.Hint="Gender"
                                                 FontSize="18"
-                                                Foreground="DimGray">
+                                                Foreground="DimGray"
+                                                ToolTip="Traveller Gender">
                                                 <ComboBoxItem Content="Male" />
                                                 <ComboBoxItem Content="Female" />
                                                 <ComboBox.Text>
@@ -269,7 +303,12 @@
                                                         Mode="TwoWay"
                                                         Path="Traveller_Sex"
                                                         UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules />
+                                                        <Binding.ValidationRules>
+                                                            <ruler:MiniMumCharacterRuler
+                                                                MinimumCharacters="0"
+                                                                NameFill="Traveller Gender"
+                                                                ValidatesOnTargetUpdated="True" />
+                                                        </Binding.ValidationRules>
                                                     </Binding>
                                                 </ComboBox.Text>
                                             </ComboBox>
@@ -292,7 +331,8 @@
                                                 materialDesign:HintAssist.Hint="Birthday"
                                                 FontSize="18"
                                                 SelectedDateFormat="Short"
-                                                Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+                                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                                ToolTip="Traveller Birthday">
                                                 <DatePicker.SelectedDate>
                                                     <Binding
                                                         Mode="TwoWay"

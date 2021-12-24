@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:TourManagementSystem.ManagerView.View"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ruler="clr-namespace:TourManagementSystem.Global.Ruler"
     Width="1190"
     Height="620"
     mc:Ignorable="d">
@@ -128,9 +129,19 @@
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
                                     </Grid.RowDefinitions>
 
-                                    <Grid Grid.Row="0">
+                                    <StackPanel Margin="0,24,0,0" VerticalAlignment="Center">
+                                        <TextBlock
+                                            HorizontalAlignment="Center"
+                                            FontFamily="helvetica"
+                                            FontSize="24"
+                                            Foreground="Black"
+                                            Text="Register Information" />
+                                    </StackPanel>
+
+                                    <Grid Grid.Row="1">
 
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
@@ -138,7 +149,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <StackPanel
-                                            Margin="20,70,20,20"
+                                            Margin="20,20,20,20"
                                             HorizontalAlignment="Left"
                                             Orientation="Horizontal">
 
@@ -152,15 +163,21 @@
                                             <TextBox
                                                 Width="260"
                                                 Margin="8,0,0,0"
-                                                materialDesign:HintAssist.HelperText="Transport Name."
                                                 materialDesign:HintAssist.Hint="Name"
-                                                FontSize="18">
+                                                FontSize="18"
+                                                ToolTip="Travel Group Name">
                                                 <TextBox.Text>
                                                     <Binding
                                                         Mode="TwoWay"
                                                         Path="TravelGroup_Name"
                                                         UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules />
+                                                        <Binding.ValidationRules>
+                                                            <ruler:MiniMumCharacterRuler
+                                                                MaximumCharacters="30"
+                                                                MinimumCharacters="0"
+                                                                NameFill="Travel Group Name"
+                                                                ValidatesOnTargetUpdated="True" />
+                                                        </Binding.ValidationRules>
                                                     </Binding>
                                                 </TextBox.Text>
                                             </TextBox>
@@ -168,7 +185,7 @@
 
                                         <StackPanel
                                             Grid.Column="1"
-                                            Margin="20,70,30,20"
+                                            Margin="20,20,30,20"
                                             HorizontalAlignment="Right"
                                             Orientation="Horizontal">
 
@@ -192,7 +209,12 @@
                                                         Mode="TwoWay"
                                                         Path="TravelGroup_Type"
                                                         UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules />
+                                                        <Binding.ValidationRules>
+                                                            <ruler:MiniMumCharacterRuler
+                                                                MinimumCharacters="0"
+                                                                NameFill="Travel Group Type"
+                                                                ValidatesOnTargetUpdated="True" />
+                                                        </Binding.ValidationRules>
                                                     </Binding>
                                                 </ComboBox.Text>
                                             </ComboBox>
@@ -200,26 +222,35 @@
                                     </Grid>
 
                                     <Separator
-                                        Grid.Row="1"
+                                        Grid.Row="2"
                                         Margin="0,10,0,0"
                                         BorderBrush="Black"
                                         BorderThickness="12"
                                         Opacity="0.8" />
 
-                                    <StackPanel Grid.Row="2">
+                                    <StackPanel Grid.Row="3">
 
                                         <StackPanel
                                             Margin="20"
                                             HorizontalAlignment="Left"
                                             Orientation="Vertical">
 
-                                            <TextBlock
-                                                VerticalAlignment="Center"
-                                                FontSize="20"
-                                                Foreground="DimGray"
-                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text="Tour : " />
-
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    FontSize="20"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="Tour" />
+                                                <TextBlock
+                                                    Margin="8,0"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="20"
+                                                    FontStyle="Italic"
+                                                    Foreground="#F36E6B"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="(Must Select)" />
+                                            </StackPanel>
                                             <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
 
                                                 <materialDesign:PackIcon
@@ -249,12 +280,22 @@
 
                                         <StackPanel Margin="20,20,30,20" Orientation="Vertical">
 
-                                            <TextBlock
-                                                VerticalAlignment="Center"
-                                                FontSize="20"
-                                                Foreground="DimGray"
-                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text="With Department Date : " />
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    FontSize="20"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="With Department Date" />
+                                                <TextBlock
+                                                    Margin="8,0"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="20"
+                                                    FontStyle="Italic"
+                                                    Foreground="#F36E6B"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="(Must Select)" />
+                                            </StackPanel>
 
                                             <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
 
@@ -316,6 +357,7 @@
 
                                 <Grid>
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
@@ -397,7 +439,21 @@
                                                                     Foreground="DimGray"
                                                                     IsEditable="True"
                                                                     ItemsSource="{Binding CB_StaffList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                                    Text="{Binding StaffName}" />
+                                                                    ToolTip="Select Staff for Mission">
+                                                                    <ComboBox.Text>
+                                                                        <Binding
+                                                                            Mode="TwoWay"
+                                                                            Path="StaffName"
+                                                                            UpdateSourceTrigger="PropertyChanged">
+                                                                            <Binding.ValidationRules>
+                                                                                <ruler:MiniMumCharacterRuler
+                                                                                    MinimumCharacters="0"
+                                                                                    NameFill="Staff Name"
+                                                                                    ValidatesOnTargetUpdated="True" />
+                                                                            </Binding.ValidationRules>
+                                                                        </Binding>
+                                                                    </ComboBox.Text>
+                                                                </ComboBox>
                                                             </StackPanel>
 
                                                             <StackPanel Grid.Column="1" Orientation="Horizontal">
@@ -456,6 +512,32 @@
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
+
+                                    <StackPanel
+                                        Grid.Row="3"
+                                        Margin="50,24,0,0"
+                                        Orientation="Vertical">
+                                        <TextBlock FontSize="24" Text="Note: " />
+                                        <TextBlock
+                                            Margin="12,4"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            FontStyle="Italic"
+                                            Text="1. The List Staff is showed when you choose the Department Date" />
+                                        <TextBlock
+                                            Margin="12,4"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            FontStyle="Italic"
+                                            Text="2. After choose Staff click Check Staff to check staff is valid or invalid." />
+                                        <TextBlock
+                                            Margin="12,4"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            FontStyle="Italic"
+                                            Foreground="#F36E6B"
+                                            Text="3. All Staff must be Valid Staff when you Comfirm" />
+                                    </StackPanel>
                                 </Grid>
                             </TabItem>
 
@@ -500,67 +582,271 @@
                                             Foreground="DimGray"
                                             Style="{StaticResource MaterialDesignButtonTextBlock}"
                                             Text="Price Information: " />
-                                        <StackPanel Margin="0,8,0,8" Orientation="Horizontal">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*" />
+                                                <ColumnDefinition Width="2*" />
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="2*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <!--#region Border-->
+                                            <!--  Row 0  -->
+                                            <Grid Grid.Row="0" Grid.Column="0">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="1">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="2">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="3">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <!--  Row 1  -->
+                                            <Grid Grid.Row="1" Grid.Column="0">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <Grid Grid.Row="1" Grid.Column="1">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <Grid Grid.Row="1" Grid.Column="2">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <Grid Grid.Row="1" Grid.Column="3">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <!--  Row 2  -->
+                                            <Grid Grid.Row="2" Grid.Column="0">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <Grid Grid.Row="2" Grid.Column="1">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <Grid Grid.Row="2" Grid.Column="2">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <Grid Grid.Row="2" Grid.Column="3">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <!--  Row 3  -->
+                                            <Grid Grid.Row="3" Grid.Column="0">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <Grid Grid.Row="3" Grid.Column="1">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <Grid Grid.Row="3" Grid.Column="2">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <Grid Grid.Row="3" Grid.Column="3">
+                                                <Border BorderBrush="Black" BorderThickness="1" />
+                                            </Grid>
+                                            <!--#endregion-->
+
+                                            <!--  Title  -->
                                             <TextBlock
-                                                Margin="100,0,10,0"
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                HorizontalAlignment="Center"
                                                 FontSize="24"
                                                 Foreground="DimGray"
                                                 Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text="Hotel Price: " />
+                                                Text="Title" />
                                             <TextBlock
-                                                Margin="0,0,10,0"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                HorizontalAlignment="Center"
                                                 FontSize="24"
                                                 Foreground="DimGray"
                                                 Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text="{Binding TotalHotelPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                Text="Price" />
                                             <TextBlock
-                                                Margin="0,0,10,0"
+                                                Grid.Row="0"
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Center"
                                                 FontSize="24"
                                                 Foreground="DimGray"
                                                 Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text=" VND" />
-                                        </StackPanel>
-                                        <StackPanel Margin="0,8,0,8" Orientation="Horizontal">
+                                                Text="Amount" />
                                             <TextBlock
-                                                Margin="100,0,10,0"
+                                                Grid.Row="0"
+                                                Grid.Column="3"
+                                                HorizontalAlignment="Center"
                                                 FontSize="24"
                                                 Foreground="DimGray"
                                                 Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text="Transport Price: " />
+                                                Text="Total" />
+
+                                            <!--  Colum 0  -->
                                             <TextBlock
-                                                Margin="0,0,10,0"
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Margin="40,0"
+                                                HorizontalAlignment="Stretch"
                                                 FontSize="24"
                                                 Foreground="DimGray"
                                                 Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text="{Binding TotalTransportPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                Text="Hotel Price" />
                                             <TextBlock
-                                                Margin="0,0,10,0"
+                                                Grid.Row="2"
+                                                Grid.Column="0"
+                                                Margin="40,0"
+                                                HorizontalAlignment="Stretch"
                                                 FontSize="24"
                                                 Foreground="DimGray"
                                                 Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text=" VND" />
-                                        </StackPanel>
-                                        <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
+                                                Text="Transport Price" />
                                             <TextBlock
-                                                Margin="100,0,10,0"
+                                                Grid.Row="3"
+                                                Grid.Column="0"
+                                                Margin="40,0"
+                                                HorizontalAlignment="Stretch"
                                                 FontSize="24"
                                                 Foreground="DimGray"
                                                 Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text="Service Price: " />
+                                                Text="Service Price" />
+
+                                            <!--  Column 1  -->
+                                            <StackPanel
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    Margin="20,0,0,0"
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="{Binding HotelPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                <TextBlock
+                                                    Margin="8,0,10,0"
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text=" VND" />
+                                            </StackPanel>
+                                            <StackPanel
+                                                Grid.Row="2"
+                                                Grid.Column="1"
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    Margin="20,0,0,0"
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="{Binding TransportPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                <TextBlock
+                                                    Margin="8,0,10,0"
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text=" VND" />
+                                            </StackPanel>
+                                            <StackPanel
+                                                Grid.Row="3"
+                                                Grid.Column="1"
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    Margin="20,0,0,0"
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="{Binding ServicePrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                <TextBlock
+                                                    Margin="8,0,10,0"
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text=" VND" />
+                                            </StackPanel>
+
+                                            <!--  Column 2  -->
                                             <TextBlock
-                                                Margin="0,0,10,0"
+                                                Grid.Row="1"
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Center"
                                                 FontSize="24"
                                                 Foreground="DimGray"
                                                 Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text="{Binding TotalServicePrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                Text="{Binding TravellerCount, UpdateSourceTrigger=PropertyChanged}" />
                                             <TextBlock
-                                                Margin="0,0,10,0"
+                                                Grid.Row="2"
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Center"
                                                 FontSize="24"
                                                 Foreground="DimGray"
                                                 Style="{StaticResource MaterialDesignButtonTextBlock}"
-                                                Text=" VND" />
-                                        </StackPanel>
-                                        <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
+                                                Text="{Binding TravellerCount, UpdateSourceTrigger=PropertyChanged}" />
+                                            <TextBlock
+                                                Grid.Row="3"
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Center"
+                                                FontSize="24"
+                                                Foreground="DimGray"
+                                                Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                Text="{Binding TravellerCount, UpdateSourceTrigger=PropertyChanged}" />
+
+                                            <!--  Column 3  -->
+                                            <StackPanel
+                                                Grid.Row="1"
+                                                Grid.Column="3"
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    Margin="20,0,0,0"
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="{Binding TotalHotelPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                <TextBlock
+                                                    Margin="8,0,10,0"
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text=" VND" />
+                                            </StackPanel>
+                                            <StackPanel
+                                                Grid.Row="2"
+                                                Grid.Column="3"
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    Margin="20,0,0,0"
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="{Binding TotalTransportPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                <TextBlock
+                                                    Margin="8,0,10,0"
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text=" VND" />
+                                            </StackPanel>
+                                            <StackPanel
+                                                Grid.Row="3"
+                                                Grid.Column="3"
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    Margin="20,0,0,0"
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="{Binding TotalServicePrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                <TextBlock
+                                                    Margin="8,0,10,0"
+                                                    FontSize="24"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text=" VND" />
+                                            </StackPanel>
+                                        </Grid>
+                                        <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
                                             <TextBlock
                                                 Margin="100,0,10,0"
                                                 FontSize="24"
@@ -572,9 +858,18 @@
                                                 Margin="0,0,10,0"
                                                 FontSize="24"
                                                 Foreground="DimGray"
-                                                IsEnabled="{Binding IsEnable}"
-                                                Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
-                                                Text="{Binding TotalAnotherPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                IsEnabled="{Binding IsEnable}">
+                                                <TextBox.Text>
+                                                    <Binding
+                                                        Mode="TwoWay"
+                                                        Path="TotalAnotherPrice"
+                                                        UpdateSourceTrigger="PropertyChanged">
+                                                        <Binding.ValidationRules>
+                                                            <ruler:MoneyRuler NameFill="Another Price" ValidatesOnTargetUpdated="True" />
+                                                        </Binding.ValidationRules>
+                                                    </Binding>
+                                                </TextBox.Text>
+                                            </TextBox>
                                             <TextBlock
                                                 Margin="0,0,10,0"
                                                 FontSize="24"
@@ -671,6 +966,7 @@
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
                                     </Grid.RowDefinitions>
 
                                     <StackPanel Margin="0,24,0,0" VerticalAlignment="Center">
@@ -710,12 +1006,12 @@
                                             Style="{StaticResource AddButton}" />
 
                                         <Button
-                                            Width="100"
+                                            Width="160"
                                             Height="40"
                                             Margin="10,0"
-                                            Command="{Binding SaveTravellerCommand}"
-                                            Content="Save"
-                                            Foreground="#F36E6B"
+                                            Command="{Binding CheckTravellerCommand}"
+                                            Content="Check Traveller List"
+                                            Foreground="#1885F2"
                                             Style="{StaticResource AddButton}" />
 
                                         <TextBlock
@@ -773,15 +1069,21 @@
                                                                 <TextBox
                                                                     Width="300"
                                                                     Margin="8,0,0,0"
-                                                                    materialDesign:HintAssist.HelperText="Travller Name"
                                                                     materialDesign:HintAssist.Hint="Name"
-                                                                    FontSize="18">
+                                                                    FontSize="18"
+                                                                    ToolTip="Traveller Name">
                                                                     <TextBox.Text>
                                                                         <Binding
                                                                             Mode="TwoWay"
                                                                             Path="Traveller_Name"
                                                                             UpdateSourceTrigger="PropertyChanged">
-                                                                            <Binding.ValidationRules />
+                                                                            <Binding.ValidationRules>
+                                                                                <ruler:MiniMumCharacterRuler
+                                                                                    MaximumCharacters="50"
+                                                                                    MinimumCharacters="0"
+                                                                                    NameFill="Traveller Name"
+                                                                                    ValidatesOnTargetUpdated="True" />
+                                                                            </Binding.ValidationRules>
                                                                         </Binding>
                                                                     </TextBox.Text>
                                                                 </TextBox>
@@ -797,7 +1099,8 @@
                                                                     CommandParameter="{Binding Traveller_Index}"
                                                                     Content="Search Exist Traveller"
                                                                     Foreground="#0f6f68"
-                                                                    Style="{StaticResource AddButton}" />
+                                                                    Style="{StaticResource AddButton}"
+                                                                    ToolTip="Search traveller with name if traveller has existed in customer list." />
 
                                                                 <Button
                                                                     Width="60"
@@ -871,7 +1174,8 @@
                                                                         HorizontalAlignment="Left"
                                                                         materialDesign:HintAssist.Hint="Type"
                                                                         FontSize="18"
-                                                                        Foreground="DimGray">
+                                                                        Foreground="DimGray"
+                                                                        ToolTip="Traveller Type">
                                                                         <ComboBoxItem Content="Domestic Traveller" />
                                                                         <ComboBoxItem Content="Foreign Traveller" />
                                                                         <ComboBox.Text>
@@ -879,7 +1183,12 @@
                                                                                 Mode="TwoWay"
                                                                                 Path="Traveller_Type"
                                                                                 UpdateSourceTrigger="PropertyChanged">
-                                                                                <Binding.ValidationRules />
+                                                                                <Binding.ValidationRules>
+                                                                                    <ruler:MiniMumCharacterRuler
+                                                                                        MinimumCharacters="0"
+                                                                                        NameFill="Traveller Type"
+                                                                                        ValidatesOnTargetUpdated="True" />
+                                                                                </Binding.ValidationRules>
                                                                             </Binding>
                                                                         </ComboBox.Text>
                                                                     </ComboBox>
@@ -898,13 +1207,20 @@
                                                                         Width="300"
                                                                         Margin="8,0,0,0"
                                                                         materialDesign:HintAssist.Hint="Address"
-                                                                        FontSize="18">
+                                                                        FontSize="18"
+                                                                        ToolTip="Traveller Address - Provice Address">
                                                                         <TextBox.Text>
                                                                             <Binding
                                                                                 Mode="TwoWay"
                                                                                 Path="Traveller_Address"
                                                                                 UpdateSourceTrigger="PropertyChanged">
-                                                                                <Binding.ValidationRules />
+                                                                                <Binding.ValidationRules>
+                                                                                    <ruler:MiniMumCharacterRuler
+                                                                                        MaximumCharacters="30"
+                                                                                        MinimumCharacters="0"
+                                                                                        NameFill="Traveller Address"
+                                                                                        ValidatesOnTargetUpdated="True" />
+                                                                                </Binding.ValidationRules>
                                                                             </Binding>
                                                                         </TextBox.Text>
                                                                     </TextBox>
@@ -923,13 +1239,20 @@
                                                                         Width="300"
                                                                         Margin="8,0,0,0"
                                                                         materialDesign:HintAssist.Hint="Phone Number"
-                                                                        FontSize="18">
+                                                                        FontSize="18"
+                                                                        ToolTip="Traveller Phone Number">
                                                                         <TextBox.Text>
                                                                             <Binding
                                                                                 Mode="TwoWay"
                                                                                 Path="Traveller_PhoneNumber"
                                                                                 UpdateSourceTrigger="PropertyChanged">
-                                                                                <Binding.ValidationRules />
+                                                                                <Binding.ValidationRules>
+                                                                                    <ruler:PhoneNumberRuler
+                                                                                        MaximumCharacters="12"
+                                                                                        MinimumCharacters="6"
+                                                                                        NameFill="Traveller Phone Number"
+                                                                                        ValidatesOnTargetUpdated="True" />
+                                                                                </Binding.ValidationRules>
                                                                             </Binding>
                                                                         </TextBox.Text>
                                                                     </TextBox>
@@ -950,13 +1273,20 @@
                                                                         Width="300"
                                                                         Margin="8,0,0,0"
                                                                         materialDesign:HintAssist.Hint="Citizen Identity Card"
-                                                                        FontSize="18">
+                                                                        FontSize="18"
+                                                                        ToolTip="Traveller ID Card">
                                                                         <TextBox.Text>
                                                                             <Binding
                                                                                 Mode="TwoWay"
                                                                                 Path="Traveller_CitizenIdentity"
                                                                                 UpdateSourceTrigger="PropertyChanged">
-                                                                                <Binding.ValidationRules />
+                                                                                <Binding.ValidationRules>
+                                                                                    <ruler:PhoneNumberRuler
+                                                                                        MaximumCharacters="12"
+                                                                                        MinimumCharacters="9"
+                                                                                        NameFill="Traveller ID Card"
+                                                                                        ValidatesOnTargetUpdated="True" />
+                                                                                </Binding.ValidationRules>
                                                                             </Binding>
                                                                         </TextBox.Text>
                                                                     </TextBox>
@@ -985,7 +1315,12 @@
                                                                                 Mode="TwoWay"
                                                                                 Path="Traveller_Sex"
                                                                                 UpdateSourceTrigger="PropertyChanged">
-                                                                                <Binding.ValidationRules />
+                                                                                <Binding.ValidationRules>
+                                                                                    <ruler:MiniMumCharacterRuler
+                                                                                        MinimumCharacters="0"
+                                                                                        NameFill="Traveller Gender"
+                                                                                        ValidatesOnTargetUpdated="True" />
+                                                                                </Binding.ValidationRules>
                                                                             </Binding>
                                                                         </ComboBox.Text>
                                                                     </ComboBox>
@@ -1025,6 +1360,32 @@
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
+
+                                    <StackPanel
+                                        Grid.Row="3"
+                                        Margin="50,24,0,0"
+                                        Orientation="Vertical">
+                                        <TextBlock FontSize="24" Text="Note: " />
+                                        <TextBlock
+                                            Margin="12,4"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            FontStyle="Italic"
+                                            Text="1. You must have at least 1 Traveller" />
+                                        <TextBlock
+                                            Margin="12,4"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            FontStyle="Italic"
+                                            Text="2. You must fill all required in each traveller you add" />
+                                        <TextBlock
+                                            Margin="12,4"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            FontStyle="Italic"
+                                            Foreground="#F36E6B"
+                                            Text="3. After done, check traveller list is valid or not if you want to confirm" />
+                                    </StackPanel>
                                 </Grid>
                             </TabItem>
                         </TabControl>
@@ -1038,7 +1399,7 @@
                         <Button
                             Width="200"
                             Height="60"
-                            Margin="360,10,20,2"
+                            Margin="360,10,20,12"
                             Command="{Binding AddTravelGroupCommand}"
                             CommandParameter="{Binding ElementName=contentControlAdd}"
                             Content="Confirm"
@@ -1048,7 +1409,7 @@
                         <Button
                             Width="200"
                             Height="60"
-                            Margin="20,10,20,2"
+                            Margin="20,10,20,12"
                             Command="{Binding CancelCommand}"
                             CommandParameter="{Binding ElementName=contentControlAdd}"
                             Content="Cancel"

@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:TourManagementSystem.ManagerView.View"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ruler="clr-namespace:TourManagementSystem.Global.Ruler"
     Width="1190"
     Height="620"
     mc:Ignorable="d">
@@ -186,16 +187,22 @@
                                                     <TextBox
                                                         Width="260"
                                                         Margin="8,0,0,0"
-                                                        materialDesign:HintAssist.HelperText="Employee full name."
                                                         materialDesign:HintAssist.Hint="Name"
                                                         FontSize="18"
-                                                        IsEnabled="{Binding IsDelete}">
+                                                        IsEnabled="{Binding IsDelete}"
+                                                        ToolTip="Employee full name">
                                                         <TextBox.Text>
                                                             <Binding
                                                                 Mode="TwoWay"
                                                                 Path="Staff_Name"
                                                                 UpdateSourceTrigger="PropertyChanged">
-                                                                <Binding.ValidationRules />
+                                                                <Binding.ValidationRules>
+                                                                    <ruler:MiniMumCharacterRuler
+                                                                        MaximumCharacters="30"
+                                                                        MinimumCharacters="0"
+                                                                        NameFill="Staff Name"
+                                                                        ValidatesOnTargetUpdated="True" />
+                                                                </Binding.ValidationRules>
                                                             </Binding>
                                                         </TextBox.Text>
                                                     </TextBox>
@@ -216,7 +223,8 @@
                                                         materialDesign:HintAssist.Hint="Role"
                                                         FontSize="18"
                                                         Foreground="DimGray"
-                                                        IsEnabled="{Binding IsDelete}">
+                                                        IsEnabled="{Binding IsDelete}"
+                                                        ToolTip="Staff Role">
                                                         <ComboBoxItem Content="Manager" />
                                                         <ComboBoxItem Content="Staff" />
                                                         <ComboBoxItem Content="Director" />
@@ -225,7 +233,12 @@
                                                                 Mode="TwoWay"
                                                                 Path="Staff_Role"
                                                                 UpdateSourceTrigger="PropertyChanged">
-                                                                <Binding.ValidationRules />
+                                                                <Binding.ValidationRules>
+                                                                    <ruler:MiniMumCharacterRuler
+                                                                        MinimumCharacters="0"
+                                                                        NameFill="Staff Role"
+                                                                        ValidatesOnTargetUpdated="True" />
+                                                                </Binding.ValidationRules>
                                                             </Binding>
                                                         </ComboBox.Text>
                                                     </ComboBox>
@@ -240,7 +253,8 @@
                                                         FontSize="22"
                                                         IsEnabled="{Binding IsDelete}"
                                                         SelectedDateFormat="Short"
-                                                        Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+                                                        Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                                        ToolTip="Staff Start Date">
                                                         <DatePicker.SelectedDate>
                                                             <Binding
                                                                 Mode="TwoWay"
@@ -270,7 +284,8 @@
                                                     BorderBrush="#EBF9E2"
                                                     BorderThickness="1"
                                                     Command="{Binding ModifyImageCommand}"
-                                                    IsEnabled="{Binding IsDelete}">
+                                                    IsEnabled="{Binding IsDelete}"
+                                                    ToolTip="Staff Image">
                                                     <Image
                                                         x:Name="img"
                                                         Source="{Binding Staff_Image_Source}"
@@ -301,7 +316,8 @@
                                                             FontSize="22"
                                                             IsEnabled="{Binding IsDelete}"
                                                             SelectedDateFormat="Short"
-                                                            Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+                                                            Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                                            ToolTip="Staff Birthday">
                                                             <DatePicker.SelectedDate>
                                                                 <Binding
                                                                     Mode="TwoWay"
@@ -326,13 +342,19 @@
                                                             Margin="10,0,0,0"
                                                             materialDesign:HintAssist.Hint="Birthplace"
                                                             FontSize="18"
-                                                            IsEnabled="{Binding IsDelete}">
+                                                            IsEnabled="{Binding IsDelete}"
+                                                            ToolTip="Staff Email">
                                                             <TextBox.Text>
                                                                 <Binding
                                                                     Mode="TwoWay"
                                                                     Path="Staff_Birth_Place"
                                                                     UpdateSourceTrigger="PropertyChanged">
-                                                                    <Binding.ValidationRules />
+                                                                    <Binding.ValidationRules>
+                                                                        <ruler:MiniMumCharacterRuler
+                                                                            MinimumCharacters="0"
+                                                                            NameFill="Staff Birth Place"
+                                                                            ValidatesOnTargetUpdated="True" />
+                                                                    </Binding.ValidationRules>
                                                                 </Binding>
                                                             </TextBox.Text>
                                                         </TextBox>
@@ -352,13 +374,19 @@
                                                             Margin="10,0,0,0"
                                                             materialDesign:HintAssist.Hint="Adress"
                                                             FontSize="18"
-                                                            IsEnabled="{Binding IsDelete}">
+                                                            IsEnabled="{Binding IsDelete}"
+                                                            ToolTip="Staff Address - Province Only">
                                                             <TextBox.Text>
                                                                 <Binding
                                                                     Mode="TwoWay"
                                                                     Path="Staff_Address"
                                                                     UpdateSourceTrigger="PropertyChanged">
-                                                                    <Binding.ValidationRules />
+                                                                    <Binding.ValidationRules>
+                                                                        <ruler:MiniMumCharacterRuler
+                                                                            MinimumCharacters="0"
+                                                                            NameFill="Staff Address"
+                                                                            ValidatesOnTargetUpdated="True" />
+                                                                    </Binding.ValidationRules>
                                                                 </Binding>
                                                             </TextBox.Text>
                                                         </TextBox>
@@ -381,7 +409,8 @@
                                                             materialDesign:HintAssist.Hint="Gender"
                                                             FontSize="18"
                                                             Foreground="DimGray"
-                                                            IsEnabled="{Binding IsDelete}">
+                                                            IsEnabled="{Binding IsDelete}"
+                                                            ToolTip="Staff Gender">
                                                             <ComboBoxItem Content="Male" />
                                                             <ComboBoxItem Content="Female" />
                                                             <ComboBox.Text>
@@ -389,7 +418,12 @@
                                                                     Mode="TwoWay"
                                                                     Path="Staff_Gender"
                                                                     UpdateSourceTrigger="PropertyChanged">
-                                                                    <Binding.ValidationRules />
+                                                                    <Binding.ValidationRules>
+                                                                        <ruler:MiniMumCharacterRuler
+                                                                            MinimumCharacters="0"
+                                                                            NameFill="Staff Gender"
+                                                                            ValidatesOnTargetUpdated="True" />
+                                                                    </Binding.ValidationRules>
                                                                 </Binding>
                                                             </ComboBox.Text>
                                                         </ComboBox>
@@ -409,13 +443,20 @@
                                                             Margin="10,0,0,0"
                                                             materialDesign:HintAssist.Hint="Phone Number"
                                                             FontSize="18"
-                                                            IsEnabled="{Binding IsDelete}">
+                                                            IsEnabled="{Binding IsDelete}"
+                                                            ToolTip="Staff Phone Number">
                                                             <TextBox.Text>
                                                                 <Binding
                                                                     Mode="TwoWay"
                                                                     Path="Staff_Phone_Number"
                                                                     UpdateSourceTrigger="PropertyChanged">
-                                                                    <Binding.ValidationRules />
+                                                                    <Binding.ValidationRules>
+                                                                        <ruler:PhoneNumberRuler
+                                                                            MaximumCharacters="12"
+                                                                            MinimumCharacters="6"
+                                                                            NameFill="Staff Phone Number"
+                                                                            ValidatesOnTargetUpdated="True" />
+                                                                    </Binding.ValidationRules>
                                                                 </Binding>
                                                             </TextBox.Text>
                                                         </TextBox>
@@ -436,7 +477,8 @@
                                                             FontSize="22"
                                                             IsEnabled="{Binding IsDelete}"
                                                             SelectedDateFormat="Short"
-                                                            Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+                                                            Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                                            ToolTip="Staff Citizenship Identity Date">
                                                             <DatePicker.SelectedDate>
                                                                 <Binding
                                                                     Mode="TwoWay"
@@ -459,16 +501,22 @@
                                                         <TextBox
                                                             Width="260"
                                                             Margin="8,0,0,0"
-                                                            materialDesign:HintAssist.HelperText="ID Card number"
                                                             materialDesign:HintAssist.Hint="ID"
                                                             FontSize="18"
-                                                            IsEnabled="{Binding IsDelete}">
+                                                            IsEnabled="{Binding IsDelete}"
+                                                            ToolTip="ID Card number must have from 9 - 12 characters">
                                                             <TextBox.Text>
                                                                 <Binding
                                                                     Mode="TwoWay"
                                                                     Path="Staff_ID_Card"
                                                                     UpdateSourceTrigger="PropertyChanged">
-                                                                    <Binding.ValidationRules />
+                                                                    <Binding.ValidationRules>
+                                                                        <ruler:PhoneNumberRuler
+                                                                            MaximumCharacters="12"
+                                                                            MinimumCharacters="9"
+                                                                            NameFill="Staff ID Card"
+                                                                            ValidatesOnTargetUpdated="True" />
+                                                                    </Binding.ValidationRules>
                                                                 </Binding>
                                                             </TextBox.Text>
                                                         </TextBox>
@@ -486,16 +534,21 @@
                                                         <TextBox
                                                             Width="260"
                                                             Margin="8,0,0,0"
-                                                            materialDesign:HintAssist.HelperText="ID Card number"
                                                             materialDesign:HintAssist.Hint="ID Card Place"
                                                             FontSize="18"
-                                                            IsEnabled="{Binding IsDelete}">
+                                                            IsEnabled="{Binding IsDelete}"
+                                                            ToolTip="Staff ID Card Place - Province Only">
                                                             <TextBox.Text>
                                                                 <Binding
                                                                     Mode="TwoWay"
                                                                     Path="Staff_ID_Card_Place"
                                                                     UpdateSourceTrigger="PropertyChanged">
-                                                                    <Binding.ValidationRules />
+                                                                    <Binding.ValidationRules>
+                                                                        <ruler:MiniMumCharacterRuler
+                                                                            MinimumCharacters="0"
+                                                                            NameFill="Staff Birth Place"
+                                                                            ValidatesOnTargetUpdated="True" />
+                                                                    </Binding.ValidationRules>
                                                                 </Binding>
                                                             </TextBox.Text>
                                                         </TextBox>
@@ -514,10 +567,10 @@
                                                             Width="260"
                                                             Margin="10,0,0,0"
                                                             materialDesign:HintAssist.Hint="Academic level"
-                                                            materialDesign:HintAssist.HintOpacity=".3"
                                                             FontSize="18"
                                                             IsEditable="True"
-                                                            IsEnabled="{Binding IsDelete}">
+                                                            IsEnabled="{Binding IsDelete}"
+                                                            ToolTip="Staff Academic Level">
                                                             <ComboBoxItem Content="Student" />
                                                             <ComboBoxItem Content="Bachelor" />
                                                             <ComboBoxItem Content="Master" />
@@ -528,7 +581,12 @@
                                                                     Mode="TwoWay"
                                                                     Path="Staff_Academic_Level"
                                                                     UpdateSourceTrigger="PropertyChanged">
-                                                                    <Binding.ValidationRules />
+                                                                    <Binding.ValidationRules>
+                                                                        <ruler:MiniMumCharacterRuler
+                                                                            MinimumCharacters="0"
+                                                                            NameFill="Staff Academic Level"
+                                                                            ValidatesOnTargetUpdated="True" />
+                                                                    </Binding.ValidationRules>
                                                                 </Binding>
                                                             </ComboBox.Text>
                                                         </ComboBox>
@@ -548,13 +606,16 @@
                                                             Margin="8,0,0,0"
                                                             materialDesign:HintAssist.Hint="Email"
                                                             FontSize="18"
-                                                            IsEnabled="{Binding IsDelete}">
+                                                            IsEnabled="{Binding IsDelete}"
+                                                            ToolTip="Staff Email">
                                                             <TextBox.Text>
                                                                 <Binding
                                                                     Mode="TwoWay"
                                                                     Path="Staff_Email"
                                                                     UpdateSourceTrigger="PropertyChanged">
-                                                                    <Binding.ValidationRules />
+                                                                    <Binding.ValidationRules>
+                                                                        <ruler:EmailRuler NameFill="Staff Email" ValidatesOnTargetUpdated="True" />
+                                                                    </Binding.ValidationRules>
                                                                 </Binding>
                                                             </TextBox.Text>
                                                         </TextBox>

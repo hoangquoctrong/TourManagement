@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:TourManagementSystem.EmployeeView.ViewModel"
     x:Name="EmployeeViewWindow"
-    Title="MainWindow"
+    Title="Company Window"
     Width="1470"
     Height="780"
     AllowsTransparency="True"
