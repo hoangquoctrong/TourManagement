@@ -554,6 +554,7 @@
                                         CanUserDeleteRows="False"
                                         CanUserReorderColumns="False"
                                         CanUserSortColumns="True"
+                                        FontSize="15"
                                         GridLinesVisibility="Vertical"
                                         IsReadOnly="True"
                                         ItemsSource="{Binding TourHotelDetailCollection}"
