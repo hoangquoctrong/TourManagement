@@ -204,7 +204,6 @@
                             Content="Statistic"
                             Foreground="#EB7B47"
                             Style="{StaticResource StatisticButton}" />
-
                     </Grid>
 
                     <DataGrid
@@ -298,6 +297,5 @@
                 </Grid>
             </Grid>
         </Border>
-
     </ContentControl>
 </UserControl>

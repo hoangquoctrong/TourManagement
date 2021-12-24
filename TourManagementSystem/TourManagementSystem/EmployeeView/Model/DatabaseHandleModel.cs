@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using TourManagementSystem.Global.Model;
 
 namespace TourManagementSystem.EmployeeView.Model
@@ -20,8 +16,10 @@ namespace TourManagementSystem.EmployeeView.Model
                 {
                     case "Staff":
                         return 1;
+
                     case "Director":
                         return -1;
+
                     default:
                         return 0;
                 }

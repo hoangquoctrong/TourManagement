@@ -117,7 +117,6 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
 
-
                                         <StackPanel Margin="20,20,20,20" Orientation="Horizontal">
 
                                             <materialDesign:PackIcon
@@ -141,7 +140,6 @@
                                                     </Binding>
                                                 </TextBox.Text>
                                             </TextBox>
-
                                         </StackPanel>
 
                                         <StackPanel
@@ -173,7 +171,6 @@
                                                     </Binding>
                                                 </ComboBox.Text>
                                             </ComboBox>
-
                                         </StackPanel>
                                     </Grid>
 
@@ -210,7 +207,6 @@
                                             Text="{Binding Tour_Description, Mode=TwoWay}"
                                             TextWrapping="Wrap" />
                                     </StackPanel>
-
                                 </Grid>
                             </TabItem>
 
@@ -433,7 +429,6 @@
                                                 </ItemsControl>
                                             </StackPanel>
 
-
                                             <StackPanel Grid.Column="1" Margin="16">
                                                 <TextBlock
                                                     HorizontalAlignment="Center"
@@ -459,9 +454,7 @@
                                                     </ItemsControl.ItemTemplate>
                                                 </ItemsControl>
                                             </StackPanel>
-
                                         </Grid>
-
                                     </ScrollViewer>
                                 </Grid>
                             </TabItem>

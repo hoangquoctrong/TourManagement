@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,14 +17,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class StatisticTourViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
-
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private Visibility _IsDirectorVisibility;
-        public Visibility IsDirectorVisibility { get => _IsDirectorVisibility; set { _IsDirectorVisibility = value; OnPropertyChanged("IsDirectorVisibility"); } }
+        public Visibility IsDirectorVisibility
+        { get => _IsDirectorVisibility; set { _IsDirectorVisibility = value; OnPropertyChanged("IsDirectorVisibility"); } }
 
         private Visibility _ProgressBarVisbility;
-        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+        public Visibility ProgressBarVisbility
+        { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         public StatisticTourViewModel(int user_id, Visibility directorVisibility)
         {
@@ -71,29 +72,39 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         #region Data Binding
+
         private bool _Checkbox_DisplayAll;
-        public bool Checkbox_DisplayAll { get => _Checkbox_DisplayAll; set { _Checkbox_DisplayAll = value; OnPropertyChanged(); CheckBoxDisplay(); } }
+        public bool Checkbox_DisplayAll
+        { get => _Checkbox_DisplayAll; set { _Checkbox_DisplayAll = value; OnPropertyChanged(); CheckBoxDisplay(); } }
 
         private bool _IsEnable;
-        public bool IsEnable { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
+        public bool IsEnable
+        { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
 
         private DateTime _DateTimeNow = DateTime.Now;
-        public DateTime DateTimeNow { get => _DateTimeNow; set { _DateTimeNow = value; OnPropertyChanged(); } }
+        public DateTime DateTimeNow
+        { get => _DateTimeNow; set { _DateTimeNow = value; OnPropertyChanged(); } }
 
         private DateTime _StartDate = DateTime.Now;
-        public DateTime StartDate { get => _StartDate; set { _StartDate = value; OnPropertyChanged(); } }
+        public DateTime StartDate
+        { get => _StartDate; set { _StartDate = value; OnPropertyChanged(); } }
 
         private DateTime _EndDate = DateTime.Now;
-        public DateTime EndDate { get => _EndDate; set { _EndDate = value; OnPropertyChanged(); } }
+        public DateTime EndDate
+        { get => _EndDate; set { _EndDate = value; OnPropertyChanged(); } }
 
         private ObservableCollection<TourStatisticModel> _TourItems;
-        public ObservableCollection<TourStatisticModel> TourItems { get => _TourItems; set { _TourItems = value; OnPropertyChanged(); } }
+        public ObservableCollection<TourStatisticModel> TourItems
+        { get => _TourItems; set { _TourItems = value; OnPropertyChanged(); } }
 
         private ObservableCollection<TourStatisticModel> _Refresh_TourItems;
-        public ObservableCollection<TourStatisticModel> Refresh_TourItems { get => _Refresh_TourItems; set { _Refresh_TourItems = value; OnPropertyChanged(); } }
+        public ObservableCollection<TourStatisticModel> Refresh_TourItems
+        { get => _Refresh_TourItems; set { _Refresh_TourItems = value; OnPropertyChanged(); } }
+
         #endregion Data Binding
 
         private ICommand _FilterCommand;
+
         public ICommand FilterCommand
         {
             get
@@ -154,8 +165,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
             return filterList;
         }
 
-
         private ICommand _CancelCommand;
+
         public ICommand CancelCommand
         {
             get
@@ -169,6 +180,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private string _SelectedExport;
+
         public string SelectedExport
         {
             get
@@ -185,7 +197,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 OnPropertyChanged();
             }
         }
+
         public List<string> HeaderList { get; set; }
+
         private void SetHeaderList()
         {
             HeaderList = new List<string>();
@@ -197,6 +211,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _ExportCommand;
+
         public ICommand ExportCommand
         {
             get
@@ -208,9 +223,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         case "Excel":
                             ExcuteExcelCommand(p);
                             break;
+
                         case "PDF":
                             ExcutePDFCommand(p);
                             break;
+
                         default:
                             break;
                     }
@@ -264,6 +281,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _PDFCommand;
+
         public ICommand PDFCommand
         {
             get
@@ -280,6 +298,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _ExcelCommand;
+
         public ICommand ExcelCommand
         {
             get

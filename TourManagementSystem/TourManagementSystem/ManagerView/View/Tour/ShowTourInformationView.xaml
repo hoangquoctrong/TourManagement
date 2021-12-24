@@ -219,10 +219,8 @@
                                                                 UpdateSourceTrigger="PropertyChanged" />
                                                         </DatePicker.SelectedDate>
                                                     </DatePicker>
-
                                                 </StackPanel>
                                             </StackPanel>
-
                                         </DockPanel>
 
                                         <DockPanel Margin="20,20,30,20" HorizontalAlignment="Right">
@@ -285,7 +283,6 @@
                                                         Padding="8"
                                                         FontSize="19"
                                                         Text="Night(s)" />
-
                                                 </StackPanel>
 
                                                 <StackPanel Margin="0,60,0,0" Orientation="Horizontal">
@@ -307,10 +304,8 @@
                                                                 UpdateSourceTrigger="PropertyChanged" />
                                                         </DatePicker.SelectedDate>
                                                     </DatePicker>
-
                                                 </StackPanel>
                                             </StackPanel>
-
                                         </DockPanel>
                                     </Grid>
 
@@ -330,7 +325,6 @@
                                             Visibility="{Binding IsVisibility}" />
                                     </StackPanel>
                                 </Grid>
-
                             </TabItem>
 
                             <TabItem
@@ -465,7 +459,6 @@
                                             </ItemsControl>
                                         </StackPanel>
 
-
                                         <StackPanel Grid.Column="1" Margin="16">
                                             <TextBlock
                                                 HorizontalAlignment="Center"
@@ -494,9 +487,7 @@
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
                                         </StackPanel>
-
                                     </Grid>
-
 
                                     <StackPanel
                                         Grid.Row="3"
@@ -552,6 +543,7 @@
                                     TabStripPlacement="Top">
                                     <TabItem
                                         Width="290"
+                                        Height="40"
                                         Background="Transparent"
                                         Style="{StaticResource MaterialDesignNavigationRailTabItem}"
                                         TabIndex="2">
@@ -702,7 +694,6 @@
                                                     </ItemsControl>
                                                 </StackPanel>
 
-
                                                 <StackPanel Grid.Column="1" Margin="16">
                                                     <TextBlock
                                                         HorizontalAlignment="Center"
@@ -757,16 +748,13 @@
                                                                                 </TextBox.Text>
                                                                             </TextBox>
                                                                         </StackPanel>
-
                                                                     </StackPanel>
                                                                 </Border>
                                                             </DataTemplate>
                                                         </ItemsControl.ItemTemplate>
                                                     </ItemsControl>
                                                 </StackPanel>
-
                                             </Grid>
-
 
                                             <StackPanel
                                                 Grid.Row="3"
@@ -788,6 +776,7 @@
 
                                     <TabItem
                                         Width="290"
+                                        Height="40"
                                         Background="Transparent"
                                         Style="{StaticResource MaterialDesignNavigationRailTabItem}"
                                         TabIndex="2">
@@ -938,7 +927,6 @@
                                                     </ItemsControl>
                                                 </StackPanel>
 
-
                                                 <StackPanel Grid.Column="1" Margin="16">
                                                     <TextBlock
                                                         HorizontalAlignment="Center"
@@ -986,14 +974,12 @@
                                                                                 ItemsSource="{Binding CB_TransportAmount}"
                                                                                 Text="{Binding TRANSPORT_AMOUNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                                                         </StackPanel>
-
                                                                     </StackPanel>
                                                                 </Border>
                                                             </DataTemplate>
                                                         </ItemsControl.ItemTemplate>
                                                     </ItemsControl>
                                                 </StackPanel>
-
                                             </Grid>
 
                                             <StackPanel
@@ -1016,6 +1002,7 @@
 
                                     <TabItem
                                         Width="290"
+                                        Height="40"
                                         Background="Transparent"
                                         Style="{StaticResource MaterialDesignNavigationRailTabItem}"
                                         TabIndex="2">
@@ -1178,7 +1165,6 @@
                                                                             FontSize="18"
                                                                             Text="{Binding Mission_Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                                                     </StackPanel>
-
                                                                 </Grid>
 
                                                                 <StackPanel Margin="64,4,120,4" Orientation="Horizontal">
@@ -1235,6 +1221,7 @@
 
                                     <TabItem
                                         Width="290"
+                                        Height="40"
                                         Background="Transparent"
                                         Style="{StaticResource MaterialDesignNavigationRailTabItem}"
                                         TabIndex="2">
@@ -1278,7 +1265,7 @@
                                                     Text="Hotel List" />
                                                 <DataGrid
                                                     Grid.Row="1"
-                                                    Width="1080"
+                                                    Width="900"
                                                     Height="auto"
                                                     VerticalAlignment="Top"
                                                     materialDesign:DataGridAssist.CellPadding="12 8 0 8"
@@ -1363,7 +1350,7 @@
 
                                                 <DataGrid
                                                     Grid.Row="1"
-                                                    Width="1080"
+                                                    Width="900"
                                                     Height="auto"
                                                     VerticalAlignment="Top"
                                                     materialDesign:DataGridAssist.CellPadding="12 8 0 8"
@@ -1434,7 +1421,7 @@
 
                                                 <DataGrid
                                                     Grid.Row="1"
-                                                    Width="1080"
+                                                    Width="900"
                                                     Height="auto"
                                                     VerticalAlignment="Top"
                                                     materialDesign:DataGridAssist.CellPadding="12 8 0 8"
@@ -1517,7 +1504,6 @@
                                                     Text="{Binding TotalPrice}" />
                                             </StackPanel>
                                         </Grid>
-
                                     </TabItem>
                                 </TabControl>
                             </TabItem>
@@ -1686,11 +1672,8 @@
                                     </StackPanel>
                                 </Grid>
                             </TabItem>
-
                         </TabControl>
                     </ScrollViewer>
-
-
                 </Grid>
             </Grid>
         </Border>

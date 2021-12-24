@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using TourManagementSystem.ManagerView.ViewModel;
 
 namespace TourManagementSystem.ManagerView.View
 {
@@ -8,7 +7,6 @@ namespace TourManagementSystem.ManagerView.View
     /// </summary>
     public partial class AddStaffView : UserControl
     {
-
         public AddStaffView()
         {
             InitializeComponent();

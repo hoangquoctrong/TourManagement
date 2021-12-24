@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -18,16 +14,20 @@ namespace TourManagementSystem.Global.ViewModel
     public class LoginViewModel : BaseViewModel
     {
         private string _Username;
-        public string Username { get => _Username; set { _Username = value; OnPropertyChanged("Username"); } }
+        public string Username
+        { get => _Username; set { _Username = value; OnPropertyChanged("Username"); } }
 
         private string _UserPassword;
-        public string UserPassword { get => _UserPassword; set { _UserPassword = value; OnPropertyChanged(); } }
+        public string UserPassword
+        { get => _UserPassword; set { _UserPassword = value; OnPropertyChanged(); } }
 
         private bool _IsCheck;
-        public bool IsCheck { get => _IsCheck; set { _IsCheck = value; OnPropertyChanged(); } }
+        public bool IsCheck
+        { get => _IsCheck; set { _IsCheck = value; OnPropertyChanged(); } }
 
         private Visibility _ProgressBarVisbility;
-        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+        public Visibility ProgressBarVisbility
+        { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         public LoginViewModel()
         {
@@ -36,7 +36,9 @@ namespace TourManagementSystem.Global.ViewModel
             IsCheck = Properties.Settings.Default.IsCheck;
             ProgressBarVisbility = Visibility.Hidden;
         }
+
         private ICommand _LoginCommand;
+
         public ICommand LoginCommand
         {
             get
@@ -52,10 +54,12 @@ namespace TourManagementSystem.Global.ViewModel
                 return _LoginCommand;
             }
         }
+
         private bool IsExcuteLoginCommand()
         {
             return !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(UserPassword);
         }
+
         private async Task ExcuteLoginCommand(Window p)
         {
             await Task.Delay(6000);
@@ -84,7 +88,6 @@ namespace TourManagementSystem.Global.ViewModel
                     ProgressBarVisbility = Visibility.Hidden;
                     window.ShowDialog();
                 }
-
             }
             else if (loginWindow == -1)
             {
@@ -116,10 +119,10 @@ namespace TourManagementSystem.Global.ViewModel
                 messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }
-
         }
 
         private ICommand _PasswordChangedCommand;
+
         public ICommand PasswordChangedCommand
         {
             get
@@ -136,6 +139,7 @@ namespace TourManagementSystem.Global.ViewModel
         }
 
         private ICommand _CloseCommand;
+
         public ICommand CloseCommand
         {
             get
@@ -156,6 +160,7 @@ namespace TourManagementSystem.Global.ViewModel
         }
 
         private ICommand _ForgetPasswordCommand;
+
         public ICommand ForgetPasswordCommand
         {
             get

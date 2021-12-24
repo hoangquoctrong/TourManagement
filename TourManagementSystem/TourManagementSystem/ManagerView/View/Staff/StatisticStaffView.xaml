@@ -110,7 +110,6 @@
                                 CommandParameter="{Binding ElementName=contentControlStatistic}"
                                 Style="{StaticResource BackButton}" />
 
-
                             <TextBlock
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -277,6 +276,5 @@
                 </Grid>
             </Grid>
         </Border>
-
     </ContentControl>
 </UserControl>

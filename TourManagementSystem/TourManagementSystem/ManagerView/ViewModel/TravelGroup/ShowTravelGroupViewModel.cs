@@ -1,9 +1,7 @@
 ﻿using Caliburn.Micro;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,19 +15,25 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class ShowTravelGroupViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private Visibility _IsVisibility;
-        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+        public Visibility IsVisibility
+        { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private Visibility _ProgressBarVisbility;
-        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+        public Visibility ProgressBarVisbility
+        { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         private TravelGroupModel _TravelGroupSelect;
-        public TravelGroupModel TravelGroupSelect { get => _TravelGroupSelect; set { _TravelGroupSelect = value; OnPropertyChanged(); } }
+        public TravelGroupModel TravelGroupSelect
+        { get => _TravelGroupSelect; set { _TravelGroupSelect = value; OnPropertyChanged(); } }
 
         private bool _IsEnable;
-        public bool IsEnable { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
+        public bool IsEnable
+        { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
+
         public ShowTravelGroupViewModel(int user_id, TravelGroupModel travelgroup, Visibility visibility)
         {
             User_ID = user_id;
@@ -46,27 +50,35 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Information
 
         private int _TravelGroup_ID;
-        public int TravelGroup_ID { get => _TravelGroup_ID; set { _TravelGroup_ID = value; OnPropertyChanged(); } }
+        public int TravelGroup_ID
+        { get => _TravelGroup_ID; set { _TravelGroup_ID = value; OnPropertyChanged(); } }
 
         private bool _TravelGroup_IsDelete;
-        public bool TravelGroup_IsDelete { get => _TravelGroup_IsDelete; set { _TravelGroup_IsDelete = value; OnPropertyChanged(); } }
+        public bool TravelGroup_IsDelete
+        { get => _TravelGroup_IsDelete; set { _TravelGroup_IsDelete = value; OnPropertyChanged(); } }
 
         private string _TravelGroup_Name;
-        public string TravelGroup_Name { get => _TravelGroup_Name; set { _TravelGroup_Name = value; OnPropertyChanged(); } }
+        public string TravelGroup_Name
+        { get => _TravelGroup_Name; set { _TravelGroup_Name = value; OnPropertyChanged(); } }
 
         private string _TravelGroup_Type;
-        public string TravelGroup_Type { get => _TravelGroup_Type; set { _TravelGroup_Type = value; OnPropertyChanged(); } }
+        public string TravelGroup_Type
+        { get => _TravelGroup_Type; set { _TravelGroup_Type = value; OnPropertyChanged(); } }
 
         private DateTime _Tour_Department;
-        public DateTime Tour_Department { get => _Tour_Department; set { _Tour_Department = value; OnPropertyChanged(); } }
+        public DateTime Tour_Department
+        { get => _Tour_Department; set { _Tour_Department = value; OnPropertyChanged(); } }
 
         private DateTime _Tour_End;
-        public DateTime Tour_End { get => _Tour_End; set { _Tour_End = value; OnPropertyChanged(); } }
+        public DateTime Tour_End
+        { get => _Tour_End; set { _Tour_End = value; OnPropertyChanged(); } }
 
         private TourModel _TournData;
-        public TourModel TourData { get => _TournData; set { _TournData = value; OnPropertyChanged(); } }
+        public TourModel TourData
+        { get => _TournData; set { _TournData = value; OnPropertyChanged(); } }
 
         private TourInformationModel _TourInformationData;
+
         public TourInformationModel TourInformationData
         {
             get => _TourInformationData; set
@@ -75,44 +87,61 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 OnPropertyChanged();
             }
         }
-        #endregion Travel Information
+
+        #endregion Information
 
         #region Traveller
+
         private int _TravellerCount;
-        public int TravellerCount { get => _TravellerCount; set { _TravellerCount = value; OnPropertyChanged(); } }
+        public int TravellerCount
+        { get => _TravellerCount; set { _TravellerCount = value; OnPropertyChanged(); } }
 
         private string _TravellerList_Notify;
-        public string TravellerList_Notify { get => _TravellerList_Notify; set { _TravellerList_Notify = value; OnPropertyChanged(); } }
+        public string TravellerList_Notify
+        { get => _TravellerList_Notify; set { _TravellerList_Notify = value; OnPropertyChanged(); } }
 
         private BindableCollection<TravellerModel> _TravellerList;
-        public BindableCollection<TravellerModel> TravellerList { get => _TravellerList; set { _TravellerList = value; OnPropertyChanged(); } }
+        public BindableCollection<TravellerModel> TravellerList
+        { get => _TravellerList; set { _TravellerList = value; OnPropertyChanged(); } }
 
         private BindableCollection<ComboBoxTravellerModel> _CB_TravellerList;
-        public BindableCollection<ComboBoxTravellerModel> CB_TravellerList { get => _CB_TravellerList; set { _CB_TravellerList = value; OnPropertyChanged(); } }
+        public BindableCollection<ComboBoxTravellerModel> CB_TravellerList
+        { get => _CB_TravellerList; set { _CB_TravellerList = value; OnPropertyChanged(); } }
+
         #endregion Traveller
 
         #region Staff
+
         private int _StaffCount;
-        public int StaffCount { get => _StaffCount; set { _StaffCount = value; OnPropertyChanged(); } }
+        public int StaffCount
+        { get => _StaffCount; set { _StaffCount = value; OnPropertyChanged(); } }
 
         private BindableCollection<StaffDetailModel> _StaffList;
-        public BindableCollection<StaffDetailModel> StaffList { get => _StaffList; set { _StaffList = value; OnPropertyChanged(); } }
+        public BindableCollection<StaffDetailModel> StaffList
+        { get => _StaffList; set { _StaffList = value; OnPropertyChanged(); } }
 
         private BindableCollection<ComboBoxStaffModel> _CB_StaffList;
-        public BindableCollection<ComboBoxStaffModel> CB_StaffList { get => _CB_StaffList; set { _CB_StaffList = value; OnPropertyChanged(); } }
+        public BindableCollection<ComboBoxStaffModel> CB_StaffList
+        { get => _CB_StaffList; set { _CB_StaffList = value; OnPropertyChanged(); } }
+
         #endregion Staff
 
         #region Price
+
         private double _TotalHotelPrice;
-        public double TotalHotelPrice { get => _TotalHotelPrice; set { _TotalHotelPrice = value; OnPropertyChanged(); } }
+        public double TotalHotelPrice
+        { get => _TotalHotelPrice; set { _TotalHotelPrice = value; OnPropertyChanged(); } }
 
         private double _TotalTransportPrice;
-        public double TotalTransportPrice { get => _TotalTransportPrice; set { _TotalTransportPrice = value; OnPropertyChanged(); } }
+        public double TotalTransportPrice
+        { get => _TotalTransportPrice; set { _TotalTransportPrice = value; OnPropertyChanged(); } }
 
         private double _TotalServicePrice;
-        public double TotalServicePrice { get => _TotalServicePrice; set { _TotalServicePrice = value; OnPropertyChanged(); } }
+        public double TotalServicePrice
+        { get => _TotalServicePrice; set { _TotalServicePrice = value; OnPropertyChanged(); } }
 
         private double _TotalAnotherPrice;
+
         public double TotalAnotherPrice
         {
             get => _TotalAnotherPrice;
@@ -128,15 +157,19 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private double _TotalPrice;
-        public double TotalPrice { get => _TotalPrice; set { _TotalPrice = value; OnPropertyChanged(); } }
+        public double TotalPrice
+        { get => _TotalPrice; set { _TotalPrice = value; OnPropertyChanged(); } }
 
         private string _TravelCost_Description;
-        public string TravelCost_Description { get => _TravelCost_Description; set { _TravelCost_Description = value; OnPropertyChanged(); } }
+        public string TravelCost_Description
+        { get => _TravelCost_Description; set { _TravelCost_Description = value; OnPropertyChanged(); } }
+
         #endregion Price
 
         #endregion Data Binding
 
         #region Information
+
         private bool IsEnableFunction(DateTime date, bool isDelete)
         {
             if (DateTime.Now < date && !isDelete)
@@ -145,6 +178,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             return false;
         }
+
         private async void SetTravelGroupInformation(TravelGroupModel travelGroup)
         {
             await Task.Delay(5000);
@@ -156,7 +190,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TourInformationData = TourInformationHandleModel.GetTourInformationTravelGroup(travelGroup.TourInformation_ID);
             Tour_Department = TourInformationData.INFORMATION_TIME.TIME_DEPARTMENT_TIME;
             Tour_End = TourInformationData.INFORMATION_TIME.TIME_END_TIME;
-
 
             IsEnable = IsEnableFunction(Tour_Department, TravelGroup_IsDelete) && IsVisibility == Visibility.Visible;
             IsEnablePrice = IsEnablePriceFunction(Tour_End) && IsVisibility == Visibility.Visible;
@@ -170,6 +203,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SaveTravelGroupCommand;
+
         public ICommand SaveTravelGroupCommand
         {
             get
@@ -226,6 +260,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _DeleteTravelGroupCommand;
+
         public ICommand DeleteTravelGroupCommand
         {
             get
@@ -260,7 +295,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     string messageDisplay = string.Format("Delete Travel Group Failed! Please try again!");
                     MessageWindow message = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
-                    message.ShowDialog();                   
+                    message.ShowDialog();
                     ProgressBarVisbility = Visibility.Hidden;
                 }
             }
@@ -280,9 +315,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
             return false;
         }
+
         #endregion Information
 
         #region Staff
+
         public int MissionCount { get; set; }
         public bool CountChange { get; set; }
 
@@ -335,10 +372,10 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 }
             }
             staffdetail.Staff_Notify = "Staff Valid";
-
         }
 
         private ICommand _SearchStaffCommand;
+
         public ICommand SearchStaffCommand
         {
             get
@@ -360,6 +397,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SaveStaffCommand;
+
         public ICommand SaveStaffCommand
         {
             get
@@ -386,7 +424,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     string messageDisplay = string.Format("Update Staff Mission List Successfully!");
                     MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
-                    messageWindow.ShowDialog();                    
+                    messageWindow.ShowDialog();
                     CountChange = false;
                     ProgressBarVisbility = Visibility.Hidden;
                 }
@@ -394,7 +432,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     string messageDisplay = string.Format("Update Staff Mission List Failed! Please try again!");
                     MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
-                    messageWindow.ShowDialog();                   
+                    messageWindow.ShowDialog();
                     ProgressBarVisbility = Visibility.Hidden;
                 }
             }
@@ -402,7 +440,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 string messageDisplay = string.Format("There is something wrong when update Staff Mission List. Please try again!");
                 MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
-                messageWindow.ShowDialog();                
+                messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }
@@ -426,21 +464,24 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 return true;
             }
             return false;
-
         }
+
         #endregion Staff
 
         #region Price
+
         public double HotelPrice { get; set; }
         public double TransportPrice { get; set; }
         public double ServicePrice { get; set; }
         public double PriceDefault { get; set; }
 
         private TravelCostModel _PriceItem;
-        public TravelCostModel PriceItem { get => _PriceItem; set { _PriceItem = value; OnPropertyChanged(); } }
+        public TravelCostModel PriceItem
+        { get => _PriceItem; set { _PriceItem = value; OnPropertyChanged(); } }
 
         private bool _IsEnablePrice;
-        public bool IsEnablePrice { get => _IsEnablePrice; set { _IsEnablePrice = value; OnPropertyChanged(); } }
+        public bool IsEnablePrice
+        { get => _IsEnablePrice; set { _IsEnablePrice = value; OnPropertyChanged(); } }
 
         private void SetPrice(int travelgroup_id)
         {
@@ -483,6 +524,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SavePriceCommand;
+
         public ICommand SavePriceCommand
         {
             get
@@ -497,7 +539,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 }
                 return _SavePriceCommand;
             }
-
         }
 
         private async void ExcuteSavePrice()
@@ -516,7 +557,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 string messageDisplay = string.Format("Update Travel Group Price Failed! Please try again!");
                 MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
-                messageWindow.ShowDialog();                
+                messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }
@@ -535,6 +576,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 TotalPrice = TotalPrice
             };
         }
+
         private bool IsExcuteSavePrice()
         {
             if (string.IsNullOrEmpty(TravelCost_Description))
@@ -551,9 +593,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             return false;
         }
+
         #endregion Price
 
         #region Traveller
+
         public int IndexCount { get; set; }
         public ObservableCollection<TravellerModel> AllTravellerList { get; set; }
 
@@ -562,6 +606,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             await Task.Delay(2000);
             AllTravellerList = TravelGroupHandleModel.GetTravellerList();
         }
+
         private async void SetTravellerList(int travelgroup_id)
         {
             await Task.Delay(2000);
@@ -573,7 +618,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 TravellerModel traveller = new TravellerModel()
                 {
-
                     Traveller_Enable = IsEnable,
                     Traveller_ID = item.Traveller_ID,
                     Traveller_Name = item.Traveller_Name,
@@ -627,6 +671,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SearchTravellerCommand;
+
         public ICommand SearchTravellerCommand
         {
             get
@@ -688,6 +733,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _BackTravellerCommand;
+
         public ICommand BackTravellerCommand
         {
             get
@@ -745,6 +791,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _NextTravellerCommand;
+
         public ICommand NextTravellerCommand
         {
             get
@@ -802,6 +849,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddTravellerCommand;
+
         public ICommand AddTravellerCommand
         {
             get
@@ -813,6 +861,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 return _AddTravellerCommand;
             }
         }
+
         private void AddTraveller()
         {
             TravellerList.Add(new TravellerModel()
@@ -837,6 +886,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _RemoveTravellerCommand;
+
         public ICommand RemoveTravellerCommand
         {
             get
@@ -858,6 +908,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _CheckTravellerCommand;
+
         public ICommand CheckTravellerCommand
         {
             get
@@ -893,6 +944,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SaveTravellerCommand;
+
         public ICommand SaveTravellerCommand
         {
             get
@@ -926,7 +978,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                                 {
                                     string messageDisplay = string.Format("Update Traveller List and Travel Group Price Successfully!");
                                     MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
-                                    messageWindow.ShowDialog();                                    
+                                    messageWindow.ShowDialog();
                                     TravellerList_Notify = "";
                                     PriceItem = UpdateTraveGroupCost();
                                     foreach (var item in TravellerList)
@@ -939,7 +991,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                                 {
                                     string messageDisplay = string.Format("Update Traveller List Failed! Please try again!");
                                     MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
-                                    messageWindow.ShowDialog();                                    
+                                    messageWindow.ShowDialog();
                                     ProgressBarVisbility = Visibility.Hidden;
                                 }
                             }
@@ -947,7 +999,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                             {
                                 string messageDisplay = string.Format("Update Traveller List Successfully!");
                                 MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
-                                messageWindow.ShowDialog();                                
+                                messageWindow.ShowDialog();
                                 foreach (var item in TravellerList)
                                 {
                                     item.Traveller_CheckCommand = false;
@@ -959,7 +1011,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         {
                             string messageDisplay = string.Format("Update Traveller List (Rating) Successfully!");
                             MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Success, MessageButtons.Ok);
-                            messageWindow.ShowDialog();                            
+                            messageWindow.ShowDialog();
                             TravellerList_Notify = "";
                             TourHandleModel.GetTourStar(TourData.TOUR_ID);
                             foreach (var item in TravellerList)
@@ -981,7 +1033,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     string messageDisplay = string.Format("There is something wrong when update Traveller list. Please try again!");
                     MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
-                    messageWindow.ShowDialog();                    
+                    messageWindow.ShowDialog();
                     ProgressBarVisbility = Visibility.Hidden;
                 }
             }
@@ -989,7 +1041,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 string messageDisplay = string.Format("There is something wrong when update Traveller list. Please try again!");
                 MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
-                messageWindow.ShowDialog();               
+                messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }
         }
@@ -1038,9 +1090,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             return false;
         }
+
         #endregion Traveller
 
         private ICommand _CancelCommand;
+
         public ICommand CancelCommand
         {
             get

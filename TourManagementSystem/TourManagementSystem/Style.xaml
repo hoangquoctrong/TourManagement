@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--  // Header Text Style //  -->
     <Style x:Key="HeaderStyle" TargetType="TextBlock">
 
@@ -55,7 +55,6 @@
         </Setter>
     </Style>
 
-
     <Style x:Key="SearchTextStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="IsHitTestVisible" Value="False" />
         <Setter Property="Visibility" Value="Collapsed" />
@@ -81,7 +80,6 @@
         ImageSource="Assets/close_mo_icon.png"
         Stretch="None" />
 
-
     <Style x:Key="CloseBtn_Style" TargetType="Button">
 
         <Setter Property="Template">
@@ -97,15 +95,12 @@
                         <Trigger Property="IsMouseOver" Value="True">
 
                             <Setter TargetName="border" Property="Background" Value="{StaticResource mo_img}" />
-
                         </Trigger>
 
                         <Trigger Property="IsPressed" Value="True">
 
                             <Setter TargetName="border" Property="Background" Value="{StaticResource def_img}" />
-
                         </Trigger>
-
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -136,15 +131,12 @@
                         <Trigger Property="IsMouseOver" Value="True">
 
                             <Setter TargetName="border" Property="Background" Value="{StaticResource mini_img_hover}" />
-
                         </Trigger>
 
                         <Trigger Property="IsPressed" Value="True">
 
                             <Setter TargetName="border" Property="Background" Value="{StaticResource mini_img}" />
-
                         </Trigger>
-
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -165,7 +157,6 @@
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="180" />
-
                         </Grid.ColumnDefinitions>
 
                         <Border
@@ -204,7 +195,6 @@
                             Background="#00AADA"
                             CornerRadius="2"
                             Visibility="Collapsed" />
-
                     </Grid>
 
                     <ControlTemplate.Triggers>
@@ -212,18 +202,14 @@
                         <Trigger Property="IsMouseOver" Value="True">
 
                             <Setter TargetName="border" Property="Background" Value="#414141" />
-
                         </Trigger>
 
                         <Trigger Property="IsChecked" Value="True">
 
                             <Setter TargetName="border" Property="Background" Value="#414141" />
 
-
                             <Setter TargetName="Highlighter" Property="Visibility" Value="Visible" />
-
                         </Trigger>
-
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -271,9 +257,7 @@
                             FontSize="14"
                             Foreground="#E8EAEC"
                             Text="{TemplateBinding Property=Content}" />
-
                     </Grid>
-
 
                     <ControlTemplate.Triggers>
 
@@ -293,9 +277,7 @@
                             <Setter TargetName="border" Property="BorderBrush" Value="#8C8C8C" />
 
                             <Setter TargetName="border" Property="BorderThickness" Value="3" />
-
                         </Trigger>
-
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -324,16 +306,13 @@
                             VerticalAlignment="Center"
                             Source="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}"
                             Stretch="None" />
-
                     </Grid>
-
 
                     <ControlTemplate.Triggers>
 
                         <Trigger Property="IsMouseOver" Value="True" />
 
                         <Trigger Property="IsChecked" Value="True" />
-
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -411,9 +390,7 @@
                             FontWeight="Bold"
                             Foreground="{TemplateBinding Property=Foreground}"
                             Text="{TemplateBinding Property=Content}" />
-
                     </Grid>
-
 
                     <ControlTemplate.Triggers>
 
@@ -463,9 +440,7 @@
                             FontWeight="Bold"
                             Foreground="{TemplateBinding Property=Foreground}"
                             Text="{TemplateBinding Property=Content}" />
-
                     </Grid>
-
 
                     <ControlTemplate.Triggers>
 
@@ -515,9 +490,7 @@
                             FontWeight="Bold"
                             Foreground="{TemplateBinding Property=Foreground}"
                             Text="{TemplateBinding Property=Content}" />
-
                     </Grid>
-
 
                     <ControlTemplate.Triggers>
 
@@ -567,9 +540,7 @@
                             FontWeight="Bold"
                             Foreground="{TemplateBinding Property=Foreground}"
                             Text="{TemplateBinding Property=Content}" />
-
                     </Grid>
-
 
                     <ControlTemplate.Triggers>
 
@@ -616,9 +587,7 @@
                             Margin="10"
                             Foreground="White"
                             Kind="ArrowBack" />
-
                     </Grid>
-
 
                     <ControlTemplate.Triggers>
 
@@ -662,9 +631,7 @@
                             FontWeight="Bold"
                             Foreground="{TemplateBinding Property=Foreground}"
                             Text="{TemplateBinding Property=Content}" />
-
                     </Grid>
-
 
                     <ControlTemplate.Triggers>
 
@@ -714,9 +681,7 @@
                             FontWeight="Bold"
                             Foreground="{TemplateBinding Property=Foreground}"
                             Text="{TemplateBinding Property=Content}" />
-
                     </Grid>
-
 
                     <ControlTemplate.Triggers>
 
@@ -766,9 +731,7 @@
                             FontWeight="Bold"
                             Foreground="{TemplateBinding Property=Foreground}"
                             Text="{TemplateBinding Property=Content}" />
-
                     </Grid>
-
 
                     <ControlTemplate.Triggers>
 
@@ -817,9 +780,7 @@
                             FontWeight="Bold"
                             Foreground="{TemplateBinding Property=Foreground}"
                             Text="{TemplateBinding Property=Content}" />
-
                     </Grid>
-
 
                     <ControlTemplate.Triggers>
 
@@ -835,5 +796,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>

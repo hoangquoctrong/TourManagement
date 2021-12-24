@@ -14,22 +14,27 @@ namespace TourManagementSystem.Global.ViewModel
     public class ForgetPasswordViewModel : BaseViewModel
     {
         private string _Username;
+
         public string Username
         { get => _Username; set { _Username = value; OnPropertyChanged("Username"); } }
 
         private string _UserEmail;
+
         public string UserEmail
         { get => _UserEmail; set { _UserEmail = value; OnPropertyChanged("Username"); } }
 
         private int _NumberConfirm;
+
         public int NumberConfirm
         { get => _NumberConfirm; set { _NumberConfirm = value; OnPropertyChanged(); } }
 
         private int _ValidateNumber;
+
         public int ValidateNumber
         { get => _ValidateNumber; set { _ValidateNumber = value; OnPropertyChanged(); } }
 
         private Visibility _ProgressBarVisbility;
+
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,13 +13,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class TravellerViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private Visibility _IsVisibility;
-        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+        public Visibility IsVisibility
+        { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private Visibility _ProgressBarVisbility;
-        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+        public Visibility ProgressBarVisbility
+        { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
         public TravellerViewModel(int user_id, Visibility visibility)
         {
             User_ID = user_id;
@@ -41,19 +42,24 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<TravellerModel> _TravellerItems = new ObservableCollection<TravellerModel>();
-        public ObservableCollection<TravellerModel> TravellerItems { get => _TravellerItems; set { _TravellerItems = value; OnPropertyChanged("TravellerItems"); } }
+        public ObservableCollection<TravellerModel> TravellerItems
+        { get => _TravellerItems; set { _TravellerItems = value; OnPropertyChanged("TravellerItems"); } }
 
         private ObservableCollection<TravellerModel> _Refresh_TravellerItems = new ObservableCollection<TravellerModel>();
-        public ObservableCollection<TravellerModel> Refresh_TravellerItems { get => _Refresh_TravellerItems; set { _Refresh_TravellerItems = value; OnPropertyChanged("Refresh_TravellerItems"); } }
+        public ObservableCollection<TravellerModel> Refresh_TravellerItems
+        { get => _Refresh_TravellerItems; set { _Refresh_TravellerItems = value; OnPropertyChanged("Refresh_TravellerItems"); } }
 
         private TravellerModel _TravellerSelected;
-        public TravellerModel TravellerSelected { get => _TravellerSelected; set { _TravellerSelected = value; OnPropertyChanged("TravellerSelected"); } }
+        public TravellerModel TravellerSelected
+        { get => _TravellerSelected; set { _TravellerSelected = value; OnPropertyChanged("TravellerSelected"); } }
 
         private ObservableCollection<ComboBoxModel> _CB_TravellerList;
-        public ObservableCollection<ComboBoxModel> CB_TravellerList { get => _CB_TravellerList; set { _CB_TravellerList = value; OnPropertyChanged("CB_TravellerList"); } }
+        public ObservableCollection<ComboBoxModel> CB_TravellerList
+        { get => _CB_TravellerList; set { _CB_TravellerList = value; OnPropertyChanged("CB_TravellerList"); } }
 
         private ComboBoxModel _CB_TravellerSelected;
-        public ComboBoxModel CB_TravellerSelected { get => _CB_TravellerSelected; set { _CB_TravellerSelected = value; OnPropertyChanged("CB_TravellerSelected"); } }
+        public ComboBoxModel CB_TravellerSelected
+        { get => _CB_TravellerSelected; set { _CB_TravellerSelected = value; OnPropertyChanged("CB_TravellerSelected"); } }
 
         private ObservableCollection<TravellerModel> GetTravellerList()
         {
@@ -66,6 +72,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
             return travellerList;
         }
+
         private void LoadTravellerComboBox()
         {
             CB_TravellerList = new ObservableCollection<ComboBoxModel>
@@ -79,6 +86,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         //Text Search Filter
         private string _FilterText;
+
         public string FilterText
         {
             get => _FilterText;
@@ -103,11 +111,13 @@ namespace TourManagementSystem.ManagerView.ViewModel
                                                                                                             x.Traveller_Name.ToLower().Contains(FilterText) ||
                                                                                                             x.Traveller_Name.ToUpper().Contains(FilterText)));
                         break;
+
                     case "Type":
                         TravellerItems = new ObservableCollection<TravellerModel>(TravellerItems.Where(x => x.Traveller_Type.Contains(FilterText) ||
                                                                                                             x.Traveller_Type.ToLower().Contains(FilterText) ||
                                                                                                             x.Traveller_Type.ToUpper().Contains(FilterText)));
                         break;
+
                     case "Gender":
                         TravellerItems = new ObservableCollection<TravellerModel>(TravellerItems.Where(x => x.Traveller_Sex.Contains(FilterText) ||
                                                                                                             x.Traveller_Sex.ToLower().Contains(FilterText) ||
@@ -118,6 +128,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _ShowDetailTravellerCommand;
+
         public ICommand ShowDetailTravellerCommand
         {
             get
@@ -131,6 +142,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddTravellerCommand;
+
         public ICommand AddTravellerCommand
         {
             get

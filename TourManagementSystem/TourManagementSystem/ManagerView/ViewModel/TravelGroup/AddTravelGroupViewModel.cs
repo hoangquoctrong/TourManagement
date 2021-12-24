@@ -1,14 +1,11 @@
 ﻿using Caliburn.Micro;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using TourManagementSystem.Global.Model;
 using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
@@ -18,24 +15,31 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class AddTravelGroupViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private Visibility _ProgressBarVisbility;
-        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+        public Visibility ProgressBarVisbility
+        { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         #region Data Binding
 
         #region Information
+
         private string _TravelGroup_Name;
-        public string TravelGroup_Name { get => _TravelGroup_Name; set { _TravelGroup_Name = value; OnPropertyChanged(); } }
+        public string TravelGroup_Name
+        { get => _TravelGroup_Name; set { _TravelGroup_Name = value; OnPropertyChanged(); } }
 
         private string _TravelGroup_Type;
-        public string TravelGroup_Type { get => _TravelGroup_Type; set { _TravelGroup_Type = value; OnPropertyChanged(); } }
+        public string TravelGroup_Type
+        { get => _TravelGroup_Type; set { _TravelGroup_Type = value; OnPropertyChanged(); } }
 
         private ObservableCollection<ComboBoxTourModel> _CB_TourList;
-        public ObservableCollection<ComboBoxTourModel> CB_TourList { get => _CB_TourList; set { _CB_TourList = value; OnPropertyChanged(); } }
+        public ObservableCollection<ComboBoxTourModel> CB_TourList
+        { get => _CB_TourList; set { _CB_TourList = value; OnPropertyChanged(); } }
 
         private ComboBoxTourModel _CB_TourSelected;
+
         public ComboBoxTourModel CB_TourSelected
         {
             get => _CB_TourSelected; set
@@ -48,9 +52,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<ComboBoxInformationModel> _CB_TourInformationList;
-        public ObservableCollection<ComboBoxInformationModel> CB_TourInformationList { get => _CB_TourInformationList; set { _CB_TourInformationList = value; OnPropertyChanged(); } }
+        public ObservableCollection<ComboBoxInformationModel> CB_TourInformationList
+        { get => _CB_TourInformationList; set { _CB_TourInformationList = value; OnPropertyChanged(); } }
 
         private ComboBoxInformationModel _CB_TourInformationSelected;
+
         public ComboBoxInformationModel CB_TourInformationSelected
         {
             get => _CB_TourInformationSelected; set
@@ -61,57 +67,79 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 HandleWhenChooseTourInformation();
             }
         }
-        #endregion Travel Information
+
+        #endregion Information
 
         #region Traveller
+
         private int _TravellerCount;
-        public int TravellerCount { get => _TravellerCount; set { _TravellerCount = value; OnPropertyChanged(); } }
+        public int TravellerCount
+        { get => _TravellerCount; set { _TravellerCount = value; OnPropertyChanged(); } }
 
         private string _TravellerList_Notify;
-        public string TravellerList_Notify { get => _TravellerList_Notify; set { _TravellerList_Notify = value; OnPropertyChanged(); } }
+        public string TravellerList_Notify
+        { get => _TravellerList_Notify; set { _TravellerList_Notify = value; OnPropertyChanged(); } }
 
         private BindableCollection<TravellerModel> _TravellerList;
-        public BindableCollection<TravellerModel> TravellerList { get => _TravellerList; set { _TravellerList = value; OnPropertyChanged(); } }
+        public BindableCollection<TravellerModel> TravellerList
+        { get => _TravellerList; set { _TravellerList = value; OnPropertyChanged(); } }
 
         private BindableCollection<ComboBoxTravellerModel> _CB_TravellerList;
-        public BindableCollection<ComboBoxTravellerModel> CB_TravellerList { get => _CB_TravellerList; set { _CB_TravellerList = value; OnPropertyChanged(); } }
+        public BindableCollection<ComboBoxTravellerModel> CB_TravellerList
+        { get => _CB_TravellerList; set { _CB_TravellerList = value; OnPropertyChanged(); } }
+
         #endregion Traveller
 
         #region Staff
+
         private int _StaffCount;
-        public int StaffCount { get => _StaffCount; set { _StaffCount = value; OnPropertyChanged(); } }
+        public int StaffCount
+        { get => _StaffCount; set { _StaffCount = value; OnPropertyChanged(); } }
 
         private BindableCollection<StaffDetailModel> _StaffList;
-        public BindableCollection<StaffDetailModel> StaffList { get => _StaffList; set { _StaffList = value; OnPropertyChanged(); } }
+        public BindableCollection<StaffDetailModel> StaffList
+        { get => _StaffList; set { _StaffList = value; OnPropertyChanged(); } }
 
         private BindableCollection<ComboBoxStaffModel> _CB_StaffList;
-        public BindableCollection<ComboBoxStaffModel> CB_StaffList { get => _CB_StaffList; set { _CB_StaffList = value; OnPropertyChanged(); } }
+        public BindableCollection<ComboBoxStaffModel> CB_StaffList
+        { get => _CB_StaffList; set { _CB_StaffList = value; OnPropertyChanged(); } }
+
         #endregion Staff
 
         #region Price
+
         private double _TotalHotelPrice;
-        public double TotalHotelPrice { get => _TotalHotelPrice; set { _TotalHotelPrice = value; OnPropertyChanged(); } }
+        public double TotalHotelPrice
+        { get => _TotalHotelPrice; set { _TotalHotelPrice = value; OnPropertyChanged(); } }
 
         private double _TotalTransportPrice;
-        public double TotalTransportPrice { get => _TotalTransportPrice; set { _TotalTransportPrice = value; OnPropertyChanged(); } }
+        public double TotalTransportPrice
+        { get => _TotalTransportPrice; set { _TotalTransportPrice = value; OnPropertyChanged(); } }
 
         private double _TotalServicePrice;
-        public double TotalServicePrice { get => _TotalServicePrice; set { _TotalServicePrice = value; OnPropertyChanged(); } }
+        public double TotalServicePrice
+        { get => _TotalServicePrice; set { _TotalServicePrice = value; OnPropertyChanged(); } }
 
         private double _TotalAnotherPrice;
-        public double TotalAnotherPrice { get => _TotalAnotherPrice; set { _TotalAnotherPrice = value; OnPropertyChanged(); SetPriceBaseOnCustomer(TravellerCount); } }
+        public double TotalAnotherPrice
+        { get => _TotalAnotherPrice; set { _TotalAnotherPrice = value; OnPropertyChanged(); SetPriceBaseOnCustomer(TravellerCount); } }
 
         private double _TotalPrice;
-        public double TotalPrice { get => _TotalPrice; set { _TotalPrice = value; OnPropertyChanged(); } }
+        public double TotalPrice
+        { get => _TotalPrice; set { _TotalPrice = value; OnPropertyChanged(); } }
 
         private bool _IsEnable;
-        public bool IsEnable { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
+        public bool IsEnable
+        { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
 
         private string _TravelCost_Description;
-        public string TravelCost_Description { get => _TravelCost_Description; set { _TravelCost_Description = value; OnPropertyChanged(); } }
+        public string TravelCost_Description
+        { get => _TravelCost_Description; set { _TravelCost_Description = value; OnPropertyChanged(); } }
+
         #endregion Price
 
         #endregion Data Binding
+
         public AddTravelGroupViewModel(int user_id)
         {
             User_ID = user_id;
@@ -184,12 +212,15 @@ namespace TourManagementSystem.ManagerView.ViewModel
             SetPriceEnable();
             ProgressBarVisbility = Visibility.Hidden;
         }
+
         #endregion Command Information
 
         #region Command Price
+
         public double HotelPrice { get; set; }
         public double TransportPrice { get; set; }
         public double ServicePrice { get; set; }
+
         private void SetPriceEnable()
         {
             if (CB_TourInformationSelected == null)
@@ -216,9 +247,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TotalServicePrice = ServicePrice * count;
             TotalPrice = TotalHotelPrice + TotalTransportPrice + TotalServicePrice + TotalAnotherPrice;
         }
+
         #endregion Command Price
 
         #region Command Staff
+
         public int MissionCount { get; set; }
 
         private void CreateStaffListBaseOnMission()
@@ -257,8 +290,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 }
             }
 
-
-
             StaffCount = StaffList.Count;
         }
 
@@ -292,11 +323,10 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 }
             }
             staffdetail.Staff_Notify = "Staff Valid";
-
         }
 
-
         private ICommand _SearchStaffCommand;
+
         public ICommand SearchStaffCommand
         {
             get
@@ -317,6 +347,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SaveStaffCommand;
+
         public ICommand SaveStaffCommand
         {
             get
@@ -325,17 +356,19 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     _SaveStaffCommand = new RelayCommand<object>(p => CB_TourInformationSelected != null, p =>
                     {
-
                     });
                 }
                 return _SaveStaffCommand;
             }
         }
+
         #endregion Command Staff
 
         #region Command Traveller
+
         public int IndexCount { get; set; }
         public ObservableCollection<TravellerModel> AllTravellerList { get; set; }
+
         private void GetTravellerList()
         {
             AllTravellerList = TravelGroupHandleModel.GetTravellerList();
@@ -353,6 +386,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SearchTravellerCommand;
+
         public ICommand SearchTravellerCommand
         {
             get
@@ -404,6 +438,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _BackTravellerCommand;
+
         public ICommand BackTravellerCommand
         {
             get
@@ -457,6 +492,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _NextTravellerCommand;
+
         public ICommand NextTravellerCommand
         {
             get
@@ -510,6 +546,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddTravellerCommand;
+
         public ICommand AddTravellerCommand
         {
             get
@@ -521,6 +558,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 return _AddTravellerCommand;
             }
         }
+
         private void AddTraveller()
         {
             TravellerList.Add(new TravellerModel()
@@ -544,6 +582,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _RemoveTravellerCommand;
+
         public ICommand RemoveTravellerCommand
         {
             get
@@ -565,6 +604,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SaveTravellerCommand;
+
         public ICommand SaveTravellerCommand
         {
             get
@@ -598,9 +638,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 return _SaveTravellerCommand;
             }
         }
+
         #endregion Command Traveller
 
         private ICommand _AddTravelGroupCommand;
+
         public ICommand AddTravelGroupCommand
         {
             get
@@ -618,8 +660,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
         }
 
-
         #region IsExcute Save
+
         private bool IsExucteAddTravelGroupCommand()
         {
             return IsExcuteInformation() && IsExcuteStaff() && IsExcuteTraveller();
@@ -673,9 +715,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
             return count == TravellerCount;
         }
+
         #endregion IsExcute Save
 
         #region Excute Save
+
         private async void ExcuteAddTravelGroupCommand(ContentControl p)
         {
             await Task.Delay(6000);
@@ -800,9 +844,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             return TravellerList;
         }
-        #endregion  Excute Save
+
+        #endregion Excute Save
 
         private ICommand _CancelCommand;
+
         public ICommand CancelCommand
         {
             get
@@ -815,6 +861,5 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 return _CancelCommand;
             }
         }
-
     }
 }

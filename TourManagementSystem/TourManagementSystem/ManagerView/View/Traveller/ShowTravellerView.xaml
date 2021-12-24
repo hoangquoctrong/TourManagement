@@ -194,7 +194,6 @@
                                                         </Binding>
                                                     </TextBox.Text>
                                                 </TextBox>
-
                                             </StackPanel>
 
                                             <StackPanel
@@ -266,7 +265,6 @@
                                                             </Binding>
                                                         </ComboBox.Text>
                                                     </ComboBox>
-
                                                 </StackPanel>
 
                                                 <StackPanel Margin="0,32,0,0" Orientation="Horizontal">
@@ -293,7 +291,6 @@
                                                             </Binding>
                                                         </TextBox.Text>
                                                     </TextBox>
-
                                                 </StackPanel>
 
                                                 <StackPanel Margin="0,32,0,0" Orientation="Horizontal">
@@ -320,7 +317,6 @@
                                                             </Binding>
                                                         </TextBox.Text>
                                                     </TextBox>
-
                                                 </StackPanel>
                                             </StackPanel>
 
@@ -349,7 +345,6 @@
                                                             </Binding>
                                                         </TextBox.Text>
                                                     </TextBox>
-
                                                 </StackPanel>
 
                                                 <StackPanel Margin="0,32,0,0" Orientation="Horizontal">
@@ -409,11 +404,9 @@
                                                                 UpdateSourceTrigger="PropertyChanged" />
                                                         </DatePicker.SelectedDate>
                                                     </DatePicker>
-
                                                 </StackPanel>
                                             </StackPanel>
                                         </Grid>
-
 
                                         <StackPanel
                                             Grid.Row="3"

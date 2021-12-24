@@ -99,9 +99,7 @@
                                                 </Binding>
                                             </TextBox.Text>
                                         </TextBox>
-
                                     </StackPanel>
-
                                 </StackPanel>
 
                                 <StackPanel
@@ -132,7 +130,6 @@
                                             </Style>
                                         </ComboBox.ItemContainerStyle>
                                     </ComboBox>
-
                                 </StackPanel>
                             </Grid>
 
@@ -225,7 +222,6 @@
                                             </TextBox.Text>
                                         </TextBox>
                                     </StackPanel>
-
                                 </StackPanel>
 
                                 <StackPanel Margin="20,20,30,20" HorizontalAlignment="Right">
@@ -253,7 +249,6 @@
                                                 </Binding>
                                             </TextBox.Text>
                                         </TextBox>
-
                                     </StackPanel>
 
                                     <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
@@ -284,9 +279,7 @@
                                             </ComboBox.Text>
                                         </ComboBox>
                                     </StackPanel>
-
                                 </StackPanel>
-
                             </Grid>
 
                             <Separator
@@ -322,7 +315,6 @@
                                     Text="{Binding Hotel_Description, Mode=TwoWay}"
                                     TextWrapping="Wrap" />
                             </StackPanel>
-
                         </Grid>
                     </ScrollViewer>
 
@@ -354,6 +346,5 @@
                 </Grid>
             </Grid>
         </Border>
-
     </ContentControl>
 </UserControl>

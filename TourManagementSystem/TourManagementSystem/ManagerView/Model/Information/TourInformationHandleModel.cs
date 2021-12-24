@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TourManagementSystem.Global;
 using TourManagementSystem.Global.Model;
 
@@ -488,7 +485,6 @@ namespace TourManagementSystem.ManagerView.Model
                     countChangeToSave++;
                 }
 
-
                 if (countChangeToSave != 0)
                 {
                     TOUR_RECORD tour_record = new TOUR_RECORD
@@ -594,7 +590,6 @@ namespace TourManagementSystem.ManagerView.Model
                     countChangeToSave++;
                 }
 
-
                 if (countChangeToSave != 0)
                 {
                     TOUR_RECORD tour_record = new TOUR_RECORD
@@ -696,6 +691,15 @@ namespace TourManagementSystem.ManagerView.Model
                 TourList.Add(tour);
             }
             return TourList;
+        }
+
+        public static int CountTourInformationFromTour(int tour_id)
+        {
+            var tourlist = from information in DataProvider.Ins.DB.TOUR_INFORMATION
+                           where information.TOUR_ID == tour_id
+                           select information;
+
+            return tourlist.Count();
         }
 
         public static TourModel GetTourTravelGroup(int tourinformation_id)

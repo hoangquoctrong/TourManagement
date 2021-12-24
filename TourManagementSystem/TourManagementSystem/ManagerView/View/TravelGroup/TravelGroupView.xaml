@@ -93,7 +93,6 @@
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
-
                     <Border
                         Grid.Row="0"
                         Height="60"
@@ -106,7 +105,6 @@
                             Foreground="White"
                             Text="T R A V E L    G R O U P    L I S T " />
                     </Border>
-
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -182,7 +180,6 @@
                             Foreground="#0f6f68"
                             Style="{StaticResource AddButton}"
                             Visibility="{Binding IsVisibility}" />
-
                     </Grid>
 
                     <DataGrid

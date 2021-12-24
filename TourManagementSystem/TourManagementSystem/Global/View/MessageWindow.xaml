@@ -82,7 +82,6 @@
                                 Message Title
                             </TextBlock>
                         </materialDesign:TransitioningContent>
-
                     </Grid>
                     <Grid Grid.Row="1" Margin="0,20,0,5">
                         <Grid.ColumnDefinitions>
@@ -111,7 +110,7 @@
                             Click="btnCancel_Click"
                             Content="Cancel"
                             Foreground="#F36E6B"
-                            Style="{StaticResource ResourceKey=NoButton}"/>
+                            Style="{StaticResource ResourceKey=NoButton}" />
                         <Button
                             x:Name="btnYes"
                             Grid.Column="1"
@@ -121,7 +120,7 @@
                             Click="btnYes_Click"
                             Content="Yes"
                             Foreground="#0f6f68"
-                            Style="{StaticResource ResourceKey=CloseButton}"/>
+                            Style="{StaticResource ResourceKey=CloseButton}" />
                         <Button
                             x:Name="btnNo"
                             Grid.Column="2"
@@ -131,9 +130,8 @@
                             Click="btnNo_Click"
                             Content="No"
                             Foreground="#F36E6B"
-                            Style="{StaticResource ResourceKey=NoButton}"/>
+                            Style="{StaticResource ResourceKey=NoButton}" />
                     </Grid>
-
                 </Grid>
             </Grid>
         </Grid>

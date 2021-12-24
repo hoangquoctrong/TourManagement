@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TourManagementSystem.ViewModel;
+﻿using TourManagementSystem.ViewModel;
 
 namespace TourManagementSystem.EmployeeView.ViewModel
 {
@@ -11,7 +6,6 @@ namespace TourManagementSystem.EmployeeView.ViewModel
     {
         public EAccountViewModel(int user_id)
         {
-
         }
     }
 }

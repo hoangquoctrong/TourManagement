@@ -1,9 +1,7 @@
 ﻿using Caliburn.Micro;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,31 +16,40 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class ShowTourInformationViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private int _Tour_ID;
-        public int Tour_ID { get => _Tour_ID; set { _Tour_ID = value; OnPropertyChanged(); } }
+        public int Tour_ID
+        { get => _Tour_ID; set { _Tour_ID = value; OnPropertyChanged(); } }
 
         private Visibility _IsVisibility;
-        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+        public Visibility IsVisibility
+        { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private Visibility _IsDirectorVisibility;
-        public Visibility IsDirectorVisibility { get => _IsDirectorVisibility; set { _IsDirectorVisibility = value; OnPropertyChanged("IsDirectorVisibility"); } }
+        public Visibility IsDirectorVisibility
+        { get => _IsDirectorVisibility; set { _IsDirectorVisibility = value; OnPropertyChanged("IsDirectorVisibility"); } }
 
         private int _TourInformation_ID;
-        public int TourInformation_ID { get => _TourInformation_ID; set { _TourInformation_ID = value; OnPropertyChanged(); } }
+        public int TourInformation_ID
+        { get => _TourInformation_ID; set { _TourInformation_ID = value; OnPropertyChanged(); } }
 
         private ObservableCollection<PlaceModel> _PlaceList;
-        public ObservableCollection<PlaceModel> PlaceList { get => _PlaceList; set { _PlaceList = value; OnPropertyChanged(); } }
+        public ObservableCollection<PlaceModel> PlaceList
+        { get => _PlaceList; set { _PlaceList = value; OnPropertyChanged(); } }
 
         private TourInformationModel _InformationSelected;
-        public TourInformationModel InformationSelected { get => _InformationSelected; set { _InformationSelected = value; OnPropertyChanged(); } }
+        public TourInformationModel InformationSelected
+        { get => _InformationSelected; set { _InformationSelected = value; OnPropertyChanged(); } }
 
         private bool _IsEnable;
-        public bool IsEnable { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
+        public bool IsEnable
+        { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
 
         private Visibility _ProgressBarVisbility;
-        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+        public Visibility ProgressBarVisbility
+        { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         public ShowTourInformationViewModel(int user_id, int tour_id, TourInformationModel tourInformation, ObservableCollection<PlaceModel> places,
                                                 bool isenable, Visibility visibility, Visibility directorVisibility)
@@ -61,7 +68,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private async void LoadDataInUC(int tour_id, TourInformationModel tourInformation)
         {
-
             await Task.Delay(6000);
 
             Tour_Name = TourHandleModel.GetTourName(tour_id);
@@ -122,11 +128,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         #region Price
+
         private TourPriceModel _SelectPrice;
-        public TourPriceModel SelectPrice { get => _SelectPrice; set { _SelectPrice = value; OnPropertyChanged(); } }
+        public TourPriceModel SelectPrice
+        { get => _SelectPrice; set { _SelectPrice = value; OnPropertyChanged(); } }
 
         private double _TotalPrice = 0;
-        public double TotalPrice { get => _TotalPrice; set { _TotalPrice = value; OnPropertyChanged(); } }
+        public double TotalPrice
+        { get => _TotalPrice; set { _TotalPrice = value; OnPropertyChanged(); } }
 
         private double CalculatePrice(double hotelprice, double transportprice, double missionprice)
         {
@@ -145,32 +154,43 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 PRICE_NOTE = ""
             };
         }
+
         #endregion Price
 
         #region Time
 
         #region Parameter
+
         private TourTimeModel _SelectTime = new TourTimeModel();
-        public TourTimeModel SelectTime { get => _SelectTime; set { _SelectTime = value; OnPropertyChanged(); } }
+        public TourTimeModel SelectTime
+        { get => _SelectTime; set { _SelectTime = value; OnPropertyChanged(); } }
 
         private string _Tour_Name;
-        public string Tour_Name { get => _Tour_Name; set { _Tour_Name = value; OnPropertyChanged(); } }
+        public string Tour_Name
+        { get => _Tour_Name; set { _Tour_Name = value; OnPropertyChanged(); } }
 
         private int _Time_Day;
-        public int Time_Day { get => _Time_Day; set { _Time_Day = value; OnPropertyChanged(); } }
+        public int Time_Day
+        { get => _Time_Day; set { _Time_Day = value; OnPropertyChanged(); } }
 
         private int _Time_Night;
-        public int Time_Night { get => _Time_Night; set { _Time_Night = value; OnPropertyChanged(); } }
+        public int Time_Night
+        { get => _Time_Night; set { _Time_Night = value; OnPropertyChanged(); } }
 
         private DateTime _Time_Department = DateTime.Now;
-        public DateTime Time_Department { get => _Time_Department; set { _Time_Department = value; OnPropertyChanged(); } }
+        public DateTime Time_Department
+        { get => _Time_Department; set { _Time_Department = value; OnPropertyChanged(); } }
 
         private DateTime _Time_End = DateTime.Now;
-        public DateTime Time_End { get => _Time_End; set { _Time_End = value; OnPropertyChanged(); } }
+        public DateTime Time_End
+        { get => _Time_End; set { _Time_End = value; OnPropertyChanged(); } }
+
         #endregion Parameter
 
         #region Command
+
         private ICommand _SaveTourTimeCommand;
+
         public ICommand SaveTourTimeCommand
         {
             get
@@ -242,7 +262,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             int department_int = (Time_End - Time_Department).Days;
             return department_int == total_date;
         }
+
         #endregion Command
+
         #endregion Time
 
         #region Location
@@ -250,18 +272,23 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Parameter
 
         private BindableCollection<CheckBoxModel> _LocationList = new BindableCollection<CheckBoxModel>();
-        public BindableCollection<CheckBoxModel> LocationList { get => _LocationList; set { _LocationList = value; OnPropertyChanged(); } }
+        public BindableCollection<CheckBoxModel> LocationList
+        { get => _LocationList; set { _LocationList = value; OnPropertyChanged(); } }
 
         private BindableCollection<LocationModel> _LocationSelectedList = new BindableCollection<LocationModel>();
-        public BindableCollection<LocationModel> LocationSelectedList { get => _LocationSelectedList; set { _LocationSelectedList = value; OnPropertyChanged(); } }
+        public BindableCollection<LocationModel> LocationSelectedList
+        { get => _LocationSelectedList; set { _LocationSelectedList = value; OnPropertyChanged(); } }
 
         private BindableCollection<LocationModel> _RefreshLocationSelectedList = new BindableCollection<LocationModel>();
-        public BindableCollection<LocationModel> RefreshLocationSelectedList { get => _RefreshLocationSelectedList; set { _RefreshLocationSelectedList = value; OnPropertyChanged(); } }
+        public BindableCollection<LocationModel> RefreshLocationSelectedList
+        { get => _RefreshLocationSelectedList; set { _RefreshLocationSelectedList = value; OnPropertyChanged(); } }
 
         private BindableCollection<CheckBoxModel> _RefreshLocationList = new BindableCollection<CheckBoxModel>();
-        public BindableCollection<CheckBoxModel> RefreshLocationList { get => _RefreshLocationList; set { _RefreshLocationList = value; OnPropertyChanged(); } }
+        public BindableCollection<CheckBoxModel> RefreshLocationList
+        { get => _RefreshLocationList; set { _RefreshLocationList = value; OnPropertyChanged(); } }
 
         private string _FilterLocationText;
+
         public string FilterLocationText
         {
             get => _FilterLocationText;
@@ -272,9 +299,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 LocationItems_Filter();
             }
         }
+
         #endregion Parameter
 
         #region Function
+
         private BindableCollection<CheckBoxModel> GetLocationList(ObservableCollection<PlaceModel> places)
         {
             BindableCollection<LocationModel> LocationItems = PlaceHandleModel.GetLocationFromPlaceList(places);
@@ -306,10 +335,13 @@ namespace TourManagementSystem.ManagerView.ViewModel
                                                             x.CB_Name.ToUpper().Contains(FilterLocationText)));
             }
         }
+
         #endregion Function
 
         #region Command
+
         private ICommand _LocationItemCheckCommand;
+
         public ICommand LocationItemCheckCommand
         {
             get
@@ -343,6 +375,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SaveLocationCommand;
+
         public ICommand SaveLocationCommand
         {
             get
@@ -411,6 +444,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
             return count_equal != RefreshLocationSelectedList.Count;
         }
+
         #endregion Command
 
         #endregion Location
@@ -418,21 +452,29 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Schedule
 
         #region Parameter
+
         private BindableCollection<TourScheduleModel> _ScheduleList = new BindableCollection<TourScheduleModel>();
-        public BindableCollection<TourScheduleModel> ScheduleList { get => _ScheduleList; set { _ScheduleList = value; OnPropertyChanged(); } }
+        public BindableCollection<TourScheduleModel> ScheduleList
+        { get => _ScheduleList; set { _ScheduleList = value; OnPropertyChanged(); } }
 
         private BindableCollection<TourScheduleModel> _RefreshScheduleList = new BindableCollection<TourScheduleModel>();
-        public BindableCollection<TourScheduleModel> RefreshScheduleList { get => _RefreshScheduleList; set { _RefreshScheduleList = value; OnPropertyChanged(); } }
+        public BindableCollection<TourScheduleModel> RefreshScheduleList
+        { get => _RefreshScheduleList; set { _RefreshScheduleList = value; OnPropertyChanged(); } }
 
         private int _ScheduleCount;
-        public int ScheduleCount { get => _ScheduleCount; set { _ScheduleCount = value; OnPropertyChanged(); } }
+        public int ScheduleCount
+        { get => _ScheduleCount; set { _ScheduleCount = value; OnPropertyChanged(); } }
 
         private string _ScheduleNotify = "";
-        public string ScheduleNotify { get => _ScheduleNotify; set { _ScheduleNotify = value; OnPropertyChanged(); } }
+        public string ScheduleNotify
+        { get => _ScheduleNotify; set { _ScheduleNotify = value; OnPropertyChanged(); } }
+
         #endregion Parameter
 
         #region Command
+
         private ICommand _AddScheduleCommand;
+
         public ICommand AddScheduleCommand
         {
             get
@@ -444,6 +486,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 return _AddScheduleCommand;
             }
         }
+
         private void AddTourSchedule()
         {
             ScheduleList.Add(new TourScheduleModel() { SCHEDULE_DAY = "", SCHEDULE_CONTENT = "" });
@@ -452,6 +495,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _RemoveScheduleCommand;
+
         public ICommand RemoveScheduleCommand
         {
             get
@@ -472,6 +516,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SaveScheduleListCommand;
+
         public ICommand SaveScheduleListCommand
         {
             get
@@ -489,6 +534,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SaveScheduleCommand;
+
         public ICommand SaveScheduleCommand
         {
             get
@@ -567,6 +613,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             Console.WriteLine("Count " + count_equal);
             return count_equal != RefreshScheduleList.Count;*/
         }
+
         #endregion Command
 
         #endregion Schedule
@@ -574,22 +621,29 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Hotel
 
         #region Parameter
+
         private string _HotelPriceNotify = "";
-        public string HotelPriceNotify { get => _HotelPriceNotify; set { _HotelPriceNotify = value; OnPropertyChanged(); } }
+        public string HotelPriceNotify
+        { get => _HotelPriceNotify; set { _HotelPriceNotify = value; OnPropertyChanged(); } }
 
         private BindableCollection<CheckBoxHotelModel> _HotelList = new BindableCollection<CheckBoxHotelModel>();
-        public BindableCollection<CheckBoxHotelModel> HotelList { get => _HotelList; set { _HotelList = value; OnPropertyChanged(); } }
+        public BindableCollection<CheckBoxHotelModel> HotelList
+        { get => _HotelList; set { _HotelList = value; OnPropertyChanged(); } }
 
         private BindableCollection<HotelModel> _HotelSelectedList = new BindableCollection<HotelModel>();
-        public BindableCollection<HotelModel> HotelSelectedList { get => _HotelSelectedList; set { _HotelSelectedList = value; OnPropertyChanged(); } }
+        public BindableCollection<HotelModel> HotelSelectedList
+        { get => _HotelSelectedList; set { _HotelSelectedList = value; OnPropertyChanged(); } }
 
         private BindableCollection<HotelModel> _RefreshHotelSelectedList = new BindableCollection<HotelModel>();
-        public BindableCollection<HotelModel> RefreshHotelSelectedList { get => _RefreshHotelSelectedList; set { _RefreshHotelSelectedList = value; OnPropertyChanged(); } }
+        public BindableCollection<HotelModel> RefreshHotelSelectedList
+        { get => _RefreshHotelSelectedList; set { _RefreshHotelSelectedList = value; OnPropertyChanged(); } }
 
         private BindableCollection<CheckBoxHotelModel> _RefreshHotelList = new BindableCollection<CheckBoxHotelModel>();
-        public BindableCollection<CheckBoxHotelModel> RefreshHotelList { get => _RefreshHotelList; set { _RefreshHotelList = value; OnPropertyChanged(); } }
+        public BindableCollection<CheckBoxHotelModel> RefreshHotelList
+        { get => _RefreshHotelList; set { _RefreshHotelList = value; OnPropertyChanged(); } }
 
         private string _FilterHotelText;
+
         public string FilterHotelText
         {
             get => _FilterHotelText;
@@ -602,6 +656,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private double _TotalHotelPrice = 0;
+
         public double TotalHotelPrice
         {
             get => _TotalHotelPrice;
@@ -612,9 +667,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 TotalPrice = CalculatePrice(TotalHotelPrice, TotalTransportPrice, TotalMissionPrice);
             }
         }
+
         #endregion Parameter
 
         #region Function
+
         private BindableCollection<CheckBoxHotelModel> GetHotelList(ObservableCollection<PlaceModel> places)
         {
             BindableCollection<HotelModel> HotelItems = HotelHandleModel.GetHotelFromPlaceList(places);
@@ -652,6 +709,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Command
 
         private ICommand _SaveHotelPriceCommand;
+
         public ICommand SaveHotelPriceCommand
         {
             get
@@ -668,8 +726,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
         }
 
-
         private ICommand _HotelItemCheckCommand;
+
         public ICommand HotelItemCheckCommand
         {
             get
@@ -699,6 +757,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SaveHotelCommand;
+
         public ICommand SaveHotelCommand
         {
             get
@@ -758,14 +817,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
         private bool IsExcuteSaveHotelCommand()
         {
             int countValid = 0;
-            foreach(var item in HotelSelectedList)
+            foreach (var item in HotelSelectedList)
             {
-                if(item.HOTEL_DAY > 0)
+                if (item.HOTEL_DAY > 0)
                 {
                     countValid++;
                 }
             }
-            if(countValid == HotelSelectedList.Count && !HotelPriceNotify.Equals("Hotel Price haven't updated yet!"))
+            if (countValid == HotelSelectedList.Count && !HotelPriceNotify.Equals("Hotel Price haven't updated yet!"))
             {
                 return true;
             }
@@ -774,6 +833,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 return false;
             }
         }
+
         #endregion Command
 
         #endregion Hotel
@@ -783,21 +843,27 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Parameter
 
         private string _TransportPriceNotify = "";
-        public string TransportPriceNotify { get => _TransportPriceNotify; set { _TransportPriceNotify = value; OnPropertyChanged(); } }
+        public string TransportPriceNotify
+        { get => _TransportPriceNotify; set { _TransportPriceNotify = value; OnPropertyChanged(); } }
 
         private BindableCollection<CheckBoxTransportModel> _TransportList = new BindableCollection<CheckBoxTransportModel>();
-        public BindableCollection<CheckBoxTransportModel> TransportList { get => _TransportList; set { _TransportList = value; OnPropertyChanged(); } }
+        public BindableCollection<CheckBoxTransportModel> TransportList
+        { get => _TransportList; set { _TransportList = value; OnPropertyChanged(); } }
 
         private BindableCollection<TransportModel> _TransportSelectedList = new BindableCollection<TransportModel>();
-        public BindableCollection<TransportModel> TransportSelectedList { get => _TransportSelectedList; set { _TransportSelectedList = value; OnPropertyChanged(); } }
+        public BindableCollection<TransportModel> TransportSelectedList
+        { get => _TransportSelectedList; set { _TransportSelectedList = value; OnPropertyChanged(); } }
 
         private BindableCollection<TransportModel> _RefreshTransportSelectedList = new BindableCollection<TransportModel>();
-        public BindableCollection<TransportModel> RefreshTransportSelectedList { get => _RefreshTransportSelectedList; set { _RefreshTransportSelectedList = value; OnPropertyChanged(); } }
+        public BindableCollection<TransportModel> RefreshTransportSelectedList
+        { get => _RefreshTransportSelectedList; set { _RefreshTransportSelectedList = value; OnPropertyChanged(); } }
 
         private BindableCollection<CheckBoxTransportModel> _RefreshTransportList = new BindableCollection<CheckBoxTransportModel>();
-        public BindableCollection<CheckBoxTransportModel> RefreshTransportList { get => _RefreshTransportList; set { _RefreshTransportList = value; OnPropertyChanged(); } }
+        public BindableCollection<CheckBoxTransportModel> RefreshTransportList
+        { get => _RefreshTransportList; set { _RefreshTransportList = value; OnPropertyChanged(); } }
 
         private string _FilterTransportText;
+
         public string FilterTransportText
         {
             get => _FilterTransportText;
@@ -810,6 +876,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private double _TotalTransportPrice = 0;
+
         public double TotalTransportPrice
         {
             get => _TotalTransportPrice;
@@ -820,9 +887,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 TotalPrice = CalculatePrice(TotalHotelPrice, TotalTransportPrice, TotalMissionPrice);
             }
         }
+
         #endregion Parameter
 
         #region Function
+
         private BindableCollection<CheckBoxTransportModel> GetTransportList()
         {
             ObservableCollection<TransportModel> TransportItems = TransportHandleModel.GetTransportListWithoutDelete();
@@ -854,10 +923,13 @@ namespace TourManagementSystem.ManagerView.ViewModel
                                                             x.CB_Name.ToUpper().Contains(FilterTransportText)));
             }
         }
+
         #endregion Function
 
         #region Command
+
         private ICommand _SaveTransportPriceCommand;
+
         public ICommand SaveTransportPriceCommand
         {
             get
@@ -874,8 +946,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
         }
 
-
         private ICommand _TransportItemCheckCommand;
+
         public ICommand TransportItemCheckCommand
         {
             get
@@ -925,6 +997,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SaveTransportCommand;
+
         public ICommand SaveTransportCommand
         {
             get
@@ -999,8 +1072,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
             else
             {
                 return false;
-            }            
+            }
         }
+
         #endregion Command
 
         #endregion Transport
@@ -1008,7 +1082,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Mission
 
         #region Parameter
+
         private BindableCollection<MissionModel> _MissionList = new BindableCollection<MissionModel>();
+
         public BindableCollection<MissionModel> MissionList
         {
             get => _MissionList; set
@@ -1019,6 +1095,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private BindableCollection<MissionModel> _RefreshMissionList;
+
         public BindableCollection<MissionModel> RefreshMissionList
         {
             get => _RefreshMissionList; set
@@ -1029,14 +1106,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private int _MissionCount;
-        public int MissionCount { get => _MissionCount; set { _MissionCount = value; OnPropertyChanged(); } }
+        public int MissionCount
+        { get => _MissionCount; set { _MissionCount = value; OnPropertyChanged(); } }
 
         public int MissionBeforeSave { get; set; }
 
         private string _MissionPriceNotify = "";
-        public string MissionPriceNotify { get => _MissionPriceNotify; set { _MissionPriceNotify = value; OnPropertyChanged(); } }
+        public string MissionPriceNotify
+        { get => _MissionPriceNotify; set { _MissionPriceNotify = value; OnPropertyChanged(); } }
 
         private double _TotalMissionPrice = 0;
+
         public double TotalMissionPrice
         {
             get => _TotalMissionPrice;
@@ -1047,10 +1127,13 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 TotalPrice = CalculatePrice(TotalHotelPrice, TotalTransportPrice, TotalMissionPrice);
             }
         }
+
         #endregion Parameter
 
         #region Command
+
         private ICommand _AddMissionCommand;
+
         public ICommand AddMissionCommand
         {
             get
@@ -1062,6 +1145,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 return _AddMissionCommand;
             }
         }
+
         private void AddMission()
         {
             MissionCount++;
@@ -1078,6 +1162,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SaveMissionPriceCommand;
+
         public ICommand SaveMissionPriceCommand
         {
             get
@@ -1108,6 +1193,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _RemoveMissionCommand;
+
         public ICommand RemoveMissionCommand
         {
             get
@@ -1126,8 +1212,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
             MissionCount--;
         }
 
-
         private ICommand _SaveMissionCommand;
+
         public ICommand SaveMissionCommand
         {
             get
@@ -1175,7 +1261,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 messageWindow.ShowDialog();
                 ProgressBarVisbility = Visibility.Hidden;
             }
-
         }
 
         private bool IsExcuteSaveMissionCommand()
@@ -1209,11 +1294,13 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
             return count_equal != RefreshMissionList.Count;*/
         }
+
         #endregion Command
 
         #endregion Mission
 
         private ICommand _CancelCommand;
+
         public ICommand CancelCommand
         {
             get

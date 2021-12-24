@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,35 +16,46 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class ShowLocationViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private LocationModel _LocationSelected;
-        public LocationModel LocationSelected { get => _LocationSelected; set { _LocationSelected = value; OnPropertyChanged(); } }
+        public LocationModel LocationSelected
+        { get => _LocationSelected; set { _LocationSelected = value; OnPropertyChanged(); } }
 
         private Visibility _IsVisibility;
-        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+        public Visibility IsVisibility
+        { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private bool _IsEnable;
-        public bool IsEnable { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
+        public bool IsEnable
+        { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
 
         #region Data Binding
+
         private int _Place_ID;
-        public int Place_ID { get => _Place_ID; set { _Place_ID = value; OnPropertyChanged(); } }
+        public int Place_ID
+        { get => _Place_ID; set { _Place_ID = value; OnPropertyChanged(); } }
 
         private int _Location_ID;
-        public int Location_ID { get => _Location_ID; set { _Location_ID = value; OnPropertyChanged(); } }
+        public int Location_ID
+        { get => _Location_ID; set { _Location_ID = value; OnPropertyChanged(); } }
 
         private string _Location_Name;
-        public string Location_Name { get => _Location_Name; set { _Location_Name = value; OnPropertyChanged(); } }
+        public string Location_Name
+        { get => _Location_Name; set { _Location_Name = value; OnPropertyChanged(); } }
 
         private string _Location_Address;
-        public string Location_Address { get => _Location_Address; set { _Location_Address = value; OnPropertyChanged(); } }
+        public string Location_Address
+        { get => _Location_Address; set { _Location_Address = value; OnPropertyChanged(); } }
 
         private string _Location_Description;
-        public string Location_Description { get => _Location_Description; set { _Location_Description = value; OnPropertyChanged(); } }
+        public string Location_Description
+        { get => _Location_Description; set { _Location_Description = value; OnPropertyChanged(); } }
 
         private string _Place_Name;
-        public string Place_Name { get => _Place_Name; set { _Place_Name = value; OnPropertyChanged(); } }
+        public string Place_Name
+        { get => _Place_Name; set { _Place_Name = value; OnPropertyChanged(); } }
 
         #endregion Data Binding
 
@@ -77,6 +85,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _CancelCommand;
+
         public ICommand CancelCommand
         {
             get
@@ -90,6 +99,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SaveChangeCommand;
+
         public ICommand SaveChangeCommand
         {
             get
@@ -115,7 +125,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 string messageDisplay = string.Format("Update Location Failed! Please try again!");
                 MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
-                messageWindow.ShowDialog();               
+                messageWindow.ShowDialog();
             }
         }
 
@@ -156,10 +166,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public ICollectionView TourLocationCollection => TourLocationItemsCollection.View;
 
         private ObservableCollection<ComboBoxModel> _CB_TourLocationList;
-        public ObservableCollection<ComboBoxModel> CB_TourLocationList { get => _CB_TourLocationList; set { _CB_TourLocationList = value; OnPropertyChanged("CB_TourLocationList"); } }
+        public ObservableCollection<ComboBoxModel> CB_TourLocationList
+        { get => _CB_TourLocationList; set { _CB_TourLocationList = value; OnPropertyChanged("CB_TourLocationList"); } }
 
         private ComboBoxModel _CB_TourLocationSelected;
-        public ComboBoxModel CB_TourLocationSelected { get => _CB_TourLocationSelected; set { _CB_TourLocationSelected = value; OnPropertyChanged("CB_TourLocationSelected"); } }
+        public ComboBoxModel CB_TourLocationSelected
+        { get => _CB_TourLocationSelected; set { _CB_TourLocationSelected = value; OnPropertyChanged("CB_TourLocationSelected"); } }
 
         private void LoadTourLocationComboBox()
         {
@@ -173,6 +185,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         //Text Search Filter
         private string _TourLocationFilterText;
+
         public string TourLocationFilterText
         {
             get => _TourLocationFilterText;
@@ -205,6 +218,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         e.Accepted = false;
                     }
                     break;
+
                 case "Time":
                     if (_items.TOUR_STRING_DATE.IndexOf(TourLocationFilterText, StringComparison.OrdinalIgnoreCase) >= 0)
                     {

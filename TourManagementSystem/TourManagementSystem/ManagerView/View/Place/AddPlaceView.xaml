@@ -86,7 +86,6 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-
                     </StackPanel>
 
                     <StackPanel Margin="20,30,0,30" Orientation="Horizontal">
@@ -114,7 +113,6 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-
                     </StackPanel>
                 </StackPanel>
 
@@ -141,7 +139,6 @@
                         Style="{StaticResource ResourceKey=CancelButton}" />
                 </StackPanel>
             </Grid>
-
         </Border>
     </ContentControl>
 </UserControl>

@@ -161,7 +161,6 @@
                                                         </Binding>
                                                     </TextBox.Text>
                                                 </TextBox>
-
                                             </StackPanel>
 
                                             <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
@@ -191,7 +190,6 @@
                                                         </Binding>
                                                     </ComboBox.Text>
                                                 </ComboBox>
-
                                             </StackPanel>
 
                                             <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
@@ -218,7 +216,6 @@
                                                         </Binding>
                                                     </TextBox.Text>
                                                 </TextBox>
-
                                             </StackPanel>
 
                                             <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
@@ -245,7 +242,6 @@
                                                     </TextBox.Text>
                                                 </TextBox>
                                             </StackPanel>
-
                                         </StackPanel>
 
                                         <StackPanel Grid.Column="1" Orientation="Vertical">
@@ -302,7 +298,6 @@
                                                                 UpdateSourceTrigger="PropertyChanged" />
                                                         </DatePicker.SelectedDate>
                                                     </DatePicker>
-
                                                 </StackPanel>
 
                                                 <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
@@ -384,7 +379,6 @@
                                                     </ComboBox>
                                                 </StackPanel>
                                             </StackPanel>
-
                                         </DockPanel>
 
                                         <DockPanel Margin="20,20,30,20" HorizontalAlignment="Right">
@@ -408,7 +402,6 @@
                                                                 UpdateSourceTrigger="PropertyChanged" />
                                                         </DatePicker.SelectedDate>
                                                     </DatePicker>
-
                                                 </StackPanel>
 
                                                 <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
@@ -435,7 +428,6 @@
                                                             </Binding>
                                                         </TextBox.Text>
                                                     </TextBox>
-
                                                 </StackPanel>
 
                                                 <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
@@ -494,15 +486,10 @@
                                                         </TextBox.Text>
                                                     </TextBox>
                                                 </StackPanel>
-
                                             </StackPanel>
-
                                         </DockPanel>
-
                                     </Grid>
-
                                 </Grid>
-
                             </TabItem>
 
                             <TabItem
@@ -588,7 +575,6 @@
                                                         </Binding>
                                                     </TextBox.Text>
                                                 </TextBox>
-
                                             </StackPanel>
 
                                             <StackPanel Margin="0,20" Orientation="Horizontal">
@@ -617,8 +603,6 @@
                                                 </TextBox>
                                             </StackPanel>
                                         </StackPanel>
-
-
                                     </Grid>
 
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
@@ -642,13 +626,9 @@
                                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                             Text="{Binding Staff_Note, Mode=TwoWay}"
                                             TextWrapping="Wrap" />
-
-
-
                                     </StackPanel>
                                 </Grid>
                             </TabItem>
-
                         </TabControl>
                     </ScrollViewer>
 
@@ -677,10 +657,8 @@
                             Foreground="#F36E6B"
                             Style="{StaticResource ResourceKey=CancelButton}" />
                     </StackPanel>
-
                 </Grid>
             </Grid>
         </Border>
-
     </ContentControl>
 </UserControl>

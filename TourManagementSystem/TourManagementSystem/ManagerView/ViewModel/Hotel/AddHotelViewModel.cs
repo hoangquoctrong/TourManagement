@@ -1,12 +1,8 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.ObjectModel;
-using System.IO;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using TourManagementSystem.Global.Model;
 using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
@@ -17,39 +13,53 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class AddHotelViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         #region Data Binding
+
         private string _Hotel_Name;
-        public string Hotel_Name { get => _Hotel_Name; set { _Hotel_Name = value; OnPropertyChanged(); } }
+        public string Hotel_Name
+        { get => _Hotel_Name; set { _Hotel_Name = value; OnPropertyChanged(); } }
 
         private string _Hotel_Address;
-        public string Hotel_Address { get => _Hotel_Address; set { _Hotel_Address = value; OnPropertyChanged(); } }
+        public string Hotel_Address
+        { get => _Hotel_Address; set { _Hotel_Address = value; OnPropertyChanged(); } }
 
         private string _Hotel_Phone_Number;
-        public string Hotel_Phone_Number { get => _Hotel_Phone_Number; set { _Hotel_Phone_Number = value; OnPropertyChanged(); } }
+        public string Hotel_Phone_Number
+        { get => _Hotel_Phone_Number; set { _Hotel_Phone_Number = value; OnPropertyChanged(); } }
 
         private string _Hotel_Description;
-        public string Hotel_Description { get => _Hotel_Description; set { _Hotel_Description = value; OnPropertyChanged(); } }
+        public string Hotel_Description
+        { get => _Hotel_Description; set { _Hotel_Description = value; OnPropertyChanged(); } }
 
         private string _Hotel_Note_Remove;
-        public string Hotel_Note_Remove { get => _Hotel_Note_Remove; set { _Hotel_Note_Remove = value; OnPropertyChanged(); } }
+        public string Hotel_Note_Remove
+        { get => _Hotel_Note_Remove; set { _Hotel_Note_Remove = value; OnPropertyChanged(); } }
 
         private string _Hotel_Email;
-        public string Hotel_Email { get => _Hotel_Email; set { _Hotel_Email = value; OnPropertyChanged(); } }
+        public string Hotel_Email
+        { get => _Hotel_Email; set { _Hotel_Email = value; OnPropertyChanged(); } }
 
         private float _Hotel_Price;
-        public float Hotel_Price { get => _Hotel_Price; set { _Hotel_Price = value; OnPropertyChanged(); } }
+        public float Hotel_Price
+        { get => _Hotel_Price; set { _Hotel_Price = value; OnPropertyChanged(); } }
 
         private string _Hotel_Is_Restaurant;
-        public string Hotel_Is_Restaurant { get => _Hotel_Is_Restaurant; set { _Hotel_Is_Restaurant = value; OnPropertyChanged(); } }
+        public string Hotel_Is_Restaurant
+        { get => _Hotel_Is_Restaurant; set { _Hotel_Is_Restaurant = value; OnPropertyChanged(); } }
 
         private ObservableCollection<ComboBoxModel> _CB_PlaceList;
-        public ObservableCollection<ComboBoxModel> CB_PlaceList { get => _CB_PlaceList; set { _CB_PlaceList = value; OnPropertyChanged(); } }
+        public ObservableCollection<ComboBoxModel> CB_PlaceList
+        { get => _CB_PlaceList; set { _CB_PlaceList = value; OnPropertyChanged(); } }
 
         private ComboBoxModel _CB_PlaceSelected;
-        public ComboBoxModel CB_PlaceSelected { get => _CB_PlaceSelected; set { _CB_PlaceSelected = value; OnPropertyChanged(); } }
-        #endregion
+        public ComboBoxModel CB_PlaceSelected
+        { get => _CB_PlaceSelected; set { _CB_PlaceSelected = value; OnPropertyChanged(); } }
+
+        #endregion Data Binding
+
         public AddHotelViewModel(int user_id)
         {
             User_ID = user_id;
@@ -70,6 +80,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddHotelCommand;
+
         public ICommand AddHotelCommand
         {
             get
@@ -96,7 +107,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 string messageDisplay = string.Format("Add Hotel Failed! Please try again!");
                 MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
-                messageWindow.ShowDialog();                
+                messageWindow.ShowDialog();
             }
         }
 
@@ -129,6 +140,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _CancelCommand;
+
         public ICommand CancelCommand
         {
             get

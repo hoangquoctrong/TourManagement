@@ -1,11 +1,9 @@
 ﻿using Caliburn.Micro;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,66 +19,86 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class AddTourViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private Visibility _ProgressBarVisbility;
-        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+        public Visibility ProgressBarVisbility
+        { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
-        #region Data Binding 
+        #region Data Binding
+
         private string _Tour_Name;
-        public string Tour_Name { get => _Tour_Name; set { _Tour_Name = value; OnPropertyChanged(); } }
+        public string Tour_Name
+        { get => _Tour_Name; set { _Tour_Name = value; OnPropertyChanged(); } }
 
         private string _Tour_Type;
-        public string Tour_Type { get => _Tour_Type; set { _Tour_Type = value; OnPropertyChanged(); } }
+        public string Tour_Type
+        { get => _Tour_Type; set { _Tour_Type = value; OnPropertyChanged(); } }
 
         private string _Tour_Description;
-        public string Tour_Description { get => _Tour_Description; set { _Tour_Description = value; OnPropertyChanged(); } }
+        public string Tour_Description
+        { get => _Tour_Description; set { _Tour_Description = value; OnPropertyChanged(); } }
 
         private byte[] _Tour_Image_Byte_Source_1;
-        public byte[] Tour_Image_Byte_Source_1 { get => _Tour_Image_Byte_Source_1; set { _Tour_Image_Byte_Source_1 = value; OnPropertyChanged(); } }
+        public byte[] Tour_Image_Byte_Source_1
+        { get => _Tour_Image_Byte_Source_1; set { _Tour_Image_Byte_Source_1 = value; OnPropertyChanged(); } }
 
         private BitmapImage _Tour_Image_Source_1;
-        public BitmapImage Tour_Image_Source_1 { get => _Tour_Image_Source_1; set { _Tour_Image_Source_1 = value; OnPropertyChanged(); } }
+        public BitmapImage Tour_Image_Source_1
+        { get => _Tour_Image_Source_1; set { _Tour_Image_Source_1 = value; OnPropertyChanged(); } }
 
         private byte[] _Tour_Image_Byte_Source_2;
-        public byte[] Tour_Image_Byte_Source_2 { get => _Tour_Image_Byte_Source_2; set { _Tour_Image_Byte_Source_2 = value; OnPropertyChanged(); } }
+        public byte[] Tour_Image_Byte_Source_2
+        { get => _Tour_Image_Byte_Source_2; set { _Tour_Image_Byte_Source_2 = value; OnPropertyChanged(); } }
 
         private BitmapImage _Tour_Image_Source_2;
-        public BitmapImage Tour_Image_Source_2 { get => _Tour_Image_Source_2; set { _Tour_Image_Source_2 = value; OnPropertyChanged(); } }
+        public BitmapImage Tour_Image_Source_2
+        { get => _Tour_Image_Source_2; set { _Tour_Image_Source_2 = value; OnPropertyChanged(); } }
 
         private byte[] _Tour_Image_Byte_Source_3;
-        public byte[] Tour_Image_Byte_Source_3 { get => _Tour_Image_Byte_Source_3; set { _Tour_Image_Byte_Source_3 = value; OnPropertyChanged(); } }
+        public byte[] Tour_Image_Byte_Source_3
+        { get => _Tour_Image_Byte_Source_3; set { _Tour_Image_Byte_Source_3 = value; OnPropertyChanged(); } }
 
         private BitmapImage _Tour_Image_Source_3;
-        public BitmapImage Tour_Image_Source_3 { get => _Tour_Image_Source_3; set { _Tour_Image_Source_3 = value; OnPropertyChanged(); } }
+        public BitmapImage Tour_Image_Source_3
+        { get => _Tour_Image_Source_3; set { _Tour_Image_Source_3 = value; OnPropertyChanged(); } }
 
         private byte[] _Tour_Image_Byte_Source_4;
-        public byte[] Tour_Image_Byte_Source_4 { get => _Tour_Image_Byte_Source_4; set { _Tour_Image_Byte_Source_4 = value; OnPropertyChanged(); } }
+        public byte[] Tour_Image_Byte_Source_4
+        { get => _Tour_Image_Byte_Source_4; set { _Tour_Image_Byte_Source_4 = value; OnPropertyChanged(); } }
 
         private BitmapImage _Tour_Image_Source_4;
-        public BitmapImage Tour_Image_Source_4 { get => _Tour_Image_Source_4; set { _Tour_Image_Source_4 = value; OnPropertyChanged(); } }
+        public BitmapImage Tour_Image_Source_4
+        { get => _Tour_Image_Source_4; set { _Tour_Image_Source_4 = value; OnPropertyChanged(); } }
 
         private byte[] _Tour_Image_Byte_Source_5;
-        public byte[] Tour_Image_Byte_Source_5 { get => _Tour_Image_Byte_Source_5; set { _Tour_Image_Byte_Source_5 = value; OnPropertyChanged(); } }
+        public byte[] Tour_Image_Byte_Source_5
+        { get => _Tour_Image_Byte_Source_5; set { _Tour_Image_Byte_Source_5 = value; OnPropertyChanged(); } }
 
         private BitmapImage _Tour_Image_Source_5;
-        public BitmapImage Tour_Image_Source_5 { get => _Tour_Image_Source_5; set { _Tour_Image_Source_5 = value; OnPropertyChanged(); } }
+        public BitmapImage Tour_Image_Source_5
+        { get => _Tour_Image_Source_5; set { _Tour_Image_Source_5 = value; OnPropertyChanged(); } }
 
         private byte[] _Tour_Image_Byte_Source_6;
-        public byte[] Tour_Image_Byte_Source_6 { get => _Tour_Image_Byte_Source_6; set { _Tour_Image_Byte_Source_6 = value; OnPropertyChanged(); } }
+        public byte[] Tour_Image_Byte_Source_6
+        { get => _Tour_Image_Byte_Source_6; set { _Tour_Image_Byte_Source_6 = value; OnPropertyChanged(); } }
 
         private BitmapImage _Tour_Image_Source_6;
-        public BitmapImage Tour_Image_Source_6 { get => _Tour_Image_Source_6; set { _Tour_Image_Source_6 = value; OnPropertyChanged(); } }
+        public BitmapImage Tour_Image_Source_6
+        { get => _Tour_Image_Source_6; set { _Tour_Image_Source_6 = value; OnPropertyChanged(); } }
 
         private BindableCollection<CheckBoxModel> _PlaceList;
-        public BindableCollection<CheckBoxModel> PlaceList { get => _PlaceList; set { _PlaceList = value; OnPropertyChanged(); } }
+        public BindableCollection<CheckBoxModel> PlaceList
+        { get => _PlaceList; set { _PlaceList = value; OnPropertyChanged(); } }
 
         public BindableCollection<PlaceModel> PlaceSelectedList { get; set; }
 
         private BindableCollection<CheckBoxModel> _RefreshPlaceList;
-        public BindableCollection<CheckBoxModel> RefreshPlaceList { get => _RefreshPlaceList; set { _RefreshPlaceList = value; OnPropertyChanged(); } }
-        #endregion Data Binding
+        public BindableCollection<CheckBoxModel> RefreshPlaceList
+        { get => _RefreshPlaceList; set { _RefreshPlaceList = value; OnPropertyChanged(); } }
 
+        #endregion Data Binding
 
         public AddTourViewModel(int user_id)
         {
@@ -160,6 +178,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private string _FilterPlaceText;
+
         public string FilterPlaceText
         {
             get => _FilterPlaceText;
@@ -222,7 +241,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         messageWindow.ShowDialog();
                         ProgressBarVisbility = Visibility.Hidden;
                     }
-
                 }
                 else
                 {
@@ -231,7 +249,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
                     messageWindow.ShowDialog();
                     ProgressBarVisbility = Visibility.Hidden;
                 }
-
             }
             else
             {
@@ -295,6 +312,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _CancelCommand;
+
         public ICommand CancelCommand
         {
             get
@@ -309,6 +327,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddImageCommand_1;
+
         public ICommand AddImageCommand_1
         {
             get
@@ -334,6 +353,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddImageCommand_2;
+
         public ICommand AddImageCommand_2
         {
             get
@@ -359,6 +379,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddImageCommand_3;
+
         public ICommand AddImageCommand_3
         {
             get
@@ -384,6 +405,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddImageCommand_4;
+
         public ICommand AddImageCommand_4
         {
             get
@@ -409,6 +431,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddImageCommand_5;
+
         public ICommand AddImageCommand_5
         {
             get
@@ -434,6 +457,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddImageCommand_6;
+
         public ICommand AddImageCommand_6
         {
             get

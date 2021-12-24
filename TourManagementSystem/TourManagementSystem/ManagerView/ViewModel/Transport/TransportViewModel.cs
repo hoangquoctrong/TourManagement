@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,22 +13,28 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class TransportViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
         private Visibility _ProgressBarVisbility;
-        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+        public Visibility ProgressBarVisbility
+        { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         private Visibility _IsVisibility;
-        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+        public Visibility IsVisibility
+        { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private ObservableCollection<TransportModel> _TransportItems;
-        public ObservableCollection<TransportModel> TransportItems { get => _TransportItems; set { _TransportItems = value; OnPropertyChanged("TransportItems"); } }
+        public ObservableCollection<TransportModel> TransportItems
+        { get => _TransportItems; set { _TransportItems = value; OnPropertyChanged("TransportItems"); } }
 
         private ObservableCollection<TransportModel> _Refresh_TransportItems;
-        public ObservableCollection<TransportModel> Refresh_TransportItems { get => _Refresh_TransportItems; set { _Refresh_TransportItems = value; OnPropertyChanged("Refresh_TransportItems"); } }
+        public ObservableCollection<TransportModel> Refresh_TransportItems
+        { get => _Refresh_TransportItems; set { _Refresh_TransportItems = value; OnPropertyChanged("Refresh_TransportItems"); } }
 
         private TransportModel _TransportSelected;
-        public TransportModel TransportSelected { get => _TransportSelected; set { _TransportSelected = value; OnPropertyChanged("TransportSelected"); } }
+        public TransportModel TransportSelected
+        { get => _TransportSelected; set { _TransportSelected = value; OnPropertyChanged("TransportSelected"); } }
 
         public TransportViewModel(int user_id, Visibility visibility)
         {
@@ -53,10 +56,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<ComboBoxModel> _CB_TransportList;
-        public ObservableCollection<ComboBoxModel> CB_TransportList { get => _CB_TransportList; set { _CB_TransportList = value; OnPropertyChanged("CB_TransportList"); } }
+        public ObservableCollection<ComboBoxModel> CB_TransportList
+        { get => _CB_TransportList; set { _CB_TransportList = value; OnPropertyChanged("CB_TransportList"); } }
 
         private ComboBoxModel _CB_TransportSelected;
-        public ComboBoxModel CB_TransportSelected { get => _CB_TransportSelected; set { _CB_TransportSelected = value; OnPropertyChanged("CB_TransportSelected"); } }
+        public ComboBoxModel CB_TransportSelected
+        { get => _CB_TransportSelected; set { _CB_TransportSelected = value; OnPropertyChanged("CB_TransportSelected"); } }
 
         private void LoadTransportComboBox()
         {
@@ -73,6 +78,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         //Text Search Filter
         private string _FilterText;
+
         public string FilterText
         {
             get => _FilterText;
@@ -97,17 +103,21 @@ namespace TourManagementSystem.ManagerView.ViewModel
                                                                                                             x.TRANSPORT_NAME.ToLower().Contains(FilterText) ||
                                                                                                             x.TRANSPORT_NAME.ToUpper().Contains(FilterText)));
                         break;
+
                     case "Type":
                         TransportItems = new ObservableCollection<TransportModel>(TransportItems.Where(x => x.TRANSPORT_TYPETRANS.Contains(FilterText) ||
                                                                                                             x.TRANSPORT_TYPETRANS.ToLower().Contains(FilterText) ||
                                                                                                             x.TRANSPORT_TYPETRANS.ToUpper().Contains(FilterText)));
                         break;
+
                     case "Amount Max":
                         TransportItems = new ObservableCollection<TransportModel>(TransportItems.Where(x => x.TRANSPORT_AMOUNT_MAX.ToString().Contains(FilterText)));
                         break;
+
                     case "Price":
                         TransportItems = new ObservableCollection<TransportModel>(TransportItems.Where(x => x.TRANSPORT_PRICE.ToString().Contains(FilterText)));
                         break;
+
                     case "Status":
                         TransportItems = new ObservableCollection<TransportModel>(TransportItems.Where(x => x.TRANSPORT_TYPE.Contains(FilterText) ||
                                                                                                             x.TRANSPORT_TYPE.ToLower().Contains(FilterText) ||
@@ -118,6 +128,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _ShowDetailTransportCommand;
+
         public ICommand ShowDetailTransportCommand
         {
             get
@@ -131,6 +142,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddTransportCommand;
+
         public ICommand AddTransportCommand
         {
             get

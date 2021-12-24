@@ -48,7 +48,6 @@
     </UserControl.Resources>
     <ContentControl x:Name="contentControlMain">
 
-
         <Border
             BorderBrush="#0f6f68"
             BorderThickness="3"
@@ -147,7 +146,6 @@
                             Foreground="#0f6f68"
                             Style="{StaticResource AddButton}"
                             Visibility="{Binding IsVisibility}" />
-
                     </Grid>
 
                     <DataGrid
@@ -203,7 +201,6 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
-
             </Grid>
         </Border>
     </ContentControl>

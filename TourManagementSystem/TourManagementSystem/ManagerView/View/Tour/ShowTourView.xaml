@@ -167,7 +167,6 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
 
-
                                         <StackPanel Margin="20,20,20,20" Orientation="Horizontal">
 
                                             <materialDesign:PackIcon
@@ -193,7 +192,6 @@
                                                     </Binding>
                                                 </TextBox.Text>
                                             </TextBox>
-
                                         </StackPanel>
 
                                         <StackPanel
@@ -226,7 +224,6 @@
                                                     </Binding>
                                                 </ComboBox.Text>
                                             </ComboBox>
-
                                         </StackPanel>
                                     </Grid>
 
@@ -510,7 +507,6 @@
                                         </StackPanel>
                                     </Border>
 
-
                                     <Grid Grid.Row="1" Margin="20">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
@@ -562,7 +558,6 @@
                                             </ItemsControl>
                                         </StackPanel>
 
-
                                         <StackPanel Grid.Column="1" Margin="16">
                                             <TextBlock
                                                 HorizontalAlignment="Center"
@@ -591,9 +586,7 @@
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
                                         </StackPanel>
-
                                     </Grid>
-
 
                                     <StackPanel
                                         Grid.Row="2"
@@ -716,7 +709,6 @@
                                             Foreground="#0f6f68"
                                             Style="{StaticResource AddButton}"
                                             Visibility="{Binding IsVisibility}" />
-
                                     </Grid>
 
                                     <DataGrid
@@ -791,9 +783,7 @@
                                                 Header="Status" />
                                         </DataGrid.Columns>
                                     </DataGrid>
-
                                 </Grid>
-
                             </TabItem>
                         </TabControl>
                     </ScrollViewer>

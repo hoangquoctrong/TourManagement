@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Reflection;
@@ -16,19 +15,19 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using TourManagementSystem.ManagerView.Model;
 
 namespace TourManagementSystem.Global.Model
 {
     public static class GlobalFunction
     {
         /*
-         * 
+         *
          */
 
         /*
          * Base64Encode to encode text by Base64
          */
+
         public static string Base64Encode(string plainText)
         {
             if (plainText != String.Empty)
@@ -42,6 +41,7 @@ namespace TourManagementSystem.Global.Model
         /*
          * Security Password with MD5
          */
+
         public static string CreateMD5(string input)
         {
             using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
@@ -61,6 +61,7 @@ namespace TourManagementSystem.Global.Model
         /*
          * Convert Image from byte[] to bitmap
          */
+
         public static BitmapImage ToImage(byte[] array)
         {
             using (var ms = new System.IO.MemoryStream(array))
@@ -133,7 +134,7 @@ namespace TourManagementSystem.Global.Model
             int index = 0;
             foreach (var prop in properties)
             {
-                //Defining type of data column gives proper data table 
+                //Defining type of data column gives proper data table
                 var type = (prop.PropertyType.IsGenericType && prop.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>) ? Nullable.GetUnderlyingType(prop.PropertyType) : prop.PropertyType);
                 //Setting column names as Property names
                 dataTable.Columns.Add(headerList[index], type);
@@ -181,7 +182,6 @@ namespace TourManagementSystem.Global.Model
                 dt.Rows.Add(Row);
             }
             return dt;
-
         }
 
         //Lưu datagrid thàng pdf (name: UserName, title: Title for Header, message: message after doing this code)
@@ -298,7 +298,5 @@ namespace TourManagementSystem.Global.Model
                 message = "Export data to " + saveFileDialog.FileName + " successful";
             }
         }
-
-
     }
 }

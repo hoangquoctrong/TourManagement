@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace TourManagementSystem.Global.View
 {
@@ -25,21 +13,24 @@ namespace TourManagementSystem.Global.View
             txtMessage.Text = Message;
             switch (Type)
             {
-
                 case MessageType.Info:
                     txtTitle.Text = "Info";
                     break;
+
                 case MessageType.Confirmation:
                     txtTitle.Text = "Confirmation";
                     break;
+
                 case MessageType.Success:
                     {
                         txtTitle.Text = "Success";
                     }
                     break;
+
                 case MessageType.Warning:
                     txtTitle.Text = "Warning";
                     break;
+
                 case MessageType.Error:
                     {
                         txtTitle.Text = "Error";
@@ -51,9 +42,11 @@ namespace TourManagementSystem.Global.View
                 case MessageButtons.OkCancel:
                     btnYes.Visibility = Visibility.Collapsed; btnNo.Visibility = Visibility.Collapsed;
                     break;
+
                 case MessageButtons.YesNo:
                     btnOk.Visibility = Visibility.Collapsed; btnCancel.Visibility = Visibility.Collapsed;
                     break;
+
                 case MessageButtons.Ok:
                     btnOk.Visibility = Visibility.Visible;
                     btnCancel.Visibility = Visibility.Collapsed;
@@ -92,6 +85,7 @@ namespace TourManagementSystem.Global.View
             this.Close();
         }
     }
+
     public enum MessageType
     {
         Info,
@@ -100,6 +94,7 @@ namespace TourManagementSystem.Global.View
         Warning,
         Error,
     }
+
     public enum MessageButtons
     {
         OkCancel,
@@ -107,4 +102,3 @@ namespace TourManagementSystem.Global.View
         Ok,
     }
 }
-

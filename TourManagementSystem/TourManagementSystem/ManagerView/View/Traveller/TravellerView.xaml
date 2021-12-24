@@ -85,7 +85,6 @@
                     </Grid>
                 </Border>
 
-
                 <Grid Margin="0,0,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -180,7 +179,6 @@
                             Foreground="#0f6f68"
                             Style="{StaticResource AddButton}"
                             Visibility="{Binding IsVisibility}" />
-
                     </Grid>
 
                     <DataGrid

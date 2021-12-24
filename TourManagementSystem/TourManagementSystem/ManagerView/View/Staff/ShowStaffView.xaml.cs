@@ -1,6 +1,4 @@
 ﻿using System.Windows.Controls;
-using TourManagementSystem.ManagerView.Model;
-using TourManagementSystem.ManagerView.ViewModel;
 
 namespace TourManagementSystem.ManagerView.View
 {

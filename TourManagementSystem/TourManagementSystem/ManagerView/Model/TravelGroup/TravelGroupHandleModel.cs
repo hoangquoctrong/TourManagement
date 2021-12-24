@@ -1,11 +1,8 @@
 ﻿using Caliburn.Micro;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TourManagementSystem.Global;
 using TourManagementSystem.Global.Model;
 
@@ -77,7 +74,6 @@ namespace TourManagementSystem.ManagerView.Model
                         TravelGroupList.Add(travelgroup);
                     }
                 }
-
             }
 
             return TravelGroupList;
@@ -648,8 +644,8 @@ namespace TourManagementSystem.ManagerView.Model
             return travellertourlist.Count();
         }
 
-
         #region Get Detail
+
         public static ObservableCollection<TravelGroupModel> GetTravelGroupListWithTravellerID(int traveller_id)
         {
             ObservableCollection<TravelGroupModel> TravelGroupList = new ObservableCollection<TravelGroupModel>();
@@ -763,6 +759,7 @@ namespace TourManagementSystem.ManagerView.Model
 
             return MissionList;
         }
+
         #endregion Get Detail
     }
 }

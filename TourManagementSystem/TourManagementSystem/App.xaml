@@ -2,7 +2,6 @@
     x:Class="TourManagementSystem.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:TourManagementSystem"
     StartupUri="Global/View/LoginWindow.xaml">
     <!--  StartupUri="Managers/ManagerView.xaml"  -->
     <!--  StartupUri="ManagerView/View/ManagerWindow.xaml"  -->

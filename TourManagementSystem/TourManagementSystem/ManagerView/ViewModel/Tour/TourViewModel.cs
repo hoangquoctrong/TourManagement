@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,25 +13,32 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class TourViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
         private Visibility _IsVisibility;
-        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+        public Visibility IsVisibility
+        { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private ObservableCollection<TourModel> _TourItems;
-        public ObservableCollection<TourModel> TourItems { get => _TourItems; set { _TourItems = value; OnPropertyChanged("TourItems"); } }
+        public ObservableCollection<TourModel> TourItems
+        { get => _TourItems; set { _TourItems = value; OnPropertyChanged("TourItems"); } }
 
         private ObservableCollection<TourModel> _Refresh_TourItems;
-        public ObservableCollection<TourModel> Refresh_TourItems { get => _Refresh_TourItems; set { _Refresh_TourItems = value; OnPropertyChanged("Refresh_TourItems"); } }
+        public ObservableCollection<TourModel> Refresh_TourItems
+        { get => _Refresh_TourItems; set { _Refresh_TourItems = value; OnPropertyChanged("Refresh_TourItems"); } }
 
         private TourModel _TourSelected;
-        public TourModel TourSelected { get => _TourSelected; set { _TourSelected = value; OnPropertyChanged("TourSelected"); } }
+        public TourModel TourSelected
+        { get => _TourSelected; set { _TourSelected = value; OnPropertyChanged("TourSelected"); } }
 
         private Visibility _ProgressBarVisbility;
-        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+        public Visibility ProgressBarVisbility
+        { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         private Visibility _IsDirectorVisibility;
-        public Visibility IsDirectorVisibility { get => _IsDirectorVisibility; set { _IsDirectorVisibility = value; OnPropertyChanged("IsDirectorVisibility"); } }
+        public Visibility IsDirectorVisibility
+        { get => _IsDirectorVisibility; set { _IsDirectorVisibility = value; OnPropertyChanged("IsDirectorVisibility"); } }
 
         public TourViewModel(int user_id, Visibility visibility, Visibility directorVisibility)
         {
@@ -44,7 +48,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
             LoadTourComboBox();
             ProgressBarVisbility = Visibility.Visible;
             LoadTourData();
-
         }
 
         private async void LoadTourData()
@@ -56,10 +59,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<ComboBoxModel> _CB_TourList;
-        public ObservableCollection<ComboBoxModel> CB_TourList { get => _CB_TourList; set { _CB_TourList = value; OnPropertyChanged("CB_TourList"); } }
+        public ObservableCollection<ComboBoxModel> CB_TourList
+        { get => _CB_TourList; set { _CB_TourList = value; OnPropertyChanged("CB_TourList"); } }
 
         private ComboBoxModel _CB_TourSelected;
-        public ComboBoxModel CB_TourSelected { get => _CB_TourSelected; set { _CB_TourSelected = value; OnPropertyChanged("CB_TourSelected"); } }
+        public ComboBoxModel CB_TourSelected
+        { get => _CB_TourSelected; set { _CB_TourSelected = value; OnPropertyChanged("CB_TourSelected"); } }
 
         private void LoadTourComboBox()
         {
@@ -73,6 +78,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         //Text Search Filter
         private string _FilterText;
+
         public string FilterText
         {
             get => _FilterText;
@@ -97,6 +103,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                                                                                                             x.TOUR_NAME.ToLower().Contains(FilterText) ||
                                                                                                             x.TOUR_NAME.ToUpper().Contains(FilterText)));
                         break;
+
                     case "Type":
                         TourItems = new ObservableCollection<TourModel>(TourItems.Where(x => x.TOUR_TYPE.Contains(FilterText) ||
                                                                                                             x.TOUR_TYPE.ToLower().Contains(FilterText) ||
@@ -107,6 +114,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _ShowDetailTourCommand;
+
         public ICommand ShowDetailTourCommand
         {
             get
@@ -120,6 +128,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddTourCommand;
+
         public ICommand AddTourCommand
         {
             get
@@ -133,6 +142,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _StatisticTourCommand;
+
         public ICommand StatisticTourCommand
         {
             get

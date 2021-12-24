@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,13 +16,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class StatisticStaffViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private Visibility _IsVisibility;
-        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+        public Visibility IsVisibility
+        { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private Visibility _ProgressBarVisbility;
-        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+        public Visibility ProgressBarVisbility
+        { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         public StatisticStaffViewModel(int user_id, Visibility visibility)
         {
@@ -33,11 +35,13 @@ namespace TourManagementSystem.ManagerView.ViewModel
             Checkbox_DisplayAll = true;
             SetHeaderList();
         }
+
         private async void LoadRefreshList()
         {
             await Task.Delay(1000);
             Refresh_StaffItems = GetStaffList();
         }
+
         private ObservableCollection<StaffStatisticModel> GetStaffList()
         {
             ObservableCollection<StaffStatisticModel> staffListBeforeSort = StaffHandleModel.GetStaffListForStatistic();
@@ -71,7 +75,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         #region Data Binding
+
         private bool _Checkbox_DisplayAll;
+
         public bool Checkbox_DisplayAll
         {
             get => _Checkbox_DisplayAll; set
@@ -84,25 +90,33 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private bool _IsEnable;
-        public bool IsEnable { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
+        public bool IsEnable
+        { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
 
         private DateTime _DateTimeNow = DateTime.Now;
-        public DateTime DateTimeNow { get => _DateTimeNow; set { _DateTimeNow = value; OnPropertyChanged(); } }
+        public DateTime DateTimeNow
+        { get => _DateTimeNow; set { _DateTimeNow = value; OnPropertyChanged(); } }
 
         private DateTime _StartDate = DateTime.Now;
-        public DateTime StartDate { get => _StartDate; set { _StartDate = value; OnPropertyChanged(); } }
+        public DateTime StartDate
+        { get => _StartDate; set { _StartDate = value; OnPropertyChanged(); } }
 
         private DateTime _EndDate = DateTime.Now;
-        public DateTime EndDate { get => _EndDate; set { _EndDate = value; OnPropertyChanged(); } }
+        public DateTime EndDate
+        { get => _EndDate; set { _EndDate = value; OnPropertyChanged(); } }
 
         private ObservableCollection<StaffStatisticModel> _StaffItems;
-        public ObservableCollection<StaffStatisticModel> StaffItems { get => _StaffItems; set { _StaffItems = value; OnPropertyChanged(); } }
+        public ObservableCollection<StaffStatisticModel> StaffItems
+        { get => _StaffItems; set { _StaffItems = value; OnPropertyChanged(); } }
 
         private ObservableCollection<StaffStatisticModel> _Refresh_StaffItems;
-        public ObservableCollection<StaffStatisticModel> Refresh_StaffItems { get => _Refresh_StaffItems; set { _Refresh_StaffItems = value; OnPropertyChanged(); } }
+        public ObservableCollection<StaffStatisticModel> Refresh_StaffItems
+        { get => _Refresh_StaffItems; set { _Refresh_StaffItems = value; OnPropertyChanged(); } }
+
         #endregion Data Binding
 
         private ICommand _FilterCommand;
+
         public ICommand FilterCommand
         {
             get
@@ -165,6 +179,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _CancelCommand;
+
         public ICommand CancelCommand
         {
             get
@@ -178,6 +193,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private string _SelectedExport;
+
         public string SelectedExport
         {
             get
@@ -196,6 +212,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         public List<string> HeaderList { get; set; }
+
         private void SetHeaderList()
         {
             HeaderList = new List<string>();
@@ -205,6 +222,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _ExportCommand;
+
         public ICommand ExportCommand
         {
             get
@@ -216,9 +234,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         case "Excel":
                             ExcuteExcelCommand(p);
                             break;
+
                         case "PDF":
                             ExcutePDFCommand(p);
                             break;
+
                         default:
                             break;
                     }
@@ -270,7 +290,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 messageWindow.ShowDialog();
             }
         }
+
         private ICommand _PDFCommand;
+
         public ICommand PDFCommand
         {
             get
@@ -287,6 +309,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _ExcelCommand;
+
         public ICommand ExcelCommand
         {
             get

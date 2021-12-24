@@ -161,7 +161,6 @@
                                                 </Binding>
                                             </TextBox.Text>
                                         </TextBox>
-
                                     </StackPanel>
 
                                     <Grid Grid.Row="1">
@@ -172,8 +171,6 @@
                                         </Grid.ColumnDefinitions>
 
                                         <StackPanel Grid.Column="0" Margin="20">
-
-
 
                                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
 
@@ -202,7 +199,6 @@
                                                         </Binding>
                                                     </ComboBox.Text>
                                                 </ComboBox>
-
                                             </StackPanel>
                                         </StackPanel>
 
@@ -228,7 +224,6 @@
                                                         UpdateSourceTrigger="PropertyChanged" />
                                                 </DatePicker.SelectedDate>
                                             </DatePicker>
-
                                         </StackPanel>
                                     </Grid>
 
@@ -314,7 +309,6 @@
                                                     </TextBox.Text>
                                                 </TextBox>
                                             </StackPanel>
-
                                         </StackPanel>
 
                                         <StackPanel
@@ -350,7 +344,6 @@
                                                         </Binding>
                                                     </TextBox.Text>
                                                 </TextBox>
-
                                             </StackPanel>
 
                                             <StackPanel
@@ -380,11 +373,8 @@
                                                         </Binding>
                                                     </TextBox.Text>
                                                 </TextBox>
-
                                             </StackPanel>
-
                                         </StackPanel>
-
                                     </Grid>
 
                                     <Separator
@@ -605,9 +595,6 @@
                     </ScrollViewer>
                 </Grid>
             </Grid>
-
         </Border>
-
-
     </ContentControl>
 </UserControl>

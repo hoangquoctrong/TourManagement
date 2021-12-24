@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,19 +13,25 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class PlaceViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
         private Visibility _IsVisibility;
-        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+        public Visibility IsVisibility
+        { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private ObservableCollection<PlaceModel> _PlaceItems = new ObservableCollection<PlaceModel>();
-        public ObservableCollection<PlaceModel> PlaceItems { get => _PlaceItems; set { _PlaceItems = value; OnPropertyChanged("PlaceItems"); } }
+        public ObservableCollection<PlaceModel> PlaceItems
+        { get => _PlaceItems; set { _PlaceItems = value; OnPropertyChanged("PlaceItems"); } }
 
         private ObservableCollection<PlaceModel> _Refresh_PlaceItems = new ObservableCollection<PlaceModel>();
-        public ObservableCollection<PlaceModel> Refresh_PlaceItems { get => _Refresh_PlaceItems; set { _Refresh_PlaceItems = value; OnPropertyChanged("Refresh_PlaceItems"); } }
+        public ObservableCollection<PlaceModel> Refresh_PlaceItems
+        { get => _Refresh_PlaceItems; set { _Refresh_PlaceItems = value; OnPropertyChanged("Refresh_PlaceItems"); } }
 
         private PlaceModel _PlaceSelected;
-        public PlaceModel PlaceSelected { get => _PlaceSelected; set { _PlaceSelected = value; OnPropertyChanged("PlaceSelected"); } }
+        public PlaceModel PlaceSelected
+        { get => _PlaceSelected; set { _PlaceSelected = value; OnPropertyChanged("PlaceSelected"); } }
+
         public PlaceViewModel(int user_id, Visibility visibility)
         {
             User_ID = user_id;
@@ -45,10 +48,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<ComboBoxModel> _CB_PlaceList;
-        public ObservableCollection<ComboBoxModel> CB_PlaceList { get => _CB_PlaceList; set { _CB_PlaceList = value; OnPropertyChanged("CB_PlaceList"); } }
+        public ObservableCollection<ComboBoxModel> CB_PlaceList
+        { get => _CB_PlaceList; set { _CB_PlaceList = value; OnPropertyChanged("CB_PlaceList"); } }
 
         private ComboBoxModel _CB_PlaceSelected;
-        public ComboBoxModel CB_PlaceSelected { get => _CB_PlaceSelected; set { _CB_PlaceSelected = value; OnPropertyChanged("CB_PlaceSelected"); } }
+        public ComboBoxModel CB_PlaceSelected
+        { get => _CB_PlaceSelected; set { _CB_PlaceSelected = value; OnPropertyChanged("CB_PlaceSelected"); } }
 
         private void LoadPlaceComboBox()
         {
@@ -63,6 +68,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         //Text Search Filter
         private string _FilterText;
+
         public string FilterText
         {
             get => _FilterText;
@@ -87,11 +93,13 @@ namespace TourManagementSystem.ManagerView.ViewModel
                                                                                                             x.PLACE_NAME.ToLower().Contains(FilterText) ||
                                                                                                             x.PLACE_NAME.ToUpper().Contains(FilterText)));
                         break;
+
                     case "Nation":
                         PlaceItems = new ObservableCollection<PlaceModel>(PlaceItems.Where(x => x.PLACE_NATION.Contains(FilterText) ||
                                                                                                             x.PLACE_NATION.ToLower().Contains(FilterText) ||
                                                                                                             x.PLACE_NATION.ToUpper().Contains(FilterText)));
                         break;
+
                     case "Number Of Location":
                         PlaceItems = new ObservableCollection<PlaceModel>(PlaceItems.Where(x => x.PLACE_LOCATION.ToString().Contains(FilterText)));
                         break;
@@ -100,6 +108,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _ShowDetailPlaceCommand;
+
         public ICommand ShowDetailPlaceCommand
         {
             get
@@ -113,6 +122,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddPlaceCommand;
+
         public ICommand AddPlaceCommand
         {
             get

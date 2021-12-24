@@ -98,7 +98,6 @@
                                             </Binding>
                                         </TextBox.Text>
                                     </TextBox>
-
                                 </StackPanel>
 
                                 <StackPanel
@@ -131,7 +130,6 @@
                                             </Binding>
                                         </ComboBox.Text>
                                     </ComboBox>
-
                                 </StackPanel>
                             </Grid>
 
@@ -212,7 +210,6 @@
                                             </TextBox.Text>
                                         </TextBox>
                                     </StackPanel>
-
                                 </StackPanel>
 
                                 <StackPanel
@@ -246,7 +243,6 @@
                                                 </Binding>
                                             </TextBox.Text>
                                         </TextBox>
-
                                     </StackPanel>
 
                                     <StackPanel
@@ -275,11 +271,8 @@
                                                 </Binding>
                                             </TextBox.Text>
                                         </TextBox>
-
                                     </StackPanel>
-
                                 </StackPanel>
-
                             </Grid>
 
                             <Separator
@@ -315,7 +308,6 @@
                                     Text="{Binding Transport_Description, Mode=TwoWay}"
                                     TextWrapping="Wrap" />
                             </StackPanel>
-
                         </Grid>
                     </ScrollViewer>
 
@@ -347,6 +339,5 @@
                 </Grid>
             </Grid>
         </Border>
-
     </ContentControl>
 </UserControl>

@@ -14,22 +14,28 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class StaffViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
         private Visibility _IsVisibility;
-        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+        public Visibility IsVisibility
+        { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private Visibility _ProgressBarVisbility;
-        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+        public Visibility ProgressBarVisbility
+        { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         private ObservableCollection<StaffModel> _StaffItems;
-        public ObservableCollection<StaffModel> StaffItems { get => _StaffItems; set { _StaffItems = value; OnPropertyChanged("staffItems"); } }
+        public ObservableCollection<StaffModel> StaffItems
+        { get => _StaffItems; set { _StaffItems = value; OnPropertyChanged("staffItems"); } }
 
         private ObservableCollection<StaffModel> _Refresh_StaffItems;
-        public ObservableCollection<StaffModel> Refresh_StaffItems { get => _Refresh_StaffItems; set { _Refresh_StaffItems = value; OnPropertyChanged("staffItems"); } }
+        public ObservableCollection<StaffModel> Refresh_StaffItems
+        { get => _Refresh_StaffItems; set { _Refresh_StaffItems = value; OnPropertyChanged("staffItems"); } }
 
         private StaffModel _StaffSelected;
-        public StaffModel StaffSelected { get => _StaffSelected; set { _StaffSelected = value; OnPropertyChanged("StaffSelected"); } }
+        public StaffModel StaffSelected
+        { get => _StaffSelected; set { _StaffSelected = value; OnPropertyChanged("StaffSelected"); } }
 
         public StaffViewModel(int user_id, Visibility visibility)
         {
@@ -41,10 +47,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<ComboBoxModel> _CB_StaffList;
-        public ObservableCollection<ComboBoxModel> CB_StaffList { get => _CB_StaffList; set { _CB_StaffList = value; OnPropertyChanged("CB_StaffList"); } }
+        public ObservableCollection<ComboBoxModel> CB_StaffList
+        { get => _CB_StaffList; set { _CB_StaffList = value; OnPropertyChanged("CB_StaffList"); } }
 
         private ComboBoxModel _CB_StaffSelected;
-        public ComboBoxModel CB_StaffSelected { get => _CB_StaffSelected; set { _CB_StaffSelected = value; OnPropertyChanged("CB_StaffSelected"); } }
+        public ComboBoxModel CB_StaffSelected
+        { get => _CB_StaffSelected; set { _CB_StaffSelected = value; OnPropertyChanged("CB_StaffSelected"); } }
 
         private void LoadStaffComboBox()
         {
@@ -61,6 +69,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private bool _Checkbox_DisplayAllStaff;
+
         public bool Checkbox_DisplayAllStaff
         {
             get => _Checkbox_DisplayAllStaff;
@@ -75,7 +84,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private async void CheckboxDisplayStaff_Handle(bool checkboxDisplay)
         {
-
             if (StaffItems == null)
             {
                 await Task.Delay(3000);
@@ -98,6 +106,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         //Text Search Filter
         private string _FilterText;
+
         public string FilterText
         {
             get => _FilterText;
@@ -122,26 +131,31 @@ namespace TourManagementSystem.ManagerView.ViewModel
                                                                                                             x.STAFF_NAME.ToLower().Contains(FilterText) ||
                                                                                                             x.STAFF_NAME.ToUpper().Contains(FilterText)));
                         break;
+
                     case "Role":
                         StaffItems = new ObservableCollection<StaffModel>(StaffItems.Where(x => x.STAFF_ROLE.Contains(FilterText) ||
                                                                                                             x.STAFF_ROLE.ToLower().Contains(FilterText) ||
                                                                                                             x.STAFF_ROLE.ToUpper().Contains(FilterText)));
                         break;
+
                     case "Gender":
                         StaffItems = new ObservableCollection<StaffModel>(StaffItems.Where(x => x.STAFF_GENDER.Contains(FilterText) ||
                                                                                                             x.STAFF_GENDER.ToLower().Contains(FilterText) ||
                                                                                                             x.STAFF_GENDER.ToUpper().Contains(FilterText)));
                         break;
+
                     case "Citizen Identity":
                         StaffItems = new ObservableCollection<StaffModel>(StaffItems.Where(x => x.STAFF_CITIZEN_CARD.Contains(FilterText) ||
                                                                                                             x.STAFF_CITIZEN_CARD.ToLower().Contains(FilterText) ||
                                                                                                             x.STAFF_CITIZEN_CARD.ToUpper().Contains(FilterText)));
                         break;
+
                     case "Address":
                         StaffItems = new ObservableCollection<StaffModel>(StaffItems.Where(x => x.STAFF_ADDRESS.Contains(FilterText) ||
                                                                                                             x.STAFF_ADDRESS.ToLower().Contains(FilterText) ||
                                                                                                             x.STAFF_ADDRESS.ToUpper().Contains(FilterText)));
                         break;
+
                     case "Phone Number":
                         StaffItems = new ObservableCollection<StaffModel>(StaffItems.Where(x => x.STAFF_PHONE_NUMBER.Contains(FilterText) ||
                                                                                                             x.STAFF_PHONE_NUMBER.ToLower().Contains(FilterText) ||
@@ -152,6 +166,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _ShowDetailStaffCommand;
+
         public ICommand ShowDetailStaffCommand
         {
             get
@@ -165,6 +180,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddStaffCommand;
+
         public ICommand AddStaffCommand
         {
             get
@@ -178,6 +194,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _StatisticStaffCommand;
+
         public ICommand StatisticStaffCommand
         {
             get

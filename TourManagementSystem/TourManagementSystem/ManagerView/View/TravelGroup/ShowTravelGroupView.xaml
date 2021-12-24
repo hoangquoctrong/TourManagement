@@ -33,7 +33,6 @@
             CornerRadius="15">
         <Grid>
 
-
             <Border
                 Panel.ZIndex="1000"
                 BorderThickness="0.5"
@@ -95,7 +94,6 @@
                             Text="D I S P L A Y    T R A V E L    G R O U P " />
                     </Grid>
                 </Border>
-
 
                 <ScrollViewer Grid.Row="1">
                     <TabControl
@@ -178,7 +176,6 @@
                                                 </Binding>
                                             </TextBox.Text>
                                         </TextBox>
-
                                     </StackPanel>
 
                                     <StackPanel
@@ -212,7 +209,6 @@
                                                 </Binding>
                                             </ComboBox.Text>
                                         </ComboBox>
-
                                     </StackPanel>
                                 </Grid>
 
@@ -282,9 +278,7 @@
                                                 IsEnabled="False"
                                                 Text="{Binding TourInformationData.INFORMATION_TIME.TIME_DEPARTMENT_STRING, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                         </StackPanel>
-
                                     </StackPanel>
-
                                 </StackPanel>
 
                                 <StackPanel
@@ -441,7 +435,6 @@
                                                                 IsEditable="True"
                                                                 ItemsSource="{Binding CB_StaffList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                                 Text="{Binding StaffName}" />
-
                                                         </StackPanel>
 
                                                         <StackPanel Grid.Column="1" Orientation="Horizontal">
@@ -868,7 +861,6 @@
                                                                     </Binding>
                                                                 </TextBox.Text>
                                                             </TextBox>
-
                                                         </StackPanel>
 
                                                         <StackPanel Grid.Column="1" Orientation="Horizontal">
@@ -923,7 +915,6 @@
                                                                 Content="Remove"
                                                                 Foreground="#F36E6B"
                                                                 Style="{StaticResource AddButton}" />
-
                                                         </StackPanel>
                                                     </Grid>
 
@@ -988,7 +979,6 @@
                                                                         </Binding>
                                                                     </ComboBox.Text>
                                                                 </ComboBox>
-
                                                             </StackPanel>
 
                                                             <StackPanel Margin="0,32,0,0" Orientation="Horizontal">
@@ -1015,7 +1005,6 @@
                                                                         </Binding>
                                                                     </TextBox.Text>
                                                                 </TextBox>
-
                                                             </StackPanel>
 
                                                             <StackPanel Margin="0,32,0,0" Orientation="Horizontal">
@@ -1042,7 +1031,6 @@
                                                                         </Binding>
                                                                     </TextBox.Text>
                                                                 </TextBox>
-
                                                             </StackPanel>
                                                         </StackPanel>
 
@@ -1071,7 +1059,6 @@
                                                                         </Binding>
                                                                     </TextBox.Text>
                                                                 </TextBox>
-
                                                             </StackPanel>
 
                                                             <StackPanel Margin="0,32,0,0" Orientation="Horizontal">
@@ -1132,7 +1119,6 @@
                                                                             UpdateSourceTrigger="PropertyChanged" />
                                                                     </DatePicker.SelectedDate>
                                                                 </DatePicker>
-
                                                             </StackPanel>
                                                         </StackPanel>
                                                     </Grid>
@@ -1160,10 +1146,8 @@
                             </Grid>
                         </TabItem>
                     </TabControl>
-
                 </ScrollViewer>
             </Grid>
-
         </Grid>
         </Border>
     </ContentControl>

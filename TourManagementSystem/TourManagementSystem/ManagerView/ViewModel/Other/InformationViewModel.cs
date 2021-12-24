@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using TourManagementSystem.Global.Model;
 using TourManagementSystem.Global.View;
@@ -14,7 +9,9 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class InformationViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+
         public InformationViewModel(int user_id)
         {
             User_ID = user_id;
@@ -22,12 +19,15 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private string _TextMail;
-        public string TextMail { get => _TextMail; set { _TextMail = value; OnPropertyChanged(); } }
+        public string TextMail
+        { get => _TextMail; set { _TextMail = value; OnPropertyChanged(); } }
 
         private Visibility _ProgressBarVisbility;
-        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+        public Visibility ProgressBarVisbility
+        { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         private ICommand _SendEmailCommand;
+
         public ICommand SendEmailCommand
         {
             get

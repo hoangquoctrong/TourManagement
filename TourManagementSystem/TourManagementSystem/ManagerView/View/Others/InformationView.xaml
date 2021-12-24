@@ -136,7 +136,6 @@
                             Style="{StaticResource ResourceKey=ConfirmButton}" />
                     </StackPanel>
                 </Grid>
-
             </Grid>
         </Border>
     </ContentControl>

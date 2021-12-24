@@ -1,17 +1,11 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using TourManagementSystem.Global.Model;
 using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
@@ -22,42 +16,56 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class ShowTransportViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private TransportModel _TransportSelected;
-        public TransportModel TransportSelected { get => _TransportSelected; set { _TransportSelected = value; OnPropertyChanged(); } }
+        public TransportModel TransportSelected
+        { get => _TransportSelected; set { _TransportSelected = value; OnPropertyChanged(); } }
 
         private Visibility _IsVisibility;
-        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+        public Visibility IsVisibility
+        { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         #region Data Binding
+
         private int _Transport_ID;
-        public int Transport_ID { get => _Transport_ID; set { _Transport_ID = value; OnPropertyChanged(); } }
+        public int Transport_ID
+        { get => _Transport_ID; set { _Transport_ID = value; OnPropertyChanged(); } }
         private string _Transport_Name;
-        public string Transport_Name { get => _Transport_Name; set { _Transport_Name = value; OnPropertyChanged(); } }
+        public string Transport_Name
+        { get => _Transport_Name; set { _Transport_Name = value; OnPropertyChanged(); } }
 
         private int _Transport_Amount_Max;
-        public int Transport_Amount_Max { get => _Transport_Amount_Max; set { _Transport_Amount_Max = value; OnPropertyChanged(); } }
+        public int Transport_Amount_Max
+        { get => _Transport_Amount_Max; set { _Transport_Amount_Max = value; OnPropertyChanged(); } }
 
         private string _Transport_Company;
-        public string Transport_Company { get => _Transport_Company; set { _Transport_Company = value; OnPropertyChanged(); } }
+        public string Transport_Company
+        { get => _Transport_Company; set { _Transport_Company = value; OnPropertyChanged(); } }
 
         private string _Transport_Type;
-        public string Transport_Type { get => _Transport_Type; set { _Transport_Type = value; OnPropertyChanged(); } }
+        public string Transport_Type
+        { get => _Transport_Type; set { _Transport_Type = value; OnPropertyChanged(); } }
 
         private string _Transport_Description;
-        public string Transport_Description { get => _Transport_Description; set { _Transport_Description = value; OnPropertyChanged(); } }
+        public string Transport_Description
+        { get => _Transport_Description; set { _Transport_Description = value; OnPropertyChanged(); } }
 
         private string _Transport_String_Date;
-        public string Transport_String_Date { get => _Transport_String_Date; set { _Transport_String_Date = value; OnPropertyChanged(); } }
+        public string Transport_String_Date
+        { get => _Transport_String_Date; set { _Transport_String_Date = value; OnPropertyChanged(); } }
 
         private DateTime _Transport_Date = DateTime.Now;
-        public DateTime Transport_Date { get => _Transport_Date; set { _Transport_Date = value; OnPropertyChanged(); } }
+        public DateTime Transport_Date
+        { get => _Transport_Date; set { _Transport_Date = value; OnPropertyChanged(); } }
 
         private bool _Transport_Is_Delete;
-        public bool Transport_Is_Delete { get => _Transport_Is_Delete; set { _Transport_Is_Delete = value; OnPropertyChanged(); } }
+        public bool Transport_Is_Delete
+        { get => _Transport_Is_Delete; set { _Transport_Is_Delete = value; OnPropertyChanged(); } }
 
         private bool _Transport_TypeTrans_Choose;
+
         public bool Transport_TypeTrans_Choose
         {
             get
@@ -79,6 +87,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private string _Transport_TypeTrans;
+
         public string Transport_TypeTrans
         {
             get => _Transport_TypeTrans;
@@ -99,9 +108,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private double _Transport_Price;
-        public double Transport_Price { get => _Transport_Price; set { _Transport_Price = value; OnPropertyChanged(); } }
+        public double Transport_Price
+        { get => _Transport_Price; set { _Transport_Price = value; OnPropertyChanged(); } }
 
         #endregion Data Binding
+
         public ShowTransportViewModel(int user_id, TransportModel transport, Visibility visibility)
         {
             User_ID = user_id;
@@ -130,6 +141,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _CancelCommand;
+
         public ICommand CancelCommand
         {
             get
@@ -143,6 +155,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SaveChangeCommand;
+
         public ICommand SaveChangeCommand
         {
             get
@@ -233,6 +246,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _DeleteCommand;
+
         public ICommand DeleteCommand
         {
             get
@@ -261,7 +275,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 {
                     string messageDisplay = string.Format("Delete Transport Failed! Please try again!");
                     MessageWindow messageWindow = new MessageWindow(messageDisplay, MessageType.Error, MessageButtons.Ok);
-                    messageWindow.ShowDialog();                    
+                    messageWindow.ShowDialog();
                 }
             }
         }
@@ -270,12 +284,13 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         public ICollectionView TourTransportDetailCollection => TourTransportDetailItemsCollection.View;
 
-
         private ObservableCollection<ComboBoxModel> _CB_TourTransportDetailList;
-        public ObservableCollection<ComboBoxModel> CB_TourTransportDetailList { get => _CB_TourTransportDetailList; set { _CB_TourTransportDetailList = value; OnPropertyChanged("CB_HistoryList"); } }
+        public ObservableCollection<ComboBoxModel> CB_TourTransportDetailList
+        { get => _CB_TourTransportDetailList; set { _CB_TourTransportDetailList = value; OnPropertyChanged("CB_HistoryList"); } }
 
         private ComboBoxModel _CB_TourTransportDetailSelected;
-        public ComboBoxModel CB_TourTransportDetailSelected { get => _CB_TourTransportDetailSelected; set { _CB_TourTransportDetailSelected = value; OnPropertyChanged("CB_HistorySelected"); } }
+        public ComboBoxModel CB_TourTransportDetailSelected
+        { get => _CB_TourTransportDetailSelected; set { _CB_TourTransportDetailSelected = value; OnPropertyChanged("CB_HistorySelected"); } }
 
         private void LoadTourTransportDetailComboBox()
         {
@@ -291,6 +306,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         //Text Search Filter
         private string _TourTransportDetailFilterText;
+
         public string TourTransportDetailFilterText
         {
             get => _TourTransportDetailFilterText;
@@ -323,6 +339,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         e.Accepted = false;
                     }
                     break;
+
                 case "Travel Group Name":
                     if (_items.TRAVEL_GROUP_NAME.IndexOf(TourTransportDetailFilterText, StringComparison.OrdinalIgnoreCase) >= 0)
                     {
@@ -333,6 +350,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         e.Accepted = false;
                     }
                     break;
+
                 case "Start Date":
                     if (_items.STRING_START_DATE.IndexOf(TourTransportDetailFilterText, StringComparison.OrdinalIgnoreCase) >= 0)
                     {
@@ -343,6 +361,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         e.Accepted = false;
                     }
                     break;
+
                 case "End Date":
                     if (_items.STRING_END_DATE.IndexOf(TourTransportDetailFilterText, StringComparison.OrdinalIgnoreCase) >= 0)
                     {
@@ -354,7 +373,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
                     }
                     break;
             }
-
         }
     }
 }

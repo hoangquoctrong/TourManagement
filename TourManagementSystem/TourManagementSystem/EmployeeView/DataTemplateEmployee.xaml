@@ -19,5 +19,4 @@
     <DataTemplate DataType="{x:Type viewmodel:EAccountViewModel}">
         <view:EAccountView />
     </DataTemplate>
-
 </ResourceDictionary>

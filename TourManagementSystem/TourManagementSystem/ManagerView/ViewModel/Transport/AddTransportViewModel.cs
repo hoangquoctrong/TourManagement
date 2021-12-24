@@ -1,15 +1,7 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
-using TourManagementSystem.Global.Model;
 using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
@@ -19,28 +11,37 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class AddTransportViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         #region Data Binding
+
         private string _Transport_Name;
-        public string Transport_Name { get => _Transport_Name; set { _Transport_Name = value; OnPropertyChanged(); } }
+        public string Transport_Name
+        { get => _Transport_Name; set { _Transport_Name = value; OnPropertyChanged(); } }
 
         private int _Transport_Amount_Max;
-        public int Transport_Amount_Max { get => _Transport_Amount_Max; set { _Transport_Amount_Max = value; OnPropertyChanged(); } }
+        public int Transport_Amount_Max
+        { get => _Transport_Amount_Max; set { _Transport_Amount_Max = value; OnPropertyChanged(); } }
 
         private string _Transport_Company;
-        public string Transport_Company { get => _Transport_Company; set { _Transport_Company = value; OnPropertyChanged(); } }
+        public string Transport_Company
+        { get => _Transport_Company; set { _Transport_Company = value; OnPropertyChanged(); } }
 
         private string _Transport_Type;
-        public string Transport_Type { get => _Transport_Type; set { _Transport_Type = value; OnPropertyChanged(); } }
+        public string Transport_Type
+        { get => _Transport_Type; set { _Transport_Type = value; OnPropertyChanged(); } }
 
         private string _Transport_Description;
-        public string Transport_Description { get => _Transport_Description; set { _Transport_Description = value; OnPropertyChanged(); } }
+        public string Transport_Description
+        { get => _Transport_Description; set { _Transport_Description = value; OnPropertyChanged(); } }
 
         private bool _Transport_TypeTrans_Choose;
-        public bool Transport_TypeTrans_Choose { get => _Transport_TypeTrans_Choose; set { _Transport_TypeTrans_Choose = value; OnPropertyChanged(); } }
+        public bool Transport_TypeTrans_Choose
+        { get => _Transport_TypeTrans_Choose; set { _Transport_TypeTrans_Choose = value; OnPropertyChanged(); } }
 
         private string _Transport_TypeTrans;
+
         public string Transport_TypeTrans
         {
             get
@@ -67,15 +68,18 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private double _Transport_Price;
-        public double Transport_Price { get => _Transport_Price; set { _Transport_Price = value; OnPropertyChanged(); } }
+        public double Transport_Price
+        { get => _Transport_Price; set { _Transport_Price = value; OnPropertyChanged(); } }
+
         #endregion Data Binding
+
         public AddTransportViewModel(int user_id)
         {
             User_ID = user_id;
         }
 
-
         private ICommand _CancelCommand;
+
         public ICommand CancelCommand
         {
             get
@@ -90,6 +94,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddTransportCommand;
+
         public ICommand AddTransportCommand
         {
             get

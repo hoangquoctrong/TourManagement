@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,22 +13,29 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class TravelGroupViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private Visibility _IsVisibility;
-        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+        public Visibility IsVisibility
+        { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private Visibility _ProgressBarVisbility;
-        public Visibility ProgressBarVisbility { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+        public Visibility ProgressBarVisbility
+        { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         private ObservableCollection<TravelGroupModel> _TravelGroupItems;
-        public ObservableCollection<TravelGroupModel> TravelGroupItems { get => _TravelGroupItems; set { _TravelGroupItems = value; OnPropertyChanged("TravelGroupItems"); } }
+        public ObservableCollection<TravelGroupModel> TravelGroupItems
+        { get => _TravelGroupItems; set { _TravelGroupItems = value; OnPropertyChanged("TravelGroupItems"); } }
 
         private ObservableCollection<TravelGroupModel> _Refresh_TravelGroupItems;
-        public ObservableCollection<TravelGroupModel> Refresh_TravelGroupItems { get => _Refresh_TravelGroupItems; set { _Refresh_TravelGroupItems = value; OnPropertyChanged("Refresh_TravelGroupItems"); } }
+        public ObservableCollection<TravelGroupModel> Refresh_TravelGroupItems
+        { get => _Refresh_TravelGroupItems; set { _Refresh_TravelGroupItems = value; OnPropertyChanged("Refresh_TravelGroupItems"); } }
 
         private TravelGroupModel _TravelGroupSelected;
-        public TravelGroupModel TravelGroupSelected { get => _TravelGroupSelected; set { _TravelGroupSelected = value; OnPropertyChanged("TravelGroupSelected"); } }
+        public TravelGroupModel TravelGroupSelected
+        { get => _TravelGroupSelected; set { _TravelGroupSelected = value; OnPropertyChanged("TravelGroupSelected"); } }
+
         public TravelGroupViewModel(int user_id, Visibility visibility)
         {
             User_ID = user_id;
@@ -61,12 +65,13 @@ namespace TourManagementSystem.ManagerView.ViewModel
             ProgressBarVisbility = Visibility.Hidden;
         }
 
-
         private ObservableCollection<ComboBoxModel> _CB_TravelGroupList;
-        public ObservableCollection<ComboBoxModel> CB_TravelGroupList { get => _CB_TravelGroupList; set { _CB_TravelGroupList = value; OnPropertyChanged("CB_TourList"); } }
+        public ObservableCollection<ComboBoxModel> CB_TravelGroupList
+        { get => _CB_TravelGroupList; set { _CB_TravelGroupList = value; OnPropertyChanged("CB_TourList"); } }
 
         private ComboBoxModel _CB_TravelGroupSelected;
-        public ComboBoxModel CB_TravelGroupSelected { get => _CB_TravelGroupSelected; set { _CB_TravelGroupSelected = value; OnPropertyChanged("CB_TourSelected"); } }
+        public ComboBoxModel CB_TravelGroupSelected
+        { get => _CB_TravelGroupSelected; set { _CB_TravelGroupSelected = value; OnPropertyChanged("CB_TourSelected"); } }
 
         private void LoadTravelGroupComboBox()
         {
@@ -82,6 +87,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private string _FilterText;
+
         public string FilterText
         {
             get => _FilterText;
@@ -106,19 +112,23 @@ namespace TourManagementSystem.ManagerView.ViewModel
                                                                                                             x.TravelGroup_Name.ToLower().Contains(FilterText) ||
                                                                                                             x.TravelGroup_Name.ToUpper().Contains(FilterText)));
                         break;
+
                     case "Travel Type":
                         TravelGroupItems = new ObservableCollection<TravelGroupModel>(TravelGroupItems.Where(x => x.TravelGroup_Type.Contains(FilterText) ||
                                                                                                             x.TravelGroup_Type.ToLower().Contains(FilterText) ||
                                                                                                             x.TravelGroup_Type.ToUpper().Contains(FilterText)));
                         break;
+
                     case "Tour Name":
                         TravelGroupItems = new ObservableCollection<TravelGroupModel>(TravelGroupItems.Where(x => x.Tour_Name.Contains(FilterText) ||
                                                                                                             x.Tour_Name.ToLower().Contains(FilterText) ||
                                                                                                             x.Tour_Name.ToUpper().Contains(FilterText)));
                         break;
+
                     case "Start Date":
                         TravelGroupItems = new ObservableCollection<TravelGroupModel>(TravelGroupItems.Where(x => x.Tour_StartString.Contains(FilterText)));
                         break;
+
                     case "End Date":
                         TravelGroupItems = new ObservableCollection<TravelGroupModel>(TravelGroupItems.Where(x => x.Tour_EndString.Contains(FilterText)));
                         break;
@@ -127,6 +137,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _ShowDetailTravelGroupCommand;
+
         public ICommand ShowDetailTravelGroupCommand
         {
             get
@@ -140,6 +151,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _AddTravelGroupCommand;
+
         public ICommand AddTravelGroupCommand
         {
             get

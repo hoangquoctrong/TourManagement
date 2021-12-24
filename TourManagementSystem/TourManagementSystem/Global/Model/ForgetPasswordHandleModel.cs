@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TourManagementSystem.Global.Model
 {
@@ -43,9 +40,9 @@ namespace TourManagementSystem.Global.Model
         public static bool IsValidUserName(string username)
         {
             TOUR_ACCOUNT account = DataProvider.Ins.DB.TOUR_ACCOUNT.Where(x => x.TOUR_ACCOUNT_NAME == username).FirstOrDefault();
-            if(account == null)
+            if (account == null)
             {
-                  return false;
+                return false;
             }
             else
             {
@@ -65,10 +62,12 @@ namespace TourManagementSystem.Global.Model
                     case "Manager":
                         user_id = user[0].TOUR_STAFF_ID;
                         return 1;
+
                     case "Staff":
                     case "Director":
                         user_id = user[0].TOUR_STAFF_ID;
                         return -1;
+
                     default:
                         user_id = 0;
                         return 0;

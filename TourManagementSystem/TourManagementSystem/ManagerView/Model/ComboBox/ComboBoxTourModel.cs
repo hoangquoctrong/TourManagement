@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TourManagementSystem.Global.Model;
+﻿using TourManagementSystem.Global.Model;
 
 namespace TourManagementSystem.ManagerView.Model
 {
@@ -20,6 +15,7 @@ namespace TourManagementSystem.ManagerView.Model
         }
 
         private TourModel _TourItem;
-        public TourModel TourItem { get => _TourItem; set { _TourItem = value; OnPropertyChanged(); } }
+        public TourModel TourItem
+        { get => _TourItem; set { _TourItem = value; OnPropertyChanged(); } }
     }
 }

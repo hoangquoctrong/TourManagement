@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TourManagementSystem.Global.View;
@@ -15,24 +10,32 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class AddPlaceViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         #region Data Binding
+
         private string _Place_Name;
-        public string Place_Name { get => _Place_Name; set { _Place_Name = value; OnPropertyChanged(); } }
+        public string Place_Name
+        { get => _Place_Name; set { _Place_Name = value; OnPropertyChanged(); } }
 
         private string _Place_Nation;
-        public string Place_Nation { get => _Place_Nation; set { _Place_Nation = value; OnPropertyChanged(); } }
+        public string Place_Nation
+        { get => _Place_Nation; set { _Place_Nation = value; OnPropertyChanged(); } }
 
         private int _Place_Location;
-        public int Place_Location { get => _Place_Location; set { _Place_Location = value; OnPropertyChanged(); } }
+        public int Place_Location
+        { get => _Place_Location; set { _Place_Location = value; OnPropertyChanged(); } }
+
         #endregion Data Binding
+
         public AddPlaceViewModel(int user_id)
         {
             User_ID = user_id;
         }
 
         private ICommand _AddPlaceCommand;
+
         public ICommand AddPlaceCommand
         {
             get
@@ -79,6 +82,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _CancelCommand;
+
         public ICommand CancelCommand
         {
             get

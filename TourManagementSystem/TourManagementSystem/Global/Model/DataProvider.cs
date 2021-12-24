@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TourManagementSystem.Global.Model
+﻿namespace TourManagementSystem.Global.Model
 {
-    class DataProvider
+    internal class DataProvider
     {
         private static DataProvider _ins;
+
         public static DataProvider Ins
         {
             get

@@ -105,7 +105,6 @@
                 <ColumnDefinition Width="12" />
                 <ColumnDefinition />
                 <ColumnDefinition Width="12" />
-
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -115,7 +114,6 @@
                 <RowDefinition Height="55" />
                 <RowDefinition Height="570" />
                 <RowDefinition Height="0" />
-
             </Grid.RowDefinitions>
 
             <!--  Menu Search Box  -->
@@ -129,7 +127,6 @@
                     Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" />
 
                 <TextBlock Style="{StaticResource SearchTextStyle}" Text="Search" />
-
             </Grid>
 
             <!--  Menu  -->
@@ -155,7 +152,6 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-
             </Grid>
 
             <!--  Page Container  -->
@@ -173,9 +169,7 @@
                     Margin="0,0,0,0.4"
                     VerticalAlignment="Bottom"
                     Content="{Binding SelectedViewModel}" />
-
             </Grid>
-
         </Grid>
 
         <!--  Close Button  -->
@@ -199,7 +193,5 @@
             Command="{Binding CloseAppCommand}"
             CommandParameter="{Binding ElementName=ManagerViewWindow}"
             Style="{StaticResource CloseBtn_Style}" />
-
-
     </Grid>
 </Window>

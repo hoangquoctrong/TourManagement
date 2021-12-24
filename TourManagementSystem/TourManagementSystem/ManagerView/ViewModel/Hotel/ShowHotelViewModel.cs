@@ -1,14 +1,11 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using TourManagementSystem.Global.Model;
 using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model;
@@ -19,52 +16,69 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class ShowHotelViewModel : BaseViewModel
     {
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private HotelModel _HotelSelected;
-        public HotelModel HotelSelected { get => _HotelSelected; set { _HotelSelected = value; OnPropertyChanged(); } }
+        public HotelModel HotelSelected
+        { get => _HotelSelected; set { _HotelSelected = value; OnPropertyChanged(); } }
 
         private Visibility _IsVisibility;
-        public Visibility IsVisibility { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+        public Visibility IsVisibility
+        { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         #region Data Binding
+
         private int _Hotel_ID;
-        public int Hotel_ID { get => _Hotel_ID; set { _Hotel_ID = value; OnPropertyChanged(); } }
+        public int Hotel_ID
+        { get => _Hotel_ID; set { _Hotel_ID = value; OnPropertyChanged(); } }
 
         private string _Hotel_Name;
-        public string Hotel_Name { get => _Hotel_Name; set { _Hotel_Name = value; OnPropertyChanged(); } }
+        public string Hotel_Name
+        { get => _Hotel_Name; set { _Hotel_Name = value; OnPropertyChanged(); } }
 
         private string _Hotel_Address;
-        public string Hotel_Address { get => _Hotel_Address; set { _Hotel_Address = value; OnPropertyChanged(); } }
+        public string Hotel_Address
+        { get => _Hotel_Address; set { _Hotel_Address = value; OnPropertyChanged(); } }
 
         private string _Hotel_Phone_Number;
-        public string Hotel_Phone_Number { get => _Hotel_Phone_Number; set { _Hotel_Phone_Number = value; OnPropertyChanged(); } }
+        public string Hotel_Phone_Number
+        { get => _Hotel_Phone_Number; set { _Hotel_Phone_Number = value; OnPropertyChanged(); } }
 
         private bool _Hotel_Is_Delete;
-        public bool Hotel_Is_Delete { get => _Hotel_Is_Delete; set { _Hotel_Is_Delete = value; OnPropertyChanged(); } }
+        public bool Hotel_Is_Delete
+        { get => _Hotel_Is_Delete; set { _Hotel_Is_Delete = value; OnPropertyChanged(); } }
 
         private string _Hotel_Description;
-        public string Hotel_Description { get => _Hotel_Description; set { _Hotel_Description = value; OnPropertyChanged(); } }
+        public string Hotel_Description
+        { get => _Hotel_Description; set { _Hotel_Description = value; OnPropertyChanged(); } }
 
         private string _Hotel_Email;
-        public string Hotel_Email { get => _Hotel_Email; set { _Hotel_Email = value; OnPropertyChanged(); } }
+        public string Hotel_Email
+        { get => _Hotel_Email; set { _Hotel_Email = value; OnPropertyChanged(); } }
 
         private double _Hotel_Price;
-        public double Hotel_Price { get => _Hotel_Price; set { _Hotel_Price = value; OnPropertyChanged(); } }
+        public double Hotel_Price
+        { get => _Hotel_Price; set { _Hotel_Price = value; OnPropertyChanged(); } }
 
         private int _Place_ID;
-        public int Place_ID { get => _Place_ID; set { _Place_ID = value; OnPropertyChanged(); } }
+        public int Place_ID
+        { get => _Place_ID; set { _Place_ID = value; OnPropertyChanged(); } }
 
         private string _Place_Name;
-        public string Place_Name { get => _Place_Name; set { _Place_Name = value; OnPropertyChanged(); } }
+        public string Place_Name
+        { get => _Place_Name; set { _Place_Name = value; OnPropertyChanged(); } }
 
         private string _Hotel_Is_Restaurant;
-        public string Hotel_Is_Restaurant { get => _Hotel_Is_Restaurant; set { _Hotel_Is_Restaurant = value; OnPropertyChanged(); } }
+        public string Hotel_Is_Restaurant
+        { get => _Hotel_Is_Restaurant; set { _Hotel_Is_Restaurant = value; OnPropertyChanged(); } }
 
         private ObservableCollection<ComboBoxModel> _CB_PlaceList;
-        public ObservableCollection<ComboBoxModel> CB_PlaceList { get => _CB_PlaceList; set { _CB_PlaceList = value; OnPropertyChanged(); } }
+        public ObservableCollection<ComboBoxModel> CB_PlaceList
+        { get => _CB_PlaceList; set { _CB_PlaceList = value; OnPropertyChanged(); } }
 
         private ComboBoxModel _CB_PlaceSelected;
+
         public ComboBoxModel CB_PlaceSelected
         {
             get => _CB_PlaceSelected;
@@ -76,7 +90,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 OnPropertyChanged();
             }
         }
-        #endregion
+
+        #endregion Data Binding
 
         public ShowHotelViewModel(int user_id, HotelModel hotel, Visibility visibility)
         {
@@ -120,6 +135,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _CancelCommand;
+
         public ICommand CancelCommand
         {
             get
@@ -133,6 +149,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _SaveChangeCommand;
+
         public ICommand SaveChangeCommand
         {
             get
@@ -220,6 +237,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _DeleteCommand;
+
         public ICommand DeleteCommand
         {
             get
@@ -257,12 +275,13 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         public ICollectionView TourHotelDetailCollection => TourHotelDetailItemsCollection.View;
 
-
         private ObservableCollection<ComboBoxModel> _CB_TourHotelDetailList;
-        public ObservableCollection<ComboBoxModel> CB_TourHotelDetailList { get => _CB_TourHotelDetailList; set { _CB_TourHotelDetailList = value; OnPropertyChanged("CB_HistoryList"); } }
+        public ObservableCollection<ComboBoxModel> CB_TourHotelDetailList
+        { get => _CB_TourHotelDetailList; set { _CB_TourHotelDetailList = value; OnPropertyChanged("CB_HistoryList"); } }
 
         private ComboBoxModel _CB_TourHotelDetailSelected;
-        public ComboBoxModel CB_TourHotelDetailSelected { get => _CB_TourHotelDetailSelected; set { _CB_TourHotelDetailSelected = value; OnPropertyChanged("CB_HistorySelected"); } }
+        public ComboBoxModel CB_TourHotelDetailSelected
+        { get => _CB_TourHotelDetailSelected; set { _CB_TourHotelDetailSelected = value; OnPropertyChanged("CB_HistorySelected"); } }
 
         private void LoadTourHotelDetailComboBox()
         {
@@ -278,6 +297,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         //Text Search Filter
         private string _TourHotelDetailFilterText;
+
         public string TourHotelDetailFilterText
         {
             get => _TourHotelDetailFilterText;
@@ -310,6 +330,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         e.Accepted = false;
                     }
                     break;
+
                 case "Travel Group Name":
                     if (_items.TRAVEL_GROUP_NAME.IndexOf(TourHotelDetailFilterText, StringComparison.OrdinalIgnoreCase) >= 0)
                     {
@@ -320,6 +341,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         e.Accepted = false;
                     }
                     break;
+
                 case "Start Date":
                     if (_items.STRING_START_DATE.IndexOf(TourHotelDetailFilterText, StringComparison.OrdinalIgnoreCase) >= 0)
                     {
@@ -330,6 +352,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         e.Accepted = false;
                     }
                     break;
+
                 case "End Date":
                     if (_items.STRING_END_DATE.IndexOf(TourHotelDetailFilterText, StringComparison.OrdinalIgnoreCase) >= 0)
                     {
@@ -341,7 +364,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
                     }
                     break;
             }
-
         }
     }
 }

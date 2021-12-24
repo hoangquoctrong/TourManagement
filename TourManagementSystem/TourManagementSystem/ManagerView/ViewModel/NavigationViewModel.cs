@@ -1,22 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Forms;
 using System.Windows.Input;
 using TourManagementSystem.Global.Model;
 using TourManagementSystem.Global.View;
-using TourManagementSystem.ManagerView.Model;
 using TourManagementSystem.ViewModel;
 
 namespace TourManagementSystem.ManagerView.ViewModel
 {
-    class NavigationViewModel : BaseViewModel
+    internal class NavigationViewModel : BaseViewModel
     {
         // CollectionViewSource enables XAML code to set the commonly used CollectionView properties,
         // passing these settings to the underlying view.
@@ -27,12 +21,13 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public ICollectionView SourceCollection => MenuItemsCollection.View;
 
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
         public NavigationViewModel()
         {
             User_ID = Properties.Settings.Default.User_ID;
-            /*MessageBox.Show(string.Format("{0}, {1}, {2}", Properties.Settings.Default.User_ID, 
+            /*MessageBox.Show(string.Format("{0}, {1}, {2}", Properties.Settings.Default.User_ID,
                 Properties.Settings.Default.Username, Properties.Settings.Default.Password));*/
 
             // ObservableCollection represents a dynamic data collection that provides notifications when items
@@ -60,6 +55,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         //Text Search Filter
         private string _FilterText;
+
         public string FilterText
         {
             get => _FilterText;
@@ -92,12 +88,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         // Select ViewModel
         private object _SelectedViewModel;
+
         public object SelectedViewModel
         {
             get => _SelectedViewModel;
             set { _SelectedViewModel = value; OnPropertyChanged("SelectedViewModel"); }
         }
-
 
         // Switch Views
         public void SwitchViews(object parameter)
@@ -107,33 +103,43 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 case "Record":
                     SelectedViewModel = new DashboardViewModel(User_ID);
                     break;
+
                 case "Tour":
                     SelectedViewModel = new TourViewModel(User_ID, Visibility.Visible, Visibility.Visible);
                     break;
+
                 case "Travel Group":
                     SelectedViewModel = new TravelGroupViewModel(User_ID, Visibility.Visible);
                     break;
+
                 case "Customer":
                     SelectedViewModel = new TravellerViewModel(User_ID, Visibility.Visible);
                     break;
+
                 case "Place":
                     SelectedViewModel = new PlaceViewModel(User_ID, Visibility.Visible);
                     break;
+
                 case "Staff":
                     SelectedViewModel = new StaffViewModel(User_ID, Visibility.Visible);
                     break;
+
                 case "Transports":
                     SelectedViewModel = new TransportViewModel(User_ID, Visibility.Visible);
                     break;
+
                 case "Hotel":
                     SelectedViewModel = new HotelViewModel(User_ID, Visibility.Visible);
                     break;
+
                 case "Account":
                     SelectedViewModel = new AccountViewModel(User_ID);
                     break;
+
                 case "Feedback":
                     SelectedViewModel = new InformationViewModel(User_ID);
                     break;
+
                 default:
                     SelectedViewModel = new DashboardViewModel(User_ID);
                     break;
@@ -142,6 +148,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         // Menu Button Command
         private ICommand _Menucommand;
+
         public ICommand MenuCommand
         {
             get
@@ -156,6 +163,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         // Close App Command
         private ICommand _CloseCommand;
+
         public ICommand CloseAppCommand
         {
             get
@@ -173,7 +181,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
                         }
                     })
                     {
-
                     };
                 }
                 return _CloseCommand;
@@ -181,6 +188,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ICommand _MinimizeCommand;
+
         public ICommand MinimizeCommand
         {
             get

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace TourManagementSystem.Global.Model
 {
@@ -10,7 +6,6 @@ namespace TourManagementSystem.Global.Model
     {
         public static int IsLoginAccount(string username, string password, out int user_id)
         {
-
             string passwordAfter = GlobalFunction.CreateMD5(GlobalFunction.Base64Encode(password));
             var user = (from u in DataProvider.Ins.DB.TOUR_ACCOUNT
                         where u.TOUR_ACCOUNT_NAME == username && u.TOUR_ACCOUNT_PASSWORD == passwordAfter
@@ -22,10 +17,12 @@ namespace TourManagementSystem.Global.Model
                     case "Manager":
                         user_id = user[0].TOUR_STAFF_ID;
                         return 1;
+
                     case "Staff":
                     case "Director":
                         user_id = user[0].TOUR_STAFF_ID;
                         return -1;
+
                     default:
                         user_id = 0;
                         return 0;

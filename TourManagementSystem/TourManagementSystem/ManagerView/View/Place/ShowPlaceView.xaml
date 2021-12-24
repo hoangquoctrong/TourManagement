@@ -159,7 +159,6 @@
                                                 </Binding>
                                             </TextBox.Text>
                                         </TextBox>
-
                                     </StackPanel>
 
                                     <StackPanel Margin="20,30,0,30" Orientation="Horizontal">
@@ -188,7 +187,6 @@
                                                 </Binding>
                                             </TextBox.Text>
                                         </TextBox>
-
                                     </StackPanel>
 
                                     <StackPanel Margin="20,30,0,30" Orientation="Horizontal">
@@ -218,7 +216,6 @@
                                                 </Binding>
                                             </TextBox.Text>
                                         </TextBox>
-
                                     </StackPanel>
                                 </StackPanel>
 
@@ -235,7 +232,6 @@
                                         Foreground="#1885F2"
                                         Style="{StaticResource AddButton}"
                                         Visibility="{Binding IsVisibility}" />
-
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -398,14 +394,11 @@
                                             Header="Description" />
                                     </DataGrid.Columns>
                                 </DataGrid>
-
                             </Grid>
-
                         </TabItem>
                     </TabControl>
                 </ScrollViewer>
             </Grid>
-
         </Border>
     </ContentControl>
 </UserControl>

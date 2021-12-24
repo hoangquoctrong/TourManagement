@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -27,13 +23,17 @@ namespace TourManagementSystem.EmployeeView.ViewModel
         public ICollectionView SourceCollection => MenuItemsCollection.View;
 
         private int _User_ID;
-        public int User_ID { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
+        public int User_ID
+        { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
         private int _User_Role;
-        public int User_Role { get => _User_Role; set { _User_Role = value; OnPropertyChanged("User_Role"); } }
+        public int User_Role
+        { get => _User_Role; set { _User_Role = value; OnPropertyChanged("User_Role"); } }
 
         private string _TypeText;
-        public string TypeText { get => _TypeText; set { _TypeText = value; OnPropertyChanged("TypeText"); } }
+        public string TypeText
+        { get => _TypeText; set { _TypeText = value; OnPropertyChanged("TypeText"); } }
+
         public ENavigationViewModel()
         {
             User_ID = Properties.Settings.Default.User_ID;
@@ -88,9 +88,11 @@ namespace TourManagementSystem.EmployeeView.ViewModel
                 case 1:
                     User_Role = 1;
                     return string.Format("     S T A F F       V I E W      ");
+
                 case -1:
                     User_Role = -1;
                     return string.Format("     D I R E C T O R       V I E W      ");
+
                 default:
                     return string.Format("");
             }
@@ -98,6 +100,7 @@ namespace TourManagementSystem.EmployeeView.ViewModel
 
         //Text Search Filter
         private string _FilterText;
+
         public string FilterText
         {
             get => _FilterText;
@@ -130,6 +133,7 @@ namespace TourManagementSystem.EmployeeView.ViewModel
 
         // Select ViewModel
         private object _SelectedViewModel;
+
         public object SelectedViewModel
         {
             get => _SelectedViewModel;
@@ -152,30 +156,39 @@ namespace TourManagementSystem.EmployeeView.ViewModel
                     }
 
                     break;
+
                 case "Travel Group":
                     SelectedViewModel = new TravelGroupViewModel(User_ID, Visibility.Collapsed);
                     break;
+
                 case "Customer":
                     SelectedViewModel = new TravellerViewModel(User_ID, Visibility.Collapsed);
                     break;
+
                 case "Place":
                     SelectedViewModel = new PlaceViewModel(User_ID, Visibility.Collapsed);
                     break;
+
                 case "Transports":
                     SelectedViewModel = new TransportViewModel(User_ID, Visibility.Collapsed);
                     break;
+
                 case "Hotel":
                     SelectedViewModel = new HotelViewModel(User_ID, Visibility.Collapsed);
                     break;
+
                 case "Account":
                     SelectedViewModel = new AccountViewModel(User_ID);
                     break;
+
                 case "Feedback":
                     SelectedViewModel = new InformationViewModel(User_ID);
                     break;
+
                 case "Staff":
                     SelectedViewModel = new StaffViewModel(User_ID, Visibility.Collapsed);
                     break;
+
                 default:
                     SelectedViewModel = new AccountViewModel(User_ID);
                     break;
@@ -184,6 +197,7 @@ namespace TourManagementSystem.EmployeeView.ViewModel
 
         // Menu Button Command
         private ICommand _Menucommand;
+
         public ICommand MenuCommand
         {
             get
@@ -198,6 +212,7 @@ namespace TourManagementSystem.EmployeeView.ViewModel
 
         // Minimize Button Command
         private ICommand _MinimizeCommand;
+
         public ICommand MinimizeCommand
         {
             get
@@ -212,8 +227,10 @@ namespace TourManagementSystem.EmployeeView.ViewModel
                 return _MinimizeCommand;
             }
         }
+
         // Close App Command
         private ICommand _CloseCommand;
+
         public ICommand CloseAppCommand
         {
             get
@@ -231,7 +248,6 @@ namespace TourManagementSystem.EmployeeView.ViewModel
                         }
                     })
                     {
-
                     };
                 }
                 return _CloseCommand;
