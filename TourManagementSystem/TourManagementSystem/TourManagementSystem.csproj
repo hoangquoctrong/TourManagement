@@ -149,6 +149,8 @@
     <Compile Include="Global\PLACE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Global\Ruler\MiniMumCharacterRuler.cs" />
+    <Compile Include="Global\Ruler\NumberRuler.cs" />
     <Compile Include="Global\sysdiagrams.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
