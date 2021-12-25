@@ -672,7 +672,7 @@
                                             Foreground="#1885F2"
                                             Style="{StaticResource AddButton}" />
 
-                                        <Button
+                                        <!--<Button
                                             Width="200"
                                             Height="60"
                                             Margin="60,0,0,0"
@@ -680,7 +680,7 @@
                                             CommandParameter="{Binding ElementName=PrintView}"
                                             Content="Print"
                                             Foreground="#1885F2"
-                                            Style="{StaticResource AddButton}" />
+                                            Style="{StaticResource AddButton}" />-->
                                     </StackPanel>
                                 </Grid>
                             </TabItem>

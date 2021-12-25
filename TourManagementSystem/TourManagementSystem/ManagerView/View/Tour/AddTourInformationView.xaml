@@ -1751,7 +1751,7 @@
                         <Button
                             Width="200"
                             Height="60"
-                            Margin="20,16,20,2"
+                            Margin="20,16,20,12"
                             Command="{Binding CancelCommand}"
                             CommandParameter="{Binding ElementName=contentControlAdd}"
                             Content="Cancel"

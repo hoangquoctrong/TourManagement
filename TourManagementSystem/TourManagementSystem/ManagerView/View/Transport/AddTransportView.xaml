@@ -348,7 +348,7 @@
                         <Button
                             Width="200"
                             Height="60"
-                            Margin="360,10,20,2"
+                            Margin="360,10,20,12"
                             Command="{Binding AddTransportCommand}"
                             CommandParameter="{Binding ElementName=contentControlAdd}"
                             Content="Confirm"
@@ -358,7 +358,7 @@
                         <Button
                             Width="200"
                             Height="60"
-                            Margin="20,10,20,2"
+                            Margin="20,10,20,12"
                             Command="{Binding CancelCommand}"
                             CommandParameter="{Binding ElementName=contentControlAdd}"
                             Content="Cancel"

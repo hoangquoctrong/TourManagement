@@ -4,9 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:TourManagementSystem.ManagerView.View"
-    xmlns:ruler="clr-namespace:TourManagementSystem.Global.Ruler"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ruler="clr-namespace:TourManagementSystem.Global.Ruler"
     Width="1190"
     Height="620"
     mc:Ignorable="d">
@@ -86,10 +86,10 @@
 
                                         <TextBox
                                             Width="260"
-                                            ToolTip="Hotel Name"
                                             Margin="8,0,0,0"
                                             materialDesign:HintAssist.Hint="Name"
-                                            FontSize="18">
+                                            FontSize="18"
+                                            ToolTip="Hotel Name">
                                             <TextBox.Text>
                                                 <Binding
                                                     Mode="TwoWay"
@@ -97,10 +97,10 @@
                                                     UpdateSourceTrigger="PropertyChanged">
                                                     <Binding.ValidationRules>
                                                         <ruler:MiniMumCharacterRuler
-                                                            ValidatesOnTargetUpdated="True"
+                                                            MaximumCharacters="30"
                                                             MinimumCharacters="0"
                                                             NameFill="Hotel Name"
-                                                            MaximumCharacters="30" />
+                                                            ValidatesOnTargetUpdated="True" />
                                                     </Binding.ValidationRules>
                                                 </Binding>
                                             </TextBox.Text>
@@ -123,14 +123,14 @@
                                     <ComboBox
                                         Width="260"
                                         Height="30"
-                                        ToolTip="Hotel Place"
                                         Margin="10,0,0,0"
                                         materialDesign:HintAssist.Hint="Place"
                                         DisplayMemberPath="CB_Name"
                                         FontSize="18"
                                         Foreground="DimGray"
                                         ItemsSource="{Binding CB_PlaceList, Mode=TwoWay}"
-                                        SelectedValue="{Binding CB_PlaceSelected}">
+                                        SelectedValue="{Binding CB_PlaceSelected}"
+                                        ToolTip="Hotel Place">
                                         <ComboBox.ItemContainerStyle>
                                             <Style TargetType="ComboBoxItem">
                                                 <Setter Property="IsSelected" Value="{Binding IsSelected}" />
@@ -161,9 +161,9 @@
 
                                 <TextBox
                                     Width="760"
-                                    ToolTip="Include Apartment Number, Street Name, Ward Name, City Name, Provide Name"
                                     materialDesign:HintAssist.Hint="Address"
-                                    FontSize="18">
+                                    FontSize="18"
+                                    ToolTip="Include Apartment Number, Street Name, Ward Name, City Name, Provide Name">
                                     <TextBox.Text>
                                         <Binding
                                             Mode="TwoWay"
@@ -171,9 +171,9 @@
                                             UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
                                                 <ruler:MiniMumCharacterRuler
-                                                    ValidatesOnTargetUpdated="True"
                                                     MinimumCharacters="0"
-                                                    NameFill="Hotel Address" />
+                                                    NameFill="Hotel Address"
+                                                    ValidatesOnTargetUpdated="True" />
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </TextBox.Text>
@@ -195,10 +195,10 @@
 
                                         <TextBox
                                             Width="260"
-                                            ToolTip="Hotel Phone Number - Accept Number Only"
                                             Margin="10,0,0,0"
                                             materialDesign:HintAssist.Hint="Phone Number"
-                                            FontSize="18">
+                                            FontSize="18"
+                                            ToolTip="Hotel Phone Number - Accept Number Only">
                                             <TextBox.Text>
                                                 <Binding
                                                     Mode="TwoWay"
@@ -206,10 +206,10 @@
                                                     UpdateSourceTrigger="PropertyChanged">
                                                     <Binding.ValidationRules>
                                                         <ruler:PhoneNumberRuler
-                                                            ValidatesOnTargetUpdated="True"
+                                                            MaximumCharacters="12"
                                                             MinimumCharacters="6"
                                                             NameFill="Hotel Phone Number"
-                                                            MaximumCharacters="12" />
+                                                            ValidatesOnTargetUpdated="True" />
                                                     </Binding.ValidationRules>
                                                 </Binding>
                                             </TextBox.Text>
@@ -227,20 +227,18 @@
 
                                         <TextBox
                                             Width="260"
-                                            ToolTip="Hotel Price - Accept Price Only"
                                             Margin="10,0,0,0"
-                                            materialDesign:TextFieldAssist.PrefixText="VND"
                                             materialDesign:HintAssist.Hint="Price"
-                                            FontSize="18">
+                                            materialDesign:TextFieldAssist.PrefixText="VND"
+                                            FontSize="18"
+                                            ToolTip="Hotel Price - Accept Price Only">
                                             <TextBox.Text>
                                                 <Binding
                                                     Mode="TwoWay"
                                                     Path="Hotel_Price"
                                                     UpdateSourceTrigger="PropertyChanged">
                                                     <Binding.ValidationRules>
-                                                        <ruler:MoneyRuler
-                                                            ValidatesOnTargetUpdated="True"
-                                                            NameFill="Hotel Price" />
+                                                        <ruler:MoneyRuler NameFill="Hotel Price" ValidatesOnTargetUpdated="True" />
                                                     </Binding.ValidationRules>
                                                 </Binding>
                                             </TextBox.Text>
@@ -261,19 +259,17 @@
 
                                         <TextBox
                                             Width="260"
-                                            ToolTip="Hotel Email - Accept Email Type"
                                             Margin="8,0,0,0"
                                             materialDesign:HintAssist.Hint="Email"
-                                            FontSize="18">
+                                            FontSize="18"
+                                            ToolTip="Hotel Email - Accept Email Type">
                                             <TextBox.Text>
                                                 <Binding
                                                     Mode="TwoWay"
                                                     Path="Hotel_Email"
                                                     UpdateSourceTrigger="PropertyChanged">
                                                     <Binding.ValidationRules>
-                                                        <ruler:EmailRuler
-                                                            ValidatesOnTargetUpdated="True"
-                                                            NameFill="Hotel Email" />
+                                                        <ruler:EmailRuler NameFill="Hotel Email" ValidatesOnTargetUpdated="True" />
                                                     </Binding.ValidationRules>
                                                 </Binding>
                                             </TextBox.Text>
@@ -292,11 +288,11 @@
                                         <ComboBox
                                             Width="260"
                                             Margin="10,0,0,0"
-                                            ToolTip="Is Hotel has restaurant?"
                                             HorizontalAlignment="Left"
                                             materialDesign:HintAssist.Hint="Restaurant"
                                             FontSize="18"
-                                            Foreground="DimGray">
+                                            Foreground="DimGray"
+                                            ToolTip="Is Hotel has restaurant?">
                                             <ComboBoxItem Content="Yes" />
                                             <ComboBoxItem Content="No" IsSelected="True" />
                                             <ComboBox.Text>
@@ -306,9 +302,9 @@
                                                     UpdateSourceTrigger="PropertyChanged">
                                                     <Binding.ValidationRules>
                                                         <ruler:MiniMumCharacterRuler
-                                                            ValidatesOnTargetUpdated="True"
                                                             MinimumCharacters="0"
-                                                            NameFill="Hotel Restaurant" />
+                                                            NameFill="Hotel Restaurant"
+                                                            ValidatesOnTargetUpdated="True" />
                                                     </Binding.ValidationRules>
                                                 </Binding>
                                             </ComboBox.Text>
@@ -361,7 +357,7 @@
                         <Button
                             Width="200"
                             Height="60"
-                            Margin="360,14,20,2"
+                            Margin="360,14,20,12"
                             Command="{Binding AddHotelCommand}"
                             CommandParameter="{Binding ElementName=contentControlAdd}"
                             Content="Confirm"
@@ -371,7 +367,7 @@
                         <Button
                             Width="200"
                             Height="60"
-                            Margin="20,14,20,2"
+                            Margin="20,14,20,12"
                             Command="{Binding CancelCommand}"
                             CommandParameter="{Binding ElementName=contentControlAdd}"
                             Content="Cancel"
