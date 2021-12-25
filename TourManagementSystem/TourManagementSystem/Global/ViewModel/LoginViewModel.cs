@@ -14,27 +14,85 @@ namespace TourManagementSystem.Global.ViewModel
     public class LoginViewModel : BaseViewModel
     {
         private string _Username;
+
         public string Username
         { get => _Username; set { _Username = value; OnPropertyChanged("Username"); } }
 
         private string _UserPassword;
+
         public string UserPassword
-        { get => _UserPassword; set { _UserPassword = value; OnPropertyChanged(); } }
+        {
+            get => _UserPassword; set
+            {
+                _UserPassword = value;
+                OnPropertyChanged();
+                Properties.Settings.Default.UpdatePassword = UserPassword;
+                Properties.Settings.Default.Save();
+            }
+        }
 
         private bool _IsCheck;
+
         public bool IsCheck
         { get => _IsCheck; set { _IsCheck = value; OnPropertyChanged(); } }
 
         private Visibility _ProgressBarVisbility;
+
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
+        private Visibility _TextBoxVisibility;
+
+        public Visibility TextBoxVisibility
+        { get => _TextBoxVisibility; set { _TextBoxVisibility = value; OnPropertyChanged("TextBoxVisibility"); } }
+
+        private Visibility _PasswordBoxVisibility;
+
+        public Visibility PasswordBoxVisibility
+        { get => _PasswordBoxVisibility; set { _PasswordBoxVisibility = value; OnPropertyChanged("PasswordBoxVisibility"); } }
+
+        private string _PasswordVisibility;
+
+        public string PasswordVisibility
+        { get => _PasswordVisibility; set { _PasswordVisibility = value; OnPropertyChanged("PasswordVisibility"); } }
 
         public LoginViewModel()
         {
             Username = Properties.Settings.Default.Username;
             UserPassword = Properties.Settings.Default.Password;
             IsCheck = Properties.Settings.Default.IsCheck;
+            PasswordBoxVisibility = Visibility.Visible;
+            TextBoxVisibility = Visibility.Hidden;
+            PasswordVisibility = "EyeOff";
             ProgressBarVisbility = Visibility.Hidden;
+        }
+
+        private ICommand _VisibilityPasswordCommand;
+
+        public ICommand VisibilityPasswordCommand
+        {
+            get
+            {
+                if (_VisibilityPasswordCommand == null)
+                {
+                    _VisibilityPasswordCommand = new RelayCommand<Window>(null, p =>
+                    {
+                        if (PasswordVisibility.Equals("EyeOff"))
+                        {
+                            TextBoxVisibility = Visibility.Visible;
+                            PasswordBoxVisibility = Visibility.Hidden;
+                            PasswordVisibility = "Eye";
+                        }
+                        else
+                        {
+                            TextBoxVisibility = Visibility.Hidden;
+                            PasswordBoxVisibility = Visibility.Visible;
+                            PasswordVisibility = "EyeOff";
+                        }
+                    });
+                }
+                return _VisibilityPasswordCommand;
+            }
         }
 
         private ICommand _LoginCommand;

@@ -37,6 +37,7 @@ namespace TourManagementSystem.Global.Model
             Properties.Settings.Default.User_ID = user_id;
             Properties.Settings.Default.Username = username;
             Properties.Settings.Default.Password = password;
+            Properties.Settings.Default.UpdatePassword = "";
             Properties.Settings.Default.IsCheck = true;
             Properties.Settings.Default.Save();
         }
@@ -46,6 +47,7 @@ namespace TourManagementSystem.Global.Model
             Properties.Settings.Default.User_ID = user_id;
             Properties.Settings.Default.Username = "";
             Properties.Settings.Default.Password = "";
+            Properties.Settings.Default.UpdatePassword = "";
             Properties.Settings.Default.IsCheck = false;
             Properties.Settings.Default.Save();
         }
