@@ -13,36 +13,44 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class ShowPlaceViewModel : BaseViewModel
     {
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private PlaceModel _PlaceSelected;
+
         public PlaceModel PlaceSelected
         { get => _PlaceSelected; set { _PlaceSelected = value; OnPropertyChanged(); } }
 
         private Visibility _IsVisibility;
+
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private bool _IsEnable;
+
         public bool IsEnable
         { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
 
         #region Data Binding
 
         private int _Place_ID;
+
         public int Place_ID
         { get => _Place_ID; set { _Place_ID = value; OnPropertyChanged(); } }
 
         private string _Place_Name;
+
         public string Place_Name
         { get => _Place_Name; set { _Place_Name = value; OnPropertyChanged(); } }
 
         private string _Place_Nation;
+
         public string Place_Nation
         { get => _Place_Nation; set { _Place_Nation = value; OnPropertyChanged(); } }
 
         private int _Place_Location;
+
         public int Place_Location
         { get => _Place_Location; set { _Place_Location = value; OnPropertyChanged(); } }
 
@@ -141,22 +149,27 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<LocationModel> _LocationItems;
+
         public ObservableCollection<LocationModel> LocationItems
         { get => _LocationItems; set { _LocationItems = value; OnPropertyChanged("LocationItems"); } }
 
         private ObservableCollection<LocationModel> _Refresh_LocationItems;
+
         public ObservableCollection<LocationModel> Refresh_LocationItems
         { get => _Refresh_LocationItems; set { _Refresh_LocationItems = value; OnPropertyChanged("Refresh_LocationItems"); } }
 
         private LocationModel _LocationSelected;
+
         public LocationModel LocationSelected
         { get => _LocationSelected; set { _LocationSelected = value; OnPropertyChanged(); } }
 
         private ObservableCollection<ComboBoxModel> _CB_LocationList;
+
         public ObservableCollection<ComboBoxModel> CB_LocationList
         { get => _CB_LocationList; set { _CB_LocationList = value; OnPropertyChanged("CB_LocationList"); } }
 
         private ComboBoxModel _CB_LocationSelected;
+
         public ComboBoxModel CB_LocationSelected
         { get => _CB_LocationSelected; set { _CB_LocationSelected = value; OnPropertyChanged("CB_LocationSelected"); } }
 

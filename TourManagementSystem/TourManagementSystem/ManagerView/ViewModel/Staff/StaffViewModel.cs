@@ -14,26 +14,32 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class StaffViewModel : BaseViewModel
     {
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
         private Visibility _IsVisibility;
+
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private Visibility _ProgressBarVisbility;
+
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         private ObservableCollection<StaffModel> _StaffItems;
+
         public ObservableCollection<StaffModel> StaffItems
         { get => _StaffItems; set { _StaffItems = value; OnPropertyChanged("staffItems"); } }
 
         private ObservableCollection<StaffModel> _Refresh_StaffItems;
+
         public ObservableCollection<StaffModel> Refresh_StaffItems
         { get => _Refresh_StaffItems; set { _Refresh_StaffItems = value; OnPropertyChanged("staffItems"); } }
 
         private StaffModel _StaffSelected;
+
         public StaffModel StaffSelected
         { get => _StaffSelected; set { _StaffSelected = value; OnPropertyChanged("StaffSelected"); } }
 
@@ -47,10 +53,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<ComboBoxModel> _CB_StaffList;
+
         public ObservableCollection<ComboBoxModel> CB_StaffList
         { get => _CB_StaffList; set { _CB_StaffList = value; OnPropertyChanged("CB_StaffList"); } }
 
         private ComboBoxModel _CB_StaffSelected;
+
         public ComboBoxModel CB_StaffSelected
         { get => _CB_StaffSelected; set { _CB_StaffSelected = value; OnPropertyChanged("CB_StaffSelected"); } }
 

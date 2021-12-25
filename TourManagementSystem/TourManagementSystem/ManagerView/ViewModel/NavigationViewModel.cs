@@ -21,6 +21,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public ICollectionView SourceCollection => MenuItemsCollection.View;
 
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 

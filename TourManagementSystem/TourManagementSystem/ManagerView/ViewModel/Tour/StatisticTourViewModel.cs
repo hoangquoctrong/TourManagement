@@ -17,14 +17,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class StatisticTourViewModel : BaseViewModel
     {
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private Visibility _IsDirectorVisibility;
+
         public Visibility IsDirectorVisibility
         { get => _IsDirectorVisibility; set { _IsDirectorVisibility = value; OnPropertyChanged("IsDirectorVisibility"); } }
 
         private Visibility _ProgressBarVisbility;
+
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
@@ -74,30 +77,37 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Data Binding
 
         private bool _Checkbox_DisplayAll;
+
         public bool Checkbox_DisplayAll
         { get => _Checkbox_DisplayAll; set { _Checkbox_DisplayAll = value; OnPropertyChanged(); CheckBoxDisplay(); } }
 
         private bool _IsEnable;
+
         public bool IsEnable
         { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
 
         private DateTime _DateTimeNow = DateTime.Now;
+
         public DateTime DateTimeNow
         { get => _DateTimeNow; set { _DateTimeNow = value; OnPropertyChanged(); } }
 
         private DateTime _StartDate = DateTime.Now;
+
         public DateTime StartDate
         { get => _StartDate; set { _StartDate = value; OnPropertyChanged(); } }
 
         private DateTime _EndDate = DateTime.Now;
+
         public DateTime EndDate
         { get => _EndDate; set { _EndDate = value; OnPropertyChanged(); } }
 
         private ObservableCollection<TourStatisticModel> _TourItems;
+
         public ObservableCollection<TourStatisticModel> TourItems
         { get => _TourItems; set { _TourItems = value; OnPropertyChanged(); } }
 
         private ObservableCollection<TourStatisticModel> _Refresh_TourItems;
+
         public ObservableCollection<TourStatisticModel> Refresh_TourItems
         { get => _Refresh_TourItems; set { _Refresh_TourItems = value; OnPropertyChanged(); } }
 

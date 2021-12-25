@@ -16,51 +16,64 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class ShowTransportViewModel : BaseViewModel
     {
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private TransportModel _TransportSelected;
+
         public TransportModel TransportSelected
         { get => _TransportSelected; set { _TransportSelected = value; OnPropertyChanged(); } }
 
         private Visibility _IsVisibility;
+
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         #region Data Binding
 
         private int _Transport_ID;
+
         public int Transport_ID
         { get => _Transport_ID; set { _Transport_ID = value; OnPropertyChanged(); } }
+
         private string _Transport_Name;
+
         public string Transport_Name
         { get => _Transport_Name; set { _Transport_Name = value; OnPropertyChanged(); } }
 
         private int _Transport_Amount_Max;
+
         public int Transport_Amount_Max
         { get => _Transport_Amount_Max; set { _Transport_Amount_Max = value; OnPropertyChanged(); } }
 
         private string _Transport_Company;
+
         public string Transport_Company
         { get => _Transport_Company; set { _Transport_Company = value; OnPropertyChanged(); } }
 
         private string _Transport_Type;
+
         public string Transport_Type
         { get => _Transport_Type; set { _Transport_Type = value; OnPropertyChanged(); } }
 
         private string _Transport_Description;
+
         public string Transport_Description
         { get => _Transport_Description; set { _Transport_Description = value; OnPropertyChanged(); } }
 
         private string _Transport_String_Date;
+
         public string Transport_String_Date
         { get => _Transport_String_Date; set { _Transport_String_Date = value; OnPropertyChanged(); } }
 
         private DateTime _Transport_Date = DateTime.Now;
+
         public DateTime Transport_Date
         { get => _Transport_Date; set { _Transport_Date = value; OnPropertyChanged(); } }
 
         private bool _Transport_Is_Delete;
+
         public bool Transport_Is_Delete
         { get => _Transport_Is_Delete; set { _Transport_Is_Delete = value; OnPropertyChanged(); } }
 
@@ -108,6 +121,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private double _Transport_Price;
+
         public double Transport_Price
         { get => _Transport_Price; set { _Transport_Price = value; OnPropertyChanged(); } }
 
@@ -285,10 +299,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public ICollectionView TourTransportDetailCollection => TourTransportDetailItemsCollection.View;
 
         private ObservableCollection<ComboBoxModel> _CB_TourTransportDetailList;
+
         public ObservableCollection<ComboBoxModel> CB_TourTransportDetailList
         { get => _CB_TourTransportDetailList; set { _CB_TourTransportDetailList = value; OnPropertyChanged("CB_HistoryList"); } }
 
         private ComboBoxModel _CB_TourTransportDetailSelected;
+
         public ComboBoxModel CB_TourTransportDetailSelected
         { get => _CB_TourTransportDetailSelected; set { _CB_TourTransportDetailSelected = value; OnPropertyChanged("CB_HistorySelected"); } }
 

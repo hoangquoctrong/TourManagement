@@ -16,14 +16,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class StatisticStaffViewModel : BaseViewModel
     {
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private Visibility _IsVisibility;
+
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private Visibility _ProgressBarVisbility;
+
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
@@ -90,26 +93,32 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private bool _IsEnable;
+
         public bool IsEnable
         { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
 
         private DateTime _DateTimeNow = DateTime.Now;
+
         public DateTime DateTimeNow
         { get => _DateTimeNow; set { _DateTimeNow = value; OnPropertyChanged(); } }
 
         private DateTime _StartDate = DateTime.Now;
+
         public DateTime StartDate
         { get => _StartDate; set { _StartDate = value; OnPropertyChanged(); } }
 
         private DateTime _EndDate = DateTime.Now;
+
         public DateTime EndDate
         { get => _EndDate; set { _EndDate = value; OnPropertyChanged(); } }
 
         private ObservableCollection<StaffStatisticModel> _StaffItems;
+
         public ObservableCollection<StaffStatisticModel> StaffItems
         { get => _StaffItems; set { _StaffItems = value; OnPropertyChanged(); } }
 
         private ObservableCollection<StaffStatisticModel> _Refresh_StaffItems;
+
         public ObservableCollection<StaffStatisticModel> Refresh_StaffItems
         { get => _Refresh_StaffItems; set { _Refresh_StaffItems = value; OnPropertyChanged(); } }
 

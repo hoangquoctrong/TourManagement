@@ -5,6 +5,7 @@ namespace TourManagementSystem.ManagerView.Model
     public class ComboBoxMissionModel : ComboBoxModel
     {
         private MissionModel _MissionItem;
+
         public MissionModel MissionItem
         { get => _MissionItem; set { _MissionItem = value; OnPropertyChanged(); } }
 

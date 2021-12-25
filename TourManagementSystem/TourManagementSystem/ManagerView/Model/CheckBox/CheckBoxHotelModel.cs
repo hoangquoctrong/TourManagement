@@ -5,9 +5,12 @@ namespace TourManagementSystem.ManagerView.Model
     public class CheckBoxHotelModel : CheckBoxModel
     {
         private double _Hotel_Price;
+
         public double Hotel_Price
         { get => _Hotel_Price; set { _Hotel_Price = value; OnPropertyChanged(); } }
+
         private HotelModel _HotelSelect;
+
         public HotelModel HotelSelect
         { get => _HotelSelect; set { _HotelSelect = value; OnPropertyChanged(); } }
 

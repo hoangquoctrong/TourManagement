@@ -13,6 +13,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class DashboardViewModel : BaseViewModel
     {
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
@@ -38,10 +39,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<ComboBoxModel> _CB_RecordList;
+
         public ObservableCollection<ComboBoxModel> CB_RecordList
         { get => _CB_RecordList; set { _CB_RecordList = value; OnPropertyChanged(); } }
 
         private ComboBoxModel _CB_RecordSelected;
+
         public ComboBoxModel CB_RecordSelected
         { get => _CB_RecordSelected; set { _CB_RecordSelected = value; OnPropertyChanged(); } }
 
@@ -72,30 +75,37 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private bool _IsEnable;
+
         public bool IsEnable
         { get => _IsEnable; set { _IsEnable = value; OnPropertyChanged(); } }
 
         private DateTime _EndDate = DateTime.Now;
+
         public DateTime EndDate
         { get => _EndDate; set { _EndDate = value; OnPropertyChanged(); } }
 
         private BindableCollection<RecordModel> _RecordList;
+
         public BindableCollection<RecordModel> RecordList
         { get => _RecordList; set { _RecordList = value; OnPropertyChanged(); } }
 
         private BindableCollection<RecordModel> _RefreshRecordList;
+
         public BindableCollection<RecordModel> RefreshRecordList
         { get => _RefreshRecordList; set { _RefreshRecordList = value; OnPropertyChanged(); } }
 
         private int _Record_Amount;
+
         public int Record_Amount
         { get => _Record_Amount; set { _Record_Amount = value; OnPropertyChanged(); } }
 
         private Visibility _ProgressBarVisbility;
+
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         private Visibility _ItemVisbility;
+
         public Visibility ItemVisbility
         { get => _ItemVisbility; set { _ItemVisbility = value; OnPropertyChanged("ItemVisbility"); } }
 

@@ -9,6 +9,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class InformationViewModel : BaseViewModel
     {
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
@@ -19,10 +20,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private string _TextMail;
+
         public string TextMail
         { get => _TextMail; set { _TextMail = value; OnPropertyChanged(); } }
 
         private Visibility _ProgressBarVisbility;
+
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 

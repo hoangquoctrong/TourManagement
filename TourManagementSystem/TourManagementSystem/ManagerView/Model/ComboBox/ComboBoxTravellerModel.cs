@@ -5,6 +5,7 @@ namespace TourManagementSystem.ManagerView.Model
     public class ComboBoxTravellerModel : ComboBoxModel
     {
         private TravellerModel _TravellerItem;
+
         public TravellerModel TravellerItem
         { get => _TravellerItem; set { _TravellerItem = value; OnPropertyChanged(); } }
 

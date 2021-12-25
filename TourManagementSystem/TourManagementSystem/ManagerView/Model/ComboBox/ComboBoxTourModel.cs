@@ -15,6 +15,7 @@ namespace TourManagementSystem.ManagerView.Model
         }
 
         private TourModel _TourItem;
+
         public TourModel TourItem
         { get => _TourItem; set { _TourItem = value; OnPropertyChanged(); } }
     }

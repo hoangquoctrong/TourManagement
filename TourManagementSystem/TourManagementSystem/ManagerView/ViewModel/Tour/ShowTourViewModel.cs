@@ -19,64 +19,79 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class ShowTourViewModel : BaseViewModel
     {
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private Visibility _IsVisibility;
+
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private Visibility _IsDirectorVisibility;
+
         public Visibility IsDirectorVisibility
         { get => _IsDirectorVisibility; set { _IsDirectorVisibility = value; OnPropertyChanged("IsDirectorVisibility"); } }
 
         private Visibility _ProgressBarVisbility;
+
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         private TourModel _TourSelected;
+
         public TourModel TourSelected
         { get => _TourSelected; set { _TourSelected = value; OnPropertyChanged("TourSelected"); } }
 
         #region Data Binding
 
         private int _Tour_ID;
+
         public int Tour_ID
         { get => _Tour_ID; set { _Tour_ID = value; OnPropertyChanged(); } }
 
         private string _Tour_Name;
+
         public string Tour_Name
         { get => _Tour_Name; set { _Tour_Name = value; OnPropertyChanged(); } }
 
         private string _Tour_Type;
+
         public string Tour_Type
         { get => _Tour_Type; set { _Tour_Type = value; OnPropertyChanged(); } }
 
         private string _Tour_Description;
+
         public string Tour_Description
         { get => _Tour_Description; set { _Tour_Description = value; OnPropertyChanged(); } }
 
         private bool _Is_Exist;
+
         public bool Is_Exist
         { get => _Is_Exist; set { _Is_Exist = value; OnPropertyChanged(); } }
 
         private double _Tour_Star;
+
         public double Tour_Star
         { get => _Tour_Star; set { _Tour_Star = value; OnPropertyChanged(); } }
 
         private BindableCollection<CheckBoxModel> _PlaceList;
+
         public BindableCollection<CheckBoxModel> PlaceList
         { get => _PlaceList; set { _PlaceList = value; OnPropertyChanged(); } }
 
         private BindableCollection<PlaceModel> _PlaceSelectedList;
+
         public BindableCollection<PlaceModel> PlaceSelectedList
         { get => _PlaceSelectedList; set { _PlaceSelectedList = value; OnPropertyChanged(); } }
 
         private BindableCollection<PlaceModel> _RefreshPlaceSelectedList;
+
         public BindableCollection<PlaceModel> RefreshPlaceSelectedList
         { get => _RefreshPlaceSelectedList; set { _RefreshPlaceSelectedList = value; OnPropertyChanged(); } }
 
         private BindableCollection<CheckBoxModel> _RefreshPlaceList;
+
         public BindableCollection<CheckBoxModel> RefreshPlaceList
         { get => _RefreshPlaceList; set { _RefreshPlaceList = value; OnPropertyChanged(); } }
 
@@ -290,56 +305,69 @@ namespace TourManagementSystem.ManagerView.ViewModel
         #region Image Binding
 
         private ObservableCollection<TourImageModel> _ImageByteSources;
+
         public ObservableCollection<TourImageModel> ImageByteSource
         { get => _ImageByteSources; set { _ImageByteSources = value; OnPropertyChanged(); } }
 
         #region Image Binding
 
         private byte[] _Tour_Image_Byte_Source_1;
+
         public byte[] Tour_Image_Byte_Source_1
         { get => _Tour_Image_Byte_Source_1; set { _Tour_Image_Byte_Source_1 = value; OnPropertyChanged(); } }
 
         private BitmapImage _Tour_Image_Source_1;
+
         public BitmapImage Tour_Image_Source_1
         { get => _Tour_Image_Source_1; set { _Tour_Image_Source_1 = value; OnPropertyChanged(); } }
 
         private byte[] _Tour_Image_Byte_Source_2;
+
         public byte[] Tour_Image_Byte_Source_2
         { get => _Tour_Image_Byte_Source_2; set { _Tour_Image_Byte_Source_2 = value; OnPropertyChanged(); } }
 
         private BitmapImage _Tour_Image_Source_2;
+
         public BitmapImage Tour_Image_Source_2
         { get => _Tour_Image_Source_2; set { _Tour_Image_Source_2 = value; OnPropertyChanged(); } }
 
         private byte[] _Tour_Image_Byte_Source_3;
+
         public byte[] Tour_Image_Byte_Source_3
         { get => _Tour_Image_Byte_Source_3; set { _Tour_Image_Byte_Source_3 = value; OnPropertyChanged(); } }
 
         private BitmapImage _Tour_Image_Source_3;
+
         public BitmapImage Tour_Image_Source_3
         { get => _Tour_Image_Source_3; set { _Tour_Image_Source_3 = value; OnPropertyChanged(); } }
 
         private byte[] _Tour_Image_Byte_Source_4;
+
         public byte[] Tour_Image_Byte_Source_4
         { get => _Tour_Image_Byte_Source_4; set { _Tour_Image_Byte_Source_4 = value; OnPropertyChanged(); } }
 
         private BitmapImage _Tour_Image_Source_4;
+
         public BitmapImage Tour_Image_Source_4
         { get => _Tour_Image_Source_4; set { _Tour_Image_Source_4 = value; OnPropertyChanged(); } }
 
         private byte[] _Tour_Image_Byte_Source_5;
+
         public byte[] Tour_Image_Byte_Source_5
         { get => _Tour_Image_Byte_Source_5; set { _Tour_Image_Byte_Source_5 = value; OnPropertyChanged(); } }
 
         private BitmapImage _Tour_Image_Source_5;
+
         public BitmapImage Tour_Image_Source_5
         { get => _Tour_Image_Source_5; set { _Tour_Image_Source_5 = value; OnPropertyChanged(); } }
 
         private byte[] _Tour_Image_Byte_Source_6;
+
         public byte[] Tour_Image_Byte_Source_6
         { get => _Tour_Image_Byte_Source_6; set { _Tour_Image_Byte_Source_6 = value; OnPropertyChanged(); } }
 
         private BitmapImage _Tour_Image_Source_6;
+
         public BitmapImage Tour_Image_Source_6
         { get => _Tour_Image_Source_6; set { _Tour_Image_Source_6 = value; OnPropertyChanged(); } }
 
@@ -754,22 +782,27 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<TourInformationModel> _TourInformationItems;
+
         public ObservableCollection<TourInformationModel> TourInformationItems
         { get => _TourInformationItems; set { _TourInformationItems = value; OnPropertyChanged("TourInformationItems"); } }
 
         private ObservableCollection<TourInformationModel> _Refresh_TourInformationItems;
+
         public ObservableCollection<TourInformationModel> Refresh_TourInformationItems
         { get => _Refresh_TourInformationItems; set { _Refresh_TourInformationItems = value; OnPropertyChanged("Refresh_TourInformationItems"); } }
 
         private TourInformationModel _TourInformationSelected;
+
         public TourInformationModel TourInformationSelected
         { get => _TourInformationSelected; set { _TourInformationSelected = value; OnPropertyChanged(); } }
 
         private ObservableCollection<ComboBoxModel> _CB_TourInformationList;
+
         public ObservableCollection<ComboBoxModel> CB_TourInformationList
         { get => _CB_TourInformationList; set { _CB_TourInformationList = value; OnPropertyChanged("CB_TourInformationList"); } }
 
         private ComboBoxModel _CB_TourInformationSelected;
+
         public ComboBoxModel CB_TourInformationSelected
         { get => _CB_TourInformationSelected; set { _CB_TourInformationSelected = value; OnPropertyChanged("CB_TourInformationSelected"); } }
 

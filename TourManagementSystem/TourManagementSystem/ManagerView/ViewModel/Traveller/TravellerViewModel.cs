@@ -13,14 +13,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class TravellerViewModel : BaseViewModel
     {
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private Visibility _IsVisibility;
+
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private Visibility _ProgressBarVisbility;
+
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
@@ -42,22 +45,27 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<TravellerModel> _TravellerItems = new ObservableCollection<TravellerModel>();
+
         public ObservableCollection<TravellerModel> TravellerItems
         { get => _TravellerItems; set { _TravellerItems = value; OnPropertyChanged("TravellerItems"); } }
 
         private ObservableCollection<TravellerModel> _Refresh_TravellerItems = new ObservableCollection<TravellerModel>();
+
         public ObservableCollection<TravellerModel> Refresh_TravellerItems
         { get => _Refresh_TravellerItems; set { _Refresh_TravellerItems = value; OnPropertyChanged("Refresh_TravellerItems"); } }
 
         private TravellerModel _TravellerSelected;
+
         public TravellerModel TravellerSelected
         { get => _TravellerSelected; set { _TravellerSelected = value; OnPropertyChanged("TravellerSelected"); } }
 
         private ObservableCollection<ComboBoxModel> _CB_TravellerList;
+
         public ObservableCollection<ComboBoxModel> CB_TravellerList
         { get => _CB_TravellerList; set { _CB_TravellerList = value; OnPropertyChanged("CB_TravellerList"); } }
 
         private ComboBoxModel _CB_TravellerSelected;
+
         public ComboBoxModel CB_TravellerSelected
         { get => _CB_TravellerSelected; set { _CB_TravellerSelected = value; OnPropertyChanged("CB_TravellerSelected"); } }
 

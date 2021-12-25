@@ -13,26 +13,32 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class HotelViewModel : BaseViewModel
     {
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
         private Visibility _ProgressBarVisbility;
+
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         private Visibility _IsVisibility;
+
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private ObservableCollection<HotelModel> _HotelItems;
+
         public ObservableCollection<HotelModel> HotelItems
         { get => _HotelItems; set { _HotelItems = value; OnPropertyChanged("HotelItems"); } }
 
         private ObservableCollection<HotelModel> _Refresh_HotelItems;
+
         public ObservableCollection<HotelModel> Refresh_HotelItems
         { get => _Refresh_HotelItems; set { _Refresh_HotelItems = value; OnPropertyChanged("Refresh_HotelItems"); } }
 
         private HotelModel _HotelSelected;
+
         public HotelModel HotelSelected
         { get => _HotelSelected; set { _HotelSelected = value; OnPropertyChanged("HotelSelected"); } }
 
@@ -56,10 +62,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<ComboBoxModel> _CB_HotelList;
+
         public ObservableCollection<ComboBoxModel> CB_HotelList
         { get => _CB_HotelList; set { _CB_HotelList = value; OnPropertyChanged("CB_HotelList"); } }
 
         private ComboBoxModel _CB_HotelSelected;
+
         public ComboBoxModel CB_HotelSelected
         { get => _CB_HotelSelected; set { _CB_HotelSelected = value; OnPropertyChanged("CB_HotelSelected"); } }
 

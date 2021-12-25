@@ -10,20 +10,24 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class AddPlaceViewModel : BaseViewModel
     {
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         #region Data Binding
 
         private string _Place_Name;
+
         public string Place_Name
         { get => _Place_Name; set { _Place_Name = value; OnPropertyChanged(); } }
 
         private string _Place_Nation;
+
         public string Place_Nation
         { get => _Place_Nation; set { _Place_Nation = value; OnPropertyChanged(); } }
 
         private int _Place_Location;
+
         public int Place_Location
         { get => _Place_Location; set { _Place_Location = value; OnPropertyChanged(); } }
 

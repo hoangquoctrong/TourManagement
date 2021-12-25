@@ -13,26 +13,32 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class TransportViewModel : BaseViewModel
     {
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
         private Visibility _ProgressBarVisbility;
+
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         private Visibility _IsVisibility;
+
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private ObservableCollection<TransportModel> _TransportItems;
+
         public ObservableCollection<TransportModel> TransportItems
         { get => _TransportItems; set { _TransportItems = value; OnPropertyChanged("TransportItems"); } }
 
         private ObservableCollection<TransportModel> _Refresh_TransportItems;
+
         public ObservableCollection<TransportModel> Refresh_TransportItems
         { get => _Refresh_TransportItems; set { _Refresh_TransportItems = value; OnPropertyChanged("Refresh_TransportItems"); } }
 
         private TransportModel _TransportSelected;
+
         public TransportModel TransportSelected
         { get => _TransportSelected; set { _TransportSelected = value; OnPropertyChanged("TransportSelected"); } }
 
@@ -56,10 +62,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<ComboBoxModel> _CB_TransportList;
+
         public ObservableCollection<ComboBoxModel> CB_TransportList
         { get => _CB_TransportList; set { _CB_TransportList = value; OnPropertyChanged("CB_TransportList"); } }
 
         private ComboBoxModel _CB_TransportSelected;
+
         public ComboBoxModel CB_TransportSelected
         { get => _CB_TransportSelected; set { _CB_TransportSelected = value; OnPropertyChanged("CB_TransportSelected"); } }
 

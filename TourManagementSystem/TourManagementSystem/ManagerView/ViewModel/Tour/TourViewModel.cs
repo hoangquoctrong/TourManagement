@@ -13,30 +13,37 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class TourViewModel : BaseViewModel
     {
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
         private Visibility _IsVisibility;
+
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private ObservableCollection<TourModel> _TourItems;
+
         public ObservableCollection<TourModel> TourItems
         { get => _TourItems; set { _TourItems = value; OnPropertyChanged("TourItems"); } }
 
         private ObservableCollection<TourModel> _Refresh_TourItems;
+
         public ObservableCollection<TourModel> Refresh_TourItems
         { get => _Refresh_TourItems; set { _Refresh_TourItems = value; OnPropertyChanged("Refresh_TourItems"); } }
 
         private TourModel _TourSelected;
+
         public TourModel TourSelected
         { get => _TourSelected; set { _TourSelected = value; OnPropertyChanged("TourSelected"); } }
 
         private Visibility _ProgressBarVisbility;
+
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         private Visibility _IsDirectorVisibility;
+
         public Visibility IsDirectorVisibility
         { get => _IsDirectorVisibility; set { _IsDirectorVisibility = value; OnPropertyChanged("IsDirectorVisibility"); } }
 
@@ -59,10 +66,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<ComboBoxModel> _CB_TourList;
+
         public ObservableCollection<ComboBoxModel> CB_TourList
         { get => _CB_TourList; set { _CB_TourList = value; OnPropertyChanged("CB_TourList"); } }
 
         private ComboBoxModel _CB_TourSelected;
+
         public ComboBoxModel CB_TourSelected
         { get => _CB_TourSelected; set { _CB_TourSelected = value; OnPropertyChanged("CB_TourSelected"); } }
 

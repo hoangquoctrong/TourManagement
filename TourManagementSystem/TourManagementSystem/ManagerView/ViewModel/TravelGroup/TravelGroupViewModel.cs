@@ -13,26 +13,32 @@ namespace TourManagementSystem.ManagerView.ViewModel
     public class TravelGroupViewModel : BaseViewModel
     {
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged(); } }
 
         private Visibility _IsVisibility;
+
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
         private Visibility _ProgressBarVisbility;
+
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
         private ObservableCollection<TravelGroupModel> _TravelGroupItems;
+
         public ObservableCollection<TravelGroupModel> TravelGroupItems
         { get => _TravelGroupItems; set { _TravelGroupItems = value; OnPropertyChanged("TravelGroupItems"); } }
 
         private ObservableCollection<TravelGroupModel> _Refresh_TravelGroupItems;
+
         public ObservableCollection<TravelGroupModel> Refresh_TravelGroupItems
         { get => _Refresh_TravelGroupItems; set { _Refresh_TravelGroupItems = value; OnPropertyChanged("Refresh_TravelGroupItems"); } }
 
         private TravelGroupModel _TravelGroupSelected;
+
         public TravelGroupModel TravelGroupSelected
         { get => _TravelGroupSelected; set { _TravelGroupSelected = value; OnPropertyChanged("TravelGroupSelected"); } }
 
@@ -66,10 +72,12 @@ namespace TourManagementSystem.ManagerView.ViewModel
         }
 
         private ObservableCollection<ComboBoxModel> _CB_TravelGroupList;
+
         public ObservableCollection<ComboBoxModel> CB_TravelGroupList
         { get => _CB_TravelGroupList; set { _CB_TravelGroupList = value; OnPropertyChanged("CB_TourList"); } }
 
         private ComboBoxModel _CB_TravelGroupSelected;
+
         public ComboBoxModel CB_TravelGroupSelected
         { get => _CB_TravelGroupSelected; set { _CB_TravelGroupSelected = value; OnPropertyChanged("CB_TourSelected"); } }
 

@@ -23,6 +23,7 @@ namespace TourManagementSystem.Global.Model
          * checkbox name
          */
         private string _CB_Name;
+
         public string CB_Name
         { get => _CB_Name; set { _CB_Name = value; OnPropertyChanged(); } }
 
@@ -30,6 +31,7 @@ namespace TourManagementSystem.Global.Model
          * checkbox sub name
          */
         private string _CB_Sub_Name;
+
         public string CB_Sub_Name
         { get => _CB_Sub_Name; set { _CB_Sub_Name = value; OnPropertyChanged(); } }
 
@@ -37,6 +39,7 @@ namespace TourManagementSystem.Global.Model
          * ID checkbox
          */
         private int _CB_ID;
+
         public int CB_ID
         { get => _CB_ID; set { _CB_ID = value; OnPropertyChanged(); } }
 

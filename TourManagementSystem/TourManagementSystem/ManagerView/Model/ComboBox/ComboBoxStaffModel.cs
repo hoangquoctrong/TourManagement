@@ -5,6 +5,7 @@ namespace TourManagementSystem.ManagerView.Model
     public class ComboBoxStaffModel : ComboBoxModel
     {
         private StaffModel _StaffItem;
+
         public StaffModel StaffItem
         { get => _StaffItem; set { _StaffItem = value; OnPropertyChanged(); } }
 

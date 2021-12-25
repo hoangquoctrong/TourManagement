@@ -510,6 +510,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         { get => _ServicePrice; set { _ServicePrice = value; OnPropertyChanged(); } }
 
         private double _PriceDefault;
+
         public double PriceDefault
         { get => _PriceDefault; set { _PriceDefault = value; OnPropertyChanged(); } }
 

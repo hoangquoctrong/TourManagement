@@ -23,14 +23,17 @@ namespace TourManagementSystem.EmployeeView.ViewModel
         public ICollectionView SourceCollection => MenuItemsCollection.View;
 
         private int _User_ID;
+
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
         private int _User_Role;
+
         public int User_Role
         { get => _User_Role; set { _User_Role = value; OnPropertyChanged("User_Role"); } }
 
         private string _TypeText;
+
         public string TypeText
         { get => _TypeText; set { _TypeText = value; OnPropertyChanged("TypeText"); } }
 
