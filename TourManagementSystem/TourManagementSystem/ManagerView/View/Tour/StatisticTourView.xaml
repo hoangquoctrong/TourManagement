@@ -188,7 +188,7 @@
                                 Command="{Binding FilterCommand}"
                                 Content="Filter"
                                 Foreground="#1885F2"
-                                Style="{StaticResource ResourceKey=ConfirmButton}" />
+                                Style="{StaticResource ResourceKey=AddButton}" />
                         </StackPanel>
 
                         <DataGrid

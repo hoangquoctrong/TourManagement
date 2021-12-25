@@ -180,12 +180,12 @@
 
                         <Button
                             Width="200"
-                            Height="60"
+                            Height="50"
                             Margin="60,10,20,10"
                             Command="{Binding FilterCommand}"
                             Content="Filter"
                             Foreground="#1885F2"
-                            Style="{StaticResource ResourceKey=ConfirmButton}" />
+                            Style="{StaticResource ResourceKey=AddButton}" />
                     </StackPanel>
 
                     <Separator

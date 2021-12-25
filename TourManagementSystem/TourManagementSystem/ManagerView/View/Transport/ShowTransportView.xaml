@@ -564,7 +564,7 @@
                                     <DataGrid
                                         Grid.Row="1"
                                         Width="1100"
-                                        Height="360"
+                                        Height="380"
                                         Margin="20"
                                         VerticalAlignment="Top"
                                         materialDesign:DataGridAssist.CellPadding="12 8 0 8"

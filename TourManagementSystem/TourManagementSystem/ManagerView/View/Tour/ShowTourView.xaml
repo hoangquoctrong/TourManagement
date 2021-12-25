@@ -735,7 +735,7 @@
                                         <Button
                                             Grid.Column="2"
                                             Width="240"
-                                            Height="60"
+                                            Height="50"
                                             Margin="160,0"
                                             Command="{Binding AddTourInformationCommand}"
                                             CommandParameter="{Binding ElementName=contentControlDisplay}"

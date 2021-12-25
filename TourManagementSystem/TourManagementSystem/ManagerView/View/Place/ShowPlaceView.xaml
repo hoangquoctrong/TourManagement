@@ -341,7 +341,7 @@
                                     <Button
                                         Grid.Column="2"
                                         Width="200"
-                                        Height="60"
+                                        Height="50"
                                         Command="{Binding AddLocationCommand}"
                                         CommandParameter="{Binding ElementName=contentControlDisplay}"
                                         Content="Add New Location"
