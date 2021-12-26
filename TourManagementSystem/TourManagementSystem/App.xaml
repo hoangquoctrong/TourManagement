@@ -23,7 +23,6 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Menu.xaml" />
                 <ResourceDictionary Source="Style.xaml" />
                 <ResourceDictionary Source="ManagerView/DataTemplate.xaml" />
-                <ResourceDictionary Source="EmployeeView/DataTemplateEmployee.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

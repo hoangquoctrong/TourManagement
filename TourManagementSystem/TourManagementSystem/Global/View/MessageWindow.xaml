@@ -11,6 +11,7 @@
     Height="230"
     AllowsTransparency="True"
     Background="Transparent"
+    Icon="/Resources/Images/logo_icon.ico"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
@@ -58,7 +59,7 @@
                 </TextBlock>
             </Border>
             <Grid Grid.Row="1">
-                <Grid Margin="20 20 20 0">
+                <Grid Margin="20,20,20,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="auto" />
@@ -71,14 +72,14 @@
                                 <materialDesign:TransitionEffect Kind="SlideInFromBottom" />
                             </materialDesign:TransitioningContent.OpeningEffects>
                             <TextBlock
-                                Height="auto"
                                 x:Name="txtMessage"
+                                Height="auto"
                                 Margin="5"
-                                TextWrapping="Wrap"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 FontSize="18"
-                                Foreground="Black">
+                                Foreground="Black"
+                                TextWrapping="Wrap">
                                 Message Title
                             </TextBlock>
                         </materialDesign:TransitioningContent>

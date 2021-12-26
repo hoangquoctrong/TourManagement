@@ -12,6 +12,7 @@
     Height="780"
     AllowsTransparency="True"
     Background="Transparent"
+    Icon="/Resources/Images/logo_icon.ico"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"

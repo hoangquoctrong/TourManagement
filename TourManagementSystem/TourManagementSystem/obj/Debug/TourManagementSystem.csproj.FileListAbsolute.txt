@@ -136,11 +136,7 @@ D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\Mat
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\Microsoft.Expression.Interactions.xml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\System.Windows.Interactivity.xml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Style.baml
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\EmployeeView\View\EAccountView.g.cs
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\EmployeeView\View\EDashboardView.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\EmployeeView\View\EmployeeWindow.g.cs
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\EmployeeView\View\ETourView.g.cs
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\EmployeeView\View\ETravelGroupView.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\View\ForgetPasswordWindow.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\View\LoginWindow.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\View\MessageWindow.g.cs
@@ -178,12 +174,7 @@ D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Gen
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem_MarkupCompile.cache
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem_MarkupCompile.lref
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\App.baml
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\EmployeeView\DataTemplateEmployee.baml
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\EmployeeView\View\EAccountView.baml
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\EmployeeView\View\EDashboardView.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\EmployeeView\View\EmployeeWindow.baml
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\EmployeeView\View\ETourView.baml
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\EmployeeView\View\ETravelGroupView.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\View\ForgetPasswordWindow.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\View\LoginWindow.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Global\View\MessageWindow.baml

@@ -119,25 +119,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="EmployeeView\Model\DatabaseHandleModel.cs" />
-    <Compile Include="EmployeeView\ViewModel\EAccountViewModel.cs" />
-    <Compile Include="EmployeeView\ViewModel\EDashboardViewModel.cs" />
     <Compile Include="EmployeeView\ViewModel\ENavigationViewModel.cs" />
-    <Compile Include="EmployeeView\ViewModel\ETourViewModel.cs" />
-    <Compile Include="EmployeeView\ViewModel\ETravelGroupViewModel.cs" />
-    <Compile Include="EmployeeView\View\EAccountView.xaml.cs">
-      <DependentUpon>EAccountView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EmployeeView\View\EDashboardView.xaml.cs">
-      <DependentUpon>EDashboardView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="EmployeeView\View\EmployeeWindow.xaml.cs">
       <DependentUpon>EmployeeWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EmployeeView\View\ETourView.xaml.cs">
-      <DependentUpon>ETourView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EmployeeView\View\ETravelGroupView.xaml.cs">
-      <DependentUpon>ETravelGroupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Global\Model\CheckBoxModel.cs" />
     <Compile Include="Global\Model\ComboBoxModel.cs" />
@@ -303,27 +287,7 @@
     <Compile Include="TempItem.xaml.cs">
       <DependentUpon>TempItem.xaml</DependentUpon>
     </Compile>
-    <Page Include="EmployeeView\DataTemplateEmployee.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EmployeeView\View\EAccountView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EmployeeView\View\EDashboardView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="EmployeeView\View\EmployeeWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EmployeeView\View\ETourView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EmployeeView\View\ETravelGroupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

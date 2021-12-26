@@ -37,9 +37,15 @@ namespace TourManagementSystem.EmployeeView.ViewModel
         public string TypeText
         { get => _TypeText; set { _TypeText = value; OnPropertyChanged("TypeText"); } }
 
+        private string _TitleText;
+
+        public string TitleText
+        { get => _TitleText; set { _TitleText = value; OnPropertyChanged("TitleText"); } }
+
         public ENavigationViewModel()
         {
             User_ID = Properties.Settings.Default.User_ID;
+            TitleText = SetTitleText(User_ID);
             TypeText = SetTypeText(User_ID);
 
             // ObservableCollection represents a dynamic data collection that provides notifications when items
@@ -98,6 +104,23 @@ namespace TourManagementSystem.EmployeeView.ViewModel
 
                 default:
                     return string.Format("");
+            }
+        }
+
+        private string SetTitleText(int user_id)
+        {
+            switch (DatabaseHandleModel.IsTypeAccount(user_id))
+            {
+                case 1:
+                    User_Role = 1;
+                    return string.Format("Staff Window");
+
+                case -1:
+                    User_Role = -1;
+                    return string.Format("Director Window");
+
+                default:
+                    return string.Format("Error Window");
             }
         }
 
