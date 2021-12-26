@@ -221,9 +221,6 @@ D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Man
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Traveller\AddTravellerView.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Traveller\ShowTravellerView.baml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Traveller\TravellerView.baml
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\LiveCharts.dll
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\LiveCharts.pdb
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\LiveCharts.xml
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Others\InformationView.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Others\InformationView.baml
 D:\Study\HUONGDOITUONG\App\TourManagementSystem\TourManagementSystem\bin\Debug\TourManagementSystem.exe.config
