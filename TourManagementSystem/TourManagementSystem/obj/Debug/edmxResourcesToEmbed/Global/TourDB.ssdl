@@ -28,6 +28,7 @@
     <Property Name="TOUR_TYPE" Type="varchar" MaxLength="255" />
     <Property Name="TOUR_IS_EXIST" Type="varchar" MaxLength="255" />
     <Property Name="TOUR_STAR" Type="float" />
+    <Property Name="TOUR_MAIN_IMAGE" Type="image" />
   </EntityType>
   <EntityType Name="TOUR_ACCOUNT">
     <Key>
@@ -77,7 +78,7 @@
       <PropertyRef Name="TOUR_IMAGE_ID" />
     </Key>
     <Property Name="TOUR_IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TOUR_IMAGE" Type="image" />
+    <Property Name="TOUR_IMAGE_BYTE" Type="image" />
     <Property Name="TOUR_ID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TOUR_INFORMATION">
@@ -570,7 +571,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__TRAVELLER__TRAVE__07C12930">
+  <Association Name="FK__TRAVELLER__TRAVE__10566F31">
+    <End Role="TRAVELLER" Type="Self.TRAVELLER" Multiplicity="1" />
+    <End Role="TRAVELLER_ACCOUNT" Type="Self.TRAVELLER_ACCOUNT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRAVELLER">
+        <PropertyRef Name="TRAVELLER_ID" />
+      </Principal>
+      <Dependent Role="TRAVELLER_ACCOUNT">
+        <PropertyRef Name="TRAVELLER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TRAVELLER__TRAVE__32767D0B">
     <End Role="TRAVEL_GROUP" Type="Self.TRAVEL_GROUP" Multiplicity="1" />
     <End Role="TRAVELLER_DETAIL" Type="Self.TRAVELLER_DETAIL" Multiplicity="*" />
     <ReferentialConstraint>
@@ -582,7 +595,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__TRAVELLER__TRAVE__08B54D69">
+  <Association Name="FK__TRAVELLER__TRAVE__336AA144">
     <End Role="TRAVELLER" Type="Self.TRAVELLER" Multiplicity="1" />
     <End Role="TRAVELLER_DETAIL" Type="Self.TRAVELLER_DETAIL" Multiplicity="*" />
     <ReferentialConstraint>
@@ -590,18 +603,6 @@
         <PropertyRef Name="TRAVELLER_ID" />
       </Principal>
       <Dependent Role="TRAVELLER_DETAIL">
-        <PropertyRef Name="TRAVELLER_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__TRAVELLER__TRAVE__10566F31">
-    <End Role="TRAVELLER" Type="Self.TRAVELLER" Multiplicity="1" />
-    <End Role="TRAVELLER_ACCOUNT" Type="Self.TRAVELLER_ACCOUNT" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TRAVELLER">
-        <PropertyRef Name="TRAVELLER_ID" />
-      </Principal>
-      <Dependent Role="TRAVELLER_ACCOUNT">
         <PropertyRef Name="TRAVELLER_ID" />
       </Dependent>
     </ReferentialConstraint>
@@ -730,17 +731,17 @@
       <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
       <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
     </AssociationSet>
-    <AssociationSet Name="FK__TRAVELLER__TRAVE__07C12930" Association="Self.FK__TRAVELLER__TRAVE__07C12930">
-      <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
-      <End Role="TRAVELLER_DETAIL" EntitySet="TRAVELLER_DETAIL" />
-    </AssociationSet>
-    <AssociationSet Name="FK__TRAVELLER__TRAVE__08B54D69" Association="Self.FK__TRAVELLER__TRAVE__08B54D69">
-      <End Role="TRAVELLER" EntitySet="TRAVELLER" />
-      <End Role="TRAVELLER_DETAIL" EntitySet="TRAVELLER_DETAIL" />
-    </AssociationSet>
     <AssociationSet Name="FK__TRAVELLER__TRAVE__10566F31" Association="Self.FK__TRAVELLER__TRAVE__10566F31">
       <End Role="TRAVELLER" EntitySet="TRAVELLER" />
       <End Role="TRAVELLER_ACCOUNT" EntitySet="TRAVELLER_ACCOUNT" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TRAVELLER__TRAVE__32767D0B" Association="Self.FK__TRAVELLER__TRAVE__32767D0B">
+      <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
+      <End Role="TRAVELLER_DETAIL" EntitySet="TRAVELLER_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TRAVELLER__TRAVE__336AA144" Association="Self.FK__TRAVELLER__TRAVE__336AA144">
+      <End Role="TRAVELLER" EntitySet="TRAVELLER" />
+      <End Role="TRAVELLER_DETAIL" EntitySet="TRAVELLER_DETAIL" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

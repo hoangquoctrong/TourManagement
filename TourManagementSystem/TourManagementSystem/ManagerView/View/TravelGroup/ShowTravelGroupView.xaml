@@ -1226,7 +1226,7 @@
                                                             <materialDesign:RatingBar
                                                                 Margin="20,3"
                                                                 IsEnabled="{Binding Traveller_StarEnable}"
-                                                                Max="10"
+                                                                Max="5"
                                                                 Value="{Binding Traveller_Star, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                                         </StackPanel>
 

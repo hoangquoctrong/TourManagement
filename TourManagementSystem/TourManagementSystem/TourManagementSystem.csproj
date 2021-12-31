@@ -642,6 +642,8 @@
     <Resource Include="Assets\feedback.png" />
     <Resource Include="Assets\minimize.png" />
     <Resource Include="Assets\minimize-sign.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Global\TourDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TourDB.edmx</DependentUpon>
@@ -653,7 +655,6 @@
       <LastGenOutput>TourDB.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

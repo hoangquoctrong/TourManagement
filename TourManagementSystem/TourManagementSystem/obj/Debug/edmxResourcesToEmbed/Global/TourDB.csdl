@@ -31,6 +31,7 @@
     <Property Name="TOUR_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="TOUR_IS_EXIST" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="TOUR_STAR" Type="Double" />
+    <Property Name="TOUR_MAIN_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="TOUR_IMAGE" Relationship="Self.FK__TOUR_IMAG__TOUR___7755B73D" FromRole="TOUR" ToRole="TOUR_IMAGE" />
     <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___0A688BB1" FromRole="TOUR" ToRole="TOUR_INFORMATION" />
     <NavigationProperty Name="TOUR_PLACE_DETAILED" Relationship="Self.FK__TOUR_PLAC__TOUR___671F4F74" FromRole="TOUR" ToRole="TOUR_PLACE_DETAILED" />
@@ -88,7 +89,7 @@
       <PropertyRef Name="TOUR_IMAGE_ID" />
     </Key>
     <Property Name="TOUR_IMAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TOUR_IMAGE1" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="TOUR_IMAGE_BYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="TOUR" Relationship="Self.FK__TOUR_IMAG__TOUR___7755B73D" FromRole="TOUR_IMAGE" ToRole="TOUR" />
   </EntityType>
@@ -283,8 +284,8 @@
     <Property Name="TOTAL_TRANSPORT_COST" Type="Double" />
     <Property Name="ANOTHER_COST" Type="Double" />
     <Property Name="TRAVEL_GROUP_ID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVEL_CO__TRAVE__15DA3E5D" FromRole="TRAVEL_COST" ToRole="TRAVEL_GROUP" />
     <Property Name="TRAVEL_COST_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVEL_CO__TRAVE__15DA3E5D" FromRole="TRAVEL_COST" ToRole="TRAVEL_GROUP" />
   </EntityType>
   <EntityType Name="TRAVEL_GROUP">
     <Key>
@@ -294,11 +295,11 @@
     <Property Name="TRAVEL_GROUP_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="TRAVEL_GROUP_CONTENT_DETAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="TOUR_INFORMATION_ID" Type="Int32" Nullable="false" />
+    <Property Name="TRAVEL_GROUP_ISDELETE" Type="Boolean" />
     <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TRAVEL_GR__TOUR___14E61A24" FromRole="TRAVEL_GROUP" ToRole="TOUR_INFORMATION" />
     <NavigationProperty Name="TOUR_STAFF_DETAIL" Relationship="Self.FK__TOUR_STAF__TRAVE__09746778" FromRole="TRAVEL_GROUP" ToRole="TOUR_STAFF_DETAIL" />
     <NavigationProperty Name="TRAVEL_COST" Relationship="Self.FK__TRAVEL_CO__TRAVE__15DA3E5D" FromRole="TRAVEL_GROUP" ToRole="TRAVEL_COST" />
-    <NavigationProperty Name="TRAVELLER_DETAIL" Relationship="Self.FK__TRAVELLER__TRAVE__07C12930" FromRole="TRAVEL_GROUP" ToRole="TRAVELLER_DETAIL" />
-    <Property Name="TRAVEL_GROUP_ISDELETE" Type="Boolean" />
+    <NavigationProperty Name="TRAVELLER_DETAIL" Relationship="Self.FK__TRAVELLER__TRAVE__32767D0B" FromRole="TRAVEL_GROUP" ToRole="TRAVELLER_DETAIL" />
   </EntityType>
   <EntityType Name="TRAVELLER">
     <Key>
@@ -312,8 +313,8 @@
     <Property Name="TRAVELLER_ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="TRAVELLER_PHONE_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="TRAVELLER_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="TRAVELLER_DETAIL" Relationship="Self.FK__TRAVELLER__TRAVE__08B54D69" FromRole="TRAVELLER" ToRole="TRAVELLER_DETAIL" />
     <NavigationProperty Name="TRAVELLER_ACCOUNT" Relationship="Self.FK__TRAVELLER__TRAVE__10566F31" FromRole="TRAVELLER" ToRole="TRAVELLER_ACCOUNT" />
+    <NavigationProperty Name="TRAVELLER_DETAIL" Relationship="Self.FK__TRAVELLER__TRAVE__336AA144" FromRole="TRAVELLER" ToRole="TRAVELLER_DETAIL" />
   </EntityType>
   <EntityType Name="TRAVELLER_ACCOUNT">
     <Key>
@@ -333,8 +334,8 @@
     <Property Name="TRAVEL_GROUP_ID" Type="Int32" Nullable="false" />
     <Property Name="TRAVELLER_ID" Type="Int32" Nullable="false" />
     <Property Name="TRAVELLER_DETAIL_STAR" Type="Int32" />
-    <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVELLER__TRAVE__07C12930" FromRole="TRAVELLER_DETAIL" ToRole="TRAVEL_GROUP" />
-    <NavigationProperty Name="TRAVELLER" Relationship="Self.FK__TRAVELLER__TRAVE__08B54D69" FromRole="TRAVELLER_DETAIL" ToRole="TRAVELLER" />
+    <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVELLER__TRAVE__32767D0B" FromRole="TRAVELLER_DETAIL" ToRole="TRAVEL_GROUP" />
+    <NavigationProperty Name="TRAVELLER" Relationship="Self.FK__TRAVELLER__TRAVE__336AA144" FromRole="TRAVELLER_DETAIL" ToRole="TRAVELLER" />
   </EntityType>
   <Association Name="FK__TOUR_HOTE__PLACE__73852659">
     <End Role="PLACE" Type="Self.PLACE" Multiplicity="1" />
@@ -624,7 +625,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__TRAVELLER__TRAVE__07C12930">
+  <Association Name="FK__TRAVELLER__TRAVE__32767D0B">
     <End Role="TRAVEL_GROUP" Type="Self.TRAVEL_GROUP" Multiplicity="1" />
     <End Role="TRAVELLER_DETAIL" Type="Self.TRAVELLER_DETAIL" Multiplicity="*" />
     <ReferentialConstraint>
@@ -636,18 +637,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__TRAVELLER__TRAVE__08B54D69">
-    <End Role="TRAVELLER" Type="Self.TRAVELLER" Multiplicity="1" />
-    <End Role="TRAVELLER_DETAIL" Type="Self.TRAVELLER_DETAIL" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TRAVELLER">
-        <PropertyRef Name="TRAVELLER_ID" />
-      </Principal>
-      <Dependent Role="TRAVELLER_DETAIL">
-        <PropertyRef Name="TRAVELLER_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__TRAVELLER__TRAVE__10566F31">
     <End Role="TRAVELLER" Type="Self.TRAVELLER" Multiplicity="1" />
     <End Role="TRAVELLER_ACCOUNT" Type="Self.TRAVELLER_ACCOUNT" Multiplicity="*" />
@@ -656,6 +645,18 @@
         <PropertyRef Name="TRAVELLER_ID" />
       </Principal>
       <Dependent Role="TRAVELLER_ACCOUNT">
+        <PropertyRef Name="TRAVELLER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TRAVELLER__TRAVE__336AA144">
+    <End Role="TRAVELLER" Type="Self.TRAVELLER" Multiplicity="1" />
+    <End Role="TRAVELLER_DETAIL" Type="Self.TRAVELLER_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRAVELLER">
+        <PropertyRef Name="TRAVELLER_ID" />
+      </Principal>
+      <Dependent Role="TRAVELLER_DETAIL">
         <PropertyRef Name="TRAVELLER_ID" />
       </Dependent>
     </ReferentialConstraint>
@@ -784,17 +785,17 @@
       <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
       <End Role="TRAVEL_COST" EntitySet="TRAVEL_COST" />
     </AssociationSet>
-    <AssociationSet Name="FK__TRAVELLER__TRAVE__07C12930" Association="Self.FK__TRAVELLER__TRAVE__07C12930">
+    <AssociationSet Name="FK__TRAVELLER__TRAVE__32767D0B" Association="Self.FK__TRAVELLER__TRAVE__32767D0B">
       <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
-      <End Role="TRAVELLER_DETAIL" EntitySet="TRAVELLER_DETAIL" />
-    </AssociationSet>
-    <AssociationSet Name="FK__TRAVELLER__TRAVE__08B54D69" Association="Self.FK__TRAVELLER__TRAVE__08B54D69">
-      <End Role="TRAVELLER" EntitySet="TRAVELLER" />
       <End Role="TRAVELLER_DETAIL" EntitySet="TRAVELLER_DETAIL" />
     </AssociationSet>
     <AssociationSet Name="FK__TRAVELLER__TRAVE__10566F31" Association="Self.FK__TRAVELLER__TRAVE__10566F31">
       <End Role="TRAVELLER" EntitySet="TRAVELLER" />
       <End Role="TRAVELLER_ACCOUNT" EntitySet="TRAVELLER_ACCOUNT" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TRAVELLER__TRAVE__336AA144" Association="Self.FK__TRAVELLER__TRAVE__336AA144">
+      <End Role="TRAVELLER" EntitySet="TRAVELLER" />
+      <End Role="TRAVELLER_DETAIL" EntitySet="TRAVELLER_DETAIL" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

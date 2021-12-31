@@ -138,10 +138,10 @@
                                             <TextBox
                                                 Width="260"
                                                 Margin="8,0,0,0"
-                                                materialDesign:HintAssist.HelperText="Employee full name."
                                                 materialDesign:HintAssist.Hint="Name"
                                                 FontSize="18"
-                                                IsEnabled="false">
+                                                IsReadOnly="True"
+                                                ToolTip="Staff Name">
                                                 <TextBox.Text>
                                                     <Binding
                                                         Mode="TwoWay"
@@ -161,26 +161,22 @@
                                                 VerticalAlignment="Center"
                                                 Foreground="DimGray"
                                                 Kind="CardAccountDetailsStar" />
-                                            <ComboBox
+                                            <TextBox
                                                 Width="260"
-                                                Margin="10,0,0,0"
-                                                HorizontalAlignment="Left"
+                                                Margin="8,0,0,0"
                                                 materialDesign:HintAssist.Hint="Role"
                                                 FontSize="18"
-                                                Foreground="DimGray"
-                                                IsEnabled="false">
-                                                <ComboBoxItem Content="Manager" />
-                                                <ComboBoxItem Content="Staff" />
-                                                <ComboBoxItem Content="Director" />
-                                                <ComboBox.Text>
+                                                IsReadOnly="True"
+                                                ToolTip="Staff Role">
+                                                <TextBox.Text>
                                                     <Binding
                                                         Mode="TwoWay"
                                                         Path="Staff_Role"
                                                         UpdateSourceTrigger="PropertyChanged">
                                                         <Binding.ValidationRules />
                                                     </Binding>
-                                                </ComboBox.Text>
-                                            </ComboBox>
+                                                </TextBox.Text>
+                                            </TextBox>
                                         </StackPanel>
 
                                         <StackPanel Margin="0,40,0,0" Orientation="Horizontal">
@@ -192,7 +188,8 @@
                                                 FontSize="22"
                                                 IsEnabled="false"
                                                 SelectedDateFormat="Short"
-                                                Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+                                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                                ToolTip="Staff Start Date">
                                                 <DatePicker.SelectedDate>
                                                     <Binding
                                                         Mode="TwoWay"
@@ -221,7 +218,8 @@
                                             Background="Transparent"
                                             BorderBrush="#EBF9E2"
                                             BorderThickness="1"
-                                            IsEnabled="false">
+                                            IsEnabled="false"
+                                            ToolTip="Staff Image">
                                             <Image
                                                 x:Name="img"
                                                 Source="{Binding Staff_Image_Source}"
@@ -252,7 +250,8 @@
                                                     FontSize="22"
                                                     IsEnabled="false"
                                                     SelectedDateFormat="Short"
-                                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+                                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                                    ToolTip="Staff Birthday">
                                                     <DatePicker.SelectedDate>
                                                         <Binding
                                                             Mode="TwoWay"
@@ -277,7 +276,8 @@
                                                     Margin="10,0,0,0"
                                                     materialDesign:HintAssist.Hint="Birthplace"
                                                     FontSize="18"
-                                                    IsEnabled="false">
+                                                    IsReadOnly="True"
+                                                    ToolTip="Staff Birth Place">
                                                     <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
@@ -303,7 +303,8 @@
                                                     Margin="10,0,0,0"
                                                     materialDesign:HintAssist.Hint="Adress"
                                                     FontSize="18"
-                                                    IsEnabled="false">
+                                                    IsReadOnly="True"
+                                                    ToolTip="Staff Address">
                                                     <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
@@ -325,25 +326,22 @@
                                                     IsEnabled="false"
                                                     Kind="GenderMaleFemaleVariant" />
 
-                                                <ComboBox
+                                                <TextBox
                                                     Width="260"
                                                     Margin="10,0,0,0"
-                                                    HorizontalAlignment="Left"
                                                     materialDesign:HintAssist.Hint="Gender"
                                                     FontSize="18"
-                                                    Foreground="DimGray"
-                                                    IsEnabled="false">
-                                                    <ComboBoxItem Content="Male" />
-                                                    <ComboBoxItem Content="Female" />
-                                                    <ComboBox.Text>
+                                                    IsReadOnly="True"
+                                                    ToolTip="Staff Gender">
+                                                    <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
                                                             Path="Staff_Gender"
                                                             UpdateSourceTrigger="PropertyChanged">
                                                             <Binding.ValidationRules />
                                                         </Binding>
-                                                    </ComboBox.Text>
-                                                </ComboBox>
+                                                    </TextBox.Text>
+                                                </TextBox>
                                             </StackPanel>
 
                                             <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
@@ -360,7 +358,8 @@
                                                     Margin="10,0,0,0"
                                                     materialDesign:HintAssist.Hint="Phone Number"
                                                     FontSize="18"
-                                                    IsEnabled="false">
+                                                    IsReadOnly="True"
+                                                    ToolTip="Staff Phone Number">
                                                     <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
@@ -387,7 +386,8 @@
                                                     IsEnabled="false"
                                                     SelectedDate="{Binding Staff_ID_Card_Date, Mode=TwoWay, StringFormat=\{0: dd/MM/yyyy\}, UpdateSourceTrigger=PropertyChanged}"
                                                     SelectedDateFormat="Short"
-                                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                                    ToolTip="Staff Citizenship Identity Date" />
                                             </StackPanel>
 
                                             <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
@@ -402,10 +402,10 @@
                                                 <TextBox
                                                     Width="260"
                                                     Margin="8,0,0,0"
-                                                    materialDesign:HintAssist.HelperText="ID Card number"
-                                                    materialDesign:HintAssist.Hint="ID"
+                                                    materialDesign:HintAssist.Hint="ID Card"
                                                     FontSize="18"
-                                                    IsEnabled="false">
+                                                    IsReadOnly="True"
+                                                    ToolTip="Staff ID Card">
                                                     <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
@@ -429,10 +429,10 @@
                                                 <TextBox
                                                     Width="260"
                                                     Margin="8,0,0,0"
-                                                    materialDesign:HintAssist.HelperText="ID Card number"
                                                     materialDesign:HintAssist.Hint="ID Card Place"
                                                     FontSize="18"
-                                                    IsEnabled="false">
+                                                    IsReadOnly="True"
+                                                    ToolTip="Staff ID Card Place">
                                                     <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
@@ -452,29 +452,22 @@
                                                     VerticalAlignment="Center"
                                                     Foreground="DimGray"
                                                     Kind="Equalizer" />
-
-                                                <ComboBox
+                                                <TextBox
                                                     Width="260"
-                                                    Margin="10,0,0,0"
+                                                    Margin="8,0,0,0"
                                                     materialDesign:HintAssist.Hint="Academic level"
-                                                    materialDesign:HintAssist.HintOpacity=".3"
                                                     FontSize="18"
-                                                    IsEditable="True"
-                                                    IsEnabled="false">
-                                                    <ComboBoxItem Content="Student" />
-                                                    <ComboBoxItem Content="Bachelor" />
-                                                    <ComboBoxItem Content="Master" />
-                                                    <ComboBoxItem Content="Post Doctor" />
-                                                    <ComboBoxItem Content="Doctor" />
-                                                    <ComboBox.Text>
+                                                    IsReadOnly="True"
+                                                    ToolTip="Staff Academic Level">
+                                                    <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
                                                             Path="Staff_Academic_Level"
                                                             UpdateSourceTrigger="PropertyChanged">
                                                             <Binding.ValidationRules />
                                                         </Binding>
-                                                    </ComboBox.Text>
-                                                </ComboBox>
+                                                    </TextBox.Text>
+                                                </TextBox>
                                             </StackPanel>
 
                                             <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
@@ -491,7 +484,8 @@
                                                     Margin="8,0,0,0"
                                                     materialDesign:HintAssist.Hint="Email"
                                                     FontSize="18"
-                                                    IsEnabled="false">
+                                                    IsReadOnly="True"
+                                                    ToolTip="Staff Email">
                                                     <TextBox.Text>
                                                         <Binding
                                                             Mode="TwoWay"
@@ -533,7 +527,7 @@
                                         AcceptsReturn="True"
                                         FontSize="17"
                                         Foreground="DimGray"
-                                        IsEnabled="false"
+                                        IsReadOnly="true"
                                         MinLines="8"
                                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                         Text="{Binding Staff_Note, Mode=TwoWay}"
@@ -603,7 +597,8 @@
                                             Height="32"
                                             VerticalAlignment="Center"
                                             Foreground="DimGray"
-                                            Kind="User" />
+                                            Kind="User"
+                                            ToolTip="Username" />
 
                                         <TextBox
                                             Width="320"
@@ -637,7 +632,8 @@
                                             Margin="8,0,0,0"
                                             materialDesign:HintAssist.HelperText="New Password"
                                             materialDesign:HintAssist.Hint="Password"
-                                            FontSize="22">
+                                            FontSize="22"
+                                            ToolTip="New Password">
                                             <TextBox.Text>
                                                 <Binding
                                                     Mode="TwoWay"

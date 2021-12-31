@@ -75,6 +75,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public double Tour_Star
         { get => _Tour_Star; set { _Tour_Star = value; OnPropertyChanged(); } }
 
+        private byte[] _Tour_Main_Image_Byte_Source;
+
+        public byte[] Tour_Main_Image_Byte_Source
+        { get => _Tour_Main_Image_Byte_Source; set { _Tour_Main_Image_Byte_Source = value; OnPropertyChanged(); } }
+
+        private BitmapImage _Tour_Main_Image_Source;
+
+        public BitmapImage Tour_Main_Image_Source
+        { get => _Tour_Main_Image_Source; set { _Tour_Main_Image_Source = value; OnPropertyChanged(); } }
+
         private BindableCollection<CheckBoxModel> _PlaceList;
 
         public BindableCollection<CheckBoxModel> PlaceList
@@ -137,6 +147,10 @@ namespace TourManagementSystem.ManagerView.ViewModel
             Tour_Description = tour.TOUR_CHARACTERISTIS;
             Tour_Star = tour.TOUR_STAR;
             Is_Exist = tour.TOUR_IS_EXIST.Equals("No") && IsVisibility == Visibility.Visible ? true : false;
+            Tour_Main_Image_Byte_Source = tour.TOUR_IMAGE_BYTE_SOURCE;
+            Tour_Main_Image_Source = Tour_Main_Image_Byte_Source == null
+            ? new BitmapImage(new Uri("pack://application:,,,/Resources/Images/Add.png", UriKind.Absolute))
+            : GlobalFunction.ToImage(Tour_Main_Image_Byte_Source);
         }
 
         private void SetTourImageInView(int tour_id)
@@ -299,6 +313,32 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 }
 
                 return _CancelCommand;
+            }
+        }
+
+        private ICommand _ModifyMainImageCommand;
+
+        public ICommand ModifyMainImageCommand
+        {
+            get
+            {
+                if (_ModifyMainImageCommand == null)
+                {
+                    _ModifyMainImageCommand = new RelayCommand<object>(p => true, p =>
+                    {
+                        OpenFileDialog ofd = new OpenFileDialog() { Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png", ValidateNames = true, Multiselect = false };
+
+                        if (ofd.ShowDialog() == true)
+                        {
+                            string string_File_Name = ofd.FileName;
+                            BitmapImage bitmap_Image = new BitmapImage(new Uri(string_File_Name));
+                            Tour_Main_Image_Byte_Source = File.ReadAllBytes(string_File_Name);
+                            Tour_Main_Image_Source = bitmap_Image;
+                        }
+                    });
+                }
+
+                return _ModifyMainImageCommand;
             }
         }
 
@@ -583,6 +623,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 return true;
             }
 
+            if (Tour_Main_Image_Byte_Source != TourSelected.TOUR_IMAGE_BYTE_SOURCE)
+            {
+                return true;
+            }
+
             return false;
         }
 
@@ -593,7 +638,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 TOUR_ID = Tour_ID,
                 TOUR_NAME = Tour_Name,
                 TOUR_TYPE = Tour_Type,
-                TOUR_CHARACTERISTIS = Tour_Description
+                TOUR_CHARACTERISTIS = Tour_Description,
+                TOUR_IMAGE_BYTE_SOURCE = Tour_Main_Image_Byte_Source,
             };
         }
 

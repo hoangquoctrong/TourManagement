@@ -45,6 +45,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public string Tour_Description
         { get => _Tour_Description; set { _Tour_Description = value; OnPropertyChanged(); } }
 
+        private byte[] _Tour_Main_Image_Byte_Source;
+
+        public byte[] Tour_Main_Image_Byte_Source
+        { get => _Tour_Main_Image_Byte_Source; set { _Tour_Main_Image_Byte_Source = value; OnPropertyChanged(); } }
+
+        private BitmapImage _Tour_Main_Image_Source;
+
+        public BitmapImage Tour_Main_Image_Source
+        { get => _Tour_Main_Image_Source; set { _Tour_Main_Image_Source = value; OnPropertyChanged(); } }
+
         private byte[] _Tour_Image_Byte_Source_1;
 
         public byte[] Tour_Image_Byte_Source_1
@@ -136,6 +146,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private void SetTourImageInView()
         {
+            Tour_Main_Image_Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Images/Add.png", UriKind.Absolute));
+
             Tour_Image_Source_1 = new BitmapImage(new Uri("pack://application:,,,/Resources/Images/Add.png", UriKind.Absolute));
 
             Tour_Image_Source_2 = new BitmapImage(new Uri("pack://application:,,,/Resources/Images/Add.png", UriKind.Absolute));
@@ -282,7 +294,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             return !string.IsNullOrEmpty(Tour_Name) &&
                 !string.IsNullOrEmpty(Tour_Type) &&
-                PlaceSelectedList.Count > 0;
+                PlaceSelectedList.Count > 0 &&
+                IsImageNull(Tour_Main_Image_Byte_Source);
         }
 
         private TourModel InsertTourModel()
@@ -291,7 +304,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 TOUR_NAME = Tour_Name,
                 TOUR_TYPE = Tour_Type,
-                TOUR_CHARACTERISTIS = string.IsNullOrEmpty(Tour_Description) ? "" : Tour_Description
+                TOUR_CHARACTERISTIS = string.IsNullOrEmpty(Tour_Description) ? "" : Tour_Description,
+                TOUR_IMAGE_BYTE_SOURCE = Tour_Main_Image_Byte_Source
             };
         }
 
@@ -342,6 +356,32 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 }
 
                 return _CancelCommand;
+            }
+        }
+
+        private ICommand _AddMainImageCommand;
+
+        public ICommand AddMainImageCommand
+        {
+            get
+            {
+                if (_AddMainImageCommand == null)
+                {
+                    _AddMainImageCommand = new RelayCommand<object>(p => true, p =>
+                    {
+                        OpenFileDialog ofd = new OpenFileDialog() { Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png", ValidateNames = true, Multiselect = false };
+
+                        if (ofd.ShowDialog() == true)
+                        {
+                            string string_File_Name = ofd.FileName;
+                            BitmapImage bitmap_Image = new BitmapImage(new Uri(string_File_Name));
+                            Tour_Main_Image_Byte_Source = File.ReadAllBytes(string_File_Name);
+                            Tour_Main_Image_Source = bitmap_Image;
+                        }
+                    });
+                }
+
+                return _AddMainImageCommand;
             }
         }
 
