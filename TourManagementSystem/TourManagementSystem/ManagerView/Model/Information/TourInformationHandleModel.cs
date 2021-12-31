@@ -143,12 +143,12 @@ namespace TourManagementSystem.ManagerView.Model
                 if (GetTravelGroupCount(informationModel.INFORMATION_ID) > 0)
                 {
                     informationModel.INFORMATION_ENABLE = false;
-                    informationModel.INFORMATION_STATUS = "Overdue";
+                    informationModel.INFORMATION_STATUS = "Uneditable";
                 }
                 else
                 {
                     informationModel.INFORMATION_ENABLE = true;
-                    informationModel.INFORMATION_STATUS = "Available";
+                    informationModel.INFORMATION_STATUS = "Editable";
                 }
 
                 InformationList.Add(informationModel);

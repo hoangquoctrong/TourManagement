@@ -157,8 +157,6 @@
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="auto" />
-                                        <RowDefinition Height="auto" />
-                                        <RowDefinition Height="auto" />
                                     </Grid.RowDefinitions>
 
                                     <Grid Grid.Row="0">
@@ -168,75 +166,123 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
 
-                                        <StackPanel Margin="20,20,20,20" Orientation="Horizontal">
+                                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
 
-                                            <materialDesign:PackIcon
-                                                Width="30"
-                                                Height="30"
-                                                VerticalAlignment="Center"
-                                                Foreground="DimGray"
-                                                Kind="NoteOutline" />
+                                            <StackPanel Margin="20,20,20,20" Orientation="Horizontal">
 
-                                            <TextBox
-                                                Width="260"
-                                                Margin="8,0,0,0"
-                                                materialDesign:HintAssist.Hint="Name"
-                                                FontSize="18"
-                                                IsEnabled="{Binding Is_Exist}"
-                                                ToolTip="Tour Name">
-                                                <TextBox.Text>
-                                                    <Binding
-                                                        Mode="TwoWay"
-                                                        Path="Tour_Name"
-                                                        UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules>
-                                                            <ruler:MiniMumCharacterRuler
-                                                                MaximumCharacters="30"
-                                                                MinimumCharacters="0"
-                                                                NameFill="Tour Name"
-                                                                ValidatesOnTargetUpdated="True" />
-                                                        </Binding.ValidationRules>
-                                                    </Binding>
-                                                </TextBox.Text>
-                                            </TextBox>
+                                                <materialDesign:PackIcon
+                                                    Width="30"
+                                                    Height="30"
+                                                    VerticalAlignment="Center"
+                                                    Foreground="DimGray"
+                                                    Kind="NoteOutline" />
+
+                                                <TextBox
+                                                    Width="260"
+                                                    Margin="8,0,0,0"
+                                                    materialDesign:HintAssist.Hint="Name"
+                                                    FontSize="18"
+                                                    ToolTip="Tour Name">
+                                                    <TextBox.Text>
+                                                        <Binding
+                                                            Mode="TwoWay"
+                                                            Path="Tour_Name"
+                                                            UpdateSourceTrigger="PropertyChanged">
+                                                            <Binding.ValidationRules>
+                                                                <ruler:MiniMumCharacterRuler
+                                                                    MaximumCharacters="30"
+                                                                    MinimumCharacters="0"
+                                                                    NameFill="Tour Name"
+                                                                    ValidatesOnTargetUpdated="True" />
+                                                            </Binding.ValidationRules>
+                                                        </Binding>
+                                                    </TextBox.Text>
+                                                </TextBox>
+                                            </StackPanel>
+
+                                            <StackPanel Margin="20,20,20,20" Orientation="Horizontal">
+
+                                                <materialDesign:PackIcon
+                                                    Width="30"
+                                                    Height="30"
+                                                    VerticalAlignment="Center"
+                                                    Foreground="DimGray"
+                                                    Kind="FormatListBulletedType" />
+                                                <ComboBox
+                                                    Width="260"
+                                                    Margin="10,0,0,0"
+                                                    HorizontalAlignment="Left"
+                                                    materialDesign:HintAssist.Hint="Status"
+                                                    FontSize="18"
+                                                    Foreground="DimGray"
+                                                    ToolTip="Tour Status">
+                                                    <ComboBoxItem Content="Family Tour" />
+                                                    <ComboBoxItem Content="Group Tour" />
+                                                    <ComboBox.Text>
+                                                        <Binding
+                                                            Mode="TwoWay"
+                                                            Path="Tour_Type"
+                                                            UpdateSourceTrigger="PropertyChanged">
+                                                            <Binding.ValidationRules>
+                                                                <ruler:MiniMumCharacterRuler
+                                                                    MinimumCharacters="0"
+                                                                    NameFill="Tour Status"
+                                                                    ValidatesOnTargetUpdated="True" />
+                                                            </Binding.ValidationRules>
+                                                        </Binding>
+                                                    </ComboBox.Text>
+                                                </ComboBox>
+                                            </StackPanel>
+
+                                            <StackPanel Margin="20" Orientation="Horizontal">
+                                                <TextBlock
+                                                    Margin="35,0,0,0"
+                                                    FontSize="22"
+                                                    Foreground="DimGray">
+                                                    Evalution:
+                                                </TextBlock>
+                                                <materialDesign:RatingBar
+                                                    Margin="20,3"
+                                                    IsEnabled="False"
+                                                    Max="5"
+                                                    Value="{Binding Tour_Star}" />
+                                            </StackPanel>
                                         </StackPanel>
 
-                                        <StackPanel
-                                            Grid.Column="1"
-                                            Margin="20,20,20,20"
-                                            Orientation="Horizontal">
-
-                                            <materialDesign:PackIcon
-                                                Width="30"
-                                                Height="30"
-                                                VerticalAlignment="Center"
-                                                Foreground="DimGray"
-                                                Kind="FormatListBulletedType" />
-                                            <ComboBox
-                                                Width="260"
-                                                Margin="10,0,0,0"
-                                                HorizontalAlignment="Left"
-                                                materialDesign:HintAssist.Hint="Status"
-                                                FontSize="18"
-                                                Foreground="DimGray"
-                                                IsEnabled="{Binding Is_Exist}"
-                                                ToolTip="Tour Status">
-                                                <ComboBoxItem Content="Family Tour" />
-                                                <ComboBoxItem Content="Group Tour" />
-                                                <ComboBox.Text>
-                                                    <Binding
-                                                        Mode="TwoWay"
-                                                        Path="Tour_Type"
-                                                        UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules>
-                                                            <ruler:MiniMumCharacterRuler
-                                                                MinimumCharacters="0"
-                                                                NameFill="Tour Status"
-                                                                ValidatesOnTargetUpdated="True" />
-                                                        </Binding.ValidationRules>
-                                                    </Binding>
-                                                </ComboBox.Text>
-                                            </ComboBox>
+                                        <StackPanel Grid.Column="1" Orientation="Vertical">
+                                            <StackPanel
+                                                Margin="0,10"
+                                                HorizontalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    FontSize="20"
+                                                    Foreground="DimGray"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="Main Image" />
+                                                <TextBlock
+                                                    Margin="8,0"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="20"
+                                                    FontStyle="Italic"
+                                                    Foreground="#F36E6B"
+                                                    Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                                    Text="(Require)" />
+                                            </StackPanel>
+                                            <Button
+                                                Width="200"
+                                                Height="200"
+                                                HorizontalAlignment="Center"
+                                                Background="Transparent"
+                                                BorderBrush="#EBF9E2"
+                                                BorderThickness="1"
+                                                Command="{Binding ModifyMainImageCommand}"
+                                                ToolTip="Main Tour Image">
+                                                <Image
+                                                    x:Name="img"
+                                                    Source="{Binding Tour_Main_Image_Source}"
+                                                    Stretch="Fill" />
+                                            </Button>
                                         </StackPanel>
                                     </Grid>
 
@@ -249,30 +295,6 @@
 
                                     <StackPanel
                                         Grid.Row="2"
-                                        Margin="20"
-                                        Orientation="Horizontal">
-                                        <TextBlock
-                                            Margin="35,0,0,0"
-                                            FontSize="22"
-                                            Foreground="DimGray">
-                                            Evalution:
-                                        </TextBlock>
-                                        <materialDesign:RatingBar
-                                            Margin="20,3"
-                                            IsEnabled="False"
-                                            Max="10"
-                                            Value="{Binding Tour_Star}" />
-                                    </StackPanel>
-
-                                    <Separator
-                                        Grid.Row="3"
-                                        Margin="0,10,0,0"
-                                        BorderBrush="Black"
-                                        BorderThickness="12"
-                                        Opacity="0.8" />
-
-                                    <StackPanel
-                                        Grid.Row="4"
                                         Margin="20"
                                         VerticalAlignment="Top">
 
@@ -299,7 +321,7 @@
                                             TextWrapping="Wrap" />
                                     </StackPanel>
 
-                                    <Grid Grid.Row="5">
+                                    <Grid Grid.Row="3">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition />
                                             <ColumnDefinition />

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="PLACE">
           <Key>
             <PropertyRef Name="PLACE_ID" />
@@ -33,6 +33,7 @@
           <Property Name="TOUR_TYPE" Type="varchar" MaxLength="255" />
           <Property Name="TOUR_IS_EXIST" Type="varchar" MaxLength="255" />
           <Property Name="TOUR_STAR" Type="float" />
+          <Property Name="TOUR_MAIN_IMAGE" Type="image" />
         </EntityType>
         <EntityType Name="TOUR_ACCOUNT">
           <Key>
@@ -82,7 +83,7 @@
             <PropertyRef Name="TOUR_IMAGE_ID" />
           </Key>
           <Property Name="TOUR_IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TOUR_IMAGE" Type="image" />
+          <Property Name="TOUR_IMAGE_BYTE" Type="image" />
           <Property Name="TOUR_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TOUR_INFORMATION">
@@ -575,7 +576,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TRAVELLER__TRAVE__07C12930">
+        <Association Name="FK__TRAVELLER__TRAVE__10566F31">
+          <End Role="TRAVELLER" Type="Self.TRAVELLER" Multiplicity="1" />
+          <End Role="TRAVELLER_ACCOUNT" Type="Self.TRAVELLER_ACCOUNT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAVELLER">
+              <PropertyRef Name="TRAVELLER_ID" />
+            </Principal>
+            <Dependent Role="TRAVELLER_ACCOUNT">
+              <PropertyRef Name="TRAVELLER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRAVELLER__TRAVE__32767D0B">
           <End Role="TRAVEL_GROUP" Type="Self.TRAVEL_GROUP" Multiplicity="1" />
           <End Role="TRAVELLER_DETAIL" Type="Self.TRAVELLER_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -587,7 +600,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TRAVELLER__TRAVE__08B54D69">
+        <Association Name="FK__TRAVELLER__TRAVE__336AA144">
           <End Role="TRAVELLER" Type="Self.TRAVELLER" Multiplicity="1" />
           <End Role="TRAVELLER_DETAIL" Type="Self.TRAVELLER_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -595,18 +608,6 @@
               <PropertyRef Name="TRAVELLER_ID" />
             </Principal>
             <Dependent Role="TRAVELLER_DETAIL">
-              <PropertyRef Name="TRAVELLER_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TRAVELLER__TRAVE__10566F31">
-          <End Role="TRAVELLER" Type="Self.TRAVELLER" Multiplicity="1" />
-          <End Role="TRAVELLER_ACCOUNT" Type="Self.TRAVELLER_ACCOUNT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TRAVELLER">
-              <PropertyRef Name="TRAVELLER_ID" />
-            </Principal>
-            <Dependent Role="TRAVELLER_ACCOUNT">
               <PropertyRef Name="TRAVELLER_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -735,20 +736,21 @@
             <End Role="TOUR_INFORMATION" EntitySet="TOUR_INFORMATION" />
             <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
           </AssociationSet>
-          <AssociationSet Name="FK__TRAVELLER__TRAVE__07C12930" Association="Self.FK__TRAVELLER__TRAVE__07C12930">
-            <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
-            <End Role="TRAVELLER_DETAIL" EntitySet="TRAVELLER_DETAIL" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TRAVELLER__TRAVE__08B54D69" Association="Self.FK__TRAVELLER__TRAVE__08B54D69">
-            <End Role="TRAVELLER" EntitySet="TRAVELLER" />
-            <End Role="TRAVELLER_DETAIL" EntitySet="TRAVELLER_DETAIL" />
-          </AssociationSet>
           <AssociationSet Name="FK__TRAVELLER__TRAVE__10566F31" Association="Self.FK__TRAVELLER__TRAVE__10566F31">
             <End Role="TRAVELLER" EntitySet="TRAVELLER" />
             <End Role="TRAVELLER_ACCOUNT" EntitySet="TRAVELLER_ACCOUNT" />
           </AssociationSet>
+          <AssociationSet Name="FK__TRAVELLER__TRAVE__32767D0B" Association="Self.FK__TRAVELLER__TRAVE__32767D0B">
+            <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
+            <End Role="TRAVELLER_DETAIL" EntitySet="TRAVELLER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRAVELLER__TRAVE__336AA144" Association="Self.FK__TRAVELLER__TRAVE__336AA144">
+            <End Role="TRAVELLER" EntitySet="TRAVELLER" />
+            <End Role="TRAVELLER_DETAIL" EntitySet="TRAVELLER_DETAIL" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Tour_Mangement_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -783,6 +785,7 @@
           <Property Name="TOUR_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_IS_EXIST" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_STAR" Type="Double" />
+          <Property Name="TOUR_MAIN_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="TOUR_IMAGE" Relationship="Self.FK__TOUR_IMAG__TOUR___7755B73D" FromRole="TOUR" ToRole="TOUR_IMAGE" />
           <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___0A688BB1" FromRole="TOUR" ToRole="TOUR_INFORMATION" />
           <NavigationProperty Name="TOUR_PLACE_DETAILED" Relationship="Self.FK__TOUR_PLAC__TOUR___671F4F74" FromRole="TOUR" ToRole="TOUR_PLACE_DETAILED" />
@@ -840,7 +843,7 @@
             <PropertyRef Name="TOUR_IMAGE_ID" />
           </Key>
           <Property Name="TOUR_IMAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TOUR_IMAGE1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="TOUR_IMAGE_BYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TOUR" Relationship="Self.FK__TOUR_IMAG__TOUR___7755B73D" FromRole="TOUR_IMAGE" ToRole="TOUR" />
         </EntityType>
@@ -1035,8 +1038,8 @@
           <Property Name="TOTAL_TRANSPORT_COST" Type="Double" />
           <Property Name="ANOTHER_COST" Type="Double" />
           <Property Name="TRAVEL_GROUP_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVEL_CO__TRAVE__15DA3E5D" FromRole="TRAVEL_COST" ToRole="TRAVEL_GROUP" />
           <Property Name="TRAVEL_COST_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVEL_CO__TRAVE__15DA3E5D" FromRole="TRAVEL_COST" ToRole="TRAVEL_GROUP" />
         </EntityType>
         <EntityType Name="TRAVEL_GROUP">
           <Key>
@@ -1046,11 +1049,11 @@
           <Property Name="TRAVEL_GROUP_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TRAVEL_GROUP_CONTENT_DETAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TOUR_INFORMATION_ID" Type="Int32" Nullable="false" />
+          <Property Name="TRAVEL_GROUP_ISDELETE" Type="Boolean" />
           <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TRAVEL_GR__TOUR___14E61A24" FromRole="TRAVEL_GROUP" ToRole="TOUR_INFORMATION" />
           <NavigationProperty Name="TOUR_STAFF_DETAIL" Relationship="Self.FK__TOUR_STAF__TRAVE__09746778" FromRole="TRAVEL_GROUP" ToRole="TOUR_STAFF_DETAIL" />
           <NavigationProperty Name="TRAVEL_COST" Relationship="Self.FK__TRAVEL_CO__TRAVE__15DA3E5D" FromRole="TRAVEL_GROUP" ToRole="TRAVEL_COST" />
-          <NavigationProperty Name="TRAVELLER_DETAIL" Relationship="Self.FK__TRAVELLER__TRAVE__07C12930" FromRole="TRAVEL_GROUP" ToRole="TRAVELLER_DETAIL" />
-          <Property Name="TRAVEL_GROUP_ISDELETE" Type="Boolean" />
+          <NavigationProperty Name="TRAVELLER_DETAIL" Relationship="Self.FK__TRAVELLER__TRAVE__32767D0B" FromRole="TRAVEL_GROUP" ToRole="TRAVELLER_DETAIL" />
         </EntityType>
         <EntityType Name="TRAVELLER">
           <Key>
@@ -1064,8 +1067,8 @@
           <Property Name="TRAVELLER_ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TRAVELLER_PHONE_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TRAVELLER_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TRAVELLER_DETAIL" Relationship="Self.FK__TRAVELLER__TRAVE__08B54D69" FromRole="TRAVELLER" ToRole="TRAVELLER_DETAIL" />
           <NavigationProperty Name="TRAVELLER_ACCOUNT" Relationship="Self.FK__TRAVELLER__TRAVE__10566F31" FromRole="TRAVELLER" ToRole="TRAVELLER_ACCOUNT" />
+          <NavigationProperty Name="TRAVELLER_DETAIL" Relationship="Self.FK__TRAVELLER__TRAVE__336AA144" FromRole="TRAVELLER" ToRole="TRAVELLER_DETAIL" />
         </EntityType>
         <EntityType Name="TRAVELLER_ACCOUNT">
           <Key>
@@ -1085,8 +1088,8 @@
           <Property Name="TRAVEL_GROUP_ID" Type="Int32" Nullable="false" />
           <Property Name="TRAVELLER_ID" Type="Int32" Nullable="false" />
           <Property Name="TRAVELLER_DETAIL_STAR" Type="Int32" />
-          <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVELLER__TRAVE__07C12930" FromRole="TRAVELLER_DETAIL" ToRole="TRAVEL_GROUP" />
-          <NavigationProperty Name="TRAVELLER" Relationship="Self.FK__TRAVELLER__TRAVE__08B54D69" FromRole="TRAVELLER_DETAIL" ToRole="TRAVELLER" />
+          <NavigationProperty Name="TRAVEL_GROUP" Relationship="Self.FK__TRAVELLER__TRAVE__32767D0B" FromRole="TRAVELLER_DETAIL" ToRole="TRAVEL_GROUP" />
+          <NavigationProperty Name="TRAVELLER" Relationship="Self.FK__TRAVELLER__TRAVE__336AA144" FromRole="TRAVELLER_DETAIL" ToRole="TRAVELLER" />
         </EntityType>
         <Association Name="FK__TOUR_HOTE__PLACE__73852659">
           <End Role="PLACE" Type="Self.PLACE" Multiplicity="1" />
@@ -1376,7 +1379,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TRAVELLER__TRAVE__07C12930">
+        <Association Name="FK__TRAVELLER__TRAVE__32767D0B">
           <End Role="TRAVEL_GROUP" Type="Self.TRAVEL_GROUP" Multiplicity="1" />
           <End Role="TRAVELLER_DETAIL" Type="Self.TRAVELLER_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1388,18 +1391,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TRAVELLER__TRAVE__08B54D69">
-          <End Role="TRAVELLER" Type="Self.TRAVELLER" Multiplicity="1" />
-          <End Role="TRAVELLER_DETAIL" Type="Self.TRAVELLER_DETAIL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TRAVELLER">
-              <PropertyRef Name="TRAVELLER_ID" />
-            </Principal>
-            <Dependent Role="TRAVELLER_DETAIL">
-              <PropertyRef Name="TRAVELLER_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__TRAVELLER__TRAVE__10566F31">
           <End Role="TRAVELLER" Type="Self.TRAVELLER" Multiplicity="1" />
           <End Role="TRAVELLER_ACCOUNT" Type="Self.TRAVELLER_ACCOUNT" Multiplicity="*" />
@@ -1408,6 +1399,18 @@
               <PropertyRef Name="TRAVELLER_ID" />
             </Principal>
             <Dependent Role="TRAVELLER_ACCOUNT">
+              <PropertyRef Name="TRAVELLER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRAVELLER__TRAVE__336AA144">
+          <End Role="TRAVELLER" Type="Self.TRAVELLER" Multiplicity="1" />
+          <End Role="TRAVELLER_DETAIL" Type="Self.TRAVELLER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAVELLER">
+              <PropertyRef Name="TRAVELLER_ID" />
+            </Principal>
+            <Dependent Role="TRAVELLER_DETAIL">
               <PropertyRef Name="TRAVELLER_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1536,17 +1539,17 @@
             <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
             <End Role="TRAVEL_COST" EntitySet="TRAVEL_COST" />
           </AssociationSet>
-          <AssociationSet Name="FK__TRAVELLER__TRAVE__07C12930" Association="Self.FK__TRAVELLER__TRAVE__07C12930">
+          <AssociationSet Name="FK__TRAVELLER__TRAVE__32767D0B" Association="Self.FK__TRAVELLER__TRAVE__32767D0B">
             <End Role="TRAVEL_GROUP" EntitySet="TRAVEL_GROUP" />
-            <End Role="TRAVELLER_DETAIL" EntitySet="TRAVELLER_DETAIL" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TRAVELLER__TRAVE__08B54D69" Association="Self.FK__TRAVELLER__TRAVE__08B54D69">
-            <End Role="TRAVELLER" EntitySet="TRAVELLER" />
             <End Role="TRAVELLER_DETAIL" EntitySet="TRAVELLER_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK__TRAVELLER__TRAVE__10566F31" Association="Self.FK__TRAVELLER__TRAVE__10566F31">
             <End Role="TRAVELLER" EntitySet="TRAVELLER" />
             <End Role="TRAVELLER_ACCOUNT" EntitySet="TRAVELLER_ACCOUNT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRAVELLER__TRAVE__336AA144" Association="Self.FK__TRAVELLER__TRAVE__336AA144">
+            <End Role="TRAVELLER" EntitySet="TRAVELLER" />
+            <End Role="TRAVELLER_DETAIL" EntitySet="TRAVELLER_DETAIL" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -1584,6 +1587,7 @@
                 <ScalarProperty Name="TOUR_TYPE" ColumnName="TOUR_TYPE" />
                 <ScalarProperty Name="TOUR_IS_EXIST" ColumnName="TOUR_IS_EXIST" />
                 <ScalarProperty Name="TOUR_STAR" ColumnName="TOUR_STAR" />
+                <ScalarProperty Name="TOUR_MAIN_IMAGE" ColumnName="TOUR_MAIN_IMAGE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1638,7 +1642,7 @@
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_IMAGE">
               <MappingFragment StoreEntitySet="TOUR_IMAGE">
                 <ScalarProperty Name="TOUR_IMAGE_ID" ColumnName="TOUR_IMAGE_ID" />
-                <ScalarProperty Name="TOUR_IMAGE1" ColumnName="TOUR_IMAGE" />
+                <ScalarProperty Name="TOUR_IMAGE_BYTE" ColumnName="TOUR_IMAGE_BYTE" />
                 <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1809,24 +1813,24 @@
           <EntitySetMapping Name="TRAVEL_COST">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TRAVEL_COST">
               <MappingFragment StoreEntitySet="TRAVEL_COST">
-                <ScalarProperty Name="TRAVEL_COST_DESCRIPTION" ColumnName="TRAVEL_COST_DESCRIPTION" />
                 <ScalarProperty Name="TRAVEL_COST_ID" ColumnName="TRAVEL_COST_ID" />
                 <ScalarProperty Name="TOTAL_HOTEL_COST" ColumnName="TOTAL_HOTEL_COST" />
                 <ScalarProperty Name="TOTAL_SERVICE_COST" ColumnName="TOTAL_SERVICE_COST" />
                 <ScalarProperty Name="TOTAL_TRANSPORT_COST" ColumnName="TOTAL_TRANSPORT_COST" />
                 <ScalarProperty Name="ANOTHER_COST" ColumnName="ANOTHER_COST" />
                 <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
+                <ScalarProperty Name="TRAVEL_COST_DESCRIPTION" ColumnName="TRAVEL_COST_DESCRIPTION" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TRAVEL_GROUP">
             <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TRAVEL_GROUP">
               <MappingFragment StoreEntitySet="TRAVEL_GROUP">
-                <ScalarProperty Name="TRAVEL_GROUP_ISDELETE" ColumnName="TRAVEL_GROUP_ISDELETE" />
                 <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
                 <ScalarProperty Name="TRAVEL_GROUP_NAME" ColumnName="TRAVEL_GROUP_NAME" />
                 <ScalarProperty Name="TRAVEL_GROUP_CONTENT_DETAIL" ColumnName="TRAVEL_GROUP_CONTENT_DETAIL" />
                 <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
+                <ScalarProperty Name="TRAVEL_GROUP_ISDELETE" ColumnName="TRAVEL_GROUP_ISDELETE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

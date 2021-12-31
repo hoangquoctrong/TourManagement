@@ -43,5 +43,10 @@ namespace TourManagementSystem.ManagerView.Model
 
         public int TOUR_NUMBER_VALID
         { get => _TOUR_NUMBER_VALID; set { _TOUR_NUMBER_VALID = value; OnPropertyChanged(); } }
+
+        private byte[] _TOUR_IMAGE_BYTE_SOURCE;
+
+        public byte[] TOUR_IMAGE_BYTE_SOURCE
+        { get => _TOUR_IMAGE_BYTE_SOURCE; set { _TOUR_IMAGE_BYTE_SOURCE = value; OnPropertyChanged(); } }
     }
 }

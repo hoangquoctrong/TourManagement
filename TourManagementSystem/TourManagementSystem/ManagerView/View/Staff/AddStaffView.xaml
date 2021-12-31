@@ -33,7 +33,7 @@
             BorderThickness="3"
             CornerRadius="15">
             <Grid>
-                <Border
+                <!--<Border
                     Panel.ZIndex="1000"
                     BorderThickness="0.5"
                     CornerRadius="25">
@@ -61,7 +61,7 @@
                                 Text="Loading..." />
                         </StackPanel>
                     </Grid>
-                </Border>
+                </Border>-->
                 <Grid>
 
                     <Grid.RowDefinitions>

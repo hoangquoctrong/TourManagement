@@ -28,6 +28,7 @@ namespace TourManagementSystem.Global
         public string TOUR_TYPE { get; set; }
         public string TOUR_IS_EXIST { get; set; }
         public Nullable<double> TOUR_STAR { get; set; }
+        public byte[] TOUR_MAIN_IMAGE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_IMAGE> TOUR_IMAGE { get; set; }

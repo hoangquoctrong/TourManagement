@@ -15,7 +15,7 @@ namespace TourManagementSystem.Global
     public partial class TOUR_IMAGE
     {
         public int TOUR_IMAGE_ID { get; set; }
-        public byte[] TOUR_IMAGE1 { get; set; }
+        public byte[] TOUR_IMAGE_BYTE { get; set; }
         public int TOUR_ID { get; set; }
     
         public virtual TOUR TOUR { get; set; }

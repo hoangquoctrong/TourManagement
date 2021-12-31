@@ -26,7 +26,8 @@ namespace TourManagementSystem.ManagerView.Model
                     TOUR_TYPE = item.TOUR_TYPE,
                     TOUR_STAR = (double)item.TOUR_STAR,
                     TOUR_IS_EXIST = item.TOUR_IS_EXIST,
-                    TOUR_STATUS = item.TOUR_IS_EXIST.Contains("Yes") ? "Cancel" : "Active"
+                    TOUR_STATUS = item.TOUR_IS_EXIST.Contains("Yes") ? "Cancel" : "Active",
+                    TOUR_IMAGE_BYTE_SOURCE = item.TOUR_MAIN_IMAGE
                 };
                 tourModel.TOUR_NUMBER_VALID = TourInformationHandleModel.CountTourInformationFromTour(tourModel.TOUR_ID);
                 TourList.Add(tourModel);
@@ -45,7 +46,8 @@ namespace TourManagementSystem.ManagerView.Model
                     TOUR_TYPE = tour.TOUR_TYPE,
                     TOUR_CHARACTERISTIS = tour.TOUR_CHARACTERISTIS,
                     TOUR_STAR = 0,
-                    TOUR_IS_EXIST = "No"
+                    TOUR_IS_EXIST = "No",
+                    TOUR_MAIN_IMAGE = tour.TOUR_IMAGE_BYTE_SOURCE
                 };
                 DataProvider.Ins.DB.TOUR.Add(tourdb);
 
@@ -99,7 +101,8 @@ namespace TourManagementSystem.ManagerView.Model
                 TOUR_NAME = tourdb.TOUR_NAME,
                 TOUR_TYPE = tourdb.TOUR_TYPE,
                 TOUR_STAR = (double)tourdb.TOUR_STAR,
-                TOUR_IS_EXIST = tourdb.TOUR_IS_EXIST
+                TOUR_IS_EXIST = tourdb.TOUR_IS_EXIST,
+                TOUR_IMAGE_BYTE_SOURCE = tourdb.TOUR_MAIN_IMAGE,
             };
         }
 
@@ -119,7 +122,7 @@ namespace TourManagementSystem.ManagerView.Model
                     TOUR_IMAGE image = new TOUR_IMAGE()
                     {
                         TOUR_ID = tour_id,
-                        TOUR_IMAGE1 = item.TOUR_IMAGE_BYTE_SOURCE
+                        TOUR_IMAGE_BYTE = item.TOUR_IMAGE_BYTE_SOURCE
                     };
 
                     DataProvider.Ins.DB.TOUR_IMAGE.Add(image);
@@ -158,7 +161,7 @@ namespace TourManagementSystem.ManagerView.Model
                 {
                     IMAGE_ID = item.TOUR_IMAGE_ID,
                     TOUR_ID = item.TOUR_ID,
-                    TOUR_IMAGE_BYTE_SOURCE = item.TOUR_IMAGE1
+                    TOUR_IMAGE_BYTE_SOURCE = item.TOUR_IMAGE_BYTE
                 };
 
                 ImageList.Add(imagemodel);
@@ -204,7 +207,13 @@ namespace TourManagementSystem.ManagerView.Model
                 if (tourdb.TOUR_CHARACTERISTIS != tour.TOUR_CHARACTERISTIS)
                 {
                     changeToSave += string.Format("Characteristic Change ({0} -> {1})   ", tourdb.TOUR_CHARACTERISTIS, tour.TOUR_CHARACTERISTIS);
-                    tourdb.TOUR_CHARACTERISTIS = tour.TOUR_NAME;
+                    tourdb.TOUR_CHARACTERISTIS = tour.TOUR_CHARACTERISTIS;
+                    countChangeToSave++;
+                }
+                if (tourdb.TOUR_MAIN_IMAGE != tour.TOUR_IMAGE_BYTE_SOURCE)
+                {
+                    changeToSave += string.Format("Change Main Image");
+                    tourdb.TOUR_MAIN_IMAGE = tour.TOUR_IMAGE_BYTE_SOURCE;
                     countChangeToSave++;
                 }
 
@@ -250,9 +259,9 @@ namespace TourManagementSystem.ManagerView.Model
                         if (item.IMAGE_ID != 0)
                         {
                             TOUR_IMAGE image = DataProvider.Ins.DB.TOUR_IMAGE.Where(x => x.TOUR_IMAGE_ID == item.IMAGE_ID).FirstOrDefault();
-                            if (image.TOUR_IMAGE1 != item.TOUR_IMAGE_BYTE_SOURCE)
+                            if (image.TOUR_IMAGE_BYTE != item.TOUR_IMAGE_BYTE_SOURCE)
                             {
-                                image.TOUR_IMAGE1 = item.TOUR_IMAGE_BYTE_SOURCE;
+                                image.TOUR_IMAGE_BYTE = item.TOUR_IMAGE_BYTE_SOURCE;
                                 countChangeToSave++;
                             }
                         }
@@ -261,7 +270,7 @@ namespace TourManagementSystem.ManagerView.Model
                             TOUR_IMAGE image = new TOUR_IMAGE()
                             {
                                 TOUR_ID = tour_id,
-                                TOUR_IMAGE1 = item.TOUR_IMAGE_BYTE_SOURCE
+                                TOUR_IMAGE_BYTE = item.TOUR_IMAGE_BYTE_SOURCE
                             };
                             countChangeToSave++;
                             DataProvider.Ins.DB.TOUR_IMAGE.Add(image);
