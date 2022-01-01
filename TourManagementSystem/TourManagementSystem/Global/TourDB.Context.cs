@@ -26,7 +26,8 @@ namespace TourManagementSystem.Global
         }
     
         public virtual DbSet<PLACE> PLACE { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<REGISTER> REGISTER { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TOUR> TOUR { get; set; }
         public virtual DbSet<TOUR_ACCOUNT> TOUR_ACCOUNT { get; set; }
         public virtual DbSet<TOUR_HARD_PRICE> TOUR_HARD_PRICE { get; set; }

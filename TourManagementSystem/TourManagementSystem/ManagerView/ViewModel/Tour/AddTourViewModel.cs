@@ -300,6 +300,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         private TourModel InsertTourModel()
         {
+            
             return new TourModel()
             {
                 TOUR_NAME = Tour_Name,

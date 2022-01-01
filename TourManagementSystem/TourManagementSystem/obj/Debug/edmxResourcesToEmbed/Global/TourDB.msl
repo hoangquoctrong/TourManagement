@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Tour_Mangement_DatabaseModelStoreContainer" CdmEntityContainer="Tour_Mangement_DatabaseEntities">
-    <EntitySetMapping Name="PLACE">
+    <EntitySetMapping Name="PLACEs">
       <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.PLACE">
         <MappingFragment StoreEntitySet="PLACE">
           <ScalarProperty Name="PLACE_ID" ColumnName="PLACE_ID" />
@@ -10,8 +10,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="REGISTERs">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.REGISTER">
+        <MappingFragment StoreEntitySet="REGISTER">
+          <ScalarProperty Name="REGISTER_ID" ColumnName="REGISTER_ID" />
+          <ScalarProperty Name="REGISTER_NAME" ColumnName="REGISTER_NAME" />
+          <ScalarProperty Name="REGISTER_ADDRESS" ColumnName="REGISTER_ADDRESS" />
+          <ScalarProperty Name="REGISTER_PHONE_NUMBER" ColumnName="REGISTER_PHONE_NUMBER" />
+          <ScalarProperty Name="REGISTER_NUMBER" ColumnName="REGISTER_NUMBER" />
+          <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.sysdiagrams">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.sysdiagram">
         <MappingFragment StoreEntitySet="sysdiagrams">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -21,7 +33,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TOUR">
+    <EntitySetMapping Name="TOURs">
       <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR">
         <MappingFragment StoreEntitySet="TOUR">
           <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
@@ -277,7 +289,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TRAVELLER">
+    <EntitySetMapping Name="TRAVELLERs">
       <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TRAVELLER">
         <MappingFragment StoreEntitySet="TRAVELLER">
           <ScalarProperty Name="TRAVELLER_ID" ColumnName="TRAVELLER_ID" />
@@ -308,6 +320,7 @@
           <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
           <ScalarProperty Name="TRAVELLER_ID" ColumnName="TRAVELLER_ID" />
           <ScalarProperty Name="TRAVELLER_DETAIL_STAR" ColumnName="TRAVELLER_DETAIL_STAR" />
+          <ScalarProperty Name="TRAVELLER_DETAIL_COMMENT" ColumnName="TRAVELLER_DETAIL_COMMENT" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -130,10 +130,13 @@
     <Compile Include="Global\PLACE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Global\REGISTER.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global\Ruler\DateRuler.cs" />
     <Compile Include="Global\Ruler\MiniMumCharacterRuler.cs" />
     <Compile Include="Global\Ruler\NumberRuler.cs" />
-    <Compile Include="Global\sysdiagrams.cs">
+    <Compile Include="Global\sysdiagram.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global\TOUR.cs">

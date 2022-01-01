@@ -17,6 +17,7 @@ namespace TourManagementSystem.Global
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TOUR()
         {
+            this.REGISTERs = new HashSet<REGISTER>();
             this.TOUR_IMAGE = new HashSet<TOUR_IMAGE>();
             this.TOUR_INFORMATION = new HashSet<TOUR_INFORMATION>();
             this.TOUR_PLACE_DETAILED = new HashSet<TOUR_PLACE_DETAILED>();
@@ -30,6 +31,8 @@ namespace TourManagementSystem.Global
         public Nullable<double> TOUR_STAR { get; set; }
         public byte[] TOUR_MAIN_IMAGE { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<REGISTER> REGISTERs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOUR_IMAGE> TOUR_IMAGE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
