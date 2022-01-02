@@ -224,7 +224,7 @@
                                                     Path="Transport_Amount_Max"
                                                     UpdateSourceTrigger="PropertyChanged">
                                                     <Binding.ValidationRules>
-                                                        <ruler:NumberRuler NameFill="Transport Amount Max" ValidatesOnTargetUpdated="True" />
+                                                        <ruler:NumberTransportRuler NameFill="Transport Amount Max" ValidatesOnTargetUpdated="True" />
                                                     </Binding.ValidationRules>
                                                 </Binding>
                                             </TextBox.Text>

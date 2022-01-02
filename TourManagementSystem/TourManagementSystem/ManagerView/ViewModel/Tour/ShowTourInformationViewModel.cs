@@ -1095,9 +1095,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             int countValid = 0;
             foreach (var item in TransportSelectedList)
             {
-                if (item.TRANSPORT_AMOUNT > 0)
+                if (item.TRANSPORT_TYPETRANS.Contains("Water") || item.TRANSPORT_TYPETRANS.Contains("Air"))
                 {
                     countValid++;
+                }
+                else
+                {
+                    if (item.TRANSPORT_AMOUNT > 0)
+                    {
+                        countValid++;
+                    }
                 }
             }
             if (countValid == TransportSelectedList.Count && !TransportPriceNotify.Equals("Transport Price haven't updated yet!"))

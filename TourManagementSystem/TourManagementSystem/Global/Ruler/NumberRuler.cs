@@ -46,19 +46,59 @@ namespace TourManagementSystem.Global.Ruler
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             string charString = value as string;
+            double num;
             Regex regex = new Regex(@"^[0-9]*$");
 
             if (string.IsNullOrEmpty(charString))
             {
                 return new ValidationResult(false, $"{NameFill} can't empty!");
             }
-            else if (!regex.IsMatch(charString))
+            else if (!double.TryParse(charString, out num))
             {
-                return new ValidationResult(false, $"{NameFill} can't not have any characters except number");
+                return new ValidationResult(false, $"{NameFill}'s value must be a number");
             }
             else
             {
-                return new ValidationResult(true, null);
+                if (num <= 0)
+                {
+                    return new ValidationResult(false, $"{NameFill}'s value must be a greater than 0");
+                }
+                else
+                {
+                    return new ValidationResult(true, null);
+                }
+            }
+        }
+    }
+
+    public class NumberTransportRuler : ValidationRule
+    {
+        public string NameFill { get; set; }
+
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            string charString = value as string;
+            double num;
+            Regex regex = new Regex(@"^[0-9]*$");
+
+            if (string.IsNullOrEmpty(charString))
+            {
+                return new ValidationResult(false, $"{NameFill} can't empty!");
+            }
+            else if (!double.TryParse(charString, out num))
+            {
+                return new ValidationResult(false, $"{NameFill}'s value must be a number");
+            }
+            else
+            {
+                if (num < 0)
+                {
+                    return new ValidationResult(false, $"{NameFill}'s value must be a greater than 0");
+                }
+                else
+                {
+                    return new ValidationResult(true, null);
+                }
             }
         }
     }

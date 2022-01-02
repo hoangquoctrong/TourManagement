@@ -226,7 +226,7 @@
 
                                                     <TextBox
                                                         x:Name="tbTimeDay"
-                                                        Width="50"
+                                                        Width="80"
                                                         Margin="10,0,0,0"
                                                         HorizontalContentAlignment="Center"
                                                         VerticalContentAlignment="Center"
@@ -251,7 +251,7 @@
                                                         Text="Day(s)" />
 
                                                     <TextBox
-                                                        Width="50"
+                                                        Width="80"
                                                         Margin="10,0,0,0"
                                                         HorizontalContentAlignment="Center"
                                                         VerticalContentAlignment="Center"
@@ -969,7 +969,7 @@
                                                                                         Path="TRANSPORT_AMOUNT"
                                                                                         UpdateSourceTrigger="PropertyChanged">
                                                                                         <Binding.ValidationRules>
-                                                                                            <ruler:NumberRuler NameFill="Transport Amount" ValidatesOnTargetUpdated="True" />
+                                                                                            <ruler:NumberTransportRuler NameFill="Transport Amount" ValidatesOnTargetUpdated="True" />
                                                                                         </Binding.ValidationRules>
                                                                                     </Binding>
                                                                                 </ComboBox.Text>

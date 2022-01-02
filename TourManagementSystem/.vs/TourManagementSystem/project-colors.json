@@ -5,6 +5,11 @@
       "ProjectGuid": "0f33f107-4a1f-4c41-bab3-480ad277f75c",
       "DisplayName": "TourManagementSystem",
       "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
     }
   },
   "NextColorIndex": 1

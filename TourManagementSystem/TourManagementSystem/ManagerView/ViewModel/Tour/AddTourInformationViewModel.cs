@@ -1051,9 +1051,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             int countValid = 0;
             for (int i = 0; i < TransportSelectedList.Count(); i++)
             {
-                if (TransportSelectedList[i].TRANSPORT_AMOUNT > 0)
+                if (TransportSelectedList[i].TRANSPORT_TYPETRANS.Contains("Water") || TransportSelectedList[i].TRANSPORT_TYPETRANS.Contains("Air"))
                 {
                     countValid++;
+                }
+                else
+                {
+                    if (TransportSelectedList[i].TRANSPORT_AMOUNT > 0)
+                    {
+                        countValid++;
+                    }
                 }
             }
 

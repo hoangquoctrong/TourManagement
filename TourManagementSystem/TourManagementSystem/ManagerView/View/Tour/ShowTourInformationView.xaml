@@ -1061,7 +1061,7 @@
                                                                                         Path="TRANSPORT_AMOUNT"
                                                                                         UpdateSourceTrigger="PropertyChanged">
                                                                                         <Binding.ValidationRules>
-                                                                                            <ruler:NumberRuler NameFill="Transport Amount" ValidatesOnTargetUpdated="True" />
+                                                                                            <ruler:NumberTransportRuler NameFill="Transport Amount" ValidatesOnTargetUpdated="True" />
                                                                                         </Binding.ValidationRules>
                                                                                     </Binding>
                                                                                 </ComboBox.Text>
