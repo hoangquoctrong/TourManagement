@@ -46,7 +46,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TravelGroupSelect = travelgroup;
             ProgressBarVisbility = Visibility.Visible;
             SetTravelGroupInformation(travelgroup);
-            GetTravellerList();
+            GetTravellerList(travelgroup.TravelGroup_ID);
             TravellerList_Notify = "";
         }
 
@@ -642,10 +642,10 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public int IndexCount { get; set; }
         public ObservableCollection<TravellerModel> AllTravellerList { get; set; }
 
-        private async void GetTravellerList()
+        private async void GetTravellerList(int group_id)
         {
             await Task.Delay(2000);
-            AllTravellerList = TravelGroupHandleModel.GetTravellerList();
+            AllTravellerList = TravelGroupHandleModel.GetTravellerList(group_id);
         }
 
         private async void SetTravellerList(int travelgroup_id)
@@ -757,6 +757,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 traveller.Traveller_Sex = selectTraveller.Traveller_Sex;
                 traveller.Traveller_Birth = selectTraveller.Traveller_Birth;
                 traveller.Traveller_BirthString = selectTraveller.Traveller_Birth.ToString("dd/MM/yyyy");
+                traveller.Traveller_Star = selectTraveller.Traveller_Star;
                 traveller.Traveller_Notify = count == 1 ? string.Format("1") : string.Format("1/{0}", count);
                 traveller.Traveller_Check = false;
                 traveller.Traveller_Select = 0;

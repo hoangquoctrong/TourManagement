@@ -204,7 +204,7 @@ namespace TourManagementSystem.ManagerView.Model
             }
         }
 
-        public static ObservableCollection<TravellerModel> GetTravellerList()
+        public static ObservableCollection<TravellerModel> GetTravellerList(int group_id = 0)
         {
             ObservableCollection<TravellerModel> TravellerList = new ObservableCollection<TravellerModel>();
 
@@ -228,8 +228,21 @@ namespace TourManagementSystem.ManagerView.Model
                     Traveller_CitizenIdentity = item.TRAVELLER_CITIZEN_IDENTITY,
                     Traveller_PhoneNumber = item.TRAVELLER_PHONE_NUMBER,
                     Traveller_Sex = item.TRAVELLER_SEX,
-                    Traveller_Type = item.TRAVELLER_TYPE
+                    Traveller_Type = item.TRAVELLER_TYPE,
                 };
+
+                if (group_id != 0)
+                {
+                    TRAVELLER_DETAIL detail = DataProvider.Ins.DB.TRAVELLER_DETAIL.Where(x => x.TRAVEL_GROUP_ID == group_id).FirstOrDefault();
+                    if (detail != null)
+                    {
+                        traveller.Traveller_Star = (int)detail.TRAVELLER_DETAIL_STAR;
+                    }
+                    else
+                    {
+                        traveller.Traveller_Star = 0;
+                    }
+                }
 
                 TravellerList.Add(traveller);
             }
