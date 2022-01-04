@@ -199,7 +199,7 @@
                     <DataGrid
                         Grid.Row="2"
                         Width="1150"
-                        Height="540"
+                        Height="470"
                         VerticalAlignment="Top"
                         materialDesign:DataGridAssist.CellPadding="12 8 0 8"
                         materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"

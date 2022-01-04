@@ -151,7 +151,7 @@
                     <DataGrid
                         Grid.Row="2"
                         Width="1170"
-                        Height="550"
+                        Height="480"
                         VerticalAlignment="Top"
                         materialDesign:DataGridAssist.CellPadding="12 8 0 8"
                         materialDesign:DataGridAssist.ColumnHeaderPadding="20 8 0 8"
