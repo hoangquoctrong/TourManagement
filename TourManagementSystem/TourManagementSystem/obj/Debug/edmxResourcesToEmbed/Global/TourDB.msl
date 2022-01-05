@@ -17,7 +17,8 @@
           <ScalarProperty Name="REGISTER_NAME" ColumnName="REGISTER_NAME" />
           <ScalarProperty Name="REGISTER_ADDRESS" ColumnName="REGISTER_ADDRESS" />
           <ScalarProperty Name="REGISTER_PHONE_NUMBER" ColumnName="REGISTER_PHONE_NUMBER" />
-          <ScalarProperty Name="REGISTER_NUMBER" ColumnName="REGISTER_NUMBER" />
+          <ScalarProperty Name="REGISTER_EMAILL" ColumnName="REGISTER_EMAILL" />
+          <ScalarProperty Name="REGISTER_DETAIL" ColumnName="REGISTER_DETAIL" />
           <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
         </MappingFragment>
       </EntityTypeMapping>

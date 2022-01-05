@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Tour_Mangement_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="PLACE">
           <Key>
             <PropertyRef Name="PLACE_ID" />
@@ -21,7 +21,8 @@
           <Property Name="REGISTER_NAME" Type="nvarchar" MaxLength="255" />
           <Property Name="REGISTER_ADDRESS" Type="ntext" />
           <Property Name="REGISTER_PHONE_NUMBER" Type="nvarchar" MaxLength="50" />
-          <Property Name="REGISTER_NUMBER" Type="int" />
+          <Property Name="REGISTER_EMAILL" Type="nvarchar" MaxLength="50" />
+          <Property Name="REGISTER_DETAIL" Type="ntext" />
           <Property Name="TOUR_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -300,7 +301,7 @@
           <Property Name="TRAVELLER_DETAIL_STAR" Type="int" />
           <Property Name="TRAVELLER_DETAIL_COMMENT" Type="ntext" />
         </EntityType>
-        <Association Name="FK__REGISTER__TOUR_I__4CF5691D">
+        <Association Name="FK__REGISTER__TOUR_I__558AAF1E">
           <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
           <End Role="REGISTER" Type="Self.REGISTER" Multiplicity="*" />
           <ReferentialConstraint>
@@ -665,7 +666,7 @@
           <EntitySet Name="TRAVELLER" EntityType="Self.TRAVELLER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRAVELLER_ACCOUNT" EntityType="Self.TRAVELLER_ACCOUNT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRAVELLER_DETAIL" EntityType="Self.TRAVELLER_DETAIL" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__REGISTER__TOUR_I__4CF5691D" Association="Self.FK__REGISTER__TOUR_I__4CF5691D">
+          <AssociationSet Name="FK__REGISTER__TOUR_I__558AAF1E" Association="Self.FK__REGISTER__TOUR_I__558AAF1E">
             <End Role="TOUR" EntitySet="TOUR" />
             <End Role="REGISTER" EntitySet="REGISTER" />
           </AssociationSet>
@@ -778,7 +779,8 @@
             <End Role="TRAVELLER_DETAIL" EntitySet="TRAVELLER_DETAIL" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Tour_Mangement_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -801,9 +803,10 @@
           <Property Name="REGISTER_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="REGISTER_ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="REGISTER_PHONE_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="REGISTER_NUMBER" Type="Int32" />
+          <Property Name="REGISTER_EMAILL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="REGISTER_DETAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TOUR" Relationship="Self.FK__REGISTER__TOUR_I__4CF5691D" FromRole="REGISTER" ToRole="TOUR" />
+          <NavigationProperty Name="TOUR" Relationship="Self.FK__REGISTER__TOUR_I__558AAF1E" FromRole="REGISTER" ToRole="TOUR" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -826,7 +829,7 @@
           <Property Name="TOUR_IS_EXIST" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="TOUR_STAR" Type="Double" />
           <Property Name="TOUR_MAIN_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="REGISTERs" Relationship="Self.FK__REGISTER__TOUR_I__4CF5691D" FromRole="TOUR" ToRole="REGISTER" />
+          <NavigationProperty Name="REGISTERs" Relationship="Self.FK__REGISTER__TOUR_I__558AAF1E" FromRole="TOUR" ToRole="REGISTER" />
           <NavigationProperty Name="TOUR_IMAGE" Relationship="Self.FK__TOUR_IMAG__TOUR___370627FE" FromRole="TOUR" ToRole="TOUR_IMAGE" />
           <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___37FA4C37" FromRole="TOUR" ToRole="TOUR_INFORMATION" />
           <NavigationProperty Name="TOUR_PLACE_DETAILED" Relationship="Self.FK__TOUR_PLAC__TOUR___3DB3258D" FromRole="TOUR" ToRole="TOUR_PLACE_DETAILED" />
@@ -1169,7 +1172,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__REGISTER__TOUR_I__4CF5691D">
+        <Association Name="FK__REGISTER__TOUR_I__558AAF1E">
           <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
           <End Role="REGISTER" Type="Self.REGISTER" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1510,7 +1513,7 @@
             <End Role="PLACE" EntitySet="PLACEs" />
             <End Role="TOUR_PLACE_DETAILED" EntitySet="TOUR_PLACE_DETAILED" />
           </AssociationSet>
-          <AssociationSet Name="FK__REGISTER__TOUR_I__4CF5691D" Association="Self.FK__REGISTER__TOUR_I__4CF5691D">
+          <AssociationSet Name="FK__REGISTER__TOUR_I__558AAF1E" Association="Self.FK__REGISTER__TOUR_I__558AAF1E">
             <End Role="TOUR" EntitySet="TOURs" />
             <End Role="REGISTER" EntitySet="REGISTERs" />
           </AssociationSet>
@@ -1633,7 +1636,8 @@
                 <ScalarProperty Name="REGISTER_NAME" ColumnName="REGISTER_NAME" />
                 <ScalarProperty Name="REGISTER_ADDRESS" ColumnName="REGISTER_ADDRESS" />
                 <ScalarProperty Name="REGISTER_PHONE_NUMBER" ColumnName="REGISTER_PHONE_NUMBER" />
-                <ScalarProperty Name="REGISTER_NUMBER" ColumnName="REGISTER_NUMBER" />
+                <ScalarProperty Name="REGISTER_EMAILL" ColumnName="REGISTER_EMAILL" />
+                <ScalarProperty Name="REGISTER_DETAIL" ColumnName="REGISTER_DETAIL" />
                 <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1954,7 +1958,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

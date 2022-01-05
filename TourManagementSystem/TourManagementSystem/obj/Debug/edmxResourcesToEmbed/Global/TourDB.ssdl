@@ -16,7 +16,8 @@
     <Property Name="REGISTER_NAME" Type="nvarchar" MaxLength="255" />
     <Property Name="REGISTER_ADDRESS" Type="ntext" />
     <Property Name="REGISTER_PHONE_NUMBER" Type="nvarchar" MaxLength="50" />
-    <Property Name="REGISTER_NUMBER" Type="int" />
+    <Property Name="REGISTER_EMAILL" Type="nvarchar" MaxLength="50" />
+    <Property Name="REGISTER_DETAIL" Type="ntext" />
     <Property Name="TOUR_ID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
@@ -295,7 +296,7 @@
     <Property Name="TRAVELLER_DETAIL_STAR" Type="int" />
     <Property Name="TRAVELLER_DETAIL_COMMENT" Type="ntext" />
   </EntityType>
-  <Association Name="FK__REGISTER__TOUR_I__4CF5691D">
+  <Association Name="FK__REGISTER__TOUR_I__558AAF1E">
     <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
     <End Role="REGISTER" Type="Self.REGISTER" Multiplicity="*" />
     <ReferentialConstraint>
@@ -660,7 +661,7 @@
     <EntitySet Name="TRAVELLER" EntityType="Self.TRAVELLER" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TRAVELLER_ACCOUNT" EntityType="Self.TRAVELLER_ACCOUNT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TRAVELLER_DETAIL" EntityType="Self.TRAVELLER_DETAIL" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__REGISTER__TOUR_I__4CF5691D" Association="Self.FK__REGISTER__TOUR_I__4CF5691D">
+    <AssociationSet Name="FK__REGISTER__TOUR_I__558AAF1E" Association="Self.FK__REGISTER__TOUR_I__558AAF1E">
       <End Role="TOUR" EntitySet="TOUR" />
       <End Role="REGISTER" EntitySet="REGISTER" />
     </AssociationSet>

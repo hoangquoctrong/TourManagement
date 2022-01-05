@@ -245,6 +245,8 @@
     <Compile Include="ManagerView\Model\ComboBox\ComboBoxTourModel.cs" />
     <Compile Include="ManagerView\Model\ComboBox\ComboBoxTravellerModel.cs" />
     <Compile Include="ManagerView\Model\ComboBox\ComboBoxMissionModel.cs" />
+    <Compile Include="ManagerView\Model\Register\RegisterHandleModel.cs" />
+    <Compile Include="ManagerView\Model\Register\RegisterModel.cs" />
     <Compile Include="ManagerView\Model\Staff\StaffSatisticExportModel.cs" />
     <Compile Include="ManagerView\Model\Staff\StaffStatisticModel.cs" />
     <Compile Include="ManagerView\Model\Staff\MissionHandleModel.cs" />
@@ -261,6 +263,7 @@
     <Compile Include="ManagerView\Model\TravelGroup\TravellerDetailModel.cs" />
     <Compile Include="ManagerView\Model\TravelGroup\TravellerModel.cs" />
     <Compile Include="ManagerView\ViewModel\Other\InformationViewModel.cs" />
+    <Compile Include="ManagerView\ViewModel\Register\RegisterViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\Traveller\AddTravellerViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\Traveller\ShowTravellerViewModel.cs" />
     <Compile Include="ManagerView\ViewModel\TravelGroup\AddTravelGroupViewModel.cs" />
@@ -268,6 +271,9 @@
     <Compile Include="ManagerView\ViewModel\Traveller\TravellerViewModel.cs" />
     <Compile Include="ManagerView\View\Others\InformationView.xaml.cs">
       <DependentUpon>InformationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerView\View\Register\RegisterView.xaml.cs">
+      <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManagerView\View\Traveller\AddTravellerView.xaml.cs">
       <DependentUpon>AddTravellerView.xaml</DependentUpon>
@@ -313,6 +319,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ManagerView\View\Others\InformationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerView\View\Register\RegisterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -647,6 +657,7 @@
     <Resource Include="Assets\minimize-sign.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\register.png" />
     <Content Include="Global\TourDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TourDB.edmx</DependentUpon>

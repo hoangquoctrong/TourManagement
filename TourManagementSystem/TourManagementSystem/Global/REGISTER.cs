@@ -18,7 +18,8 @@ namespace TourManagementSystem.Global
         public string REGISTER_NAME { get; set; }
         public string REGISTER_ADDRESS { get; set; }
         public string REGISTER_PHONE_NUMBER { get; set; }
-        public Nullable<int> REGISTER_NUMBER { get; set; }
+        public string REGISTER_EMAILL { get; set; }
+        public string REGISTER_DETAIL { get; set; }
         public int TOUR_ID { get; set; }
     
         public virtual TOUR TOUR { get; set; }

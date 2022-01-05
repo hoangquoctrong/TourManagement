@@ -19,9 +19,10 @@
     <Property Name="REGISTER_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="REGISTER_ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="REGISTER_PHONE_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="REGISTER_NUMBER" Type="Int32" />
+    <Property Name="REGISTER_EMAILL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="REGISTER_DETAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="TOUR_ID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="TOUR" Relationship="Self.FK__REGISTER__TOUR_I__4CF5691D" FromRole="REGISTER" ToRole="TOUR" />
+    <NavigationProperty Name="TOUR" Relationship="Self.FK__REGISTER__TOUR_I__558AAF1E" FromRole="REGISTER" ToRole="TOUR" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -44,7 +45,7 @@
     <Property Name="TOUR_IS_EXIST" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="TOUR_STAR" Type="Double" />
     <Property Name="TOUR_MAIN_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <NavigationProperty Name="REGISTERs" Relationship="Self.FK__REGISTER__TOUR_I__4CF5691D" FromRole="TOUR" ToRole="REGISTER" />
+    <NavigationProperty Name="REGISTERs" Relationship="Self.FK__REGISTER__TOUR_I__558AAF1E" FromRole="TOUR" ToRole="REGISTER" />
     <NavigationProperty Name="TOUR_IMAGE" Relationship="Self.FK__TOUR_IMAG__TOUR___370627FE" FromRole="TOUR" ToRole="TOUR_IMAGE" />
     <NavigationProperty Name="TOUR_INFORMATION" Relationship="Self.FK__TOUR_INFO__TOUR___37FA4C37" FromRole="TOUR" ToRole="TOUR_INFORMATION" />
     <NavigationProperty Name="TOUR_PLACE_DETAILED" Relationship="Self.FK__TOUR_PLAC__TOUR___3DB3258D" FromRole="TOUR" ToRole="TOUR_PLACE_DETAILED" />
@@ -387,7 +388,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__REGISTER__TOUR_I__4CF5691D">
+  <Association Name="FK__REGISTER__TOUR_I__558AAF1E">
     <End Role="TOUR" Type="Self.TOUR" Multiplicity="1" />
     <End Role="REGISTER" Type="Self.REGISTER" Multiplicity="*" />
     <ReferentialConstraint>
@@ -728,7 +729,7 @@
       <End Role="PLACE" EntitySet="PLACEs" />
       <End Role="TOUR_PLACE_DETAILED" EntitySet="TOUR_PLACE_DETAILED" />
     </AssociationSet>
-    <AssociationSet Name="FK__REGISTER__TOUR_I__4CF5691D" Association="Self.FK__REGISTER__TOUR_I__4CF5691D">
+    <AssociationSet Name="FK__REGISTER__TOUR_I__558AAF1E" Association="Self.FK__REGISTER__TOUR_I__558AAF1E">
       <End Role="TOUR" EntitySet="TOURs" />
       <End Role="REGISTER" EntitySet="REGISTERs" />
     </AssociationSet>
