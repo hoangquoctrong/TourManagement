@@ -77,3 +77,7 @@ D:\Study\HUONGDOITUONG\TourWeb\TourWeb\obj\Debug\TourWeb.csproj.CoreCompileInput
 D:\Study\HUONGDOITUONG\TourWeb\TourWeb\obj\Debug\TourWeb.csproj.CopyComplete
 D:\Study\HUONGDOITUONG\TourWeb\TourWeb\obj\Debug\TourWeb.dll
 D:\Study\HUONGDOITUONG\TourWeb\TourWeb\obj\Debug\TourWeb.pdb
+D:\Study\HUONGDOITUONG\TourWeb\TourWeb\bin\EntityFramework.dll
+D:\Study\HUONGDOITUONG\TourWeb\TourWeb\bin\EntityFramework.SqlServer.dll
+D:\Study\HUONGDOITUONG\TourWeb\TourWeb\bin\EntityFramework.xml
+D:\Study\HUONGDOITUONG\TourWeb\TourWeb\bin\EntityFramework.SqlServer.xml

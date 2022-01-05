@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -121,9 +129,120 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TOURsController.cs" />
+    <Compile Include="Controllers\TRAVELLER_DETAILController.cs" />
+    <Compile Include="Database\PLACE.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\REGISTER.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\sysdiagram.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TourDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TourDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TourDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TourDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TourDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_ACCOUNT.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_HARD_PRICE.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_HOTEL.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_HOTEL_DETAIL.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_IMAGE.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_INFORMATION.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_LOCATION.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_LOCATION_DETAILED.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_MISSION.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_PLACE_DETAILED.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_PRICE.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_RECORD.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_SCHEDULE.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_STAFF.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_STAFF_DELETE.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_STAFF_DETAIL.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_TIME.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_TRANSPORT.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TOUR_TRANSPORT_DETAIL.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TRAVELLER.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TRAVELLER_ACCOUNT.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TRAVELLER_DETAIL.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TRAVEL_COST.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TRAVEL_GROUP.cs">
+      <DependentUpon>TourDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DetailModel.cs" />
+    <Compile Include="Models\PriceModel.cs" />
+    <Compile Include="Models\RatingModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\ScheduleModel.cs" />
+    <Compile Include="Models\TimeModel.cs" />
+    <Compile Include="Models\TourInformation.cs" />
+    <Compile Include="Models\TourModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerRegister.cs" />
+    <Compile Include="Database\DataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -159,18 +278,36 @@
     <Content Include="Content\images\pic2.png" />
     <Content Include="Content\images\pic3.png" />
     <Content Include="Content\images\pic4.png" />
+    <Content Include="Content\images\review.jpg" />
     <Content Include="Content\images\vid-1.mp4" />
     <Content Include="Content\images\vid-2.mp4" />
     <Content Include="Content\images\vid-3.mp4" />
     <Content Include="Content\images\vid-4.mp4" />
     <Content Include="Content\images\vid-5.mp4" />
     <Content Include="Content\images\vietnam-travel.png" />
+    <Content Include="Database\TourDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TourDB.edmx</DependentUpon>
+      <LastGenOutput>TourDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Database\TourDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TourDB.edmx</DependentUpon>
+      <LastGenOutput>TourDB.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Database\TourDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TourDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Database\TourDB.edmx.diagram">
+      <DependentUpon>TourDB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -195,10 +332,16 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Tour\ShowTour.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\TRAVELLER_DETAIL\Create.cshtml" />
+    <Content Include="Views\TRAVELLER_DETAIL\Delete.cshtml" />
+    <Content Include="Views\TRAVELLER_DETAIL\Details.cshtml" />
+    <Content Include="Views\TRAVELLER_DETAIL\Edit.cshtml" />
+    <Content Include="Views\TRAVELLER_DETAIL\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -212,6 +355,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
