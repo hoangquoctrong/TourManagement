@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\Study\HUONGDOITUONG\App\TourManagementSystem\TourManagementSystem\obj\Debug\
+D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\
 TourManagementSystem
 none
 false
 DEBUG;TRACE
-D:\Study\HUONGDOITUONG\App\TourManagementSystem\TourManagementSystem\App.xaml
+D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagementSystem\App.xaml
 39585569894
 2-299886435
 169-1226281316
-34-1825788938
+34-301483266
 EmployeeView\View\EmployeeWindow.xaml;Global\View\ForgetPasswordWindow.xaml;Global\View\LoginWindow.xaml;Global\View\MessageWindow.xaml;ManagerView\DataTemplate.xaml;ManagerView\View\Others\InformationView.xaml;ManagerView\View\Register\RegisterView.xaml;ManagerView\View\Traveller\AddTravellerView.xaml;ManagerView\View\Others\AccountView.xaml;ManagerView\View\Hotel\AddHotelView.xaml;ManagerView\View\Place\AddLocationView.xaml;ManagerView\View\Place\AddPlaceView.xaml;ManagerView\View\Traveller\ShowTravellerView.xaml;ManagerView\View\Staff\AddStaffView.xaml;ManagerView\View\Tour\AddTourInformationView.xaml;ManagerView\View\Tour\AddTourView.xaml;ManagerView\View\Transport\AddTransportView.xaml;ManagerView\View\TravelGroup\AddTravelGroupView.xaml;ManagerView\View\Others\DashboardView.xaml;ManagerView\View\Hotel\HotelView.xaml;ManagerView\View\ManagerWindow.xaml;ManagerView\View\Place\PlaceView.xaml;ManagerView\View\Hotel\ShowHotelView.xaml;ManagerView\View\Place\ShowLocationView.xaml;ManagerView\View\Place\ShowPlaceView.xaml;ManagerView\View\Staff\ShowStaffView.xaml;ManagerView\View\Tour\ShowTourInformationView.xaml;ManagerView\View\Tour\ShowTourView.xaml;ManagerView\View\Transport\ShowTransportView.xaml;ManagerView\View\TravelGroup\ShowTravelGroupView.xaml;ManagerView\View\Staff\StaffView.xaml;ManagerView\View\Staff\StatisticStaffView.xaml;ManagerView\View\Tour\StatisticTourView.xaml;ManagerView\View\Tour\TourView.xaml;ManagerView\View\Transport\TransportView.xaml;ManagerView\View\TravelGroup\TravelGroupView.xaml;ManagerView\View\Traveller\TravellerView.xaml;Style.xaml;TempItem.xaml;
 
 False

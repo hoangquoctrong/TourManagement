@@ -438,3 +438,5 @@ D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagement
 D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TempItem.baml
 D:\Study\HUONGDOITUONG\App\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Register\RegisterView.g.cs
 D:\Study\HUONGDOITUONG\App\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Register\RegisterView.baml
+D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Register\RegisterView.g.cs
+D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Register\RegisterView.baml
