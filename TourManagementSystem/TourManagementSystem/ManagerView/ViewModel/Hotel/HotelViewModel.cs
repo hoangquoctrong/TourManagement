@@ -22,6 +22,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
+        private Visibility _WaitingVisbility;
+
+        public Visibility WaitingVisbility
+        { get => _WaitingVisbility; set { _WaitingVisbility = value; OnPropertyChanged("WaitingVisbility"); } }
+
         private Visibility _IsVisibility;
 
         public Visibility IsVisibility
@@ -46,6 +51,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             IsVisibility = visibility;
             ProgressBarVisbility = Visibility.Visible;
+            WaitingVisbility = Visibility.Collapsed;
             LoadHotelComboBox();
             User_ID = user_id;
             HotelItems = new ObservableCollection<HotelModel>();
@@ -59,6 +65,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
             HotelItems = HotelHandleModel.GetHotelList();
             Refresh_HotelItems = HotelHandleModel.GetHotelList();
             ProgressBarVisbility = Visibility.Hidden;
+            if (HotelItems.Count == 0)
+            {
+                WaitingVisbility = Visibility.Visible;
+            }
+            else
+            {
+                WaitingVisbility = Visibility.Collapsed;
+            }
         }
 
         private ObservableCollection<ComboBoxModel> _CB_HotelList;

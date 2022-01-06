@@ -34,6 +34,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
+        private Visibility _WaitingVisbility;
+
+        public Visibility WaitingVisbility
+        { get => _WaitingVisbility; set { _WaitingVisbility = value; OnPropertyChanged("WaitingVisbility"); } }
+
         private StaffModel _StaffSelected;
 
         public StaffModel StaffSelected
@@ -173,6 +178,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             LoadTourMissionComboBox();
 
             MissionList = TravelGroupHandleModel.GetTravelGroupListWithStaffID(staff.STAFF_ID);
+
+            if (MissionList.Count == 0)
+            {
+                WaitingVisbility = Visibility.Visible;
+            }
+            else
+            {
+                WaitingVisbility = Visibility.Collapsed;
+            }
+
             TourMissionItemsCollection = new CollectionViewSource { Source = MissionList };
             TourMissionItemsCollection.Filter += TourMissionItem_Filter;
         }

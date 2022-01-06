@@ -22,6 +22,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
+        private Visibility _WaitingVisbility;
+
+        public Visibility WaitingVisbility
+        { get => _WaitingVisbility; set { _WaitingVisbility = value; OnPropertyChanged("WaitingVisbility"); } }
+
         private ObservableCollection<TourModel> _TourItems;
 
         public ObservableCollection<TourModel> TourItems
@@ -49,6 +54,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         public TourViewModel(int user_id, Visibility visibility, Visibility directorVisibility)
         {
+            WaitingVisbility = Visibility.Collapsed;
             User_ID = user_id;
             IsVisibility = visibility;
             IsDirectorVisibility = directorVisibility;
@@ -63,6 +69,15 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TourItems = TourHandleModel.GetTourList();
             Refresh_TourItems = TourHandleModel.GetTourList();
             ProgressBarVisbility = Visibility.Hidden;
+
+            if (TourItems.Count == 0)
+            {
+                WaitingVisbility = Visibility.Visible;
+            }
+            else
+            {
+                WaitingVisbility = Visibility.Collapsed;
+            }
         }
 
         private ObservableCollection<ComboBoxModel> _CB_TourList;

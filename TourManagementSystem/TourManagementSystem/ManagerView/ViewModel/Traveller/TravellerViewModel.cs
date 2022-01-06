@@ -27,11 +27,17 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
+        private Visibility _WaitingVisbility;
+
+        public Visibility WaitingVisbility
+        { get => _WaitingVisbility; set { _WaitingVisbility = value; OnPropertyChanged("WaitingVisbility"); } }
+
         public TravellerViewModel(int user_id, Visibility visibility)
         {
             User_ID = user_id;
             IsVisibility = visibility;
             ProgressBarVisbility = Visibility.Visible;
+            WaitingVisbility = Visibility.Collapsed;
             LoadTravellerComboBox();
             LoadDataToUC();
         }
@@ -42,6 +48,15 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TravellerItems = GetTravellerList();
             Refresh_TravellerItems = GetTravellerList();
             ProgressBarVisbility = Visibility.Hidden;
+
+            if (TravellerItems.Count == 0)
+            {
+                WaitingVisbility = Visibility.Visible;
+            }
+            else
+            {
+                WaitingVisbility = Visibility.Collapsed;
+            }
         }
 
         private ObservableCollection<TravellerModel> _TravellerItems = new ObservableCollection<TravellerModel>();

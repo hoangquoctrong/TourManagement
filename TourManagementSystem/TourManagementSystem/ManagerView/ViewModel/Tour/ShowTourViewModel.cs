@@ -38,6 +38,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
+        private Visibility _WaitingVisbility;
+
+        public Visibility WaitingVisbility
+        { get => _WaitingVisbility; set { _WaitingVisbility = value; OnPropertyChanged("WaitingVisbility"); } }
+
         private TourModel _TourSelected;
 
         public TourModel TourSelected
@@ -112,6 +117,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             User_ID = user_id;
             IsVisibility = visibility;
             IsDirectorVisibility = directorVisibility;
+            WaitingVisbility = Visibility.Collapsed;
             TourSelected = TourHandleModel.GetTour(tour_id);
 
             PlaceList = new BindableCollection<CheckBoxModel>();
@@ -137,6 +143,15 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TourInformationItems = GetTourInformationList(tour_id);
             Refresh_TourInformationItems = GetTourInformationList(tour_id);
             ProgressBarVisbility = Visibility.Hidden;
+
+            if (TourInformationItems.Count == 0)
+            {
+                WaitingVisbility = Visibility.Visible;
+            }
+            else
+            {
+                WaitingVisbility = Visibility.Collapsed;
+            }
         }
 
         private void SetTourInView(TourModel tour)
@@ -610,21 +625,25 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             if (Tour_Name != TourSelected.TOUR_NAME)
             {
+                Console.WriteLine("Name true");
                 return true;
             }
 
             if (Tour_Type != TourSelected.TOUR_TYPE)
             {
+                Console.WriteLine("Type true");
                 return true;
             }
 
             if (Tour_Description != TourSelected.TOUR_CHARACTERISTIS)
             {
+                Console.WriteLine("Description true");
                 return true;
             }
 
             if (Tour_Main_Image_Byte_Source != TourSelected.TOUR_IMAGE_BYTE_SOURCE)
             {
+                Console.WriteLine("Image true");
                 return true;
             }
 

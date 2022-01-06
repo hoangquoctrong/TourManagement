@@ -28,6 +28,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
+        private Visibility _WaitingVisbility;
+
+        public Visibility WaitingVisbility
+        { get => _WaitingVisbility; set { _WaitingVisbility = value; OnPropertyChanged("WaitingVisbility"); } }
+
         private ObservableCollection<StaffModel> _StaffItems;
 
         public ObservableCollection<StaffModel> StaffItems
@@ -47,6 +52,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             User_ID = user_id;
             IsVisibility = visibility;
+            WaitingVisbility = Visibility.Collapsed;
             ProgressBarVisbility = Visibility.Hidden;
             LoadStaffComboBox();
             Checkbox_DisplayAllStaff = false;
@@ -101,6 +107,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 StaffItems = StaffHandleModel.GetStaffList(checkboxDisplay);
                 Refresh_StaffItems = StaffHandleModel.GetStaffList(checkboxDisplay);
                 ProgressBarVisbility = Visibility.Hidden;
+                if (StaffItems.Count == 0)
+                {
+                    WaitingVisbility = Visibility.Visible;
+                }
+                else
+                {
+                    WaitingVisbility = Visibility.Collapsed;
+                }
             }
             else
             {

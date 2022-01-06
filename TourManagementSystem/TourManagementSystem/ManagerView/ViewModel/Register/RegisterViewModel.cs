@@ -8,21 +8,28 @@ using System.Windows;
 using System.Windows.Input;
 using TourManagementSystem.Global;
 using TourManagementSystem.Global.Model;
+using TourManagementSystem.Global.View;
 using TourManagementSystem.ManagerView.Model.Register;
 using TourManagementSystem.ViewModel;
 
 namespace TourManagementSystem.ManagerView.ViewModel
 {
-    class RegisterViewModel : BaseViewModel
+    internal class RegisterViewModel : BaseViewModel
     {
         private int _User_ID;
 
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
+
         private Visibility _IsVisibility;
 
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
+
+        private Visibility _WaitingVisbility;
+
+        public Visibility WaitingVisbility
+        { get => _WaitingVisbility; set { _WaitingVisbility = value; OnPropertyChanged("WaitingVisbility"); } }
 
         private ObservableCollection<RegisterModel> _RegisterItems;
 
@@ -43,20 +50,31 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
         public RegisterViewModel(int user_id, Visibility visibility)
         {
             User_ID = user_id;
             IsVisibility = visibility;
+            WaitingVisbility = Visibility.Collapsed;
             LoadRegisterComboBox();
             ProgressBarVisbility = Visibility.Visible;
             LoadRegisterData();
         }
+
         private async void LoadRegisterData()
         {
             await Task.Delay(3000);
             RegisterItems = RegisterHandleModel.GetRegisterList();
             Refresh_RegisterItems = RegisterHandleModel.GetRegisterList();
             ProgressBarVisbility = Visibility.Hidden;
+            if (RegisterItems.Count == 0)
+            {
+                WaitingVisbility = Visibility.Visible;
+            }
+            else
+            {
+                WaitingVisbility = Visibility.Collapsed | Visibility.Visible;
+            }
         }
 
         private ObservableCollection<ComboBoxModel> _CB_RegisterList;
@@ -115,6 +133,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 }
             }
         }
+
         private ICommand _DeleteRegisterCommand;
 
         public ICommand DeleteRegisterCommand
@@ -123,7 +142,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 if (_DeleteRegisterCommand == null)
                 {
-                    _DeleteRegisterCommand = new RelayCommand<object>(_ => true, p => deleteRegister());
+                    _DeleteRegisterCommand = new RelayCommand<object>(p => RegisterSelected != null, p => deleteRegister());
                 }
                 return _DeleteRegisterCommand;
             }
@@ -131,11 +150,25 @@ namespace TourManagementSystem.ManagerView.ViewModel
 
         public void deleteRegister()
         {
-            var Register = DataProvider.Ins.DB.REGISTER.Where(x => x.REGISTER_ID == RegisterSelected.Register_ID).SingleOrDefault();
-            DataProvider.Ins.DB.REGISTER.Remove(Register);
-            DataProvider.Ins.DB.SaveChanges();
-            ProgressBarVisbility = Visibility.Visible;
-            LoadRegisterData();
+            bool? Result = new MessageWindow("Do you want to delete this register?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+            if (Result == true)
+            {
+                if (RegisterHandleModel.DeleteRegister(RegisterSelected, User_ID))
+                {
+                    string message = string.Format("Delete This Register Successfully!");
+                    MessageWindow messageWindow = new MessageWindow(message, MessageType.Success, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
+                    RegisterSelected = null;
+                }
+                else
+                {
+                    string message = string.Format("Delete This Register Failed!");
+                    MessageWindow messageWindow = new MessageWindow(message, MessageType.Error, MessageButtons.Ok);
+                    messageWindow.ShowDialog();
+                }
+                ProgressBarVisbility = Visibility.Visible;
+                LoadRegisterData();
+            }
         }
     }
 }

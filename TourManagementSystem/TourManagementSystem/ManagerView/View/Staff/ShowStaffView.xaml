@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:gif="http://wpfanimatedgif.codeplex.com"
     xmlns:local="clr-namespace:TourManagementSystem.ManagerView.View"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -717,6 +718,36 @@
                                         <RowDefinition Height="60" />
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
+
+                                    <Border Grid.RowSpan="2" Panel.ZIndex="500">
+                                        <Grid Visibility="{Binding WaitingVisbility}">
+
+                                            <Grid.Background>
+                                                <SolidColorBrush Opacity="1" Color="White" />
+                                            </Grid.Background>
+                                            <StackPanel
+                                                Margin="0,60,0,0"
+                                                HorizontalAlignment="Center"
+                                                Orientation="Vertical">
+                                                <Image
+                                                    Width="600"
+                                                    Height="300"
+                                                    gif:ImageBehavior.AnimatedSource="pack://application:,,,/Resources/Images/waiting.gif"
+                                                    gif:ImageBehavior.AutoStart="True" />
+                                                <TextBlock
+                                                    Margin="16,16"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    FontFamily="Roboto"
+                                                    FontSize="32"
+                                                    FontStyle="Italic"
+                                                    FontWeight="DemiBold"
+                                                    Foreground="Black"
+                                                    Text="He/She is not in charge of any tour." />
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+
                                     <StackPanel Orientation="Horizontal">
                                         <Border
                                             Grid.Column="0"
@@ -757,6 +788,7 @@
                                         <ComboBox
                                             Name="cbSearch"
                                             Width="200"
+                                            Height="34"
                                             Margin="10"
                                             DisplayMemberPath="CB_Name"
                                             FontSize="18"

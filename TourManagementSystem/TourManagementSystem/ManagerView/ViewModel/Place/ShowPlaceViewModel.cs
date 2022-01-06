@@ -27,6 +27,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
+        private Visibility _WaitingVisbility;
+
+        public Visibility WaitingVisbility
+        { get => _WaitingVisbility; set { _WaitingVisbility = value; OnPropertyChanged("WaitingVisbility"); } }
+
         private bool _IsEnable;
 
         public bool IsEnable
@@ -65,6 +70,15 @@ namespace TourManagementSystem.ManagerView.ViewModel
             LoadLocationComboBox();
             LocationItems = PlaceHandleModel.GetLocationList(place_id);
             Refresh_LocationItems = PlaceHandleModel.GetLocationList(place_id);
+
+            if (LocationItems.Count == 0)
+            {
+                WaitingVisbility = Visibility.Visible;
+            }
+            else
+            {
+                WaitingVisbility = Visibility.Collapsed;
+            }
         }
 
         private void SetPlaceInView(PlaceModel place)

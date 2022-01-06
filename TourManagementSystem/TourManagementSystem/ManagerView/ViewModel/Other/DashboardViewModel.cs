@@ -56,7 +56,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             {
                 _Checkbox_DisplayAllRecord = value;
                 OnPropertyChanged();
-                _ = CheckBoxDisplayAsync();
+                CheckBoxDisplayAsync();
             }
         }
 
@@ -71,6 +71,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 RecordList = RecordHandleModel.GetRecordListByDate(Select_Date);
                 RefreshRecordList = RecordHandleModel.GetRecordListByDate(Select_Date);
                 Record_Amount = RecordList.Count;
+                if (Record_Amount == 0)
+                {
+                    WaitingVisbility = Visibility.Visible;
+                }
+                else
+                {
+                    WaitingVisbility = Visibility.Collapsed | Visibility.Visible;
+                }
             }
         }
 
@@ -109,12 +117,18 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public Visibility ItemVisbility
         { get => _ItemVisbility; set { _ItemVisbility = value; OnPropertyChanged("ItemVisbility"); } }
 
+        private Visibility _WaitingVisbility;
+
+        public Visibility WaitingVisbility
+        { get => _WaitingVisbility; set { _WaitingVisbility = value; OnPropertyChanged("WaitingVisbility"); } }
+
         #endregion Data binding
 
         public DashboardViewModel(int user_id)
         {
             User_ID = user_id;
             Checkbox_DisplayAllRecord = false;
+            WaitingVisbility = Visibility.Collapsed;
         }
 
         private void LoadRecordComboBox()
@@ -140,7 +154,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             CB_RecordSelected = CB_RecordList.FirstOrDefault(x => x.IsSelected);
         }
 
-        private async Task<bool> CheckBoxDisplayAsync()
+        private async void CheckBoxDisplayAsync()
         {
             LoadRecordComboBox();
             if (Checkbox_DisplayAllRecord)
@@ -159,7 +173,6 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 ProgressBarVisbility = Visibility.Hidden;
                 ItemVisbility = Visibility.Visible;
             }
-            return true;
         }
 
         private async Task LoadRecordData()
@@ -178,6 +191,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
             RecordList = RecordHandleModel.GetRecordListByDate(Select_Date);
             RefreshRecordList = RecordHandleModel.GetRecordListByDate(Select_Date);
             Record_Amount = RecordList.Count;
+            if (Record_Amount == 0)
+            {
+                WaitingVisbility = Visibility.Visible;
+            }
+            else
+            {
+                WaitingVisbility = Visibility.Collapsed | Visibility.Visible;
+            }
         }
 
         private void RecordItems_Filter()

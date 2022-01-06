@@ -27,6 +27,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
+        private Visibility _WaitingVisbility;
+
+        public Visibility WaitingVisbility
+        { get => _WaitingVisbility; set { _WaitingVisbility = value; OnPropertyChanged("WaitingVisbility"); } }
+
         private ObservableCollection<TransportModel> _TransportItems;
 
         public ObservableCollection<TransportModel> TransportItems
@@ -45,6 +50,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public TransportViewModel(int user_id, Visibility visibility)
         {
             IsVisibility = visibility;
+            WaitingVisbility = Visibility.Collapsed;
             ProgressBarVisbility = Visibility.Visible;
             User_ID = user_id;
             LoadTransportComboBox();
@@ -59,6 +65,15 @@ namespace TourManagementSystem.ManagerView.ViewModel
             TransportItems = TransportHandleModel.GetTransportList();
             Refresh_TransportItems = TransportHandleModel.GetTransportList();
             ProgressBarVisbility = Visibility.Hidden;
+
+            if (TransportItems.Count == 0)
+            {
+                WaitingVisbility = Visibility.Visible;
+            }
+            else
+            {
+                WaitingVisbility = Visibility.Collapsed;
+            }
         }
 
         private ObservableCollection<ComboBoxModel> _CB_TransportList;

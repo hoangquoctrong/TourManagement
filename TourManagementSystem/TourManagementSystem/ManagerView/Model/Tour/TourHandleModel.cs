@@ -24,7 +24,7 @@ namespace TourManagementSystem.ManagerView.Model
                     TOUR_CHARACTERISTIS = item.TOUR_CHARACTERISTIS,
                     TOUR_NAME = item.TOUR_NAME,
                     TOUR_TYPE = item.TOUR_TYPE,
-                    TOUR_STAR = (double)item.TOUR_STAR,
+                    TOUR_STAR = Math.Round((double)item.TOUR_STAR, 2),
                     TOUR_IS_EXIST = item.TOUR_IS_EXIST,
                     TOUR_STATUS = item.TOUR_IS_EXIST.Contains("Yes") ? "Cancel" : "Active",
                     TOUR_IMAGE_BYTE_SOURCE = item.TOUR_MAIN_IMAGE
@@ -368,7 +368,7 @@ namespace TourManagementSystem.ManagerView.Model
             if (count == 0)
             {
                 //Default star
-                tour_star = 5;
+                tour_star = 0;
             }
             else
             {

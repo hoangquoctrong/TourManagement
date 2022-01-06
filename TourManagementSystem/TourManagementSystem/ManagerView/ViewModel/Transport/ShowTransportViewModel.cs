@@ -30,6 +30,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
+        private Visibility _WaitingVisbility;
+
+        public Visibility WaitingVisbility
+        { get => _WaitingVisbility; set { _WaitingVisbility = value; OnPropertyChanged("WaitingVisbility"); } }
+
         #region Data Binding
 
         private int _Transport_ID;
@@ -135,6 +140,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             SetTransportInView(transport);
             LoadTourTransportDetailComboBox();
             ObservableCollection<TourTransportDetailModel> tourtransportdetailItems = TravelGroupHandleModel.GetTravelGroupListWithTransportID(transport.TRANSPORT_ID);
+
+            if (tourtransportdetailItems.Count == 0)
+            {
+                WaitingVisbility = Visibility.Visible;
+            }
+            else
+            {
+                WaitingVisbility = Visibility.Collapsed;
+            }
+
             TourTransportDetailItemsCollection = new CollectionViewSource { Source = tourtransportdetailItems };
             TourTransportDetailItemsCollection.Filter += TourTransportDetailItem_Filter;
         }

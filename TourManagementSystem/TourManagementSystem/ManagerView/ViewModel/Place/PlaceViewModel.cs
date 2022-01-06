@@ -17,6 +17,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public int User_ID
         { get => _User_ID; set { _User_ID = value; OnPropertyChanged("User_ID"); } }
 
+        private Visibility _ProgressBarVisbility;
+
+        public Visibility ProgressBarVisbility
+        { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
+
+        private Visibility _WaitingVisbility;
+
+        public Visibility WaitingVisbility
+        { get => _WaitingVisbility; set { _WaitingVisbility = value; OnPropertyChanged("WaitingVisbility"); } }
+
         private Visibility _IsVisibility;
 
         public Visibility IsVisibility
@@ -41,15 +51,26 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             User_ID = user_id;
             IsVisibility = visibility;
+            ProgressBarVisbility = Visibility.Visible;
+            WaitingVisbility = Visibility.Collapsed;
             LoadPlaceComboBox();
             LoadDataToUI();
         }
 
         private async void LoadDataToUI()
         {
-            await Task.Delay(1000);
+            await Task.Delay(2000);
             PlaceItems = PlaceHandleModel.GetPlaceList();
             Refresh_PlaceItems = PlaceHandleModel.GetPlaceList();
+            ProgressBarVisbility = Visibility.Hidden;
+            if (PlaceItems.Count == 0)
+            {
+                WaitingVisbility = Visibility.Visible;
+            }
+            else
+            {
+                WaitingVisbility = Visibility.Collapsed;
+            }
         }
 
         private ObservableCollection<ComboBoxModel> _CB_PlaceList;

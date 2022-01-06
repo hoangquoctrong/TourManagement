@@ -30,6 +30,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
+        private Visibility _WaitingVisbility;
+
+        public Visibility WaitingVisbility
+        { get => _WaitingVisbility; set { _WaitingVisbility = value; OnPropertyChanged("WaitingVisbility"); } }
+
         #region Data Binding
 
         private int _Hotel_ID;
@@ -117,6 +122,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
             LoadPlaceCombobox(Place_ID);
             LoadTourHotelDetailComboBox();
             ObservableCollection<TourHotelDetailModel> tourhoteldetailItems = TravelGroupHandleModel.GetTravelGroupListWithHotelID(hotel.HOTEL_ID);
+            if (tourhoteldetailItems.Count == 0)
+            {
+                WaitingVisbility = Visibility.Visible;
+            }
+            else
+            {
+                WaitingVisbility = Visibility.Collapsed;
+            }
             TourHotelDetailItemsCollection = new CollectionViewSource { Source = tourhoteldetailItems };
             TourHotelDetailItemsCollection.Filter += TourHotelDetailItem_Filter;
         }

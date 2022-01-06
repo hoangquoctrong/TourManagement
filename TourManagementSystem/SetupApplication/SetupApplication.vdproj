@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_0D3A6442F93C83A625424043F854E992"
+        "OwnerKey" = "8:_4385FA0524BD4635A638B6511DEC222A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_19C8D798D18822AB4991FBE03668B28E"
         "OwnerKey" = "8:_4385FA0524BD4635A638B6511DEC222A"
         "MsmSig" = "8:_UNDEFINED"
@@ -202,13 +208,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6408B31764B334DB4ECFB3997C82A9D5"
+        "OwnerKey" = "8:_4385FA0524BD4635A638B6511DEC222A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4385FA0524BD4635A638B6511DEC222A"
+        "OwnerKey" = "8:_0D3A6442F93C83A625424043F854E992"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -325,6 +331,12 @@
         "OwnerKey" = "8:_C276B46F177DBDC01845AB7A30977D15"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6408B31764B334DB4ECFB3997C82A9D5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -343,6 +355,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -359,6 +387,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -388,6 +424,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0D3A6442F93C83A625424043F854E992"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_0D3A6442F93C83A625424043F854E992"
+                    {
+                    "Name" = "8:WpfAnimatedGif.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:WpfAnimatedGif.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_0A0F3A7C7439411BA4D4241A2260B133"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_19C8D798D18822AB4991FBE03668B28E"
             {
             "AssemblyRegister" = "3:1"
@@ -1055,7 +1122,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -1127,7 +1194,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SetupApplication"
         "ProductCode" = "8:{C7804893-03F9-4FEB-9FAB-6FD266925223}"
-        "PackageCode" = "8:{A74B149C-9E70-49D0-89A1-987523E48959}"
+        "PackageCode" = "8:{7DC55DCA-5615-47B3-AE95-6E4D1DD2A4A8}"
         "UpgradeCode" = "8:{805CAC2C-9D5A-4FE4-BDAC-A031CFF4FC27}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1249,7 +1316,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3FE225DFD52B46989658B13182949266"
             {
-            "Name" = "8:Tour Management System Installer"
+            "Name" = "8:Tour Management System"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1263,7 +1330,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F4DB0500FE184C0AB5E185CA433C90E3"
             {
-            "Name" = "8:Tour Management System Installer"
+            "Name" = "8:Tour Management System"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"

@@ -208,7 +208,6 @@ D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\Tou
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.CopyComplete
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.exe
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.pdb
-D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\TourManagementSystem.csproj.AssemblyReference.cache
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Traveller\AddTravellerView.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Traveller\ShowTravellerView.g.cs
 D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Traveller\TravellerView.g.cs
@@ -440,3 +439,8 @@ D:\Study\HUONGDOITUONG\App\TourManagementSystem\TourManagementSystem\obj\Debug\M
 D:\Study\HUONGDOITUONG\App\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Register\RegisterView.baml
 D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Register\RegisterView.g.cs
 D:\Study\HUONGDOITUONG\Github\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Register\RegisterView.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Register\RegisterView.g.cs
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\obj\Debug\ManagerView\View\Register\RegisterView.baml
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\WpfAnimatedGif.dll
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\WpfAnimatedGif.pdb
+D:\GitHub\TourManagement\TourManagementSystem\TourManagementSystem\bin\Debug\WpfAnimatedGif.xml

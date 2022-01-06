@@ -30,6 +30,11 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public Visibility IsVisibility
         { get => _IsVisibility; set { _IsVisibility = value; OnPropertyChanged("IsVisibility"); } }
 
+        private Visibility _WaitingVisbility;
+
+        public Visibility WaitingVisbility
+        { get => _WaitingVisbility; set { _WaitingVisbility = value; OnPropertyChanged("WaitingVisbility"); } }
+
         private bool _IsEnable;
 
         public bool IsEnable
@@ -78,6 +83,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
             SetLocationInView(location);
             LoadTourLocationComboBox();
             ObservableCollection<TourLocationModel> tourlocationItems = PlaceHandleModel.GetTourLocationList(location.LOCATION_ID);
+
+            if (tourlocationItems.Count == 0)
+            {
+                WaitingVisbility = Visibility.Visible;
+            }
+            else
+            {
+                WaitingVisbility = Visibility.Collapsed;
+            }
+
             TourLocationItemsCollection = new CollectionViewSource { Source = tourlocationItems };
             TourLocationItemsCollection.Filter += TourLocationItem_Filter;
         }

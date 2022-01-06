@@ -27,6 +27,16 @@ namespace TourManagementSystem.ManagerView.ViewModel
         public Visibility ProgressBarVisbility
         { get => _ProgressBarVisbility; set { _ProgressBarVisbility = value; OnPropertyChanged("ProgressBarVisbility"); } }
 
+        private Visibility _WaitingVisbility;
+
+        public Visibility WaitingVisbility
+        { get => _WaitingVisbility; set { _WaitingVisbility = value; OnPropertyChanged("WaitingVisbility"); } }
+
+        private Visibility _WaitingStaffVisbility;
+
+        public Visibility WaitingStaffVisbility
+        { get => _WaitingStaffVisbility; set { _WaitingStaffVisbility = value; OnPropertyChanged("WaitingStaffVisbility"); } }
+
         private ObservableCollection<TravelGroupModel> _TravelGroupItems;
 
         public ObservableCollection<TravelGroupModel> TravelGroupItems
@@ -46,6 +56,8 @@ namespace TourManagementSystem.ManagerView.ViewModel
         {
             User_ID = user_id;
             IsVisibility = visibility;
+            WaitingVisbility = Visibility.Collapsed;
+            _WaitingStaffVisbility = Visibility.Collapsed;
             LoadTravelGroupComboBox();
             TravelGroupItems = new ObservableCollection<TravelGroupModel>();
             Refresh_TravelGroupItems = new ObservableCollection<TravelGroupModel>();
@@ -60,12 +72,34 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 await Task.Delay(3000);
                 TravelGroupItems = TravelGroupHandleModel.GetTravelGroupList();
                 Refresh_TravelGroupItems = TravelGroupHandleModel.GetTravelGroupList();
+
+                if (TravelGroupItems.Count == 0)
+                {
+                    WaitingStaffVisbility = Visibility.Collapsed;
+                    WaitingVisbility = Visibility.Visible;
+                }
+                else
+                {
+                    WaitingStaffVisbility = Visibility.Collapsed;
+                    WaitingVisbility = Visibility.Collapsed;
+                }
             }
             else
             {
                 await Task.Delay(4000);
                 TravelGroupItems = TravelGroupHandleModel.GetTravelGroupListByUser(User_ID);
                 Refresh_TravelGroupItems = TravelGroupHandleModel.GetTravelGroupListByUser(User_ID);
+
+                if (TravelGroupItems.Count == 0)
+                {
+                    WaitingVisbility = Visibility.Collapsed;
+                    WaitingStaffVisbility = Visibility.Visible;
+                }
+                else
+                {
+                    WaitingVisbility = Visibility.Collapsed;
+                    WaitingStaffVisbility = Visibility.Collapsed;
+                }
             }
 
             ProgressBarVisbility = Visibility.Hidden;
