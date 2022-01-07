@@ -17,6 +17,7 @@ namespace TourWeb.Controllers
         public ActionResult Index()
         {
             List<TourModel> tourModels = getTourList();
+            
             return View(tourModels);
         }
 
@@ -31,12 +32,14 @@ namespace TourWeb.Controllers
             detailModel.ratingModels = new List<RatingModel>();
             detailModel.ratingModels = getRating(id);
             detailModel.ratingModel = new RatingModel();
+            SaveTourStar(id);
             return View(detailModel);
         }
         [HttpPost]
         public ActionResult Detail(DetailModel DetailModel)
         {
             int id = DetailModel.tourModel.TourID;
+            SaveTourStar(id);
             detailModel = new DetailModel();
             detailModel.DetailId = id;
             detailModel.tourInformation = new List<TourInformation>();
@@ -121,12 +124,16 @@ namespace TourWeb.Controllers
                            select tour;
             foreach (var item in tourlist)
             {
+                byte[] bytes = item.TOUR_MAIN_IMAGE;
+                string imageBase64Data = Convert.ToBase64String(bytes);
+                string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
                 TourModel tourModel = new TourModel()
                 {
                     TourID = item.TOUR_ID,
                     Tour_Character = item.TOUR_CHARACTERISTIS,
                     TourName = item.TOUR_NAME,
                     Tour_Star = (double)item.TOUR_STAR,
+                    imagesData = imageDataURL
                 };
 
                 tourModels.Add(tourModel);
@@ -188,6 +195,9 @@ namespace TourWeb.Controllers
         public TourModel getTour(int tour_id)
         {
             var tourdb = DataProvider.Ins.DB.TOURs.Where(x => x.TOUR_ID == tour_id).FirstOrDefault();
+            byte[] bytes = tourdb.TOUR_MAIN_IMAGE;
+            string imageBase64Data = Convert.ToBase64String(bytes);
+            string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
 
             return new TourModel()
             {
@@ -195,6 +205,7 @@ namespace TourWeb.Controllers
                 Tour_Character = tourdb.TOUR_CHARACTERISTIS,
                 TourName = tourdb.TOUR_NAME,
                 Tour_Star = (double)tourdb.TOUR_STAR,
+                imagesData = imageDataURL,
             };
         }
 
@@ -239,6 +250,38 @@ namespace TourWeb.Controllers
             {
                 TempData["AlertType"] = "alert-info";
             }
+        }
+
+
+
+        public static void SaveTourStar(int tour_id)
+        {
+            var tourinformationlist = from travelgroup in DataProvider.Ins.DB.TRAVEL_GROUP
+                                      join tgdetail in DataProvider.Ins.DB.TRAVELLER_DETAIL on travelgroup.TRAVEL_GROUP_ID equals tgdetail.TRAVEL_GROUP_ID
+                                      where travelgroup.TOUR_INFORMATION.TOUR_ID == tour_id
+                                      select new
+                                      {
+                                          tgdetail.TRAVELLER_DETAIL_STAR
+                                      };
+
+            double tour_star = 0;
+            int total = 0;
+            int count = 0;
+            foreach (var item in tourinformationlist)
+            {
+                if (item.TRAVELLER_DETAIL_STAR != 0)
+                {
+                    int star = (int)item.TRAVELLER_DETAIL_STAR;
+                    total += star;
+                    count++;
+                }
+            }
+            tour_star = total * 1.0 / count;
+            tour_star = Math.Round(tour_star, 2);
+            TOUR tour = DataProvider.Ins.DB.TOURs.Where(x => x.TOUR_ID == tour_id).First();
+            tour.TOUR_STAR = tour_star;
+            DataProvider.Ins.DB.SaveChanges();
+           
         }
     }
 }

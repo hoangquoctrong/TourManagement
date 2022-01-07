@@ -10,7 +10,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-transform: capitalize;
     outline: none;
     border: none;
     text-decoration: none;
@@ -31,9 +30,11 @@ html {
 
 section {
     padding: 2rem 9%;
+  
 }
 
 .heading {
+    text-transform: capitalize;
     text-align: center;
     padding: 2.5rem 0;
 }
@@ -380,11 +381,17 @@ header {
             .packages .box-container .box .contents p {
                 font-size: 1.7rem;
                 color: #666;
-                padding: 1rem 0;
+                margin: 1rem 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; /* number of lines to show */
+                -webkit-box-orient: vertical;
             }
-
-            .packages .box-container .box .contents .stars i {
+            .packages .box-container .box .contents .stars {
                 font-size: 1.7rem;
+            }
+            .packages .box-container .box .contents .stars i {
                 color: var(--orange);
             }
 
@@ -476,11 +483,15 @@ header {
     }
 
         .detail .container .schedule {
+            padding: 2rem 0;
+        }
+        .detail .container .schedule .schedule-day
+        {
             padding-top: 2rem;
+            font-weight:bolder;
         }
 
         .detail .container .price {
-            padding-top: 2rem;
         }
 
 .gallery {

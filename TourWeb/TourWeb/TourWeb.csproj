@@ -129,8 +129,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TOURsController.cs" />
-    <Compile Include="Controllers\TRAVELLER_DETAILController.cs" />
     <Compile Include="Database\PLACE.cs">
       <DependentUpon>TourDB.tt</DependentUpon>
     </Compile>
@@ -332,13 +330,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Tour\ShowTour.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
-    <Content Include="Views\TRAVELLER_DETAIL\Create.cshtml" />
-    <Content Include="Views\TRAVELLER_DETAIL\Delete.cshtml" />
-    <Content Include="Views\TRAVELLER_DETAIL\Details.cshtml" />
-    <Content Include="Views\TRAVELLER_DETAIL\Edit.cshtml" />
-    <Content Include="Views\TRAVELLER_DETAIL\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
