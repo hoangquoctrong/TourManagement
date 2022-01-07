@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Tour_Mangement_DatabaseModelStoreContainer" CdmEntityContainer="Tour_Mangement_DatabaseEntities">
+    <EntitySetMapping Name="PLACEs">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.PLACE">
+        <MappingFragment StoreEntitySet="PLACE">
+          <ScalarProperty Name="PLACE_ID" ColumnName="PLACE_ID" />
+          <ScalarProperty Name="PLACE_NAME" ColumnName="PLACE_NAME" />
+          <ScalarProperty Name="PLACE_NATION" ColumnName="PLACE_NATION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REGISTERs">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.REGISTER">
+        <MappingFragment StoreEntitySet="REGISTER">
+          <ScalarProperty Name="REGISTER_ID" ColumnName="REGISTER_ID" />
+          <ScalarProperty Name="REGISTER_NAME" ColumnName="REGISTER_NAME" />
+          <ScalarProperty Name="REGISTER_ADDRESS" ColumnName="REGISTER_ADDRESS" />
+          <ScalarProperty Name="REGISTER_PHONE_NUMBER" ColumnName="REGISTER_PHONE_NUMBER" />
+          <ScalarProperty Name="REGISTER_EMAILL" ColumnName="REGISTER_EMAILL" />
+          <ScalarProperty Name="REGISTER_DETAIL" ColumnName="REGISTER_DETAIL" />
+          <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOURs">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR">
+        <MappingFragment StoreEntitySet="TOUR">
+          <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
+          <ScalarProperty Name="TOUR_NAME" ColumnName="TOUR_NAME" />
+          <ScalarProperty Name="TOUR_CHARACTERISTIS" ColumnName="TOUR_CHARACTERISTIS" />
+          <ScalarProperty Name="TOUR_TYPE" ColumnName="TOUR_TYPE" />
+          <ScalarProperty Name="TOUR_IS_EXIST" ColumnName="TOUR_IS_EXIST" />
+          <ScalarProperty Name="TOUR_STAR" ColumnName="TOUR_STAR" />
+          <ScalarProperty Name="TOUR_MAIN_IMAGE" ColumnName="TOUR_MAIN_IMAGE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_ACCOUNT">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_ACCOUNT">
+        <MappingFragment StoreEntitySet="TOUR_ACCOUNT">
+          <ScalarProperty Name="TOUR_ACCOUNT_ID" ColumnName="TOUR_ACCOUNT_ID" />
+          <ScalarProperty Name="TOUR_ACCOUNT_NAME" ColumnName="TOUR_ACCOUNT_NAME" />
+          <ScalarProperty Name="TOUR_ACCOUNT_PASSWORD" ColumnName="TOUR_ACCOUNT_PASSWORD" />
+          <ScalarProperty Name="TOUR_STAFF_ID" ColumnName="TOUR_STAFF_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_HARD_PRICE">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_HARD_PRICE">
+        <MappingFragment StoreEntitySet="TOUR_HARD_PRICE">
+          <ScalarProperty Name="TOUR_HARD_PRICE_ID" ColumnName="TOUR_HARD_PRICE_ID" />
+          <ScalarProperty Name="TOUR_HARD_PRICE_COST" ColumnName="TOUR_HARD_PRICE_COST" />
+          <ScalarProperty Name="TOUR_HARD_PRICE_CONTENT" ColumnName="TOUR_HARD_PRICE_CONTENT" />
+          <ScalarProperty Name="TOUR_HARD_PRICE_DESCRIPTION" ColumnName="TOUR_HARD_PRICE_DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_HOTEL">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_HOTEL">
+        <MappingFragment StoreEntitySet="TOUR_HOTEL">
+          <ScalarProperty Name="TOUR_HOTEL_ID" ColumnName="TOUR_HOTEL_ID" />
+          <ScalarProperty Name="TOUR_HOTEL_NAME" ColumnName="TOUR_HOTEL_NAME" />
+          <ScalarProperty Name="TOUR_HOTEL_ADDRESS" ColumnName="TOUR_HOTEL_ADDRESS" />
+          <ScalarProperty Name="TOUR_HOTEL_PHONE_NUMBER" ColumnName="TOUR_HOTEL_PHONE_NUMBER" />
+          <ScalarProperty Name="TOUR_HOTEL_IS_RESTAURANT" ColumnName="TOUR_HOTEL_IS_RESTAURANT" />
+          <ScalarProperty Name="TOUR_HOTEL_PRICE" ColumnName="TOUR_HOTEL_PRICE" />
+          <ScalarProperty Name="TOUR_HOTEL_TYPE" ColumnName="TOUR_HOTEL_TYPE" />
+          <ScalarProperty Name="TOUR_HOTEL_DESCRIPTION" ColumnName="TOUR_HOTEL_DESCRIPTION" />
+          <ScalarProperty Name="TOUR_HOTEL_EMAIL" ColumnName="TOUR_HOTEL_EMAIL" />
+          <ScalarProperty Name="PLACE_ID" ColumnName="PLACE_ID" />
+          <ScalarProperty Name="TOUR_HOTEL_DELETE" ColumnName="TOUR_HOTEL_DELETE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_HOTEL_DETAIL">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_HOTEL_DETAIL">
+        <MappingFragment StoreEntitySet="TOUR_HOTEL_DETAIL">
+          <ScalarProperty Name="TOUR_HOTEL_DETAIL_ID" ColumnName="TOUR_HOTEL_DETAIL_ID" />
+          <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
+          <ScalarProperty Name="TOUR_HOTEL_ID" ColumnName="TOUR_HOTEL_ID" />
+          <ScalarProperty Name="TOUR_HOTEL_DETAIL_DAY" ColumnName="TOUR_HOTEL_DETAIL_DAY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_IMAGE">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_IMAGE">
+        <MappingFragment StoreEntitySet="TOUR_IMAGE">
+          <ScalarProperty Name="TOUR_IMAGE_ID" ColumnName="TOUR_IMAGE_ID" />
+          <ScalarProperty Name="TOUR_IMAGE_BYTE" ColumnName="TOUR_IMAGE_BYTE" />
+          <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_INFORMATION">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_INFORMATION">
+        <MappingFragment StoreEntitySet="TOUR_INFORMATION">
+          <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
+          <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_LOCATION">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_LOCATION">
+        <MappingFragment StoreEntitySet="TOUR_LOCATION">
+          <ScalarProperty Name="TOUR_LOCATION_ID" ColumnName="TOUR_LOCATION_ID" />
+          <ScalarProperty Name="TOUR_LOCATION_NAME" ColumnName="TOUR_LOCATION_NAME" />
+          <ScalarProperty Name="PLACE_ID" ColumnName="PLACE_ID" />
+          <ScalarProperty Name="TOUR_LOCATION_ADDRESS" ColumnName="TOUR_LOCATION_ADDRESS" />
+          <ScalarProperty Name="TOUR_LOCATION_DESCRIPTION" ColumnName="TOUR_LOCATION_DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_LOCATION_DETAILED">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_LOCATION_DETAILED">
+        <MappingFragment StoreEntitySet="TOUR_LOCATION_DETAILED">
+          <ScalarProperty Name="TOUR_LOCATION_DETAILED_ID" ColumnName="TOUR_LOCATION_DETAILED_ID" />
+          <ScalarProperty Name="TOUR_LOCATION_ID" ColumnName="TOUR_LOCATION_ID" />
+          <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_MISSION">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_MISSION">
+        <MappingFragment StoreEntitySet="TOUR_MISSION">
+          <ScalarProperty Name="TOUR_MISSION_ID" ColumnName="TOUR_MISSION_ID" />
+          <ScalarProperty Name="TOUR_MISSION_DESCRIPTION" ColumnName="TOUR_MISSION_DESCRIPTION" />
+          <ScalarProperty Name="TOUR_MISSION_RESPONSIBILITY" ColumnName="TOUR_MISSION_RESPONSIBILITY" />
+          <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
+          <ScalarProperty Name="TOUR_MISSION_PRICE" ColumnName="TOUR_MISSION_PRICE" />
+          <ScalarProperty Name="TOUR_MISSION_COUNT" ColumnName="TOUR_MISSION_COUNT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_PLACE_DETAILED">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_PLACE_DETAILED">
+        <MappingFragment StoreEntitySet="TOUR_PLACE_DETAILED">
+          <ScalarProperty Name="TOUR_PLACE_DETAILED_ID" ColumnName="TOUR_PLACE_DETAILED_ID" />
+          <ScalarProperty Name="PLACE_ID" ColumnName="PLACE_ID" />
+          <ScalarProperty Name="TOUR_ID" ColumnName="TOUR_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_PRICE">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_PRICE">
+        <MappingFragment StoreEntitySet="TOUR_PRICE">
+          <ScalarProperty Name="TOUR_PRICE_ID" ColumnName="TOUR_PRICE_ID" />
+          <ScalarProperty Name="TOUR_PRICE_COST_TOTAL" ColumnName="TOUR_PRICE_COST_TOTAL" />
+          <ScalarProperty Name="TOUR_PRICE_COST_HOTEL" ColumnName="TOUR_PRICE_COST_HOTEL" />
+          <ScalarProperty Name="TOUR_PRICE_COST_TRANSPORT" ColumnName="TOUR_PRICE_COST_TRANSPORT" />
+          <ScalarProperty Name="TOUR_PRICE_COST_SERVICE" ColumnName="TOUR_PRICE_COST_SERVICE" />
+          <ScalarProperty Name="TOUR_PRICE_NOTE" ColumnName="TOUR_PRICE_NOTE" />
+          <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_RECORD">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_RECORD">
+        <MappingFragment StoreEntitySet="TOUR_RECORD">
+          <ScalarProperty Name="TOUR_RECORD_ID" ColumnName="TOUR_RECORD_ID" />
+          <ScalarProperty Name="TOUR_RECORD_CONTENT" ColumnName="TOUR_RECORD_CONTENT" />
+          <ScalarProperty Name="TOUR_RECORD_DATE" ColumnName="TOUR_RECORD_DATE" />
+          <ScalarProperty Name="TOUR_STAFF_ID" ColumnName="TOUR_STAFF_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_SCHEDULE">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_SCHEDULE">
+        <MappingFragment StoreEntitySet="TOUR_SCHEDULE">
+          <ScalarProperty Name="TOUR_SCHEDULE_ID" ColumnName="TOUR_SCHEDULE_ID" />
+          <ScalarProperty Name="TOUR_SCHEDULE_DAY" ColumnName="TOUR_SCHEDULE_DAY" />
+          <ScalarProperty Name="TOUR_SCHEDULE_CONTENT" ColumnName="TOUR_SCHEDULE_CONTENT" />
+          <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_STAFF">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_STAFF">
+        <MappingFragment StoreEntitySet="TOUR_STAFF">
+          <ScalarProperty Name="TOUR_STAFF_ID" ColumnName="TOUR_STAFF_ID" />
+          <ScalarProperty Name="TOUR_STAFF_NAME" ColumnName="TOUR_STAFF_NAME" />
+          <ScalarProperty Name="TOUR_STAFF_CITIZEN_IDENTITY" ColumnName="TOUR_STAFF_CITIZEN_IDENTITY" />
+          <ScalarProperty Name="TOUR_STAFF_ADDRESS" ColumnName="TOUR_STAFF_ADDRESS" />
+          <ScalarProperty Name="TOUR_STAFF_START_DATE" ColumnName="TOUR_STAFF_START_DATE" />
+          <ScalarProperty Name="TOUR_STAFF_PHONE_NUMBER" ColumnName="TOUR_STAFF_PHONE_NUMBER" />
+          <ScalarProperty Name="TOUR_STAFF_BIRTH_PLACE" ColumnName="TOUR_STAFF_BIRTH_PLACE" />
+          <ScalarProperty Name="TOUR_STAFF_ACADEMIC_LEVEL" ColumnName="TOUR_STAFF_ACADEMIC_LEVEL" />
+          <ScalarProperty Name="TOUR_STAFF_BIRTH_DATE" ColumnName="TOUR_STAFF_BIRTH_DATE" />
+          <ScalarProperty Name="TOUR_STAFF_GENDER" ColumnName="TOUR_STAFF_GENDER" />
+          <ScalarProperty Name="TOUR_STAFF_EMAIL" ColumnName="TOUR_STAFF_EMAIL" />
+          <ScalarProperty Name="TOUR_STAFF_NOTE" ColumnName="TOUR_STAFF_NOTE" />
+          <ScalarProperty Name="TOUR_STAFF_IMAGE" ColumnName="TOUR_STAFF_IMAGE" />
+          <ScalarProperty Name="TOUR_STAFF_ROLE" ColumnName="TOUR_STAFF_ROLE" />
+          <ScalarProperty Name="TOUR_STAFF_CITIZEN_IDENTITY_PLACE" ColumnName="TOUR_STAFF_CITIZEN_IDENTITY_PLACE" />
+          <ScalarProperty Name="TOUR_STAFF_CITIZEN_IDENTITY_DATE" ColumnName="TOUR_STAFF_CITIZEN_IDENTITY_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_STAFF_DELETE">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_STAFF_DELETE">
+        <MappingFragment StoreEntitySet="TOUR_STAFF_DELETE">
+          <ScalarProperty Name="TOUR_STAFF_DELETE_ID" ColumnName="TOUR_STAFF_DELETE_ID" />
+          <ScalarProperty Name="TOUR_STAFF_DELETE_ISDELETED" ColumnName="TOUR_STAFF_DELETE_ISDELETED" />
+          <ScalarProperty Name="TOUR_STAFF_DELETE_DATE" ColumnName="TOUR_STAFF_DELETE_DATE" />
+          <ScalarProperty Name="TOUR_STAFF_ID" ColumnName="TOUR_STAFF_ID" />
+          <ScalarProperty Name="TOUR_STAFF_DELETE_CONTENT" ColumnName="TOUR_STAFF_DELETE_CONTENT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_STAFF_DETAIL">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_STAFF_DETAIL">
+        <MappingFragment StoreEntitySet="TOUR_STAFF_DETAIL">
+          <ScalarProperty Name="TOUR_STAFF_DETAIL_ID" ColumnName="TOUR_STAFF_DETAIL_ID" />
+          <ScalarProperty Name="TOUR_STAFF_ID" ColumnName="TOUR_STAFF_ID" />
+          <ScalarProperty Name="TOUR_MISSION_ID" ColumnName="TOUR_MISSION_ID" />
+          <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_TIME">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TIME">
+        <MappingFragment StoreEntitySet="TOUR_TIME">
+          <ScalarProperty Name="TOUR_TIME_ID" ColumnName="TOUR_TIME_ID" />
+          <ScalarProperty Name="TOUR_TIME_DEPARTMENT_DATE" ColumnName="TOUR_TIME_DEPARTMENT_DATE" />
+          <ScalarProperty Name="TOUR_TIME_END_DATE" ColumnName="TOUR_TIME_END_DATE" />
+          <ScalarProperty Name="TOUR_TIME_DAY" ColumnName="TOUR_TIME_DAY" />
+          <ScalarProperty Name="TOUR_TIME_NIGHT" ColumnName="TOUR_TIME_NIGHT" />
+          <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_TRANSPORT">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT">
+        <MappingFragment StoreEntitySet="TOUR_TRANSPORT">
+          <ScalarProperty Name="TOUR_TRANSPORT_ID" ColumnName="TOUR_TRANSPORT_ID" />
+          <ScalarProperty Name="TOUR_TRANSPORT_NAME" ColumnName="TOUR_TRANSPORT_NAME" />
+          <ScalarProperty Name="TOUR_TRANSPORT_COMPANY" ColumnName="TOUR_TRANSPORT_COMPANY" />
+          <ScalarProperty Name="TOUR_TRANSPORT_TYPE" ColumnName="TOUR_TRANSPORT_TYPE" />
+          <ScalarProperty Name="TOUR_TRANSPORT_START_DATE" ColumnName="TOUR_TRANSPORT_START_DATE" />
+          <ScalarProperty Name="TOUR_TRANSPORT_DESCRIPTION" ColumnName="TOUR_TRANSPORT_DESCRIPTION" />
+          <ScalarProperty Name="TOUR_TRANSPORT_DELETE" ColumnName="TOUR_TRANSPORT_DELETE" />
+          <ScalarProperty Name="TOUR_TRANSPORT_PRICE" ColumnName="TOUR_TRANSPORT_PRICE" />
+          <ScalarProperty Name="TOUR_TRANSPORT_TYPETRANS" ColumnName="TOUR_TRANSPORT_TYPETRANS" />
+          <ScalarProperty Name="TOUR_TRANSPORT_AMOUNT_MAX" ColumnName="TOUR_TRANSPORT_AMOUNT_MAX" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOUR_TRANSPORT_DETAIL">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TOUR_TRANSPORT_DETAIL">
+        <MappingFragment StoreEntitySet="TOUR_TRANSPORT_DETAIL">
+          <ScalarProperty Name="TOUR_TRANSPORT_DETAIL_ID" ColumnName="TOUR_TRANSPORT_DETAIL_ID" />
+          <ScalarProperty Name="TOUR_TRANSPORT_ID" ColumnName="TOUR_TRANSPORT_ID" />
+          <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
+          <ScalarProperty Name="TOUR_TRANSPORT_DETAIL_AMOUNT" ColumnName="TOUR_TRANSPORT_DETAIL_AMOUNT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRAVEL_COST">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TRAVEL_COST">
+        <MappingFragment StoreEntitySet="TRAVEL_COST">
+          <ScalarProperty Name="TRAVEL_COST_ID" ColumnName="TRAVEL_COST_ID" />
+          <ScalarProperty Name="TOTAL_HOTEL_COST" ColumnName="TOTAL_HOTEL_COST" />
+          <ScalarProperty Name="TOTAL_SERVICE_COST" ColumnName="TOTAL_SERVICE_COST" />
+          <ScalarProperty Name="TOTAL_TRANSPORT_COST" ColumnName="TOTAL_TRANSPORT_COST" />
+          <ScalarProperty Name="ANOTHER_COST" ColumnName="ANOTHER_COST" />
+          <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
+          <ScalarProperty Name="TRAVEL_COST_DESCRIPTION" ColumnName="TRAVEL_COST_DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRAVEL_GROUP">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TRAVEL_GROUP">
+        <MappingFragment StoreEntitySet="TRAVEL_GROUP">
+          <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
+          <ScalarProperty Name="TRAVEL_GROUP_NAME" ColumnName="TRAVEL_GROUP_NAME" />
+          <ScalarProperty Name="TRAVEL_GROUP_CONTENT_DETAIL" ColumnName="TRAVEL_GROUP_CONTENT_DETAIL" />
+          <ScalarProperty Name="TOUR_INFORMATION_ID" ColumnName="TOUR_INFORMATION_ID" />
+          <ScalarProperty Name="TRAVEL_GROUP_ISDELETE" ColumnName="TRAVEL_GROUP_ISDELETE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRAVELLERs">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TRAVELLER">
+        <MappingFragment StoreEntitySet="TRAVELLER">
+          <ScalarProperty Name="TRAVELLER_ID" ColumnName="TRAVELLER_ID" />
+          <ScalarProperty Name="TRAVELLER_NAME" ColumnName="TRAVELLER_NAME" />
+          <ScalarProperty Name="TRAVELLER_CITIZEN_IDENTITY" ColumnName="TRAVELLER_CITIZEN_IDENTITY" />
+          <ScalarProperty Name="TRAVELLER_SEX" ColumnName="TRAVELLER_SEX" />
+          <ScalarProperty Name="TRAVELLER_BIRTH" ColumnName="TRAVELLER_BIRTH" />
+          <ScalarProperty Name="TRAVELLER_ADDRESS" ColumnName="TRAVELLER_ADDRESS" />
+          <ScalarProperty Name="TRAVELLER_PHONE_NUMBER" ColumnName="TRAVELLER_PHONE_NUMBER" />
+          <ScalarProperty Name="TRAVELLER_TYPE" ColumnName="TRAVELLER_TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRAVELLER_ACCOUNT">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TRAVELLER_ACCOUNT">
+        <MappingFragment StoreEntitySet="TRAVELLER_ACCOUNT">
+          <ScalarProperty Name="TRAVELLER_ACCOUNT_ID" ColumnName="TRAVELLER_ACCOUNT_ID" />
+          <ScalarProperty Name="TRAVELLER_ACCOUNT_NAME" ColumnName="TRAVELLER_ACCOUNT_NAME" />
+          <ScalarProperty Name="TRAVELLER_ACCOUNT_PASSWORD" ColumnName="TRAVELLER_ACCOUNT_PASSWORD" />
+          <ScalarProperty Name="TRAVELLER_ID" ColumnName="TRAVELLER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRAVELLER_DETAIL">
+      <EntityTypeMapping TypeName="Tour_Mangement_DatabaseModel.TRAVELLER_DETAIL">
+        <MappingFragment StoreEntitySet="TRAVELLER_DETAIL">
+          <ScalarProperty Name="TRAVELLER_DETAIL_ID" ColumnName="TRAVELLER_DETAIL_ID" />
+          <ScalarProperty Name="TRAVEL_GROUP_ID" ColumnName="TRAVEL_GROUP_ID" />
+          <ScalarProperty Name="TRAVELLER_ID" ColumnName="TRAVELLER_ID" />
+          <ScalarProperty Name="TRAVELLER_DETAIL_STAR" ColumnName="TRAVELLER_DETAIL_STAR" />
+          <ScalarProperty Name="TRAVELLER_DETAIL_COMMENT" ColumnName="TRAVELLER_DETAIL_COMMENT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

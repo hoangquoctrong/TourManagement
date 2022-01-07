@@ -1,0 +1,477 @@
+﻿@model TourWeb.Models.DetailModel
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel agency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css" asp-append-version="true">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        function CrateOut(rating) {
+            for (var i = 1; i <= rating; i++) {
+                $("#star-" + i).attr('class', 'far fa-star');
+            }
+        }
+        function CrateOver(rating) {
+            for (var i = 1; i <= rating; i++) {
+                $("#star-" + i).attr('class', 'fas fa-star');
+            }
+        }
+        function CrateClick(rating) {
+            $("#lblRating").val(rating);
+            for (var i = 1; i <= rating; i++) {
+                $("#star-" + i).attr('class', 'fas fa-star');
+            }
+
+            for (var i = rating + 1; i <= 5; i++) {
+                $("#star-" + i).attr('class', 'far fa-star');
+            }
+        }
+        function CrateSelected() {
+            var rating = $('#lblRating').val();
+            for (var i = 1; i <= rating; i++) {
+                $("#star-" + i).attr('class', 'fas fa-star');
+            }
+        }
+        function VerifyRating() {
+            var rating = $('$lblRating').val();
+            if (rating == "0") {
+                alert("Please Select Rating.");
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- header section start -->
+    <header>
+
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <a href="#" class="logo"><span>T</span>ravel</a>
+        <nav class="navbar">
+            <a href="#information">Information</a>
+            <a href="#detail">Detail</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+            <a href="#review">Review</a>
+        </nav>
+        <div class="icons">
+            <i class="fas fa-search" id="search-btn"></i>
+        </div>
+        <form action="" class="search-bar-container">
+            <input type="search" id="search-bar" placeholder="search here...">
+            <label for="search-bar" class="fas fa-search"></label>
+        </form>
+    </header>
+    <!-- header section end -->
+    <!-- login form container -->
+
+    <div class="login-form-container">
+        <i class="fas fa-times" id="form-close"></i>
+        <form action="">
+            <h3>login</h3>
+            <input type="email" class="box" placeholder="enter your email">
+            <input type="password" class="box" placeholder="enter your password">
+            <input type="submit" value="login now" class="btn">
+            <input type="checkbox" id="remember">
+            <label for="remember">remember me</label>
+            <p>forget password? <a href="#">click here</a></p>
+            <p>don't have an account? <a href="#">register now</a></p>
+        </form>
+    </div>
+    @if (TempData["AlertMessage"] != null)
+    {
+        <div id="AlertBox" class="alert @TempData["AlertType"] hide" role="alert">
+            @TempData["AlertMessage"]
+        </div>
+    }
+    <section class="information" id="information">
+        <h1 class="heading">
+            <span>i</span>
+            <span>n</span>
+            <span>f</span>
+            <span>o</span>
+            <span>r</span>
+            <span>m</span>
+            <span>a</span>
+            <span>t</span>
+            <span>i</span>
+            <span>o</span>
+            <span>n</span>
+        </h1>
+
+        <div class="container">
+            <div class="image-container">
+                <img src="@Url.Content(Model.tourModel.imagesData)" alt="">
+            </div>
+            <div class="content">
+                <div class="title">@Model.tourModel.TourName</div>
+                <div class="characteristic">@Model.tourModel.Tour_Character</div>
+            </div>
+        </div>
+
+
+    </section>
+    <section class="detail" id="detail">
+        <h1 class="heading">
+            <span>d</span>
+            <span>e</span>
+            <span>t</span>
+            <span>a</span>
+            <span>i</span>
+            <span>l</span>
+        </h1>
+        @foreach (var item in Model.tourInformation)
+        {
+            <div class="container">
+                <div class="tour-id">Tour ID: @item.TourInformationID</div>
+                <div class="Duration">Duration: @item.Time.TimeString</div>
+                <div class="Start-Date">Start Date: @item.Time.TimeStartString</div>
+                <div class="End-Date">End Date: @item.Time.TimeEndString</div>
+                <div class="Schedule">
+                    @foreach (var item1 in item.Schedule)
+                    {
+                        <div class="Schedule-Day">@item1.ScheduleDay</div>
+                        <div class="Schedule-content">@item1.ScheduleContent</div>
+                    }
+                </div>
+                <div class="Price">
+                    Price:
+                    <div class="Price-Hotel">Hotel: @item.Price.PriceHotel VNĐ</div>
+                    <div class="Price-Transport">Transport: @item.Price.PriceTransport VNĐ</div>
+                    <div class="Price-Service">Service: @item.Price.PriceService VNĐ</div>
+                    <div class="Price-Other">Other: @item.Price.PriceNote VNĐ</div>
+                    <div class="Total-Price">Total: @item.Price.PriceTotal VNĐ</div>
+                </div>
+            </div>
+        }
+    </section>
+    <!-- gallery section starts -->
+    <section class="gallery" id="gallery">
+        <h1 class="heading">
+            <span>g</span>
+            <span>a</span>
+            <span>l</span>
+            <span>l</span>
+            <span>e</span>
+            <span>r</span>
+            <span>y</span>
+        </h1>
+        <div class="box-container">
+            <div class="box">
+                <img src="~/Content/images/g-1.jpg" alt="">
+            </div>
+            <div class="box">
+                <img src="~/Content/images/g-2.jpg" alt="">
+
+            </div>
+            <div class="box">
+                <img src="~/Content/images/g-3.jpg" alt="">
+            </div>
+            <div class="box">
+                <img src="~/Content/images/g-4.jpg" alt="">
+            </div>
+            <div class="box">
+                <img src="~/Content/images/g-5.jpg" alt="">
+            </div>
+            <div class="box">
+                <img src="~/Content/images/g-6.jpg" alt="">
+            </div>
+            <div class="box">
+                <img src="~/Content/images/g-7.jpg" alt="">
+            </div>
+            <div class="box">
+                <img src="~/Content/images/g-8.jpg" alt="">
+            </div>
+            <div class="box">
+                <img src="~/Content/images/g-9.jpg" alt="">
+            </div>
+        </div>
+    </section>
+    <!-- gallery section ends -->
+    <!-- contact section starts -->
+
+    <section class="contact" id="contact">
+        <h1 class="heading">
+            <span>c</span>
+            <span>o</span>
+            <span>n</span>
+            <span>t</span>
+            <span>a</span>
+            <span>c</span>
+            <span>t</span>
+        </h1>
+        <div class="row">
+            <div class="image">
+                <img src="~/Content/images/contact-img.svg" alt="">
+            </div>
+            @using (Html.BeginForm("Detail", "Home", FormMethod.Post))
+            {
+                <div class="inputBox">
+                    <div class="input">
+                        <div class="label">
+                            @Html.LabelFor(model => model.registerModel.Name)
+                        </div>
+
+                        @Html.EditorFor(model => model.registerModel.Name)
+                        @Html.ValidationMessageFor(model => model.registerModel.Name)
+                    </div>
+                    <div class="input">
+                        <div class="label">
+                            @Html.LabelFor(model => model.registerModel.PhoneNumber)
+                        </div>
+                        @Html.EditorFor(model => model.registerModel.PhoneNumber)
+                        @Html.ValidationMessageFor(model => model.registerModel.PhoneNumber)
+                    </div>
+                </div>
+                <div class="inputBox">
+                    <div class="input">
+                        <div class="label">
+                            @Html.LabelFor(model => model.registerModel.Email)
+                        </div>
+                        @Html.EditorFor(model => model.registerModel.Email)
+                        @Html.ValidationMessageFor(model => model.registerModel.Email)
+                    </div>
+                    <div class="input">
+                        <div class="label">
+                            @Html.LabelFor(model => model.registerModel.Address)
+                        </div>
+                        @Html.EditorFor(model => model.registerModel.Address)
+                        @Html.ValidationMessageFor(model => model.registerModel.Address)
+                    </div>
+                </div>
+                <div>
+                    @Html.HiddenFor(model => model.tourModel.TourID, new { value = Model.tourModel.TourID })
+                </div>
+                <div class="label">
+                    @Html.LabelFor(model => model.registerModel.Detail)
+                </div>
+                @Html.TextAreaFor(model => model.registerModel.Detail)
+                @Html.ValidationMessageFor(model => model.registerModel.Detail)
+                <div>
+                    <input type="submit" class="btn" name="SaveReview" value="Send Contact">
+                </div>
+
+            }
+        </div>
+    </section>
+
+    <!-- contact section ends -->
+    <!-- review section starts -->
+    <section class="review" id="review">
+        <h1 class="heading">
+            <span>r</span>
+            <span>e</span>
+            <span>v</span>
+            <span>i</span>
+            <span>e</span>
+            <span>w</span>
+        </h1>
+
+        @*<div class="swiper review-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="box">
+                            <img src="~/Content/images/pic1.png" alt="">
+                            <h3>john deo</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At nobis temporibus sint esse, sunt optio quia asperiores, obcaecati quam vero eum voluptatibus eius itaque, consequatur voluptatum autem. Voluptates, accusamus harum.</p>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="box">
+                            <img src="~/Content/images/pic2.png" alt="">
+                            <h3>john deo</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At nobis temporibus sint esse, sunt optio quia asperiores, obcaecati quam vero eum voluptatibus eius itaque, consequatur voluptatum autem. Voluptates, accusamus harum.</p>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="box">
+                            <img src="~/Content/images/pic3.png" alt="">
+                            <h3>john deo</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At nobis temporibus sint esse, sunt optio quia asperiores, obcaecati quam vero eum voluptatibus eius itaque, consequatur voluptatum autem. Voluptates, accusamus harum.</p>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="box">
+                            <img src="~/Content/images/pic4.png" alt="">
+                            <h3>john deo</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At nobis temporibus sint esse, sunt optio quia asperiores, obcaecati quam vero eum voluptatibus eius itaque, consequatur voluptatum autem. Voluptates, accusamus harum.</p>
+                            <div class="stars">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+        <div class="row">
+
+
+            @using (Html.BeginForm("Detail", "Home", FormMethod.Post))
+            {
+                <div class="inputBox">
+                    <div class="input-traveller input">
+                        <div class="label">
+                            @Html.LabelFor(model => model.ratingModel.TravellerID)
+                        </div>
+
+                        @Html.EditorFor(model => model.ratingModel.TravellerID)
+                        @Html.ValidationMessageFor(model => model.ratingModel.TravellerID)
+                    </div>
+                    <div class="input-group input">
+                        <div class="label">
+                            @Html.LabelFor(model => model.ratingModel.GroupID)
+                        </div>
+                        @Html.EditorFor(model => model.ratingModel.GroupID)
+                        @Html.ValidationMessageFor(model => model.ratingModel.GroupID)
+                    </div>
+                </div>
+                <div class="label">
+                    @Html.LabelFor(model => model.ratingModel.Rating)
+                </div>
+                <div class="star-rating" onmouseout="CrateSelected()">
+                    <i id="star-1" onmouseout="CrateOut(1)" onmouseover="CrateOver(1)" onclick="CrateClick(1)" class="far fa-star"></i>
+                    <i id="star-2" onmouseout="CrateOut(2)" onmouseover="CrateOver(2)" onclick="CrateClick(2)" class="far fa-star"></i>
+                    <i id="star-3" onmouseout="CrateOut(3)" onmouseover="CrateOver(3)" onclick="CrateClick(3)" class="far fa-star"></i>
+                    <i id="star-4" onmouseout="CrateOut(4)" onmouseover="CrateOver(4)" onclick="CrateClick(4)" class="far fa-star"></i>
+                    <i id="star-5" onmouseout="CrateOut(5)" onmouseover="CrateOver(5)" onclick="CrateClick(5)" class="far fa-star"></i>
+                </div>
+                <div>
+                    @Html.HiddenFor(model => model.ratingModel.Rating, new { id = "lblRating", value = "0" })
+                    @Html.HiddenFor(model => model.tourModel.TourID, new { value = Model.tourModel.TourID })
+                    @Html.ValidationMessageFor(model => model.ratingModel.Rating)
+                </div>
+                <div class="label">
+                    @Html.LabelFor(model => model.ratingModel.Comment)
+                </div>
+                @Html.TextAreaFor(model => model.ratingModel.Comment)
+                @Html.ValidationMessageFor(model => model.ratingModel.Comment)
+        <div>
+            <input type="submit" class="btn" name="SaveReview" value="Send Review" CausesValidation=true>
+        </div>
+               
+            }
+            <div class="image">
+                <img src="~/Content/images/review.jpg" alt="">
+            </div>
+
+        </div>
+    </section>
+    <!-- review section ends -->
+    <!-- comment section starts -->
+    <section class="comment" id="comment">
+        <h1 class="heading">
+            <span>c</span>
+            <span>o</span>
+            <span>m</span>
+            <span>m</span>
+            <span>e</span>
+            <span>n</span>
+            <span>t</span>
+        </h1>
+
+        @foreach (var item in Model.ratingModels)
+        {
+            <div class="comment-section">
+                <div>
+                    @item.TravellerName
+                </div>
+                @for (double i = 0; i < 5; i++)
+                {
+                    if (i < item.Rating)
+                    {
+
+                        <i class="fas fa-star"></i>
+                    }
+                    else
+                    {
+                        <i class="far fa-star"></i>
+                    }
+
+                }
+                <div>
+                    @item.Comment
+                </div>
+
+            </div>
+        }
+
+    </section>
+    <!-- comment section ends -->
+    <!-- footer section starts -->
+
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>about us</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+            </div>
+            <div class="box">
+                <h3>branch locations</h3>
+                <a href="">India</a>
+                <a href="">USA</a>
+                <a href="">japan</a>
+                <a href="">france</a>
+            </div>
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="">home</a>
+                <a href="">book</a>
+                <a href="">services</a>
+                <a href="">gallery</a>
+                <a href="">review</a>
+                <a href="">contact</a>
+            </div>
+            <div class="box">
+                <h3>follow us</h3>
+                <a href="">facebook</a>
+                <a href="">instagram</a>
+                <a href="">twitter</a>
+                <a href="">linkedin</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer section ends -->
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- custom js file link -->
+    <script src="~/Scripts/js/script.js"></script>
+
+</body>
+</html>
+
