@@ -23,24 +23,74 @@ namespace TourWeb.Controllers
 
         public ActionResult Detail(int id)
         {
-            detailModel = new DetailModel();
-            detailModel.DetailId = id;
-            detailModel.tourInformation = new List<TourInformation>();
-            detailModel.tourInformation = getTourInformation(id);
-            detailModel.tourModel = new TourModel();
-            detailModel.tourModel = getTour(id);
-            detailModel.ratingModels = new List<RatingModel>();
-            detailModel.ratingModels = getRating(id);
-            detailModel.ratingModel = new RatingModel();
-            detailModel.tourModel.ImagesGallery = new List<string>();
-            getImageList(detailModel.tourModel);
-            SaveTourStar(id);
+            getDetailModel(id);
             return View(detailModel);
         }
         [HttpPost]
         public ActionResult Detail(DetailModel DetailModel)
         {
             int id = DetailModel.tourModel.TourID;
+            getDetailModel(id);
+            if (ModelState.IsValid)
+            {
+                string message = string.Empty;
+                if (DetailModel.ratingModel == null)
+                {
+                    try
+                    {
+                        DataProvider.Ins.DB.REGISTERs.Add(new REGISTER
+                        {
+                            REGISTER_NAME = DetailModel.registerModel.Name,
+                            REGISTER_ADDRESS = DetailModel.registerModel.Address,
+                            REGISTER_PHONE_NUMBER = DetailModel.registerModel.PhoneNumber.ToString(),
+                            REGISTER_EMAILL = DetailModel.registerModel.Email,
+                            REGISTER_DETAIL = DetailModel.registerModel.Detail,
+                            TOUR_ID = DetailModel.tourModel.TourID,
+                        });
+                        DataProvider.Ins.DB.SaveChanges();
+                        message = "Add Contact successfully";
+                        SetAlert(message, 1);
+                    }
+                    catch
+                    {
+                        message = "Invalid information";
+                        SetAlert(message, 3);
+                    }
+
+                }
+                else
+                {
+                    try
+                    {
+                        var travellerReview = DataProvider.Ins.DB.TRAVELLER_DETAIL.Where(x => x.TRAVELLER.TRAVELLER_NAME == DetailModel.ratingModel.TravellerName && x.TRAVELLER.TRAVELLER_PHONE_NUMBER == DetailModel.ratingModel.PhoneNumber && x.TRAVEL_GROUP_ID == DetailModel.ratingModel.GroupID).SingleOrDefault();
+                        if (travellerReview == null)
+                        {
+                            throw new Exception();
+                        }
+                        else
+                        {
+                            travellerReview.TRAVELLER_DETAIL_STAR = DetailModel.ratingModel.Rating;
+                            travellerReview.TRAVELLER_DETAIL_COMMENT = DetailModel.ratingModel.Comment;
+                            detailModel.ratingModel.Rating = 0;
+                            detailModel.ratingModel.Comment = "";
+                            DataProvider.Ins.DB.SaveChanges();
+                            message = "Add rating successfully";
+                            SetAlert(message, 1);
+                        }
+                    }
+                    catch
+                    {
+                        message = "Invalid information";
+                        SetAlert(message, 3);
+                    }
+                }
+            }
+            return View(detailModel);
+            
+        }
+
+        public void getDetailModel(int id)
+        {
             SaveTourStar(id);
             detailModel = new DetailModel();
             detailModel.DetailId = id;
@@ -53,63 +103,7 @@ namespace TourWeb.Controllers
             detailModel.ratingModel = new RatingModel();
             detailModel.tourModel.ImagesGallery = new List<string>();
             getImageList(detailModel.tourModel);
-            string message = string.Empty;
-            DetailModel model = new DetailModel();
-            model = DetailModel;
-            if (DetailModel.ratingModel == null)
-            {
-                try
-                {
-                    DataProvider.Ins.DB.REGISTERs.Add(new REGISTER
-                    {
-                        REGISTER_NAME = DetailModel.registerModel.Name,
-                        REGISTER_ADDRESS = DetailModel.registerModel.Address,
-                        REGISTER_PHONE_NUMBER = DetailModel.registerModel.PhoneNumber.ToString(),
-                        REGISTER_EMAILL = DetailModel.registerModel.Email,
-                        REGISTER_DETAIL = DetailModel.registerModel.Detail,
-                        TOUR_ID = DetailModel.tourModel.TourID,
-                    });
-                    DataProvider.Ins.DB.SaveChanges();
-                    message = "Add Contact successfully";
-                    SetAlert(message, 1);
-                }
-                catch
-                {
-                    message = "Invalid information";
-                    SetAlert(message, 3);
-                }
-
-            }
-            else
-            {
-                try
-                {
-                    var travellerReview = DataProvider.Ins.DB.TRAVELLER_DETAIL.Where(x => x.TRAVELLER.TRAVELLER_NAME == DetailModel.ratingModel.TravellerName && x.TRAVELLER.TRAVELLER_PHONE_NUMBER == DetailModel.ratingModel.PhoneNumber && x.TRAVEL_GROUP_ID == DetailModel.ratingModel.GroupID).SingleOrDefault();
-                    if (travellerReview == null)
-                    {
-                        throw new Exception();
-                    }
-                    else
-                    {
-                        travellerReview.TRAVELLER_DETAIL_STAR = DetailModel.ratingModel.Rating;
-                        travellerReview.TRAVELLER_DETAIL_COMMENT = DetailModel.ratingModel.Comment;
-                        detailModel.ratingModel.Rating = 0;
-                        detailModel.ratingModel.Comment = "";
-                        DataProvider.Ins.DB.SaveChanges();
-                        message = "Add rating successfully";
-                        SetAlert(message, 1);
-                    }
-                }
-                catch
-                {
-                    message = "Invalid information";
-                    SetAlert(message, 3);
-                }
-            }
-            return View(detailModel);
         }
-
-
 
         public ActionResult Contact()
         {
