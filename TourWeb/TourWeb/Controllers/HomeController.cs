@@ -32,6 +32,8 @@ namespace TourWeb.Controllers
             detailModel.ratingModels = new List<RatingModel>();
             detailModel.ratingModels = getRating(id);
             detailModel.ratingModel = new RatingModel();
+            detailModel.tourModel.ImagesGallery = new List<string>();
+            getImageList(detailModel.tourModel);
             SaveTourStar(id);
             return View(detailModel);
         }
@@ -49,6 +51,8 @@ namespace TourWeb.Controllers
             detailModel.ratingModels = new List<RatingModel>();
             detailModel.ratingModels = getRating(id);
             detailModel.ratingModel = new RatingModel();
+            detailModel.tourModel.ImagesGallery = new List<string>();
+            getImageList(detailModel.tourModel);
             string message = string.Empty;
             DetailModel model = new DetailModel();
             model = DetailModel;
@@ -80,7 +84,7 @@ namespace TourWeb.Controllers
             {
                 try
                 {
-                    var travellerReview = DataProvider.Ins.DB.TRAVELLER_DETAIL.Where(x => x.TRAVELLER_ID == DetailModel.ratingModel.TravellerID && x.TRAVEL_GROUP_ID == DetailModel.ratingModel.GroupID).SingleOrDefault();
+                    var travellerReview = DataProvider.Ins.DB.TRAVELLER_DETAIL.Where(x => x.TRAVELLER.TRAVELLER_NAME == DetailModel.ratingModel.TravellerName && x.TRAVELLER.TRAVELLER_PHONE_NUMBER == DetailModel.ratingModel.PhoneNumber && x.TRAVEL_GROUP_ID == DetailModel.ratingModel.GroupID).SingleOrDefault();
                     if (travellerReview == null)
                     {
                         throw new Exception();
@@ -192,6 +196,20 @@ namespace TourWeb.Controllers
 
             return tourInformations;
         }
+
+        public void getImageList(TourModel tourModel)
+        {
+            var imageList = from images in DataProvider.Ins.DB.TOUR_IMAGE
+                                  where images.TOUR_ID == tourModel.TourID
+                                  select images;
+            foreach(var item in imageList)
+            {
+                byte[] bytes = item.TOUR_IMAGE_BYTE;
+                string imageBase64Data = Convert.ToBase64String(bytes);
+                string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
+                tourModel.ImagesGallery.Add(imageDataURL);
+            }
+        }
         public TourModel getTour(int tour_id)
         {
             var tourdb = DataProvider.Ins.DB.TOURs.Where(x => x.TOUR_ID == tour_id).FirstOrDefault();
@@ -199,6 +217,9 @@ namespace TourWeb.Controllers
             string imageBase64Data = Convert.ToBase64String(bytes);
             string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
 
+            var informationList = from information in DataProvider.Ins.DB.TOUR_INFORMATION
+                                  where information.TOUR_ID == tour_id && information.TOUR_TIME.FirstOrDefault().TOUR_TIME_DEPARTMENT_DATE > DateTime.Now
+                                  select information;
             return new TourModel()
             {
                 TourID = tour_id,

@@ -30,7 +30,6 @@ html {
 
 section {
     padding: 2rem 9%;
-  
 }
 
 .heading {
@@ -388,12 +387,14 @@ header {
                 -webkit-line-clamp: 2; /* number of lines to show */
                 -webkit-box-orient: vertical;
             }
+
             .packages .box-container .box .contents .stars {
                 font-size: 1.7rem;
             }
-            .packages .box-container .box .contents .stars i {
-                color: var(--orange);
-            }
+
+                .packages .box-container .box .contents .stars i {
+                    color: var(--orange);
+                }
 
             .packages .box-container .box .contents .price {
                 font-size: 2rem;
@@ -485,11 +486,11 @@ header {
         .detail .container .schedule {
             padding: 2rem 0;
         }
-        .detail .container .schedule .schedule-day
-        {
-            padding-top: 2rem;
-            font-weight:bolder;
-        }
+
+            .detail .container .schedule .schedule-day {
+                padding-top: 2rem;
+                font-weight: bolder;
+            }
 
         .detail .container .price {
         }
@@ -597,12 +598,23 @@ header {
             width: 100%;
         }
 
+
     .review .row form {
         flex: 1 1 50rem;
         padding: 2rem;
         box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
         border-radius: .5rem;
     }
+
+        .review .row form .editor {
+            width: 100%;
+            margin: 1rem 0;
+            padding: 1rem;
+            font-size: 1.7rem;
+            color: #333;
+            background: #f7f7f7;
+            text-transform: none;
+        }
 
         .review .row form .inputBox {
             display: flex;

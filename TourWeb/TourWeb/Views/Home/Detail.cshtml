@@ -170,34 +170,12 @@
             <span>y</span>
         </h1>
         <div class="box-container">
-            <div class="box">
-                <img src="~/Content/images/g-1.jpg" alt="">
-            </div>
-            <div class="box">
-                <img src="~/Content/images/g-2.jpg" alt="">
-
-            </div>
-            <div class="box">
-                <img src="~/Content/images/g-3.jpg" alt="">
-            </div>
-            <div class="box">
-                <img src="~/Content/images/g-4.jpg" alt="">
-            </div>
-            <div class="box">
-                <img src="~/Content/images/g-5.jpg" alt="">
-            </div>
-            <div class="box">
-                <img src="~/Content/images/g-6.jpg" alt="">
-            </div>
-            <div class="box">
-                <img src="~/Content/images/g-7.jpg" alt="">
-            </div>
-            <div class="box">
-                <img src="~/Content/images/g-8.jpg" alt="">
-            </div>
-            <div class="box">
-                <img src="~/Content/images/g-9.jpg" alt="">
-            </div>
+            @foreach (var item in Model.tourModel.ImagesGallery)
+            {
+                <div class="box">
+                    <img src="@Url.Content(item)" alt="">
+                </div>
+            }
         </div>
     </section>
     <!-- gallery section ends -->
@@ -337,58 +315,62 @@
                 </div>
             </div>*@
 
-        <div class="row">
+    <div class="row">
 
 
-            @using (Html.BeginForm("Detail", "Home", FormMethod.Post))
-            {
-                <div class="inputBox">
-                    <div class="input-traveller input">
-                        <div class="label">
-                            @Html.LabelFor(model => model.ratingModel.TravellerID)
-                        </div>
-
-                        @Html.EditorFor(model => model.ratingModel.TravellerID)
-                        @Html.ValidationMessageFor(model => model.ratingModel.TravellerID)
+        @using (Html.BeginForm("Detail", "Home", FormMethod.Post))
+        {
+            <div class="label">
+                @Html.LabelFor(model => model.ratingModel.TravellerName)
+            </div>
+            @Html.EditorFor(model => model.ratingModel.TravellerName, new { htmlAttributes = new { @class = "editor" } })
+            @Html.ValidationMessageFor(model => model.ratingModel.TravellerName)
+            <div class="inputBox">
+                <div class="input-traveller input">
+                    <div class="label">
+                        @Html.LabelFor(model => model.ratingModel.PhoneNumber)
                     </div>
-                    <div class="input-group input">
-                        <div class="label">
-                            @Html.LabelFor(model => model.ratingModel.GroupID)
-                        </div>
-                        @Html.EditorFor(model => model.ratingModel.GroupID)
-                        @Html.ValidationMessageFor(model => model.ratingModel.GroupID)
+                    @Html.EditorFor(model => model.ratingModel.PhoneNumber, new { @type = "number" })
+                    @Html.ValidationMessageFor(model => model.ratingModel.PhoneNumber)
+                </div>
+                <div class="input-group input">
+                    <div class="label">
+                        @Html.LabelFor(model => model.ratingModel.GroupID)
                     </div>
+                    @Html.EditorFor(model => model.ratingModel.GroupID)
+                    @Html.ValidationMessageFor(model => model.ratingModel.GroupID)
                 </div>
-                <div class="label">
-                    @Html.LabelFor(model => model.ratingModel.Rating)
-                </div>
-                <div class="star-rating" onmouseout="CrateSelected()">
-                    <i id="star-1" onmouseout="CrateOut(1)" onmouseover="CrateOver(1)" onclick="CrateClick(1)" class="far fa-star"></i>
-                    <i id="star-2" onmouseout="CrateOut(2)" onmouseover="CrateOver(2)" onclick="CrateClick(2)" class="far fa-star"></i>
-                    <i id="star-3" onmouseout="CrateOut(3)" onmouseover="CrateOver(3)" onclick="CrateClick(3)" class="far fa-star"></i>
-                    <i id="star-4" onmouseout="CrateOut(4)" onmouseover="CrateOver(4)" onclick="CrateClick(4)" class="far fa-star"></i>
-                    <i id="star-5" onmouseout="CrateOut(5)" onmouseover="CrateOver(5)" onclick="CrateClick(5)" class="far fa-star"></i>
-                </div>
-                <div>
-                    @Html.HiddenFor(model => model.ratingModel.Rating, new { id = "lblRating", value = "0" })
-                    @Html.HiddenFor(model => model.tourModel.TourID, new { value = Model.tourModel.TourID })
-                    @Html.ValidationMessageFor(model => model.ratingModel.Rating)
-                </div>
-                <div class="label">
-                    @Html.LabelFor(model => model.ratingModel.Comment)
-                </div>
-                @Html.TextAreaFor(model => model.ratingModel.Comment)
-                @Html.ValidationMessageFor(model => model.ratingModel.Comment)
-        <div>
-            <input type="submit" class="btn" name="SaveReview" value="Send Review" CausesValidation=true>
-        </div>
-               
-            }
-            <div class="image">
-                <img src="~/Content/images/review.jpg" alt="">
+            </div>
+            <div class="label">
+                @Html.LabelFor(model => model.ratingModel.Rating)
+            </div>
+            <div class="star-rating" onmouseout="CrateSelected()">
+                <i id="star-1" onmouseout="CrateOut(1)" onmouseover="CrateOver(1)" onclick="CrateClick(1)" class="far fa-star"></i>
+                <i id="star-2" onmouseout="CrateOut(2)" onmouseover="CrateOver(2)" onclick="CrateClick(2)" class="far fa-star"></i>
+                <i id="star-3" onmouseout="CrateOut(3)" onmouseover="CrateOver(3)" onclick="CrateClick(3)" class="far fa-star"></i>
+                <i id="star-4" onmouseout="CrateOut(4)" onmouseover="CrateOver(4)" onclick="CrateClick(4)" class="far fa-star"></i>
+                <i id="star-5" onmouseout="CrateOut(5)" onmouseover="CrateOver(5)" onclick="CrateClick(5)" class="far fa-star"></i>
+            </div>
+            <div>
+                @Html.HiddenFor(model => model.ratingModel.Rating, new { id = "lblRating", value = "0" })
+                @Html.HiddenFor(model => model.tourModel.TourID, new { value = Model.tourModel.TourID })
+                @Html.ValidationMessageFor(model => model.ratingModel.Rating)
+            </div>
+            <div class="label">
+                @Html.LabelFor(model => model.ratingModel.Comment)
+            </div>
+            @Html.TextAreaFor(model => model.ratingModel.Comment)
+            @Html.ValidationMessageFor(model => model.ratingModel.Comment)
+            <div>
+                <input type="submit" class="btn" name="SaveReview" value="Send Review" CausesValidation=true>
             </div>
 
+        }
+        <div class="image">
+            <img src="~/Content/images/review.jpg" alt="">
         </div>
+
+    </div>
     </section>
     <!-- review section ends -->
     <!-- comment section starts -->

@@ -12,5 +12,6 @@ namespace TourWeb.Models
         public String Tour_Character { get; set; }
         public double Tour_Star { get; set; }
         public string imagesData { get; set; }
+        public List<string> ImagesGallery { get; set; }
     }
 }
