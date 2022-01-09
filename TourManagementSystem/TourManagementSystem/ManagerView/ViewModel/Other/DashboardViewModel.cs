@@ -77,7 +77,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
                 }
                 else
                 {
-                    WaitingVisbility = Visibility.Collapsed | Visibility.Visible;
+                    WaitingVisbility = Visibility.Collapsed;
                 }
             }
         }
@@ -182,6 +182,14 @@ namespace TourManagementSystem.ManagerView.ViewModel
             RecordList = RecordHandleModel.GetRecordList();
             RefreshRecordList = RecordHandleModel.GetRecordList();
             Record_Amount = RecordList.Count;
+            if (Record_Amount == 0)
+            {
+                WaitingVisbility = Visibility.Visible;
+            }
+            else
+            {
+                WaitingVisbility = Visibility.Collapsed;
+            }
         }
 
         private async Task LoadRecordDataWithDate()
@@ -197,7 +205,7 @@ namespace TourManagementSystem.ManagerView.ViewModel
             }
             else
             {
-                WaitingVisbility = Visibility.Collapsed | Visibility.Visible;
+                WaitingVisbility = Visibility.Collapsed;
             }
         }
 
