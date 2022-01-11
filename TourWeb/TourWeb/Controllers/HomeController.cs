@@ -30,7 +30,7 @@ namespace TourWeb.Controllers
         public ActionResult Detail(DetailModel DetailModel)
         {
             int id = DetailModel.tourModel.TourID;
-            getDetailModel(id);
+           
             if (ModelState.IsValid)
             {
                 string message = string.Empty;
@@ -48,12 +48,12 @@ namespace TourWeb.Controllers
                             TOUR_ID = DetailModel.tourModel.TourID,
                         });
                         DataProvider.Ins.DB.SaveChanges();
-                        message = "Add Contact successfully";
+                        message = "Register successfully, our employee will call you later!";
                         SetAlert(message, 1);
                     }
                     catch
                     {
-                        message = "Invalid information";
+                        message = "Something is wrong with the system";
                         SetAlert(message, 3);
                     }
 
@@ -71,21 +71,27 @@ namespace TourWeb.Controllers
                         {
                             travellerReview.TRAVELLER_DETAIL_STAR = DetailModel.ratingModel.Rating;
                             travellerReview.TRAVELLER_DETAIL_COMMENT = DetailModel.ratingModel.Comment;
-                            detailModel.ratingModel.Rating = 0;
-                            detailModel.ratingModel.Comment = "";
                             DataProvider.Ins.DB.SaveChanges();
-                            message = "Add rating successfully";
+                            message = "Tour rated successfully, thanks for using our service!";
                             SetAlert(message, 1);
                         }
                     }
                     catch
                     {
-                        message = "Invalid information";
+                        message = "The name and phone number does not match with group ID!";
                         SetAlert(message, 3);
                     }
                 }
+                ModelState.Clear();
+                getDetailModel(id);
+                return RedirectToAction("Detail");
             }
-            return View(detailModel);
+            else
+            {
+                SetAlert("Some information is not valid. Please check the information again!", 3);
+                getDetailModel(id);
+            }
+            return View("Detail", detailModel);
             
         }
 

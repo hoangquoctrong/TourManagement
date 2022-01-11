@@ -28,6 +28,14 @@ html {
     scroll-behavior: smooth;
 }
 
+#AlertBox {
+    margin-top: 9rem;
+    margin-left: 9%;
+    margin-right: 9%;
+    height: 5%;
+    font-size: 2rem;
+    vertical-align:central;
+}
 section {
     padding: 2rem 9%;
 }
