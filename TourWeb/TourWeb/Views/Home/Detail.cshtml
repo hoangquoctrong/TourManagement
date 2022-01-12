@@ -160,9 +160,10 @@
                     @foreach (var item1 in item.Schedule)
                     {
                         <div class="Schedule-Day">@item1.ScheduleDay</div>
-                        <div class="Schedule-content">@item1.ScheduleContent</div>
+                        <div class="Schedule-content">@Html.Raw(@item1.ScheduleContent)</div>
                     }
                 </div>
+                
                 <div class="Price">
                     Price:
                     <div class="Price-Hotel">Hotel: @item.Price.PriceHotel VNĐ</div>

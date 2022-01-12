@@ -161,11 +161,12 @@ namespace TourWeb.Controllers
 
                 foreach (var itemSchedule in item.TOUR_SCHEDULE)
                 {
+                    string str = itemSchedule.TOUR_SCHEDULE_CONTENT.Replace("\n", "<br />");
                     ScheduleModel scheduleModel = new ScheduleModel()
                     {
                         ScheduleId = itemSchedule.TOUR_SCHEDULE_ID,
                         ScheduleDay = itemSchedule.TOUR_SCHEDULE_DAY,
-                        ScheduleContent = itemSchedule.TOUR_SCHEDULE_CONTENT
+                        ScheduleContent = str,
                     };
                     informationModel.Schedule.Add(scheduleModel);
                 }
@@ -271,24 +272,29 @@ namespace TourWeb.Controllers
                                       {
                                           tgdetail.TRAVELLER_DETAIL_STAR
                                       };
-
-            double tour_star = 0;
-            int total = 0;
-            int count = 0;
-            foreach (var item in tourinformationlist)
-            {
-                if (item.TRAVELLER_DETAIL_STAR != 0)
+            
+                double tour_star = 0;
+                int total = 0;
+                int count = 0;
+                foreach (var item in tourinformationlist)
                 {
-                    int star = (int)item.TRAVELLER_DETAIL_STAR;
-                    total += star;
-                    count++;
+                    if (item.TRAVELLER_DETAIL_STAR != 0)
+                    {
+                        int star = (int)item.TRAVELLER_DETAIL_STAR;
+                        total += star;
+                        count++;
+                    }
                 }
+                if(count != 0)
+            {
+                tour_star = total * 1.0 / count;
+                tour_star = Math.Round(tour_star, 2);
+                TOUR tour = DataProvider.Ins.DB.TOURs.Where(x => x.TOUR_ID == tour_id).First();
+                tour.TOUR_STAR = tour_star;
+                DataProvider.Ins.DB.SaveChanges();
             }
-            tour_star = total * 1.0 / count;
-            tour_star = Math.Round(tour_star, 2);
-            TOUR tour = DataProvider.Ins.DB.TOURs.Where(x => x.TOUR_ID == tour_id).First();
-            tour.TOUR_STAR = tour_star;
-            DataProvider.Ins.DB.SaveChanges();
+                
+            
         }
 
         protected void SetAlert(string message, int type)
