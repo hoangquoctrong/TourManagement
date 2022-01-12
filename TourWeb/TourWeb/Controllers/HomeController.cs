@@ -48,7 +48,7 @@ namespace TourWeb.Controllers
                             TOUR_ID = DetailModel.tourModel.TourID,
                         });
                         DataProvider.Ins.DB.SaveChanges();
-                        message = "Register successfully, our employee will call you later!";
+                        message = "Register successfully, our employee will contact you later!";
                         SetAlert(message, 1);
                     }
                     catch
@@ -137,7 +137,8 @@ namespace TourWeb.Controllers
                     Tour_Character = item.TOUR_CHARACTERISTIS,
                     TourName = item.TOUR_NAME,
                     Tour_Star = (double)item.TOUR_STAR,
-                    imagesData = imageDataURL
+                    imagesData = imageDataURL,
+                    RatingNumber = getRatingNumber(item.TOUR_ID),
                 };
 
                 tourModels.Add(tourModel);
@@ -251,26 +252,12 @@ namespace TourWeb.Controllers
             }
             return ratingModels;
         }
-
-        protected void SetAlert(string message, int type)
+        public int getRatingNumber(int tour_id)
         {
-            TempData["AlertMessage"] = message;
-            if (type == 1)
-            {
-                TempData["AlertType"] = "alert-success";
-            }
-            else if (type == 2)
-            {
-                TempData["AlertType"] = "alert-warning";
-            }
-            else if (type == 3)
-            {
-                TempData["AlertType"] = "alert-danger";
-            }
-            else
-            {
-                TempData["AlertType"] = "alert-info";
-            }
+            var ratingList = from x in DataProvider.Ins.DB.TRAVELLER_DETAIL
+                             where x.TRAVEL_GROUP.TOUR_INFORMATION.TOUR_ID == tour_id && x.TRAVELLER_DETAIL_STAR != 0
+                             select x;
+            return ratingList.Count();
         }
 
 
@@ -302,7 +289,27 @@ namespace TourWeb.Controllers
             TOUR tour = DataProvider.Ins.DB.TOURs.Where(x => x.TOUR_ID == tour_id).First();
             tour.TOUR_STAR = tour_star;
             DataProvider.Ins.DB.SaveChanges();
-           
+        }
+
+        protected void SetAlert(string message, int type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == 1)
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            else if (type == 2)
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            else if (type == 3)
+            {
+                TempData["AlertType"] = "alert-danger";
+            }
+            else
+            {
+                TempData["AlertType"] = "alert-info";
+            }
         }
     }
 }

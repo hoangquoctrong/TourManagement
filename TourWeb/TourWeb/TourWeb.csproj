@@ -271,6 +271,7 @@
     <Content Include="Content\images\cp-4.jpg" />
     <Content Include="Content\images\cp-5.jpg" />
     <Content Include="Content\images\cp-6.jpg" />
+    <Content Include="Content\images\logo.jpg" />
     <Content Include="Content\images\pic1.png" />
     <Content Include="Content\images\pic2.png" />
     <Content Include="Content\images\pic3.png" />

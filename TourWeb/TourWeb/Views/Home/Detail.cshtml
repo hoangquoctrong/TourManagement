@@ -60,7 +60,7 @@
     <header>
 
         @*<div id="menu-bar" class="fas fa-bars"></div>*@
-        <a href="#" class="logo"><span>T</span>ravel</a>
+        <a href="~/Home/Index" class="logo"><span>T</span>ravel</a>
         @*<nav class="navbar">
             <a href="#information">Information</a>
             <a href="#detail">Detail</a>
@@ -79,7 +79,7 @@
     <!-- header section end -->
     <!-- login form container -->
 
-    <div class="login-form-container">
+    @*<div class="login-form-container">
         <i class="fas fa-times" id="form-close"></i>
         <form action="">
             <h3>login</h3>
@@ -91,7 +91,7 @@
             <p>forget password? <a href="#">click here</a></p>
             <p>don't have an account? <a href="#">register now</a></p>
         </form>
-    </div>
+    </div>*@
     @if (TempData["AlertMessage"] != null)
     {
         <div id="AlertBox" class="alert @TempData["AlertType"] hide" role="alert">
@@ -120,6 +120,21 @@
             <div class="content">
                 <div class="title">@Model.tourModel.TourName</div>
                 <div class="characteristic">@Model.tourModel.Tour_Character</div>
+                <div class="stars">
+                    @for (double i = 0; i < 5; i++)
+                    {
+                        if (i < Model.tourModel.Tour_Star)
+                        {
+
+                            <i class="fas fa-star"></i>
+                        }
+                        else
+                        {
+                            <i class="far fa-star"></i>
+                        }
+                    }
+                    @Model.tourModel.Tour_Star / 5 | on <span>@Model.ratingModels.Count</span> ratings
+                </div>
             </div>
         </div>
 
@@ -153,7 +168,10 @@
                     <div class="Price-Hotel">Hotel: @item.Price.PriceHotel VNĐ</div>
                     <div class="Price-Transport">Transport: @item.Price.PriceTransport VNĐ</div>
                     <div class="Price-Service">Service: @item.Price.PriceService VNĐ</div>
-                    <div class="Price-Other">Other: @item.Price.PriceNote VNĐ</div>
+                    @if (item.Price.PriceNote != null)
+                    {
+                        <div class="Price-Other">Note: @item.Price.PriceNote VNĐ</div>
+                    }
                     <div class="Total-Price">Total: @item.Price.PriceTotal VNĐ</div>
                 </div>
             </div>
@@ -420,23 +438,13 @@
         <div class="box-container">
             <div class="box">
                 <h3>about us</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                <p>We are a tour company</p>
             </div>
             <div class="box">
                 <h3>branch locations</h3>
-                <a href="">India</a>
-                <a href="">USA</a>
-                <a href="">japan</a>
-                <a href="">france</a>
-            </div>
-            <div class="box">
-                <h3>quick links</h3>
-                <a href="">home</a>
-                <a href="">book</a>
-                <a href="">services</a>
-                <a href="">gallery</a>
-                <a href="">review</a>
-                <a href="">contact</a>
+                <a href="">Ho Chi Minh City</a>
+                <a href="">Ha Noi</a>
+                <a href="">Hue</a>
             </div>
             <div class="box">
                 <h3>follow us</h3>

@@ -12,6 +12,7 @@ namespace TourWeb.Models
         public double PriceHotel { get; set; }
         public double PriceTransport { get; set; }
         public double PriceService { get; set; }
+        public double PriceOther { get; set; }
         public string PriceNote { get; set; }
     }
 }

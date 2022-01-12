@@ -4,12 +4,12 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using TourWeb.Database;
 
 namespace TourWeb.Models
 {
     public class RatingModel
     {
-        
         public int RatingID { get; set; }
         [Required(ErrorMessage = "Required")]
         [DisplayName("Your group ID")]
@@ -30,5 +30,56 @@ namespace TourWeb.Models
         [Required(ErrorMessage = "Required")]
         [Range(1, 5)]
         public int Rating { get; set; }
+
+        public static List<RatingModel> getRating(int tour_id)
+        {
+            List<RatingModel> ratingModels = new List<RatingModel>();
+            var ratingList = from x in DataProvider.Ins.DB.TRAVELLER_DETAIL
+                             where x.TRAVEL_GROUP.TOUR_INFORMATION.TOUR_ID == tour_id && x.TRAVELLER_DETAIL_STAR != 0
+                             select x;
+            foreach (var item in ratingList)
+            {
+                RatingModel ratingModel = new RatingModel()
+                {
+                    RatingID = item.TRAVELLER_DETAIL_ID,
+                    Rating = (int)item.TRAVELLER_DETAIL_STAR,
+                    Comment = item.TRAVELLER_DETAIL_COMMENT,
+                    TravellerName = item.TRAVELLER.TRAVELLER_NAME,
+
+                };
+
+                ratingModels.Add(ratingModel);
+            }
+            return ratingModels;
+        }
+
+        public static void SaveTourStar(int tour_id)
+        {
+            var tourinformationlist = from travelgroup in DataProvider.Ins.DB.TRAVEL_GROUP
+                                      join tgdetail in DataProvider.Ins.DB.TRAVELLER_DETAIL on travelgroup.TRAVEL_GROUP_ID equals tgdetail.TRAVEL_GROUP_ID
+                                      where travelgroup.TOUR_INFORMATION.TOUR_ID == tour_id
+                                      select new
+                                      {
+                                          tgdetail.TRAVELLER_DETAIL_STAR
+                                      };
+
+            double tour_star = 0;
+            int total = 0;
+            int count = 0;
+            foreach (var item in tourinformationlist)
+            {
+                if (item.TRAVELLER_DETAIL_STAR != 0)
+                {
+                    int star = (int)item.TRAVELLER_DETAIL_STAR;
+                    total += star;
+                    count++;
+                }
+            }
+            tour_star = total * 1.0 / count;
+            tour_star = Math.Round(tour_star, 2);
+            TOUR tour = DataProvider.Ins.DB.TOURs.Where(x => x.TOUR_ID == tour_id).First();
+            tour.TOUR_STAR = tour_star;
+            DataProvider.Ins.DB.SaveChanges();
+        }
     }
 }
